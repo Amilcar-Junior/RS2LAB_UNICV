@@ -1,0 +1,36 @@
+[
+    {
+        "id": "ba85fe949960916b",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2b5fcb475301977b",
+        "type": "uibuilder",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "topic": "",
+        "url": "Sample",
+        "fwdInMessages": false,
+        "allowScripts": false,
+        "allowStyles": false,
+        "copyIndex": true,
+        "templateFolder": "blank",
+        "extTemplate": "",
+        "showfolder": false,
+        "useSecurity": false,
+        "sessionLength": 432000,
+        "tokenAutoExtend": false,
+        "reload": false,
+        "sourceFolder": "src",
+        "x": 120,
+        "y": 60,
+        "wires": [
+            [],
+            []
+        ]
+    }
+]

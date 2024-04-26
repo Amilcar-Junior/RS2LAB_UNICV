@@ -426,24 +426,5 @@
                 "file": "C:\\Users\\Amilc\\AppData\\Roaming\\npm\\node_modules\\node-red\\node_modules\\@node-red\\nodes\\core\\storage\\23-watch.js"
             }
         }
-    },
-    "node-red-contrib-uibuilder": {
-        "name": "node-red-contrib-uibuilder",
-        "version": "4.1.4",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "uibuilder": {
-                "name": "uibuilder",
-                "types": [
-                    "uibuilder"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-uibuilder",
-                "file": "C:\\Users\\Amilc\\OneDrive\\Documentos\\Git\\RS2LAB_UNICV\\FrontEnd\\node_modules\\node-red-contrib-uibuilder\\nodes\\uibuilder.js"
-            }
-        }
     }
 }

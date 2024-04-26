@@ -1,0 +1,15 @@
+[
+    "vue",
+    "vuex",
+    "bootstrap",
+    "bootstrap-vue",
+    "bootstrap-icons",
+    "http-vue-loader",
+    "jquery",
+    "moonjs",
+    "reactjs",
+    "riot",
+    "angular",
+    "picnic",
+    "umbrellajs"
+]

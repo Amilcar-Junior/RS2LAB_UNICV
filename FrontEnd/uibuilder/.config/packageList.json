@@ -1,0 +1,10 @@
+[
+  "socket.io",
+  "vue",
+  "vuex",
+  "bootstrap",
+  "bootstrap-vue",
+  "http-vue-loader",
+  "bootstrap-icons",
+  "jquery"
+]
