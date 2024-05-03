@@ -4,3 +4,6 @@
 .syntax-highlight > .string {color:#5dff39;}
 .syntax-highlight > .number {color:#70aeff;}
 .syntax-highlight > .boolean {color:#b993ff;}
+.custom-navbar {
+    background-color: #AB162B; /* Specify your desired color here */
+  }

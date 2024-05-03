@@ -71,3 +71,12 @@ CREATE TABLE IF NOT EXISTS ValorSensor (
     Topico VARCHAR(255),
     FOREIGN KEY (ID_Sensor) REFERENCES Sensor(ID)
 );
+
+CREATE TABLE IF NOT EXISTS monitoring (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    sensor_param VARCHAR(255) NOT NULL,
+    sensor_reading FLOAT NOT NULL,
+    sensor_topic VARCHAR(255) NOT NULL,
+    Area_ID INT,
+    FOREIGN KEY (Area_ID) REFERENCES AreaDeAgricultura(ID)
+);

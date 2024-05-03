@@ -6,5 +6,7 @@
   "bootstrap-vue",
   "http-vue-loader",
   "bootstrap-icons",
+  "vue-router",
+  "axios",
   "jquery"
 ]
