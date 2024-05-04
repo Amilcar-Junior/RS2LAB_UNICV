@@ -6,7 +6,6 @@ import router from './router.js';
 const app1 = new Vue({
     el: '#app',
     components: {
-        'mycomponent': httpVueLoader('./components/mycomponent.vue'),
         'myheader':httpVueLoader('./components/myheader.vue'),
     },
     data(){
@@ -17,14 +16,15 @@ const app1 = new Vue({
     methods: {
     }, 
     mounted: function(){
-        
-      //navigates to home page at mount
-      this.$router.push('/home'); 
-
-        uibuilder.start()
-        var vueApp = this
+        // Verifica se o caminho atual é diferente de '/'
+        if (this.$route.path !== '/') {
+          // Navega para o caminho atual apenas se não for '/'
+          this.$router.push(this.$route.path);
+        }
+        uibuilder.start();
+        var vueApp = this;
         uibuilder.onChange('msg', function(newVal) {
         });
-    },
+      },
     router: new VueRouter(router),
 })

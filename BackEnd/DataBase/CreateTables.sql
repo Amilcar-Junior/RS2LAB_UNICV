@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Utilizador (
     Email VARCHAR(255) NOT NULL,
     Senha VARCHAR(255) NOT NULL,
     Avatar BLOB,
+    isActive BOOLEAN NOT NULL DEFAULT TRUE,
     ID_TipoUtilizador INT,
     FOREIGN KEY (ID_TipoUtilizador) REFERENCES TipoUtilizador(ID)
 );

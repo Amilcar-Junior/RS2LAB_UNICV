@@ -11,11 +11,11 @@ INSERT INTO GrupoUtilizadores (Nome) VALUES
 ('Grupo C');
 
 -- Inserir dados na tabela Utilizador
-INSERT INTO Utilizador (Nome, Email, Senha, Avatar, ID_TipoUtilizador) VALUES
-('João', 'joao@example.com', 'senha123', NULL, 1),
-('Maria', 'maria@example.com', 'senha456', NULL, 2),
-('Pedro', 'pedro@example.com', 'senha789', NULL, 2),
-('Ana', 'ana@example.com', 'senhaabc', NULL, 3);
+INSERT INTO Utilizador (Nome, Email, Senha, isActive, ID_TipoUtilizador) VALUES
+('João', 'joao@example.com', 'senha123', True, 1),
+('Maria', 'maria@example.com', 'senha456', True, 2),
+('Pedro', 'pedro@example.com', 'senha789', True, 2),
+('Ana', 'ana@example.com', 'senhaabc', True, 3);
 
 -- Inserir dados na tabela UtilizadorGrupo
 INSERT INTO UtilizadorGrupo (ID_Utilizador, ID_Grupo) VALUES

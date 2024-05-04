@@ -3,12 +3,12 @@
     <div class="card">
       <div class="card-header">
         <h4>
-          Tipo Utilizador
+          Grupo Utilizadores
           <router-link
-            to="/tipoutilizador/create"
+            to="/grupoutilizadores/create"
             class="btn btn-primary float-right"
           >
-            Add Tipo Utilizador
+            Add Grupo Utilizadores
           </router-link>
         </h4>
       </div>
@@ -18,7 +18,6 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Descrição</th>
               <th class="text-right">Actions</th>
             </tr>
           </thead>
@@ -26,10 +25,9 @@
             <tr v-for="(item, index) in this.items" :key="index">
               <td>{{ item.ID }}</td>
               <td>{{ item.Nome }}</td>
-              <td>{{ item.Descricao }}</td>
               <td class="text-right">
                 <router-link
-                  :to="{ path: '/tipoutilizador/' + item.ID + '/edit' }"
+                  :to="{ path: '/grupoutilizadores/' + item.ID + '/edit' }"
                   class="btn btn-success"
                 >
                   Edit
@@ -55,7 +53,7 @@
 
 <script>
 module.exports = {
-  name: "tipoutilizador",
+  name: "grupoutilizadores",
   data() {
     return {
       perPage: 10,
@@ -74,7 +72,7 @@ module.exports = {
   methods: {
     retriveItem() {
       axios
-        .get("/rs2lab/tipoutilizador")
+        .get("/rs2lab/grupoutilizadores")
         .then((resp) => {
           console.log(resp);
           this.items = resp.data;
@@ -86,7 +84,7 @@ module.exports = {
     },
     deleteItem(ItemID) {
       axios
-        .delete(`/rs2lab/deletetipoutilizador/${ItemID}`)
+        .delete(`/rs2lab/deletegrupoutilizadores/${ItemID}`)
         .then((resp) => {
           console.log(resp);
           this.items = resp.data;

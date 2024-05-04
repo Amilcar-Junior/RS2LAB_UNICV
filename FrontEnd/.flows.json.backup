@@ -65,10 +65,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 250,
-        "y": 220,
+        "x": 260,
+        "y": 240,
         "wires": [
-            []
+            [
+                "6b15a72c08bd9030"
+            ]
         ]
     },
     {
@@ -82,8 +84,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 120,
-        "y": 220,
+        "x": 130,
+        "y": 240,
         "wires": [
             [
                 "64b6d4a8cb5dfc5c"
@@ -103,8 +105,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 540,
-        "y": 220,
+        "x": 550,
+        "y": 240,
         "wires": []
     },
     {
@@ -119,8 +121,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 250,
-        "y": 260,
+        "x": 300,
+        "y": 300,
         "wires": [
             [
                 "cef801336e444de7"
@@ -140,8 +142,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 540,
-        "y": 260,
+        "x": 590,
+        "y": 300,
         "wires": []
     },
     {
@@ -151,8 +153,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 580,
-        "y": 300,
+        "x": 590,
+        "y": 340,
         "wires": []
     },
     {
@@ -163,7 +165,7 @@
         "method": "GET",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://192.168.88.206:1882/tuts/tipoutilizador",
+        "url": "http://192.168.88.206:1882/rs2lab/tipoutilizador",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -171,8 +173,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 250,
-        "y": 320,
+        "x": 260,
+        "y": 360,
         "wires": [
             [
                 "7779e000ad4d5618"
@@ -192,8 +194,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 400,
-        "y": 320,
+        "x": 410,
+        "y": 360,
         "wires": []
     },
     {
@@ -213,8 +215,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
-        "y": 320,
+        "x": 130,
+        "y": 360,
         "wires": [
             [
                 "4ec0502629967bd9"
@@ -225,13 +227,13 @@
         "id": "82f8ae89bbe90771",
         "type": "http in",
         "z": "ba85fe949960916b",
-        "name": "tipoutilizador",
-        "url": "/tuts/tipoutilizador",
+        "name": "Get tipoutilizador",
+        "url": "/rs2lab/tipoutilizador",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 120,
-        "y": 260,
+        "x": 130,
+        "y": 300,
         "wires": [
             [
                 "a24866634be830d0"
@@ -246,7 +248,7 @@
         "method": "POST",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://192.168.88.206:1882/tuts/addtipoutilizador",
+        "url": "http://172.16.4.165:1882/rs2lab/addtipoutilizador",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -255,7 +257,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 520,
+        "y": 580,
         "wires": [
             [
                 "2002540a2b9f6e27"
@@ -267,7 +269,7 @@
         "type": "debug",
         "z": "ba85fe949960916b",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -276,7 +278,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 520,
+        "y": 580,
         "wires": []
     },
     {
@@ -297,7 +299,7 @@
         "payload": "{\"Nome\":\"Teste\",\"Descricao\":\"Teste testado\"}",
         "payloadType": "json",
         "x": 130,
-        "y": 520,
+        "y": 580,
         "wires": [
             [
                 "eab59d4cfcfbc49e"
@@ -316,11 +318,10 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
-        "y": 440,
+        "x": 320,
+        "y": 520,
         "wires": [
             [
-                "5256d8b4876d324b",
                 "51a4b15e2b087ba2"
             ]
         ]
@@ -332,24 +333,25 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 610,
-        "y": 440,
+        "x": 670,
+        "y": 520,
         "wires": []
     },
     {
         "id": "9ba8cf155b9bc11f",
         "type": "http in",
         "z": "ba85fe949960916b",
-        "name": "add",
-        "url": "/tuts/addtipoutilizador",
+        "name": "add TipoUtilizador",
+        "url": "/rs2lab/addtipoutilizador",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 110,
-        "y": 440,
+        "x": 150,
+        "y": 520,
         "wires": [
             [
-                "4ac82c04fa289ef1"
+                "4ac82c04fa289ef1",
+                "5256d8b4876d324b"
             ]
         ]
     },
@@ -358,16 +360,16 @@
         "type": "debug",
         "z": "ba85fe949960916b",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "topic",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 400,
+        "x": 310,
+        "y": 460,
         "wires": []
     },
     {
@@ -376,8 +378,8 @@
         "z": "ba85fe949960916b",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 380,
-        "y": 220,
+        "x": 390,
+        "y": 240,
         "wires": [
             [
                 "1d89135f9362c6a9"
@@ -390,8 +392,8 @@
         "z": "ba85fe949960916b",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 380,
-        "y": 260,
+        "x": 430,
+        "y": 300,
         "wires": [
             [
                 "a4c6acb84046bca4",
@@ -405,8 +407,8 @@
         "z": "ba85fe949960916b",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 470,
-        "y": 440,
+        "x": 530,
+        "y": 520,
         "wires": [
             [
                 "3f8f6405f3178098"
@@ -417,10 +419,2744 @@
         "id": "5df08d5070bc3be3",
         "type": "comment",
         "z": "ba85fe949960916b",
-        "name": "TIPOUTILIZADOR",
+        "name": "START TIPOUTILIZADOR",
         "info": "",
+        "x": 330,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f773d57533748f37",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome, Descricao \nFROM rs2lab.TipoUtilizador\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 740,
+        "wires": [
+            [
+                "77fb1023fa9ffdf4",
+                "676b14c63ca63277"
+            ]
+        ]
+    },
+    {
+        "id": "140f70a02845598c",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "a672cd3cd4967d9f",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/tipoutilizador/5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 800,
+        "wires": [
+            [
+                "5428601bbbcdb293"
+            ]
+        ]
+    },
+    {
+        "id": "5428601bbbcdb293",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "6a33b52838589583",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":1}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 800,
+        "wires": [
+            [
+                "a672cd3cd4967d9f"
+            ]
+        ]
+    },
+    {
+        "id": "e563150f9cf8450b",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get TipoUtilizador id",
+        "url": "/rs2lab/tipoutilizador/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
         "x": 150,
-        "y": 160,
+        "y": 740,
+        "wires": [
+            [
+                "f773d57533748f37",
+                "6f0ab1a5941c5fd3"
+            ]
+        ]
+    },
+    {
+        "id": "77fb1023fa9ffdf4",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 490,
+        "y": 740,
+        "wires": [
+            [
+                "140f70a02845598c",
+                "08de6c14302967c3"
+            ]
+        ]
+    },
+    {
+        "id": "105166fadd0ef5dd",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.88.206:1882/rs2lab/edittipoutilizador/5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 1020,
+        "wires": [
+            [
+                "14c4a92de1f02ca1"
+            ]
+        ]
+    },
+    {
+        "id": "14c4a92de1f02ca1",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "3e21f64a9df86e91",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"AdminTeste\",\"Descricao\":\"Admin testado\"}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 1020,
+        "wires": [
+            [
+                "105166fadd0ef5dd"
+            ]
+        ]
+    },
+    {
+        "id": "9592ed9602a5c274",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.TipoUtilizador SET Nome = \n'${msg.payload.Nome}', Descricao = '${msg.payload.Descricao}'\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 960,
+        "wires": [
+            [
+                "386aacaaf539981b"
+            ]
+        ]
+    },
+    {
+        "id": "530ecdfc4ba039ca",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "6dc2345888b98051",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Edit TipoUtilizador",
+        "url": "/rs2lab/edittipoutilizador/:ID",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 960,
+        "wires": [
+            [
+                "9592ed9602a5c274",
+                "1a2ab393fe17f83d"
+            ]
+        ]
+    },
+    {
+        "id": "1a2ab393fe17f83d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "386aacaaf539981b",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 530,
+        "y": 960,
+        "wires": [
+            [
+                "530ecdfc4ba039ca",
+                "3df56df8e99e57a2"
+            ]
+        ]
+    },
+    {
+        "id": "3df56df8e99e57a2",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "08de6c14302967c3",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "676b14c63ca63277",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "6f0ab1a5941c5fd3",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "c796c1a739f7d3c7",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `DELETE FROM rs2lab.TipoUtilizador\n WHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1180,
+        "wires": [
+            [
+                "f952a32b114c600b",
+                "43ab9c0ef95d1aad"
+            ]
+        ]
+    },
+    {
+        "id": "af5274633e360b2e",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "7611036da6eeafa6",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/tipoutilizador/10",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 1240,
+        "wires": [
+            [
+                "a4dcb4837e44c28a"
+            ]
+        ]
+    },
+    {
+        "id": "a4dcb4837e44c28a",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "4a9afadad37e139e",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":10}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 1240,
+        "wires": [
+            [
+                "7611036da6eeafa6"
+            ]
+        ]
+    },
+    {
+        "id": "0e5ad9f3d918bb01",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Delete TipoUtilizador id",
+        "url": "/rs2lab/deletetipoutilizador/:ID",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1180,
+        "wires": [
+            [
+                "c796c1a739f7d3c7",
+                "d4bb185db143ac8f"
+            ]
+        ]
+    },
+    {
+        "id": "f952a32b114c600b",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 490,
+        "y": 1180,
+        "wires": [
+            [
+                "af5274633e360b2e",
+                "3138993d74f297f0"
+            ]
+        ]
+    },
+    {
+        "id": "3138993d74f297f0",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "43ab9c0ef95d1aad",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "d4bb185db143ac8f",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "863eadc1d83699cd",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "END TIPOUTILIZADOR",
+        "info": "",
+        "x": 320,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "4cdfb82929815624",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ALL",
+        "info": "",
+        "x": 320,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1fd72b0120ab1936",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "CREATE",
+        "info": "",
+        "x": 320,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "6b1ac32809c94b36",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ID",
+        "info": "",
+        "x": 310,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "d0dc2134f1b0bb17",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "UPDATE ID",
+        "info": "",
+        "x": 330,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "5c784a1cc0013d59",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "DELETE ID",
+        "info": "",
+        "x": 330,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "6ebb74746f9c068a",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome \nFROM rs2lab.GrupoUtilizadores;`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 1500,
+        "wires": [
+            [
+                "a280bededc220881"
+            ]
+        ]
+    },
+    {
+        "id": "b85cd0339a7e2578",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 1500,
+        "wires": [
+            [
+                "6ebb74746f9c068a"
+            ]
+        ]
+    },
+    {
+        "id": "96589fc9f6cf1614",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "99186d4458108edf",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome \nFROM rs2lab.GrupoUtilizadores;`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1560,
+        "wires": [
+            [
+                "c8db7b617ed32a4a"
+            ]
+        ]
+    },
+    {
+        "id": "12ffe8f9ed17f9eb",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "3cbf6fde4ae4f7ed",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "3fa8cfbab258f884",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.88.206:1882/rs2lab/grupoutilizadores",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 1620,
+        "wires": [
+            [
+                "cb6da462f84869cb"
+            ]
+        ]
+    },
+    {
+        "id": "cb6da462f84869cb",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "56199e2d6377abc8",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 1620,
+        "wires": [
+            [
+                "3fa8cfbab258f884"
+            ]
+        ]
+    },
+    {
+        "id": "6a1eba8619456eac",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get GrupoUtilizadores",
+        "url": "/rs2lab/grupoutilizadores",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 1560,
+        "wires": [
+            [
+                "99186d4458108edf"
+            ]
+        ]
+    },
+    {
+        "id": "db1ec78e2a3669a6",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://172.16.4.165:1882/rs2lab/addgrupoutilizadores",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 1800,
+        "wires": [
+            [
+                "9fe04d6d965dcb9c"
+            ]
+        ]
+    },
+    {
+        "id": "9fe04d6d965dcb9c",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "4ab038de09c195c6",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"Teste\"}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 1800,
+        "wires": [
+            [
+                "db1ec78e2a3669a6"
+            ]
+        ]
+    },
+    {
+        "id": "2e6c65ba6af0e3ef",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `INSERT INTO rs2lab.GrupoUtilizadores (Nome) \nVALUES ('${msg.payload.Nome}');`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 1740,
+        "wires": [
+            [
+                "2111088b0486ceac"
+            ]
+        ]
+    },
+    {
+        "id": "3c09b7731410edf7",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "a991eb42f287d8f7",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "add GrupoUtilizadores",
+        "url": "/rs2lab/addgrupoutilizadores",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1740,
+        "wires": [
+            [
+                "2e6c65ba6af0e3ef"
+            ]
+        ]
+    },
+    {
+        "id": "18c868e0fed8144d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "a280bededc220881",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 390,
+        "y": 1500,
+        "wires": [
+            [
+                "96589fc9f6cf1614"
+            ]
+        ]
+    },
+    {
+        "id": "c8db7b617ed32a4a",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 470,
+        "y": 1560,
+        "wires": [
+            [
+                "12ffe8f9ed17f9eb",
+                "3cbf6fde4ae4f7ed"
+            ]
+        ]
+    },
+    {
+        "id": "2111088b0486ceac",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 530,
+        "y": 1740,
+        "wires": [
+            [
+                "3c09b7731410edf7",
+                "18c868e0fed8144d"
+            ]
+        ]
+    },
+    {
+        "id": "295bb40a7f620bc5",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "START GrupoUtilizadores",
+        "info": "",
+        "x": 330,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "248623d172d7f79e",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "END GrupoUtilizadores",
+        "info": "",
+        "x": 320,
+        "y": 2520,
+        "wires": []
+    },
+    {
+        "id": "b54a0e8e1d17b7b9",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ALL",
+        "info": "",
+        "x": 320,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "34a1defbf6af9024",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "CREATE",
+        "info": "",
+        "x": 320,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "e496dfdacd610c85",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome \nFROM rs2lab.GrupoUtilizadores \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1960,
+        "wires": [
+            [
+                "bdfc06607f2946c2",
+                "2d62181dcd45d232"
+            ]
+        ]
+    },
+    {
+        "id": "fbc13b62c61562f4",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "2b1a5b3895dc08ce",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/grupoutilizadores/5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 2020,
+        "wires": [
+            [
+                "1f877dcff7f5e32b"
+            ]
+        ]
+    },
+    {
+        "id": "1f877dcff7f5e32b",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "eb643e4bec0d4fc4",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":1}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 2020,
+        "wires": [
+            [
+                "2b1a5b3895dc08ce"
+            ]
+        ]
+    },
+    {
+        "id": "4ba00d54574a9ff5",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get grupoutilizadores id",
+        "url": "/rs2lab/grupoutilizadores/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1960,
+        "wires": [
+            [
+                "e496dfdacd610c85",
+                "b27d1a7009639dbe"
+            ]
+        ]
+    },
+    {
+        "id": "bdfc06607f2946c2",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 490,
+        "y": 1960,
+        "wires": [
+            [
+                "fbc13b62c61562f4",
+                "7f0c954799ed478b"
+            ]
+        ]
+    },
+    {
+        "id": "d9a02b78dc616ce7",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.88.206:1882/rs2lab/editgrupoutilizadores/5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 2240,
+        "wires": [
+            [
+                "ba67760fafd66c0e"
+            ]
+        ]
+    },
+    {
+        "id": "ba67760fafd66c0e",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 2240,
+        "wires": []
+    },
+    {
+        "id": "f18b46211491aa05",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"TesteTestando\"}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 2240,
+        "wires": [
+            [
+                "d9a02b78dc616ce7"
+            ]
+        ]
+    },
+    {
+        "id": "9832d06713bb7d62",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.GrupoUtilizadores \nSET Nome = '${msg.payload.Nome}' \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 2180,
+        "wires": [
+            [
+                "e2ddf0905d48d75e"
+            ]
+        ]
+    },
+    {
+        "id": "d325369e52b714a4",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 2180,
+        "wires": []
+    },
+    {
+        "id": "e22b27b31c2f42ac",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Edit grupoutilizadores",
+        "url": "/rs2lab/editgrupoutilizadores/:ID",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 2180,
+        "wires": [
+            [
+                "9832d06713bb7d62",
+                "ec90ba32ad1bedf9"
+            ]
+        ]
+    },
+    {
+        "id": "ec90ba32ad1bedf9",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 2120,
+        "wires": []
+    },
+    {
+        "id": "e2ddf0905d48d75e",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 570,
+        "y": 2180,
+        "wires": [
+            [
+                "d325369e52b714a4",
+                "fc373f8c2650027e"
+            ]
+        ]
+    },
+    {
+        "id": "fc373f8c2650027e",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 2120,
+        "wires": []
+    },
+    {
+        "id": "7f0c954799ed478b",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "2d62181dcd45d232",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "b27d1a7009639dbe",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "96044a9d4f6004dc",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `DELETE FROM rs2lab.GrupoUtilizadores \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 2400,
+        "wires": [
+            [
+                "4f9f48c079e687ca",
+                "f55e378af154cb95"
+            ]
+        ]
+    },
+    {
+        "id": "967cbdb6ecadde8b",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 2400,
+        "wires": []
+    },
+    {
+        "id": "1fb337f5738a3d31",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/grupoutilizadores/10",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 2460,
+        "wires": [
+            [
+                "6527d2f7d3ebf0d2"
+            ]
+        ]
+    },
+    {
+        "id": "6527d2f7d3ebf0d2",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 2460,
+        "wires": []
+    },
+    {
+        "id": "ca7fadf02c60bebc",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":10}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 2460,
+        "wires": [
+            [
+                "1fb337f5738a3d31"
+            ]
+        ]
+    },
+    {
+        "id": "2dbb43a346e359cf",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Delete GrupoUtilizadores id",
+        "url": "/rs2lab/deletegrupoutilizadores/:ID",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 2400,
+        "wires": [
+            [
+                "96044a9d4f6004dc",
+                "56435db748ea9fe1"
+            ]
+        ]
+    },
+    {
+        "id": "4f9f48c079e687ca",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 550,
+        "y": 2400,
+        "wires": [
+            [
+                "967cbdb6ecadde8b",
+                "056b9a23d0d46412"
+            ]
+        ]
+    },
+    {
+        "id": "056b9a23d0d46412",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "f55e378af154cb95",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "56435db748ea9fe1",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 2340,
+        "wires": []
+    },
+    {
+        "id": "5131ba408b2df7cc",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ID",
+        "info": "",
+        "x": 310,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "d6d2b3d1eba671e1",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "UPDATE ID",
+        "info": "",
+        "x": 330,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "eaf78f141c60af54",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "DELETE ID",
+        "info": "",
+        "x": 330,
+        "y": 2300,
+        "wires": []
+    },
+    {
+        "id": "bacc9caeb59c8c7c",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    GROUP_CONCAT(DISTINCT g.ID, ':', g.Nome ORDER BY g.ID SEPARATOR ', ') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nJOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nJOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID\n\n`;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 2720,
+        "wires": [
+            [
+                "431ddaf415a14267"
+            ]
+        ]
+    },
+    {
+        "id": "cac186a1614b7587",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 2720,
+        "wires": [
+            [
+                "bacc9caeb59c8c7c"
+            ]
+        ]
+    },
+    {
+        "id": "c350634c25106c2d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "bd510b92284b89f3",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    GROUP_CONCAT(DISTINCT g.ID, ':', g.Nome ORDER BY g.ID SEPARATOR ', ') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nJOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nJOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID\n\n`;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 2780,
+        "wires": [
+            [
+                "6598085df2f77fd2"
+            ]
+        ]
+    },
+    {
+        "id": "5fcb102b551182d9",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 2780,
+        "wires": []
+    },
+    {
+        "id": "cdc93cc9c7bc9fe8",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 2820,
+        "wires": []
+    },
+    {
+        "id": "ae26f17bd5705fef",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.88.206:1882/rs2lab/utilizador",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 2840,
+        "wires": [
+            [
+                "1b784db1b3a28ebb"
+            ]
+        ]
+    },
+    {
+        "id": "1b784db1b3a28ebb",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 2840,
+        "wires": []
+    },
+    {
+        "id": "036164b2ef106543",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 2840,
+        "wires": [
+            [
+                "ae26f17bd5705fef"
+            ]
+        ]
+    },
+    {
+        "id": "2ff16ad56147f134",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get Utilizador",
+        "url": "/rs2lab/utilizador",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 2780,
+        "wires": [
+            [
+                "bd510b92284b89f3"
+            ]
+        ]
+    },
+    {
+        "id": "00d15f91b20e5697",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://172.16.4.165:1882/rs2lab/addutilizador",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 3020,
+        "wires": [
+            [
+                "5e9508087c7b5a7d"
+            ]
+        ]
+    },
+    {
+        "id": "5e9508087c7b5a7d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 3020,
+        "wires": []
+    },
+    {
+        "id": "2a62aaeddaf07e64",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"Teste\"}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 3020,
+        "wires": [
+            [
+                "00d15f91b20e5697"
+            ]
+        ]
+    },
+    {
+        "id": "686dfb7cc32e0fe3",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador \n(Nome, Email, Senha, Avatar, ID_TipoUtilizador, isActive) \nVALUES ('${msg.payload.Nome}', '${msg.payload.Email}', \n'${msg.payload.Senha}', '${msg.payload.Avatar}', \n${msg.payload.ID_TipoUtilizador}, \n${msg.payload.isActive});`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 2960,
+        "wires": [
+            [
+                "c9d222156489023d"
+            ]
+        ]
+    },
+    {
+        "id": "bef0301becf000b3",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 2960,
+        "wires": []
+    },
+    {
+        "id": "d029aea9710571a6",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "add Utilizador",
+        "url": "/rs2lab/addutilizador",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 2960,
+        "wires": [
+            [
+                "686dfb7cc32e0fe3"
+            ]
+        ]
+    },
+    {
+        "id": "efb0dd89999caf7f",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 2920,
+        "wires": []
+    },
+    {
+        "id": "431ddaf415a14267",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 390,
+        "y": 2720,
+        "wires": [
+            [
+                "c350634c25106c2d"
+            ]
+        ]
+    },
+    {
+        "id": "6598085df2f77fd2",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 470,
+        "y": 2780,
+        "wires": [
+            [
+                "5fcb102b551182d9",
+                "cdc93cc9c7bc9fe8"
+            ]
+        ]
+    },
+    {
+        "id": "c9d222156489023d",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 530,
+        "y": 2960,
+        "wires": [
+            [
+                "bef0301becf000b3",
+                "efb0dd89999caf7f"
+            ]
+        ]
+    },
+    {
+        "id": "693230312f4c6174",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "START Utilizador",
+        "info": "",
+        "x": 300,
+        "y": 2600,
+        "wires": []
+    },
+    {
+        "id": "6a2e04b7ba48d4e9",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "END Utilizador",
+        "info": "",
+        "x": 300,
+        "y": 3740,
+        "wires": []
+    },
+    {
+        "id": "c892b667584f5e3d",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ALL",
+        "info": "",
+        "x": 320,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "9f3c233f344d78ce",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "CREATE",
+        "info": "",
+        "x": 320,
+        "y": 2900,
+        "wires": []
+    },
+    {
+        "id": "898dd5d121dfe467",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome, Email, Senha, Avatar,\n ID_TipoUtilizador, isActive FROM rs2lab.Utilizador\n  WHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 3180,
+        "wires": [
+            [
+                "ee3d0442ab481a26",
+                "54e0c2dc3e6c5e78"
+            ]
+        ]
+    },
+    {
+        "id": "ef225f586f8526f0",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 3180,
+        "wires": []
+    },
+    {
+        "id": "29a044f7437a4925",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/utilizador/5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 3240,
+        "wires": [
+            [
+                "6f3adea70f760179"
+            ]
+        ]
+    },
+    {
+        "id": "6f3adea70f760179",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 3240,
+        "wires": []
+    },
+    {
+        "id": "bdd7d379606fec71",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":1}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 3240,
+        "wires": [
+            [
+                "29a044f7437a4925"
+            ]
+        ]
+    },
+    {
+        "id": "f30b607aed2741d3",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get Utilizador id",
+        "url": "/rs2lab/utilizador/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 3180,
+        "wires": [
+            [
+                "898dd5d121dfe467",
+                "126a9dbd3e67b593"
+            ]
+        ]
+    },
+    {
+        "id": "ee3d0442ab481a26",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 490,
+        "y": 3180,
+        "wires": [
+            [
+                "ef225f586f8526f0",
+                "e7364a8c3b6373d0"
+            ]
+        ]
+    },
+    {
+        "id": "582137c3581fccf6",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.88.206:1882/rs2lab/editutilizador/5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 3460,
+        "wires": [
+            [
+                "33172aa57966669b"
+            ]
+        ]
+    },
+    {
+        "id": "33172aa57966669b",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 3460,
+        "wires": []
+    },
+    {
+        "id": "cffcdcb314726967",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"TesteTestando\"}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 3460,
+        "wires": [
+            [
+                "582137c3581fccf6"
+            ]
+        ]
+    },
+    {
+        "id": "698f8b463ba27bdb",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Nome = '${msg.payload.Nome}', \nEmail = '${msg.payload.Email}', \nSenha = '${msg.payload.Senha}', \nAvatar = '${msg.payload.Avatar}', \nID_TipoUtilizador = ${msg.payload.ID_TipoUtilizador}, \nisActive = ${msg.payload.isActive} \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 3400,
+        "wires": [
+            [
+                "7161199dbe7f739d"
+            ]
+        ]
+    },
+    {
+        "id": "12f32ef1a47ed7c4",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 3400,
+        "wires": []
+    },
+    {
+        "id": "ba7397ba8174076b",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Edit Utilizador",
+        "url": "/rs2lab/editutilizador/:ID",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 3400,
+        "wires": [
+            [
+                "698f8b463ba27bdb",
+                "64a2b3bd26cc9393"
+            ]
+        ]
+    },
+    {
+        "id": "64a2b3bd26cc9393",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 3340,
+        "wires": []
+    },
+    {
+        "id": "7161199dbe7f739d",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 570,
+        "y": 3400,
+        "wires": [
+            [
+                "12f32ef1a47ed7c4",
+                "b8cac52f16036586"
+            ]
+        ]
+    },
+    {
+        "id": "b8cac52f16036586",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 3340,
+        "wires": []
+    },
+    {
+        "id": "e7364a8c3b6373d0",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 3140,
+        "wires": []
+    },
+    {
+        "id": "54e0c2dc3e6c5e78",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 3140,
+        "wires": []
+    },
+    {
+        "id": "126a9dbd3e67b593",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 3120,
+        "wires": []
+    },
+    {
+        "id": "11522a57e9ccf06b",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `DELETE FROM rs2lab.Utilizador \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 3620,
+        "wires": [
+            [
+                "20bc74c2e18e9878",
+                "1be3af1a47f71864"
+            ]
+        ]
+    },
+    {
+        "id": "d381f7486b56c22e",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 3620,
+        "wires": []
+    },
+    {
+        "id": "0a78d55a0d3dd9c1",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/utilizador/10",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 3680,
+        "wires": [
+            [
+                "056ca1b74465da54"
+            ]
+        ]
+    },
+    {
+        "id": "056ca1b74465da54",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 3680,
+        "wires": []
+    },
+    {
+        "id": "8f769a3679da2608",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":10}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 3680,
+        "wires": [
+            [
+                "0a78d55a0d3dd9c1"
+            ]
+        ]
+    },
+    {
+        "id": "5a023a308336b80c",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Delete Utilizador id",
+        "url": "/rs2lab/deleteutilizador/:ID",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 3620,
+        "wires": [
+            [
+                "11522a57e9ccf06b",
+                "183e0675b0fe2e50"
+            ]
+        ]
+    },
+    {
+        "id": "20bc74c2e18e9878",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 550,
+        "y": 3620,
+        "wires": [
+            [
+                "d381f7486b56c22e",
+                "52c18233dd672b57"
+            ]
+        ]
+    },
+    {
+        "id": "52c18233dd672b57",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 3580,
+        "wires": []
+    },
+    {
+        "id": "1be3af1a47f71864",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 3580,
+        "wires": []
+    },
+    {
+        "id": "183e0675b0fe2e50",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 3560,
+        "wires": []
+    },
+    {
+        "id": "1dd968ec7c59da7c",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ID",
+        "info": "",
+        "x": 310,
+        "y": 3080,
+        "wires": []
+    },
+    {
+        "id": "f9e0229c1e9cf484",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "UPDATE ID",
+        "info": "",
+        "x": 330,
+        "y": 3300,
+        "wires": []
+    },
+    {
+        "id": "b4779b1f748d717f",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "DELETE ID",
+        "info": "",
+        "x": 330,
+        "y": 3520,
+        "wires": []
+    },
+    {
+        "id": "96cf4020969e04a1",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    GROUP_CONCAT(DISTINCT g.ID, ':', g.Nome ORDER BY g.ID SEPARATOR ', ') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nJOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nJOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID\n\n`;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 2720,
+        "wires": [
+            [
+                "da3334fc516f7697"
+            ]
+        ]
+    },
+    {
+        "id": "48c4aca21e6990c0",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 830,
+        "y": 2720,
+        "wires": [
+            [
+                "96cf4020969e04a1"
+            ]
+        ]
+    },
+    {
+        "id": "7d74899d372e9a3c",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1250,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "a8155a2a1d97a89c",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `\n    SELECT DISTINCT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    g.ID AS GrupoUtilizadores_ID,\n    g.Nome AS GrupoUtilizadores_Nome\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nJOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nJOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID;\n\n`;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 2780,
+        "wires": [
+            [
+                "1334a2b28e4ce359"
+            ]
+        ]
+    },
+    {
+        "id": "a2a107c66c393416",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1330,
+        "y": 2780,
+        "wires": []
+    },
+    {
+        "id": "cd2c924e9fa08a15",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1330,
+        "y": 2820,
+        "wires": []
+    },
+    {
+        "id": "886d064220fcbbf9",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.88.206:1882/rs2lab/utilizador",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 960,
+        "y": 2840,
+        "wires": [
+            [
+                "0faa830253103329"
+            ]
+        ]
+    },
+    {
+        "id": "0faa830253103329",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 2840,
+        "wires": []
+    },
+    {
+        "id": "fd393b7072d992dc",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 830,
+        "y": 2840,
+        "wires": [
+            [
+                "886d064220fcbbf9"
+            ]
+        ]
+    },
+    {
+        "id": "ed55b925493135b0",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get Utilizador",
+        "url": "/rs2lab/utilizador",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 820,
+        "y": 2780,
+        "wires": [
+            [
+                "a8155a2a1d97a89c"
+            ]
+        ]
+    },
+    {
+        "id": "da3334fc516f7697",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1090,
+        "y": 2720,
+        "wires": [
+            [
+                "7d74899d372e9a3c"
+            ]
+        ]
+    },
+    {
+        "id": "1334a2b28e4ce359",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1170,
+        "y": 2780,
+        "wires": [
+            [
+                "a2a107c66c393416",
+                "cd2c924e9fa08a15"
+            ]
+        ]
+    },
+    {
+        "id": "6154548819a9474f",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ALL Utilizador,grupo e tipo",
+        "info": "",
+        "x": 1090,
+        "y": 2660,
         "wires": []
     }
 ]

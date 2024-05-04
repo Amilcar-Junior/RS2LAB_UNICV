@@ -1,0 +1,972 @@
+[
+    {
+        "id": "64b6d4a8cb5dfc5c",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = 'SELECT ' +\n    'ID, ' +\n    'Nome, ' +\n    'Descricao ' +\n    'FROM rs2lab.TipoUtilizador;';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 240,
+        "wires": [
+            [
+                "6b15a72c08bd9030"
+            ]
+        ]
+    },
+    {
+        "id": "8803ac67b6aace4b",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "64b6d4a8cb5dfc5c"
+            ]
+        ]
+    },
+    {
+        "id": "1d89135f9362c6a9",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a24866634be830d0",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = 'SELECT ' +\n    'ID, ' +\n    'Nome, ' +\n    'Descricao ' +\n    'FROM rs2lab.TipoUtilizador;';\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 300,
+        "wires": [
+            [
+                "cef801336e444de7"
+            ]
+        ]
+    },
+    {
+        "id": "a4c6acb84046bca4",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d5c46af50f848ec9",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "4ec0502629967bd9",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.88.206:1882/rs2lab/tipoutilizador",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 360,
+        "wires": [
+            [
+                "7779e000ad4d5618"
+            ]
+        ]
+    },
+    {
+        "id": "7779e000ad4d5618",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "dded9782c90518cb",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "4ec0502629967bd9"
+            ]
+        ]
+    },
+    {
+        "id": "82f8ae89bbe90771",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get tipoutilizador",
+        "url": "/rs2lab/tipoutilizador",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "a24866634be830d0"
+            ]
+        ]
+    },
+    {
+        "id": "eab59d4cfcfbc49e",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://172.16.4.165:1882/rs2lab/addtipoutilizador",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 580,
+        "wires": [
+            [
+                "2002540a2b9f6e27"
+            ]
+        ]
+    },
+    {
+        "id": "2002540a2b9f6e27",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "cfb77425b5c1d981",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"Teste\",\"Descricao\":\"Teste testado\"}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 580,
+        "wires": [
+            [
+                "eab59d4cfcfbc49e"
+            ]
+        ]
+    },
+    {
+        "id": "4ac82c04fa289ef1",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `INSERT INTO rs2lab.TipoUtilizador (Nome, Descricao) ` +\n    `VALUES ('${msg.payload.Nome}', '${msg.payload.Descricao}');`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 520,
+        "wires": [
+            [
+                "51a4b15e2b087ba2"
+            ]
+        ]
+    },
+    {
+        "id": "3f8f6405f3178098",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "9ba8cf155b9bc11f",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "add TipoUtilizador",
+        "url": "/rs2lab/addtipoutilizador",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 520,
+        "wires": [
+            [
+                "4ac82c04fa289ef1",
+                "5256d8b4876d324b"
+            ]
+        ]
+    },
+    {
+        "id": "5256d8b4876d324b",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6b15a72c08bd9030",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 390,
+        "y": 240,
+        "wires": [
+            [
+                "1d89135f9362c6a9"
+            ]
+        ]
+    },
+    {
+        "id": "cef801336e444de7",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "a4c6acb84046bca4",
+                "d5c46af50f848ec9"
+            ]
+        ]
+    },
+    {
+        "id": "51a4b15e2b087ba2",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 530,
+        "y": 520,
+        "wires": [
+            [
+                "3f8f6405f3178098"
+            ]
+        ]
+    },
+    {
+        "id": "5df08d5070bc3be3",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "START TIPOUTILIZADOR",
+        "info": "",
+        "x": 330,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f773d57533748f37",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome, Descricao \nFROM rs2lab.TipoUtilizador\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 740,
+        "wires": [
+            [
+                "77fb1023fa9ffdf4",
+                "676b14c63ca63277"
+            ]
+        ]
+    },
+    {
+        "id": "140f70a02845598c",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "a672cd3cd4967d9f",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/tipoutilizador/5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 800,
+        "wires": [
+            [
+                "5428601bbbcdb293"
+            ]
+        ]
+    },
+    {
+        "id": "5428601bbbcdb293",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "6a33b52838589583",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":1}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 800,
+        "wires": [
+            [
+                "a672cd3cd4967d9f"
+            ]
+        ]
+    },
+    {
+        "id": "e563150f9cf8450b",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get TipoUtilizador id",
+        "url": "/rs2lab/tipoutilizador/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 740,
+        "wires": [
+            [
+                "f773d57533748f37",
+                "6f0ab1a5941c5fd3"
+            ]
+        ]
+    },
+    {
+        "id": "77fb1023fa9ffdf4",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 490,
+        "y": 740,
+        "wires": [
+            [
+                "140f70a02845598c",
+                "08de6c14302967c3"
+            ]
+        ]
+    },
+    {
+        "id": "105166fadd0ef5dd",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.88.206:1882/rs2lab/edittipoutilizador/5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 260,
+        "y": 1020,
+        "wires": [
+            [
+                "14c4a92de1f02ca1"
+            ]
+        ]
+    },
+    {
+        "id": "14c4a92de1f02ca1",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "3e21f64a9df86e91",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"AdminTeste\",\"Descricao\":\"Admin testado\"}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 1020,
+        "wires": [
+            [
+                "105166fadd0ef5dd"
+            ]
+        ]
+    },
+    {
+        "id": "9592ed9602a5c274",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.TipoUtilizador SET Nome = \n'${msg.payload.Nome}', Descricao = '${msg.payload.Descricao}'\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 960,
+        "wires": [
+            [
+                "386aacaaf539981b"
+            ]
+        ]
+    },
+    {
+        "id": "530ecdfc4ba039ca",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "6dc2345888b98051",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Edit TipoUtilizador",
+        "url": "/rs2lab/edittipoutilizador/:ID",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 960,
+        "wires": [
+            [
+                "9592ed9602a5c274",
+                "1a2ab393fe17f83d"
+            ]
+        ]
+    },
+    {
+        "id": "1a2ab393fe17f83d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "386aacaaf539981b",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 530,
+        "y": 960,
+        "wires": [
+            [
+                "530ecdfc4ba039ca",
+                "3df56df8e99e57a2"
+            ]
+        ]
+    },
+    {
+        "id": "3df56df8e99e57a2",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "08de6c14302967c3",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "676b14c63ca63277",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "6f0ab1a5941c5fd3",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "c796c1a739f7d3c7",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `DELETE FROM rs2lab.TipoUtilizador\n WHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1180,
+        "wires": [
+            [
+                "f952a32b114c600b",
+                "43ab9c0ef95d1aad"
+            ]
+        ]
+    },
+    {
+        "id": "af5274633e360b2e",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "7611036da6eeafa6",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/tipoutilizador/10",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 1240,
+        "wires": [
+            [
+                "a4dcb4837e44c28a"
+            ]
+        ]
+    },
+    {
+        "id": "a4dcb4837e44c28a",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "4a9afadad37e139e",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":10}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 1240,
+        "wires": [
+            [
+                "7611036da6eeafa6"
+            ]
+        ]
+    },
+    {
+        "id": "0e5ad9f3d918bb01",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Delete TipoUtilizador id",
+        "url": "/rs2lab/deletetipoutilizador/:ID",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1180,
+        "wires": [
+            [
+                "c796c1a739f7d3c7",
+                "d4bb185db143ac8f"
+            ]
+        ]
+    },
+    {
+        "id": "f952a32b114c600b",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 490,
+        "y": 1180,
+        "wires": [
+            [
+                "af5274633e360b2e",
+                "3138993d74f297f0"
+            ]
+        ]
+    },
+    {
+        "id": "3138993d74f297f0",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "43ab9c0ef95d1aad",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "d4bb185db143ac8f",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "863eadc1d83699cd",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "END TIPOUTILIZADOR",
+        "info": "",
+        "x": 320,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "4cdfb82929815624",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ALL",
+        "info": "",
+        "x": 320,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1fd72b0120ab1936",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "CREATE",
+        "info": "",
+        "x": 320,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "6b1ac32809c94b36",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ID",
+        "info": "",
+        "x": 310,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "d0dc2134f1b0bb17",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "UPDATE ID",
+        "info": "",
+        "x": 330,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "5c784a1cc0013d59",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "DELETE ID",
+        "info": "",
+        "x": 330,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "f3e8c660cf5205b5",
+        "type": "MySQLdatabase",
+        "name": "rs2lab",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "rs2lab",
+        "tz": "+08:00",
+        "charset": "UTF8"
+    }
+]

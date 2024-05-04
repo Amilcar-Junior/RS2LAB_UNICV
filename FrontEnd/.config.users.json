@@ -14,7 +14,17 @@
             },
             "tours": {
                 "welcome": "3.1.9"
+            },
+            "dialog": {
+                "export": {
+                    "pretty": true
+                }
             }
-        }
+        },
+        "debug": {
+            "filter": "filterAll"
+        },
+        "menu-menu-item-sidebar": true,
+        "menu-menu-item-palette": false
     }
 }

@@ -2,7 +2,7 @@
   <div class="container mt-5">
     <div class="card">
       <div class="card-header">
-        <h4>Adicionar Tipo Utilizador</h4>
+        <h4>Adicionar Grupo Utilizadores</h4>
       </div>
       <div class="card-body">
         <div class="mb-3">
@@ -10,11 +10,7 @@
             <input type="text" v-model="model.item.Nome" class="form-control" />
         </div>
         <div class="mb-3">
-            <label for="">Descrição</label>
-            <input type="text" v-model="model.item.Descricao"  class="form-control" />
-        </div>
-        <div class="mb-3">
-            <button type="button" @click="addTipoUtilizador" class="btn btn-primary float-right">Salvar</button>
+            <button type="button" @click="addGrupoUtilizadores" class="btn btn-primary float-right">Salvar</button>
         </div>
       </div>
     </div>
@@ -23,13 +19,12 @@
 
 <script>
 module.exports = {
-    name: "CreateTipoUtilizador",
+    name: "CreateGrupoUtilizadores",
     data() {
         return {
             model: {
                 item : {
                     Nome: '',
-                    Descricao: '',
                 }
             }
         };
@@ -40,9 +35,9 @@ module.exports = {
     methods: {
         
         
-        addTipoUtilizador(){
+        addGrupoUtilizadores(){
             var self = this;                          //Assign this to a variable         
-            axios.post('/rs2lab/addtipoutilizador',this.model.item)
+            axios.post('/rs2lab/addgrupoutilizadores',this.model.item)
             .then(resp=>{ 
                 console.log(resp)
                 self.showNotification(); //shows notification of successful add
@@ -52,7 +47,6 @@ module.exports = {
         //Use to clean form upon succcessful insert
         cleanForm(){
             this.model.item.Nome = '';
-            this.model.item.Descricao = '';
         },
         //Shows a dialog notification
         

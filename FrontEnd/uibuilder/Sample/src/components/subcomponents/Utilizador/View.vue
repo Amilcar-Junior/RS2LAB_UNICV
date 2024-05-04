@@ -3,12 +3,12 @@
     <div class="card">
       <div class="card-header">
         <h4>
-          Tipo Utilizador
+          Utilizador
           <router-link
-            to="/tipoutilizador/create"
+            to="/utilizador/create"
             class="btn btn-primary float-right"
           >
-            Add Tipo Utilizador
+            Add Utilizador
           </router-link>
         </h4>
       </div>
@@ -18,18 +18,48 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Descrição</th>
+              <th>Email</th>
+              <th>Senha</th>
+              <th>Tipo Utilizador</th>
+              <th>Grupos</th>
+              <th>Ativo</th>
+              <th>Avatar</th>
               <th class="text-right">Actions</th>
             </tr>
           </thead>
           <tbody v-if="this.items.length > 0">
             <tr v-for="(item, index) in this.items" :key="index">
-              <td>{{ item.ID }}</td>
-              <td>{{ item.Nome }}</td>
-              <td>{{ item.Descricao }}</td>
+              <td>{{ item.Utilizador_ID }}</td>
+              <td>{{ item.Utilizador_Nome }}</td>
+              <td>{{ item.Utilizador_Email }}</td>
+              <td>{{ maskPassword(item.Senha) }}</td>
+              <td>{{ item.TipoUtilizador_Nome }}</td>
+              <td>{{ formatGroups(item.Grupos) }}</td>
+              <td>
+                <b-icon-check
+                  v-if="item.Utilizador_isActive === 1"
+                  variant="success"
+                ></b-icon-check>
+                <b-icon-x v-else variant="danger"></b-icon-x>
+              </td>
+              <td class="text-center">
+                <img
+                  v-if="item.Utilizador_Avatar"
+                  :src="item.Utilizador_Avatar"
+                  alt="Avatar"
+                  style="max-width: 50px; max-height: 50px"
+                />
+                <img
+                  v-else
+                  src="./images/no-avatar.png"
+                  alt="no-avar"
+                  class="logo-img"
+                  style="max-width: 25px; max-height: 25px"
+                />
+              </td>
               <td class="text-right">
                 <router-link
-                  :to="{ path: '/tipoutilizador/' + item.ID + '/edit' }"
+                  :to="{ path: '/utilizador/' + item.ID + '/edit' }"
                   class="btn btn-success"
                 >
                   Edit
@@ -55,7 +85,7 @@
 
 <script>
 module.exports = {
-  name: "tipoutilizador",
+  name: "utilizador",
   data() {
     return {
       perPage: 10,
@@ -74,7 +104,7 @@ module.exports = {
   methods: {
     retriveItem() {
       axios
-        .get("/rs2lab/tipoutilizador")
+        .get("/rs2lab/utilizador")
         .then((resp) => {
           console.log(resp);
           this.items = resp.data;
@@ -84,9 +114,23 @@ module.exports = {
           console.error(errors);
         });
     },
+    maskPassword(password) {
+      if (!password) return "";
+      return "*".repeat(password.length);
+    },
+    formatGroups(groups) {
+      if (!groups) return "";
+      return groups
+        .split(", ")
+        .map((group) => {
+          const [id, name] = group.split(":");
+          return name;
+        })
+        .join(", ");
+    },
     deleteItem(ItemID) {
       axios
-        .delete(`/rs2lab/deletetipoutilizador/${ItemID}`)
+        .delete(`/rs2lab/deleteutilizador/${ItemID}`)
         .then((resp) => {
           console.log(resp);
           this.items = resp.data;
