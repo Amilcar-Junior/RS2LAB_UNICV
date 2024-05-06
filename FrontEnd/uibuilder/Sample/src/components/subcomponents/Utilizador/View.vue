@@ -32,7 +32,7 @@
               <td>{{ item.Utilizador_ID }}</td>
               <td>{{ item.Utilizador_Nome }}</td>
               <td>{{ item.Utilizador_Email }}</td>
-              <td>{{ maskPassword(item.Senha) }}</td>
+              <td>{{ maskPassword(item.Utilizador_Senha) }}</td>
               <td>{{ item.TipoUtilizador_Nome }}</td>
               <td>{{ formatGroups(item.Grupos) }}</td>
               <td>
@@ -45,28 +45,28 @@
               <td class="text-center">
                 <img
                   v-if="item.Utilizador_Avatar"
-                  :src="item.Utilizador_Avatar"
+                  :src="getObjectURL(item.Utilizador_Avatar.data)"
                   alt="Avatar"
                   style="max-width: 50px; max-height: 50px"
                 />
                 <img
                   v-else
                   src="./images/no-avatar.png"
-                  alt="no-avar"
+                  alt="no-avatar"
                   class="logo-img"
                   style="max-width: 25px; max-height: 25px"
                 />
               </td>
               <td class="text-right">
                 <router-link
-                  :to="{ path: '/utilizador/' + item.ID + '/edit' }"
+                  :to="{ path: '/utilizador/' + item.Utilizador_ID + '/edit' }"
                   class="btn btn-success"
                 >
                   Edit
                 </router-link>
                 <button
                   type="button"
-                  @click="ShowConfirmDelete(item.ID)"
+                  @click="ShowConfirmDelete(item.Utilizador_ID)"
                   class="btn btn-danger"
                 >
                   Delete
@@ -118,6 +118,15 @@ module.exports = {
       if (!password) return "";
       return "*".repeat(password.length);
     },
+    getObjectURL(buffer) {
+      if (!Array.isArray(buffer)) {
+        return "";
+      }
+      
+      const uint8Array = new Uint8Array(buffer);
+      const blob = new Blob([uint8Array], { type: "image/jpeg" });
+      return URL.createObjectURL(blob);
+    },
     formatGroups(groups) {
       if (!groups) return "";
       return groups
@@ -129,6 +138,7 @@ module.exports = {
         .join(", ");
     },
     deleteItem(ItemID) {
+      console.log(ItemID)
       axios
         .delete(`/rs2lab/deleteutilizador/${ItemID}`)
         .then((resp) => {
@@ -168,7 +178,6 @@ module.exports = {
           centered: true,
         })
         .then((value) => {
-          // Verifica se o usuário clicou em "Sim" antes de excluir
           if (value) {
             this.deleteItem(ItemID);
           }

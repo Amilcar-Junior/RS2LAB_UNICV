@@ -1766,7 +1766,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `DELETE FROM rs2lab.GrupoUtilizadores \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "func": "msg.topic = `DELETE FROM rs2lab.Utilizador\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1801,7 +1801,7 @@
         "method": "DELETE",
         "ret": "obj",
         "paytoqs": "query",
-        "url": "http://192.168.88.206:1882/rs2lab/grupoutilizadores/10",
+        "url": "http://192.168.88.186:1882/rs2lab/deleteutilizador/10",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -1863,12 +1863,12 @@
         "id": "2dbb43a346e359cf",
         "type": "http in",
         "z": "ba85fe949960916b",
-        "name": "Delete GrupoUtilizadores id",
-        "url": "/rs2lab/deletegrupoutilizadores/:ID",
+        "name": "Delete Utilizador id",
+        "url": "/rs2lab/deleteutilizador/:ID",
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
-        "x": 180,
+        "x": 150,
         "y": 2400,
         "wires": [
             [
@@ -1978,7 +1978,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    GROUP_CONCAT(DISTINCT g.ID, ':', g.Nome ORDER BY g.ID SEPARATOR ', ') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nJOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nJOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID\n\n`;\n\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    GROUP_CONCAT(DISTINCT g.ID, ':', g.Nome ORDER BY g.ID SEPARATOR ', ') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n\n\n`;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2034,7 +2034,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    GROUP_CONCAT(DISTINCT g.ID, ':', g.Nome ORDER BY g.ID SEPARATOR ', ') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nJOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nJOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID\n\n`;\n\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    GROUP_CONCAT(DISTINCT g.ID, ':', g.Nome ORDER BY g.ID SEPARATOR ', ') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n\n\n`;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2168,7 +2168,7 @@
         "method": "POST",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://172.16.4.165:1882/rs2lab/addutilizador",
+        "url": "http://192.168.88.186:1882/rs2lab/addutilizador",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -2189,7 +2189,7 @@
         "type": "debug",
         "z": "ba85fe949960916b",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2216,7 +2216,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"Nome\":\"Teste\"}",
+        "payload": "{\"Nome\":\"Testesssss\",\"Senha\":\"Teste\",\"Email\":\"teste@gmail.com\",\"isActive\":\"1\",\"Avatar\":null,\"ID_TipoUtilizador\":\"1\"}",
         "payloadType": "json",
         "x": 130,
         "y": 3020,
@@ -2231,7 +2231,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador \n(Nome, Email, Senha, Avatar, ID_TipoUtilizador, isActive) \nVALUES ('${msg.payload.Nome}', '${msg.payload.Email}', \n'${msg.payload.Senha}', '${msg.payload.Avatar}', \n${msg.payload.ID_TipoUtilizador}, \n${msg.payload.isActive});`;\nreturn msg;",
+        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador \n(Nome, Email, Senha, Avatar, isActive, ID_TipoUtilizador) \nVALUES ('${msg.payload.Nome}', '${msg.payload.Email}', \n'${msg.payload.Senha}', '${msg.payload.Avatar}', '${msg.payload.isActive}', \n${msg.payload.ID_TipoUtilizador});`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3158,5 +3158,75 @@
         "x": 1090,
         "y": 2660,
         "wires": []
+    },
+    {
+        "id": "68846d3f334cea1b",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador(Nome, Email, Senha, Avatar, isActive, ID_TipoUtilizador)\nVALUES('Teste', 'teste@gmail.com', 'Teste', NULL, '1', 1);`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 3020,
+        "wires": [
+            [
+                "6e6b47d59ed5dc88"
+            ]
+        ]
+    },
+    {
+        "id": "8a2b5d544b84de54",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 610,
+        "y": 3020,
+        "wires": [
+            [
+                "68846d3f334cea1b"
+            ]
+        ]
+    },
+    {
+        "id": "859854e6322c283a",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 3020,
+        "wires": []
+    },
+    {
+        "id": "6e6b47d59ed5dc88",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 870,
+        "y": 3020,
+        "wires": [
+            [
+                "859854e6322c283a"
+            ]
+        ]
     }
 ]

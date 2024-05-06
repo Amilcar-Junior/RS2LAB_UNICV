@@ -46,7 +46,8 @@
           <input
             type="checkbox"
             id="ativo"
-            v-model="model.item.Ativo"
+            v-model="model.item.isActive"
+            :checked="model.item.isActive"
             class="form-control custom-checkbox"
           />
         </div>
@@ -80,7 +81,6 @@
     </div>
   </div>
 </template>
-
 
 <style>
 .custom-checkbox {
@@ -117,6 +117,7 @@ module.exports = {
       axios
         .get(`/rs2lab/utilizador/${ItemID}`)
         .then((resp) => {
+          console.log(resp.data[0].isActive);
           this.model.item.Nome = resp.data[0].Nome;
           this.model.item.Email = resp.data[0].Email;
           this.model.item.Senha = resp.data[0].Senha;
@@ -136,7 +137,7 @@ module.exports = {
     editUtilizador() {
       var self = this; //Assign this to a variable
       // this.form.type = this.selected;           //Assigns selected to form.type
-
+      this.model.item.isActive = this.model.item.isActive ? 1 : 0;
       axios
         .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
         .then((resp) => {
