@@ -122,30 +122,37 @@ module.exports = {
       if (!Array.isArray(buffer)) {
         return "";
       }
-      
+
       const uint8Array = new Uint8Array(buffer);
       const blob = new Blob([uint8Array], { type: "image/jpeg" });
       return URL.createObjectURL(blob);
     },
     formatGroups(groups) {
       if (!groups) return "";
-      return groups
-        .split(", ")
-        .map((group) => {
-          const [id, name] = group.split(":");
-          return name;
-        })
-        .join(", ");
+      const parsedGroups = JSON.parse(groups);
+      return parsedGroups.map((group) => group.Nome).join(", ");
     },
+
     deleteItem(ItemID) {
-      console.log(ItemID)
+      console.log(ItemID);
       axios
-        .delete(`/rs2lab/deleteutilizador/${ItemID}`)
-        .then((resp) => {
-          console.log(resp);
-          this.items = resp.data;
-          console.log(this.items);
-          this.ShowDeleteNotification();
+        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`) // Exclui os registros da tabela utilizadorgrupo associados ao usuário
+        .then(() => {
+          // Após excluir os registros da tabela utilizadorgrupo, exclui o usuário
+          axios
+            .delete(`/rs2lab/deleteutilizador/${ItemID}`)
+            .then(() => {
+              // Atualiza a lista após excluir o usuário
+              this.retriveItem();
+              this.ShowDeleteNotification();
+            })
+            .catch((errors) => {
+              console.error(errors);
+              this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
+                title: "Erro",
+                variant: "danger",
+              });
+            });
         })
         .catch((errors) => {
           console.error(errors);

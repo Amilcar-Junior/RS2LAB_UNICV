@@ -34,22 +34,40 @@
         </div>
         <div class="mb-3">
           <label for="id_tipoUtilizador">ID_TipoUtilizador</label>
-          <input
-            type="text"
-            id="id_tipoUtilizador"
-            v-model="model.item.ID_TipoUtilizador"
-            class="form-control"
-          />
+          <select v-model="model.item.ID_TipoUtilizador" class="form-control">
+            <option
+              v-for="tipo in TipoUtilizador"
+              :key="tipo.ID"
+              :value="tipo.ID"
+            >
+              {{ tipo.Nome }}
+            </option>
+          </select>
         </div>
         <div class="mb-3">
-          <label for="isActive">isActive</label>
-          <input
-            type="checkbox"
-            id="isActive"
-            v-model="model.item.isActive"
-            class="form-control custom-checkbox"
-          />
+          <label for="id_grupoutilizadores">Grupos</label>
+          <select v-model="gruposSelecionados" class="form-control" multiple>
+            <option
+              v-for="grupo in gruposDisponiveis"
+              :key="grupo.ID"
+              :value="grupo.ID"
+            >
+              {{ grupo.Nome }}
+            </option>
+          </select>
         </div>
+        <div class="mb-3">
+          <b-form-checkbox
+            id="checkbox-1"
+            name="checkbox-1"
+            value="1"
+            unchecked-value="0"
+            v-model="model.item.isActive"
+          >
+            Ativo
+          </b-form-checkbox>
+        </div>
+
         <div class="mb-3">
           <label for="avatar">Avatar</label>
           <input
@@ -92,25 +110,77 @@ module.exports = {
           Email: "",
           Senha: "",
           ID_TipoUtilizador: "",
-          isActive: "",
+          isActive: "0",
           Avatar: null, // Alterado para aceitar um Blob
         },
       },
+      TipoUtilizador: [],
+      gruposDisponiveis: [], // Todos os grupos disponíveis
+      gruposSelecionados: [], // Grupos selecionados pelo utilizador
+      UtilizadorGrupo: [],
       avatarPreview: "",
     };
   },
+  mounted() {
+    this.getTipoUtilizador();
+    this.getGruposDisponiveis();
+  },
   methods: {
     addUtilizador() {
-      this.model.item.isActive = this.model.item.isActive ? 1 : 0;
       var self = this;
       axios
         .post("/rs2lab/addutilizador", this.model.item)
         .then((resp) => {
           console.log(resp);
+          // Adiciona o utilizador a cada grupo selecionado
+          this.gruposSelecionados.forEach((grupoId) => {
+            const utilizadorGrupo = {
+              ID_Utilizador: resp.data.insertId, // ID do utilizador criado
+              ID_Grupo: grupoId, // ID do grupo selecionado
+            };
+            console.log(utilizadorGrupo)
+            self.addUtilizadorGrupo(utilizadorGrupo);
+          });
           self.showNotification();
         })
         .catch((e) => {
           console.error(e);
+        });
+    },
+
+    addUtilizadorGrupo(utilizadorGrupo) {
+      axios
+        .post("/rs2lab/addutilizadorgrupo", utilizadorGrupo)
+        .then((resp) => {
+          console.log(resp);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    },
+
+    getGruposDisponiveis() {
+      axios
+        .get("/rs2lab/grupoutilizadores")
+        .then((resp) => {
+          console.log(resp);
+          this.gruposDisponiveis = resp.data;
+          console.log(this.gruposDisponiveis);
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
+    },
+    getTipoUtilizador() {
+      axios
+        .get("/rs2lab/tipoutilizador")
+        .then((resp) => {
+          console.log(resp);
+          this.TipoUtilizador = resp.data;
+          console.log(this.TipoUtilizador);
+        })
+        .catch((errors) => {
+          console.error(errors);
         });
     },
 
@@ -137,6 +207,7 @@ module.exports = {
       this.model.item.isActive = "";
       this.model.item.Avatar = null;
       this.avatarPreview = "";
+      this.gruposSelecionados = [];
     },
 
     showNotification() {

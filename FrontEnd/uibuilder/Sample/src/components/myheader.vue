@@ -29,7 +29,7 @@
         <b-nav-item-dropdown right>
           <template #button-content>
             <em>
-              <b-avatar src="./images/cookie.png" size="1.8rem"></b-avatar
+              <b-avatar src="./images/no-avatar.png" size="1.8rem"></b-avatar
               >&nbsp;System Administrator
             </em>
           </template>

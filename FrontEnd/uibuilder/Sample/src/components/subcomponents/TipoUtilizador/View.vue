@@ -61,6 +61,7 @@ module.exports = {
       perPage: 10,
       currentPage: 1,
       items: [],
+      utilizador: [],
     };
   },
   mounted() {
@@ -86,21 +87,61 @@ module.exports = {
     },
     deleteItem(ItemID) {
       axios
-        .delete(`/rs2lab/deletetipoutilizador/${ItemID}`)
-        .then((resp) => {
-          console.log(resp);
-          this.items = resp.data;
-          console.log(this.items);
-          this.ShowDeleteNotification();
+        .get(`/rs2lab/utilizador/tipoutilizador/${ItemID}`)
+        .then((res) => {
+          this.utilizador = res.data;
+          console.log(this.utilizador);
+
+          // Renomear as variáveis e ajustar o objeto
+          this.utilizador.forEach((user) => {
+            user.Nome = user.Utilizador_Nome;
+            user.SenhaEmail = user.Utilizador_SenhaEmail;
+            user.Email = user.Utilizador_Email;
+            user.isActive = user.Utilizador_isActive;
+            user.Avatar = user.Utilizador_Avatar;
+            user.ID_TipoUtilizador = null;
+          });
+
+          // Atualizar os utilizadores
+          this.utilizador.forEach((user) => {
+            axios
+              .put(`/rs2lab/editutilizador/${user.Utilizador_ID}`, user)
+              .then(() => {
+                axios
+                  .delete(`/rs2lab/deletetipoutilizador/${ItemID}`)
+                  .then(() => {
+                    this.retriveItem();
+                    this.ShowDeleteNotification();
+                  })
+                  .catch((errors) => {
+                    console.error(errors);
+                    this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
+                      title: "Erro",
+                      variant: "danger",
+                    });
+                  });
+              })
+              .catch((errors) => {
+                console.error(errors);
+                this.$bvToast.toast(
+                  "Ocorreu um erro ao atualizar os utilizadores.",
+                  {
+                    title: "Erro",
+                    variant: "danger",
+                  }
+                );
+              });
+          });
         })
         .catch((errors) => {
           console.error(errors);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
+          this.$bvToast.toast("Ocorreu um erro ao obter os utilizadores.", {
             title: "Erro",
             variant: "danger",
           });
         });
     },
+
     ShowDeleteNotification() {
       this.boxOne = "";
       this.$bvToast.toast("Dados removidos com sucesso!", {
