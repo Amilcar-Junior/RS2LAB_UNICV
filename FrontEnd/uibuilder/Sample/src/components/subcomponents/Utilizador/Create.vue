@@ -5,95 +5,111 @@
         <h4>Adicionar Utilizador</h4>
       </div>
       <div class="card-body">
-        <div class="mb-3">
-          <label for="nome">Nome</label>
-          <input
-            type="text"
-            id="nome"
-            v-model="model.item.Nome"
-            class="form-control"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            v-model="model.item.Email"
-            class="form-control"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="senha">Senha</label>
-          <input
-            type="password"
-            id="senha"
-            v-model="model.item.Senha"
-            class="form-control"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="id_tipoUtilizador">ID_TipoUtilizador</label>
-          <select v-model="model.item.ID_TipoUtilizador" class="form-control">
-            <option
-              v-for="tipo in TipoUtilizador"
-              :key="tipo.ID"
-              :value="tipo.ID"
+        <form @submit.prevent="addUtilizador">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input
+              type="text"
+              id="nome"
+              v-model="model.item.Nome"
+              class="form-control"
+              placeholder="Insira o nome do utilizador"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              v-model="model.item.Email"
+              class="form-control"
+              placeholder="Insira o email do utilizador"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input
+              type="password"
+              id="senha"
+              v-model="model.item.Senha"
+              class="form-control"
+              placeholder="Insira a senha do utilizador"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="id_tipoUtilizador" class="form-label"
+              >Tipo Utilizador</label
             >
-              {{ tipo.Nome }}
-            </option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="id_grupoutilizadores">Grupos</label>
-          <select v-model="gruposSelecionados" class="form-control" multiple>
-            <option
-              v-for="grupo in gruposDisponiveis"
-              :key="grupo.ID"
-              :value="grupo.ID"
+            <select
+              v-model="model.item.ID_TipoUtilizador"
+              class="form-control"
+              required
             >
-              {{ grupo.Nome }}
-            </option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <b-form-checkbox
-            id="checkbox-1"
-            name="checkbox-1"
-            value="1"
-            unchecked-value="0"
-            v-model="model.item.isActive"
-          >
-            Ativo
-          </b-form-checkbox>
-        </div>
-
-        <div class="mb-3">
-          <label for="avatar">Avatar</label>
-          <input
-            type="file"
-            id="avatar"
-            @change="onAvatarChange"
-            class="form-control-file"
-          />
-          <!-- Preview do Avatar -->
-          <img
-            v-if="avatarPreview"
-            :src="avatarPreview"
-            alt="Preview do Avatar"
-            class="mt-2"
-            style="max-width: 100px; max-height: 100px"
-          />
-        </div>
-        <div class="mb-3">
-          <button
-            type="button"
-            @click="addUtilizador"
-            class="btn btn-primary float-right"
-          >
-            Adicionar
-          </button>
-        </div>
+              <option value="" disabled selected>
+                Selecione o tipo de utilizador
+              </option>
+              <option
+                v-for="tipo in TipoUtilizador"
+                :key="tipo.ID"
+                :value="tipo.ID"
+              >
+                {{ tipo.Nome }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="id_grupoutilizadores" class="form-label">Grupos</label>
+            <select
+              v-model="gruposSelecionados"
+              class="form-control"
+              multiple
+              required
+            >
+              <option disabled value="">Selecione um grupo</option>
+              <option
+                v-for="grupo in gruposDisponiveis"
+                :key="grupo.ID"
+                :value="grupo.ID"
+              >
+                {{ grupo.Nome }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3 form-check">
+            <input
+              type="checkbox"
+              id="isActive"
+              v-model="model.item.isActive"
+              class="form-check-input"
+              true-value="1"
+              false-value="0"
+            />
+            <label for="isActive" class="form-check-label">Ativo</label>
+          </div>
+          <div class="mb-3">
+            <label for="avatar" class="form-label">Avatar</label>
+            <input
+              type="file"
+              id="avatar"
+              @change="onAvatarChange"
+              class="form-control-file"
+              accept="image/*"
+            />
+            <img
+              v-if="avatarPreview"
+              :src="avatarPreview"
+              alt="Preview do Avatar"
+              class="mt-2"
+              style="max-width: 100px; max-height: 100px"
+            />
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -132,15 +148,17 @@ module.exports = {
         .post("/rs2lab/addutilizador", this.model.item)
         .then((resp) => {
           console.log(resp);
-          // Adiciona o utilizador a cada grupo selecionado
-          this.gruposSelecionados.forEach((grupoId) => {
-            const utilizadorGrupo = {
-              ID_Utilizador: resp.data.insertId, // ID do utilizador criado
-              ID_Grupo: grupoId, // ID do grupo selecionado
-            };
-            console.log(utilizadorGrupo)
-            self.addUtilizadorGrupo(utilizadorGrupo);
-          });
+          // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
+          if (this.gruposSelecionados.length > 0) {
+            this.gruposSelecionados.forEach((grupoId) => {
+              const utilizadorGrupo = {
+                ID_Utilizador: resp.data.insertId, // ID do utilizador criado
+                ID_Grupo: grupoId, // ID do grupo selecionado
+              };
+              // console.log(utilizadorGrupo);
+              self.addUtilizadorGrupo(utilizadorGrupo);
+            });
+          }
           self.showNotification();
         })
         .catch((e) => {

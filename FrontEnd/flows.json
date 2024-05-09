@@ -3421,7 +3421,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `INSERT INTO rs2lab.UtilizadorGrupo (ID_Utilizador, ID_Grupo) VALUES (${msg.payload.ID_Utilizador}, ${msg.payload.ID_Grupo});`;\nreturn msg;\n",
+        "func": "msg.topic = `INSERT INTO rs2lab.UtilizadorGrupo \n(ID_Utilizador, ID_Grupo) VALUES \n(${msg.payload.ID_Utilizador}, ${msg.payload.ID_Grupo});`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3460,8 +3460,7 @@
         "y": 4200,
         "wires": [
             [
-                "497f8678ca8ab7ff",
-                "2b1ca77546d5cf29"
+                "497f8678ca8ab7ff"
             ]
         ]
     },
@@ -3478,7 +3477,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 290,
+        "x": 650,
         "y": 4140,
         "wires": []
     },
@@ -3521,7 +3520,8 @@
         "y": 4200,
         "wires": [
             [
-                "c2c7efb2ce33b122"
+                "c2c7efb2ce33b122",
+                "2b1ca77546d5cf29"
             ]
         ]
     },
@@ -4389,7 +4389,7 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "query",
-        "url": "http://172.16.4.165:1882/rs2lab/utilizadorgrupo/utilizador/2",
+        "url": "http://127.0.0.1:1882/rs2lab/utilizadorgrupo/utilizador/28",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -5410,6 +5410,198 @@
         "name": "DELETE ID grupoutilizadores",
         "info": "",
         "x": 1900,
+        "y": 4760,
+        "wires": []
+    },
+    {
+        "id": "3e0cc0cab433f455",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `DELETE FROM rs2lab.UtilizadorGrupo \nWHERE ID_Grupo = ${msg.req.params.ID_Grupo} AND ID_Utilizador = ${msg.req.params.ID_Utilizador};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2860,
+        "y": 4860,
+        "wires": [
+            [
+                "52feb82cec2da790",
+                "2fb1c130620c69b5"
+            ]
+        ]
+    },
+    {
+        "id": "e504253be72ae88c",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 3170,
+        "y": 4860,
+        "wires": []
+    },
+    {
+        "id": "08d5b54bc3dfba55",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "DELETE",
+        "ret": "txt",
+        "paytoqs": "query",
+        "url": "http://127.0.0.1:1882//rs2lab/deleteutilizadorgrupo/grupoutilizadores_utilizador/1/1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2600,
+        "y": 4920,
+        "wires": [
+            [
+                "52adb90d523429fe"
+            ]
+        ]
+    },
+    {
+        "id": "52adb90d523429fe",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2750,
+        "y": 4920,
+        "wires": []
+    },
+    {
+        "id": "8b94c752137dc440",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 2430,
+        "y": 4920,
+        "wires": [
+            [
+                "08d5b54bc3dfba55"
+            ]
+        ]
+    },
+    {
+        "id": "7f2f2c0f36101515",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Delete utilizadorgrupo id grupoutilizadores e id utilizador",
+        "url": "/rs2lab/deleteutilizadorgrupo/utilizador/grupoutilizadores/:ID_Utilizador/:ID_Grupo",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2560,
+        "y": 4860,
+        "wires": [
+            [
+                "3e0cc0cab433f455",
+                "704039744b8c32e8"
+            ]
+        ]
+    },
+    {
+        "id": "52feb82cec2da790",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 3010,
+        "y": 4860,
+        "wires": [
+            [
+                "e504253be72ae88c",
+                "965a6054f34f21fc"
+            ]
+        ]
+    },
+    {
+        "id": "965a6054f34f21fc",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3170,
+        "y": 4820,
+        "wires": []
+    },
+    {
+        "id": "2fb1c130620c69b5",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3000,
+        "y": 4820,
+        "wires": []
+    },
+    {
+        "id": "704039744b8c32e8",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2790,
+        "y": 4800,
+        "wires": []
+    },
+    {
+        "id": "1f79ac377c10d65e",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "DELETE ID grupoutilizadores e utilizador",
+        "info": "",
+        "x": 2840,
         "y": 4760,
         "wires": []
     }

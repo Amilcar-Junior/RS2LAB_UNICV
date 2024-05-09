@@ -6,50 +6,90 @@
       </div>
       <div class="card-body">
         <div class="mb-3">
-          <label for="nome">Nome</label>
+          <label for="nome" class="form-label">Nome</label>
           <input
             type="text"
             id="nome"
             v-model="model.item.Nome"
             class="form-control"
+            placeholder="Insira o nome do utilizador"
+            required
           />
         </div>
         <div class="mb-3">
-          <label for="email">Email</label>
+          <label for="email" class="form-label">Email</label>
           <input
-            type="text"
+            type="email"
             id="email"
             v-model="model.item.Email"
             class="form-control"
+            placeholder="Insira o email do utilizador"
+            required
           />
         </div>
         <div class="mb-3">
-          <label for="senha">Senha</label>
+          <label for="senha" class="form-label">Senha</label>
           <input
             type="password"
             id="senha"
             v-model="model.item.Senha"
             class="form-control"
+            placeholder="Insira a senha do utilizador"
+            required
           />
         </div>
         <div class="mb-3">
-          <label for="id_tipoUtilizador">ID_TipoUtilizador</label>
-          <input
-            type="text"
-            id="id_tipoUtilizador"
+          <label for="id_tipoUtilizador" class="form-label"
+            >Tipo Utilizador</label
+          >
+          <select
             v-model="model.item.ID_TipoUtilizador"
             class="form-control"
-          />
+            required
+          >
+            <option value="" disabled selected>
+              Selecione o tipo de utilizador
+            </option>
+            <option
+              v-for="tipo in TipoUtilizador"
+              :key="tipo.ID"
+              :value="tipo.ID"
+            >
+              {{ tipo.Nome }}
+            </option>
+          </select>
         </div>
         <div class="mb-3">
-          <label for="ativo">Ativo</label>
+          <label for="id_grupoutilizadores" class="form-label">Grupos</label>
+          <select
+            v-model="gruposSelecionados"
+            class="form-control"
+            multiple
+            required
+          >
+            <option disabled value="">Selecione um grupo</option>
+            <option
+              v-for="grupo in gruposDisponiveis"
+              :key="grupo.ID"
+              :value="grupo.ID"
+            >
+              {{ grupo.Nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3 form-check">
           <input
             type="checkbox"
-            id="ativo"
+            id="isActive"
             v-model="model.item.isActive"
             :checked="model.item.isActive"
+            class="form-check-input"
+            true-value="1"
+            false-value="0"
             class="form-control custom-checkbox"
           />
+          <label for="isActive" class="form-check-label">Ativo</label>
         </div>
         <div class="mb-3">
           <label for="avatar">Avatar</label>
@@ -105,19 +145,25 @@ module.exports = {
         },
       },
       avatarPreview: "",
+      TipoUtilizador: [],
+      gruposDisponiveis: [], // Todos os grupos disponíveis
+      gruposSelecionados: [], // Grupos selecionados pelo utilizador
+      UtilizadorGrupo: [],
     };
   },
   mounted() {
     // console.log(this.$router.app._route.params.ID);
     this.model.ID = this.$router.app._route.params.ID;
     this.getUtilizador(this.$router.app._route.params.ID);
+    this.getUtilizadorGrupo(this.$router.app._route.params.ID);
+    this.getTipoUtilizador();
+    this.getGruposDisponiveis();
   },
   methods: {
     getUtilizador(ItemID) {
       axios
         .get(`/rs2lab/utilizador/${ItemID}`)
         .then((resp) => {
-          console.log(resp.data[0].isActive);
           this.model.item.Nome = resp.data[0].Nome;
           this.model.item.Email = resp.data[0].Email;
           this.model.item.Senha = resp.data[0].Senha;
@@ -133,21 +179,112 @@ module.exports = {
           console.error(errors);
         });
     },
-
     editUtilizador() {
-      var self = this; //Assign this to a variable
-      // this.form.type = this.selected;           //Assigns selected to form.type
-      this.model.item.isActive = this.model.item.isActive ? 1 : 0;
+      var self = this;
+      // Verificar grupos removidos
+      this.UtilizadorGrupo.forEach((utilizadorGrupo) => {
+        if (
+          !this.gruposSelecionados.includes(utilizadorGrupo.ID_Grupo.toString())
+        ) {
+          // Se o grupo não está mais selecionado, remova a associação
+          this.deleteUtilizadorGrupo(this.model.ID,utilizadorGrupo.ID_Grupo);
+        }
+      });
+      console.log(this.gruposSelecionados);
+      // Verificar grupos adicionados
+      this.gruposSelecionados.forEach((grupoId) => {
+        if (
+          !this.UtilizadorGrupo.some(
+            (utilizadorGrupo) => utilizadorGrupo.ID_Grupo.toString() === grupoId
+          )
+        ) {
+          // Se o grupo foi adicionado, adicione a associação
+          const utilizadorgrupo = {
+            ID_Utilizador: this.model.ID,
+            ID_Grupo: grupoId,
+          };
+          this.addUtilizadorGrupo(utilizadorgrupo);
+        }
+      });
+
+      // Atualizar o usuário
       axios
         .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
         .then((resp) => {
-          console.log(resp);
-          self.showNotification(); //shows notification of successful add
+          console.log("editutilizador: ", resp);
+          self.showNotification();
         })
         .catch((e) => {
           console.log(error);
         });
     },
+
+    deleteUtilizadorGrupo(utilizador,grupo) {
+      axios
+        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/grupoutilizadores/${utilizador}/${grupo}`)
+        .then((res) => {
+          console.log("utilizadorgrupo Delete: ", res);
+        })
+        .catch((errors) => {
+          console.error(errors);
+          self.$bvToast.toast("Ocorreu um erro ao excluir o utilizadorgrupo.", {
+            title: "Erro",
+            variant: "danger",
+          });
+        });
+    },
+    addUtilizadorGrupo(utilizadorgrupo) {
+      var self = this; //Assign this to a variable
+      axios
+        .post("/rs2lab/addutilizadorgrupo", utilizadorgrupo)
+        .then((resp) => {
+          console.log("ADD utilizadorgrupo: ", resp);
+        })
+        .catch((e) => {
+          console.log(error);
+        });
+    },
+    getGruposDisponiveis() {
+      axios
+        .get("/rs2lab/grupoutilizadores")
+        .then((resp) => {
+          console.log("grupoutilizadores: ", resp);
+          this.gruposDisponiveis = resp.data;
+          // console.log(this.gruposDisponiveis);
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
+    },
+    getUtilizadorGrupo(ItemID) {
+      axios
+        .get(`/rs2lab/utilizadorgrupo/utilizador/${ItemID}`)
+        .then((resp) => {
+          console.log("UtilizadorGrupo: ", resp);
+          this.UtilizadorGrupo = resp.data;
+
+          // Preencher os grupos selecionados com os IDs dos grupos associados ao utilizador
+          this.gruposSelecionados = this.UtilizadorGrupo.map(
+            (utilizadorGrupo) => utilizadorGrupo.ID_Grupo.toString()
+          );
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
+    },
+    getTipoUtilizador() {
+      axios
+        .get("/rs2lab/tipoutilizador")
+        .then((resp) => {
+          console.log("tipoutilizador: ", resp);
+          this.TipoUtilizador = resp.data;
+          // console.log(this.TipoUtilizador);
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
+    },
+
     //Shows a dialog notification
 
     showNotification() {

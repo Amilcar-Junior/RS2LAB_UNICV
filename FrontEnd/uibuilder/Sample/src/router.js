@@ -21,28 +21,23 @@ export default {
         {
             path: '/',
             name: 'Home',
-            components: Home
-        },
-        {
-            path:'/home',
-            name:'Home',
             component: Home
         },
-        {
-            path:'/form',
-            name:'Form',
-            component: Form
-        },
-        {
-            path:'/table',
-            name:'Table',
-            component: Table
-        },
-        {
-            path:'/chart',
-            name:'Chart',
-            component: Chart
-        },
+        // {
+        //     path:'/form',
+        //     name:'Form',
+        //     component: Form
+        // },
+        // {
+        //     path:'/table',
+        //     name:'Table',
+        //     component: Table
+        // },
+        // {
+        //     path:'/chart',
+        //     name:'Chart',
+        //     component: Chart
+        // },
         {
             path:'/tipoutilizador',
             name:'ViewTipoUtilizador',
