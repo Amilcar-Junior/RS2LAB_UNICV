@@ -90,32 +90,35 @@ module.exports = {
         .get(`/rs2lab/utilizador/tipoutilizador/${ItemID}`)
         .then((res) => {
           this.utilizador = res.data;
-          console.log(this.utilizador);
+          // console.log(this.utilizador);
 
           // Renomear as variáveis e ajustar o objeto
-          this.utilizador.forEach((user) => {
+          let self = this; // Armazena o "this" em uma variável
+
+          this.utilizador.forEach(function (user) {
             user.Nome = user.Utilizador_Nome;
-            user.SenhaEmail = user.Utilizador_SenhaEmail;
+            user.Senha = user.Utilizador_Senha;
             user.Email = user.Utilizador_Email;
             user.isActive = user.Utilizador_isActive;
             user.Avatar = user.Utilizador_Avatar;
             user.ID_TipoUtilizador = null;
-          });
 
-          // Atualizar os utilizadores
-          this.utilizador.forEach((user) => {
+            // console.log("Utilizador: ", user);
+
+            // Atualizar os utilizadores
             axios
               .put(`/rs2lab/editutilizador/${user.Utilizador_ID}`, user)
-              .then(() => {
+              .then((resp) => {
+                // console.log("PUT: ", resp);
                 axios
                   .delete(`/rs2lab/deletetipoutilizador/${ItemID}`)
                   .then(() => {
-                    this.retriveItem();
-                    this.ShowDeleteNotification();
+                    self.retriveItem(); // Usar a variável self em vez de this
+                    self.ShowDeleteNotification(); // Usar a variável self em vez de this
                   })
                   .catch((errors) => {
                     console.error(errors);
-                    this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
+                    self.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
                       title: "Erro",
                       variant: "danger",
                     });
@@ -123,7 +126,7 @@ module.exports = {
               })
               .catch((errors) => {
                 console.error(errors);
-                this.$bvToast.toast(
+                self.$bvToast.toast(
                   "Ocorreu um erro ao atualizar os utilizadores.",
                   {
                     title: "Erro",

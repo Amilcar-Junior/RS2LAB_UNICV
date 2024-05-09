@@ -1766,7 +1766,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `DELETE FROM rs2lab.Utilizador\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "func": "msg.topic = `DELETE FROM rs2lab.GrupoUtilizadores\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1864,7 +1864,7 @@
         "type": "http in",
         "z": "ba85fe949960916b",
         "name": "Delete Utilizador id",
-        "url": "/rs2lab/deleteutilizador/:ID",
+        "url": "/rs2lab/deletegrupoutilizadores/:ID",
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
@@ -1978,7 +1978,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    GROUP_CONCAT(DISTINCT g.ID, ':', g.Nome ORDER BY g.ID SEPARATOR ', ') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n\n\n`;\n\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('ID', g.ID, 'Nome', g.Nome) ORDER BY g.ID SEPARATOR ','), ']') AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2034,7 +2034,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    GROUP_CONCAT(DISTINCT g.ID, ':', g.Nome ORDER BY g.ID SEPARATOR ', ') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n\n\n`;\n\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('ID', g.ID, 'Nome', g.Nome) ORDER BY g.ID SEPARATOR ','), ']') AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2148,7 +2148,7 @@
         "type": "http in",
         "z": "ba85fe949960916b",
         "name": "Get Utilizador",
-        "url": "/rs2lab/utilizadores",
+        "url": "/rs2lab/utilizador",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
@@ -4361,7 +4361,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1060,
+        "x": 1140,
         "y": 4400,
         "wires": [
             [
@@ -4377,7 +4377,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1370,
+        "x": 1450,
         "y": 4400,
         "wires": []
     },
@@ -4451,12 +4451,12 @@
         "id": "d037baaa2f4bf25f",
         "type": "http in",
         "z": "ba85fe949960916b",
-        "name": "Get utilizadorgrupo id",
+        "name": "Get utilizadorgrupo id utilizador",
         "url": "/rs2lab/utilizadorgrupo/utilizador/:ID",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 880,
+        "x": 910,
         "y": 4400,
         "wires": [
             [
@@ -4471,7 +4471,7 @@
         "z": "ba85fe949960916b",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1210,
+        "x": 1290,
         "y": 4400,
         "wires": [
             [
@@ -4493,7 +4493,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1390,
+        "x": 1470,
         "y": 4360,
         "wires": []
     },
@@ -4510,7 +4510,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1220,
+        "x": 1300,
         "y": 4360,
         "wires": []
     },
@@ -4527,7 +4527,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1030,
+        "x": 1110,
         "y": 4340,
         "wires": []
     },
@@ -4537,27 +4537,9 @@
         "z": "ba85fe949960916b",
         "name": "GET ID do Utilizador",
         "info": "",
-        "x": 1070,
+        "x": 1150,
         "y": 4300,
         "wires": []
-    },
-    {
-        "id": "9a39ec46c268072d",
-        "type": "function",
-        "z": "ba85fe949960916b",
-        "name": "QUERY",
-        "func": "msg.topic = `SELECT\nug.ID_Utilizador,\n    GROUP_CONCAT(ug.ID_Grupo) AS ID_Grupos\nFROM\n    UtilizadorGrupo ug\nWHERE\nug.ID_Utilizador = ${msg.req.params.ID}\nGROUP BY\nug.ID_Utilizador;`;\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1060,
-        "y": 4460,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "e0d8b8c6d9451787",
@@ -4816,5 +4798,619 @@
                 "c7f41d0533c7af46"
             ]
         ]
+    },
+    {
+        "id": "524ef21b7cee7421",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(ug.ID_Grupo) AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nJOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nWHERE\n    ug.ID_Grupo = 1\n    AND u.ID IN (SELECT ID_Utilizador FROM UtilizadorGrupo WHERE ID_Grupo = 1)\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1720,
+        "y": 3140,
+        "wires": [
+            [
+                "fb286e735cf11b31"
+            ]
+        ]
+    },
+    {
+        "id": "4d11f52098d5b38e",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1586.9332885742188,
+        "y": 3134.466552734375,
+        "wires": [
+            [
+                "524ef21b7cee7421"
+            ]
+        ]
+    },
+    {
+        "id": "d2cbaa43526f903d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2006.9332885742188,
+        "y": 3134.466552734375,
+        "wires": []
+    },
+    {
+        "id": "23c5b829156d6cd4",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('ID', g.ID, 'Nome', g.Nome) ORDER BY g.ID SEPARATOR ','), ']') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    t.ID = ${msg.req.params.ID}\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1886.9332885742188,
+        "y": 3194.466552734375,
+        "wires": [
+            [
+                "722e07c5ae2a83bd"
+            ]
+        ]
+    },
+    {
+        "id": "743f6dccfbbbe063",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2166.9332885742188,
+        "y": 3194.466552734375,
+        "wires": []
+    },
+    {
+        "id": "032af5dc74b63d3f",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2156.9332885742188,
+        "y": 3234.466552734375,
+        "wires": []
+    },
+    {
+        "id": "bbad711764545d46",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get Utilizador by grupoutilizadores",
+        "url": "/rs2lab/utilizador/grupoutilizadores/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1666.9332885742188,
+        "y": 3194.466552734375,
+        "wires": [
+            [
+                "23c5b829156d6cd4"
+            ]
+        ]
+    },
+    {
+        "id": "fb286e735cf11b31",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1846.9332885742188,
+        "y": 3134.466552734375,
+        "wires": [
+            [
+                "d2cbaa43526f903d"
+            ]
+        ]
+    },
+    {
+        "id": "722e07c5ae2a83bd",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2006.9332885742188,
+        "y": 3194.466552734375,
+        "wires": [
+            [
+                "743f6dccfbbbe063",
+                "032af5dc74b63d3f"
+            ]
+        ]
+    },
+    {
+        "id": "cd6de3a70d2251de",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET by GrupoUtilizadores",
+        "info": "",
+        "x": 1836.9332885742188,
+        "y": 3074.466552734375,
+        "wires": []
+    },
+    {
+        "id": "b2c224f55a828885",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://172.16.4.165:1882/rs2lab/utilizador/tipoutilizador/1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1766.9332885742188,
+        "y": 3254.466552734375,
+        "wires": [
+            [
+                "3019f6a576599d7c"
+            ]
+        ]
+    },
+    {
+        "id": "3019f6a576599d7c",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1916.9332885742188,
+        "y": 3254.466552734375,
+        "wires": []
+    },
+    {
+        "id": "973136d56de4f8f2",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":1}",
+        "payloadType": "json",
+        "x": 1596.9332885742188,
+        "y": 3254.466552734375,
+        "wires": [
+            [
+                "b2c224f55a828885"
+            ]
+        ]
+    },
+    {
+        "id": "18fef2d1b5eec03f",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT\nug.ID,\nug.ID_Utilizador,\nug.ID_Grupo\nFROM\n    UtilizadorGrupo ug\nWHERE\nug.ID_Grupo = ${msg.req.params.ID};`;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 4400,
+        "wires": [
+            [
+                "a4e820ad24da3e5a",
+                "faefa5955047c50d"
+            ]
+        ]
+    },
+    {
+        "id": "87c756695e23977f",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2150,
+        "y": 4400,
+        "wires": []
+    },
+    {
+        "id": "17b23141b0d156fe",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2130,
+        "y": 4520,
+        "wires": []
+    },
+    {
+        "id": "2eecde9d3cb228f4",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1630,
+        "y": 4520,
+        "wires": [
+            [
+                "6364b2b790a20352"
+            ]
+        ]
+    },
+    {
+        "id": "add7e3eb612e9083",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get utilizadorgrupo id",
+        "url": "/rs2lab/utilizadorgrupo/grupoutilizadores/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1660,
+        "y": 4400,
+        "wires": [
+            [
+                "18fef2d1b5eec03f",
+                "0ae6d280cbae83b5"
+            ]
+        ]
+    },
+    {
+        "id": "a4e820ad24da3e5a",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1990,
+        "y": 4400,
+        "wires": [
+            [
+                "87c756695e23977f",
+                "09b920ad4eb89744"
+            ]
+        ]
+    },
+    {
+        "id": "09b920ad4eb89744",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2170,
+        "y": 4360,
+        "wires": []
+    },
+    {
+        "id": "faefa5955047c50d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2000,
+        "y": 4360,
+        "wires": []
+    },
+    {
+        "id": "0ae6d280cbae83b5",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1810,
+        "y": 4340,
+        "wires": []
+    },
+    {
+        "id": "5cd62b13f0b5a497",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ID do GrupoUtilizadores",
+        "info": "",
+        "x": 1880,
+        "y": 4300,
+        "wires": []
+    },
+    {
+        "id": "6364b2b790a20352",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT\nug.ID,\nug.ID_Utilizador,\nug.ID_Grupo\nFROM\n    UtilizadorGrupo ug\nWHERE\nug.ID_Grupo = 4;`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 4520,
+        "wires": [
+            [
+                "f0603a50562025e1"
+            ]
+        ]
+    },
+    {
+        "id": "f0603a50562025e1",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1950,
+        "y": 4520,
+        "wires": [
+            [
+                "17b23141b0d156fe"
+            ]
+        ]
+    },
+    {
+        "id": "3baa258b1563c6ff",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `DELETE FROM rs2lab.UtilizadorGrupo \nWHERE ID_Grupo = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1960,
+        "y": 4860,
+        "wires": [
+            [
+                "b32c35c92a943445",
+                "f1bebf22c04f47b4"
+            ]
+        ]
+    },
+    {
+        "id": "d0109738177c8740",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2270,
+        "y": 4860,
+        "wires": []
+    },
+    {
+        "id": "490ae8f36219797c",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/utilizadorgrupo/utilizador/10",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1800,
+        "y": 4920,
+        "wires": [
+            [
+                "0c5a4525699d87d2"
+            ]
+        ]
+    },
+    {
+        "id": "0c5a4525699d87d2",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1950,
+        "y": 4920,
+        "wires": []
+    },
+    {
+        "id": "351d4cab2a37b36a",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":10}",
+        "payloadType": "json",
+        "x": 1630,
+        "y": 4920,
+        "wires": [
+            [
+                "490ae8f36219797c"
+            ]
+        ]
+    },
+    {
+        "id": "dac0ef3944554a25",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Delete utilizadorgrupo id grupoutilizadores",
+        "url": "/rs2lab/deleteutilizadorgrupo/grupoutilizadores/:ID",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1720,
+        "y": 4860,
+        "wires": [
+            [
+                "3baa258b1563c6ff",
+                "75baa1da6f33c843"
+            ]
+        ]
+    },
+    {
+        "id": "b32c35c92a943445",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2110,
+        "y": 4860,
+        "wires": [
+            [
+                "d0109738177c8740",
+                "d3626237a3e38a2a"
+            ]
+        ]
+    },
+    {
+        "id": "d3626237a3e38a2a",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2270,
+        "y": 4820,
+        "wires": []
+    },
+    {
+        "id": "f1bebf22c04f47b4",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2100,
+        "y": 4820,
+        "wires": []
+    },
+    {
+        "id": "75baa1da6f33c843",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1890,
+        "y": 4800,
+        "wires": []
+    },
+    {
+        "id": "92dac1bd60b2034f",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "DELETE ID grupoutilizadores",
+        "info": "",
+        "x": 1900,
+        "y": 4760,
+        "wires": []
     }
 ]

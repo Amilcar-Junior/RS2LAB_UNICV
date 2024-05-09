@@ -59,6 +59,7 @@ module.exports = {
       perPage: 10,
       currentPage: 1,
       items: [],
+      utilizadorGrupo: [],
     };
   },
   mounted() {
@@ -82,23 +83,53 @@ module.exports = {
           console.error(errors);
         });
     },
+
     deleteItem(ItemID) {
       axios
-        .delete(`/rs2lab/deletegrupoutilizadores/${ItemID}`)
-        .then((resp) => {
-          console.log(resp);
-          this.items = resp.data;
-          console.log(this.items);
-          this.ShowDeleteNotification();
+        .get(`/rs2lab/utilizadorgrupo/grupoutilizadores/${ItemID}`)
+        .then((res) => {
+          this.utilizadorGrupo = res.data;
+          let vm = this; // Armazena o "this" em uma variável
+          console.log(this.utilizadorGrupo);
+          let promises = []; // Array para armazenar as chamadas axios.delete
+          this.utilizadorGrupo.forEach(function (utgrp) {
+            console.log(utgrp.ID);
+            promises.push(
+              axios.delete(
+                `/rs2lab/deleteutilizadorgrupo/grupoutilizadores/${utgrp.ID_Grupo}`
+              )
+            );
+          });
+
+          // Executa todas as chamadas axios.delete em paralelo
+          Promise.all(promises).then(() => {
+            axios
+              .delete(`/rs2lab/deletegrupoutilizadores/${ItemID}`)
+              .then(() => {
+                console.log(ItemID)
+                vm.ShowDeleteNotification(); // Usar a variável vm em vez de this
+              })
+              .catch((errors) => {
+                console.error(errors);
+                vm.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
+                  title: "Erro",
+                  variant: "danger",
+                });
+              });
+          });
         })
         .catch((errors) => {
           console.error(errors);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-            title: "Erro",
-            variant: "danger",
-          });
+          this.$bvToast.toast(
+            "Ocorreu um erro ao obter os grupos de utilizadores.",
+            {
+              title: "Erro",
+              variant: "danger",
+            }
+          );
         });
     },
+
     ShowDeleteNotification() {
       this.boxOne = "";
       this.$bvToast.toast("Dados removidos com sucesso!", {
