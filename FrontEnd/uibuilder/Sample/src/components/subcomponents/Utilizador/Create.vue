@@ -1,5 +1,8 @@
 <template>
   <div class="container mt-5">
+    <router-link to="/utilizador" class="btn btn-secondary mb-3">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+    </router-link>
     <div class="card">
       <div class="card-header">
         <h4>Adicionar Utilizador</h4>
@@ -107,7 +110,7 @@
             />
           </div>
           <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <button type="submit" class="btn btn-primary float-right">Adicionar</button>
           </div>
         </form>
       </div>

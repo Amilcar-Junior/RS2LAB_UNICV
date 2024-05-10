@@ -14,5 +14,8 @@
     "riot",
     "angular",
     "picnic",
-    "umbrellajs"
+    "umbrellajs",
+    "@fortawesome/fontawesome-svg-core",
+    "@fortawesome/vue-fontawesome",
+    "@fortawesome/free-solid-svg-icons"
 ]

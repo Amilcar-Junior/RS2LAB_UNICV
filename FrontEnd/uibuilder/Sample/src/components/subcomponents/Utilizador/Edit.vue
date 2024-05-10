@@ -1,5 +1,8 @@
 <template>
   <div class="container mt-5">
+    <router-link to="/utilizador" class="btn btn-secondary mb-3">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+    </router-link>
     <div class="card">
       <div class="card-header">
         <h4>Edit Utilizador</h4>
@@ -187,7 +190,7 @@ module.exports = {
           !this.gruposSelecionados.includes(utilizadorGrupo.ID_Grupo.toString())
         ) {
           // Se o grupo não está mais selecionado, remova a associação
-          this.deleteUtilizadorGrupo(this.model.ID,utilizadorGrupo.ID_Grupo);
+          this.deleteUtilizadorGrupo(this.model.ID, utilizadorGrupo.ID_Grupo);
         }
       });
       console.log(this.gruposSelecionados);
@@ -219,9 +222,11 @@ module.exports = {
         });
     },
 
-    deleteUtilizadorGrupo(utilizador,grupo) {
+    deleteUtilizadorGrupo(utilizador, grupo) {
       axios
-        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/grupoutilizadores/${utilizador}/${grupo}`)
+        .delete(
+          `/rs2lab/deleteutilizadorgrupo/utilizador/grupoutilizadores/${utilizador}/${grupo}`
+        )
         .then((res) => {
           console.log("utilizadorgrupo Delete: ", res);
         })

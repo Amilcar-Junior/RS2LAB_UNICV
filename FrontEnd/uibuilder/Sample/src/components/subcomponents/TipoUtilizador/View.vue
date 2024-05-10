@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="container mt-5">
+    <router-link to="/" class="btn btn-secondary mb-3">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+    </router-link>
     <div class="card">
       <div class="card-header">
         <h4>
@@ -110,19 +113,6 @@ module.exports = {
               .put(`/rs2lab/editutilizador/${user.Utilizador_ID}`, user)
               .then((resp) => {
                 // console.log("PUT: ", resp);
-                axios
-                  .delete(`/rs2lab/deletetipoutilizador/${ItemID}`)
-                  .then(() => {
-                    self.retriveItem(); // Usar a variável self em vez de this
-                    self.ShowDeleteNotification(); // Usar a variável self em vez de this
-                  })
-                  .catch((errors) => {
-                    console.error(errors);
-                    self.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-                      title: "Erro",
-                      variant: "danger",
-                    });
-                  });
               })
               .catch((errors) => {
                 console.error(errors);
@@ -139,6 +129,19 @@ module.exports = {
         .catch((errors) => {
           console.error(errors);
           this.$bvToast.toast("Ocorreu um erro ao obter os utilizadores.", {
+            title: "Erro",
+            variant: "danger",
+          });
+        });
+      axios
+        .delete(`/rs2lab/deletetipoutilizador/${ItemID}`)
+        .then(() => {
+          this.retriveItem(); // Usar a variável this em vez de this
+          this.ShowDeleteNotification(); // Usar a variável this em vez de this
+        })
+        .catch((errors) => {
+          console.error(errors);
+          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
             title: "Erro",
             variant: "danger",
           });

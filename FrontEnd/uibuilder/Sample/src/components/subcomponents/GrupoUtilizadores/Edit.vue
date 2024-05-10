@@ -1,5 +1,8 @@
 <template>
   <div class="container mt-5">
+    <router-link to="/grupoutilizadores" class="btn btn-secondary mb-3">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+    </router-link>
     <div class="card">
       <div class="card-header">
         <h4>Edit Grupo Utilizadores</h4>
