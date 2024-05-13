@@ -1,134 +1,76 @@
 <template>
   <div class="container mt-5">
-    <router-link to="/utilizador" class="btn btn-secondary mb-3">
+    <router-link to="/" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Edit Utilizador</h4>
+        <h4>Perfil do Utilizador</h4>
       </div>
       <div class="card-body">
-        <div class="mb-3">
-          <label for="nome" class="form-label">Nome</label>
-          <input
-            type="text"
-            id="nome"
-            v-model="model.item.Nome"
-            class="form-control"
-            placeholder="Insira o nome do utilizador"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input
-            type="email"
-            id="email"
-            v-model="model.item.Email"
-            class="form-control"
-            placeholder="Insira o email do utilizador"
-            required
-          />
-        </div>
-        <!-- <div class="mb-3">
-          <label for="senha" class="form-label">Senha</label>
-          <input
-            type="password"
-            id="senha"
-            v-model="model.item.Senha"
-            class="form-control"
-            placeholder="Insira a senha do utilizador"
-            required
-          />
-        </div> -->
-        <div class="mb-3">
-          <label for="id_tipoUtilizador" class="form-label"
-            >Tipo Utilizador</label
-          >
-          <select
-            v-model="model.item.ID_TipoUtilizador"
-            class="form-control"
-            required
-          >
-            <option value="" disabled selected>
-              Selecione o tipo de utilizador
-            </option>
-            <option
-              v-for="tipo in TipoUtilizador"
-              :key="tipo.ID"
-              :value="tipo.ID"
-            >
-              {{ tipo.Nome }}
-            </option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="id_grupoutilizadores" class="form-label">Grupos</label>
-          <select
-            v-model="gruposSelecionados"
-            class="form-control"
-            multiple
-            required
-          >
-            <option disabled value="">Selecione um grupo</option>
-            <option
-              v-for="grupo in gruposDisponiveis"
-              :key="grupo.Grupo_ID"
-              :value="grupo.Grupo_ID"
-            >
-              {{ grupo.Grupo_Nome }}
-            </option>
-          </select>
-        </div>
+        <b-form @submit.prevent="editUtilizador">
+          <b-form-group id="nome" label="Nome:" label-for="nome-input">
+            <b-form-input
+              id="nome-input"
+              v-model="model.item.Nome"
+              required
+            ></b-form-input>
+          </b-form-group>
 
-        <div class="mb-3 form-check">
-          <input
-            type="checkbox"
-            id="isActive"
-            v-model="model.item.isActive"
-            :checked="model.item.isActive"
-            class="form-check-input custom-checkbox"
-            true-value="1"
-            false-value="0"
-          />
-          <label for="isActive" class="form-check-label">Ativo</label>
-        </div>
-        <div class="mb-3">
-          <label for="avatar">Avatar</label>
-          <input
-            type="file"
-            id="avatar"
-            @change="onAvatarChange"
-            class="form-control-file"
-          />
-          <!-- Preview do Avatar -->
-          <img
-            v-if="avatarPreview"
-            :src="avatarPreview"
-            alt="Preview do Avatar"
-            class="mt-2"
-            style="max-width: 100px; max-height: 100px"
-          />
-        </div>
-        <div class="mb-3">
-          <button
-            type="button"
-            @click="editUtilizador"
-            class="btn btn-primary float-right"
+          <b-form-group id="email" label="Email:" label-for="email-input">
+            <b-form-input
+              type="email"
+              id="email-input"
+              v-model="model.item.Email"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="tipo"
+            label="Tipo de Utilizador:"
+            label-for="tipo-select"
           >
-            Editar
-          </button>
-        </div>
+            <b-form-select
+              id="tipo-select"
+              v-model="model.item.TipoUtilizador_ID"
+              required
+            >
+              <option
+                v-for="tipo in TipoUtilizador"
+                :key="tipo.ID_TipoUtilizador"
+                :value="tipo.ID_TipoUtilizador"
+              >
+                {{ tipo.Nome }}
+              </option>
+            </b-form-select>
+          </b-form-group>
+
+          <b-form-checkbox id="ativo" v-model="model.item.Utilizador_isActive"
+            >Ativo</b-form-checkbox
+          >
+
+          <b-form-group id="avatar" label="Avatar:" label-for="avatar-input">
+            <b-form-file
+              id="avatar-input"
+              @change="onAvatarChange"
+              accept="image/*"
+            ></b-form-file>
+            <b-img
+              :src="avatarPreview"
+              fluid
+              thumbnail
+              v-if="avatarPreview"
+            ></b-img>
+          </b-form-group>
+
+          <b-button type="submit" variant="primary">Salvar</b-button>
+          <b-button type="button" @click="logout">Sair</b-button>
+        </b-form>
       </div>
     </div>
   </div>
 </template>
-
-<style>
-.custom-checkbox {
-  transform: scale(1.5); /* Reduz o tamanho do checkbox */
-}
-</style>
 
 <script>
 module.exports = {
@@ -325,3 +267,8 @@ module.exports = {
   },
 };
 </script>
+
+
+<style>
+/* Estilos para o perfil do utilizador */
+</style>

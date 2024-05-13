@@ -8,6 +8,7 @@
   "bootstrap-icons",
   "vue-router",
   "axios",
+  "md5",
   "@fortawesome/fontawesome-svg-core",
   "@fortawesome/vue-fontawesome",
   "@fortawesome/free-solid-svg-icons",

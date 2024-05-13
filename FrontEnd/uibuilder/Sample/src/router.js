@@ -1,4 +1,6 @@
 const Home = httpVueLoader('./components/subcomponents/home.vue');
+const Perfil = httpVueLoader('./components/subcomponents/perfil.vue');
+
 const Form = httpVueLoader('./components/subcomponents/form.vue');
 const Table = httpVueLoader('./components/subcomponents/table.vue');
 const Chart = httpVueLoader('./components/subcomponents/chart.vue');
@@ -22,6 +24,11 @@ export default {
             path: '/',
             name: 'Home',
             component: Home
+        },
+        {
+            path: '/perfil/:ID',
+            name: 'Perfil',
+            component: Perfil,
         },
         // {
         //     path:'/form',

@@ -131,9 +131,8 @@ module.exports = {
       return URL.createObjectURL(blob);
     },
     formatGroups(groups) {
-      if (!groups) return "";
-      const parsedGroups = JSON.parse(groups);
-      return parsedGroups.map((group) => group.Nome).join(", ");
+      if (!groups || !Array.isArray(groups)) return "";
+      return groups.map((group) => group.Nome).join(", ");
     },
 
     deleteItem(ItemID) {
@@ -146,7 +145,7 @@ module.exports = {
             .delete(`/rs2lab/deleteutilizador/${ItemID}`)
             .then(() => {
               // Atualiza a lista após excluir o usuário
-              this.retriveItem();
+              // this.retriveItem();
               this.ShowDeleteNotification();
             })
             .catch((errors) => {

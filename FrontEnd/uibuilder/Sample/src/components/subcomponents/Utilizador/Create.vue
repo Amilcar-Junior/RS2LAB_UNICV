@@ -74,10 +74,10 @@
               <option disabled value="">Selecione um grupo</option>
               <option
                 v-for="grupo in gruposDisponiveis"
-                :key="grupo.ID"
-                :value="grupo.ID"
+                :key="grupo.Grupo_ID"
+                :value="grupo.Grupo_ID"
               >
-                {{ grupo.Nome }}
+                {{ grupo.Grupo_Nome }}
               </option>
             </select>
           </div>
@@ -86,7 +86,7 @@
               type="checkbox"
               id="isActive"
               v-model="model.item.isActive"
-              class="form-check-input"
+              class="form-check-input custom-checkbox"
               true-value="1"
               false-value="0"
             />
@@ -110,13 +110,19 @@
             />
           </div>
           <div class="mb-3">
-            <button type="submit" class="btn btn-primary float-right">Adicionar</button>
+            <button type="submit" class="btn btn-primary float-right">Salvar</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+.custom-checkbox {
+  transform: scale(1.5); /* Reduz o tamanho do checkbox */
+}
+</style>
 
 <script>
 module.exports = {
@@ -143,6 +149,7 @@ module.exports = {
   mounted() {
     this.getTipoUtilizador();
     this.getGruposDisponiveis();
+    
   },
   methods: {
     addUtilizador() {

@@ -8,16 +8,6 @@
         "env": []
     },
     {
-        "id": "cea7ed5b0a0f01e6",
-        "type": "MySQLdatabase",
-        "name": "",
-        "host": "127.0.0.1",
-        "port": "3306",
-        "db": "mytutorial",
-        "tz": "+08:00",
-        "charset": "UTF8"
-    },
-    {
         "id": "f3e8c660cf5205b5",
         "type": "MySQLdatabase",
         "name": "rs2lab",
@@ -46,10 +36,12 @@
         "tokenAutoExtend": false,
         "reload": false,
         "sourceFolder": "src",
-        "x": 120,
-        "y": 60,
+        "x": 200,
+        "y": 200,
         "wires": [
-            [],
+            [
+                "2e8364255f20bfde"
+            ],
             []
         ]
     },
@@ -66,7 +58,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 240,
+        "y": 520,
         "wires": [
             [
                 "6b15a72c08bd9030"
@@ -85,7 +77,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 130,
-        "y": 240,
+        "y": 520,
         "wires": [
             [
                 "64b6d4a8cb5dfc5c"
@@ -106,7 +98,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 240,
+        "y": 520,
         "wires": []
     },
     {
@@ -122,7 +114,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "cef801336e444de7"
@@ -143,7 +135,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 300,
+        "y": 580,
         "wires": []
     },
     {
@@ -154,7 +146,7 @@
         "statusCode": "",
         "headers": {},
         "x": 590,
-        "y": 340,
+        "y": 620,
         "wires": []
     },
     {
@@ -174,7 +166,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 360,
+        "y": 640,
         "wires": [
             [
                 "7779e000ad4d5618"
@@ -195,7 +187,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 360,
+        "y": 640,
         "wires": []
     },
     {
@@ -216,7 +208,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 360,
+        "y": 640,
         "wires": [
             [
                 "4ec0502629967bd9"
@@ -233,7 +225,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "a24866634be830d0"
@@ -257,7 +249,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 580,
+        "y": 860,
         "wires": [
             [
                 "2002540a2b9f6e27"
@@ -278,7 +270,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 580,
+        "y": 860,
         "wires": []
     },
     {
@@ -299,7 +291,7 @@
         "payload": "{\"Nome\":\"Teste\",\"Descricao\":\"Teste testado\"}",
         "payloadType": "json",
         "x": 130,
-        "y": 580,
+        "y": 860,
         "wires": [
             [
                 "eab59d4cfcfbc49e"
@@ -319,7 +311,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 520,
+        "y": 800,
         "wires": [
             [
                 "51a4b15e2b087ba2"
@@ -334,7 +326,7 @@
         "statusCode": "",
         "headers": {},
         "x": 670,
-        "y": 520,
+        "y": 800,
         "wires": []
     },
     {
@@ -347,7 +339,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 520,
+        "y": 800,
         "wires": [
             [
                 "4ac82c04fa289ef1",
@@ -369,7 +361,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 460,
+        "y": 740,
         "wires": []
     },
     {
@@ -379,7 +371,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 390,
-        "y": 240,
+        "y": 520,
         "wires": [
             [
                 "1d89135f9362c6a9"
@@ -393,7 +385,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 430,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "a4c6acb84046bca4",
@@ -408,7 +400,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 520,
+        "y": 800,
         "wires": [
             [
                 "3f8f6405f3178098"
@@ -422,7 +414,7 @@
         "name": "START TIPOUTILIZADOR",
         "info": "",
         "x": 330,
-        "y": 120,
+        "y": 420,
         "wires": []
     },
     {
@@ -438,7 +430,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 740,
+        "y": 1020,
         "wires": [
             [
                 "77fb1023fa9ffdf4",
@@ -454,7 +446,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 740,
+        "y": 1020,
         "wires": []
     },
     {
@@ -474,7 +466,7 @@
         "senderr": false,
         "headers": [],
         "x": 300,
-        "y": 800,
+        "y": 1080,
         "wires": [
             [
                 "5428601bbbcdb293"
@@ -495,7 +487,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 450,
-        "y": 800,
+        "y": 1080,
         "wires": []
     },
     {
@@ -516,7 +508,7 @@
         "payload": "{\"ID\":1}",
         "payloadType": "json",
         "x": 130,
-        "y": 800,
+        "y": 1080,
         "wires": [
             [
                 "a672cd3cd4967d9f"
@@ -533,7 +525,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 740,
+        "y": 1020,
         "wires": [
             [
                 "f773d57533748f37",
@@ -548,7 +540,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 740,
+        "y": 1020,
         "wires": [
             [
                 "140f70a02845598c",
@@ -573,7 +565,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 1020,
+        "y": 1300,
         "wires": [
             [
                 "14c4a92de1f02ca1"
@@ -594,7 +586,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 1020,
+        "y": 1300,
         "wires": []
     },
     {
@@ -615,7 +607,7 @@
         "payload": "{\"Nome\":\"AdminTeste\",\"Descricao\":\"Admin testado\"}",
         "payloadType": "json",
         "x": 130,
-        "y": 1020,
+        "y": 1300,
         "wires": [
             [
                 "105166fadd0ef5dd"
@@ -635,7 +627,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 960,
+        "y": 1240,
         "wires": [
             [
                 "386aacaaf539981b"
@@ -650,7 +642,7 @@
         "statusCode": "",
         "headers": {},
         "x": 670,
-        "y": 960,
+        "y": 1240,
         "wires": []
     },
     {
@@ -663,7 +655,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 960,
+        "y": 1240,
         "wires": [
             [
                 "9592ed9602a5c274",
@@ -685,7 +677,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 900,
+        "y": 1180,
         "wires": []
     },
     {
@@ -695,7 +687,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 960,
+        "y": 1240,
         "wires": [
             [
                 "530ecdfc4ba039ca",
@@ -717,7 +709,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 900,
+        "y": 1180,
         "wires": []
     },
     {
@@ -734,7 +726,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 700,
+        "y": 980,
         "wires": []
     },
     {
@@ -751,7 +743,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 500,
-        "y": 700,
+        "y": 980,
         "wires": []
     },
     {
@@ -768,7 +760,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 680,
+        "y": 960,
         "wires": []
     },
     {
@@ -784,7 +776,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1180,
+        "y": 1460,
         "wires": [
             [
                 "f952a32b114c600b",
@@ -800,7 +792,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 1180,
+        "y": 1460,
         "wires": []
     },
     {
@@ -820,7 +812,7 @@
         "senderr": false,
         "headers": [],
         "x": 300,
-        "y": 1240,
+        "y": 1520,
         "wires": [
             [
                 "a4dcb4837e44c28a"
@@ -841,7 +833,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 450,
-        "y": 1240,
+        "y": 1520,
         "wires": []
     },
     {
@@ -862,7 +854,7 @@
         "payload": "{\"ID\":10}",
         "payloadType": "json",
         "x": 130,
-        "y": 1240,
+        "y": 1520,
         "wires": [
             [
                 "7611036da6eeafa6"
@@ -879,7 +871,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1180,
+        "y": 1460,
         "wires": [
             [
                 "c796c1a739f7d3c7",
@@ -894,7 +886,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 1180,
+        "y": 1460,
         "wires": [
             [
                 "af5274633e360b2e",
@@ -916,7 +908,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 1140,
+        "y": 1420,
         "wires": []
     },
     {
@@ -933,7 +925,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 500,
-        "y": 1140,
+        "y": 1420,
         "wires": []
     },
     {
@@ -950,7 +942,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 1120,
+        "y": 1400,
         "wires": []
     },
     {
@@ -960,7 +952,7 @@
         "name": "END TIPOUTILIZADOR",
         "info": "",
         "x": 320,
-        "y": 1300,
+        "y": 1580,
         "wires": []
     },
     {
@@ -970,7 +962,7 @@
         "name": "GET ALL",
         "info": "",
         "x": 320,
-        "y": 180,
+        "y": 460,
         "wires": []
     },
     {
@@ -980,7 +972,7 @@
         "name": "CREATE",
         "info": "",
         "x": 320,
-        "y": 420,
+        "y": 700,
         "wires": []
     },
     {
@@ -990,7 +982,7 @@
         "name": "GET ID",
         "info": "",
         "x": 310,
-        "y": 640,
+        "y": 920,
         "wires": []
     },
     {
@@ -1000,7 +992,7 @@
         "name": "UPDATE ID",
         "info": "",
         "x": 330,
-        "y": 860,
+        "y": 1140,
         "wires": []
     },
     {
@@ -1010,7 +1002,7 @@
         "name": "DELETE ID",
         "info": "",
         "x": 330,
-        "y": 1080,
+        "y": 1360,
         "wires": []
     },
     {
@@ -1018,7 +1010,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT ID, Nome \nFROM rs2lab.GrupoUtilizadores;`;\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    g.ID AS Grupo_ID,\n    g.Nome AS Grupo_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', u.ID,\n            'Nome', u.Nome\n        )\n    ) AS Utilizadores\nFROM\n    GrupoUtilizadores g\nLEFT JOIN\n    UtilizadorGrupo ug ON g.ID = ug.ID_Grupo\nLEFT JOIN\n    Utilizador u ON ug.ID_Utilizador = u.ID\nGROUP BY\n    g.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1026,7 +1018,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 1500,
+        "y": 1780,
         "wires": [
             [
                 "a280bededc220881"
@@ -1045,7 +1037,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 130,
-        "y": 1500,
+        "y": 1780,
         "wires": [
             [
                 "6ebb74746f9c068a"
@@ -1066,7 +1058,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 1500,
+        "y": 1780,
         "wires": []
     },
     {
@@ -1074,7 +1066,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT ID, Nome \nFROM rs2lab.GrupoUtilizadores;`;\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    g.ID AS Grupo_ID,\n    g.Nome AS Grupo_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', u.ID,\n            'Nome', u.Nome\n        )\n    ) AS Utilizadores\nFROM\n    GrupoUtilizadores g\nLEFT JOIN\n    UtilizadorGrupo ug ON g.ID = ug.ID_Grupo\nLEFT JOIN\n    Utilizador u ON ug.ID_Utilizador = u.ID\nGROUP BY\n    g.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1082,7 +1074,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1560,
+        "y": 1840,
         "wires": [
             [
                 "c8db7b617ed32a4a"
@@ -1103,7 +1095,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 630,
-        "y": 1560,
+        "y": 1840,
         "wires": []
     },
     {
@@ -1114,7 +1106,7 @@
         "statusCode": "",
         "headers": {},
         "x": 630,
-        "y": 1600,
+        "y": 1880,
         "wires": []
     },
     {
@@ -1134,7 +1126,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 1620,
+        "y": 1900,
         "wires": [
             [
                 "cb6da462f84869cb"
@@ -1155,7 +1147,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 1620,
+        "y": 1900,
         "wires": []
     },
     {
@@ -1176,7 +1168,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 1620,
+        "y": 1900,
         "wires": [
             [
                 "3fa8cfbab258f884"
@@ -1193,7 +1185,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1560,
+        "y": 1840,
         "wires": [
             [
                 "99186d4458108edf"
@@ -1217,7 +1209,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 1800,
+        "y": 2080,
         "wires": [
             [
                 "9fe04d6d965dcb9c"
@@ -1238,7 +1230,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 1800,
+        "y": 2080,
         "wires": []
     },
     {
@@ -1259,7 +1251,7 @@
         "payload": "{\"Nome\":\"Teste\"}",
         "payloadType": "json",
         "x": 130,
-        "y": 1800,
+        "y": 2080,
         "wires": [
             [
                 "db1ec78e2a3669a6"
@@ -1279,7 +1271,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1740,
+        "y": 2020,
         "wires": [
             [
                 "2111088b0486ceac"
@@ -1294,7 +1286,7 @@
         "statusCode": "",
         "headers": {},
         "x": 710,
-        "y": 1740,
+        "y": 2020,
         "wires": []
     },
     {
@@ -1307,7 +1299,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1740,
+        "y": 2020,
         "wires": [
             [
                 "2e6c65ba6af0e3ef"
@@ -1328,7 +1320,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 710,
-        "y": 1700,
+        "y": 1980,
         "wires": []
     },
     {
@@ -1338,7 +1330,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 390,
-        "y": 1500,
+        "y": 1780,
         "wires": [
             [
                 "96589fc9f6cf1614"
@@ -1352,7 +1344,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 470,
-        "y": 1560,
+        "y": 1840,
         "wires": [
             [
                 "12ffe8f9ed17f9eb",
@@ -1367,7 +1359,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 1740,
+        "y": 2020,
         "wires": [
             [
                 "3c09b7731410edf7",
@@ -1382,7 +1374,7 @@
         "name": "START GrupoUtilizadores",
         "info": "",
         "x": 330,
-        "y": 1380,
+        "y": 1660,
         "wires": []
     },
     {
@@ -1392,7 +1384,7 @@
         "name": "END GrupoUtilizadores",
         "info": "",
         "x": 320,
-        "y": 2520,
+        "y": 2800,
         "wires": []
     },
     {
@@ -1402,7 +1394,7 @@
         "name": "GET ALL",
         "info": "",
         "x": 320,
-        "y": 1440,
+        "y": 1720,
         "wires": []
     },
     {
@@ -1412,7 +1404,7 @@
         "name": "CREATE",
         "info": "",
         "x": 320,
-        "y": 1680,
+        "y": 1960,
         "wires": []
     },
     {
@@ -1428,7 +1420,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1960,
+        "y": 2240,
         "wires": [
             [
                 "bdfc06607f2946c2",
@@ -1444,7 +1436,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 1960,
+        "y": 2240,
         "wires": []
     },
     {
@@ -1464,7 +1456,7 @@
         "senderr": false,
         "headers": [],
         "x": 300,
-        "y": 2020,
+        "y": 2300,
         "wires": [
             [
                 "1f877dcff7f5e32b"
@@ -1485,7 +1477,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 450,
-        "y": 2020,
+        "y": 2300,
         "wires": []
     },
     {
@@ -1506,7 +1498,7 @@
         "payload": "{\"ID\":1}",
         "payloadType": "json",
         "x": 130,
-        "y": 2020,
+        "y": 2300,
         "wires": [
             [
                 "2b1a5b3895dc08ce"
@@ -1523,7 +1515,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1960,
+        "y": 2240,
         "wires": [
             [
                 "e496dfdacd610c85",
@@ -1538,7 +1530,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 1960,
+        "y": 2240,
         "wires": [
             [
                 "fbc13b62c61562f4",
@@ -1563,7 +1555,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 2240,
+        "y": 2520,
         "wires": [
             [
                 "ba67760fafd66c0e"
@@ -1584,7 +1576,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 2240,
+        "y": 2520,
         "wires": []
     },
     {
@@ -1605,7 +1597,7 @@
         "payload": "{\"Nome\":\"TesteTestando\"}",
         "payloadType": "json",
         "x": 130,
-        "y": 2240,
+        "y": 2520,
         "wires": [
             [
                 "d9a02b78dc616ce7"
@@ -1625,7 +1617,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 2180,
+        "y": 2460,
         "wires": [
             [
                 "e2ddf0905d48d75e"
@@ -1640,7 +1632,7 @@
         "statusCode": "",
         "headers": {},
         "x": 710,
-        "y": 2180,
+        "y": 2460,
         "wires": []
     },
     {
@@ -1653,7 +1645,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 2180,
+        "y": 2460,
         "wires": [
             [
                 "9832d06713bb7d62",
@@ -1675,7 +1667,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 350,
-        "y": 2120,
+        "y": 2400,
         "wires": []
     },
     {
@@ -1685,7 +1677,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 570,
-        "y": 2180,
+        "y": 2460,
         "wires": [
             [
                 "d325369e52b714a4",
@@ -1707,7 +1699,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 710,
-        "y": 2120,
+        "y": 2400,
         "wires": []
     },
     {
@@ -1724,7 +1716,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 1920,
+        "y": 2200,
         "wires": []
     },
     {
@@ -1741,7 +1733,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 500,
-        "y": 1920,
+        "y": 2200,
         "wires": []
     },
     {
@@ -1758,7 +1750,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 1900,
+        "y": 2180,
         "wires": []
     },
     {
@@ -1774,7 +1766,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 2400,
+        "y": 2680,
         "wires": [
             [
                 "4f9f48c079e687ca",
@@ -1790,7 +1782,7 @@
         "statusCode": "",
         "headers": {},
         "x": 710,
-        "y": 2400,
+        "y": 2680,
         "wires": []
     },
     {
@@ -1810,7 +1802,7 @@
         "senderr": false,
         "headers": [],
         "x": 300,
-        "y": 2460,
+        "y": 2740,
         "wires": [
             [
                 "6527d2f7d3ebf0d2"
@@ -1831,7 +1823,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 450,
-        "y": 2460,
+        "y": 2740,
         "wires": []
     },
     {
@@ -1852,7 +1844,7 @@
         "payload": "{\"ID\":10}",
         "payloadType": "json",
         "x": 130,
-        "y": 2460,
+        "y": 2740,
         "wires": [
             [
                 "1fb337f5738a3d31"
@@ -1869,7 +1861,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 2400,
+        "y": 2680,
         "wires": [
             [
                 "96044a9d4f6004dc",
@@ -1884,7 +1876,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 550,
-        "y": 2400,
+        "y": 2680,
         "wires": [
             [
                 "967cbdb6ecadde8b",
@@ -1906,7 +1898,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 2360,
+        "y": 2640,
         "wires": []
     },
     {
@@ -1923,7 +1915,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 560,
-        "y": 2360,
+        "y": 2640,
         "wires": []
     },
     {
@@ -1940,7 +1932,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 370,
-        "y": 2340,
+        "y": 2620,
         "wires": []
     },
     {
@@ -1950,7 +1942,7 @@
         "name": "GET ID",
         "info": "",
         "x": 310,
-        "y": 1860,
+        "y": 2140,
         "wires": []
     },
     {
@@ -1960,7 +1952,7 @@
         "name": "UPDATE ID",
         "info": "",
         "x": 330,
-        "y": 2080,
+        "y": 2360,
         "wires": []
     },
     {
@@ -1970,7 +1962,7 @@
         "name": "DELETE ID",
         "info": "",
         "x": 330,
-        "y": 2300,
+        "y": 2580,
         "wires": []
     },
     {
@@ -1978,7 +1970,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('ID', g.ID, 'Nome', g.Nome) ORDER BY g.ID SEPARATOR ','), ']') AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1986,7 +1978,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 2720,
+        "y": 3000,
         "wires": [
             [
                 "431ddaf415a14267"
@@ -2005,7 +1997,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 130,
-        "y": 2720,
+        "y": 3000,
         "wires": [
             [
                 "bacc9caeb59c8c7c"
@@ -2026,7 +2018,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 2720,
+        "y": 3000,
         "wires": []
     },
     {
@@ -2034,7 +2026,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('ID', g.ID, 'Nome', g.Nome) ORDER BY g.ID SEPARATOR ','), ']') AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2042,7 +2034,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 2780,
+        "y": 3060,
         "wires": [
             [
                 "6598085df2f77fd2"
@@ -2063,7 +2055,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 630,
-        "y": 2780,
+        "y": 3060,
         "wires": []
     },
     {
@@ -2074,7 +2066,7 @@
         "statusCode": "",
         "headers": {},
         "x": 630,
-        "y": 2820,
+        "y": 3100,
         "wires": []
     },
     {
@@ -2094,7 +2086,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 2840,
+        "y": 3120,
         "wires": [
             [
                 "1b784db1b3a28ebb"
@@ -2115,7 +2107,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 2840,
+        "y": 3120,
         "wires": []
     },
     {
@@ -2136,7 +2128,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 2840,
+        "y": 3120,
         "wires": [
             [
                 "ae26f17bd5705fef"
@@ -2153,7 +2145,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 2780,
+        "y": 3060,
         "wires": [
             [
                 "bd510b92284b89f3"
@@ -2177,7 +2169,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 3020,
+        "y": 3300,
         "wires": [
             [
                 "5e9508087c7b5a7d"
@@ -2198,7 +2190,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 3020,
+        "y": 3300,
         "wires": []
     },
     {
@@ -2219,7 +2211,7 @@
         "payload": "{\"Nome\":\"Testesssss\",\"Senha\":\"Teste\",\"Email\":\"teste@gmail.com\",\"isActive\":\"1\",\"Avatar\":null,\"ID_TipoUtilizador\":\"1\"}",
         "payloadType": "json",
         "x": 130,
-        "y": 3020,
+        "y": 3300,
         "wires": [
             [
                 "00d15f91b20e5697"
@@ -2231,7 +2223,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador \n(Nome, Email, Senha, Avatar, isActive, ID_TipoUtilizador) \nVALUES ('${msg.payload.Nome}', '${msg.payload.Email}', \n'${msg.payload.Senha}', '${msg.payload.Avatar}', '${msg.payload.isActive}', \n${msg.payload.ID_TipoUtilizador});`;\nreturn msg;",
+        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador \n(Nome, Email, Senha, Avatar, isActive, ID_TipoUtilizador) \nVALUES ('${msg.payload.Nome}', '${msg.payload.Email}', \nMD5('${msg.payload.Senha}'), '${msg.payload.Avatar}', '${msg.payload.isActive}', \n${msg.payload.ID_TipoUtilizador});`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2239,7 +2231,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 2960,
+        "y": 3240,
         "wires": [
             [
                 "c9d222156489023d"
@@ -2254,7 +2246,7 @@
         "statusCode": "",
         "headers": {},
         "x": 710,
-        "y": 2960,
+        "y": 3240,
         "wires": []
     },
     {
@@ -2267,7 +2259,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 2960,
+        "y": 3240,
         "wires": [
             [
                 "686dfb7cc32e0fe3"
@@ -2288,7 +2280,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 710,
-        "y": 2920,
+        "y": 3200,
         "wires": []
     },
     {
@@ -2298,7 +2290,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 390,
-        "y": 2720,
+        "y": 3000,
         "wires": [
             [
                 "c350634c25106c2d"
@@ -2312,7 +2304,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 470,
-        "y": 2780,
+        "y": 3060,
         "wires": [
             [
                 "5fcb102b551182d9",
@@ -2327,7 +2319,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 2960,
+        "y": 3240,
         "wires": [
             [
                 "bef0301becf000b3",
@@ -2342,7 +2334,7 @@
         "name": "START Utilizador",
         "info": "",
         "x": 300,
-        "y": 2600,
+        "y": 2880,
         "wires": []
     },
     {
@@ -2352,7 +2344,7 @@
         "name": "END Utilizador",
         "info": "",
         "x": 300,
-        "y": 3740,
+        "y": 4020,
         "wires": []
     },
     {
@@ -2362,7 +2354,7 @@
         "name": "GET ALL",
         "info": "",
         "x": 320,
-        "y": 2660,
+        "y": 2940,
         "wires": []
     },
     {
@@ -2372,7 +2364,7 @@
         "name": "CREATE",
         "info": "",
         "x": 320,
-        "y": 2900,
+        "y": 3180,
         "wires": []
     },
     {
@@ -2388,7 +2380,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 3180,
+        "y": 3460,
         "wires": [
             [
                 "ee3d0442ab481a26",
@@ -2404,7 +2396,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 3180,
+        "y": 3460,
         "wires": []
     },
     {
@@ -2424,7 +2416,7 @@
         "senderr": false,
         "headers": [],
         "x": 300,
-        "y": 3240,
+        "y": 3520,
         "wires": [
             [
                 "6f3adea70f760179"
@@ -2445,7 +2437,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 450,
-        "y": 3240,
+        "y": 3520,
         "wires": []
     },
     {
@@ -2466,7 +2458,7 @@
         "payload": "{\"ID\":1}",
         "payloadType": "json",
         "x": 130,
-        "y": 3240,
+        "y": 3520,
         "wires": [
             [
                 "29a044f7437a4925"
@@ -2483,7 +2475,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 3180,
+        "y": 3460,
         "wires": [
             [
                 "898dd5d121dfe467",
@@ -2498,7 +2490,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 3180,
+        "y": 3460,
         "wires": [
             [
                 "ef225f586f8526f0",
@@ -2523,7 +2515,7 @@
         "senderr": false,
         "headers": [],
         "x": 260,
-        "y": 3460,
+        "y": 3740,
         "wires": [
             [
                 "33172aa57966669b"
@@ -2544,7 +2536,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 3460,
+        "y": 3740,
         "wires": []
     },
     {
@@ -2565,7 +2557,7 @@
         "payload": "{\"Nome\":\"TesteTestando\"}",
         "payloadType": "json",
         "x": 130,
-        "y": 3460,
+        "y": 3740,
         "wires": [
             [
                 "582137c3581fccf6"
@@ -2577,7 +2569,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Nome = '${msg.payload.Nome}', \nEmail = '${msg.payload.Email}', \nSenha = '${msg.payload.Senha}', \nAvatar = '${msg.payload.Avatar}', \nID_TipoUtilizador = ${msg.payload.ID_TipoUtilizador}, \nisActive = ${msg.payload.isActive} \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Nome = '${msg.payload.Nome}', \nEmail = '${msg.payload.Email}', \nSenha = MD5('${msg.payload.Senha}'), \nAvatar = '${msg.payload.Avatar}', \nID_TipoUtilizador = ${msg.payload.ID_TipoUtilizador}, \nisActive = ${msg.payload.isActive} \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2585,7 +2577,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 3400,
+        "y": 3680,
         "wires": [
             [
                 "7161199dbe7f739d"
@@ -2600,7 +2592,7 @@
         "statusCode": "",
         "headers": {},
         "x": 710,
-        "y": 3400,
+        "y": 3680,
         "wires": []
     },
     {
@@ -2613,7 +2605,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 3400,
+        "y": 3680,
         "wires": [
             [
                 "698f8b463ba27bdb",
@@ -2635,7 +2627,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 350,
-        "y": 3340,
+        "y": 3620,
         "wires": []
     },
     {
@@ -2645,7 +2637,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 570,
-        "y": 3400,
+        "y": 3680,
         "wires": [
             [
                 "12f32ef1a47ed7c4",
@@ -2667,7 +2659,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 710,
-        "y": 3340,
+        "y": 3620,
         "wires": []
     },
     {
@@ -2684,7 +2676,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 3140,
+        "y": 3420,
         "wires": []
     },
     {
@@ -2701,7 +2693,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 500,
-        "y": 3140,
+        "y": 3420,
         "wires": []
     },
     {
@@ -2718,7 +2710,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 3120,
+        "y": 3400,
         "wires": []
     },
     {
@@ -2734,7 +2726,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 3620,
+        "y": 3900,
         "wires": [
             [
                 "20bc74c2e18e9878",
@@ -2750,7 +2742,7 @@
         "statusCode": "",
         "headers": {},
         "x": 710,
-        "y": 3620,
+        "y": 3900,
         "wires": []
     },
     {
@@ -2770,7 +2762,7 @@
         "senderr": false,
         "headers": [],
         "x": 300,
-        "y": 3680,
+        "y": 3960,
         "wires": [
             [
                 "056ca1b74465da54"
@@ -2791,7 +2783,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 450,
-        "y": 3680,
+        "y": 3960,
         "wires": []
     },
     {
@@ -2812,7 +2804,7 @@
         "payload": "{\"ID\":10}",
         "payloadType": "json",
         "x": 130,
-        "y": 3680,
+        "y": 3960,
         "wires": [
             [
                 "0a78d55a0d3dd9c1"
@@ -2829,7 +2821,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 3620,
+        "y": 3900,
         "wires": [
             [
                 "11522a57e9ccf06b",
@@ -2844,7 +2836,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 550,
-        "y": 3620,
+        "y": 3900,
         "wires": [
             [
                 "d381f7486b56c22e",
@@ -2866,7 +2858,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 3580,
+        "y": 3860,
         "wires": []
     },
     {
@@ -2883,7 +2875,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 560,
-        "y": 3580,
+        "y": 3860,
         "wires": []
     },
     {
@@ -2900,7 +2892,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 370,
-        "y": 3560,
+        "y": 3840,
         "wires": []
     },
     {
@@ -2910,7 +2902,7 @@
         "name": "GET ID",
         "info": "",
         "x": 310,
-        "y": 3080,
+        "y": 3360,
         "wires": []
     },
     {
@@ -2920,7 +2912,7 @@
         "name": "UPDATE ID",
         "info": "",
         "x": 330,
-        "y": 3300,
+        "y": 3580,
         "wires": []
     },
     {
@@ -2930,7 +2922,7 @@
         "name": "DELETE ID",
         "info": "",
         "x": 330,
-        "y": 3520,
+        "y": 3800,
         "wires": []
     },
     {
@@ -2946,7 +2938,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 3020,
+        "y": 3300,
         "wires": [
             [
                 "6e6b47d59ed5dc88"
@@ -2965,7 +2957,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 610,
-        "y": 3020,
+        "y": 3300,
         "wires": [
             [
                 "68846d3f334cea1b"
@@ -2986,7 +2978,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1030,
-        "y": 3020,
+        "y": 3300,
         "wires": []
     },
     {
@@ -2996,7 +2988,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 870,
-        "y": 3020,
+        "y": 3300,
         "wires": [
             [
                 "859854e6322c283a"
@@ -3016,7 +3008,7 @@
         "finalize": "",
         "libs": [],
         "x": 973.0667114257812,
-        "y": 3145.533447265625,
+        "y": 3425.533447265625,
         "wires": [
             [
                 "1c2bfacd576b27b3"
@@ -3035,7 +3027,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 840,
-        "y": 3140,
+        "y": 3420,
         "wires": [
             [
                 "3b56fadb13ef3566"
@@ -3056,7 +3048,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1260,
-        "y": 3140,
+        "y": 3420,
         "wires": []
     },
     {
@@ -3072,7 +3064,7 @@
         "finalize": "",
         "libs": [],
         "x": 1140,
-        "y": 3200,
+        "y": 3480,
         "wires": [
             [
                 "b159745ff189b4a5"
@@ -3093,7 +3085,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1420,
-        "y": 3200,
+        "y": 3480,
         "wires": []
     },
     {
@@ -3104,7 +3096,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1410,
-        "y": 3240,
+        "y": 3520,
         "wires": []
     },
     {
@@ -3117,7 +3109,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 910,
-        "y": 3200,
+        "y": 3480,
         "wires": [
             [
                 "b43bf3ee65fa6022"
@@ -3131,7 +3123,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1100,
-        "y": 3140,
+        "y": 3420,
         "wires": [
             [
                 "5b2dd997d2497481"
@@ -3145,7 +3137,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1260,
-        "y": 3200,
+        "y": 3480,
         "wires": [
             [
                 "dc177f22eef5fc3d",
@@ -3160,7 +3152,7 @@
         "name": "GET by TipoUtilizador ",
         "info": "",
         "x": 1080,
-        "y": 3080,
+        "y": 3360,
         "wires": []
     },
     {
@@ -3176,7 +3168,7 @@
         "finalize": "",
         "libs": [],
         "x": 240,
-        "y": 3920,
+        "y": 4200,
         "wires": [
             [
                 "19117205b6495a3b"
@@ -3195,7 +3187,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 110,
-        "y": 3920,
+        "y": 4200,
         "wires": [
             [
                 "0d8d918a9d5aa669"
@@ -3216,7 +3208,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 530,
-        "y": 3920,
+        "y": 4200,
         "wires": []
     },
     {
@@ -3232,7 +3224,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 3980,
+        "y": 4260,
         "wires": [
             [
                 "d92bbaa7292f15ad"
@@ -3253,7 +3245,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 650,
-        "y": 3980,
+        "y": 4260,
         "wires": []
     },
     {
@@ -3264,7 +3256,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 4020,
+        "y": 4300,
         "wires": []
     },
     {
@@ -3284,7 +3276,7 @@
         "senderr": false,
         "headers": [],
         "x": 240,
-        "y": 4040,
+        "y": 4320,
         "wires": [
             [
                 "bd485b51ed129433"
@@ -3305,7 +3297,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 390,
-        "y": 4040,
+        "y": 4320,
         "wires": []
     },
     {
@@ -3326,7 +3318,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 4040,
+        "y": 4320,
         "wires": [
             [
                 "e6ef34d7ac209393"
@@ -3343,7 +3335,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 3980,
+        "y": 4260,
         "wires": [
             [
                 "3874c9fe762984b4"
@@ -3367,7 +3359,7 @@
         "senderr": false,
         "headers": [],
         "x": 240,
-        "y": 4260,
+        "y": 4540,
         "wires": [
             [
                 "0a03d20ca8f27b47"
@@ -3388,7 +3380,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 390,
-        "y": 4260,
+        "y": 4540,
         "wires": []
     },
     {
@@ -3409,7 +3401,7 @@
         "payload": "{\"ID_Utilizador\":3,\"ID_Grupo\":1}",
         "payloadType": "json",
         "x": 110,
-        "y": 4260,
+        "y": 4540,
         "wires": [
             [
                 "c9a20dfaaf907fe1"
@@ -3429,7 +3421,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 4200,
+        "y": 4480,
         "wires": [
             [
                 "467b6354effd3095"
@@ -3444,7 +3436,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 4200,
+        "y": 4480,
         "wires": []
     },
     {
@@ -3457,7 +3449,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 4200,
+        "y": 4480,
         "wires": [
             [
                 "497f8678ca8ab7ff"
@@ -3478,7 +3470,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 650,
-        "y": 4140,
+        "y": 4420,
         "wires": []
     },
     {
@@ -3488,7 +3480,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 370,
-        "y": 3920,
+        "y": 4200,
         "wires": [
             [
                 "4ad025b00f016522"
@@ -3502,7 +3494,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 3980,
+        "y": 4260,
         "wires": [
             [
                 "9366192bf547cf6f",
@@ -3517,7 +3509,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 510,
-        "y": 4200,
+        "y": 4480,
         "wires": [
             [
                 "c2c7efb2ce33b122",
@@ -3532,7 +3524,7 @@
         "name": "START UtilizadorGrupo",
         "info": "",
         "x": 300,
-        "y": 3800,
+        "y": 4080,
         "wires": []
     },
     {
@@ -3548,7 +3540,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 4420,
+        "y": 4700,
         "wires": [
             [
                 "6cc2de146a2545e5",
@@ -3564,7 +3556,7 @@
         "statusCode": "",
         "headers": {},
         "x": 630,
-        "y": 4420,
+        "y": 4700,
         "wires": []
     },
     {
@@ -3584,7 +3576,7 @@
         "senderr": false,
         "headers": [],
         "x": 280,
-        "y": 4480,
+        "y": 4760,
         "wires": [
             [
                 "da5ec1f1d854fe0e"
@@ -3605,7 +3597,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 430,
-        "y": 4480,
+        "y": 4760,
         "wires": []
     },
     {
@@ -3626,7 +3618,7 @@
         "payload": "{\"ID\":1}",
         "payloadType": "json",
         "x": 110,
-        "y": 4480,
+        "y": 4760,
         "wires": [
             [
                 "0caf28ec8ad9f50c"
@@ -3643,7 +3635,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 4420,
+        "y": 4700,
         "wires": [
             [
                 "173755246f938f97",
@@ -3658,7 +3650,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 470,
-        "y": 4420,
+        "y": 4700,
         "wires": [
             [
                 "db5d9c7a150a5b38",
@@ -3683,7 +3675,7 @@
         "senderr": false,
         "headers": [],
         "x": 240,
-        "y": 4700,
+        "y": 4980,
         "wires": [
             [
                 "4f3d8a3eaea64092"
@@ -3704,7 +3696,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 390,
-        "y": 4700,
+        "y": 4980,
         "wires": []
     },
     {
@@ -3725,7 +3717,7 @@
         "payload": "{\"Nome\":\"AdminTeste\",\"Descricao\":\"Admin testado\"}",
         "payloadType": "json",
         "x": 110,
-        "y": 4700,
+        "y": 4980,
         "wires": [
             [
                 "c4c38ec63015ccfd"
@@ -3745,7 +3737,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 4640,
+        "y": 4920,
         "wires": [
             [
                 "8509da59f5f5475b"
@@ -3760,7 +3752,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 4640,
+        "y": 4920,
         "wires": []
     },
     {
@@ -3773,7 +3765,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 4640,
+        "y": 4920,
         "wires": [
             [
                 "56798907a26a588a",
@@ -3795,7 +3787,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 290,
-        "y": 4580,
+        "y": 4860,
         "wires": []
     },
     {
@@ -3805,7 +3797,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 510,
-        "y": 4640,
+        "y": 4920,
         "wires": [
             [
                 "4cd841ee37ab27ed",
@@ -3827,7 +3819,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 650,
-        "y": 4580,
+        "y": 4860,
         "wires": []
     },
     {
@@ -3844,7 +3836,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 650,
-        "y": 4380,
+        "y": 4660,
         "wires": []
     },
     {
@@ -3861,7 +3853,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 480,
-        "y": 4380,
+        "y": 4660,
         "wires": []
     },
     {
@@ -3878,7 +3870,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 290,
-        "y": 4360,
+        "y": 4640,
         "wires": []
     },
     {
@@ -3894,7 +3886,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "a9e24099b0c0f156",
@@ -3910,7 +3902,7 @@
         "statusCode": "",
         "headers": {},
         "x": 670,
-        "y": 4860,
+        "y": 5140,
         "wires": []
     },
     {
@@ -3930,7 +3922,7 @@
         "senderr": false,
         "headers": [],
         "x": 280,
-        "y": 4920,
+        "y": 5200,
         "wires": [
             [
                 "29339434ea7f9664"
@@ -3951,7 +3943,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 430,
-        "y": 4920,
+        "y": 5200,
         "wires": []
     },
     {
@@ -3972,7 +3964,7 @@
         "payload": "{\"ID\":10}",
         "payloadType": "json",
         "x": 110,
-        "y": 4920,
+        "y": 5200,
         "wires": [
             [
                 "33e9467a4ab785a1"
@@ -3989,7 +3981,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "8287f405bfb85b54",
@@ -4004,7 +3996,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 510,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "aac01db198b8694a",
@@ -4026,7 +4018,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 4820,
+        "y": 5100,
         "wires": []
     },
     {
@@ -4043,7 +4035,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 500,
-        "y": 4820,
+        "y": 5100,
         "wires": []
     },
     {
@@ -4060,7 +4052,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 290,
-        "y": 4800,
+        "y": 5080,
         "wires": []
     },
     {
@@ -4070,7 +4062,7 @@
         "name": "END TIPOUTILIZADOR",
         "info": "",
         "x": 300,
-        "y": 4980,
+        "y": 5260,
         "wires": []
     },
     {
@@ -4080,7 +4072,7 @@
         "name": "GET ALL Utilizador: x , Grupos: [x,x]",
         "info": "",
         "x": 380,
-        "y": 3860,
+        "y": 4140,
         "wires": []
     },
     {
@@ -4090,7 +4082,7 @@
         "name": "CREATE",
         "info": "",
         "x": 300,
-        "y": 4100,
+        "y": 4380,
         "wires": []
     },
     {
@@ -4100,7 +4092,7 @@
         "name": "GET ID",
         "info": "",
         "x": 290,
-        "y": 4320,
+        "y": 4600,
         "wires": []
     },
     {
@@ -4110,7 +4102,7 @@
         "name": "UPDATE ID",
         "info": "",
         "x": 310,
-        "y": 4540,
+        "y": 4820,
         "wires": []
     },
     {
@@ -4120,7 +4112,7 @@
         "name": "DELETE ID",
         "info": "",
         "x": 310,
-        "y": 4760,
+        "y": 5040,
         "wires": []
     },
     {
@@ -4136,7 +4128,7 @@
         "finalize": "",
         "libs": [],
         "x": 960,
-        "y": 3920,
+        "y": 4200,
         "wires": [
             [
                 "efae2f188bc121ca"
@@ -4155,7 +4147,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 830,
-        "y": 3920,
+        "y": 4200,
         "wires": [
             [
                 "f01d1f3023778784"
@@ -4176,7 +4168,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1250,
-        "y": 3920,
+        "y": 4200,
         "wires": []
     },
     {
@@ -4192,7 +4184,7 @@
         "finalize": "",
         "libs": [],
         "x": 1060,
-        "y": 3980,
+        "y": 4260,
         "wires": [
             [
                 "1dd3a63fd4fde80f"
@@ -4213,7 +4205,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1350,
-        "y": 3980,
+        "y": 4260,
         "wires": []
     },
     {
@@ -4224,7 +4216,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1310,
-        "y": 4020,
+        "y": 4300,
         "wires": []
     },
     {
@@ -4244,7 +4236,7 @@
         "senderr": false,
         "headers": [],
         "x": 960,
-        "y": 4040,
+        "y": 4320,
         "wires": [
             [
                 "62deabb932007427"
@@ -4265,7 +4257,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1110,
-        "y": 4040,
+        "y": 4320,
         "wires": []
     },
     {
@@ -4286,7 +4278,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 830,
-        "y": 4040,
+        "y": 4320,
         "wires": [
             [
                 "b1ec8cd902ea189b"
@@ -4303,7 +4295,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 860,
-        "y": 3980,
+        "y": 4260,
         "wires": [
             [
                 "4b9d5b2fd8577ffa"
@@ -4317,7 +4309,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1090,
-        "y": 3920,
+        "y": 4200,
         "wires": [
             [
                 "4fe44eddfa699996"
@@ -4331,7 +4323,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1190,
-        "y": 3980,
+        "y": 4260,
         "wires": [
             [
                 "f405857708bd61b6",
@@ -4346,7 +4338,7 @@
         "name": "GET ALL Grupo: x , Utilizadores: [x,x]",
         "info": "",
         "x": 1110,
-        "y": 3860,
+        "y": 4140,
         "wires": []
     },
     {
@@ -4362,7 +4354,7 @@
         "finalize": "",
         "libs": [],
         "x": 1140,
-        "y": 4400,
+        "y": 4680,
         "wires": [
             [
                 "2d175f588709d1eb",
@@ -4378,7 +4370,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1450,
-        "y": 4400,
+        "y": 4680,
         "wires": []
     },
     {
@@ -4398,7 +4390,7 @@
         "senderr": false,
         "headers": [],
         "x": 1020,
-        "y": 4520,
+        "y": 4800,
         "wires": [
             [
                 "3f2ffda7f00f80ca"
@@ -4419,7 +4411,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1170,
-        "y": 4520,
+        "y": 4800,
         "wires": []
     },
     {
@@ -4440,7 +4432,7 @@
         "payload": "{\"ID\":2}",
         "payloadType": "json",
         "x": 850,
-        "y": 4520,
+        "y": 4800,
         "wires": [
             [
                 "85f3d98ea5dd480a"
@@ -4457,7 +4449,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 910,
-        "y": 4400,
+        "y": 4680,
         "wires": [
             [
                 "196ff61c660946b5",
@@ -4472,7 +4464,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1290,
-        "y": 4400,
+        "y": 4680,
         "wires": [
             [
                 "0d073de495f5d3c3",
@@ -4494,7 +4486,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1470,
-        "y": 4360,
+        "y": 4640,
         "wires": []
     },
     {
@@ -4511,7 +4503,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1300,
-        "y": 4360,
+        "y": 4640,
         "wires": []
     },
     {
@@ -4528,7 +4520,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1110,
-        "y": 4340,
+        "y": 4620,
         "wires": []
     },
     {
@@ -4538,7 +4530,7 @@
         "name": "GET ID do Utilizador",
         "info": "",
         "x": 1150,
-        "y": 4300,
+        "y": 4580,
         "wires": []
     },
     {
@@ -4554,7 +4546,7 @@
         "finalize": "",
         "libs": [],
         "x": 1180,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "b7a94b710471eb91",
@@ -4570,7 +4562,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1490,
-        "y": 4860,
+        "y": 5140,
         "wires": []
     },
     {
@@ -4590,7 +4582,7 @@
         "senderr": false,
         "headers": [],
         "x": 1020,
-        "y": 4920,
+        "y": 5200,
         "wires": [
             [
                 "58e498dbc559ea36"
@@ -4611,7 +4603,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1170,
-        "y": 4920,
+        "y": 5200,
         "wires": []
     },
     {
@@ -4632,7 +4624,7 @@
         "payload": "{\"ID\":10}",
         "payloadType": "json",
         "x": 850,
-        "y": 4920,
+        "y": 5200,
         "wires": [
             [
                 "d40f03c909ec6b93"
@@ -4649,7 +4641,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 920,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "e0d8b8c6d9451787",
@@ -4664,7 +4656,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1330,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "3d5ca83d73b04ac4",
@@ -4686,7 +4678,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1490,
-        "y": 4820,
+        "y": 5100,
         "wires": []
     },
     {
@@ -4703,7 +4695,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1320,
-        "y": 4820,
+        "y": 5100,
         "wires": []
     },
     {
@@ -4720,7 +4712,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1110,
-        "y": 4800,
+        "y": 5080,
         "wires": []
     },
     {
@@ -4730,7 +4722,7 @@
         "name": "DELETE ID Utilizador",
         "info": "",
         "x": 1100,
-        "y": 4760,
+        "y": 5040,
         "wires": []
     },
     {
@@ -4750,7 +4742,7 @@
         "senderr": false,
         "headers": [],
         "x": 1020,
-        "y": 3260,
+        "y": 3540,
         "wires": [
             [
                 "3ad3ed7963acf9d6"
@@ -4771,7 +4763,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1170,
-        "y": 3260,
+        "y": 3540,
         "wires": []
     },
     {
@@ -4792,7 +4784,7 @@
         "payload": "{\"ID\":1}",
         "payloadType": "json",
         "x": 850,
-        "y": 3260,
+        "y": 3540,
         "wires": [
             [
                 "c7f41d0533c7af46"
@@ -4812,7 +4804,7 @@
         "finalize": "",
         "libs": [],
         "x": 1720,
-        "y": 3140,
+        "y": 3420,
         "wires": [
             [
                 "fb286e735cf11b31"
@@ -4831,7 +4823,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1586.9332885742188,
-        "y": 3134.466552734375,
+        "y": 3414.466552734375,
         "wires": [
             [
                 "524ef21b7cee7421"
@@ -4852,7 +4844,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2006.9332885742188,
-        "y": 3134.466552734375,
+        "y": 3414.466552734375,
         "wires": []
     },
     {
@@ -4868,7 +4860,7 @@
         "finalize": "",
         "libs": [],
         "x": 1886.9332885742188,
-        "y": 3194.466552734375,
+        "y": 3474.466552734375,
         "wires": [
             [
                 "722e07c5ae2a83bd"
@@ -4889,7 +4881,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2166.9332885742188,
-        "y": 3194.466552734375,
+        "y": 3474.466552734375,
         "wires": []
     },
     {
@@ -4900,7 +4892,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2156.9332885742188,
-        "y": 3234.466552734375,
+        "y": 3514.466552734375,
         "wires": []
     },
     {
@@ -4913,7 +4905,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1666.9332885742188,
-        "y": 3194.466552734375,
+        "y": 3474.466552734375,
         "wires": [
             [
                 "23c5b829156d6cd4"
@@ -4927,7 +4919,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1846.9332885742188,
-        "y": 3134.466552734375,
+        "y": 3414.466552734375,
         "wires": [
             [
                 "d2cbaa43526f903d"
@@ -4941,7 +4933,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 2006.9332885742188,
-        "y": 3194.466552734375,
+        "y": 3474.466552734375,
         "wires": [
             [
                 "743f6dccfbbbe063",
@@ -4956,7 +4948,7 @@
         "name": "GET by GrupoUtilizadores",
         "info": "",
         "x": 1836.9332885742188,
-        "y": 3074.466552734375,
+        "y": 3354.466552734375,
         "wires": []
     },
     {
@@ -4976,7 +4968,7 @@
         "senderr": false,
         "headers": [],
         "x": 1766.9332885742188,
-        "y": 3254.466552734375,
+        "y": 3534.466552734375,
         "wires": [
             [
                 "3019f6a576599d7c"
@@ -4997,7 +4989,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1916.9332885742188,
-        "y": 3254.466552734375,
+        "y": 3534.466552734375,
         "wires": []
     },
     {
@@ -5018,7 +5010,7 @@
         "payload": "{\"ID\":1}",
         "payloadType": "json",
         "x": 1596.9332885742188,
-        "y": 3254.466552734375,
+        "y": 3534.466552734375,
         "wires": [
             [
                 "b2c224f55a828885"
@@ -5038,7 +5030,7 @@
         "finalize": "",
         "libs": [],
         "x": 1840,
-        "y": 4400,
+        "y": 4680,
         "wires": [
             [
                 "a4e820ad24da3e5a",
@@ -5054,7 +5046,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2150,
-        "y": 4400,
+        "y": 4680,
         "wires": []
     },
     {
@@ -5071,7 +5063,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2130,
-        "y": 4520,
+        "y": 4800,
         "wires": []
     },
     {
@@ -5086,7 +5078,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1630,
-        "y": 4520,
+        "y": 4800,
         "wires": [
             [
                 "6364b2b790a20352"
@@ -5103,7 +5095,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1660,
-        "y": 4400,
+        "y": 4680,
         "wires": [
             [
                 "18fef2d1b5eec03f",
@@ -5118,7 +5110,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1990,
-        "y": 4400,
+        "y": 4680,
         "wires": [
             [
                 "87c756695e23977f",
@@ -5140,7 +5132,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2170,
-        "y": 4360,
+        "y": 4640,
         "wires": []
     },
     {
@@ -5157,7 +5149,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2000,
-        "y": 4360,
+        "y": 4640,
         "wires": []
     },
     {
@@ -5174,7 +5166,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1810,
-        "y": 4340,
+        "y": 4620,
         "wires": []
     },
     {
@@ -5184,7 +5176,7 @@
         "name": "GET ID do GrupoUtilizadores",
         "info": "",
         "x": 1880,
-        "y": 4300,
+        "y": 4580,
         "wires": []
     },
     {
@@ -5200,7 +5192,7 @@
         "finalize": "",
         "libs": [],
         "x": 1800,
-        "y": 4520,
+        "y": 4800,
         "wires": [
             [
                 "f0603a50562025e1"
@@ -5214,7 +5206,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1950,
-        "y": 4520,
+        "y": 4800,
         "wires": [
             [
                 "17b23141b0d156fe"
@@ -5234,7 +5226,7 @@
         "finalize": "",
         "libs": [],
         "x": 1960,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "b32c35c92a943445",
@@ -5250,7 +5242,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2270,
-        "y": 4860,
+        "y": 5140,
         "wires": []
     },
     {
@@ -5270,7 +5262,7 @@
         "senderr": false,
         "headers": [],
         "x": 1800,
-        "y": 4920,
+        "y": 5200,
         "wires": [
             [
                 "0c5a4525699d87d2"
@@ -5291,7 +5283,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1950,
-        "y": 4920,
+        "y": 5200,
         "wires": []
     },
     {
@@ -5312,7 +5304,7 @@
         "payload": "{\"ID\":10}",
         "payloadType": "json",
         "x": 1630,
-        "y": 4920,
+        "y": 5200,
         "wires": [
             [
                 "490ae8f36219797c"
@@ -5329,7 +5321,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1720,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "3baa258b1563c6ff",
@@ -5344,7 +5336,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 2110,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "d0109738177c8740",
@@ -5366,7 +5358,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2270,
-        "y": 4820,
+        "y": 5100,
         "wires": []
     },
     {
@@ -5383,7 +5375,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2100,
-        "y": 4820,
+        "y": 5100,
         "wires": []
     },
     {
@@ -5400,7 +5392,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1890,
-        "y": 4800,
+        "y": 5080,
         "wires": []
     },
     {
@@ -5410,7 +5402,7 @@
         "name": "DELETE ID grupoutilizadores",
         "info": "",
         "x": 1900,
-        "y": 4760,
+        "y": 5040,
         "wires": []
     },
     {
@@ -5426,7 +5418,7 @@
         "finalize": "",
         "libs": [],
         "x": 2860,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "52feb82cec2da790",
@@ -5442,7 +5434,7 @@
         "statusCode": "",
         "headers": {},
         "x": 3170,
-        "y": 4860,
+        "y": 5140,
         "wires": []
     },
     {
@@ -5462,7 +5454,7 @@
         "senderr": false,
         "headers": [],
         "x": 2600,
-        "y": 4920,
+        "y": 5200,
         "wires": [
             [
                 "52adb90d523429fe"
@@ -5483,7 +5475,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2750,
-        "y": 4920,
+        "y": 5200,
         "wires": []
     },
     {
@@ -5504,7 +5496,7 @@
         "payload": "{}",
         "payloadType": "json",
         "x": 2430,
-        "y": 4920,
+        "y": 5200,
         "wires": [
             [
                 "08d5b54bc3dfba55"
@@ -5521,7 +5513,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2560,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "3e0cc0cab433f455",
@@ -5536,7 +5528,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 3010,
-        "y": 4860,
+        "y": 5140,
         "wires": [
             [
                 "e504253be72ae88c",
@@ -5558,7 +5550,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 3170,
-        "y": 4820,
+        "y": 5100,
         "wires": []
     },
     {
@@ -5575,7 +5567,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 3000,
-        "y": 4820,
+        "y": 5100,
         "wires": []
     },
     {
@@ -5592,7 +5584,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2790,
-        "y": 4800,
+        "y": 5080,
         "wires": []
     },
     {
@@ -5602,7 +5594,254 @@
         "name": "DELETE ID grupoutilizadores e utilizador",
         "info": "",
         "x": 2840,
-        "y": 4760,
+        "y": 5040,
+        "wires": []
+    },
+    {
+        "id": "dd89e0896485f1a9",
+        "type": "link in",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "links": [
+            "89e1a4ceac90b0d3",
+            "d451db08d12ba9c1"
+        ],
+        "x": 55,
+        "y": 200,
+        "wires": [
+            [
+                "2b5fcb475301977b"
+            ]
+        ]
+    },
+    {
+        "id": "2e8364255f20bfde",
+        "type": "switch",
+        "z": "ba85fe949960916b",
+        "name": "modules",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Login",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Logout",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Startup",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "b9b4546bca08157d"
+            ],
+            [
+                "3a9343d76bb40d2f"
+            ],
+            [
+                "8ce8a3f1d24b87b0"
+            ]
+        ]
+    },
+    {
+        "id": "b9b4546bca08157d",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Login",
+        "func": "flow.set(msg.token, msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [
+                "89e1a4ceac90b0d3",
+                "1a0844636fea3a4f"
+            ]
+        ]
+    },
+    {
+        "id": "3a9343d76bb40d2f",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Logout",
+        "func": "flow.set(msg.token, undefined);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "89e1a4ceac90b0d3",
+                "096608f9d8d74e86"
+            ]
+        ]
+    },
+    {
+        "id": "8ce8a3f1d24b87b0",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Startup",
+        "func": "// Se não houver token, retorna session undefined\nif (!msg.token) {\n    msg.session = undefined;\n    return msg;\n}\n\n// Verifica se o servidor tem os detalhes do token\nvar details = flow.get(msg.token);\nif (!details) {\n    msg.session = undefined;\n} else {\n    // Detalhes da sessão\n    msg.session = {\n        'uniqueid': details.session.uniqueid,\n        'start_Time': undefined,\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'Grupos': details.user.Grupos,\n        'Utilizador_Avatar': details.user.Utilizador_Avatar\n    };\n\n    // Detalhes do usuário\n    msg.payload = {\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'Grupos': details.user.Grupos,\n        'Utilizador_Avatar': details.user.Utilizador_Avatar\n    };\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 220,
+        "wires": [
+            [
+                "89e1a4ceac90b0d3",
+                "674cd421bd6552f6"
+            ]
+        ]
+    },
+    {
+        "id": "89e1a4ceac90b0d3",
+        "type": "link out",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "dd89e0896485f1a9",
+            "ee8893d06b12d247"
+        ],
+        "x": 715,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1a0844636fea3a4f",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "674cd421bd6552f6",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "token",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "096608f9d8d74e86",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "5a6903702a9d65b4",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "login",
+        "url": "/rs2lab/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 340,
+        "wires": [
+            [
+                "10b80deb4d9ff607"
+            ]
+        ]
+    },
+    {
+        "id": "10b80deb4d9ff607",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Query",
+        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\nu.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nwhere\nu.Email = '${Utilizador_Email}' \n             and u.Senha = '${Utilizador_Senha}'\nGROUP BY\nu.ID, t.ID;\n`\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 340,
+        "wires": [
+            [
+                "bf867f6535aceded"
+            ]
+        ]
+    },
+    {
+        "id": "bf867f6535aceded",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 470,
+        "y": 340,
+        "wires": [
+            [
+                "ebb2649d7670cefd"
+            ]
+        ]
+    },
+    {
+        "id": "ebb2649d7670cefd",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 340,
         "wires": []
     }
 ]

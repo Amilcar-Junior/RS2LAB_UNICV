@@ -18,14 +18,18 @@
       href="../uibuilder/vendor/bootstrap-vue/dist/bootstrap-vue.css"
     />
     <link rel="icon" href="./images/node-blue.ico" />
-    <link rel="stylesheet" href="./images/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="./images/font-awesome-4.7.0/css/font-awesome.min.css"
+    />
 
     <link type="text/css" rel="stylesheet" href="./index.css" media="all" />
   </head>
   <body>
     <div id="app">
-      <myheader></myheader>
-      <b-container fluid>
+      <myheader :keys="user"></myheader>
+      <mylogin v-show="!user.islogged" :keys="user"></mylogin>
+      <b-container v-show="user.islogged" fluid>
         <router-view></router-view>
       </b-container>
     </div>
@@ -37,7 +41,44 @@
     <script src="../uibuilder/vendor/vuex/dist/vuex.js"></script>
     <script src="../uibuilder/vendor/vue-router/dist/vue-router.js"></script>
     <script src="../uibuilder/vendor/axios/dist/axios.js"></script>
+    <script src="../uibuilder/vendor/md5/dist/md5.min.js"></script>
     <script src="./uibuilderfe.min.js"></script>
     <script src="./index.js" type="module"></script>
+
+    <script>
+      window.onload = function () {
+        var id = localStorage.getItem("token"); // verificar token válido
+        console.log(id);
+        var session = { topic: "Startup", token: id }; // Enviar valor ao iniciar
+        console.log(session);
+
+        // Iniciar uibuilder e enviar mensagem
+        uibuilder.start();
+        uibuilder.send(session);
+
+        // Verificar se existem dados do utilizador no localStorage
+        var userData = localStorage.getItem("user");
+        if (userData) {
+          // Converter dados do utilizador para objeto JavaScript
+          var user = JSON.parse(userData);
+          // Definir dados do utilizador no 'session'
+          this.keys = user;
+          // Enviar mensagem para o servidor (opcional)
+          uibuilder.send({
+            topic: "Startup",
+            token: id,
+            payload: {
+              Utilizador_ID: user.Utilizador_ID,
+              Utilizador_isActive: user.Utilizador_isActive,
+              Utilizador_Nome: user.Utilizador_Nome,
+              Utilizador_Email: user.Utilizador_Email,
+              TipoUtilizador_ID: user.TipoUtilizador_ID,
+              Grupos: user.Grupos,
+              Utilizador_Avatar: user.Utilizador_Avatar,
+            },
+          });
+        }
+      };
+    </script>
   </body>
 </html>

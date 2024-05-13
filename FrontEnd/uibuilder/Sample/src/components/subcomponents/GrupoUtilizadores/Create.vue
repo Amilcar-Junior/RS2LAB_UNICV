@@ -10,7 +10,25 @@
       <div class="card-body">
         <div class="mb-3">
           <label for="">Nome</label>
-          <input type="text" v-model="model.item.Nome" class="form-control" />
+          <input type="text" v-model="model.item.Nome" class="form-control" placeholder="Insira o nome do Grupo" required/>
+        </div>
+        <div class="mb-3">
+          <label for="id_utilizador" class="form-label">Utilizadores</label>
+          <select
+            v-model="utilizadoresSelecionados"
+            class="form-control"
+            multiple
+            required
+          >
+            <option disabled value="">Selecione Utilizadores</option>
+            <option
+              v-for="utilizador in utilizadoresDisponiveis"
+              :key="utilizador.Utilizador_ID"
+              :value="utilizador.Utilizador_ID"
+            >
+              {{ utilizador.Utilizador_Nome }}
+            </option>
+          </select>
         </div>
         <div class="mb-3">
           <button
@@ -36,9 +54,13 @@ module.exports = {
           Nome: "",
         },
       },
+      utilizadoresDisponiveis: [], // Todos os utilizadores disponíveis
+      utilizadoresSelecionados: [], // utilizadores selecionados pelo utilizador
     };
   },
-  mounted() {},
+  mounted() {
+    this.getUtilizadoresDisponiveis();
+  },
   methods: {
     addGrupoUtilizadores() {
       var self = this; //Assign this to a variable
@@ -46,18 +68,53 @@ module.exports = {
         .post("/rs2lab/addgrupoutilizadores", this.model.item)
         .then((resp) => {
           console.log(resp);
+          console.log(this.utilizadoresSelecionados)
+          if (this.utilizadoresSelecionados.length > 0) {
+            this.utilizadoresSelecionados.forEach((userId) => {
+              const utilizadorGrupo = {
+                ID_Utilizador: userId, // ID do utilizador criado
+                ID_Grupo: resp.data.insertId, // ID do grupo selecionado
+              };
+              console.log(utilizadorGrupo);
+              self.addUtilizadorGrupo(utilizadorGrupo);
+            });
+          }
           self.showNotification(); //shows notification of successful add
         })
         .catch((e) => {
           console.log(error);
         });
     },
+
+    addUtilizadorGrupo(utilizadorGrupo) {
+      axios
+        .post("/rs2lab/addutilizadorgrupo", utilizadorGrupo)
+        .then((resp) => {
+          console.log(resp);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    },
+
     //Use to clean form upon succcessful insert
     cleanForm() {
       this.model.item.Nome = "";
+      this.utilizadoresSelecionados = [];
     },
     //Shows a dialog notification
-
+    getUtilizadoresDisponiveis() {
+      axios
+        .get("/rs2lab/utilizador")
+        .then((resp) => {
+          console.log(resp);
+          this.utilizadoresDisponiveis = resp.data;
+          console.log(this.utilizadoresDisponiveis);
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
+    },
     showNotification() {
       var self = this; //Assign this to a variable
       this.boxTwo = "";

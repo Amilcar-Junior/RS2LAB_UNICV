@@ -21,23 +21,27 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
+              <th>Utilizadores</th>
               <th class="text-right">Actions</th>
             </tr>
           </thead>
           <tbody v-if="this.items.length > 0">
             <tr v-for="(item, index) in this.items" :key="index">
-              <td>{{ item.ID }}</td>
-              <td>{{ item.Nome }}</td>
+              <td>{{ item.Grupo_ID }}</td>
+              <td>{{ item.Grupo_Nome }}</td>
+              <td>{{ formatUtilizadores(item.Utilizadores) }}</td>
               <td class="text-right">
                 <router-link
-                  :to="{ path: '/grupoutilizadores/' + item.ID + '/edit' }"
+                  :to="{
+                    path: '/grupoutilizadores/' + item.Grupo_ID + '/edit',
+                  }"
                   class="btn btn-success"
                 >
                   Edit
                 </router-link>
                 <button
                   type="button"
-                  @click="ShowConfirmDelete(item.ID)"
+                  @click="ShowConfirmDelete(item.Grupo_ID)"
                   class="btn btn-danger"
                 >
                   Delete
@@ -86,40 +90,30 @@ module.exports = {
           console.error(errors);
         });
     },
+    formatUtilizadores(utilizadores) {
+      if (!utilizadores || !Array.isArray(utilizadores)) return "";
+      return utilizadores.map((utilizadores) => utilizadores.Nome).join(", ");
+    },
 
     deleteItem(ItemID) {
       axios
-        .get(`/rs2lab/utilizadorgrupo/grupoutilizadores/${ItemID}`)
-        .then((res) => {
-          this.utilizadorGrupo = res.data;
-          let vm = this; // Armazena o "this" em uma variável
-          console.log(this.utilizadorGrupo);
-          let promises = []; // Array para armazenar as chamadas axios.delete
-          this.utilizadorGrupo.forEach(function (utgrp) {
-            console.log(utgrp.ID);
-            promises.push(
-              axios.delete(
-                `/rs2lab/deleteutilizadorgrupo/grupoutilizadores/${utgrp.ID_Grupo}`
-              )
-            );
-          });
-
-          // Executa todas as chamadas axios.delete em paralelo
-          Promise.all(promises).then(() => {
-            axios
-              .delete(`/rs2lab/deletegrupoutilizadores/${ItemID}`)
-              .then(() => {
-                console.log(ItemID);
-                vm.ShowDeleteNotification(); // Usar a variável vm em vez de this
-              })
-              .catch((errors) => {
-                console.error(errors);
-                vm.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-                  title: "Erro",
-                  variant: "danger",
-                });
+        .delete(
+          `/rs2lab/deleteutilizadorgrupo/grupoutilizadores/${ItemID}`
+        )
+        .then(() => {
+          axios
+            .delete(`/rs2lab/deletegrupoutilizadores/${ItemID}`)
+            .then(() => {
+              console.log(ItemID);
+              this.ShowDeleteNotification(); // Usar a variável vm em vez de this
+            })
+            .catch((errors) => {
+              console.error(errors);
+              this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
+                title: "Erro",
+                variant: "danger",
               });
-          });
+            });
         })
         .catch((errors) => {
           console.error(errors);
