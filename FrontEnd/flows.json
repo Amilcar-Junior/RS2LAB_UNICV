@@ -50,7 +50,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = 'SELECT ' +\n    'ID, ' +\n    'Nome, ' +\n    'Descricao ' +\n    'FROM rs2lab.TipoUtilizador;';\nreturn msg;\n",
+        "func": "msg.topic = `SELECT \n    ID,\n    Nome,\n    Descricao\n    FROM rs2lab.TipoUtilizador;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -240,7 +240,7 @@
         "method": "POST",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://172.16.4.165:1882/rs2lab/addtipoutilizador",
+        "url": "http://127.0.0.1:1882/rs2lab/addtipoutilizador",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -457,7 +457,7 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "query",
-        "url": "http://192.168.88.206:1882/rs2lab/tipoutilizador/5",
+        "url": "http://127.0.0.1:1882/rs2lab/tipoutilizador/2",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -2160,7 +2160,7 @@
         "method": "POST",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://192.168.88.186:1882/rs2lab/addutilizador",
+        "url": "http://127.0.0.1:1882/rs2lab/addutilizador",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -2208,7 +2208,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"Nome\":\"Testesssss\",\"Senha\":\"Teste\",\"Email\":\"teste@gmail.com\",\"isActive\":\"1\",\"Avatar\":null,\"ID_TipoUtilizador\":\"1\"}",
+        "payload": "{\"Nome\":\"Testesssss\",\"Senha\":\"admin\",\"Email\":\"admin@gmail.com\",\"isActive\":\"1\",\"Avatar\":null,\"ID_TipoUtilizador\":\"1\"}",
         "payloadType": "json",
         "x": 130,
         "y": 3300,
@@ -4389,8 +4389,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1020,
-        "y": 4800,
+        "x": 1040,
+        "y": 4740,
         "wires": [
             [
                 "3f2ffda7f00f80ca"
@@ -4410,8 +4410,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1170,
-        "y": 4800,
+        "x": 1190,
+        "y": 4740,
         "wires": []
     },
     {
@@ -4431,8 +4431,8 @@
         "topic": "",
         "payload": "{\"ID\":2}",
         "payloadType": "json",
-        "x": 850,
-        "y": 4800,
+        "x": 870,
+        "y": 4740,
         "wires": [
             [
                 "85f3d98ea5dd480a"
@@ -5063,7 +5063,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2130,
-        "y": 4800,
+        "y": 4740,
         "wires": []
     },
     {
@@ -5078,7 +5078,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1630,
-        "y": 4800,
+        "y": 4740,
         "wires": [
             [
                 "6364b2b790a20352"
@@ -5192,7 +5192,7 @@
         "finalize": "",
         "libs": [],
         "x": 1800,
-        "y": 4800,
+        "y": 4740,
         "wires": [
             [
                 "f0603a50562025e1"
@@ -5206,7 +5206,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1950,
-        "y": 4800,
+        "y": 4740,
         "wires": [
             [
                 "17b23141b0d156fe"

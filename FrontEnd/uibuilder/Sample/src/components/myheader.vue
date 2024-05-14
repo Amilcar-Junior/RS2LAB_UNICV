@@ -1,7 +1,7 @@
 <template>
   <b-navbar toggleable="lg" type="dark" class="custom-navbar">
     <!-- <b-navbar-brand href="#">RS2LAB</b-navbar-brand> -->
-    <b-navbar-brand href="#" to="/perfil">
+    <b-navbar-brand href="#" to="/">
       <img src="./images/rs2lab_logo_black.png" alt="RS2LAB" class="logo-img" />
     </b-navbar-brand>
 
@@ -15,7 +15,7 @@
             <b-dropdown-item href="#" to="/tipoutilizador">Tipos de Utilizadores</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown text="Controlo de Residencia" right>
+          <b-nav-item-dropdown v-show="keys.TipoUtilizador_ID === 3" text="Controlo de Residencia" right>
             <b-dropdown-item href="#">Submenu 1</b-dropdown-item>
             <b-dropdown-item href="#">Submenu 2</b-dropdown-item>
           </b-nav-item-dropdown>

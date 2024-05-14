@@ -2,7 +2,7 @@
 
 
 # How to run 
-node-red -p 1882 -u <directory-Frontend>
+node-red -p 1882 -u (directory-Frontend)
 
 
 # npm requireds

@@ -34,12 +34,13 @@
             <b-form-select
               id="tipo-select"
               v-model="model.item.TipoUtilizador_ID"
-              required
+              disabled
             >
               <option
                 v-for="tipo in TipoUtilizador"
                 :key="tipo.ID_TipoUtilizador"
                 :value="tipo.ID_TipoUtilizador"
+                disabled
               >
                 {{ tipo.Nome }}
               </option>
@@ -108,6 +109,7 @@ module.exports = {
       axios
         .get(`/rs2lab/utilizador/${ItemID}`)
         .then((resp) => {
+          console.log("utilizador: ",resp)
           this.model.item.Nome = resp.data[0].Nome;
           this.model.item.Email = resp.data[0].Email;
           this.model.item.Senha = resp.data[0].Senha;
@@ -177,17 +179,6 @@ module.exports = {
             title: "Erro",
             variant: "danger",
           });
-        });
-    },
-    addUtilizadorGrupo(utilizadorgrupo) {
-      var self = this; //Assign this to a variable
-      axios
-        .post("/rs2lab/addutilizadorgrupo", utilizadorgrupo)
-        .then((resp) => {
-          console.log("ADD utilizadorgrupo: ", resp);
-        })
-        .catch((e) => {
-          console.log(error);
         });
     },
     getGruposDisponiveis() {
