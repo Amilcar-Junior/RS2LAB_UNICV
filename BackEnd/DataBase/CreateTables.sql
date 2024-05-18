@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Utilizador (
     Nome VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
     Senha VARCHAR(255) NOT NULL,
-    Avatar BLOB,
+    image MEDIUMTEXT,
     isActive BOOLEAN NOT NULL DEFAULT TRUE,
     ID_TipoUtilizador INT,
     FOREIGN KEY (ID_TipoUtilizador) REFERENCES TipoUtilizador(ID)

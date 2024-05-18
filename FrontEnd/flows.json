@@ -2026,7 +2026,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2223,7 +2223,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador \n(Nome, Email, Senha, Avatar, isActive, ID_TipoUtilizador) \nVALUES ('${msg.payload.Nome}', '${msg.payload.Email}', \nMD5('${msg.payload.Senha}'), '${msg.payload.Avatar}', '${msg.payload.isActive}', \n${msg.payload.ID_TipoUtilizador});`;\nreturn msg;",
+        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador \n(Nome, Email, Senha, image, isActive, ID_TipoUtilizador) \nVALUES ('${msg.payload.Nome}', '${msg.payload.Email}', \nMD5('${msg.payload.Senha}'), '${msg.payload.image}', '${msg.payload.isActive}', \n${msg.payload.ID_TipoUtilizador});`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2372,7 +2372,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT ID, Nome, Email, Senha, Avatar,\n ID_TipoUtilizador, isActive FROM rs2lab.Utilizador\n  WHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "func": "msg.topic = `SELECT ID, Nome, Email, Senha,image,\n ID_TipoUtilizador, isActive FROM rs2lab.Utilizador\n  WHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2407,7 +2407,7 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "query",
-        "url": "http://192.168.88.206:1882/rs2lab/utilizador/5",
+        "url": "http://127.0.0.1:1882/rs2lab/utilizador/32",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -2455,7 +2455,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"ID\":1}",
+        "payload": "{\"ID\":32}",
         "payloadType": "json",
         "x": 130,
         "y": 3520,
@@ -2569,7 +2569,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Nome = '${msg.payload.Nome}', \nEmail = '${msg.payload.Email}', \nSenha = MD5('${msg.payload.Senha}'), \nAvatar = '${msg.payload.Avatar}', \nID_TipoUtilizador = ${msg.payload.ID_TipoUtilizador}, \nisActive = ${msg.payload.isActive} \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Nome = '${msg.payload.Nome}', \nEmail = '${msg.payload.Email}',  \nimage = '${msg.payload.image}', \nID_TipoUtilizador = ${msg.payload.ID_TipoUtilizador}, \nisActive = ${msg.payload.isActive} \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3056,7 +3056,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('ID', g.ID, 'Nome', g.Nome) ORDER BY g.ID SEPARATOR ','), ']') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    t.ID = ${msg.req.params.ID}\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('ID', g.ID, 'Nome', g.Nome) ORDER BY g.ID SEPARATOR ','), ']') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    t.ID = ${msg.req.params.ID}\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4852,7 +4852,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('ID', g.ID, 'Nome', g.Nome) ORDER BY g.ID SEPARATOR ','), ']') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    t.ID = ${msg.req.params.ID}\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('ID', g.ID, 'Nome', g.Nome) ORDER BY g.ID SEPARATOR ','), ']') AS Grupos\nFROM\n    Utilizador u\nJOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    t.ID = ${msg.req.params.ID}\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5702,7 +5702,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "Startup",
-        "func": "// Se não houver token, retorna session undefined\nif (!msg.token) {\n    msg.session = undefined;\n    return msg;\n}\n\n// Verifica se o servidor tem os detalhes do token\nvar details = flow.get(msg.token);\nif (!details) {\n    msg.session = undefined;\n} else {\n    // Detalhes da sessão\n    msg.session = {\n        'uniqueid': details.session.uniqueid,\n        'start_Time': undefined,\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'Grupos': details.user.Grupos,\n        'Utilizador_Avatar': details.user.Utilizador_Avatar\n    };\n\n    // Detalhes do usuário\n    msg.payload = {\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'Grupos': details.user.Grupos,\n        'Utilizador_Avatar': details.user.Utilizador_Avatar\n    };\n}\n\nreturn msg;\n",
+        "func": "// Se não houver token, retorna session undefined\nif (!msg.token) {\n    msg.session = undefined;\n    return msg;\n}\n\n// Verifica se o servidor tem os detalhes do token\nvar details = flow.get(msg.token);\nif (!details) {\n    msg.session = undefined;\n} else {\n    // Detalhes da sessão\n    msg.session = {\n        'uniqueid': details.session.uniqueid,\n        'start_Time': undefined,\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n\n    // Detalhes do usuário\n    msg.payload = {\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n}\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5804,7 +5804,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "Query",
-        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\nu.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.Avatar AS Utilizador_Avatar,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nwhere\nu.Email = '${Utilizador_Email}' \n             and u.Senha = '${Utilizador_Senha}'\nGROUP BY\nu.ID, t.ID;\n`\nreturn msg;\n",
+        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\nu.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nwhere\nu.Email = '${Utilizador_Email}' \n             and u.Senha = '${Utilizador_Senha}'\nGROUP BY\nu.ID, t.ID;\n`\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5842,6 +5842,198 @@
         "headers": {},
         "x": 590,
         "y": 340,
+        "wires": []
+    },
+    {
+        "id": "4e2b895bb8803d77",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome, Email, Senha,image,\n ID_TipoUtilizador, isActive FROM rs2lab.Utilizador\n  WHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2580,
+        "y": 3460,
+        "wires": [
+            [
+                "793c30e6269f4b9f",
+                "687352ef861ad6c1"
+            ]
+        ]
+    },
+    {
+        "id": "5939a14d3de636bf",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2890,
+        "y": 3460,
+        "wires": []
+    },
+    {
+        "id": "eefc863081f22376",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://127.0.0.1:1882/rs2lab/utilizador/32",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2540,
+        "y": 3520,
+        "wires": [
+            [
+                "07cb4ded33cf1b8f"
+            ]
+        ]
+    },
+    {
+        "id": "07cb4ded33cf1b8f",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2690,
+        "y": 3520,
+        "wires": []
+    },
+    {
+        "id": "869636af3b67ef91",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":32}",
+        "payloadType": "json",
+        "x": 2370,
+        "y": 3520,
+        "wires": [
+            [
+                "eefc863081f22376"
+            ]
+        ]
+    },
+    {
+        "id": "601854b8b7ae2a5b",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get Utilizador id",
+        "url": "/rs2lab/user/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2380,
+        "y": 3460,
+        "wires": [
+            [
+                "4e2b895bb8803d77",
+                "822e003fa279635d"
+            ]
+        ]
+    },
+    {
+        "id": "793c30e6269f4b9f",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2730,
+        "y": 3460,
+        "wires": [
+            [
+                "5939a14d3de636bf",
+                "801d9406c645cbb4"
+            ]
+        ]
+    },
+    {
+        "id": "801d9406c645cbb4",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2910,
+        "y": 3420,
+        "wires": []
+    },
+    {
+        "id": "687352ef861ad6c1",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2740,
+        "y": 3420,
+        "wires": []
+    },
+    {
+        "id": "822e003fa279635d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2550,
+        "y": 3400,
+        "wires": []
+    },
+    {
+        "id": "abaa18e71bf9fe1d",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ID TESTE",
+        "info": "",
+        "x": 2580,
+        "y": 3360,
         "wires": []
     }
 ]

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <router-link to="/" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
@@ -11,7 +11,8 @@
             to="/tipoutilizador/create"
             class="btn btn-primary float-right"
           >
-            Add Tipo Utilizador
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Adicionar
           </router-link>
         </h4>
       </div>
@@ -19,30 +20,32 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Descrição</th>
-              <th class="text-right">Actions</th>
+              <th scope="col" class="col-1">ID</th>
+              <th scope="col" class="col-3">Nome</th>
+              <th scope="col" class="col-6">Descrição</th>
+              <th scope="col" class="col-2 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody v-if="this.items.length > 0">
-            <tr v-for="(item, index) in this.items" :key="index">
-              <td>{{ item.ID }}</td>
-              <td>{{ item.Nome }}</td>
-              <td>{{ item.Descricao }}</td>
-              <td class="text-right">
+          <tbody v-if="paginatedItems.length > 0">
+            <tr v-for="(item, index) in paginatedItems" :key="index">
+              <td class="col-1">{{ item.ID }}</td>
+              <td class="col-3">{{ item.Nome }}</td>
+              <td class="col-6">{{ item.Descricao }}</td>
+              <td class="col-2 text-right">
                 <router-link
                   :to="{ path: '/tipoutilizador/' + item.ID + '/edit' }"
                   class="btn btn-success"
                 >
-                  Edit
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                  Editar
                 </router-link>
                 <button
                   type="button"
                   @click="ShowConfirmDelete(item.ID)"
                   class="btn btn-danger"
                 >
-                  Delete
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  Deletar
                 </button>
               </td>
             </tr>
@@ -51,6 +54,16 @@
             <td colspan="4">Carregando...</td>
           </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+          <b-pagination
+            v-if="totalPages > 1"
+            v-model="currentPage"
+            :total-rows="totalRows"
+            :per-page="perPage"
+            aria-controls="utilizadores-table"
+            class="custom-pagination"
+          ></b-pagination>
+        </div>
       </div>
     </div>
   </div>
@@ -61,7 +74,7 @@ module.exports = {
   name: "tipoutilizador",
   data() {
     return {
-      perPage: 10,
+      perPage: 8,
       currentPage: 1,
       items: [],
       utilizador: [],
@@ -71,8 +84,16 @@ module.exports = {
     this.retriveItem();
   },
   computed: {
-    rows() {
+    totalRows() {
       return this.items.length;
+    },
+    totalPages() {
+      return Math.ceil(this.totalRows / this.perPage);
+    },
+    paginatedItems() {
+      const start = (this.currentPage - 1) * this.perPage;
+      const end = start + this.perPage;
+      return this.items.slice(start, end);
     },
   },
   methods: {
@@ -150,7 +171,7 @@ module.exports = {
 
     ShowDeleteNotification() {
       this.boxOne = "";
-      this.$bvToast.toast("Dados removidos com sucesso!", {
+      this.$bvToast.toast("Dados deletados com sucesso!", {
         title: "Sucesso",
         variant: "success",
       });

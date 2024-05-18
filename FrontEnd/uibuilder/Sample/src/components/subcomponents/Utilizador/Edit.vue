@@ -1,11 +1,11 @@
 <template>
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <router-link to="/utilizador" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Edit Utilizador</h4>
+        <h4>Editar Utilizador</h4>
       </div>
       <div class="card-body">
         <div class="mb-3">
@@ -116,7 +116,8 @@
             @click="editUtilizador"
             class="btn btn-primary float-right"
           >
-            Editar
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            Salvar
           </button>
         </div>
       </div>
@@ -168,7 +169,7 @@ module.exports = {
         .then((resp) => {
           this.model.item.Nome = resp.data[0].Nome;
           this.model.item.Email = resp.data[0].Email;
-          this.model.item.Senha = resp.data[0].Senha;
+          // this.model.item.Senha = resp.data[0].Senha;
           this.model.item.ID_TipoUtilizador = resp.data[0].ID_TipoUtilizador;
           this.model.item.isActive = resp.data[0].isActive;
 

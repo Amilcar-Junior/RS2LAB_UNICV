@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <router-link to="/utilizador" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
@@ -110,7 +110,10 @@
             />
           </div>
           <div class="mb-3">
-            <button type="submit" class="btn btn-primary float-right">Salvar</button>
+            <button type="submit" class="btn btn-primary float-right">
+              <i class="fa fa-floppy-o" aria-hidden="true"></i>
+              Salvar
+            </button>
           </div>
         </form>
       </div>
@@ -149,7 +152,6 @@ module.exports = {
   mounted() {
     this.getTipoUtilizador();
     this.getGruposDisponiveis();
-    
   },
   methods: {
     addUtilizador() {

@@ -1,88 +1,123 @@
 <template>
-  <div class="container mt-5">
-    <router-link to="/" class="btn btn-secondary mb-3">
-      <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
-    </router-link>
-    <div class="card">
-      <div class="card-header">
-        <h4>
-          Utilizador
-          <router-link
-            to="/utilizador/create"
-            class="btn btn-primary float-right"
-          >
-            Add Utilizador 
-          </router-link>
-        </h4>
-      </div>
-      <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Email</th>
-              <th>Senha</th>
-              <th>Tipo Utilizador</th>
-              <th>Grupos</th>
-              <th>Ativo</th>
-              <th>Avatar</th>
-              <th class="text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody v-if="this.items.length > 0">
-            <tr v-for="(item, index) in this.items" :key="index">
-              <td>{{ item.Utilizador_ID }}</td>
-              <td>{{ item.Utilizador_Nome }}</td>
-              <td>{{ item.Utilizador_Email }}</td>
-              <td>{{ maskPassword(item.Utilizador_Senha) }}</td>
-              <td>{{ item.TipoUtilizador_Nome }}</td>
-              <td>{{ formatGroups(item.Grupos) }}</td>
-              <td>
-                <b-icon-check
-                  v-if="item.Utilizador_isActive === 1"
-                  variant="success"
-                ></b-icon-check>
-                <b-icon-x v-else variant="danger"></b-icon-x>
-              </td>
-              <td class="text-center">
-                <img
-                  v-if="item.Utilizador_Avatar"
-                  :src="getObjectURL(item.Utilizador_Avatar.data)"
-                  alt="Avatar"
-                  style="max-width: 50px; max-height: 50px"
-                />
-                <img
-                  v-else
-                  src="./images/no-avatar.png"
-                  alt="no-avatar"
-                  class="logo-img"
-                  style="max-width: 25px; max-height: 25px"
-                />
-              </td>
-              <td class="text-right">
-                <router-link
-                  :to="{ path: '/utilizador/' + item.Utilizador_ID + '/edit' }"
-                  class="btn btn-success"
-                >
-                  Edit
-                </router-link>
-                <button
-                  type="button"
-                  @click="ShowConfirmDelete(item.Utilizador_ID)"
-                  class="btn btn-danger"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <tbody v-else>
-            <td colspan="4">Carregando...</td>
-          </tbody>
-        </table>
+  <div>
+    <div class="container-fluid mt-5">
+      <router-link to="/" class="btn btn-secondary mb-3">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+      </router-link>
+      <div class="card">
+        <div class="card-header">
+          <h4>
+            Utilizador
+            <router-link
+              to="/utilizador/create"
+              class="btn btn-primary float-right"
+            >
+              <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+            </router-link>
+          </h4>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col" class="col-1">ID</th>
+                <th scope="col" class="col-2">Nome</th>
+                <th scope="col" class="col-2">Email</th>
+                <th scope="col" class="col-1">Tipo</th>
+                <th scope="col" class="col-2">Grupos</th>
+                <th scope="col" class="col-1">Ativo</th>
+                <th scope="col" class="col-1">Avatar</th>
+                <th scope="col" class="col-2 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody v-if="paginatedItems.length > 0">
+              <tr v-for="(item, index) in paginatedItems" :key="index">
+                <td>{{ item.Utilizador_ID }}</td>
+                <td>{{ item.Utilizador_Nome }}</td>
+                <td>{{ item.Utilizador_Email }}</td>
+                <td>{{ item.TipoUtilizador_Nome }}</td>
+                <td>{{ formatGroups(item.Grupos) }}</td>
+                <td>
+                  <b-icon-check
+                    v-if="item.Utilizador_isActive === 1"
+                    variant="success"
+                  ></b-icon-check>
+                  <b-icon-x v-else variant="danger"></b-icon-x>
+                </td>
+                <td class="text-center">
+                  <!-- <img
+                    v-if="item.Utilizador_image"
+                    :src="`data:image/jpeg;base64,${item.Utilizador_image}`"
+                    alt="Avatar"
+                    style="max-width: 50px; max-height: 50px"
+                  /> -->
+                  <button
+                    v-if="item.Utilizador_image"
+                    @click="showModal(item.Utilizador_image)"
+                    class="btn btn-sm btn-info"
+                  >
+                  <i class="fa fa-picture-o" aria-hidden="true"></i> Ver
+                  </button>
+                  <i
+                    v-else
+                    class="fa fa-user"
+                    aria-hidden="true"
+                    style="font-size: 1.8rem"
+                  ></i> 
+                </td>
+                <td class="text-right">
+                  <router-link
+                    :to="{
+                      path: '/utilizador/' + item.Utilizador_ID + '/edit',
+                    }"
+                    class="btn btn-success"
+                  >
+                    <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+                  </router-link>
+                  <button
+                    type="button"
+                    @click="ShowConfirmDelete(item.Utilizador_ID)"
+                    class="btn btn-danger"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i> Deletar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <tbody v-else>
+              <td colspan="9">Carregando...</td>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center">
+            <b-pagination
+              v-if="totalPages > 1"
+              v-model="currentPage"
+              :total-rows="totalRows"
+              :per-page="perPage"
+              aria-controls="utilizadores-table"
+              class="custom-pagination"
+            ></b-pagination>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Modal for Image Preview -->
+    <b-modal
+      id="image-preview-modal"
+      v-model="modalShow"
+      title="Avatar Preview"
+      hide-footer
+      centered
+    >
+      <div class="d-flex justify-content-center">
+        <img
+          :src="currentImage"
+          alt="Avatar"
+          style="max-width: 100%; height: auto"
+        />
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -91,89 +126,48 @@ module.exports = {
   name: "utilizador",
   data() {
     return {
-      perPage: 10,
+      perPage: 8,
       currentPage: 1,
       items: [],
+      modalShow: false,
+      currentImage: "",
     };
   },
   mounted() {
     this.retriveItem();
   },
   computed: {
-    rows() {
+    totalRows() {
       return this.items.length;
+    },
+    totalPages() {
+      return Math.ceil(this.totalRows / this.perPage);
+    },
+    paginatedItems() {
+      const start = (this.currentPage - 1) * this.perPage;
+      const end = start + this.perPage;
+      return this.items.slice(start, end);
     },
   },
   methods: {
     retriveItem() {
       axios
         .get("/rs2lab/utilizador")
-        .then((resp) => {
-          console.log(resp);
-          this.items = resp.data;
-          console.log(this.items);
+        .then((response) => {
+          this.items = response.data;
         })
-        .catch((errors) => {
-          console.error(errors);
+        .catch((error) => {
+          console.error("Erro ao recuperar utilizadores:", error);
         });
     },
-    maskPassword(password) {
-      if (!password) return "";
-      return "*".repeat(password.length);
-    },
-    getObjectURL(buffer) {
-      if (!Array.isArray(buffer)) {
-        return "";
-      }
-
-      const uint8Array = new Uint8Array(buffer);
-      const blob = new Blob([uint8Array], { type: "image/jpeg" });
-      return URL.createObjectURL(blob);
+    showModal(image) {
+      this.currentImage = `data:image/jpeg;base64,${image}`;
+      this.modalShow = true;
     },
     formatGroups(groups) {
-      if (!groups || !Array.isArray(groups)) return "";
       return groups.map((group) => group.Nome).join(", ");
     },
-
-    deleteItem(ItemID) {
-      console.log(ItemID);
-      axios
-        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`) // Exclui os registros da tabela utilizadorgrupo associados ao usuário
-        .then(() => {
-          // Após excluir os registros da tabela utilizadorgrupo, exclui o usuário
-          axios
-            .delete(`/rs2lab/deleteutilizador/${ItemID}`)
-            .then(() => {
-              // Atualiza a lista após excluir o usuário
-              // this.retriveItem();
-              this.ShowDeleteNotification();
-            })
-            .catch((errors) => {
-              console.error(errors);
-              this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-                title: "Erro",
-                variant: "danger",
-              });
-            });
-        })
-        .catch((errors) => {
-          console.error(errors);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-            title: "Erro",
-            variant: "danger",
-          });
-        });
-    },
-    ShowDeleteNotification() {
-      this.boxOne = "";
-      this.$bvToast.toast("Dados removidos com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
-      });
-      this.retriveItem();
-    },
     ShowConfirmDelete(ItemID) {
-      this.boxTwo = "";
       this.$bvModal
         .msgBoxConfirm("Deseja deletar esses dados?", {
           title: "Deletar",
@@ -192,13 +186,37 @@ module.exports = {
           }
         })
         .catch((err) => {
-          console.error(err);
-          this.$bvToast.toast("Ocorreu um erro ao exibir a caixa de diálogo.", {
+          console.error("Erro ao exibir a caixa de diálogo:", err);
+        });
+    },
+    deleteItem(ItemID) {
+      axios
+        .delete(`/rs2lab/deleteutilizador/${ItemID}`)
+        .then(() => {
+          this.ShowDeleteNotification();
+          this.retriveItem();
+        })
+        .catch((error) => {
+          console.error("Erro ao deletar utilizador:", error);
+          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
             title: "Erro",
             variant: "danger",
           });
         });
     },
+    ShowDeleteNotification() {
+      this.$bvToast.toast("Dados deletados com sucesso!", {
+        title: "Sucesso",
+        variant: "success",
+      });
+    },
   },
 };
 </script>
+
+<style scoped>
+.logo-img {
+  width: 25px;
+  height: auto;
+}
+</style>

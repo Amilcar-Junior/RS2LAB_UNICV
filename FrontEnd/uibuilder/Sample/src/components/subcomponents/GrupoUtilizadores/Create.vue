@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <router-link to="/grupoutilizadores" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
@@ -10,7 +10,13 @@
       <div class="card-body">
         <div class="mb-3">
           <label for="">Nome</label>
-          <input type="text" v-model="model.item.Nome" class="form-control" placeholder="Insira o nome do Grupo" required/>
+          <input
+            type="text"
+            v-model="model.item.Nome"
+            class="form-control"
+            placeholder="Insira o nome do Grupo"
+            required
+          />
         </div>
         <div class="mb-3">
           <label for="id_utilizador" class="form-label">Utilizadores</label>
@@ -36,6 +42,7 @@
             @click="addGrupoUtilizadores"
             class="btn btn-primary float-right"
           >
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
             Salvar
           </button>
         </div>
@@ -68,7 +75,7 @@ module.exports = {
         .post("/rs2lab/addgrupoutilizadores", this.model.item)
         .then((resp) => {
           console.log(resp);
-          console.log(this.utilizadoresSelecionados)
+          console.log(this.utilizadoresSelecionados);
           if (this.utilizadoresSelecionados.length > 0) {
             this.utilizadoresSelecionados.forEach((userId) => {
               const utilizadorGrupo = {

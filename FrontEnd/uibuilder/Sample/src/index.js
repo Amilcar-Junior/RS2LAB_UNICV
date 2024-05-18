@@ -18,7 +18,7 @@ const app = new Vue({
         Utilizador_isActive: undefined,
         TipoUtilizador_ID: undefined,
         Utilizador_Email: undefined,
-        Utilizador_Avatar: "",
+        Utilizador_image: "",
         Grupos: undefined,
 
         loginSuccess: this.succesfulLogin,
@@ -47,7 +47,7 @@ const app = new Vue({
       this.user.Utilizador_Email = param.Utilizador_Email;
       this.user.TipoUtilizador_ID = param.TipoUtilizador_ID;
       this.user.Grupos = param.Grupos;
-      this.user.Utilizador_Avatar = param.Utilizador_Avatar;
+      this.user.Utilizador_image = param.Utilizador_image;
       this.user.Utilizador_isActive = param.Utilizador_isActive;
     },
     setToken(user) {
@@ -70,7 +70,7 @@ const app = new Vue({
             Utilizador_Nome: user.Utilizador_Nome,
             TipoUtilizador_ID: user.TipoUtilizador_ID,
             Grupos: user.Grupos,
-            Utilizador_Avatar: user.Utilizador_Avatar,
+            Utilizador_image: user.Utilizador_image,
           },
           session: {
             uniqueid: sessionID,
@@ -80,7 +80,7 @@ const app = new Vue({
             Utilizador_Nome: user.Utilizador_Nome,
             TipoUtilizador_ID: user.TipoUtilizador_ID,
             Grupos: user.Grupos,
-            Utilizador_Avatar: user.Utilizador_Avatar,
+            Utilizador_image: user.Utilizador_image,
             startTime: undefined,
           },
         },
@@ -104,7 +104,7 @@ const app = new Vue({
             vueApp.user.TipoUtilizador_ID = msg.payload.TipoUtilizador_ID;
             vueApp.user.Utilizador_Nome = msg.payload.Utilizador_Nome;
             vueApp.user.Utilizador_Email = msg.payload.Utilizador_Email;
-            vueApp.user.Utilizador_Avatar = msg.payload.Utilizador_Avatar;
+            vueApp.user.Utilizador_image = msg.payload.Utilizador_image;
             vueApp.user.Grupos = msg.payload.Grupos;
             vueApp.user.islogged = true;
             localStorage.setItem("user", JSON.stringify(vueApp.user));
@@ -118,7 +118,7 @@ const app = new Vue({
           vueApp.user.TipoUtilizador_ID = msg.payload.user.TipoUtilizador_ID;
           vueApp.user.Utilizador_Nome = msg.payload.user.Utilizador_Nome;
           vueApp.user.Utilizador_Email = msg.payload.Utilizador_Email;
-          vueApp.user.Utilizador_Avatar = msg.payload.user.Utilizador_Avatar;
+          vueApp.user.Utilizador_image = msg.payload.user.Utilizador_image;
           vueApp.user.Grupos = msg.payload.Grupos;
           vueApp.user.islogged = true;
           vueApp.freshlogin = true;

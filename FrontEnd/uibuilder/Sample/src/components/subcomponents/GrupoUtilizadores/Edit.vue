@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <router-link to="/grupoutilizadores" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
@@ -36,7 +36,8 @@
             @click="editGrupoUtilizadores"
             class="btn btn-primary float-right"
           >
-            Editar
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            Salvar
           </button>
         </div>
       </div>
@@ -92,9 +93,9 @@ module.exports = {
           console.log(
             `Removendo associação para o utilizador ${utilizadorGrupo.ID_Utilizador}`
           );
-          this.deleteUtilizadorGrupo(  
+          this.deleteUtilizadorGrupo(
             utilizadorGrupo.ID_Utilizador,
-            this.model.ID,
+            this.model.ID
           );
         }
       });

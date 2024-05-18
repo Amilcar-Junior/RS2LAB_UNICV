@@ -4,6 +4,14 @@
 .syntax-highlight > .string {color:#5dff39;}
 .syntax-highlight > .number {color:#70aeff;}
 .syntax-highlight > .boolean {color:#b993ff;}
-.custom-navbar {
-    background-color: #AB162B; /* Specify your desired color here */
-  }
+.custom-navbar {background-color: #AB162B;}
+.btn-custom {background-color: #AB162B;margin-top: 5px;}
+.custom-pagination .page-item .page-link {
+  background-color: #AB162B;
+  color: #ffffff;
+  border-color: #AB162B;
+}
+.custom-pagination .page-item.active .page-link {
+  background-color: #AB162B;
+  border-color: #AB162B;
+}

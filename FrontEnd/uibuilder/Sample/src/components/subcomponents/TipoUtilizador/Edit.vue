@@ -1,11 +1,11 @@
 <template>
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <router-link to="/tipoutilizador" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Edit Tipo Utilizador</h4>
+        <h4>Editar Tipo Utilizador</h4>
       </div>
       <div class="card-body">
         <div class="mb-3">
@@ -26,7 +26,8 @@
             @click="editTipoUtilizador"
             class="btn btn-primary float-right"
           >
-            Editar
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            Salvar
           </button>
         </div>
       </div>

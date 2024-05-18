@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <router-link to="/tipoutilizador" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
@@ -9,15 +9,26 @@
       </div>
       <div class="card-body">
         <div class="mb-3">
-            <label for="">Nome</label>
-            <input type="text" v-model="model.item.Nome" class="form-control" />
+          <label for="">Nome</label>
+          <input type="text" v-model="model.item.Nome" class="form-control" />
         </div>
         <div class="mb-3">
-            <label for="">Descrição</label>
-            <input type="text" v-model="model.item.Descricao"  class="form-control" />
+          <label for="">Descrição</label>
+          <input
+            type="text"
+            v-model="model.item.Descricao"
+            class="form-control"
+          />
         </div>
         <div class="mb-3">
-            <button type="button" @click="addTipoUtilizador" class="btn btn-primary float-right">Salvar</button>
+          <button
+            type="button"
+            @click="addTipoUtilizador"
+            class="btn btn-primary float-right"
+          >
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            Salvar
+          </button>
         </div>
       </div>
     </div>
@@ -26,56 +37,56 @@
 
 <script>
 module.exports = {
-    name: "CreateTipoUtilizador",
-    data() {
-        return {
-            model: {
-                item : {
-                    Nome: '',
-                    Descricao: '',
-                }
-            }
-        };
-    },
-    mounted(){
-        
-    },
-    methods: {
-        
-        
-        addTipoUtilizador(){
-            var self = this;                          //Assign this to a variable         
-            axios.post('/rs2lab/addtipoutilizador',this.model.item)
-            .then(resp=>{ 
-                console.log(resp)
-                self.showNotification(); //shows notification of successful add
-            })
-            .catch(e=>{ console.log(error); });
+  name: "CreateTipoUtilizador",
+  data() {
+    return {
+      model: {
+        item: {
+          Nome: "",
+          Descricao: "",
         },
-        //Use to clean form upon succcessful insert
-        cleanForm(){
-            this.model.item.Nome = '';
-            this.model.item.Descricao = '';
-        },
-        //Shows a dialog notification
-        
-        showNotification() {
-            var self = this;  //Assign this to a variable   
-            this.boxTwo = ''
-            this.$bvModal.msgBoxOk('Dados Adicionados com sucesso!!', {
-            title: 'Confirmation',
-            size: 'sm',
-            buttonSize: 'sm',
-            okVariant: 'success',
-            headerClass: 'p-2 border-bottom-0',
-            footerClass: 'p-2 border-top-0',
-            centered: true
-          })
-          .then(value => { 
-                self.cleanForm(); //clears form upon confirmation of user 
-           })
-          .catch(err => { })
-      }
-    }, 
-}
+      },
+    };
+  },
+  mounted() {},
+  methods: {
+    addTipoUtilizador() {
+      var self = this; //Assign this to a variable
+      axios
+        .post("/rs2lab/addtipoutilizador", this.model.item)
+        .then((resp) => {
+          console.log(resp);
+          self.showNotification(); //shows notification of successful add
+        })
+        .catch((e) => {
+          console.log(error);
+        });
+    },
+    //Use to clean form upon succcessful insert
+    cleanForm() {
+      this.model.item.Nome = "";
+      this.model.item.Descricao = "";
+    },
+    //Shows a dialog notification
+
+    showNotification() {
+      var self = this; //Assign this to a variable
+      this.boxTwo = "";
+      this.$bvModal
+        .msgBoxOk("Dados Adicionados com sucesso!!", {
+          title: "Confirmation",
+          size: "sm",
+          buttonSize: "sm",
+          okVariant: "success",
+          headerClass: "p-2 border-bottom-0",
+          footerClass: "p-2 border-top-0",
+          centered: true,
+        })
+        .then((value) => {
+          self.cleanForm(); //clears form upon confirmation of user
+        })
+        .catch((err) => {});
+    },
+  },
+};
 </script>
