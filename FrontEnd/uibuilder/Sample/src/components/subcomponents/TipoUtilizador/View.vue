@@ -4,18 +4,23 @@
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
-      <div class="card-header">
-        <h4>
-          Tipo Utilizador
-          <router-link
-            to="/tipoutilizador/create"
-            class="btn btn-primary float-right"
-          >
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            Adicionar
+      <div
+        class="card-header d-flex justify-content-between align-items-center"
+      >
+        <h4>Tipo Utilizador</h4>
+        <div>
+          <input
+            type="text"
+            class="form-control d-inline-block w-auto"
+            placeholder="Buscar por ID ou Nome..."
+            v-model="searchQuery"
+          />
+          <router-link to="/tipoutilizador/create" class="btn btn-primary ml-2">
+            <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
           </router-link>
-        </h4>
+        </div>
       </div>
+
       <div class="card-body">
         <table class="table table-bordered">
           <thead>
@@ -77,27 +82,35 @@ module.exports = {
       perPage: 8,
       currentPage: 1,
       items: [],
-      utilizador: [],
+      searchQuery: "", // Adicionado para rastrear a entrada de busca do usuário
     };
   },
   mounted() {
-    this.retriveItem();
+    this.retrieveItems();
   },
   computed: {
     totalRows() {
-      return this.items.length;
+      return this.filteredItems.length;
     },
     totalPages() {
       return Math.ceil(this.totalRows / this.perPage);
     },
+    filteredItems() {
+      const searchLower = this.searchQuery.toLowerCase();
+      return this.items.filter((item) => {
+        const matchesID = item.ID.toString().includes(searchLower);
+        const matchesName = item.Nome.toLowerCase().includes(searchLower);
+        return matchesID || matchesName;
+      });
+    },
     paginatedItems() {
       const start = (this.currentPage - 1) * this.perPage;
       const end = start + this.perPage;
-      return this.items.slice(start, end);
+      return this.filteredItems.slice(start, end);
     },
   },
   methods: {
-    retriveItem() {
+    retrieveItems() {
       axios
         .get("/rs2lab/tipoutilizador")
         .then((resp) => {

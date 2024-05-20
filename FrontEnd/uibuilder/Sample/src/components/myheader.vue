@@ -25,6 +25,10 @@
             <i class="fa fa-user-plus" aria-hidden="true"></i> Tipos de
             Utilizadores
           </b-dropdown-item>
+          <b-dropdown-item href="#" to="/tiposensor">
+            <i class="fa fa-list" aria-hidden="true"></i>
+            Tipos de Sensores
+          </b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown

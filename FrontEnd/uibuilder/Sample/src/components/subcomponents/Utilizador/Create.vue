@@ -3,121 +3,122 @@
     <router-link to="/utilizador" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
-    <div class="card">
-      <div class="card-header">
-        <h4>Adicionar Utilizador</h4>
-      </div>
-      <div class="card-body">
-        <form @submit.prevent="addUtilizador">
-          <div class="mb-3">
-            <label for="nome" class="form-label">Nome</label>
-            <input
-              type="text"
-              id="nome"
-              v-model="model.item.Nome"
-              class="form-control"
-              placeholder="Insira o nome do utilizador"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input
-              type="email"
-              id="email"
-              v-model="model.item.Email"
-              class="form-control"
-              placeholder="Insira o email do utilizador"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="senha" class="form-label">Senha</label>
-            <input
-              type="password"
-              id="senha"
-              v-model="model.item.Senha"
-              class="form-control"
-              placeholder="Insira a senha do utilizador"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="id_tipoUtilizador" class="form-label"
-              >Tipo Utilizador</label
-            >
-            <select
-              v-model="model.item.ID_TipoUtilizador"
-              class="form-control"
-              required
-            >
-              <option value="" disabled selected>
-                Selecione o tipo de utilizador
-              </option>
-              <option
-                v-for="tipo in TipoUtilizador"
-                :key="tipo.ID"
-                :value="tipo.ID"
+
+    <b-card title="Adicionar Utilizador">
+      <b-form @submit.prevent="addUtilizador">
+        <b-row>
+          <!-- Coluna para os campos de entrada -->
+          <b-col md="9">
+            <b-form-group label="Nome:" label-for="nome">
+              <b-form-input
+                id="nome"
+                v-model="model.item.Nome"
+                required
+                placeholder="Insira o nome do utilizador"
               >
-                {{ tipo.Nome }}
-              </option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="id_grupoutilizadores" class="form-label">Grupos</label>
-            <select
-              v-model="gruposSelecionados"
-              class="form-control"
-              multiple
-              required
-            >
-              <option disabled value="">Selecione um grupo</option>
-              <option
-                v-for="grupo in gruposDisponiveis"
-                :key="grupo.Grupo_ID"
-                :value="grupo.Grupo_ID"
+              </b-form-input>
+            </b-form-group>
+
+            <b-form-group label="Email:" label-for="email">
+              <b-form-input
+                type="email"
+                id="email"
+                v-model="model.item.Email"
+                required
+                placeholder="Insira o email do utilizador"
               >
-                {{ grupo.Grupo_Nome }}
-              </option>
-            </select>
-          </div>
-          <div class="mb-3 form-check">
-            <input
-              type="checkbox"
+              </b-form-input>
+            </b-form-group>
+
+            <b-form-group label="Senha:" label-for="senha">
+              <b-form-input
+                type="password"
+                id="senha"
+                v-model="model.item.Senha"
+                required
+                placeholder="Insira a senha do utilizador"
+              >
+              </b-form-input>
+            </b-form-group>
+
+            <b-form-group
+              label="Tipo Utilizador:"
+              label-for="id_tipoUtilizador"
+            >
+              <b-form-select
+                id="id_tipoUtilizador"
+                v-model="model.item.ID_TipoUtilizador"
+                required
+              >
+                <b-form-select-option value="" disabled selected>
+                  Selecione o tipo de utilizador
+                </b-form-select-option>
+                <b-form-select-option
+                  v-for="tipo in TipoUtilizador"
+                  :key="tipo.ID"
+                  :value="tipo.ID"
+                >
+                  {{ tipo.Nome }}
+                </b-form-select-option>
+              </b-form-select>
+            </b-form-group>
+
+            <b-form-group label="Grupos:" label-for="id_grupoutilizadores">
+              <b-form-select v-model="gruposSelecionados" multiple required>
+                <b-form-select-option disabled value="">
+                  Selecione um grupo
+                </b-form-select-option>
+                <b-form-select-option
+                  v-for="grupo in gruposDisponiveis"
+                  :key="grupo.Grupo_ID"
+                  :value="grupo.Grupo_ID"
+                >
+                  {{ grupo.Grupo_Nome }}
+                </b-form-select-option>
+              </b-form-select>
+            </b-form-group>
+
+            <b-form-checkbox
               id="isActive"
               v-model="model.item.isActive"
               class="form-check-input custom-checkbox"
               true-value="1"
               false-value="0"
-            />
-            <label for="isActive" class="form-check-label">Ativo</label>
-          </div>
-          <div class="mb-3">
-            <label for="avatar" class="form-label">Avatar</label>
-            <input
-              type="file"
-              id="avatar"
-              @change="onAvatarChange"
-              class="form-control-file"
-              accept="image/*"
-            />
-            <img
-              v-if="avatarPreview"
-              :src="avatarPreview"
-              alt="Preview do Avatar"
-              class="mt-2"
-              style="max-width: 100px; max-height: 100px"
-            />
-          </div>
-          <div class="mb-3">
-            <button type="submit" class="btn btn-primary float-right">
-              <i class="fa fa-floppy-o" aria-hidden="true"></i>
-              Salvar
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            >
+              Ativo
+            </b-form-checkbox>
+          </b-col>
+
+          <!-- Coluna para a imagem de perfil -->
+          <b-col cols="3">
+            <b-form-group
+              label="Foto de Perfil:"
+              label-for="image"
+              class="mb-3"
+            >
+              <b-form-file
+                id="image"
+                @change="previewImage"
+                accept="image/*"
+                placeholder="Escolha um arquivo..."
+              >
+              </b-form-file>
+              <b-img
+                v-if="imagePreview"
+                :src="imagePreview"
+                fluid
+                class="mt-2"
+                thumbnail
+              ></b-img>
+            </b-form-group>
+          </b-col>
+        </b-row>
+
+        <b-button type="submit" variant="primary" class="float-right">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
+        </b-button>
+      </b-form>
+    </b-card>
   </div>
 </template>
 
@@ -139,14 +140,14 @@ module.exports = {
           Senha: "",
           ID_TipoUtilizador: "",
           isActive: "0",
-          Avatar: null, // Alterado para aceitar um Blob
+          image: "",
         },
       },
       TipoUtilizador: [],
       gruposDisponiveis: [], // Todos os grupos disponíveis
       gruposSelecionados: [], // Grupos selecionados pelo utilizador
       UtilizadorGrupo: [],
-      avatarPreview: "",
+      imagePreview: "",
     };
   },
   mounted() {
@@ -214,18 +215,19 @@ module.exports = {
         });
     },
 
-    onAvatarChange(e) {
-      const file = e.target.files[0];
+    previewImage(event) {
+      const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
-          const blob = new Blob([reader.result], { type: file.type });
-          this.model.item.Avatar = blob;
-          this.avatarPreview = URL.createObjectURL(blob);
-          console.log("Avatar Blob:", this.model.item.Avatar);
-          console.log("Avatar Blob URL:", this.avatarPreview);
+          this.imagePreview = e.target.result;
+          this.model.item.image = e.target.result.split(",")[1]; // Store base64 encoded string without prefix
+          console.log("Imagem pré-visualizada e convertida para base64");
         };
-        reader.readAsArrayBuffer(file);
+        reader.readAsDataURL(file);
+        console.log("Arquivo selecionado para upload:", file);
+      } else {
+        console.log("Nenhum arquivo selecionado");
       }
     },
 
@@ -236,7 +238,7 @@ module.exports = {
       this.model.item.ID_TipoUtilizador = "";
       this.model.item.isActive = "";
       this.model.item.Avatar = null;
-      this.avatarPreview = "";
+      this.imagePreview = "";
       this.gruposSelecionados = [];
     },
 

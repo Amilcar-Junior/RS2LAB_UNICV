@@ -1,5 +1,5 @@
 const Home = httpVueLoader('./components/subcomponents/home.vue');
-const Perfil = httpVueLoader('./components/subcomponents/perfil.vue');
+const Perfil = httpVueLoader('./components/subcomponents/Settings/perfil.vue');
 
 const Form = httpVueLoader('./components/subcomponents/form.vue');
 const Table = httpVueLoader('./components/subcomponents/table.vue');
@@ -16,6 +16,10 @@ const EditGrupoUtilizadores = httpVueLoader('./components/subcomponents/GrupoUti
 const ListUtilizador = httpVueLoader('./components/subcomponents/Utilizador/View.vue');
 const CreateUtilizador = httpVueLoader('./components/subcomponents/Utilizador/Create.vue');
 const EditUtilizador = httpVueLoader('./components/subcomponents/Utilizador/Edit.vue');
+
+const ListTipoSensor = httpVueLoader('./components/subcomponents/TipoSensor/View.vue');
+const CreateTipoSensor = httpVueLoader('./components/subcomponents/TipoSensor/Create.vue');
+const EditTipoSensor = httpVueLoader('./components/subcomponents/TipoSensor/Edit.vue');
 
 export default {
 
@@ -89,6 +93,22 @@ export default {
             path:'/utilizador/:ID/edit',
             name:'EditUtilizador',
             component: EditUtilizador
+        },
+        
+        {
+            path:'/tiposensor',
+            name:'ViewTipoSensor',
+            component: ListTipoSensor
+        },
+        {
+            path:'/tiposensor/create',
+            name:'CreateTipoSensor',
+            component: CreateTipoSensor
+        },
+        {
+            path:'/tiposensor/:ID/edit',
+            name:'EditTipoSensor',
+            component: EditTipoSensor
         },
     ],
 };

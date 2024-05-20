@@ -5,21 +5,16 @@
         <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
       </router-link>
       <div class="card">
-        <div
-          class="card-header d-flex justify-content-between align-items-center"
-        >
-          <h4>Utilizador</h4>
-          <div>
-            <input
-              type="text"
-              class="form-control d-inline-block w-auto"
-              placeholder="Buscar por Nome, Email..."
-              v-model="searchQuery"
-            />
-            <router-link to="/utilizador/create" class="btn btn-primary ml-2">
+        <div class="card-header">
+          <h4>
+            Utilizador
+            <router-link
+              to="/utilizador/create"
+              class="btn btn-primary float-right"
+            >
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
-          </div>
+          </h4>
         </div>
         <div class="card-body">
           <table class="table table-bordered">
@@ -50,19 +45,25 @@
                   <b-icon-x v-else variant="danger"></b-icon-x>
                 </td>
                 <td class="text-center">
+                  <!-- <img
+                    v-if="item.Utilizador_image"
+                    :src="`data:image/jpeg;base64,${item.Utilizador_image}`"
+                    alt="Avatar"
+                    style="max-width: 50px; max-height: 50px"
+                  /> -->
                   <button
                     v-if="item.Utilizador_image"
                     @click="showModal(item.Utilizador_image)"
                     class="btn btn-sm btn-info"
                   >
-                    <i class="fa fa-picture-o" aria-hidden="true"></i> Ver
+                  <i class="fa fa-picture-o" aria-hidden="true"></i> Ver
                   </button>
                   <i
                     v-else
                     class="fa fa-user"
                     aria-hidden="true"
                     style="font-size: 1.8rem"
-                  ></i>
+                  ></i> 
                 </td>
                 <td class="text-right">
                   <router-link
@@ -130,40 +131,23 @@ module.exports = {
       items: [],
       modalShow: false,
       currentImage: "",
-      searchQuery: "",
     };
+  },
+  mounted() {
+    this.retriveItem();
   },
   computed: {
     totalRows() {
-      return this.filteredItems.length;
+      return this.items.length;
     },
     totalPages() {
       return Math.ceil(this.totalRows / this.perPage);
     },
-    filteredItems() {
-    if (!this.searchQuery) {
-      return this.items;
-    }
-    const searchLower = this.searchQuery.toLowerCase();
-    return this.items.filter(item => {
-      // Verifica se o nome, email, tipo, grupos ou ID correspondem à query de pesquisa
-      const matchesID = item.Utilizador_ID ? item.Utilizador_ID.toString().includes(searchLower) : false;
-      const matchesName = item.Utilizador_Nome ? item.Utilizador_Nome.toLowerCase().includes(searchLower) : false;
-      const matchesEmail = item.Utilizador_Email ? item.Utilizador_Email.toLowerCase().includes(searchLower) : false;
-      const matchesType = item.TipoUtilizador_Nome ? item.TipoUtilizador_Nome.toLowerCase().includes(searchLower) : false;
-      const matchesGroups = item.Grupos && item.Grupos.length > 0 ? item.Grupos.some(group => group.Nome ? group.Nome.toLowerCase().includes(searchLower) : false) : false;
-
-      return matchesID || matchesName || matchesEmail || matchesType || matchesGroups;
-    });
-  },
     paginatedItems() {
       const start = (this.currentPage - 1) * this.perPage;
       const end = start + this.perPage;
-      return this.filteredItems.slice(start, end);
+      return this.items.slice(start, end);
     },
-  },
-  mounted() {
-    this.retriveItem();
   },
   methods: {
     retriveItem() {
@@ -206,20 +190,6 @@ module.exports = {
         });
     },
     deleteItem(ItemID) {
-
-      axios
-        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`)
-        .then(() => {})
-        .catch((errors) => {
-          console.error(errors);
-          this.$bvToast.toast(
-            "Ocorreu um erro ao obter os grupos de utilizadores.",
-            {
-              title: "Erro",
-              variant: "danger",
-            }
-          );
-        });
       axios
         .delete(`/rs2lab/deleteutilizador/${ItemID}`)
         .then(() => {
@@ -243,3 +213,10 @@ module.exports = {
   },
 };
 </script>
+
+<style scoped>
+.logo-img {
+  width: 25px;
+  height: auto;
+}
+</style>
