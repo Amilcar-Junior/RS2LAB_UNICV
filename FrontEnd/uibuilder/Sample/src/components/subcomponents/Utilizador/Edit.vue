@@ -93,23 +93,20 @@
           />
           <label for="isActive" class="form-check-label">Ativo</label>
         </div>
-        <div class="mb-3">
-          <label for="avatar">Avatar</label>
-          <input
-            type="file"
-            id="avatar"
-            @change="onAvatarChange"
-            class="form-control-file"
-          />
-          <!-- Preview do Avatar -->
-          <img
-            v-if="avatarPreview"
-            :src="avatarPreview"
-            alt="Preview do Avatar"
-            class="mt-2"
-            style="max-width: 100px; max-height: 100px"
-          />
-        </div>
+        <b-col cols="4">
+            <b-form-group
+              label="Foto de Perfil:"
+              label-for="image"
+              class="mb-3">
+              <b-form-file
+                id="image"
+                @change="previewImage"
+                accept="image/*"
+                placeholder="Escolha um arquivo...">
+              </b-form-file>
+              <b-img v-if="imagePreview" :src="imagePreview" fluid class="mt-2" thumbnail></b-img>
+            </b-form-group>
+          </b-col>
         <div class="mb-3">
           <button
             type="button"
@@ -144,10 +141,10 @@ module.exports = {
           // Senha: "",
           ID_TipoUtilizador: "",
           isActive: "",
-          Avatar: "",
+          image: "",
         },
       },
-      avatarPreview: "",
+      imagePreview: "",
       TipoUtilizador: [],
       gruposDisponiveis: [], // Todos os grupos disponíveis
       gruposSelecionados: [], // Grupos selecionados pelo utilizador
@@ -173,13 +170,13 @@ module.exports = {
           this.model.item.ID_TipoUtilizador = resp.data[0].ID_TipoUtilizador;
           this.model.item.isActive = resp.data[0].isActive;
 
-          // Assume que resp.data[0].Avatar contém um Blob do avatar
-          const blob = new Blob([resp.data[0].Avatar], { type: "image/jpeg" });
-          const url = URL.createObjectURL(blob);
-          this.avatarPreview = url;
+          if (this.model.item.image) {
+            this.imagePreview = `data:image/jpeg;base64,${this.model.item.image}`;
+            console.log("Imagem carregada com sucesso:", this.model.item.image);
+          }
         })
-        .catch((errors) => {
-          console.error(errors);
+        .catch((error) => {
+          console.error("Erro ao recuperar os dados do Utilizador", error);
         });
     },
     editUtilizador() {
@@ -213,12 +210,12 @@ module.exports = {
       // Atualizar o usuário
       axios
         .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
-        .then((resp) => {
-          console.log("editutilizador: ", resp);
-          self.showNotification();
+        .then((response) => {
+          console.log("Utilizador atualizado com sucesso!", response);
+          this.showNotification();
         })
-        .catch((e) => {
-          console.log(error);
+        .catch((error) => {
+          console.error("Erro ao atualizar o Utilizador", error);
         });
     },
 
@@ -312,15 +309,19 @@ module.exports = {
         .catch((err) => {});
     },
 
-    onAvatarChange(e) {
-      const file = e.target.files[0];
+    previewImage(event) {
+      const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
-          this.avatarPreview = e.target.result;
-          this.model.item.Avatar = file; // Atualiza o avatar no modelo com o arquivo selecionado
+          this.imagePreview = e.target.result;
+          this.model.item.image = e.target.result.split(',')[1]; // Store base64 encoded string without prefix
+          console.log("Imagem pré-visualizada e convertida para base64");
         };
         reader.readAsDataURL(file);
+        console.log("Arquivo selecionado para upload:", file);
+      } else {
+        console.log("Nenhum arquivo selecionado");
       }
     },
   },
