@@ -5,16 +5,24 @@
         <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
       </router-link>
       <div class="card">
-        <div class="card-header">
-          <h4>
-            Área de Agricultura
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+        >
+          <h4>Área de Agricultura</h4>
+          <div>
+            <input
+              type="text"
+              class="form-control d-inline-block w-auto"
+              placeholder="Buscar por nome, ID ou Grupo..."
+              v-model="searchQuery"
+            />
             <router-link
               to="/areadeagricultura/create"
-              class="btn btn-primary float-right"
+              class="btn btn-primary ml-2"
             >
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
-          </h4>
+          </div>
         </div>
         <div class="card-body">
           <table class="table table-bordered">
@@ -22,24 +30,24 @@
               <tr>
                 <th scope="col" class="col-1">ID</th>
                 <th scope="col" class="col-2">Nome</th>
-                <th scope="col" class="col-2">Localização</th>
-                <th scope="col" class="col-1">Grupo</th>
-                <th scope="col" class="col-2 text-right">Actions</th>
+                <th scope="col" class="col-3">Localização</th>
+                <th scope="col" class="col-3">Grupo</th>
+                <th scope="col" class="col-3 text-right">Ações</th>
               </tr>
             </thead>
             <tbody v-if="paginatedItems.length > 0">
               <tr v-for="(item, index) in paginatedItems" :key="index">
                 <td>{{ item.ID }}</td>
                 <td>{{ item.Nome }}</td>
-                <td>{{ item.Localizacao }}</td>
+                <td>
+                  <button class="btn btn-info btn-sm" @click="showMap(item)">
+                    Mapa
+                  </button>
+                </td>
                 <td>{{ item.Grupo_Nome }}</td>
-                
-                
                 <td class="text-right">
                   <router-link
-                    :to="{
-                      path: '/areadeagricultura/' + item.ID + '/edit',
-                    }"
+                    :to="{ path: '/areadeagricultura/' + item.ID + '/edit' }"
                     class="btn btn-success"
                   >
                     <i class="fa fa-pencil" aria-hidden="true"></i> Editar
@@ -55,7 +63,7 @@
               </tr>
             </tbody>
             <tbody v-else>
-              <td colspan="9">Carregando...</td>
+              <td colspan="5">Carregando...</td>
             </tbody>
           </table>
           <div class="d-flex justify-content-center">
@@ -72,55 +80,64 @@
       </div>
     </div>
 
-    <!-- Modal for MAP Preview -->
-    <!-- <b-modal
-      id="image-preview-modal"
-      v-model="modalShow"
-      title="Avatar Preview"
+    <!-- Modal for Map Preview -->
+    <b-modal
+      id="map-preview-modal"
+      v-model="mapModalShow"
+      title="Localização no Mapa"
       hide-footer
       centered
+      @shown="initModalMap"
     >
-      <div class="d-flex justify-content-center">
-        <img
-          :src="currentImage"
-          alt="Avatar"
-          style="max-width: 100%; height: auto"
-        />
-      </div>
-    </b-modal> -->
+      <div id="modalMap" style="height: 300px"></div>
+    </b-modal>
   </div>
 </template>
 
 <script>
 module.exports = {
-  name: "utilizador",
+  name: "areaDeAgricultura",
   data() {
     return {
-      perPage: 8,
-      currentPage: 1,
       items: [],
-      //modalShow: false,
-      //currentImage: "",
+      perPage: 10,
+      currentPage: 1,
+      mapModalShow: false,
+      modalMap: null,
+      selectedLocation: null,
+      searchQuery: "",
     };
   },
   mounted() {
-    this.retriveItem();
+    this.retrieveItems();
   },
   computed: {
     totalRows() {
-      return this.items.length;
+      return this.filteredItems.length;
     },
     totalPages() {
       return Math.ceil(this.totalRows / this.perPage);
     },
+    filteredItems() {
+      return this.items.filter((item) => {
+        return (
+          item.Nome.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.ID.toString().includes(this.searchQuery) ||
+          (item.Grupo_Nome &&
+            item.Grupo_Nome.toLowerCase().includes(
+              this.searchQuery.toLowerCase()
+            ))
+        );
+      });
+    },
     paginatedItems() {
       const start = (this.currentPage - 1) * this.perPage;
       const end = start + this.perPage;
-      return this.items.slice(start, end);
+      return this.filteredItems.slice(start, end);
     },
   },
   methods: {
-    retriveItem() {
+    retrieveItems() {
       axios
         .get("/rs2lab/areadeagricultura")
         .then((response) => {
@@ -130,13 +147,34 @@ module.exports = {
           console.error("Erro ao recuperar Área de Agricultura:", error);
         });
     },
-    // showModal(image) {
-    //   this.currentImage = `data:image/jpeg;base64,${image}`;
-    //   this.modalShow = true;
-    // },
-    // formatGroups(groups) {
-    //   return groups.map((group) => group.Nome).join(", ");
-    // },
+    showMap(item) {
+      if (item && item.Localizacao) {
+        this.selectedLocation = item.Localizacao.split(", ").map(Number);
+        this.locationName = item.Nome; // Save the name for the popup
+        this.mapModalShow = true;
+        this.$nextTick(() => {
+          this.initModalMap();
+        });
+      } else {
+        console.error("Erro: Localização não definida para o item:", item);
+      }
+    },
+    initModalMap() {
+      if (this.modalMap) {
+        this.modalMap.remove();
+      }
+      this.modalMap = L.map("modalMap").setView(this.selectedLocation, 13);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(this.modalMap);
+
+      L.marker(this.selectedLocation)
+        .addTo(this.modalMap)
+        .bindPopup(this.locationName)
+        .openPopup();
+
+      this.modalMap.invalidateSize();
+    },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
         .msgBoxConfirm("Deseja deletar esses dados?", {
@@ -164,7 +202,7 @@ module.exports = {
         .delete(`/rs2lab/deleteareadeagricultura/${ItemID}`)
         .then(() => {
           this.ShowDeleteNotification();
-          this.retriveItem();
+          this.retrieveItems();
         })
         .catch((error) => {
           console.error("Erro ao deletar areadeagricultura:", error);
