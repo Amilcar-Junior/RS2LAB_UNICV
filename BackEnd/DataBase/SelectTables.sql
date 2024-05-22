@@ -21,3 +21,6 @@ SELECT * FROM Sensor;
 
 -- Selecionar todos os dados da tabela ValorSensor
 SELECT * FROM ValorSensor;
+
+-- Selecionar todos os dados da tabela Local
+SELECT * FROM Local;

@@ -81,3 +81,11 @@ CREATE TABLE IF NOT EXISTS monitoring (
     Area_ID INT,
     FOREIGN KEY (Area_ID) REFERENCES AreaDeAgricultura(ID)
 );
+
+-- Tabela Local para zoon no mapa
+CREATE TABLE IF NOT EXISTS Local (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(255) NOT NULL,
+    lat DECIMAL(10, 8) NOT NULL,
+    lng DECIMAL(11, 8) NOT NULL
+);

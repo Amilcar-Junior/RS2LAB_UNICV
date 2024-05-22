@@ -49,3 +49,16 @@ INSERT INTO ValorSensor (Valor, Data_Hora, ID_Sensor, Topico) VALUES
 (70.0, '2024-03-20 08:00:00', 2, 'Umidade'),
 (26.0, '2024-03-20 08:00:00', 3, 'Temperatura'),
 (65.0, '2024-03-20 08:00:00', 4, 'Umidade');
+
+
+INSERT INTO Local (Nome, lat, lng) VALUES
+('Santo Antão', 17.065, -25.171),
+('São Vicente', 16.864, -25.007),
+('Santa Luzia', 16.753, -24.760),
+('São Nicolau', 16.524, -24.281),
+('Sal', 16.726, -22.929),
+('Boa Vista', 16.136, -22.888),
+('Maio', 15.196, -23.213),
+('Santiago', 15.089, -23.680),
+('Fogo', 14.944, -24.416),
+('Brava', 14.872, -24.701);
