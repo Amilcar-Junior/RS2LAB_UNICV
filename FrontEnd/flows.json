@@ -6995,5 +6995,1925 @@
         "x": 310,
         "y": 6300,
         "wires": []
+    },
+    {
+        "id": "90b266c7964d5077",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT \n    AreaDeAgricultura.ID, \n    AreaDeAgricultura.Nome, \n    AreaDeAgricultura.Localizacao, \n    g.ID as Grupo_ID, \n    g.Nome AS Grupo_Nome \nFROM \n    rs2lab.AreaDeAgricultura\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON AreaDeAgricultura.ID_Grupo = g.ID;`;\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 6680,
+        "wires": [
+            [
+                "1a3da297d578b674"
+            ]
+        ]
+    },
+    {
+        "id": "eeee9f8fa6ca5aaf",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 6680,
+        "wires": [
+            [
+                "90b266c7964d5077"
+            ]
+        ]
+    },
+    {
+        "id": "1fb7c7e76bcd8425",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 6680,
+        "wires": []
+    },
+    {
+        "id": "b9dee366d88ede43",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT \n    AreaDeAgricultura.ID, \n    AreaDeAgricultura.Nome, \n    AreaDeAgricultura.Localizacao, \n    g.ID as Grupo_ID, \n    g.Nome AS Grupo_Nome \nFROM \n    rs2lab.AreaDeAgricultura\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON AreaDeAgricultura.ID_Grupo = g.ID;`;\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 6740,
+        "wires": [
+            [
+                "654f56a2f1de0148"
+            ]
+        ]
+    },
+    {
+        "id": "0b8c16d30416549d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 6740,
+        "wires": []
+    },
+    {
+        "id": "ef8a400adf04ae30",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 6780,
+        "wires": []
+    },
+    {
+        "id": "da6d6134dc2c2014",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/tiposensor",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 280,
+        "y": 6800,
+        "wires": [
+            [
+                "1b38e14be881fb72"
+            ]
+        ]
+    },
+    {
+        "id": "1b38e14be881fb72",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 6800,
+        "wires": []
+    },
+    {
+        "id": "629e44845485e731",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 6800,
+        "wires": [
+            [
+                "da6d6134dc2c2014"
+            ]
+        ]
+    },
+    {
+        "id": "62b18781014fa8f3",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get areadeagricultura",
+        "url": "/rs2lab/areadeagricultura",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 6740,
+        "wires": [
+            [
+                "b9dee366d88ede43"
+            ]
+        ]
+    },
+    {
+        "id": "b410c513575bb471",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/addtiposensor",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 280,
+        "y": 7020,
+        "wires": [
+            [
+                "d114ad9a4ca76fd3"
+            ]
+        ]
+    },
+    {
+        "id": "d114ad9a4ca76fd3",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 7020,
+        "wires": []
+    },
+    {
+        "id": "296d64267596b2b4",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"Teste\",\"Descricao\":\"Teste testado\"}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 7020,
+        "wires": [
+            [
+                "b410c513575bb471"
+            ]
+        ]
+    },
+    {
+        "id": "b946dbe04a018a77",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `INSERT INTO rs2lab.AreaDeAgricultura \n(Nome, Localizacao, ID_Grupo) \nVALUES ('${msg.payload.Nome}', \n'${msg.payload.Localizacao}', \n${msg.payload.ID_Grupo});`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 6960,
+        "wires": [
+            [
+                "dd462438fa29f6ca"
+            ]
+        ]
+    },
+    {
+        "id": "9b368c5185ec485b",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 6960,
+        "wires": []
+    },
+    {
+        "id": "17ccfc6110da4cd6",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "add areadeagricultura",
+        "url": "/rs2lab/addareadeagricultura",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 6960,
+        "wires": [
+            [
+                "b946dbe04a018a77",
+                "27ed393346afe983"
+            ]
+        ]
+    },
+    {
+        "id": "27ed393346afe983",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 6900,
+        "wires": []
+    },
+    {
+        "id": "1a3da297d578b674",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 410,
+        "y": 6680,
+        "wires": [
+            [
+                "1fb7c7e76bcd8425"
+            ]
+        ]
+    },
+    {
+        "id": "654f56a2f1de0148",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 450,
+        "y": 6740,
+        "wires": [
+            [
+                "0b8c16d30416549d",
+                "ef8a400adf04ae30"
+            ]
+        ]
+    },
+    {
+        "id": "dd462438fa29f6ca",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 550,
+        "y": 6960,
+        "wires": [
+            [
+                "9b368c5185ec485b"
+            ]
+        ]
+    },
+    {
+        "id": "cc5f188dacc668c3",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "START AREADEAGRICULTURA",
+        "info": "",
+        "x": 330,
+        "y": 6580,
+        "wires": []
+    },
+    {
+        "id": "d30c2be0a8704e5e",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome, Localizacao, ID_Grupo \nFROM rs2lab.AreaDeAgricultura \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 7180,
+        "wires": [
+            [
+                "8becd67bdaaba15b",
+                "764e3db15066ff91"
+            ]
+        ]
+    },
+    {
+        "id": "6ff7a441b3e0e221",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 7180,
+        "wires": []
+    },
+    {
+        "id": "5a71a8eaa8a7ca2e",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://127.0.0.1:1882/rs2lab/areadeagricultura/2",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 320,
+        "y": 7240,
+        "wires": [
+            [
+                "5826816c02b15d91"
+            ]
+        ]
+    },
+    {
+        "id": "5826816c02b15d91",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 7240,
+        "wires": []
+    },
+    {
+        "id": "d95b84ce960e4193",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":1}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 7240,
+        "wires": [
+            [
+                "5a71a8eaa8a7ca2e"
+            ]
+        ]
+    },
+    {
+        "id": "dcd503590c65ad50",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get areadeagricultura id",
+        "url": "/rs2lab/areadeagricultura/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 7180,
+        "wires": [
+            [
+                "d30c2be0a8704e5e",
+                "0638333eb5526d39"
+            ]
+        ]
+    },
+    {
+        "id": "8becd67bdaaba15b",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 510,
+        "y": 7180,
+        "wires": [
+            [
+                "6ff7a441b3e0e221",
+                "8b27a953eb97d09e"
+            ]
+        ]
+    },
+    {
+        "id": "37f3f275bba104a8",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/editareadeagricultura/3",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 280,
+        "y": 7460,
+        "wires": [
+            [
+                "2712dc86cf1ec2de"
+            ]
+        ]
+    },
+    {
+        "id": "2712dc86cf1ec2de",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 7460,
+        "wires": []
+    },
+    {
+        "id": "85dd0406c4ba652f",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"Teste\"}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 7460,
+        "wires": [
+            [
+                "37f3f275bba104a8"
+            ]
+        ]
+    },
+    {
+        "id": "ed426db08d4862ce",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.AreaDeAgricultura \nSET Nome = '${msg.payload.Nome}', \nLocalizacao = '${msg.payload.Localizacao}', \nID_Grupo = ${msg.payload.ID_Grupo} \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 7400,
+        "wires": [
+            [
+                "772836cbe979c7d5"
+            ]
+        ]
+    },
+    {
+        "id": "c1580f871887a7ff",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 7400,
+        "wires": []
+    },
+    {
+        "id": "8dc31a08a1504f7d",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Edit areadeagricultura",
+        "url": "/rs2lab/editareadeagricultura/:ID",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 7400,
+        "wires": [
+            [
+                "ed426db08d4862ce",
+                "348aa763d84bb750"
+            ]
+        ]
+    },
+    {
+        "id": "348aa763d84bb750",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 7340,
+        "wires": []
+    },
+    {
+        "id": "772836cbe979c7d5",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 550,
+        "y": 7400,
+        "wires": [
+            [
+                "c1580f871887a7ff",
+                "f05f1ba2b75f9e96"
+            ]
+        ]
+    },
+    {
+        "id": "f05f1ba2b75f9e96",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 7340,
+        "wires": []
+    },
+    {
+        "id": "8b27a953eb97d09e",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 7140,
+        "wires": []
+    },
+    {
+        "id": "764e3db15066ff91",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 7140,
+        "wires": []
+    },
+    {
+        "id": "0638333eb5526d39",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 7120,
+        "wires": []
+    },
+    {
+        "id": "b9faab15e72fb0d7",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `DELETE FROM rs2lab.AreaDeAgricultura \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 7620,
+        "wires": [
+            [
+                "430ffaa7c132b70e",
+                "709808f38afbe6d8"
+            ]
+        ]
+    },
+    {
+        "id": "7da4463df6aabfb0",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 7620,
+        "wires": []
+    },
+    {
+        "id": "efcdde901c5eeff4",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/deleteareadeagricultura/10",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 320,
+        "y": 7680,
+        "wires": [
+            [
+                "87bf7c9e8ebbc06c"
+            ]
+        ]
+    },
+    {
+        "id": "87bf7c9e8ebbc06c",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 7680,
+        "wires": []
+    },
+    {
+        "id": "5e28e1ab1988d6bc",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":10}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 7680,
+        "wires": [
+            [
+                "efcdde901c5eeff4"
+            ]
+        ]
+    },
+    {
+        "id": "c7fb4996ac47bf0b",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Delete areadeagricultura id",
+        "url": "/rs2lab/deleteareadeagricultura/:ID",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 7620,
+        "wires": [
+            [
+                "b9faab15e72fb0d7",
+                "f25116ba75f29d59"
+            ]
+        ]
+    },
+    {
+        "id": "430ffaa7c132b70e",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 510,
+        "y": 7620,
+        "wires": [
+            [
+                "7da4463df6aabfb0",
+                "5cf4745635e35f27"
+            ]
+        ]
+    },
+    {
+        "id": "5cf4745635e35f27",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 7580,
+        "wires": []
+    },
+    {
+        "id": "709808f38afbe6d8",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 7580,
+        "wires": []
+    },
+    {
+        "id": "f25116ba75f29d59",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 7560,
+        "wires": []
+    },
+    {
+        "id": "a78706ff0d1b4fb7",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "END AREADEAGRICULTURA",
+        "info": "",
+        "x": 320,
+        "y": 7740,
+        "wires": []
+    },
+    {
+        "id": "88e484d59a2694f2",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ALL",
+        "info": "",
+        "x": 300,
+        "y": 6620,
+        "wires": []
+    },
+    {
+        "id": "37cd85cdbe672d8c",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "CREATE",
+        "info": "",
+        "x": 300,
+        "y": 6860,
+        "wires": []
+    },
+    {
+        "id": "3e94f15a4fe95102",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ID",
+        "info": "",
+        "x": 290,
+        "y": 7080,
+        "wires": []
+    },
+    {
+        "id": "d32a1f3b6b4f02fe",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "UPDATE ID",
+        "info": "",
+        "x": 310,
+        "y": 7300,
+        "wires": []
+    },
+    {
+        "id": "fe2b56717d9e3107",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "DELETE ID",
+        "info": "",
+        "x": 310,
+        "y": 7520,
+        "wires": []
+    },
+    {
+        "id": "289fa070f663b0c1",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome, lat, lng \nFROM rs2lab.Local;`;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 6640,
+        "wires": [
+            [
+                "8020f3a8e9411f99"
+            ]
+        ]
+    },
+    {
+        "id": "9196eb2e9f6600e8",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1010,
+        "y": 6640,
+        "wires": [
+            [
+                "289fa070f663b0c1"
+            ]
+        ]
+    },
+    {
+        "id": "04b1dc84fb8cac65",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 6640,
+        "wires": []
+    },
+    {
+        "id": "d8f81fb321c0d921",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome, lat, lng \nFROM rs2lab.Local;`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 6700,
+        "wires": [
+            [
+                "fea3568c82cc0645"
+            ]
+        ]
+    },
+    {
+        "id": "8cd250b975aebe0d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1510,
+        "y": 6700,
+        "wires": []
+    },
+    {
+        "id": "0e36b92ef7afba07",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1510,
+        "y": 6740,
+        "wires": []
+    },
+    {
+        "id": "d507d7d025c8e2b9",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/local",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1180,
+        "y": 6760,
+        "wires": [
+            [
+                "ae3821c26670f55e"
+            ]
+        ]
+    },
+    {
+        "id": "ae3821c26670f55e",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1330,
+        "y": 6760,
+        "wires": []
+    },
+    {
+        "id": "f32a03ff1cd19191",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1010,
+        "y": 6760,
+        "wires": [
+            [
+                "d507d7d025c8e2b9"
+            ]
+        ]
+    },
+    {
+        "id": "24805d211fe97b6a",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get local",
+        "url": "/rs2lab/local",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 990,
+        "y": 6700,
+        "wires": [
+            [
+                "d8f81fb321c0d921"
+            ]
+        ]
+    },
+    {
+        "id": "11f1991ae8b8375f",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/addtiposensor",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1180,
+        "y": 6980,
+        "wires": [
+            [
+                "e531937cc4d2709b"
+            ]
+        ]
+    },
+    {
+        "id": "e531937cc4d2709b",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1330,
+        "y": 6980,
+        "wires": []
+    },
+    {
+        "id": "461e1b67392c73e3",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"Teste\",\"Descricao\":\"Teste testado\"}",
+        "payloadType": "json",
+        "x": 1010,
+        "y": 6980,
+        "wires": [
+            [
+                "11f1991ae8b8375f"
+            ]
+        ]
+    },
+    {
+        "id": "ec5b077e8bc25867",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `INSERT INTO rs2lab.Local (Nome, lat, lng) \nVALUES ('${msg.payload.Nome}',\n ${msg.payload.lat}, \n ${msg.payload.lng});`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 6920,
+        "wires": [
+            [
+                "bd7b4b268edae068"
+            ]
+        ]
+    },
+    {
+        "id": "968ebf1e20d5675c",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1590,
+        "y": 6920,
+        "wires": []
+    },
+    {
+        "id": "ad307ce4f139dc2a",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "add local",
+        "url": "/rs2lab/addlocal",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1000,
+        "y": 6920,
+        "wires": [
+            [
+                "ec5b077e8bc25867",
+                "37af89b61c333726"
+            ]
+        ]
+    },
+    {
+        "id": "37af89b61c333726",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 6860,
+        "wires": []
+    },
+    {
+        "id": "8020f3a8e9411f99",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1310,
+        "y": 6640,
+        "wires": [
+            [
+                "04b1dc84fb8cac65"
+            ]
+        ]
+    },
+    {
+        "id": "fea3568c82cc0645",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1350,
+        "y": 6700,
+        "wires": [
+            [
+                "8cd250b975aebe0d",
+                "0e36b92ef7afba07"
+            ]
+        ]
+    },
+    {
+        "id": "bd7b4b268edae068",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1450,
+        "y": 6920,
+        "wires": [
+            [
+                "968ebf1e20d5675c"
+            ]
+        ]
+    },
+    {
+        "id": "4b02333584624143",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "START LOCAL",
+        "info": "",
+        "x": 1180,
+        "y": 6540,
+        "wires": []
+    },
+    {
+        "id": "2e884dbd79318e9e",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT ID, Nome, lat, lng \nFROM rs2lab.Local \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 7140,
+        "wires": [
+            [
+                "9167c40f3af405fe",
+                "3d63adf132338131"
+            ]
+        ]
+    },
+    {
+        "id": "76f20d8053061015",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1570,
+        "y": 7140,
+        "wires": []
+    },
+    {
+        "id": "4078d2817451f62d",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://127.0.0.1:1882/rs2lab/local/2",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1220,
+        "y": 7200,
+        "wires": [
+            [
+                "065524bb469c0fee"
+            ]
+        ]
+    },
+    {
+        "id": "065524bb469c0fee",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1370,
+        "y": 7200,
+        "wires": []
+    },
+    {
+        "id": "10009ad48c0179c0",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":1}",
+        "payloadType": "json",
+        "x": 1010,
+        "y": 7200,
+        "wires": [
+            [
+                "4078d2817451f62d"
+            ]
+        ]
+    },
+    {
+        "id": "07e059af4a5c1b40",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get local id",
+        "url": "/rs2lab/local/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1000,
+        "y": 7140,
+        "wires": [
+            [
+                "2e884dbd79318e9e",
+                "86e0c4d3abf743fd"
+            ]
+        ]
+    },
+    {
+        "id": "9167c40f3af405fe",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1410,
+        "y": 7140,
+        "wires": [
+            [
+                "76f20d8053061015",
+                "66c54cdd5e0860fd"
+            ]
+        ]
+    },
+    {
+        "id": "a635f21fec5f35df",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/editlocal/3",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1180,
+        "y": 7420,
+        "wires": [
+            [
+                "2afd265ebbe87a3d"
+            ]
+        ]
+    },
+    {
+        "id": "2afd265ebbe87a3d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1330,
+        "y": 7420,
+        "wires": []
+    },
+    {
+        "id": "62ebc6d801f01ee4",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"Teste\"}",
+        "payloadType": "json",
+        "x": 1010,
+        "y": 7420,
+        "wires": [
+            [
+                "a635f21fec5f35df"
+            ]
+        ]
+    },
+    {
+        "id": "d58ac09128b91007",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.Local \nSET Nome = '${msg.payload.Nome}', \nlat = ${msg.payload.lat}, \nlng = ${msg.payload.lng} \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 7360,
+        "wires": [
+            [
+                "295a20ef736be0d7"
+            ]
+        ]
+    },
+    {
+        "id": "7ed489874ef17c97",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1590,
+        "y": 7360,
+        "wires": []
+    },
+    {
+        "id": "9204193cee5cd1ca",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Edit local",
+        "url": "/rs2lab/editlocal/:ID",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1000,
+        "y": 7360,
+        "wires": [
+            [
+                "d58ac09128b91007",
+                "389bfb7950e50e91"
+            ]
+        ]
+    },
+    {
+        "id": "389bfb7950e50e91",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 7300,
+        "wires": []
+    },
+    {
+        "id": "295a20ef736be0d7",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1450,
+        "y": 7360,
+        "wires": [
+            [
+                "7ed489874ef17c97",
+                "b4eed82b82cab19e"
+            ]
+        ]
+    },
+    {
+        "id": "b4eed82b82cab19e",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1590,
+        "y": 7300,
+        "wires": []
+    },
+    {
+        "id": "66c54cdd5e0860fd",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1590,
+        "y": 7100,
+        "wires": []
+    },
+    {
+        "id": "3d63adf132338131",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 7100,
+        "wires": []
+    },
+    {
+        "id": "86e0c4d3abf743fd",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 7080,
+        "wires": []
+    },
+    {
+        "id": "0ec682138ad6e209",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `DELETE FROM rs2lab.Local \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 7580,
+        "wires": [
+            [
+                "f3d78a6cf104b482",
+                "fa74fd848a81e714"
+            ]
+        ]
+    },
+    {
+        "id": "bc3c8495571cbb3b",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1570,
+        "y": 7580,
+        "wires": []
+    },
+    {
+        "id": "fbb16f96e3b9325e",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/deletelocal/10",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1220,
+        "y": 7640,
+        "wires": [
+            [
+                "4e6f86b1dbe51c4a"
+            ]
+        ]
+    },
+    {
+        "id": "4e6f86b1dbe51c4a",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1370,
+        "y": 7640,
+        "wires": []
+    },
+    {
+        "id": "f005aebfe2f04906",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":10}",
+        "payloadType": "json",
+        "x": 1010,
+        "y": 7640,
+        "wires": [
+            [
+                "fbb16f96e3b9325e"
+            ]
+        ]
+    },
+    {
+        "id": "36ca468b2b5d15e2",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Delete local id",
+        "url": "/rs2lab/deletelocal/:ID",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1010,
+        "y": 7580,
+        "wires": [
+            [
+                "0ec682138ad6e209",
+                "1b88ab30deba1f65"
+            ]
+        ]
+    },
+    {
+        "id": "f3d78a6cf104b482",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1410,
+        "y": 7580,
+        "wires": [
+            [
+                "bc3c8495571cbb3b",
+                "bed3122b6acc352d"
+            ]
+        ]
+    },
+    {
+        "id": "bed3122b6acc352d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1590,
+        "y": 7540,
+        "wires": []
+    },
+    {
+        "id": "fa74fd848a81e714",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 7540,
+        "wires": []
+    },
+    {
+        "id": "1b88ab30deba1f65",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 7520,
+        "wires": []
+    },
+    {
+        "id": "64d2bce5e2eb6628",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "END AREADEAGRICULTURA",
+        "info": "",
+        "x": 1220,
+        "y": 7700,
+        "wires": []
+    },
+    {
+        "id": "40dd63f640633ddb",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ALL",
+        "info": "",
+        "x": 1200,
+        "y": 6580,
+        "wires": []
+    },
+    {
+        "id": "532c80891b62d394",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "CREATE",
+        "info": "",
+        "x": 1200,
+        "y": 6820,
+        "wires": []
+    },
+    {
+        "id": "6cd0de6f844dced2",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ID",
+        "info": "",
+        "x": 1190,
+        "y": 7040,
+        "wires": []
+    },
+    {
+        "id": "462bdd87f4e0da17",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "UPDATE ID",
+        "info": "",
+        "x": 1210,
+        "y": 7260,
+        "wires": []
+    },
+    {
+        "id": "43ee3c919c7b6373",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "DELETE ID",
+        "info": "",
+        "x": 1210,
+        "y": 7480,
+        "wires": []
     }
 ]

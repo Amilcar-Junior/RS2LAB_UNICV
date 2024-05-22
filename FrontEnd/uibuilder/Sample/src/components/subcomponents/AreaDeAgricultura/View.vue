@@ -7,9 +7,9 @@
       <div class="card">
         <div class="card-header">
           <h4>
-            Utilizador
+            Área de Agricultura
             <router-link
-              to="/utilizador/create"
+              to="/areadeagricultura/create"
               class="btn btn-primary float-right"
             >
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
@@ -22,53 +22,23 @@
               <tr>
                 <th scope="col" class="col-1">ID</th>
                 <th scope="col" class="col-2">Nome</th>
-                <th scope="col" class="col-2">Email</th>
-                <th scope="col" class="col-1">Tipo</th>
-                <th scope="col" class="col-2">Grupos</th>
-                <th scope="col" class="col-1">Ativo</th>
-                <th scope="col" class="col-1">Avatar</th>
+                <th scope="col" class="col-2">Localização</th>
+                <th scope="col" class="col-1">Grupo</th>
                 <th scope="col" class="col-2 text-right">Actions</th>
               </tr>
             </thead>
             <tbody v-if="paginatedItems.length > 0">
               <tr v-for="(item, index) in paginatedItems" :key="index">
-                <td>{{ item.Utilizador_ID }}</td>
-                <td>{{ item.Utilizador_Nome }}</td>
-                <td>{{ item.Utilizador_Email }}</td>
-                <td>{{ item.TipoUtilizador_Nome }}</td>
-                <td>{{ formatGroups(item.Grupos) }}</td>
-                <td>
-                  <b-icon-check
-                    v-if="item.Utilizador_isActive === 1"
-                    variant="success"
-                  ></b-icon-check>
-                  <b-icon-x v-else variant="danger"></b-icon-x>
-                </td>
-                <td class="text-center">
-                  <!-- <img
-                    v-if="item.Utilizador_image"
-                    :src="`data:image/jpeg;base64,${item.Utilizador_image}`"
-                    alt="Avatar"
-                    style="max-width: 50px; max-height: 50px"
-                  /> -->
-                  <button
-                    v-if="item.Utilizador_image"
-                    @click="showModal(item.Utilizador_image)"
-                    class="btn btn-sm btn-info"
-                  >
-                  <i class="fa fa-picture-o" aria-hidden="true"></i> Ver
-                  </button>
-                  <i
-                    v-else
-                    class="fa fa-user"
-                    aria-hidden="true"
-                    style="font-size: 1.8rem"
-                  ></i> 
-                </td>
+                <td>{{ item.ID }}</td>
+                <td>{{ item.Nome }}</td>
+                <td>{{ item.Localizacao }}</td>
+                <td>{{ item.Grupo_Nome }}</td>
+                
+                
                 <td class="text-right">
                   <router-link
                     :to="{
-                      path: '/utilizador/' + item.Utilizador_ID + '/edit',
+                      path: '/areadeagricultura/' + item.ID + '/edit',
                     }"
                     class="btn btn-success"
                   >
@@ -76,7 +46,7 @@
                   </router-link>
                   <button
                     type="button"
-                    @click="ShowConfirmDelete(item.Utilizador_ID)"
+                    @click="ShowConfirmDelete(item.ID)"
                     class="btn btn-danger"
                   >
                     <i class="fa fa-trash" aria-hidden="true"></i> Deletar
@@ -102,8 +72,8 @@
       </div>
     </div>
 
-    <!-- Modal for Image Preview -->
-    <b-modal
+    <!-- Modal for MAP Preview -->
+    <!-- <b-modal
       id="image-preview-modal"
       v-model="modalShow"
       title="Avatar Preview"
@@ -117,7 +87,7 @@
           style="max-width: 100%; height: auto"
         />
       </div>
-    </b-modal>
+    </b-modal> -->
   </div>
 </template>
 
@@ -129,8 +99,8 @@ module.exports = {
       perPage: 8,
       currentPage: 1,
       items: [],
-      modalShow: false,
-      currentImage: "",
+      //modalShow: false,
+      //currentImage: "",
     };
   },
   mounted() {
@@ -152,21 +122,21 @@ module.exports = {
   methods: {
     retriveItem() {
       axios
-        .get("/rs2lab/utilizador")
+        .get("/rs2lab/areadeagricultura")
         .then((response) => {
           this.items = response.data;
         })
         .catch((error) => {
-          console.error("Erro ao recuperar utilizadores:", error);
+          console.error("Erro ao recuperar Área de Agricultura:", error);
         });
     },
-    showModal(image) {
-      this.currentImage = `data:image/jpeg;base64,${image}`;
-      this.modalShow = true;
-    },
-    formatGroups(groups) {
-      return groups.map((group) => group.Nome).join(", ");
-    },
+    // showModal(image) {
+    //   this.currentImage = `data:image/jpeg;base64,${image}`;
+    //   this.modalShow = true;
+    // },
+    // formatGroups(groups) {
+    //   return groups.map((group) => group.Nome).join(", ");
+    // },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
         .msgBoxConfirm("Deseja deletar esses dados?", {
@@ -191,13 +161,13 @@ module.exports = {
     },
     deleteItem(ItemID) {
       axios
-        .delete(`/rs2lab/deleteutilizador/${ItemID}`)
+        .delete(`/rs2lab/deleteareadeagricultura/${ItemID}`)
         .then(() => {
           this.ShowDeleteNotification();
           this.retriveItem();
         })
         .catch((error) => {
-          console.error("Erro ao deletar utilizador:", error);
+          console.error("Erro ao deletar areadeagricultura:", error);
           this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
             title: "Erro",
             variant: "danger",

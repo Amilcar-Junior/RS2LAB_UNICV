@@ -1,14 +1,14 @@
 <template>
   <div class="container-fluid mt-5">
-    <router-link to="/utilizador" class="btn btn-secondary mb-3">
+    <router-link to="/areadeagricultura" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Adicionar Utilizador</h4>
+        <h4>Adicionar Área de Agricultura</h4>
       </div>
       <div class="card-body">
-        <form @submit.prevent="addUtilizador">
+        <form @submit.prevent="addAreadeagricultura">
           <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
             <input
@@ -16,64 +16,16 @@
               id="nome"
               v-model="model.item.Nome"
               class="form-control"
-              placeholder="Insira o nome do utilizador"
+              placeholder="Insira o nome da Área"
               required
             />
           </div>
           <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input
-              type="email"
-              id="email"
-              v-model="model.item.Email"
-              class="form-control"
-              placeholder="Insira o email do utilizador"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="senha" class="form-label">Senha</label>
-            <input
-              type="password"
-              id="senha"
-              v-model="model.item.Senha"
-              class="form-control"
-              placeholder="Insira a senha do utilizador"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="id_tipoUtilizador" class="form-label"
-              >Tipo Utilizador</label
-            >
-            <select
-              v-model="model.item.ID_TipoUtilizador"
-              class="form-control"
-              required
-            >
-              <option value="" disabled selected>
-                Selecione o tipo de utilizador
-              </option>
+            <label for="id_grupo" class="form-label">Grupo</label>
+            <select v-model="model.item.ID_Grupo" class="form-control" required>
+              <option value="" disabled selected>Selecione o Grupo</option>
               <option
-                v-for="tipo in TipoUtilizador"
-                :key="tipo.ID"
-                :value="tipo.ID"
-              >
-                {{ tipo.Nome }}
-              </option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="id_grupoutilizadores" class="form-label">Grupos</label>
-            <select
-              v-model="gruposSelecionados"
-              class="form-control"
-              multiple
-              required
-            >
-              <option disabled value="">Selecione um grupo</option>
-              <option
-                v-for="grupo in gruposDisponiveis"
+                v-for="grupo in GrupoUtilizadores"
                 :key="grupo.Grupo_ID"
                 :value="grupo.Grupo_ID"
               >
@@ -81,38 +33,45 @@
               </option>
             </select>
           </div>
-          <div class="mb-3 form-check">
-            <input
-              type="checkbox"
-              id="isActive"
-              v-model="model.item.isActive"
-              class="form-check-input custom-checkbox"
-              true-value="1"
-              false-value="0"
-            />
-            <label for="isActive" class="form-check-label">Ativo</label>
-          </div>
           <div class="mb-3">
-            <label for="avatar" class="form-label">Avatar</label>
-            <input
-              type="file"
-              id="avatar"
-              @change="onAvatarChange"
-              class="form-control-file"
-              accept="image/*"
-            />
-            <img
-              v-if="avatarPreview"
-              :src="avatarPreview"
-              alt="Preview do Avatar"
-              class="mt-2"
-              style="max-width: 100px; max-height: 100px"
-            />
+            <label for="ilhaSelect" class="form-label">Localização</label>
+            <div class="mb-3">
+              <select
+                id="ilhaSelect"
+                v-model="selectedIlha"
+                @change="zoomToIlha"
+                class="form-control"
+              >
+                <option disabled value="">Selecione um Local</option>
+                <option
+                  v-for="local in Local"
+                  :key="local.ID"
+                  :value="local.Nome"
+                >
+                  {{ local.Nome }}
+                </option>
+              </select>
+            </div>
+            <div id="map" style="height: 300px"></div>
+            <button
+              type="button"
+              class="btn btn-danger mt-2"
+              @click="removeLastMarker"
+            >
+              Remover Último Ponto
+            </button>
+            <button
+              type="button"
+              class="btn btn-info mt-2"
+              @click="forceResize"
+            >
+              Fix Map Display
+            </button>
           </div>
+
           <div class="mb-3">
             <button type="submit" class="btn btn-primary float-right">
-              <i class="fa fa-floppy-o" aria-hidden="true"></i>
-              Salvar
+              <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
             </button>
           </div>
         </form>
@@ -120,130 +79,138 @@
     </div>
   </div>
 </template>
-
 <style>
-.custom-checkbox {
-  transform: scale(1.5); /* Reduz o tamanho do checkbox */
+#map {
+  height: 300px; /* Assegure que a altura está definida */
+  width: 100%; /* Opcionalmente, defina a largura, se necessário */
 }
 </style>
 
 <script>
 module.exports = {
-  name: "CreateUtilizador",
+  name: "CreateAreadeAgricultura",
   data() {
     return {
       model: {
         item: {
           Nome: "",
-          Email: "",
-          Senha: "",
-          ID_TipoUtilizador: "",
-          isActive: "0",
-          Avatar: null, // Alterado para aceitar um Blob
+          Localizacao: "",
+          ID_Grupo: "",
         },
       },
-      TipoUtilizador: [],
-      gruposDisponiveis: [], // Todos os grupos disponíveis
-      gruposSelecionados: [], // Grupos selecionados pelo utilizador
-      UtilizadorGrupo: [],
-      avatarPreview: "",
+      selectedIlha: "",
+      GrupoUtilizadores: [],
+      Local: [],
+      map: null,
+      markers: [],
     };
   },
   mounted() {
-    this.getTipoUtilizador();
-    this.getGruposDisponiveis();
+    if (typeof L === "undefined") {
+      console.error("Leaflet is not loaded");
+      return;
+    }
+    this.getGrupos();
+    this.getLocal();
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.initMap();
+        if (this.map) {
+          this.map.invalidateSize();
+        }
+      }, 500);
+    });
   },
   methods: {
-    addUtilizador() {
-      var self = this;
-      axios
-        .post("/rs2lab/addutilizador", this.model.item)
-        .then((resp) => {
-          console.log(resp);
-          // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
-          if (this.gruposSelecionados.length > 0) {
-            this.gruposSelecionados.forEach((grupoId) => {
-              const utilizadorGrupo = {
-                ID_Utilizador: resp.data.insertId, // ID do utilizador criado
-                ID_Grupo: grupoId, // ID do grupo selecionado
-              };
-              // console.log(utilizadorGrupo);
-              self.addUtilizadorGrupo(utilizadorGrupo);
-            });
-          }
-          self.showNotification();
-        })
-        .catch((e) => {
-          console.error(e);
-        });
-    },
+    initMap() {
+      this.map = L.map("map").setView([15.120142, -23.6051721], 9);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(this.map);
 
-    addUtilizadorGrupo(utilizadorGrupo) {
-      axios
-        .post("/rs2lab/addutilizadorgrupo", utilizadorGrupo)
-        .then((resp) => {
-          console.log(resp);
-        })
-        .catch((e) => {
-          console.error(e);
-        });
+      this.map.on("click", (e) => {
+        this.addMarker(e.latlng);
+      });
     },
+    addMarker(latlng) {
+      const marker = L.marker(latlng, { draggable: true })
+        .addTo(this.map)
+        .bindPopup("Localização Selecionada: " + latlng.toString())
+        .openPopup();
 
-    getGruposDisponiveis() {
-      axios
-        .get("/rs2lab/grupoutilizadores")
-        .then((resp) => {
-          console.log(resp);
-          this.gruposDisponiveis = resp.data;
-          console.log(this.gruposDisponiveis);
-        })
-        .catch((errors) => {
-          console.error(errors);
-        });
-    },
-    getTipoUtilizador() {
-      axios
-        .get("/rs2lab/tipoutilizador")
-        .then((resp) => {
-          console.log(resp);
-          this.TipoUtilizador = resp.data;
-          console.log(this.TipoUtilizador);
-        })
-        .catch((errors) => {
-          console.error(errors);
-        });
-    },
+      marker.on("dragend", () => {
+        const position = marker.getLatLng();
+        this.model.item.Localizacao = `${position.lat}, ${position.lng}`;
+      });
 
-    onAvatarChange(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const blob = new Blob([reader.result], { type: file.type });
-          this.model.item.Avatar = blob;
-          this.avatarPreview = URL.createObjectURL(blob);
-          console.log("Avatar Blob:", this.model.item.Avatar);
-          console.log("Avatar Blob URL:", this.avatarPreview);
-        };
-        reader.readAsArrayBuffer(file);
+      this.markers.push(marker);
+      this.model.item.Localizacao = `${latlng.lat}, ${latlng.lng}`;
+    },
+    forceResize() {
+      if (this.map) {
+        this.map.invalidateSize();
       }
     },
-
+    zoomToIlha() {
+      if (!this.selectedIlha || !this.ilhas[this.selectedIlha]) return;
+      const { lat, lng } = this.ilhas[this.selectedIlha];
+      this.map.setView([lat, lng], 13); // O número 13 é o nível de zoom, ajuste conforme necessário
+    },
+    removeLastMarker() {
+      const lastMarker = this.markers.pop();
+      if (lastMarker) {
+        this.map.removeLayer(lastMarker);
+      }
+    },
+    zoomToIlha() {
+      const selectedLocal = this.Local.find(
+        (loc) => loc.Nome === this.selectedIlha
+      );
+      if (selectedLocal) {
+        this.map.setView([selectedLocal.lat, selectedLocal.lng], 13);
+      }
+    },
+    addAreadeagricultura() {
+      axios
+        .post("/rs2lab/addareadeagricultura", this.model.item)
+        .then((response) => {
+          this.showNotification();
+          this.cleanForm();
+        })
+        .catch((error) => {
+          console.error("Erro ao adicionar a área de agricultura:", error);
+        });
+    },
+    getGrupos() {
+      axios
+        .get("/rs2lab/grupoutilizadores")
+        .then((response) => {
+          this.GrupoUtilizadores = response.data;
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar grupos de utilizadores:", error);
+        });
+    },
+    getLocal() {
+      axios
+        .get("/rs2lab/local")
+        .then((response) => {
+          this.Local = response.data;
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar dados locais:", error);
+        });
+    },
     cleanForm() {
       this.model.item.Nome = "";
-      this.model.item.Email = "";
-      this.model.item.Senha = "";
-      this.model.item.ID_TipoUtilizador = "";
-      this.model.item.isActive = "";
-      this.model.item.Avatar = null;
-      this.avatarPreview = "";
-      this.gruposSelecionados = [];
+      this.model.item.Localizacao = "";
+      this.model.item.ID_Grupo = "";
     },
-
     showNotification() {
-      var self = this;
+      var self = this; // Atribui this a uma variável
+      this.boxTwo = "";
       this.$bvModal
-        .msgBoxOk("Dados Adicionados com sucesso!!", {
+        .msgBoxOk("Dados Salvos Com Sucesso!", {
           title: "Confirmação",
           size: "sm",
           buttonSize: "sm",
@@ -253,7 +220,6 @@ module.exports = {
           centered: true,
         })
         .then((value) => {
-          self.cleanForm();
         })
         .catch((err) => {});
     },

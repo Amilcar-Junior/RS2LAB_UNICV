@@ -21,6 +21,10 @@ const ListTipoSensor = httpVueLoader('./components/subcomponents/TipoSensor/View
 const CreateTipoSensor = httpVueLoader('./components/subcomponents/TipoSensor/Create.vue');
 const EditTipoSensor = httpVueLoader('./components/subcomponents/TipoSensor/Edit.vue');
 
+const ListAreaDeAgricultura = httpVueLoader('./components/subcomponents/AreaDeAgricultura/View.vue');
+const CreateAreaDeAgricultura = httpVueLoader('./components/subcomponents/AreaDeAgricultura/Create.vue');
+const EditAreaDeAgricultura = httpVueLoader('./components/subcomponents/AreaDeAgricultura/Edit.vue');
+
 export default {
 
     routes: [
@@ -109,6 +113,22 @@ export default {
             path:'/tiposensor/:ID/edit',
             name:'EditTipoSensor',
             component: EditTipoSensor
+        },
+        
+        {
+            path:'/areadeagricultura',
+            name:'ViewAreaDeAgricultura',
+            component: ListAreaDeAgricultura
+        },
+        {
+            path:'/areadeagricultura/create',
+            name:'CreateAreaDeAgricultura',
+            component: CreateAreaDeAgricultura
+        },
+        {
+            path:'/areadeagricultura/:ID/edit',
+            name:'EditAreaDeAgricultura',
+            component: EditAreaDeAgricultura
         },
     ],
 };

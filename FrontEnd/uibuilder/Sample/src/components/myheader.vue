@@ -29,6 +29,10 @@
             <i class="fa fa-list" aria-hidden="true"></i>
             Tipos de Sensores
           </b-dropdown-item>
+          <b-dropdown-item href="#" to="/areadeagricultura">
+            <i class="fa fa-map" aria-hidden="true"></i>
+            Area De Agricultura
+          </b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown

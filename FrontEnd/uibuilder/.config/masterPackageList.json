@@ -15,6 +15,7 @@
     "angular",
     "picnic",
     "md5",
+    "leaflet",
     "umbrellajs",
     "@fortawesome/fontawesome-svg-core",
     "@fortawesome/vue-fontawesome",
