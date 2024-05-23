@@ -16,6 +16,7 @@
     "picnic",
     "md5",
     "leaflet",
+    "leaflet-draw",
     "umbrellajs",
     "@fortawesome/fontawesome-svg-core",
     "@fortawesome/vue-fontawesome",

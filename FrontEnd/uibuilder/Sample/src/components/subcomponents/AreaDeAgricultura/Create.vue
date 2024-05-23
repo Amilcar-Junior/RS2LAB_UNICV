@@ -34,39 +34,25 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="ilhaSelect" class="form-label">Localização</label>
+            <label for="localizacao" class="form-label">Localização</label>
             <div class="mb-3">
               <select
-                id="ilhaSelect"
-                v-model="selectedIlha"
-                @change="zoomToIlha"
+                id="localizacao"
+                v-model="selectedLocal"
+                @change="zoomToLocal"
                 class="form-control"
               >
                 <option disabled value="">Selecione um Local</option>
                 <option
                   v-for="local in Local"
                   :key="local.ID"
-                  :value="local.Nome"
+                  :value="local.ID"
                 >
                   {{ local.Nome }}
                 </option>
               </select>
             </div>
-            <div id="map" style="height: 300px"></div>
-            <button
-              type="button"
-              class="btn btn-danger mt-2"
-              @click="removeLastMarker"
-            >
-              Remover Último Ponto
-            </button>
-            <button
-              type="button"
-              class="btn btn-info mt-2"
-              @click="forceResize"
-            >
-              Fix Map Display
-            </button>
+            <div id="map"  style="height: 500px"></div>
           </div>
 
           <div class="mb-3">
@@ -79,6 +65,7 @@
     </div>
   </div>
 </template>
+
 <style>
 #map {
   height: 300px; /* Assegure que a altura está definida */
@@ -96,20 +83,18 @@ module.exports = {
           Nome: "",
           Localizacao: "",
           ID_Grupo: "",
+          ID_Local: "", // Adicionado ID_Local
         },
       },
-      selectedIlha: "",
       GrupoUtilizadores: [],
       Local: [],
       map: null,
-      markers: [],
+      drawnItems: new L.FeatureGroup(), // Initialize drawnItems
+      selectedLocal: "",
+      baseMaps: null, // Adicionado baseMaps para camadas de mapa
     };
   },
   mounted() {
-    if (typeof L === "undefined") {
-      console.error("Leaflet is not loaded");
-      return;
-    }
     this.getGrupos();
     this.getLocal();
     this.$nextTick(() => {
@@ -123,62 +108,101 @@ module.exports = {
   },
   methods: {
     initMap() {
-      this.map = L.map("map").setView([15.120142, -23.6051721], 9);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      // Definir diferentes tipos de camadas de mapa
+      const streets = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "© OpenStreetMap contributors",
-      }).addTo(this.map);
-
-      this.map.on("click", (e) => {
-        this.addMarker(e.latlng);
-      });
-    },
-    addMarker(latlng) {
-      const marker = L.marker(latlng, { draggable: true })
-        .addTo(this.map)
-        .bindPopup("Localização Selecionada: " + latlng.toString())
-        .openPopup();
-
-      marker.on("dragend", () => {
-        const position = marker.getLatLng();
-        this.model.item.Localizacao = `${position.lat}, ${position.lng}`;
       });
 
-      this.markers.push(marker);
-      this.model.item.Localizacao = `${latlng.lat}, ${latlng.lng}`;
-    },
-    forceResize() {
-      if (this.map) {
-        this.map.invalidateSize();
-      }
-    },
-    zoomToIlha() {
-      if (!this.selectedIlha || !this.ilhas[this.selectedIlha]) return;
-      const { lat, lng } = this.ilhas[this.selectedIlha];
-      this.map.setView([lat, lng], 13); // O número 13 é o nível de zoom, ajuste conforme necessário
-    },
-    removeLastMarker() {
-      const lastMarker = this.markers.pop();
-      if (lastMarker) {
-        this.map.removeLayer(lastMarker);
-      }
-    },
-    zoomToIlha() {
-      const selectedLocal = this.Local.find(
-        (loc) => loc.Nome === this.selectedIlha
+      const hybrid = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenTopoMap contributors",
+      });
+
+      const satellite = L.tileLayer("https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
+        attribution: "Map data ©2023 Google",
+        subdomains: ["mt0", "mt1", "mt2", "mt3"]
+      });
+
+      const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
+        attribution: "Map data ©2023 Google",
+        subdomains: ["mt0", "mt1", "mt2", "mt3"]
+      });
+
+      
+
+      // Inicializar o mapa com a camada padrão (streets)
+      this.map = L.map("map", {
+        center: [0, 0],
+        zoom: 2,
+        layers: [streets],
+      });
+
+      // Definir as opções de camadas de base
+      this.baseMaps = {
+        "Streets": streets,
+        "Satellite": satellite,
+        "Hibrido": hybrid,
+        "Terreno": terrain,
+      };
+
+      // Adicionar controle de camadas ao mapa
+      L.control.layers(this.baseMaps).addTo(this.map);
+
+      // Adicionar a camada de itens desenhados
+      this.map.addLayer(this.drawnItems);
+
+      // Adicionar o controle de desenho
+      this.map.addControl(
+        new L.Control.Draw({
+          edit: { featureGroup: this.drawnItems },
+          draw: {
+            polygon: true,
+            polyline: false,
+            rectangle: false,
+            circle: false,
+            marker: false,
+          },
+        })
       );
-      if (selectedLocal) {
-        this.map.setView([selectedLocal.lat, selectedLocal.lng], 13);
+
+      // Eventos de criação e edição de desenho
+      this.map.on(L.Draw.Event.CREATED, (e) => {
+        const layer = e.layer;
+        this.drawnItems.addLayer(layer);
+        this.updateLocationField();
+      });
+
+      this.map.on(L.Draw.Event.EDITED, (e) => {
+        this.updateLocationField();
+      });
+    },
+    updateLocationField() {
+      const layers = this.drawnItems.getLayers();
+      const coords = layers
+        .map((layer) => {
+          const latlngs = layer.getLatLngs()[0];
+          return latlngs.map((ll) => `${ll.lat}, ${ll.lng}`).join("; ");
+        })
+        .join("; ");
+      this.model.item.Localizacao = coords;
+    },
+    zoomToLocal() {
+      const selectedLocation = this.Local.find((loc) => loc.ID === this.selectedLocal);
+      if (selectedLocation) {
+        const latLng = [selectedLocation.lat, selectedLocation.lng];
+        this.map.setView(latLng, 13);
+        this.model.item.ID_Local = selectedLocation.ID; // Define ID_Local
       }
     },
     addAreadeagricultura() {
       axios
         .post("/rs2lab/addareadeagricultura", this.model.item)
-        .then((response) => {
-          this.showNotification();
-          this.cleanForm();
+        .then(() => {
+          this.showNotification("Área de Agricultura adicionada com sucesso!");
+          this.$router.push("/areadeagricultura");
         })
         .catch((error) => {
           console.error("Erro ao adicionar a área de agricultura:", error);
+          this.showNotification("Erro ao adicionar a área de agricultura.", "danger");
         });
     },
     getGrupos() {
@@ -201,27 +225,12 @@ module.exports = {
           console.error("Erro ao buscar dados locais:", error);
         });
     },
-    cleanForm() {
-      this.model.item.Nome = "";
-      this.model.item.Localizacao = "";
-      this.model.item.ID_Grupo = "";
-    },
-    showNotification() {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Salvos Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-        })
-        .catch((err) => {});
+    showNotification(message, variant = "success") {
+      this.$bvToast.toast(message, {
+        title: "Confirmação",
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };

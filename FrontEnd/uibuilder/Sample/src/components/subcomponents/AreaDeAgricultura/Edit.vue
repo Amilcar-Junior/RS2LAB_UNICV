@@ -15,51 +15,49 @@
             id="nome"
             v-model="model.item.Nome"
             class="form-control"
-            placeholder="Insira o nome do utilizador"
             required
           />
         </div>
         <div class="mb-3">
-            <label for="localizacao" class="form-label">Localizacao</label>
-            <input
-              type="text"
-              id="localizacao"
-              v-model="model.item.Localizacao"
-              class="form-control"
-              placeholder="Insira a Coordenada do local"
-              required
-            />
-          </div>
+          <label for="id_Grupo" class="form-label">Grupo</label>
+          <select v-model="model.item.Grupo_ID" class="form-control" required>
+            <option disabled selected>Selecione o Grupo</option>
+            <option
+              v-for="grupo in GrupoUtilizadores"
+              :key="grupo.Grupo_ID"
+              :value="grupo.Grupo_ID"
+            >
+              {{ grupo.Grupo_Nome }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="localizacao" class="form-label">Localização</label>
           <div class="mb-3">
-            <label for="id_Grupo" class="form-label"
-              >Grupo</label
-            >
             <select
-              v-model="model.item.ID_Grupo"
+              v-model="model.item.Local_ID"
+              @change="updateMapLocation"
               class="form-control"
-              required
             >
-              <option value="" disabled selected>
-                Selecione o Grupo
-              </option>
+              <option disabled value="">Selecione uma localização</option>
               <option
-                v-for="grupo in GrupoUtilizadores"
-                :key="grupo.Grupo_ID"
-                :value="grupo.Grupo_ID"
+                v-for="local in Local"
+                :key="local.ID"
+                :value="local.ID"
               >
-                {{ grupo.Grupo_Nome }}
+                {{ local.Nome }}
               </option>
             </select>
           </div>
-        
+          <div id="editMap" style="height: 300px"></div>
+        </div>
         <div class="mb-3">
           <button
             type="button"
             @click="editAreaagricultura"
             class="btn btn-primary float-right"
           >
-          <i class="fa fa-floppy-o" aria-hidden="true"></i>
-            Salvar
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>
         </div>
       </div>
@@ -68,8 +66,9 @@
 </template>
 
 <style>
-.custom-checkbox {
-  transform: scale(1.5); /* Reduz o tamanho do checkbox */
+#editMap {
+  height: 300px; /* Ensure the height is defined */
+  width: 100%; /* Optionally set the width if necessary */
 }
 </style>
 
@@ -83,80 +82,216 @@ module.exports = {
         item: {
           Nome: "",
           Localizacao: "",
-          ID_Grupo: "",
+          Grupo_ID: "",
+          Local_ID: "",
+          lat: 0,
+          lng: 0,
         },
       },
-      avatarPreview: "",
+      selectedLocal: "",
+      Local: [],
       GrupoUtilizadores: [],
-      
+      editMap: null,
+      drawnItems: new L.FeatureGroup(), // Initialize the drawnItems here
+      baseMaps: null, // Base map layers
     };
   },
   mounted() {
-    // console.log(this.$router.app._route.params.ID);
-    this.model.ID = this.$router.app._route.params.ID;
-    this.getAreadeAgricultura(this.$router.app._route.params.ID);
-    this.getGrupo();
+    this.model.ID = this.$route.params.ID;
+    this.retrieveAreaDeAgricultura();
+    this.getGrupos();
+    this.getLocal();
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.initMap();
+      }, 500);
+    });
   },
   methods: {
-    getAreadeAgricultura(ItemID) {
+    retrieveAreaDeAgricultura() {
       axios
-        .get(`/rs2lab/areadeagricultura/${ItemID}`)
-        .then((resp) => {
-          this.model.item.Nome = resp.data[0].Nome;
-          this.model.item.Localizacao = resp.data[0].Localizacao;
-          this.model.item.ID_Grupo = resp.data[0].ID_Grupo;
+        .get(`/rs2lab/areadeagricultura/${this.model.ID}`)
+        .then((response) => {
+          console.log("Dados da área de agricultura:", response.data);
+          this.model.item = response.data[0];
+          this.selectedLocal = this.model.item.Local_ID; // Define selectedLocal
+          this.updatePolygon();
+          this.$nextTick(() => {
+            setTimeout(() => {
+              this.updateMapLocation(); // Chama para garantir que o mapa centralize no local correto
+            }, 500);
+          });
         })
-        .catch((errors) => {
-          console.error(errors);
+        .catch((error) => {
+          console.error("Erro ao recuperar dados da área de agricultura:", error);
         });
     },
-    editAreaagricultura() {
-      var self = this;
-    
-      // Atualizar o usuário
-      axios
-        .put(`/rs2lab/editareadeagricultura/${this.model.ID}`, this.model.item)
-        .then((resp) => {
-          console.log("editareadeagricultura: ", resp);
-          self.showNotification();
-        })
-        .catch((e) => {
-          console.log(error);
-        });
-    },
-    getGrupo() {
+    getGrupos() {
       axios
         .get("/rs2lab/grupoutilizadores")
-        .then((resp) => {
-          console.log("grupoutilizadores: ", resp);
-          this.GrupoUtilizadores = resp.data;
-          // console.log(this.Grupo);
+        .then((response) => {
+          console.log("Grupos de Utilizadores:", response.data);
+          this.GrupoUtilizadores = response.data;
         })
-        .catch((errors) => {
-          console.error(errors);
+        .catch((error) => {
+          console.error("Erro ao buscar grupos:", error);
         });
     },
-
-    //Shows a dialog notification
-
-    showNotification() {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Editados Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
+    getLocal() {
+      axios
+        .get("/rs2lab/local")
+        .then((response) => {
+          console.log("Locais:", response.data);
+          this.Local = response.data;
         })
-        .then((value) => {
-          // Retorna para a URL anterior
-          this.$router.go(-1);
+        .catch((error) => {
+          console.error("Erro ao buscar locais:", error);
+        });
+    },
+    initMap() {
+      // Definir diferentes tipos de camadas de mapa
+      const streets = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      });
+
+      const satellite = L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+        attribution: "Map data ©2023 Google",
+        subdomains: ["mt0", "mt1", "mt2", "mt3"]
+      });
+
+      const hybrid = L.tileLayer("https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
+        attribution: "Map data ©2023 Google",
+        subdomains: ["mt0", "mt1", "mt2", "mt3"]
+      });
+
+      const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
+        attribution: "Map data ©2023 Google",
+        subdomains: ["mt0", "mt1", "mt2", "mt3"]
+      });
+
+      // Inicializar o mapa com a camada padrão (streets)
+      this.editMap = L.map("editMap", {
+        center: [0, 0],
+        zoom: 1,
+        layers: [streets],
+      });
+
+      // Definir as opções de camadas de base
+      this.baseMaps = {
+        "Streets": streets,
+        "Hybrid": hybrid,
+        "Satellite": satellite,
+        "Terrain": terrain,
+      };
+
+      // Adicionar controle de camadas ao mapa
+      L.control.layers(this.baseMaps).addTo(this.editMap);
+
+      // Adicionar a camada de itens desenhados
+      this.editMap.addLayer(this.drawnItems);
+
+      // Adicionar o controle de desenho
+      this.editMap.addControl(
+        new L.Control.Draw({
+          edit: { featureGroup: this.drawnItems },
+          draw: {
+            polygon: true,
+            polyline: false,
+            rectangle: false,
+            circle: false,
+            marker: false,
+          },
         })
-        .catch((err) => {});
+      );
+
+      // Eventos de criação e edição de desenho
+      this.editMap.on(L.Draw.Event.CREATED, (e) => {
+        const layer = e.layer;
+        this.drawnItems.addLayer(layer);
+        this.updateLocalizacao();
+      });
+
+      this.editMap.on(L.Draw.Event.EDITED, (e) => {
+        this.updateLocalizacao();
+      });
+
+      console.log("Mapa inicializado");
+    },
+    updatePolygon() {
+      console.log("Atualizando polígono com Localizacao:", this.model.item.Localizacao);
+      if (!this.model.item.Localizacao || this.model.item.Localizacao.trim() === "") {
+        console.warn("Localização não definida ou vazia para o item:", this.model.item);
+        return;
+      }
+
+      const coordinates = this.model.item.Localizacao.split("; ").map(
+        (coords) => {
+          const [lat, lng] = coords.split(", ").map(Number);
+          return lat && lng ? [lat, lng] : null;
+        }
+      ).filter(Boolean);
+
+      if (coordinates.length > 0) {
+        const polygon = L.polygon(coordinates, { color: "red", weight: 4 });
+        this.drawnItems.addLayer(polygon);
+        console.log("Polígono atualizado:", polygon);
+      } else {
+        console.warn("Nenhuma coordenada válida encontrada para Localizacao:", this.model.item.Localizacao);
+      }
+    },
+    updateLocalizacao() {
+      const layers = this.drawnItems.getLayers();
+      const coords = layers.map(layer => {
+        const latlngs = layer.getLatLngs();
+        if (latlngs.length > 0 && latlngs[0].length > 0) {
+          return latlngs[0].map(ll => `${ll.lat}, ${ll.lng}`).join("; ");
+        }
+        return "";
+      }).join("; ");
+      console.log("Localização atualizada:", coords);
+      this.model.item.Localizacao = coords;
+    },
+    updateMapLocation() {
+      console.log("Atualizando localização do mapa");
+      const selectedLocation = this.Local.find(loc => loc.ID === this.model.item.Local_ID);
+      if (selectedLocation) {
+        const latLng = [selectedLocation.lat, selectedLocation.lng];
+        if (latLng[0] && latLng[1]) {
+          this.editMap.setView(latLng, 13);
+          console.log("Mapa centralizado em:", latLng);
+        }
+      } else if (this.model.item.lat && this.model.item.lng) {
+        const latLng = [this.model.item.lat, this.model.item.lng];
+        this.editMap.setView(latLng, 13);
+        console.log("Mapa centralizado em:", latLng);
+      }
+    },
+    editAreaagricultura() {
+      const payload = {
+        Nome: this.model.item.Nome,
+        Localizacao: this.model.item.Localizacao,
+        ID_Grupo: this.model.item.Grupo_ID,
+        ID_Local: this.model.item.Local_ID,
+      };
+
+      console.log("Enviando dados para atualização:", payload);
+
+      axios.put(`/rs2lab/editareadeagricultura/${this.model.ID}`, payload)
+        .then(() => {
+          this.showNotification("Área de Agricultura atualizada com sucesso!");
+          this.$router.push("/areadeagricultura");
+        })
+        .catch((error) => {
+          console.error("Erro ao editar a área de agricultura:", error);
+          this.showNotification("Erro ao atualizar a área de agricultura.", "danger");
+        });
+    },
+    showNotification(message, variant = "success") {
+      this.$bvToast.toast(message, {
+        title: "Atualização",
+        variant: variant,
+        solid: true
+      });
     },
   },
 };
