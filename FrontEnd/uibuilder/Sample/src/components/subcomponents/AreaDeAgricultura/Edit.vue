@@ -40,11 +40,7 @@
               class="form-control"
             >
               <option disabled value="">Selecione uma localização</option>
-              <option
-                v-for="local in Local"
-                :key="local.ID"
-                :value="local.ID"
-              >
+              <option v-for="local in Local" :key="local.ID" :value="local.ID">
                 {{ local.Nome }}
               </option>
             </select>
@@ -123,7 +119,10 @@ module.exports = {
           });
         })
         .catch((error) => {
-          console.error("Erro ao recuperar dados da área de agricultura:", error);
+          console.error(
+            "Erro ao recuperar dados da área de agricultura:",
+            error
+          );
         });
     },
     getGrupos() {
@@ -150,24 +149,36 @@ module.exports = {
     },
     initMap() {
       // Definir diferentes tipos de camadas de mapa
-      const streets = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenStreetMap contributors",
-      });
+      const streets = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "© OpenStreetMap contributors",
+        }
+      );
 
-      const satellite = L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const satellite = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const hybrid = L.tileLayer("https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const hybrid = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const terrain = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
       // Inicializar o mapa com a camada padrão (streets)
       this.editMap = L.map("editMap", {
@@ -178,10 +189,10 @@ module.exports = {
 
       // Definir as opções de camadas de base
       this.baseMaps = {
-        "Streets": streets,
-        "Hybrid": hybrid,
-        "Satellite": satellite,
-        "Terrain": terrain,
+        Streets: streets,
+        Hybrid: hybrid,
+        Satellite: satellite,
+        Terrain: terrain,
       };
 
       // Adicionar controle de camadas ao mapa
@@ -218,42 +229,80 @@ module.exports = {
       console.log("Mapa inicializado");
     },
     updatePolygon() {
-      console.log("Atualizando polígono com Localizacao:", this.model.item.Localizacao);
-      if (!this.model.item.Localizacao || this.model.item.Localizacao.trim() === "") {
-        console.warn("Localização não definida ou vazia para o item:", this.model.item);
+      console.log(
+        "Atualizando polígono com Localizacao:",
+        this.model.item.Localizacao
+      );
+      if (
+        !this.model.item.Localizacao ||
+        this.model.item.Localizacao.trim() === ""
+      ) {
+        console.warn(
+          "Localização não definida ou vazia para o item:",
+          this.model.item
+        );
         return;
       }
 
-      const coordinates = this.model.item.Localizacao.split("; ").map(
-        (coords) => {
+      const coordinates = this.model.item.Localizacao.split("; ")
+        .map((coords) => {
           const [lat, lng] = coords.split(", ").map(Number);
           return lat && lng ? [lat, lng] : null;
-        }
-      ).filter(Boolean);
+        })
+        .filter(Boolean);
 
       if (coordinates.length > 0) {
         const polygon = L.polygon(coordinates, { color: "red", weight: 4 });
         this.drawnItems.addLayer(polygon);
         console.log("Polígono atualizado:", polygon);
       } else {
-        console.warn("Nenhuma coordenada válida encontrada para Localizacao:", this.model.item.Localizacao);
+        console.warn(
+          "Nenhuma coordenada válida encontrada para Localizacao:",
+          this.model.item.Localizacao
+        );
       }
     },
     updateLocalizacao() {
       const layers = this.drawnItems.getLayers();
-      const coords = layers.map(layer => {
-        const latlngs = layer.getLatLngs();
-        if (latlngs.length > 0 && latlngs[0].length > 0) {
-          return latlngs[0].map(ll => `${ll.lat}, ${ll.lng}`).join("; ");
-        }
-        return "";
-      }).join("; ");
+      const coords = layers
+        .map((layer) => {
+          const latlngs = layer.getLatLngs();
+          if (latlngs.length > 0 && latlngs[0].length > 0) {
+            return latlngs[0].map((ll) => `${ll.lat}, ${ll.lng}`).join("; ");
+          }
+          return "";
+        })
+        .join("; ");
       console.log("Localização atualizada:", coords);
       this.model.item.Localizacao = coords;
     },
     updateMapLocation() {
       console.log("Atualizando localização do mapa");
-      const selectedLocation = this.Local.find(loc => loc.ID === this.model.item.Local_ID);
+
+      // Tentar centralizar nas primeiras duas coordenadas de Localizacao
+      if (this.model.item.Localizacao) {
+        const coordsArray = this.model.item.Localizacao.split("; ").map(
+          (coord) => coord.split(", ").map(Number)
+        );
+        if (
+          coordsArray.length > 1 &&
+          !isNaN(coordsArray[0][0]) &&
+          !isNaN(coordsArray[0][1])
+        ) {
+          const latLng = [coordsArray[0][0], coordsArray[0][1]];
+          this.editMap.setView(latLng, 13);
+          console.log(
+            "Mapa centralizado nas primeiras coordenadas da localização:",
+            latLng
+          );
+          return;
+        }
+      }
+
+      // Se não houver coordenadas válidas em Localizacao, tentar centralizar no Local
+      const selectedLocation = this.Local.find(
+        (loc) => loc.ID === this.model.item.Local_ID
+      );
       if (selectedLocation) {
         const latLng = [selectedLocation.lat, selectedLocation.lng];
         if (latLng[0] && latLng[1]) {
@@ -266,6 +315,7 @@ module.exports = {
         console.log("Mapa centralizado em:", latLng);
       }
     },
+
     editAreaagricultura() {
       const payload = {
         Nome: this.model.item.Nome,
@@ -276,21 +326,25 @@ module.exports = {
 
       console.log("Enviando dados para atualização:", payload);
 
-      axios.put(`/rs2lab/editareadeagricultura/${this.model.ID}`, payload)
+      axios
+        .put(`/rs2lab/editareadeagricultura/${this.model.ID}`, payload)
         .then(() => {
           this.showNotification("Área de Agricultura atualizada com sucesso!");
           this.$router.push("/areadeagricultura");
         })
         .catch((error) => {
           console.error("Erro ao editar a área de agricultura:", error);
-          this.showNotification("Erro ao atualizar a área de agricultura.", "danger");
+          this.showNotification(
+            "Erro ao atualizar a área de agricultura.",
+            "danger"
+          );
         });
     },
     showNotification(message, variant = "success") {
       this.$bvToast.toast(message, {
         title: "Atualização",
         variant: variant,
-        solid: true
+        solid: true,
       });
     },
   },

@@ -7373,7 +7373,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT \n    AreaDeAgricultura.ID, \n    AreaDeAgricultura.Nome, \n    AreaDeAgricultura.Localizacao, \n    g.ID as Grupo_ID, \n    g.Nome AS Grupo_Nome,\n    l.ID as Local_ID,\n    l.Nome as Local_Nome,\n    l.lat,\n    l.lng\nFROM \n    rs2lab.AreaDeAgricultura\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON AreaDeAgricultura.ID_Grupo = g.ID\nLEFT JOIN\n    rs2lab.Local l ON AreaDeAgricultura.ID_Local = l.ID\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT \n    AreaDeAgricultura.ID, \n    AreaDeAgricultura.Nome, \n    AreaDeAgricultura.Localizacao, \n    g.ID as Grupo_ID, \n    g.Nome AS Grupo_Nome,\n    l.ID as Local_ID,\n    l.Nome as Local_Nome,\n    l.lat,\n    l.lng\nFROM \n    rs2lab.AreaDeAgricultura\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON AreaDeAgricultura.ID_Grupo = g.ID\nLEFT JOIN\n    rs2lab.Local l ON AreaDeAgricultura.ID_Local = l.ID\nWHERE AreaDeAgricultura.ID = ${msg.req.params.ID};`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
