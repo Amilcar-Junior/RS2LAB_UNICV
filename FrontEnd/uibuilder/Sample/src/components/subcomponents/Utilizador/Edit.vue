@@ -94,26 +94,30 @@
           <label for="isActive" class="form-check-label">Ativo</label>
         </div>
         <b-col cols="4">
-            <b-form-group
-              label="Foto de Perfil:"
-              label-for="image"
-              class="mb-3">
-              <b-form-file
-                id="image"
-                @change="previewImage"
-                accept="image/*"
-                placeholder="Escolha um arquivo...">
-              </b-form-file>
-              <b-img v-if="imagePreview" :src="imagePreview" fluid class="mt-2" thumbnail></b-img>
-            </b-form-group>
-          </b-col>
+          <b-form-group label="Foto de Perfil:" label-for="image" class="mb-3">
+            <b-form-file
+              id="image"
+              @change="previewImage"
+              accept="image/*"
+              placeholder="Escolha um arquivo..."
+            >
+            </b-form-file>
+            <b-img
+              v-if="imagePreview"
+              :src="imagePreview"
+              fluid
+              class="mt-2"
+              thumbnail
+            ></b-img>
+          </b-form-group>
+        </b-col>
         <div class="mb-3">
           <button
             type="button"
             @click="editUtilizador"
             class="btn btn-primary float-right"
           >
-          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
             Salvar
           </button>
         </div>
@@ -169,7 +173,7 @@ module.exports = {
           // this.model.item.Senha = resp.data[0].Senha;
           this.model.item.ID_TipoUtilizador = resp.data[0].ID_TipoUtilizador;
           this.model.item.isActive = resp.data[0].isActive;
-
+          this.model.item.image = resp.data[0].image;
           if (this.model.item.image) {
             this.imagePreview = `data:image/jpeg;base64,${this.model.item.image}`;
             console.log("Imagem carregada com sucesso:", this.model.item.image);
@@ -315,7 +319,7 @@ module.exports = {
         const reader = new FileReader();
         reader.onload = (e) => {
           this.imagePreview = e.target.result;
-          this.model.item.image = e.target.result.split(',')[1]; // Store base64 encoded string without prefix
+          this.model.item.image = e.target.result.split(",")[1]; // Store base64 encoded string without prefix
           console.log("Imagem pré-visualizada e convertida para base64");
         };
         reader.readAsDataURL(file);

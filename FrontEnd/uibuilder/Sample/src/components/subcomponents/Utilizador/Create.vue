@@ -237,7 +237,7 @@ module.exports = {
       this.model.item.Senha = "";
       this.model.item.ID_TipoUtilizador = "";
       this.model.item.isActive = "";
-      this.model.item.Avatar = null;
+      this.model.item.image = null;
       this.imagePreview = "";
       this.gruposSelecionados = [];
     },

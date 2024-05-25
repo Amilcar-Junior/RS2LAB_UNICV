@@ -3,28 +3,55 @@
     <router-link to="/tiposensor" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
-    <div class="card">
-      <div class="card-header">
+    <b-card>
+      <b-card-header>
         <h4>Editar Tipo Sensor</h4>
-      </div>
-      <div class="card-body">
-        <div class="mb-3">
-          <label for="">Nome</label>
-          <input type="text" v-model="model.item.Nome" class="form-control" />
-        </div>
-        
-        <div class="mb-3">
-          <button
-            type="button"
+      </b-card-header>
+      <b-card-body>
+        <b-form>
+          <b-row>
+            <b-col cols="8">
+              <b-form-group label="Nome" label-for="nome" class="mb-3">
+                <b-form-input
+                  id="nome"
+                  v-model="model.item.Nome"
+                  required
+                  placeholder="Digite o nome do sensor"
+                ></b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col cols="4">
+              <b-form-group
+                label="Icon do Sensor:"
+                label-for="icon"
+                class="mb-4"
+              >
+                <b-form-file
+                  id="icon"
+                  @change="previewIcon"
+                  accept="image/*"
+                  placeholder="Escolha um arquivo..."
+                ></b-form-file>
+                <b-img
+                  v-if="iconPreview"
+                  :src="iconPreview"
+                  fluid
+                  class="mt-4"
+                  thumbnail
+                ></b-img>
+              </b-form-group>
+            </b-col>
+          </b-row>
+          <b-button
+            variant="primary"
+            class="float-right"
             @click="edittiposensor"
-            class="btn btn-primary float-right"
           >
-          <i class="fa fa-floppy-o" aria-hidden="true"></i>
-            Salvar
-          </button>
-        </div>
-      </div>
-    </div>
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
+          </b-button>
+        </b-form>
+      </b-card-body>
+    </b-card>
   </div>
 </template>
 
@@ -37,8 +64,10 @@ module.exports = {
         ID: "",
         item: {
           Nome: "",
+          icon: "",
         },
       },
+      iconPreview: "",
     };
   },
   mounted() {
@@ -51,10 +80,14 @@ module.exports = {
       axios
         .get(`/rs2lab/tiposensor/${ItemID}`)
         .then((resp) => {
-          // console.log(resp);
+          console.log(resp);
           this.model.item.Nome = resp.data[0].Nome;
-          this.model.item.Descricao = resp.data[0].Descricao;
+          this.model.item.icon = resp.data[0].icon;
           // console.log(this.model.item);
+          if (this.model.item.icon) {
+            this.iconPreview = `data:image/jpeg;base64,${this.model.item.icon}`;
+            console.log("Icon carregada com sucesso:", this.model.item.icon);
+          }
         })
         .catch((errors) => {
           console.error(errors);
@@ -76,7 +109,7 @@ module.exports = {
         });
     },
     //Shows a dialog notification
-    
+
     showNotification() {
       var self = this; // Atribui this a uma variável
       this.boxTwo = "";
@@ -95,6 +128,21 @@ module.exports = {
           this.$router.go(-1);
         })
         .catch((err) => {});
+    },
+    previewIcon(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.iconPreview = e.target.result;
+          this.model.item.icon = e.target.result.split(",")[1]; // Store base64 encoded string without prefix
+          console.log("Icon pré-visualizada e convertida para base64");
+        };
+        reader.readAsDataURL(file);
+        console.log("Arquivo selecionado para upload:", file);
+      } else {
+        console.log("Nenhum arquivo selecionado");
+      }
     },
   },
 };
