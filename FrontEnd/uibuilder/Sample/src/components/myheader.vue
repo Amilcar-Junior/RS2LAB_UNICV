@@ -33,6 +33,10 @@
             <i class="fa fa-leaf" aria-hidden="true"></i>
             Area De Agricultura
           </b-dropdown-item>
+          <b-dropdown-item href="#" to="/local">
+            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+            Local
+          </b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown

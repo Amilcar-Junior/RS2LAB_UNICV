@@ -3,55 +3,57 @@
     <router-link to="/tiposensor" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
-    <b-card>
-      <b-card-header>
+    <div class="card">
+      <div class="card-header">
         <h4>Adicionar Tipo Sensor</h4>
-      </b-card-header>
-      <b-card-body>
-        <b-form>
-          <b-row>
-            <b-col cols="8">
-              <b-form-group label="Nome" label-for="nome" class="mb-3">
-                <b-form-input
+      </div>
+      <div class="card-body">
+        <form @submit.prevent="addtiposensor">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input
+                  type="text"
                   id="nome"
                   v-model="model.item.Nome"
-                  required
+                  class="form-control"
                   placeholder="Digite o nome do sensor"
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-            <b-col cols="4">
-              <b-form-group
-                label="Icon do Sensor:"
-                label-for="icon"
-                class="mb-4"
-              >
-                <b-form-file
-                  id="icon"
-                  @change="previewIcon"
-                  accept="image/*"
-                  placeholder="Escolha um arquivo..."
-                ></b-form-file>
-                <b-img
-                  v-if="iconPreview"
-                  :src="iconPreview"
-                  fluid
-                  class="mt-4"
-                  thumbnail
-                ></b-img>
-              </b-form-group>
-            </b-col>
-          </b-row>
-          <b-button
-            variant="primary"
-            class="float-right"
-            @click="addtiposensor"
-          >
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-3">
+                <b-form-group
+                  label="Icon do Sensor:"
+                  label-for="icon"
+                  class="mb-3"
+                >
+                  <b-form-file
+                    id="icon"
+                    @change="previewIcon"
+                    accept="image/*"
+                    placeholder="Escolha um arquivo..."
+                  >
+                  </b-form-file>
+                  <b-img
+                    v-if="iconPreview"
+                    :src="iconPreview"
+                    fluid
+                    class="mt-2"
+                    thumbnail
+                  ></b-img>
+                </b-form-group>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary float-right">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
-          </b-button>
-        </b-form>
-      </b-card-body>
-    </b-card>
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -3,122 +3,132 @@
     <router-link to="/utilizador" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
-
-    <b-card title="Adicionar Utilizador">
-      <b-form @submit.prevent="addUtilizador">
-        <b-row>
-          <!-- Coluna para os campos de entrada -->
-          <b-col md="9">
-            <b-form-group label="Nome:" label-for="nome">
-              <b-form-input
-                id="nome"
-                v-model="model.item.Nome"
-                required
-                placeholder="Insira o nome do utilizador"
-              >
-              </b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Email:" label-for="email">
-              <b-form-input
-                type="email"
-                id="email"
-                v-model="model.item.Email"
-                required
-                placeholder="Insira o email do utilizador"
-              >
-              </b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Senha:" label-for="senha">
-              <b-form-input
-                type="password"
-                id="senha"
-                v-model="model.item.Senha"
-                required
-                placeholder="Insira a senha do utilizador"
-              >
-              </b-form-input>
-            </b-form-group>
-
-            <b-form-group
-              label="Tipo Utilizador:"
-              label-for="id_tipoUtilizador"
-            >
-              <b-form-select
-                id="id_tipoUtilizador"
-                v-model="model.item.ID_TipoUtilizador"
-                required
-              >
-                <b-form-select-option value="" disabled selected>
-                  Selecione o tipo de utilizador
-                </b-form-select-option>
-                <b-form-select-option
-                  v-for="tipo in TipoUtilizador"
-                  :key="tipo.ID"
-                  :value="tipo.ID"
+    <div class="card">
+      <div class="card-header">
+        <h4>Adicionar Utilizador</h4>
+      </div>
+      <div class="card-body">
+        <form @submit.prevent="addUtilizador">
+          <div class="row">
+            <!-- Coluna principal -->
+            <div class="col-md-9">
+              <div class="mb-3">
+                <label for="nome">Nome:</label>
+                <input
+                  type="text"
+                  id="nome"
+                  v-model="model.item.Nome"
+                  class="form-control"
+                  placeholder="Insira o nome do utilizador"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  v-model="model.item.Email"
+                  class="form-control"
+                  placeholder="Insira o email do utilizador"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="senha">Senha:</label>
+                <input
+                  type="password"
+                  id="senha"
+                  v-model="model.item.Senha"
+                  class="form-control"
+                  placeholder="Insira a senha do utilizador"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="id_tipoUtilizador">Tipo Utilizador:</label>
+                <select
+                  id="id_tipoUtilizador"
+                  v-model="model.item.ID_TipoUtilizador"
+                  class="form-control"
+                  required
                 >
-                  {{ tipo.Nome }}
-                </b-form-select-option>
-              </b-form-select>
-            </b-form-group>
-
-            <b-form-group label="Grupos:" label-for="id_grupoutilizadores">
-              <b-form-select v-model="gruposSelecionados" multiple required>
-                <b-form-select-option disabled value="">
-                  Selecione um grupo
-                </b-form-select-option>
-                <b-form-select-option
-                  v-for="grupo in gruposDisponiveis"
-                  :key="grupo.Grupo_ID"
-                  :value="grupo.Grupo_ID"
+                  <option value="" disabled selected>
+                    Selecione o tipo de utilizador
+                  </option>
+                  <option
+                    v-for="tipo in TipoUtilizador"
+                    :key="tipo.ID"
+                    :value="tipo.ID"
+                  >
+                    {{ tipo.Nome }}
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="id_grupoutilizadores">Grupos:</label>
+                <select
+                  id="id_grupoutilizadores"
+                  v-model="gruposSelecionados"
+                  class="form-control"
+                  multiple
+                  required
                 >
-                  {{ grupo.Grupo_Nome }}
-                </b-form-select-option>
-              </b-form-select>
-            </b-form-group>
-
-            <b-form-checkbox
-              id="isActive"
-              v-model="model.item.isActive"
-              class="form-check-input custom-checkbox"
-              true-value="1"
-              false-value="0"
-            >
-              Ativo
-            </b-form-checkbox>
-          </b-col>
-
-          <!-- Coluna para a imagem de perfil -->
-          <b-col cols="3">
-            <b-form-group
-              label="Foto de Perfil:"
-              label-for="image"
-              class="mb-3"
-            >
-              <b-form-file
-                id="image"
-                @change="previewImage"
-                accept="image/*"
-                placeholder="Escolha um arquivo..."
-              >
-              </b-form-file>
-              <b-img
-                v-if="imagePreview"
-                :src="imagePreview"
-                fluid
-                class="mt-2"
-                thumbnail
-              ></b-img>
-            </b-form-group>
-          </b-col>
-        </b-row>
-
-        <b-button type="submit" variant="primary" class="float-right">
-          <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
-        </b-button>
-      </b-form>
-    </b-card>
+                  <option disabled value="">Selecione um grupo</option>
+                  <option
+                    v-for="grupo in gruposDisponiveis"
+                    :key="grupo.Grupo_ID"
+                    :value="grupo.Grupo_ID"
+                  >
+                    {{ grupo.Grupo_Nome }}
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  id="isActive"
+                  v-model="model.item.isActive"
+                  class="form-check-input"
+                  true-value="1"
+                  false-value="0"
+                />
+                <label for="isActive" class="form-check-label">Ativo</label>
+              </div>
+            </div>
+            <!-- Coluna para a imagem de perfil -->
+            <div class="col-md-3">
+              <div class="mb-3">
+                <b-form-group
+                  label="Foto de Perfil:"
+                  label-for="image"
+                  class="mb-3"
+                >
+                  <b-form-file
+                    id="image"
+                    @change="previewImage"
+                    accept="image/*"
+                    placeholder="Escolha um arquivo..."
+                  >
+                  </b-form-file>
+                  <b-img
+                    v-if="imagePreview"
+                    :src="imagePreview"
+                    fluid
+                    class="mt-2"
+                    thumbnail
+                  ></b-img>
+                </b-form-group>
+                
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary float-right">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 

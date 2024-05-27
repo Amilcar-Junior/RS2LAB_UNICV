@@ -25,6 +25,10 @@ const ListAreaDeAgricultura = httpVueLoader('./components/subcomponents/AreaDeAg
 const CreateAreaDeAgricultura = httpVueLoader('./components/subcomponents/AreaDeAgricultura/Create.vue');
 const EditAreaDeAgricultura = httpVueLoader('./components/subcomponents/AreaDeAgricultura/Edit.vue');
 
+const ListLocal = httpVueLoader('./components/subcomponents/Local/View.vue');
+const CreateLocal = httpVueLoader('./components/subcomponents/Local/Create.vue');
+const EditLocal = httpVueLoader('./components/subcomponents/Local/Edit.vue');
+
 export default {
 
     routes: [
@@ -129,6 +133,21 @@ export default {
             path:'/areadeagricultura/:ID/edit',
             name:'EditAreaDeAgricultura',
             component: EditAreaDeAgricultura
+        },
+        {
+            path:'/local',
+            name:'ViewLocal',
+            component: ListLocal
+        },
+        {
+            path:'/local/create',
+            name:'CreateLocal',
+            component: CreateLocal
+        },
+        {
+            path:'/local/:ID/edit',
+            name:'EditLocal',
+            component: EditLocal
         },
     ],
 };

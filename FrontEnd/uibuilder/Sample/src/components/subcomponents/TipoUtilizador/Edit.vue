@@ -8,28 +8,36 @@
         <h4>Editar Tipo Utilizador</h4>
       </div>
       <div class="card-body">
-        <div class="mb-3">
-          <label for="">Nome</label>
-          <input type="text" v-model="model.item.Nome" class="form-control" />
-        </div>
-        <div class="mb-3">
-          <label for="">Descrição</label>
-          <input
-            type="text"
-            v-model="model.item.Descricao"
-            class="form-control"
-          />
-        </div>
-        <div class="mb-3">
+        <form @submit.prevent="editTipoUtilizador">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input
+              type="text"
+              id="nome"
+              v-model="model.item.Nome"
+              class="form-control"
+              placeholder="Insira o nome do tipo de utilizador"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input
+              type="text"
+              id="descricao"
+              v-model="model.item.Descricao"
+              class="form-control"
+              placeholder="Insira a descrição do tipo de utilizador"
+              required
+            />
+          </div>
           <button
-            type="button"
-            @click="editTipoUtilizador"
+            type="submit"
             class="btn btn-primary float-right"
           >
-          <i class="fa fa-floppy-o" aria-hidden="true"></i>
-            Salvar
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>
-        </div>
+        </form>
       </div>
     </div>
   </div>

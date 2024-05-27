@@ -8,119 +8,113 @@
         <h4>Editar Utilizador</h4>
       </div>
       <div class="card-body">
-        <div class="mb-3">
-          <label for="nome" class="form-label">Nome</label>
-          <input
-            type="text"
-            id="nome"
-            v-model="model.item.Nome"
-            class="form-control"
-            placeholder="Insira o nome do utilizador"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input
-            type="email"
-            id="email"
-            v-model="model.item.Email"
-            class="form-control"
-            placeholder="Insira o email do utilizador"
-            required
-          />
-        </div>
-        <!-- <div class="mb-3">
-          <label for="senha" class="form-label">Senha</label>
-          <input
-            type="password"
-            id="senha"
-            v-model="model.item.Senha"
-            class="form-control"
-            placeholder="Insira a senha do utilizador"
-            required
-          />
-        </div> -->
-        <div class="mb-3">
-          <label for="id_tipoUtilizador" class="form-label"
-            >Tipo Utilizador</label
-          >
-          <select
-            v-model="model.item.ID_TipoUtilizador"
-            class="form-control"
-            required
-          >
-            <option value="" disabled selected>
-              Selecione o tipo de utilizador
-            </option>
-            <option
-              v-for="tipo in TipoUtilizador"
-              :key="tipo.ID"
-              :value="tipo.ID"
-            >
-              {{ tipo.Nome }}
-            </option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="id_grupoutilizadores" class="form-label">Grupos</label>
-          <select
-            v-model="gruposSelecionados"
-            class="form-control"
-            multiple
-            required
-          >
-            <option disabled value="">Selecione um grupo</option>
-            <option
-              v-for="grupo in gruposDisponiveis"
-              :key="grupo.Grupo_ID"
-              :value="grupo.Grupo_ID"
-            >
-              {{ grupo.Grupo_Nome }}
-            </option>
-          </select>
-        </div>
-
-        <div class="mb-3 form-check">
-          <input
-            type="checkbox"
-            id="isActive"
-            v-model="model.item.isActive"
-            :checked="model.item.isActive"
-            class="form-check-input custom-checkbox"
-            true-value="1"
-            false-value="0"
-          />
-          <label for="isActive" class="form-check-label">Ativo</label>
-        </div>
-        <b-col cols="4">
-          <b-form-group label="Foto de Perfil:" label-for="image" class="mb-3">
-            <b-form-file
-              id="image"
-              @change="previewImage"
-              accept="image/*"
-              placeholder="Escolha um arquivo..."
-            >
-            </b-form-file>
-            <b-img
-              v-if="imagePreview"
-              :src="imagePreview"
-              fluid
-              class="mt-2"
-              thumbnail
-            ></b-img>
-          </b-form-group>
-        </b-col>
-        <div class="mb-3">
+        <form @submit.prevent="editUtilizador">
+          <div class="row">
+            <!-- Coluna principal -->
+            <div class="col-md-9">
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input
+                  type="text"
+                  id="nome"
+                  v-model="model.item.Nome"
+                  class="form-control"
+                  placeholder="Insira o nome do utilizador"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  v-model="model.item.Email"
+                  class="form-control"
+                  placeholder="Insira o email do utilizador"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="id_tipoUtilizador" class="form-label">Tipo Utilizador</label>
+                <select
+                  v-model="model.item.ID_TipoUtilizador"
+                  class="form-control"
+                  required
+                >
+                  <option value="" disabled selected>Selecione o tipo de utilizador</option>
+                  <option
+                    v-for="tipo in TipoUtilizador"
+                    :key="tipo.ID"
+                    :value="tipo.ID"
+                  >
+                    {{ tipo.Nome }}
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="id_grupoutilizadores" class="form-label">Grupos</label>
+                <select
+                  v-model="gruposSelecionados"
+                  class="form-control"
+                  multiple
+                  required
+                >
+                  <option disabled value="">Selecione um grupo</option>
+                  <option
+                    v-for="grupo in gruposDisponiveis"
+                    :key="grupo.Grupo_ID"
+                    :value="grupo.Grupo_ID"
+                  >
+                    {{ grupo.Grupo_Nome }}
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  id="isActive"
+                  v-model="model.item.isActive"
+                  :checked="model.item.isActive"
+                  class="form-check-input"
+                  true-value="1"
+                  false-value="0"
+                />
+                <label for="isActive" class="form-check-label">Ativo</label>
+              </div>
+            </div>
+            <!-- Coluna para a imagem de perfil -->
+            <div class="col-md-3">
+              <div class="mb-3">
+                <b-form-group
+                  label="Foto de Perfil:"
+                  label-for="image"
+                  class="mb-3"
+                >
+                  <b-form-file
+                    id="image"
+                    @change="previewImage"
+                    accept="image/*"
+                    placeholder="Escolha um arquivo..."
+                  >
+                  </b-form-file>
+                  <b-img
+                    v-if="imagePreview"
+                    :src="imagePreview"
+                    fluid
+                    class="mt-2"
+                    thumbnail
+                  ></b-img>
+                </b-form-group>
+              </div>
+            </div>
+          </div>
           <button
-            type="button"
-            @click="editUtilizador"
+            type="submit"
             class="btn btn-primary float-right"
           >
-            <i class="fa fa-floppy-o" aria-hidden="true"></i>
-            Salvar
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -128,9 +122,10 @@
 
 <style>
 .custom-checkbox {
-  transform: scale(1.5); /* Reduz o tamanho do checkbox */
+  transform: scale(1.5); /* Ajuste conforme necessário */
 }
 </style>
+
 
 <script>
 module.exports = {
