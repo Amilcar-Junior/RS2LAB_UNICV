@@ -18,3 +18,5 @@ axios - 0.21.1
 # nota importante
 qualquer npm instal feito tem que ser colocado o nome do pacote no arquivo masterPackageList.json e packageList.json 
 da pasta /uibuilder/.config
+
+# RS2LAB
