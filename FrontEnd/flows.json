@@ -6456,12 +6456,12 @@
         "id": "0f953a6411b7dc89",
         "type": "http in",
         "z": "ba85fe949960916b",
-        "name": "add TipoUtilizador",
+        "name": "add TipoSensor",
         "url": "/rs2lab/addtiposensor",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 130,
+        "x": 120,
         "y": 5740,
         "wires": [
             [
@@ -8101,7 +8101,7 @@
         "finalize": "",
         "libs": [],
         "x": 1180,
-        "y": 6640,
+        "y": 6680,
         "wires": [
             [
                 "8020f3a8e9411f99"
@@ -8120,7 +8120,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1010,
-        "y": 6640,
+        "y": 6680,
         "wires": [
             [
                 "289fa070f663b0c1"
@@ -8141,7 +8141,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1470,
-        "y": 6640,
+        "y": 6680,
         "wires": []
     },
     {
@@ -8157,7 +8157,7 @@
         "finalize": "",
         "libs": [],
         "x": 1220,
-        "y": 6700,
+        "y": 6740,
         "wires": [
             [
                 "fea3568c82cc0645"
@@ -8178,7 +8178,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1510,
-        "y": 6700,
+        "y": 6740,
         "wires": []
     },
     {
@@ -8189,7 +8189,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1510,
-        "y": 6740,
+        "y": 6780,
         "wires": []
     },
     {
@@ -8209,7 +8209,7 @@
         "senderr": false,
         "headers": [],
         "x": 1180,
-        "y": 6760,
+        "y": 6800,
         "wires": [
             [
                 "ae3821c26670f55e"
@@ -8230,7 +8230,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1330,
-        "y": 6760,
+        "y": 6800,
         "wires": []
     },
     {
@@ -8251,7 +8251,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 1010,
-        "y": 6760,
+        "y": 6800,
         "wires": [
             [
                 "d507d7d025c8e2b9"
@@ -8268,7 +8268,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 990,
-        "y": 6700,
+        "y": 6740,
         "wires": [
             [
                 "d8f81fb321c0d921"
@@ -8292,7 +8292,7 @@
         "senderr": false,
         "headers": [],
         "x": 1180,
-        "y": 6980,
+        "y": 7020,
         "wires": [
             [
                 "e531937cc4d2709b"
@@ -8313,7 +8313,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1330,
-        "y": 6980,
+        "y": 7020,
         "wires": []
     },
     {
@@ -8334,7 +8334,7 @@
         "payload": "{\"Nome\":\"Teste\",\"Descricao\":\"Teste testado\"}",
         "payloadType": "json",
         "x": 1010,
-        "y": 6980,
+        "y": 7020,
         "wires": [
             [
                 "11f1991ae8b8375f"
@@ -8354,7 +8354,7 @@
         "finalize": "",
         "libs": [],
         "x": 1240,
-        "y": 6920,
+        "y": 6960,
         "wires": [
             [
                 "bd7b4b268edae068"
@@ -8369,7 +8369,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1590,
-        "y": 6920,
+        "y": 6960,
         "wires": []
     },
     {
@@ -8382,7 +8382,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1000,
-        "y": 6920,
+        "y": 6960,
         "wires": [
             [
                 "ec5b077e8bc25867",
@@ -8404,7 +8404,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1230,
-        "y": 6860,
+        "y": 6900,
         "wires": []
     },
     {
@@ -8414,7 +8414,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1310,
-        "y": 6640,
+        "y": 6680,
         "wires": [
             [
                 "04b1dc84fb8cac65"
@@ -8428,7 +8428,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1350,
-        "y": 6700,
+        "y": 6740,
         "wires": [
             [
                 "8cd250b975aebe0d",
@@ -8443,7 +8443,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1450,
-        "y": 6920,
+        "y": 6960,
         "wires": [
             [
                 "968ebf1e20d5675c"
@@ -8456,8 +8456,8 @@
         "z": "ba85fe949960916b",
         "name": "START LOCAL",
         "info": "",
-        "x": 1180,
-        "y": 6540,
+        "x": 1200,
+        "y": 6580,
         "wires": []
     },
     {
@@ -8473,7 +8473,7 @@
         "finalize": "",
         "libs": [],
         "x": 1260,
-        "y": 7140,
+        "y": 7180,
         "wires": [
             [
                 "9167c40f3af405fe",
@@ -8489,7 +8489,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1570,
-        "y": 7140,
+        "y": 7180,
         "wires": []
     },
     {
@@ -8509,7 +8509,7 @@
         "senderr": false,
         "headers": [],
         "x": 1220,
-        "y": 7200,
+        "y": 7240,
         "wires": [
             [
                 "065524bb469c0fee"
@@ -8530,7 +8530,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1370,
-        "y": 7200,
+        "y": 7240,
         "wires": []
     },
     {
@@ -8551,7 +8551,7 @@
         "payload": "{\"ID\":1}",
         "payloadType": "json",
         "x": 1010,
-        "y": 7200,
+        "y": 7240,
         "wires": [
             [
                 "4078d2817451f62d"
@@ -8568,7 +8568,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1000,
-        "y": 7140,
+        "y": 7180,
         "wires": [
             [
                 "2e884dbd79318e9e",
@@ -8583,7 +8583,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1410,
-        "y": 7140,
+        "y": 7180,
         "wires": [
             [
                 "76f20d8053061015",
@@ -8608,7 +8608,7 @@
         "senderr": false,
         "headers": [],
         "x": 1180,
-        "y": 7420,
+        "y": 7460,
         "wires": [
             [
                 "2afd265ebbe87a3d"
@@ -8629,7 +8629,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1330,
-        "y": 7420,
+        "y": 7460,
         "wires": []
     },
     {
@@ -8650,7 +8650,7 @@
         "payload": "{\"Nome\":\"Teste\"}",
         "payloadType": "json",
         "x": 1010,
-        "y": 7420,
+        "y": 7460,
         "wires": [
             [
                 "a635f21fec5f35df"
@@ -8670,7 +8670,7 @@
         "finalize": "",
         "libs": [],
         "x": 1240,
-        "y": 7360,
+        "y": 7400,
         "wires": [
             [
                 "295a20ef736be0d7"
@@ -8685,7 +8685,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1590,
-        "y": 7360,
+        "y": 7400,
         "wires": []
     },
     {
@@ -8698,7 +8698,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1000,
-        "y": 7360,
+        "y": 7400,
         "wires": [
             [
                 "d58ac09128b91007",
@@ -8720,7 +8720,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1230,
-        "y": 7300,
+        "y": 7340,
         "wires": []
     },
     {
@@ -8730,7 +8730,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1450,
-        "y": 7360,
+        "y": 7400,
         "wires": [
             [
                 "7ed489874ef17c97",
@@ -8752,7 +8752,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1590,
-        "y": 7300,
+        "y": 7340,
         "wires": []
     },
     {
@@ -8769,7 +8769,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1590,
-        "y": 7100,
+        "y": 7140,
         "wires": []
     },
     {
@@ -8786,7 +8786,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1420,
-        "y": 7100,
+        "y": 7140,
         "wires": []
     },
     {
@@ -8803,7 +8803,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1230,
-        "y": 7080,
+        "y": 7120,
         "wires": []
     },
     {
@@ -8819,7 +8819,7 @@
         "finalize": "",
         "libs": [],
         "x": 1260,
-        "y": 7580,
+        "y": 7620,
         "wires": [
             [
                 "f3d78a6cf104b482",
@@ -8835,7 +8835,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1570,
-        "y": 7580,
+        "y": 7620,
         "wires": []
     },
     {
@@ -8855,7 +8855,7 @@
         "senderr": false,
         "headers": [],
         "x": 1220,
-        "y": 7640,
+        "y": 7680,
         "wires": [
             [
                 "4e6f86b1dbe51c4a"
@@ -8876,7 +8876,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1370,
-        "y": 7640,
+        "y": 7680,
         "wires": []
     },
     {
@@ -8897,7 +8897,7 @@
         "payload": "{\"ID\":10}",
         "payloadType": "json",
         "x": 1010,
-        "y": 7640,
+        "y": 7680,
         "wires": [
             [
                 "fbb16f96e3b9325e"
@@ -8914,7 +8914,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1010,
-        "y": 7580,
+        "y": 7620,
         "wires": [
             [
                 "0ec682138ad6e209",
@@ -8929,7 +8929,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1410,
-        "y": 7580,
+        "y": 7620,
         "wires": [
             [
                 "bc3c8495571cbb3b",
@@ -8951,7 +8951,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1590,
-        "y": 7540,
+        "y": 7580,
         "wires": []
     },
     {
@@ -8968,7 +8968,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1420,
-        "y": 7540,
+        "y": 7580,
         "wires": []
     },
     {
@@ -8985,7 +8985,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1230,
-        "y": 7520,
+        "y": 7560,
         "wires": []
     },
     {
@@ -8995,7 +8995,7 @@
         "name": "END AREADEAGRICULTURA",
         "info": "",
         "x": 1220,
-        "y": 7700,
+        "y": 7740,
         "wires": []
     },
     {
@@ -9005,7 +9005,7 @@
         "name": "GET ALL",
         "info": "",
         "x": 1200,
-        "y": 6580,
+        "y": 6620,
         "wires": []
     },
     {
@@ -9015,7 +9015,7 @@
         "name": "CREATE",
         "info": "",
         "x": 1200,
-        "y": 6820,
+        "y": 6860,
         "wires": []
     },
     {
@@ -9025,7 +9025,7 @@
         "name": "GET ID",
         "info": "",
         "x": 1190,
-        "y": 7040,
+        "y": 7080,
         "wires": []
     },
     {
@@ -9035,7 +9035,7 @@
         "name": "UPDATE ID",
         "info": "",
         "x": 1210,
-        "y": 7260,
+        "y": 7300,
         "wires": []
     },
     {
@@ -9045,7 +9045,971 @@
         "name": "DELETE ID",
         "info": "",
         "x": 1210,
-        "y": 7480,
+        "y": 7520,
         "wires": []
+    },
+    {
+        "id": "4a5a0c3314dc22c4",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT \n    Sensor.ID, \n    Sensor.Nome, \n    Sensor.area_ID, \n    Sensor.ID_TipoSensor,\n    Sensor.coordenada,\n    a.Nome AS Area_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon \nFROM \n    rs2lab.Sensor\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON Sensor.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON Sensor.ID_TipoSensor = t.ID;`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 5460,
+        "wires": [
+            [
+                "acc377a00be47bc4"
+            ]
+        ]
+    },
+    {
+        "id": "42a399ad12dd156e",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1010,
+        "y": 5460,
+        "wires": [
+            [
+                "4a5a0c3314dc22c4"
+            ]
+        ]
+    },
+    {
+        "id": "ed027d99309956d4",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1430,
+        "y": 5460,
+        "wires": []
+    },
+    {
+        "id": "18783861e2aa1563",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT \n    Sensor.ID, \n    Sensor.Nome, \n    Sensor.area_ID, \n    Sensor.ID_TipoSensor,\n    Sensor.coordenada,\n    a.Nome AS Area_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon \nFROM \n    rs2lab.Sensor\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON Sensor.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON Sensor.ID_TipoSensor = t.ID;`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 5520,
+        "wires": [
+            [
+                "c827b6f2f656dddc"
+            ]
+        ]
+    },
+    {
+        "id": "252a7d882bbdf74a",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 5520,
+        "wires": []
+    },
+    {
+        "id": "86a373d6d3614459",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1470,
+        "y": 5560,
+        "wires": []
+    },
+    {
+        "id": "7fb29555f7bd91d9",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/sensor",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1140,
+        "y": 5580,
+        "wires": [
+            [
+                "cfeb66b9bb9b21d3"
+            ]
+        ]
+    },
+    {
+        "id": "cfeb66b9bb9b21d3",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1290,
+        "y": 5580,
+        "wires": []
+    },
+    {
+        "id": "6a36e156e7621f92",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1010,
+        "y": 5580,
+        "wires": [
+            [
+                "7fb29555f7bd91d9"
+            ]
+        ]
+    },
+    {
+        "id": "7a1394ce41d531e6",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get sensor",
+        "url": "/rs2lab/sensor",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 990,
+        "y": 5520,
+        "wires": [
+            [
+                "18783861e2aa1563"
+            ]
+        ]
+    },
+    {
+        "id": "fc44423abfdcc9c6",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/addsensor",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1140,
+        "y": 5800,
+        "wires": [
+            [
+                "59649b2e77807f82"
+            ]
+        ]
+    },
+    {
+        "id": "59649b2e77807f82",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1290,
+        "y": 5800,
+        "wires": []
+    },
+    {
+        "id": "89335f172e7fbf46",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"Teste\",\"Descricao\":\"Teste testado\"}",
+        "payloadType": "json",
+        "x": 1010,
+        "y": 5800,
+        "wires": [
+            [
+                "fc44423abfdcc9c6"
+            ]
+        ]
+    },
+    {
+        "id": "a927183ac06189c1",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `INSERT INTO rs2lab.Sensor \n(Nome, area_ID, ID_TipoSensor, coordenada) \nVALUES ('${msg.payload.Nome}', ${msg.payload.area_ID},\n ${msg.payload.ID_TipoSensor}, '${msg.payload.coordenada}');`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 5740,
+        "wires": [
+            [
+                "7556e14a2e799d0c"
+            ]
+        ]
+    },
+    {
+        "id": "acc3ed258b2f73a8",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1550,
+        "y": 5740,
+        "wires": []
+    },
+    {
+        "id": "7866d59bb49d5224",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "add Sensor",
+        "url": "/rs2lab/addsensor",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1010,
+        "y": 5740,
+        "wires": [
+            [
+                "a927183ac06189c1",
+                "3e2962a37c664c8d"
+            ]
+        ]
+    },
+    {
+        "id": "3e2962a37c664c8d",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 5680,
+        "wires": []
+    },
+    {
+        "id": "acc377a00be47bc4",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1270,
+        "y": 5460,
+        "wires": [
+            [
+                "ed027d99309956d4"
+            ]
+        ]
+    },
+    {
+        "id": "c827b6f2f656dddc",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1310,
+        "y": 5520,
+        "wires": [
+            [
+                "252a7d882bbdf74a",
+                "86a373d6d3614459"
+            ]
+        ]
+    },
+    {
+        "id": "7556e14a2e799d0c",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1410,
+        "y": 5740,
+        "wires": [
+            [
+                "acc3ed258b2f73a8"
+            ]
+        ]
+    },
+    {
+        "id": "2fe05751f60295cd",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "START SENSOR",
+        "info": "",
+        "x": 1200,
+        "y": 5360,
+        "wires": []
+    },
+    {
+        "id": "96b70feb7568bde3",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT \n    Sensor.ID, \n    Sensor.Nome, \n    Sensor.area_ID, \n    Sensor.ID_TipoSensor,\n    Sensor.coordenada,\n    a.Nome AS Area_Nome,\n    a.Localizacao AS Area_Localizacao,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon \nFROM \n    rs2lab.Sensor\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON Sensor.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON Sensor.ID_TipoSensor = t.ID\nWHERE \n    Sensor.ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 5960,
+        "wires": [
+            [
+                "7655668ff94ef7bf",
+                "81695aa0b5b81791"
+            ]
+        ]
+    },
+    {
+        "id": "1051fd22ee42b5e3",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1530,
+        "y": 5960,
+        "wires": []
+    },
+    {
+        "id": "9451c96a41482342",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get sensor id",
+        "url": "/rs2lab/sensor/:ID",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1010,
+        "y": 5960,
+        "wires": [
+            [
+                "96b70feb7568bde3",
+                "fb511004e74607fc"
+            ]
+        ]
+    },
+    {
+        "id": "7655668ff94ef7bf",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1370,
+        "y": 5960,
+        "wires": [
+            [
+                "1051fd22ee42b5e3",
+                "2fca46219055661b"
+            ]
+        ]
+    },
+    {
+        "id": "94f006835259328d",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/editsensor/3",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1140,
+        "y": 6240,
+        "wires": [
+            [
+                "070f0bd7ecd00514"
+            ]
+        ]
+    },
+    {
+        "id": "070f0bd7ecd00514",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1290,
+        "y": 6240,
+        "wires": []
+    },
+    {
+        "id": "358fb0f8e3aa5e9c",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"Nome\":\"Teste\"}",
+        "payloadType": "json",
+        "x": 1010,
+        "y": 6240,
+        "wires": [
+            [
+                "94f006835259328d"
+            ]
+        ]
+    },
+    {
+        "id": "8495c2578dd91bc1",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.Sensor \nSET Nome = '${msg.payload.Nome}', \narea_ID = ${msg.payload.area_ID}, \nID_TipoSensor = ${msg.payload.ID_TipoSensor}, \ncoordenada = '${msg.payload.coordenada}' \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 6180,
+        "wires": [
+            [
+                "0966e182365538e6"
+            ]
+        ]
+    },
+    {
+        "id": "c164ee9377c901fd",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1550,
+        "y": 6180,
+        "wires": []
+    },
+    {
+        "id": "fd223e030812ae42",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Edit Sensor",
+        "url": "/rs2lab/editsensor/:ID",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1010,
+        "y": 6180,
+        "wires": [
+            [
+                "8495c2578dd91bc1",
+                "db33fd129a32b0fa"
+            ]
+        ]
+    },
+    {
+        "id": "db33fd129a32b0fa",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 6120,
+        "wires": []
+    },
+    {
+        "id": "0966e182365538e6",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1410,
+        "y": 6180,
+        "wires": [
+            [
+                "c164ee9377c901fd",
+                "4bfc8c3733a5c7a5"
+            ]
+        ]
+    },
+    {
+        "id": "4bfc8c3733a5c7a5",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1550,
+        "y": 6120,
+        "wires": []
+    },
+    {
+        "id": "2fca46219055661b",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1550,
+        "y": 5920,
+        "wires": []
+    },
+    {
+        "id": "81695aa0b5b81791",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 5920,
+        "wires": []
+    },
+    {
+        "id": "fb511004e74607fc",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 5900,
+        "wires": []
+    },
+    {
+        "id": "afad1ea46b7c8e2b",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `DELETE FROM rs2lab.Sensor \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 6400,
+        "wires": [
+            [
+                "65c5db590ecc97d4",
+                "a97686facd05f276"
+            ]
+        ]
+    },
+    {
+        "id": "2fb4f509bf5b5508",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1530,
+        "y": 6400,
+        "wires": []
+    },
+    {
+        "id": "2e162ff8af1616dc",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.88.206:1882/rs2lab/tipoutilizador/10",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1180,
+        "y": 6460,
+        "wires": [
+            [
+                "c379c3d67987d3a5"
+            ]
+        ]
+    },
+    {
+        "id": "c379c3d67987d3a5",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1330,
+        "y": 6460,
+        "wires": []
+    },
+    {
+        "id": "17bce36e14327dc5",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"ID\":10}",
+        "payloadType": "json",
+        "x": 1010,
+        "y": 6460,
+        "wires": [
+            [
+                "2e162ff8af1616dc"
+            ]
+        ]
+    },
+    {
+        "id": "d9e2851a0725a1e4",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Delete Sensor id",
+        "url": "/rs2lab/deletesensor/:ID",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1020,
+        "y": 6400,
+        "wires": [
+            [
+                "afad1ea46b7c8e2b",
+                "83aba18feba09db8"
+            ]
+        ]
+    },
+    {
+        "id": "65c5db590ecc97d4",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1370,
+        "y": 6400,
+        "wires": [
+            [
+                "2fb4f509bf5b5508",
+                "6a8f5e656fd65210"
+            ]
+        ]
+    },
+    {
+        "id": "6a8f5e656fd65210",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1550,
+        "y": 6360,
+        "wires": []
+    },
+    {
+        "id": "a97686facd05f276",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 6360,
+        "wires": []
+    },
+    {
+        "id": "83aba18feba09db8",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params.ID",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 6340,
+        "wires": []
+    },
+    {
+        "id": "1e2652df474dc061",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "END SENSOR",
+        "info": "",
+        "x": 1180,
+        "y": 6520,
+        "wires": []
+    },
+    {
+        "id": "3294855bf4b4ebc0",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ALL",
+        "info": "",
+        "x": 1200,
+        "y": 5400,
+        "wires": []
+    },
+    {
+        "id": "24e3a618a270476a",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "CREATE",
+        "info": "",
+        "x": 1200,
+        "y": 5640,
+        "wires": []
+    },
+    {
+        "id": "12f1dfad4d7c2708",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ID",
+        "info": "",
+        "x": 1190,
+        "y": 5860,
+        "wires": []
+    },
+    {
+        "id": "40fc96df8061f04c",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "UPDATE ID",
+        "info": "",
+        "x": 1210,
+        "y": 6080,
+        "wires": []
+    },
+    {
+        "id": "4c77ce73bc990a50",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "DELETE ID",
+        "info": "",
+        "x": 1210,
+        "y": 6300,
+        "wires": []
+    },
+    {
+        "id": "d2d9c1e86cd5b597",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `SELECT \n    Sensor.ID, \n    Sensor.Nome, \n    Sensor.area_ID, \n    Sensor.ID_TipoSensor,\n    Sensor.coordenada,\n    a.Nome AS Area_Nome,\n    a.Localizacao AS Area_Localizacao\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon \nFROM \n    rs2lab.Sensor\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON Sensor.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON Sensor.ID_TipoSensor = t.ID\nWHERE \n    Sensor.ID = 5;`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 6020,
+        "wires": [
+            [
+                "09233203c96c6b18"
+            ]
+        ]
+    },
+    {
+        "id": "5150b8d7ae63ccbb",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1010,
+        "y": 6020,
+        "wires": [
+            [
+                "d2d9c1e86cd5b597"
+            ]
+        ]
+    },
+    {
+        "id": "68ccde629ccd6bda",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1430,
+        "y": 6020,
+        "wires": []
+    },
+    {
+        "id": "09233203c96c6b18",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1270,
+        "y": 6020,
+        "wires": [
+            [
+                "68ccde629ccd6bda"
+            ]
+        ]
     }
 ]

@@ -37,6 +37,10 @@
             <i class="fa fa-location-arrow" aria-hidden="true"></i>
             Local
           </b-dropdown-item>
+          <b-dropdown-item href="#" to="/sensor">
+            <i class="fa fa-microchip" aria-hidden="true"></i>
+            Sensor
+          </b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown

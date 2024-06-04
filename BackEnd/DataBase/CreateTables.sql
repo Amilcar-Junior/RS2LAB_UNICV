@@ -1,9 +1,3 @@
--- Criação da base de dados RS2LAB
-CREATE DATABASE IF NOT EXISTS RS2LAB;
-
--- Usar a base de dados RS2LAB
-USE RS2LAB;
-
 -- Criação da tabela TipoUtilizador
 CREATE TABLE IF NOT EXISTS TipoUtilizador (
     ID INT AUTO_INCREMENT PRIMARY KEY,
@@ -62,4 +56,15 @@ CREATE TABLE IF NOT EXISTS TipoSensor (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(255) NOT NULL,
     icon MEDIUMTEXT
+);
+
+-- Criação da tabela Sensor
+CREATE TABLE IF NOT EXISTS Sensor (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(255) NOT NULL,
+    area_ID INT,
+    ID_Tipo INT,
+    coordenada MEDIUMTEXT,
+    FOREIGN KEY (area_ID) REFERENCES AreaDeAgricultura(ID),
+    FOREIGN KEY (ID_Tipo) REFERENCES TipoSensor(ID)
 );

@@ -29,6 +29,10 @@ const ListLocal = httpVueLoader('./components/subcomponents/Local/View.vue');
 const CreateLocal = httpVueLoader('./components/subcomponents/Local/Create.vue');
 const EditLocal = httpVueLoader('./components/subcomponents/Local/Edit.vue');
 
+const ListSensor = httpVueLoader('./components/subcomponents/Sensor/View.vue');
+const CreateSensor = httpVueLoader('./components/subcomponents/Sensor/Create.vue');
+const EditSensor = httpVueLoader('./components/subcomponents/Sensor/Edit.vue');
+
 export default {
 
     routes: [
@@ -148,6 +152,21 @@ export default {
             path:'/local/:ID/edit',
             name:'EditLocal',
             component: EditLocal
+        },
+        {
+            path:'/sensor',
+            name:'ViewSensor',
+            component: ListSensor
+        },
+        {
+            path:'/sensor/create',
+            name:'CreateSensor',
+            component: CreateSensor
+        },
+        {
+            path:'/sensor/:ID/edit',
+            name:'EditSensor',
+            component: EditSensor
         },
     ],
 };

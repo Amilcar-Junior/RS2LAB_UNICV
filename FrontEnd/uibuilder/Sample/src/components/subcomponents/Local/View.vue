@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid mt-5">
-    <router-link to="/local" class="btn btn-secondary mb-3">
+    <router-link to="/" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
