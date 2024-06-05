@@ -22,43 +22,45 @@
       </div>
 
       <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col" class="col-1">ID</th>
-              <th scope="col" class="col-3">Nome</th>
-              <th scope="col" class="col-6">Descrição</th>
-              <th scope="col" class="col-2 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody v-if="paginatedItems.length > 0">
-            <tr v-for="(item, index) in paginatedItems" :key="index">
-              <td class="col-1">{{ item.ID }}</td>
-              <td class="col-3">{{ item.Nome }}</td>
-              <td class="col-6">{{ item.Descricao }}</td>
-              <td class="col-2 text-right">
-                <router-link
-                  :to="{ path: '/tipoutilizador/' + item.ID + '/edit' }"
-                  class="btn btn-success"
-                >
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                  Editar
-                </router-link>
-                <button
-                  type="button"
-                  @click="ShowConfirmDelete(item.ID)"
-                  class="btn btn-danger"
-                >
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                  Deletar
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <tbody v-else>
-            <td colspan="4">Carregando...</td>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col" class="col-1">ID</th>
+                <th scope="col" class="col-3">Nome</th>
+                <th scope="col" class="col-6">Descrição</th>
+                <th scope="col" class="col-2 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody v-if="paginatedItems.length > 0">
+              <tr v-for="(item, index) in paginatedItems" :key="index">
+                <td class="col-1">{{ item.ID }}</td>
+                <td class="col-3">{{ item.Nome }}</td>
+                <td class="col-6">{{ item.Descricao }}</td>
+                <td class="col-2 text-right">
+                  <router-link
+                    :to="{ path: '/tipoutilizador/' + item.ID + '/edit' }"
+                    class="btn btn-success"
+                  >
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    Editar
+                  </router-link>
+                  <button
+                    type="button"
+                    @click="ShowConfirmDelete(item.ID)"
+                    class="btn btn-danger"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Deletar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <tbody v-else>
+              <td colspan="4">Carregando...</td>
+            </tbody>
+          </table>
+        </div>
         <div class="d-flex justify-content-center">
           <b-pagination
             v-if="totalPages > 1"

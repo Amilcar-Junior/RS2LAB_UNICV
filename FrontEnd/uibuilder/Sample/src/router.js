@@ -33,18 +33,25 @@ const ListSensor = httpVueLoader('./components/subcomponents/Sensor/View.vue');
 const CreateSensor = httpVueLoader('./components/subcomponents/Sensor/Create.vue');
 const EditSensor = httpVueLoader('./components/subcomponents/Sensor/Edit.vue');
 
+const Dashboard = httpVueLoader('./components/subcomponents/Dashboard/Dashboard.vue');
+
 export default {
 
     routes: [
         {
             path: '/',
-            name: 'Home',
-            component: Home
+            name: 'Dashboard',
+            component: Dashboard
         },
         {
             path: '/perfil/:ID',
             name: 'Perfil',
             component: Perfil,
+        },
+        {
+            path: '/dashboard',
+            name: 'Dashboard',
+            component: Dashboard,
         },
         // {
         //     path:'/form',

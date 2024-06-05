@@ -7189,7 +7189,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT \n    AreaDeAgricultura.ID, \n    AreaDeAgricultura.Nome, \n    AreaDeAgricultura.Localizacao, \n    g.ID as Grupo_ID, \n    g.Nome AS Grupo_Nome,\n    l.ID as Local_ID,\n    l.Nome as Local_Nome,\n    l.lat,\n    l.lng\nFROM \n    rs2lab.AreaDeAgricultura\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON AreaDeAgricultura.ID_Grupo = g.ID\nLEFT JOIN\n    rs2lab.Local l ON AreaDeAgricultura.ID_Local = l.ID;`;\nreturn msg;\n\n\n\n",
+        "func": "msg.topic = `\nSELECT \n    a.ID AS Area_ID, \n    a.Nome AS Area_Nome, \n    a.Localizacao AS Area_Localizacao,\n    a.ID_Grupo AS Grupo_ID,\n    g.Nome AS Grupo_Nome,\n    a.ID_Local AS Local_ID,\n    l.Nome AS Local_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'Sensor_ID', s.ID,\n            'Sensor_Nome', s.Nome,\n            'TipoSensor_ID', s.ID_TipoSensor,\n            'Sensor_Coordenada', s.coordenada,\n            'TipoSensor_Nome', t.Nome,\n            'TipoSensor_Icon', t.icon\n        )\n    ) AS Sensores\nFROM \n    rs2lab.AreaDeAgricultura a\nLEFT JOIN \n    rs2lab.Sensor s ON a.ID = s.area_ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON a.ID_Grupo = g.ID\nLEFT JOIN\n    rs2lab.Local l ON a.ID_Local = l.ID\nGROUP BY \n    a.ID, g.Nome, l.Nome;\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -8992,9 +8992,9 @@
         "id": "64d2bce5e2eb6628",
         "type": "comment",
         "z": "ba85fe949960916b",
-        "name": "END AREADEAGRICULTURA",
+        "name": "END LOCAL",
         "info": "",
-        "x": 1220,
+        "x": 1170,
         "y": 7740,
         "wires": []
     },
@@ -9425,7 +9425,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT \n    Sensor.ID, \n    Sensor.Nome, \n    Sensor.area_ID, \n    Sensor.ID_TipoSensor,\n    Sensor.coordenada,\n    a.Nome AS Area_Nome,\n    a.Localizacao AS Area_Localizacao\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon \nFROM \n    rs2lab.Sensor\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON Sensor.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON Sensor.ID_TipoSensor = t.ID\nWHERE \n    Sensor.ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT \n    Sensor.ID, \n    Sensor.Nome, \n    Sensor.area_ID, \n    Sensor.ID_TipoSensor,\n    Sensor.coordenada,\n    a.Nome AS Area_Nome,\n    a.Localizacao AS Area_Localizacao,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon \nFROM \n    rs2lab.Sensor\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON Sensor.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON Sensor.ID_TipoSensor = t.ID\nWHERE \n    Sensor.ID = ${msg.req.params.ID};`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -10009,6 +10009,312 @@
         "wires": [
             [
                 "68ccde629ccd6bda"
+            ]
+        ]
+    },
+    {
+        "id": "12ba2647ed5f9452",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `\nSELECT \n    a.ID AS Area_ID, \n    a.Nome AS Area_Nome, \n    a.Localizacao AS Area_Localizacao,\n    a.ID_Grupo AS Grupo_ID,\n    a.ID_Local AS Local_ID,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'Sensor_ID', s.ID,\n            'Sensor_Nome', s.Nome,\n            'TipoSensor_ID', s.ID_TipoSensor,\n            'Sensor_Coordenada', s.coordenada,\n            'TipoSensor_Nome', t.Nome,\n            'TipoSensor_Icon', t.icon\n        )\n    ) AS Sensores\nFROM \n    rs2lab.AreaDeAgricultura a\nLEFT JOIN \n    rs2lab.Sensor s ON a.ID = s.area_ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nGROUP BY \n    a.ID;\n`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2020,
+        "y": 6680,
+        "wires": [
+            [
+                "9e22caae67936910"
+            ]
+        ]
+    },
+    {
+        "id": "2200464080cf8869",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1850,
+        "y": 6680,
+        "wires": [
+            [
+                "12ba2647ed5f9452"
+            ]
+        ]
+    },
+    {
+        "id": "1c8bfaedbea5c4a3",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2310,
+        "y": 6680,
+        "wires": []
+    },
+    {
+        "id": "1c238ebdb4f2c707",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `\nSELECT \n    a.ID AS Area_ID, \n    a.Nome AS Area_Nome, \n    a.Localizacao AS Area_Localizacao,\n    a.ID_Grupo AS Grupo_ID,\n    a.ID_Local AS Local_ID,\n    CONCAT('[', GROUP_CONCAT(\n        CONCAT(\n            '{\"Sensor_ID\":', s.ID, \n            ',\"Sensor_Nome\":\"', s.Nome, \n            '\",\"TipoSensor_ID\":', s.ID_TipoSensor, \n            ',\"Sensor_Coordenada\":\"', s.coordenada, \n            '\",\"TipoSensor_Nome\":\"', t.Nome, \n            '\",\"TipoSensor_Icon\":\"', t.icon, '\"}'\n        ) ORDER BY s.ID SEPARATOR ','\n    ), ']') AS Sensores\nFROM \n    rs2lab.AreaDeAgricultura a\nLEFT JOIN \n    rs2lab.Sensor s ON a.ID = s.area_ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nGROUP BY \n    a.ID;\n`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2060,
+        "y": 6740,
+        "wires": [
+            [
+                "62c5882be896272e"
+            ]
+        ]
+    },
+    {
+        "id": "c2d81f68db4a525c",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2350,
+        "y": 6740,
+        "wires": []
+    },
+    {
+        "id": "7a8925c33a29f0d8",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2350,
+        "y": 6780,
+        "wires": []
+    },
+    {
+        "id": "461af13ef6f1fad3",
+        "type": "http request",
+        "z": "ba85fe949960916b",
+        "name": "request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/rs2lab/local",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2020,
+        "y": 6800,
+        "wires": [
+            [
+                "7e45d49723dd97bc"
+            ]
+        ]
+    },
+    {
+        "id": "7e45d49723dd97bc",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2170,
+        "y": 6800,
+        "wires": []
+    },
+    {
+        "id": "e566e56ce6828b21",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1850,
+        "y": 6800,
+        "wires": [
+            [
+                "461af13ef6f1fad3"
+            ]
+        ]
+    },
+    {
+        "id": "ea78a64847098839",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "Get local",
+        "url": "/rs2lab/areasensor",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1830,
+        "y": 6740,
+        "wires": [
+            [
+                "1c238ebdb4f2c707"
+            ]
+        ]
+    },
+    {
+        "id": "9e22caae67936910",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2150,
+        "y": 6680,
+        "wires": [
+            [
+                "1c8bfaedbea5c4a3"
+            ]
+        ]
+    },
+    {
+        "id": "62c5882be896272e",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2190,
+        "y": 6740,
+        "wires": [
+            [
+                "c2d81f68db4a525c",
+                "7a8925c33a29f0d8"
+            ]
+        ]
+    },
+    {
+        "id": "cd70e95d085d8677",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "START AREADEAGRICULTURA & SENSOR",
+        "info": "",
+        "x": 2050,
+        "y": 6580,
+        "wires": []
+    },
+    {
+        "id": "db279bcc1adf04db",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "name": "GET ALL",
+        "info": "",
+        "x": 2040,
+        "y": 6620,
+        "wires": []
+    },
+    {
+        "id": "bcac36223982ee3d",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "QUERY",
+        "func": "msg.topic = `\nSELECT \n    a.ID AS Area_ID, \n    a.Nome AS Area_Nome, \n    a.Localizacao AS Area_Localizacao,\n    a.ID_Grupo AS Grupo_ID,\n    g.Nome AS Grupo_Nome,\n    a.ID_Local AS Local_ID,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'Sensor_ID', s.ID,\n            'Sensor_Nome', s.Nome,\n            'TipoSensor_ID', s.ID_TipoSensor,\n            'Sensor_Coordenada', s.coordenada,\n            'TipoSensor_Nome', t.Nome,\n            'TipoSensor_Icon', t.icon\n        )\n    ) AS Sensores\nFROM \n    rs2lab.AreaDeAgricultura a\nLEFT JOIN \n    rs2lab.Sensor s ON a.ID = s.area_ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON a.ID_Grupo = g.ID\nGROUP BY \n    a.ID, g.Nome;\n`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 6620,
+        "wires": [
+            [
+                "3057d94fa865b3a2"
+            ]
+        ]
+    },
+    {
+        "id": "ad509e9d19bb36d9",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 510,
+        "y": 6620,
+        "wires": [
+            [
+                "bcac36223982ee3d"
+            ]
+        ]
+    },
+    {
+        "id": "bd48a2f05626d71a",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 6620,
+        "wires": []
+    },
+    {
+        "id": "3057d94fa865b3a2",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 810,
+        "y": 6620,
+        "wires": [
+            [
+                "bd48a2f05626d71a"
             ]
         ]
     }

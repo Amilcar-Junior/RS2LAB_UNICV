@@ -41,6 +41,10 @@
             <i class="fa fa-microchip" aria-hidden="true"></i>
             Sensor
           </b-dropdown-item>
+          <b-dropdown-item href="#" to="/dashboard">
+            <i class="fa fa-tachometer" aria-hidden="true"></i>
+            DashBoard
+          </b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown

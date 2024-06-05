@@ -13,6 +13,7 @@
         "http-vue-loader": "^1.4.2",
         "leaflet": "^1.9.4",
         "leaflet-draw": "^1.0.4",
+        "leaflet.markercluster": "^1.5.3",
         "md5": "^2.3.0",
         "node-red-contrib-uibuilder": "^4.1.4",
         "node-red-node-mysql": "~2.0.0",

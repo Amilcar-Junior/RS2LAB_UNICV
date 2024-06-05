@@ -5,7 +5,9 @@
         <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
       </router-link>
       <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+        >
           <h4>Área de Agricultura</h4>
           <div>
             <input
@@ -23,53 +25,58 @@
           </div>
         </div>
         <div class="card-body">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col" class="col-1">ID</th>
-                <th scope="col" class="col-3">Nome</th>
-                <th scope="col" class="col-3">Grupo</th>
-                <th scope="col" class="col-2">Localização</th>
-                <th scope="col" class="col-1">Mapa</th>
-                <th scope="col" class="col-2 text-right">Ações</th>
-              </tr>
-            </thead>
-            <tbody v-if="paginatedItems.length > 0">
-              <tr v-for="(item, index) in paginatedItems" :key="index">
-                <td>{{ item.ID }}</td>
-                <td>{{ item.Nome }}</td>
-                <td>{{ item.Grupo_Nome }}</td>
-                <td>{{ item.Local_Nome }}</td>
-                <td>
-                  <button 
-                    v-if="hasValidCoordinates(item.Localizacao)"
-                    class="btn btn-info btn-sm"
-                    @click="showMap(item)"
-                  >
-                    <i class="fa fa-map" aria-hidden="true"></i> Mapa
-                  </button>
-                </td>
-                <td class="text-right">
-                  <router-link
-                    :to="{ path: '/areadeagricultura/' + item.ID + '/edit' }"
-                    class="btn btn-success"
-                  >
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Editar
-                  </router-link>
-                  <button
-                    type="button"
-                    @click="ShowConfirmDelete(item.ID)"
-                    class="btn btn-danger"
-                  >
-                    <i class="fa fa-trash" aria-hidden="true"></i> Deletar
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-            <tbody v-else>
-              <td colspan="6">Carregando...</td>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-1">ID</th>
+                  <th scope="col" class="col-2">Nome</th>
+                  <th scope="col" class="col-3">Sensores</th>
+                  <th scope="col" class="col-1">Grupo</th>
+                  <th scope="col" class="col-2">Localização</th>
+                  <th scope="col" class="col-1">Mapa</th>
+                  <th scope="col" class="col-2 text-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody v-if="paginatedItems.length > 0">
+                <tr v-for="(item, index) in paginatedItems" :key="index">
+                  <td>{{ item.Area_ID }}</td>
+                  <td>{{ item.Area_Nome }}</td>
+                  <td>{{ formatSensores(item.Sensores) }}</td>
+                  <td>{{ item.Grupo_Nome }}</td>
+                  <td>{{ item.Local_Nome }}</td>
+
+                  <td>
+                    <button
+                      v-if="hasValidCoordinates(item.Area_Localizacao)"
+                      class="btn btn-info btn-sm"
+                      @click="showMap(item)"
+                    >
+                      <i class="fa fa-map" aria-hidden="true"></i> Mapa
+                    </button>
+                  </td>
+                  <td class="text-right">
+                    <router-link
+                      :to="{ path: '/areadeagricultura/' + item.ID + '/edit' }"
+                      class="btn btn-success"
+                    >
+                      <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+                    </router-link>
+                    <button
+                      type="button"
+                      @click="ShowConfirmDelete(item.Area_ID)"
+                      class="btn btn-danger"
+                    >
+                      <i class="fa fa-trash" aria-hidden="true"></i> Deletar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody v-else>
+                <td colspan="6">Carregando...</td>
+              </tbody>
+            </table>
+          </div>
           <div class="d-flex justify-content-center">
             <b-pagination
               v-if="totalPages > 1"
@@ -126,8 +133,10 @@ module.exports = {
     filteredItems() {
       return this.items.filter((item) => {
         return (
-          item.Nome.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.ID.toString().includes(this.searchQuery) ||
+          item.Area_Nome.toLowerCase().includes(
+            this.searchQuery.toLowerCase()
+          ) ||
+          item.Area_ID.toString().includes(this.searchQuery) ||
           (item.Grupo_Nome &&
             item.Grupo_Nome.toLowerCase().includes(
               this.searchQuery.toLowerCase()
@@ -163,21 +172,30 @@ module.exports = {
         const [lat, lng] = coords.split(", ").map(Number);
         return !isNaN(lat) && !isNaN(lng);
       });
-      return coordinates.length > 0 && coordinates.every(coord => coord);
+      return coordinates.length > 0 && coordinates.every((coord) => coord);
     },
     showMap(item) {
-      if (item && item.Localizacao && this.hasValidCoordinates(item.Localizacao)) {
-        this.selectedLocation = item.Localizacao.split("; ").map((coords) => {
-          const [lat, lng] = coords.split(", ").map(Number);
-          return [lat, lng];
-        });
+      if (
+        item &&
+        item.Area_Localizacao &&
+        this.hasValidCoordinates(item.Area_Localizacao)
+      ) {
+        this.selectedLocation = item.Area_Localizacao.split("; ").map(
+          (coords) => {
+            const [lat, lng] = coords.split(", ").map(Number);
+            return [lat, lng];
+          }
+        );
         this.locationName = item.Nome; // Save the name for the popup
         this.mapModalShow = true;
         this.$nextTick(() => {
           this.initModalMap();
         });
       } else {
-        console.error("Erro: Localização não definida ou inválida para o item:", item);
+        console.error(
+          "Erro: Localização não definida ou inválida para o item:",
+          item
+        );
       }
     },
     initModalMap() {
@@ -185,34 +203,46 @@ module.exports = {
         this.modalMap.remove();
       }
 
-      const streets = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenStreetMap contributors",
-      });
+      const streets = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "© OpenStreetMap contributors",
+        }
+      );
 
-      const satellite = L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const satellite = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const hybrid = L.tileLayer("https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const hybrid = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const terrain = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
       this.modalMap = L.map("modalMap", {
-        layers: [streets]
+        layers: [streets],
       });
 
       this.baseMaps = {
-        "Streets": streets,
-        "Hybrid": hybrid,
-        "Satellite": satellite,
-        "Terrain": terrain,
+        Streets: streets,
+        Hybrid: hybrid,
+        Satellite: satellite,
+        Terrain: terrain,
       };
 
       L.control.layers(this.baseMaps).addTo(this.modalMap);
@@ -227,10 +257,15 @@ module.exports = {
           .bindPopup(this.locationName)
           .openPopup();
       } else {
-        console.error("Erro: Localização selecionada é inválida ou não está definida.");
+        console.error(
+          "Erro: Localização selecionada é inválida ou não está definida."
+        );
       }
 
       this.modalMap.invalidateSize();
+    },
+    formatSensores(sensores) {
+      return sensores.map((sensor) => sensor.Sensor_Nome).join(", ");
     },
     ShowConfirmDelete(ItemID) {
       this.$bvModal

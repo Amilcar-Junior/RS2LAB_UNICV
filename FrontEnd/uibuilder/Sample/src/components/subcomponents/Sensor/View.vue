@@ -5,7 +5,9 @@
         <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
       </router-link>
       <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+        >
           <h4>Sensor</h4>
           <div>
             <input
@@ -14,62 +16,61 @@
               placeholder="Buscar por nome, ID, Grupo ou Localização..."
               v-model="searchQuery"
             />
-            <router-link
-              to="/sensor/create"
-              class="btn btn-primary ml-2"
-            >
+            <router-link to="/sensor/create" class="btn btn-primary ml-2">
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
           </div>
         </div>
         <div class="card-body">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col" class="col-1">ID</th>
-                <th scope="col" class="col-3">Nome</th>
-                <th scope="col" class="col-3">Area</th>
-                <th scope="col" class="col-2">Tipo Sensor</th>
-                <th scope="col" class="col-1">Mapa</th>
-                <th scope="col" class="col-2 text-right">Ações</th>
-              </tr>
-            </thead>
-            <tbody v-if="paginatedItems.length > 0">
-              <tr v-for="(item, index) in paginatedItems" :key="index">
-                <td>{{ item.ID }}</td>
-                <td>{{ item.Nome }}</td>
-                <td>{{ item.Area_Nome }}</td>
-                <td>{{ item.TipoSensor_Nome }}</td>
-                <td>
-                  <button 
-                    v-if="hasValidCoordinates(item.coordenada)"
-                    class="btn btn-info btn-sm"
-                    @click="showMap(item)"
-                  >
-                    <i class="fa fa-map" aria-hidden="true"></i> Mapa
-                  </button>
-                </td>
-                <td class="text-right">
-                  <router-link
-                    :to="{ path: '/sensor/' + item.ID + '/edit' }"
-                    class="btn btn-success"
-                  >
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Editar
-                  </router-link>
-                  <button
-                    type="button"
-                    @click="ShowConfirmDelete(item.ID)"
-                    class="btn btn-danger"
-                  >
-                    <i class="fa fa-trash" aria-hidden="true"></i> Deletar
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-            <tbody v-else>
-              <td colspan="6">Carregando...</td>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-1">ID</th>
+                  <th scope="col" class="col-3">Nome</th>
+                  <th scope="col" class="col-3">Area</th>
+                  <th scope="col" class="col-2">Tipo Sensor</th>
+                  <th scope="col" class="col-1">Mapa</th>
+                  <th scope="col" class="col-2 text-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody v-if="paginatedItems.length > 0">
+                <tr v-for="(item, index) in paginatedItems" :key="index">
+                  <td>{{ item.ID }}</td>
+                  <td>{{ item.Nome }}</td>
+                  <td>{{ item.Area_Nome }}</td>
+                  <td>{{ item.TipoSensor_Nome }}</td>
+                  <td>
+                    <button
+                      v-if="hasValidCoordinates(item.coordenada)"
+                      class="btn btn-info btn-sm"
+                      @click="showMap(item)"
+                    >
+                      <i class="fa fa-map" aria-hidden="true"></i> Mapa
+                    </button>
+                  </td>
+                  <td class="text-right">
+                    <router-link
+                      :to="{ path: '/sensor/' + item.ID + '/edit' }"
+                      class="btn btn-success"
+                    >
+                      <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+                    </router-link>
+                    <button
+                      type="button"
+                      @click="ShowConfirmDelete(item.ID)"
+                      class="btn btn-danger"
+                    >
+                      <i class="fa fa-trash" aria-hidden="true"></i> Deletar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody v-else>
+                <td colspan="6">Carregando...</td>
+              </tbody>
+            </table>
+          </div>
           <div class="d-flex justify-content-center">
             <b-pagination
               v-if="totalPages > 1"
@@ -111,7 +112,7 @@ module.exports = {
       selectedCoordenada: [],
       searchQuery: "",
       baseMaps: null, // Base map layers
-      iconBase64: '', // Store the icon base64 string
+      iconBase64: "", // Store the icon base64 string
     };
   },
   mounted() {
@@ -160,20 +161,33 @@ module.exports = {
     },
     hasValidCoordinates(coordenada) {
       if (!coordenada) return false;
-      const coordinates = coordenada.split(",").map(coord => parseFloat(coord.trim()));
-      return coordinates.length === 2 && coordinates.every(coord => !isNaN(coord));
+      const coordinates = coordenada
+        .split(",")
+        .map((coord) => parseFloat(coord.trim()));
+      return (
+        coordinates.length === 2 && coordinates.every((coord) => !isNaN(coord))
+      );
     },
     showMap(item) {
-      if (item && item.coordenada && this.hasValidCoordinates(item.coordenada)) {
-        this.selectedCoordenada = item.coordenada.split(",").map(coord => parseFloat(coord.trim()));
-        this.iconBase64 = item.TipoSensor_Icon || ''; // Store the base64 icon string, default to empty string if null
+      if (
+        item &&
+        item.coordenada &&
+        this.hasValidCoordinates(item.coordenada)
+      ) {
+        this.selectedCoordenada = item.coordenada
+          .split(",")
+          .map((coord) => parseFloat(coord.trim()));
+        this.iconBase64 = item.TipoSensor_Icon || ""; // Store the base64 icon string, default to empty string if null
         this.locationName = item.Nome; // Save the name for the popup
         this.mapModalShow = true;
         this.$nextTick(() => {
           this.initModalMap();
         });
       } else {
-        console.error("Erro: Localização não definida ou inválida para o item:", item);
+        console.error(
+          "Erro: Localização não definida ou inválida para o item:",
+          item
+        );
       }
     },
     initModalMap() {
@@ -181,34 +195,46 @@ module.exports = {
         this.modalMap.remove();
       }
 
-      const streets = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenStreetMap contributors",
-      });
+      const streets = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "© OpenStreetMap contributors",
+        }
+      );
 
-      const satellite = L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const satellite = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const hybrid = L.tileLayer("https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const hybrid = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const terrain = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
       this.modalMap = L.map("modalMap", {
-        layers: [streets]
+        layers: [streets],
       });
 
       this.baseMaps = {
-        "Streets": streets,
-        "Hybrid": hybrid,
-        "Satellite": satellite,
-        "Terrain": terrain,
+        Streets: streets,
+        Hybrid: hybrid,
+        Satellite: satellite,
+        Terrain: terrain,
       };
 
       L.control.layers(this.baseMaps).addTo(this.modalMap);
@@ -225,11 +251,11 @@ module.exports = {
         // Use the default Leaflet icon if iconBase64 is empty
         if (!this.iconBase64) {
           customIcon = L.icon({
-            iconUrl: L.Icon.Default.prototype._getIconUrl('icon'), // Default Leaflet icon
+            iconUrl: L.Icon.Default.prototype._getIconUrl("icon"), // Default Leaflet icon
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34],
-            shadowSize: [41, 41]
+            shadowSize: [41, 41],
           });
         }
 
@@ -240,7 +266,9 @@ module.exports = {
 
         this.modalMap.setView(latLng, 13);
       } else {
-        console.error("Erro: Coordenada selecionada é inválida ou não está definida.");
+        console.error(
+          "Erro: Coordenada selecionada é inválida ou não está definida."
+        );
       }
 
       this.modalMap.invalidateSize();
