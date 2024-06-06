@@ -23,26 +23,7 @@
           </div>
         </div>
         <div class="card-body">
-          <div id="map" style="height: 500px;"></div>
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div v-for="sensor in allSensores" :key="sensor.ID" class="col-md-4">
-          <div class="card sensor-card mb-3 text-center">
-            <div class="card-header text-center">
-              <h5 class="card-title">{{ sensor.Nome }}</h5>
-            </div>
-            <div class="card-body">
-              <img
-                v-if="sensor.TipoSensor_Icon"
-                :src="'data:image/png;base64,' + sensor.TipoSensor_Icon"
-                alt="Sensor Icon"
-                class="sensor-icon my-3"
-              />
-              <i v-else class="fa fa-microchip fa-4x my-3"></i> <!-- Ícone padrão quando TipoSensor_Icon for null -->
-              <p class="sensor-value">{{ sensor.valor }}</p>
-            </div>
-          </div>
+          <div id="map" style="height: 700px;"></div>
         </div>
       </div>
     </div>
@@ -58,7 +39,6 @@ module.exports = {
       allSensores: [],
       baseMaps: null, // Base map layers
       map: null,
-      
       selectedSensorId: null,
       selectedAreaId: null,
       markers: null, // Marker cluster group
@@ -72,7 +52,6 @@ module.exports = {
           this.map.invalidateSize();
           this.retrieveItems();
           this.retrieveSensores();
-          this.startUpdatingSensorValues(); // Inicia a atualização dos valores dos sensores
         }
       }, 500);
     });
@@ -95,12 +74,8 @@ module.exports = {
       axios
         .get("/rs2lab/sensor")
         .then((response) => {
-          this.allSensores = response.data.map(sensor => ({
-            ...sensor,
-            valor: this.getRandomValue() // Adiciona o campo 'valor' com um valor aleatório inicial
-          }));
+          this.allSensores = response.data;
           console.log("Sensores recuperados:", response);
-          this.addSensorsToMap();
         })
         .catch((error) => {
           console.error("Erro ao recuperar Sensor:", error);
@@ -172,8 +147,7 @@ module.exports = {
           this.markers.addLayer(invisibleMarker);
         }
       });
-    },
-    addSensorsToMap() {
+
       this.allSensores.forEach(sensor => {
         if (this.hasValidCoordinates(sensor.coordenada)) {
           const sensorCoords = sensor.coordenada.split(",").map(Number);
@@ -221,20 +195,10 @@ module.exports = {
       if (selectedSensor && this.hasValidCoordinates(selectedSensor.coordenada)) {
         const sensorCoords = selectedSensor.coordenada.split(",").map(Number);
         this.map.setView(sensorCoords, 16);
-        console.log("Mapa centralizado nas coordenadas do sensor:", sensorCoords);
+        console.log("Mapa centralizado na coordenada do sensor:", sensorCoords);
       } else {
-        console.error("Erro: Coordenada não definida ou inválida para o sensor selecionado.");
+        console.error("Erro: Localização não definida ou inválida para o sensor selecionado.");
       }
-    },
-    getRandomValue() {
-      return Math.floor(Math.random() * 100); // Gera um valor aleatório entre 0 e 99
-    },
-    startUpdatingSensorValues() {
-      setInterval(() => {
-        this.allSensores.forEach(sensor => {
-          sensor.valor = this.getRandomValue(); // Atualiza o valor do sensor com um valor aleatório
-        });
-      }, 2000); // Atualiza a cada 2 segundos (2000 milissegundos)
     },
     hasValidCoordinates(localizacao) {
       if (!localizacao) return false;
@@ -252,18 +216,5 @@ module.exports = {
 #map {
   height: 500px; /* Assegura que a altura está definida */
   width: 100%; /* Opcionalmente, define a largura, se necessário */
-}
-.sensor-icon {
-  width: 64px;
-  height: 64px;
-  display: block;
-  margin: 0 auto;
-}
-.sensor-card .card-title {
-  font-size: 1.25rem;
-}
-.sensor-card .sensor-value {
-  font-size: 2rem;
-  font-weight: bold;
 }
 </style>
