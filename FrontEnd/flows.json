@@ -94,6 +94,37 @@
         "charset": "UTF8"
     },
     {
+        "id": "b0e7208048a256dc",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "62.171.180.52",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "2b5fcb475301977b",
         "type": "uibuilder",
         "z": "ba85fe949960916b",
@@ -10246,6 +10277,44 @@
         "info": "",
         "x": 2040,
         "y": 6620,
+        "wires": []
+    },
+    {
+        "id": "571255402670eafe",
+        "type": "mqtt in",
+        "z": "ba85fe949960916b",
+        "name": "Sensores Teste UNICV",
+        "topic": "ai4afs/gat/204/status/c",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b0e7208048a256dc",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "2fb73bd4857254cb"
+            ]
+        ]
+    },
+    {
+        "id": "2fb73bd4857254cb",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 60,
         "wires": []
     }
 ]

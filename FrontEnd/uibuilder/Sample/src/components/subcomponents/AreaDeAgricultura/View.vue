@@ -57,7 +57,7 @@
                   </td>
                   <td class="text-right">
                     <router-link
-                      :to="{ path: '/areadeagricultura/' + item.ID + '/edit' }"
+                      :to="{ path: '/areadeagricultura/' + item.Area_ID + '/edit' }"
                       class="btn btn-success"
                     >
                       <i class="fa fa-pencil" aria-hidden="true"></i> Editar

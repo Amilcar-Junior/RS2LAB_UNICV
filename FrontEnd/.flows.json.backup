@@ -94,6 +94,37 @@
         "charset": "UTF8"
     },
     {
+        "id": "b0e7208048a256dc",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "62.171.180.52",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "2b5fcb475301977b",
         "type": "uibuilder",
         "z": "ba85fe949960916b",
@@ -7133,7 +7164,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT \n    AreaDeAgricultura.ID, \n    AreaDeAgricultura.Nome, \n    AreaDeAgricultura.Localizacao, \n    g.ID as Grupo_ID, \n    g.Nome AS Grupo_Nome \nFROM \n    rs2lab.AreaDeAgricultura\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON AreaDeAgricultura.ID_Grupo = g.ID;`;\nreturn msg;\n\n\n",
+        "func": "msg.topic = `\nSELECT \n    a.ID AS Area_ID, \n    a.Nome AS Area_Nome, \n    a.Localizacao AS Area_Localizacao,\n    a.ID_Grupo AS Grupo_ID,\n    g.Nome AS Grupo_Nome,\n    a.ID_Local AS Local_ID,\n    l.Nome AS Local_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'Sensor_ID', s.ID,\n            'Sensor_Nome', s.Nome,\n            'TipoSensor_ID', s.ID_TipoSensor,\n            'Sensor_Coordenada', s.coordenada,\n            'TipoSensor_Nome', t.Nome,\n            'TipoSensor_Icon', t.icon\n        )\n    ) AS Sensores\nFROM \n    rs2lab.AreaDeAgricultura a\nLEFT JOIN \n    rs2lab.Sensor s ON a.ID = s.area_ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON a.ID_Grupo = g.ID\nLEFT JOIN\n    rs2lab.Local l ON a.ID_Local = l.ID\nGROUP BY \n    a.ID, g.Nome, l.Nome;\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -10249,73 +10280,41 @@
         "wires": []
     },
     {
-        "id": "bcac36223982ee3d",
-        "type": "function",
-        "z": "ba85fe949960916b",
-        "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    a.ID AS Area_ID, \n    a.Nome AS Area_Nome, \n    a.Localizacao AS Area_Localizacao,\n    a.ID_Grupo AS Grupo_ID,\n    g.Nome AS Grupo_Nome,\n    a.ID_Local AS Local_ID,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'Sensor_ID', s.ID,\n            'Sensor_Nome', s.Nome,\n            'TipoSensor_ID', s.ID_TipoSensor,\n            'Sensor_Coordenada', s.coordenada,\n            'TipoSensor_Nome', t.Nome,\n            'TipoSensor_Icon', t.icon\n        )\n    ) AS Sensores\nFROM \n    rs2lab.AreaDeAgricultura a\nLEFT JOIN \n    rs2lab.Sensor s ON a.ID = s.area_ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.GrupoUtilizadores g ON a.ID_Grupo = g.ID\nGROUP BY \n    a.ID, g.Nome;\n`;\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 6620,
-        "wires": [
-            [
-                "3057d94fa865b3a2"
-            ]
-        ]
-    },
-    {
-        "id": "ad509e9d19bb36d9",
-        "type": "inject",
+        "id": "571255402670eafe",
+        "type": "mqtt in",
         "z": "ba85fe949960916b",
         "name": "",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 510,
-        "y": 6620,
+        "topic": "ai4afs/gat/204/status/c",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b0e7208048a256dc",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 880,
+        "y": 420,
         "wires": [
             [
-                "bcac36223982ee3d"
+                "2fb73bd4857254cb"
             ]
         ]
     },
     {
-        "id": "bd48a2f05626d71a",
+        "id": "2fb73bd4857254cb",
         "type": "debug",
         "z": "ba85fe949960916b",
-        "name": "Result",
+        "name": "debug 8",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 970,
-        "y": 6620,
+        "x": 1100,
+        "y": 500,
         "wires": []
-    },
-    {
-        "id": "3057d94fa865b3a2",
-        "type": "mysql",
-        "z": "ba85fe949960916b",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "DB",
-        "x": 810,
-        "y": 6620,
-        "wires": [
-            [
-                "bd48a2f05626d71a"
-            ]
-        ]
     }
 ]

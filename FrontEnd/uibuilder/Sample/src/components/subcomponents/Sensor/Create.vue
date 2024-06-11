@@ -44,11 +44,11 @@
               >
                 <option disabled value="">Selecione um Area de Agricultura</option>
                 <option
-                  v-for="tipo in AreadeAgricultura"
-                  :key="tipo.ID"
-                  :value="tipo.ID"
+                  v-for="area in AreadeAgricultura"
+                  :key="area.Area_ID"
+                  :value="area.Area_ID"
                 >
-                  {{ tipo.Nome }}
+                  {{ area.Area_Nome }}
                 </option>
               </select>
             </div>
@@ -185,9 +185,9 @@ module.exports = {
       this.model.item.coordenada = coords;
     },
     zoomToLocal() {
-      const selectedLocation = this.AreadeAgricultura.find(loc => loc.ID === this.model.item.area_ID);
+      const selectedLocation = this.AreadeAgricultura.find(loc => loc.Area_ID === this.model.item.area_ID);
       if (selectedLocation) {
-        const coordinates = selectedLocation.Localizacao.split(";").map(coord => coord.split(",").map(Number));
+        const coordinates = selectedLocation.Area_Localizacao.split(";").map(coord => coord.split(",").map(Number));
         if (coordinates.length > 0) {
           const firstTwoCoordinates = coordinates.slice(0, 2);
           const latLng = firstTwoCoordinates[0];
@@ -216,6 +216,7 @@ module.exports = {
         .get("/rs2lab/areadeagricultura")
         .then((response) => {
           this.AreadeAgricultura = response.data;
+          console.log("Area:", response)
         })
         .catch((error) => {
           console.error("Erro ao buscar grupos de utilizadores:", error);
