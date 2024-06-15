@@ -186,7 +186,7 @@ module.exports = {
             return [lat, lng];
           }
         );
-        this.locationName = item.Nome; // Save the name for the popup
+        this.locationName = item.Area_Nome; // Save the name for the popup
         this.mapModalShow = true;
         this.$nextTick(() => {
           this.initModalMap();
