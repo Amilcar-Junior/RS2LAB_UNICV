@@ -35,11 +35,15 @@
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/local">
             <i class="fa fa-location-arrow" aria-hidden="true"></i>
-            Local
+            Locais
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/sensor">
             <i class="fa fa-microchip" aria-hidden="true"></i>
-            Sensor
+            Sensores
+          </b-dropdown-item>
+          <b-dropdown-item href="#" to="/valorsensor">
+            <i class="fa fa-microchip" aria-hidden="true"></i>
+            Topicos de Sensores
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/dashboard">
             <i class="fa fa-tachometer" aria-hidden="true"></i>

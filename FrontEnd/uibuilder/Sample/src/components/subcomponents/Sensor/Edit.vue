@@ -34,6 +34,19 @@
             </select>
           </div>
           <div class="mb-3">
+            <label for="id_tiposensor" class="form-label">Topico Sensor</label>
+            <select v-model="model.item.ID_ValorSensor" class="form-control" required>
+              <option value="" disabled selected>Selecione o Topico do Sensor</option>
+              <option
+                v-for="topico in ValorSensor"
+                :key="topico.ID"
+                :value="topico.ID"
+              >
+                {{ topico.Topico }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
             <label for="area" class="form-label">Área de Agricultura</label>
             <div class="mb-3">
               <select
@@ -45,10 +58,10 @@
                 <option disabled value="">Selecione uma Área de Agricultura</option>
                 <option
                   v-for="area in AreadeAgricultura"
-                  :key="area.ID"
-                  :value="area.ID"
+                  :key="area.Area_ID"
+                  :value="area.Area_ID"
                 >
-                  {{ area.Nome }}
+                  {{ area.Area_Nome }}
                 </option>
               </select>
             </div>
@@ -83,12 +96,14 @@ module.exports = {
           Nome: "",
           area_ID: "",
           ID_TipoSensor: "",
+          ID_ValorSensor: "",
           coordenada: "",
           TipoSensor_Icon: "", // Adicionado para ícone do sensor
         },
       },
       AreadeAgricultura: [],
       TipoSensor: [],
+      ValorSensor: [],
       map: null,
       drawnItems: new L.FeatureGroup(), // Initialize drawnItems
       selectedAreadeAgricultura: "",
@@ -100,6 +115,7 @@ module.exports = {
     this.retrieveSensor();
     this.getAreadeAgricultura();
     this.getTipoSensor();
+    this.getValorSensor();
     this.$nextTick(() => {
       setTimeout(() => {
         this.initMap();
@@ -142,6 +158,16 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar tipos de sensor:", error);
+        });
+    },
+    getValorSensor() {
+      axios
+        .get("/rs2lab/valorsensor")
+        .then((response) => {
+          this.ValorSensor = response.data;
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar topicos de sensor:", error);
         });
     },
     initMap() {
@@ -293,8 +319,8 @@ module.exports = {
         area_ID: this.model.item.area_ID,
         ID_TipoSensor: this.model.item.ID_TipoSensor,
         coordenada: this.model.item.coordenada,
+        ID_ValorSensor: this.model.item.ID_ValorSensor,
       };
-
       console.log("Enviando dados para atualização:", payload);
 
       axios

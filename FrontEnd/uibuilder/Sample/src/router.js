@@ -33,6 +33,10 @@ const ListSensor = httpVueLoader('./components/subcomponents/Sensor/View.vue');
 const CreateSensor = httpVueLoader('./components/subcomponents/Sensor/Create.vue');
 const EditSensor = httpVueLoader('./components/subcomponents/Sensor/Edit.vue');
 
+const ListValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/View.vue');
+const CreateValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Create.vue');
+const EditValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Edit.vue');
+
 const Dashboard = httpVueLoader('./components/subcomponents/Dashboard/Dashboard.vue');
 
 export default {
@@ -174,6 +178,21 @@ export default {
             path:'/sensor/:ID/edit',
             name:'EditSensor',
             component: EditSensor
+        },
+        {
+            path:'/valorsensor',
+            name:'ViewValorSensor',
+            component: ListValorSensor
+        },
+        {
+            path:'/valorsensor/create',
+            name:'CreateValorSensor',
+            component: CreateValorSensor
+        },
+        {
+            path:'/valorsensor/:ID/edit',
+            name:'EditValorSensor',
+            component: EditValorSensor
         },
     ],
 };

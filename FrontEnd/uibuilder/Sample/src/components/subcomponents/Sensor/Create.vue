@@ -34,6 +34,19 @@
             </select>
           </div>
           <div class="mb-3">
+            <label for="id_grupo" class="form-label">Topico Sensor</label>
+            <select v-model="model.item.ID_ValorSensor" class="form-control" required>
+              <option value="" disabled selected>Selecione o Topico Sensor</option>
+              <option
+                v-for="topico in ValorSensor"
+                :key="topico.ID"
+                :value="topico.ID"
+              >
+                {{ topico.Topico }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
             <label for="localizacao" class="form-label">Area de Agricultura</label>
             <div class="mb-3">
               <select
@@ -83,11 +96,13 @@ module.exports = {
           Nome: "",
           area_ID: "",
           ID_TipoSensor: "",
+          ID_ValorSensor: "",
           coordenada: "",
         },
       },
       AreadeAgricultura: [],
       TipoSensor: [],
+      ValorSensor: [],
       map: null,
       drawnItems: new L.FeatureGroup(), // Initialize drawnItems
       selectedAreadeAgricultura: "",
@@ -97,6 +112,7 @@ module.exports = {
   mounted() {
     this.getAreadeAgricultura();
     this.getTipoSensor();
+    this.getValorSensor();
     this.$nextTick(() => {
       setTimeout(() => {
         this.initMap();
@@ -228,6 +244,17 @@ module.exports = {
         .then((response) => {
           console.log(response)
           this.TipoSensor = response.data;
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar dados locais:", error);
+        });
+    },
+    getValorSensor() {
+      axios
+        .get("/rs2lab/valorsensor")
+        .then((response) => {
+          console.log(response)
+          this.ValorSensor = response.data;
         })
         .catch((error) => {
           console.error("Erro ao buscar dados locais:", error);

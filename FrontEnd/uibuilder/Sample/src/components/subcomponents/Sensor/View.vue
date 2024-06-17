@@ -30,6 +30,7 @@
                   <th scope="col" class="col-3">Nome</th>
                   <th scope="col" class="col-3">Area</th>
                   <th scope="col" class="col-2">Tipo Sensor</th>
+                  <th scope="col" class="col-2">Tópico</th>
                   <th scope="col" class="col-1">Mapa</th>
                   <th scope="col" class="col-2 text-right">Ações</th>
                 </tr>
@@ -40,6 +41,7 @@
                   <td>{{ item.Nome }}</td>
                   <td>{{ item.Area_Nome }}</td>
                   <td>{{ item.TipoSensor_Nome }}</td>
+                  <td>{{ item.ValorSensor_Topico }}</td>
                   <td>
                     <button
                       v-if="hasValidCoordinates(item.coordenada)"
