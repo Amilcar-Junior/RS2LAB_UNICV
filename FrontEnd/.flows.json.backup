@@ -12173,7 +12173,7 @@
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
         "name": "QUERY",
-        "func": "msg.topic = `UPDATE rs2lab.ValorSensor \nSET Valor = ${msg.payload.Valor}, \n    Data_Hora = NOW(),, \n    Topico = '${msg.payload.Topico}'\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "func": "msg.topic = `UPDATE rs2lab.ValorSensor \nSET Valor = ${msg.payload.Valor}, \n    Data_Hora = NOW(), \n    Topico = '${msg.payload.Topico}'\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,

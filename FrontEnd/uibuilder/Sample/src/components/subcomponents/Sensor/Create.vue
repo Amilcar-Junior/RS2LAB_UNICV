@@ -105,7 +105,6 @@ module.exports = {
       ValorSensor: [],
       map: null,
       drawnItems: new L.FeatureGroup(), // Initialize drawnItems
-      selectedAreadeAgricultura: "",
       baseMaps: null, // Adicionado baseMaps para camadas de mapa
     };
   },
@@ -220,11 +219,11 @@ module.exports = {
         .post("/rs2lab/addsensor", this.model.item)
         .then(() => {
           this.showNotification("Sensor adicionada com sucesso!");
-          this.$router.push("/sensor");
+          // this.$router.push("/sensor");
         })
         .catch((error) => {
           console.error("Erro ao adicionar a Sensor:", error);
-          this.showNotification("Erro ao adicionar a Sensor.", "danger");
+          this.showNotificationToast("Erro ao adicionar a Sensor.", "danger");
         });
     },
     getAreadeAgricultura() {
@@ -260,12 +259,38 @@ module.exports = {
           console.error("Erro ao buscar dados locais:", error);
         });
     },
-    showNotification(message, variant = "success") {
+    showNotification(message) {
+      var self = this; //Assign this to a variable
+      this.boxTwo = "";
+      this.$bvModal
+        .msgBoxOk(message, {
+          title: "Confirmation",
+          size: "sm",
+          buttonSize: "sm",
+          okVariant: "success",
+          headerClass: "p-2 border-bottom-0",
+          footerClass: "p-2 border-top-0",
+          centered: true,
+        })
+        .then((value) => {
+          self.cleanForm(); //clears form upon confirmation of user
+        })
+        .catch((err) => {});
+    },
+    showNotificationToast(message, variant = "success") {
       this.$bvToast.toast(message, {
         title: "Confirmação",
         variant: variant,
         solid: true,
       });
+    },
+    cleanForm() {
+      this.model.item.Nome = "";
+      this.model.item.area_ID = "";
+      this.model.item.ID_TipoSensor = "";
+      this.model.item.ID_ValorSensor = "";
+      this.model.item.coordenada = "";
+      this.model.item.map = null;
     },
   },
 };
