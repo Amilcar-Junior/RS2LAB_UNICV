@@ -1,29 +1,43 @@
--- Criação da tabela TipoUtilizador
+-- Criação da base de dados
+CREATE DATABASE IF NOT EXISTS rs2lab;
+
+-- Usar a base de dados rs2lab
+USE rs2lab;
+
+-- Tabela TipoUtilizador
 CREATE TABLE IF NOT EXISTS TipoUtilizador (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(255) NOT NULL,
     Descricao TEXT
 );
 
--- Criação da tabela GrupoUtilizadores
+-- Tabela GrupoUtilizadores
 CREATE TABLE IF NOT EXISTS GrupoUtilizadores (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(255) NOT NULL
 );
 
--- Criação da tabela Utilizador
+-- Tabela Local
+CREATE TABLE IF NOT EXISTS Local (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(255) NOT NULL,
+    lat DECIMAL(10, 8) NOT NULL,
+    lng DECIMAL(11, 8) NOT NULL
+);
+
+-- Tabela Utilizador
 CREATE TABLE IF NOT EXISTS Utilizador (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL UNIQUE,
     Senha VARCHAR(255) NOT NULL,
-    image TEXT,
+    image MEDIUMTEXT,
     isActive BOOLEAN NOT NULL DEFAULT TRUE,
     ID_TipoUtilizador INT,
     FOREIGN KEY (ID_TipoUtilizador) REFERENCES TipoUtilizador(ID)
 );
 
--- Criação da tabela UtilizadorGrupo
+-- Tabela UtilizadorGrupo
 CREATE TABLE IF NOT EXISTS UtilizadorGrupo (
     ID_Utilizador INT,
     ID_Grupo INT,
@@ -32,7 +46,7 @@ CREATE TABLE IF NOT EXISTS UtilizadorGrupo (
     FOREIGN KEY (ID_Grupo) REFERENCES GrupoUtilizadores(ID)
 );
 
--- Criação da tabela AreaDeAgricultura
+-- Tabela AreaDeAgricultura
 CREATE TABLE IF NOT EXISTS AreaDeAgricultura (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(255) NOT NULL,
@@ -43,28 +57,30 @@ CREATE TABLE IF NOT EXISTS AreaDeAgricultura (
     FOREIGN KEY (ID_Local) REFERENCES Local(ID)
 );
 
--- Criação da tabela Local
-CREATE TABLE IF NOT EXISTS Local (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(255) NOT NULL,
-    lat DECIMAL(10, 8) NOT NULL,
-    lng DECIMAL(11, 8) NOT NULL
-);
-
--- Criação da tabela TipoSensor
+-- Tabela TipoSensor
 CREATE TABLE IF NOT EXISTS TipoSensor (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(255) NOT NULL,
     icon MEDIUMTEXT
 );
 
--- Criação da tabela Sensor
+-- Tabela ValorSensor
+CREATE TABLE IF NOT EXISTS ValorSensor (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Valor FLOAT NOT NULL,
+    Data_Hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Topico VARCHAR(255) NOT NULL
+);
+
+-- Tabela Sensor
 CREATE TABLE IF NOT EXISTS Sensor (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(255) NOT NULL,
     area_ID INT,
-    ID_Tipo INT,
-    coordenada MEDIUMTEXT,
+    ID_TipoSensor INT,
+    coordenada VARCHAR(255),
+    ID_ValorSensor INT,
     FOREIGN KEY (area_ID) REFERENCES AreaDeAgricultura(ID),
-    FOREIGN KEY (ID_Tipo) REFERENCES TipoSensor(ID)
+    FOREIGN KEY (ID_TipoSensor) REFERENCES TipoSensor(ID),
+    FOREIGN KEY (ID_ValorSensor) REFERENCES ValorSensor(ID)
 );
