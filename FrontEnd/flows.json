@@ -12656,5 +12656,43 @@
                 "c12ce9047b687408"
             ]
         ]
+    },
+    {
+        "id": "51dbcb7f201fc48e",
+        "type": "mqtt in",
+        "z": "ba85fe949960916b",
+        "name": "Sensores Teste ASF",
+        "topic": "ai4afs/gat/af/status/c",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b0e7208048a256dc",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 2450,
+        "y": 5520,
+        "wires": [
+            [
+                "cc2bb1cd24a4cd23"
+            ]
+        ]
+    },
+    {
+        "id": "cc2bb1cd24a4cd23",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2740,
+        "y": 5520,
+        "wires": []
     }
 ]
