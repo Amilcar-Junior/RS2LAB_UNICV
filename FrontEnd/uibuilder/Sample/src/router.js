@@ -37,6 +37,7 @@ const ListValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Vi
 const CreateValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Create.vue');
 const EditValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Edit.vue');
 
+const Map = httpVueLoader('./components/subcomponents/Dashboard/Map.vue');
 const Dashboard = httpVueLoader('./components/subcomponents/Dashboard/Dashboard.vue');
 
 export default {
@@ -44,8 +45,8 @@ export default {
     routes: [
         {
             path: '/',
-            name: 'Dashboard',
-            component: Dashboard
+            name: 'Map',
+            component: Map
         },
         {
             path: '/perfil/:ID',
@@ -56,6 +57,11 @@ export default {
             path: '/dashboard',
             name: 'Dashboard',
             component: Dashboard,
+        },
+        {
+            path: '/map',
+            name: 'Map',
+            component: Map,
         },
         // {
         //     path:'/form',

@@ -9,6 +9,7 @@
     "axios",
     "chart.js",
     "jquery",
+    "paho-mqtt",
     "moonjs",
     "reactjs",
     "riot",

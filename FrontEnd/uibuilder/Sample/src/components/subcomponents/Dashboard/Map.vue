@@ -1,0 +1,275 @@
+<template>
+  <div>
+    <div class="container-fluid mt-5">
+      <router-link to="/" class="btn btn-secondary mb-3">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+      </router-link>
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h4>Mapa da Área de Agricultura</h4>
+          <div>
+            <select v-model="selectedAreaId" @change="zoomToArea" class="form-control d-inline-block w-auto">
+              <option value="" disabled selected>Selecione a Área de Agricultura</option>
+              <option v-for="area in items" :key="area.Area_ID" :value="area.Area_ID">
+                {{ area.Area_Nome }}
+              </option>
+            </select>
+            <select v-model="selectedSensorId" @change="zoomToSensor" class="form-control d-inline-block w-auto ml-2">
+              <option value="" disabled selected>Selecione um Sensor</option>
+              <option v-for="sensor in filteredSensors" :key="sensor.ID" :value="sensor.ID">
+                {{ sensor.Nome }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="map" style="height: 500px;"></div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div v-for="sensor in filteredSensors" :key="sensor.ID" class="col-md-4">
+          <div class="card sensor-card mb-3 text-center">
+            <div class="card-header text-center">
+              <h5 class="card-title">{{ sensor.Nome }}</h5>
+            </div>
+            <div class="card-body">
+              <img
+                v-if="sensor.TipoSensor_Icon"
+                :src="'data:image/png;base64,' + sensor.TipoSensor_Icon"
+                alt="Sensor Icon"
+                class="sensor-icon my-3"
+              />
+              <i v-else class="fa fa-microchip fa-4x my-3"></i>
+              <!-- Ícone padrão quando TipoSensor_Icon for null -->
+              <p class="sensor-value">{{ sensor.valor }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<script>
+module.exports = {
+  name: "MapaAreaDeAgricultura",
+  data() {
+    return {
+      items: [],
+      allSensores: [],
+      baseMaps: null, // Base map layers
+      map: null,
+      selectedSensorId: null,
+      selectedAreaId: null,
+      markers: null, // Marker cluster group
+    };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.initMap();
+        if (this.map) {
+          this.map.invalidateSize();
+          this.retrieveItems();
+          this.retrieveSensores();
+          this.startUpdatingSensorValues(); // Inicia a atualização dos valores dos sensores
+        }
+      }, 500);
+    });
+  },
+  computed: {
+    filteredSensors() {
+      if (!this.selectedAreaId) return this.allSensores;
+      return this.allSensores.filter(sensor => sensor.area_ID === this.selectedAreaId);
+    },
+  },
+  methods: {
+    retrieveItems() {
+      axios
+        .get("/rs2lab/areadeagricultura")
+        .then((response) => {
+          this.items = response.data;
+          console.log("Dados recuperados:", response);
+          this.addAreasToMap();
+        })
+        .catch((error) => {
+          console.error("Erro ao recuperar Área de Agricultura:", error);
+        });
+    },
+    retrieveSensores() {
+      axios
+        .get("/rs2lab/sensor")
+        .then((response) => {
+          this.allSensores = response.data.map(sensor => ({
+            ...sensor,
+            valor: this.getRandomValue() // Adiciona o campo 'valor' com um valor aleatório inicial
+          }));
+          console.log("Sensores recuperados:", response);
+          this.addSensorsToMap();
+        })
+        .catch((error) => {
+          console.error("Erro ao recuperar Sensor:", error);
+        });
+    },
+    initMap() {
+      const streets = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      });
+
+      const hybrid = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenTopoMap contributors",
+      });
+
+      const satellite = L.tileLayer("https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
+        attribution: "Map data ©2023 Google",
+        subdomains: ["mt0", "mt1", "mt2", "mt3"]
+      });
+
+      const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
+        attribution: "Map data ©2023 Google",
+        subdomains: ["mt0", "mt1", "mt2", "mt3"]
+      });
+
+      this.map = L.map("map", {
+        center: [0, 0],
+        zoom: 2,
+        layers: [streets],
+      });
+
+      this.baseMaps = {
+        "Streets": streets,
+        "Satellite": satellite,
+        "Hibrido": hybrid,
+        "Terreno": terrain,
+      };
+
+      L.control.layers(this.baseMaps).addTo(this.map);
+
+      // Initialize the marker cluster group
+      this.markers = L.markerClusterGroup();
+      this.map.addLayer(this.markers); // Ensure the cluster group is added to the map
+      console.log("Mapa inicializado");
+    },
+    addAreasToMap() {
+      if (!this.map || !this.markers) {
+        console.error("Mapa ou marcadores não estão inicializados.");
+        return;
+      }
+
+      this.items.forEach((item) => {
+        // Adiciona polígono da área de agricultura
+        if (this.hasValidCoordinates(item.Area_Localizacao)) {
+          const areaCoords = item.Area_Localizacao.split("; ").map(coords => {
+            const [lat, lng] = coords.split(", ").map(Number);
+            return [lat, lng];
+          });
+
+          const polygon = L.polygon(areaCoords, { color: "blue" })
+            .bindPopup(`<b>${item.Area_Nome}</b>`);
+
+          polygon.addTo(this.map);
+          
+          // Create an invisible marker in the center of the polygon
+          const center = polygon.getBounds().getCenter();
+          const invisibleMarker = L.marker(center, { opacity: 0 })
+            .bindPopup(`<b>${item.Area_Nome}</b>`);
+          
+          this.markers.addLayer(invisibleMarker);
+        }
+      });
+    },
+    addSensorsToMap() {
+      this.allSensores.forEach(sensor => {
+        if (this.hasValidCoordinates(sensor.coordenada)) {
+          const sensorCoords = sensor.coordenada.split(",").map(Number);
+
+          const iconUrl = sensor.TipoSensor_Icon ? `data:image/png;base64,${sensor.TipoSensor_Icon}` : null;
+
+          const customIcon = iconUrl ? L.icon({
+            iconUrl: iconUrl,
+            iconSize: [32, 32], // Ajusta o tamanho do ícone conforme necessário
+            iconAnchor: [16, 32], // Ajusta o ponto de ancoragem conforme necessário
+          }) : L.icon({
+            iconUrl: L.Icon.Default.imagePath + '/marker-icon.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+          });
+
+          const marker = L.marker(sensorCoords, { icon: customIcon })
+            .bindPopup(`<b>${sensor.Nome}</b><br>Tipo: ${sensor.TipoSensor_Nome}`);
+
+          this.markers.addLayer(marker); // Add marker to the cluster group
+        }
+      });
+
+      this.map.addLayer(this.markers); // Ensure the cluster group is added to the map
+    },
+    zoomToArea() {
+      const selectedArea = this.items.find(area => area.Area_ID === this.selectedAreaId);
+      if (selectedArea && this.hasValidCoordinates(selectedArea.Area_Localizacao)) {
+        const coordsArray = selectedArea.Area_Localizacao.split("; ").map(coord => coord.split(", ").map(Number));
+        if (coordsArray.length > 1 && !isNaN(coordsArray[0][0]) && !isNaN(coordsArray[0][1])) {
+          const latLng = [coordsArray[0][0], coordsArray[0][1]];
+          this.map.setView(latLng, 16);
+          console.log("Mapa centralizado nas primeiras coordenadas da localização:", latLng);
+        } else {
+          console.error("Coordenadas inválidas na localização selecionada.");
+        }
+      } else {
+        console.error("Erro: Localização não definida ou inválida para a área selecionada.");
+      }
+    },
+    zoomToSensor() {
+      const selectedSensor = this.allSensores.find(sensor => sensor.ID === this.selectedSensorId);
+      if (selectedSensor && this.hasValidCoordinates(selectedSensor.coordenada)) {
+        const sensorCoords = selectedSensor.coordenada.split(",").map(Number);
+        this.map.setView(sensorCoords, 16);
+        console.log("Mapa centralizado nas coordenadas do sensor:", sensorCoords);
+      } else {
+        console.error("Erro: Coordenada não definida ou inválida para o sensor selecionado.");
+      }
+    },
+    getRandomValue() {
+      return Math.floor(Math.random() * 100); // Gera um valor aleatório entre 0 e 99
+    },
+    startUpdatingSensorValues() {
+      setInterval(() => {
+        this.allSensores.forEach(sensor => {
+          sensor.valor = this.getRandomValue(); // Atualiza o valor do sensor com um valor aleatório
+        });
+      }, 2000); // Atualiza a cada 2 segundos (2000 milissegundos)
+    },
+    hasValidCoordinates(localizacao) {
+      if (!localizacao) return false;
+      const coordinates = localizacao.split("; ").map(coords => {
+        const [lat, lng] = coords.split(", ").map(Number);
+        return !isNaN(lat) && !isNaN(lng);
+      });
+      return coordinates.length > 0 && coordinates.every(coord => coord);
+    },
+  },
+};
+</script>
+
+<style scoped>
+#map {
+  height: 500px; /* Assegura que a altura está definida */
+  width: 100%; /* Opcionalmente, define a largura, se necessário */
+}
+.sensor-icon {
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin: 0 auto;
+}
+.sensor-card .card-title {
+  font-size: 1.25rem;
+}
+.sensor-card .sensor-value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+</style>

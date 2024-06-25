@@ -10,6 +10,8 @@
   "axios",
   "md5",
   "leaflet",
+  "chart.js",
+  "paho-mqtt",
   "leaflet-draw",
   "leaflet.markercluster",
   "@fortawesome/fontawesome-svg-core",

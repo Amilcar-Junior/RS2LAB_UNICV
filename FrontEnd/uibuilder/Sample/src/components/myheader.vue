@@ -45,6 +45,10 @@
             <i class="fa fa-microchip" aria-hidden="true"></i>
             Topicos de Sensores
           </b-dropdown-item>
+          <b-dropdown-item href="#" to="/map">
+            <i class="fa fa-map" aria-hidden="true"></i>
+            Mapa
+          </b-dropdown-item>
           <b-dropdown-item href="#" to="/dashboard">
             <i class="fa fa-tachometer" aria-hidden="true"></i>
             DashBoard

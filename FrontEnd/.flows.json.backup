@@ -913,6 +913,42 @@
         "sessionExpiry": ""
     },
     {
+        "id": "bee4f1305955a57b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.mqttdashboard.com",
+        "port": "1883",
+        "clientid": "clientId-CodeMechanic",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "5d775919ba8c6506",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "mytutorial",
+        "tz": "+08:00",
+        "charset": "UTF8"
+    },
+    {
         "id": "2b5fcb475301977b",
         "type": "uibuilder",
         "z": "ba85fe949960916b",
@@ -12662,7 +12698,7 @@
         "type": "mqtt in",
         "z": "ba85fe949960916b",
         "name": "Sensores Teste ASF",
-        "topic": "ai4afs/node/af/1",
+        "topic": "ai4afs/gat/af/status/c",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "b0e7208048a256dc",
@@ -12692,6 +12728,346 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2740,
+        "y": 5520,
+        "wires": []
+    },
+    {
+        "id": "9b3b37b5be0acf74",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 3250,
+        "y": 5740,
+        "wires": [
+            [
+                "dd167bacd7506674"
+            ]
+        ]
+    },
+    {
+        "id": "70bb7e6f49223c30",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Query",
+        "func": "msg.topic = 'SELECT * FROM rs2lab.ValorSensor;'\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3130,
+        "y": 5740,
+        "wires": [
+            [
+                "9b3b37b5be0acf74"
+            ]
+        ]
+    },
+    {
+        "id": "937af55b56fc59ed",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 3010,
+        "y": 5740,
+        "wires": [
+            [
+                "70bb7e6f49223c30"
+            ]
+        ]
+    },
+    {
+        "id": "dd167bacd7506674",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3370,
+        "y": 5740,
+        "wires": []
+    },
+    {
+        "id": "811a26f1ebf238f9",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 3250,
+        "y": 5780,
+        "wires": [
+            [
+                "e29adb0f8528ed4c",
+                "325248a3d1b0599f"
+            ]
+        ]
+    },
+    {
+        "id": "06e045f9ef1c53ba",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Query",
+        "func": "msg.topic = 'SELECT * FROM rs2lab.ValorSensor;'\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3130,
+        "y": 5780,
+        "wires": [
+            [
+                "811a26f1ebf238f9"
+            ]
+        ]
+    },
+    {
+        "id": "e29adb0f8528ed4c",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3370,
+        "y": 5780,
+        "wires": []
+    },
+    {
+        "id": "325248a3d1b0599f",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 3510,
+        "y": 5780,
+        "wires": []
+    },
+    {
+        "id": "eaca9719ea39d08e",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "name": "IoTParams",
+        "url": "/rs2lab/IoTParameters",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 3000,
+        "y": 5780,
+        "wires": [
+            [
+                "06e045f9ef1c53ba"
+            ]
+        ]
+    },
+    {
+        "id": "8bfb63053b8036d7",
+        "type": "mqtt out",
+        "z": "ba85fe949960916b",
+        "name": "Temperature",
+        "topic": "/MQTT/Temp",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bee4f1305955a57b",
+        "x": 3330,
+        "y": 5460,
+        "wires": []
+    },
+    {
+        "id": "c4625765f683d34b",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "12",
+        "payloadType": "num",
+        "x": 3010,
+        "y": 5540,
+        "wires": [
+            [
+                "b69f89521c4cc5ea",
+                "e276534d9ebf0a06",
+                "c60cfbae164ca20a"
+            ]
+        ]
+    },
+    {
+        "id": "43a552ea34917841",
+        "type": "mqtt out",
+        "z": "ba85fe949960916b",
+        "name": "Humidity",
+        "topic": "/MQTT/Humidity",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bee4f1305955a57b",
+        "x": 3340,
+        "y": 5560,
+        "wires": []
+    },
+    {
+        "id": "d25104867d79ba0a",
+        "type": "mqtt out",
+        "z": "ba85fe949960916b",
+        "name": "Pressure",
+        "topic": "/MQTT/Pressure",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bee4f1305955a57b",
+        "x": 3320,
+        "y": 5620,
+        "wires": []
+    },
+    {
+        "id": "b69f89521c4cc5ea",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Random",
+        "func": "var max = 32;\nvar min = 10;\nvar value = Math.floor(Math.random() * (max - min + 1) + min)\nmsg.payload = value;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3140,
+        "y": 5500,
+        "wires": [
+            [
+                "8bfb63053b8036d7",
+                "2dbc0bbf4fedab9f"
+            ]
+        ]
+    },
+    {
+        "id": "2dbc0bbf4fedab9f",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3330,
+        "y": 5420,
+        "wires": []
+    },
+    {
+        "id": "e276534d9ebf0a06",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Random",
+        "func": "var max = 100;\nvar min = 60;\nvar value = Math.floor(Math.random() * (max - min + 1) + min)\nmsg.payload = value;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3140,
+        "y": 5540,
+        "wires": [
+            [
+                "43a552ea34917841",
+                "62ebc80fe08bd0f2"
+            ]
+        ]
+    },
+    {
+        "id": "c60cfbae164ca20a",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Random",
+        "func": "var precision = 100; // 2 decimals\nvar randomnum = Math.floor(Math.random() * (2 * precision - 1 * precision) + 1 * precision) / (1*precision);\nmsg.payload = (randomnum-1).toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3140,
+        "y": 5580,
+        "wires": [
+            [
+                "fac15c865e73aa18",
+                "d25104867d79ba0a"
+            ]
+        ]
+    },
+    {
+        "id": "fac15c865e73aa18",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3330,
+        "y": 5660,
+        "wires": []
+    },
+    {
+        "id": "62ebc80fe08bd0f2",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3350,
         "y": 5520,
         "wires": []
     }
