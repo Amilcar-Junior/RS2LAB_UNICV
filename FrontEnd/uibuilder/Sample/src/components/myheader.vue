@@ -53,6 +53,7 @@
             <i class="fa fa-tachometer" aria-hidden="true"></i>
             DashBoard
           </b-dropdown-item>
+          
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown

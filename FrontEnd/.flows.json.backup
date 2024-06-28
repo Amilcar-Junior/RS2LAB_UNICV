@@ -924,6 +924,7 @@
         "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
+        "autoUnsubscribe": true,
         "birthTopic": "",
         "birthQos": "0",
         "birthPayload": "",
@@ -936,6 +937,7 @@
         "willQos": "0",
         "willPayload": "",
         "willMsg": {},
+        "userProps": "",
         "sessionExpiry": ""
     },
     {
@@ -12896,7 +12898,7 @@
         "expiry": "",
         "broker": "bee4f1305955a57b",
         "x": 3330,
-        "y": 5460,
+        "y": 5380,
         "wires": []
     },
     {
@@ -12922,7 +12924,8 @@
             [
                 "b69f89521c4cc5ea",
                 "e276534d9ebf0a06",
-                "c60cfbae164ca20a"
+                "c60cfbae164ca20a",
+                "efee106788de5a18"
             ]
         ]
     },
@@ -12941,7 +12944,7 @@
         "expiry": "",
         "broker": "bee4f1305955a57b",
         "x": 3340,
-        "y": 5560,
+        "y": 5480,
         "wires": []
     },
     {
@@ -12958,8 +12961,8 @@
         "correl": "",
         "expiry": "",
         "broker": "bee4f1305955a57b",
-        "x": 3320,
-        "y": 5620,
+        "x": 3340,
+        "y": 5540,
         "wires": []
     },
     {
@@ -12988,7 +12991,7 @@
         "type": "debug",
         "z": "ba85fe949960916b",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -12996,7 +12999,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 3330,
-        "y": 5420,
+        "y": 5340,
         "wires": []
     },
     {
@@ -13051,8 +13054,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3330,
-        "y": 5660,
+        "x": 3350,
+        "y": 5580,
         "wires": []
     },
     {
@@ -13068,7 +13071,62 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 3350,
-        "y": 5520,
+        "y": 5440,
+        "wires": []
+    },
+    {
+        "id": "cb80f83edc9e1ba0",
+        "type": "mqtt out",
+        "z": "ba85fe949960916b",
+        "name": "Teste",
+        "topic": "/MQTT/Teste",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bee4f1305955a57b",
+        "x": 3350,
+        "y": 5640,
+        "wires": []
+    },
+    {
+        "id": "efee106788de5a18",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Random",
+        "func": "var precision = 50; // 2 decimals\nvar randomnum = Math.floor(Math.random() * (2 * precision - 1 * precision) + 1 * precision) / (1*precision);\nmsg.payload = (randomnum-1).toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3140,
+        "y": 5620,
+        "wires": [
+            [
+                "cb80f83edc9e1ba0",
+                "d85f43ec5ed886af"
+            ]
+        ]
+    },
+    {
+        "id": "d85f43ec5ed886af",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3370,
+        "y": 5680,
         "wires": []
     }
 ]

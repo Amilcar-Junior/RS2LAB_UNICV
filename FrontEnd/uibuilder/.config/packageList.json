@@ -12,6 +12,7 @@
   "leaflet",
   "chart.js",
   "paho-mqtt",
+  "mqtt",
   "leaflet-draw",
   "leaflet.markercluster",
   "@fortawesome/fontawesome-svg-core",

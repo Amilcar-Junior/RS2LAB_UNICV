@@ -70,7 +70,7 @@ module.exports = {
       client: undefined,
       charts: {}, // Armazena os gráficos de cada sensor
       isMonitoring: false, // Flag para monitoramento
-      MAX_POINTS: 50, // Número máximo de pontos no gráfico
+      MAX_POINTS: 20, // Número máximo de pontos no gráfico
     };
   },
   mounted() {
@@ -159,19 +159,35 @@ module.exports = {
       }
     },
     connect() {
+      // const clientid =
+      //   "iot-code-mechanic" + Math.floor(Math.random() * 8999 + 1000);
+      // this.client = new Paho.Client(
+      //   "broker.mqttdashboard.com",
+      //   Number("8000"),
+      //   clientid
+      // );
+      
+      // const clientid =
+      //   "iot-amilcar" + Math.floor(Math.random() * 8999 + 1000);
+      // this.client = new Paho.Client(
+      //   "5.189.169.145",
+      //   Number("9001"),clientid
+      // );
+
       const clientid =
-        "iot-code-mechanic" + Math.floor(Math.random() * 8999 + 1000);
+        "iot-amilcar" + Math.floor(Math.random() * 8999 + 1000);
       this.client = new Paho.Client(
-        "broker.mqttdashboard.com",
-        Number("8000"),
-        clientid
+        "62.171.180.52",
+        Number("9001"),clientid
       );
+
 
       this.client.onConnectionLost = (responseObject) => {
         console.log("Connection Lost: " + responseObject.errorMessage);
         // Reconnect
         this.reconnect();
       };
+      
 
       this.client.onMessageArrived = (message) => {
         let newValue = Number(message.payloadString).toFixed(2);
