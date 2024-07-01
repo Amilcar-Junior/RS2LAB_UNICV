@@ -41,7 +41,7 @@
               />
               <i v-else class="fa fa-microchip fa-4x my-3"></i>
               <!-- Ícone padrão quando TipoSensor_Icon for null -->
-              <p class="sensor-value">{{ sensor.ValorSensor_Valor }}</p>
+              <p class="sensor-value">{{ sensor.valor }}</p>
             </div>
           </div>
         </div>
@@ -49,6 +49,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 module.exports = {
@@ -62,7 +63,6 @@ module.exports = {
       selectedSensorId: null,
       selectedAreaId: null,
       markers: null, // Marker cluster group
-      client: null,
     };
   },
   mounted() {
@@ -73,7 +73,7 @@ module.exports = {
           this.map.invalidateSize();
           this.retrieveItems();
           this.retrieveSensores();
-          this.connectMQTT(); // Conecta ao broker MQTT
+          this.startUpdatingSensorValues(); // Inicia a atualização dos valores dos sensores
         }
       }, 500);
     });
@@ -103,7 +103,7 @@ module.exports = {
         .then((response) => {
           this.allSensores = response.data.map(sensor => ({
             ...sensor,
-            ValorSensor_Valor: sensor.ValorSensor_Valor || 0, // Inicializa com 0 se não houver valor
+            valor: this.getRandomValue() // Adiciona o campo 'valor' com um valor aleatório inicial
           }));
           console.log("Sensores recuperados:", response);
           this.addSensorsToMap();
@@ -127,7 +127,7 @@ module.exports = {
       });
 
       const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
-        attribution: "©2023 Google",
+        attribution: "Map data ©2023 Google",
         subdomains: ["mt0", "mt1", "mt2", "mt3"]
       });
 
@@ -199,7 +199,7 @@ module.exports = {
           });
 
           const marker = L.marker(sensorCoords, { icon: customIcon })
-            .bindPopup(`<b>${sensor.Nome}</b><br>Tipo: ${sensor.TipoSensor_Nome}<br>Valor: ${sensor.ValorSensor_Valor}`);
+            .bindPopup(`<b>${sensor.Nome}</b><br>Tipo: ${sensor.TipoSensor_Nome}`);
 
           this.markers.addLayer(marker); // Add marker to the cluster group
         }
@@ -232,72 +232,15 @@ module.exports = {
         console.error("Erro: Coordenada não definida ou inválida para o sensor selecionado.");
       }
     },
-    connectMQTT() {
-      const clientid = "iot-amilcar" + Math.floor(Math.random() * 8999 + 1000);
-      this.client = new Paho.Client("62.171.180.52", Number("9001"), clientid);
-
-      this.client.onConnectionLost = (responseObject) => {
-        console.log("Connection Lost: " + responseObject.errorMessage);
-        // Reconnect
-        this.reconnect();
-      };
-
-      this.client.onMessageArrived = (message) => {
-        let newValue = Number(message.payloadString).toFixed(2);
-        let itemToUpdate = this.allSensores.find(
-          (item) => item.ValorSensor_Topico === message.destinationName
-        );
-        if (itemToUpdate) {
-          itemToUpdate.ValorSensor_Valor = newValue;
-          this.updateSensorOnMap(itemToUpdate);
-        }
-      };
-
-      this.client.connect({
-        onSuccess: () => {
-          console.log("Conectado ao broker MQTT");
-          this.allSensores.forEach((sensor) => {
-            if (sensor.ValorSensor_Topico) {
-              this.client.subscribe(sensor.ValorSensor_Topico);
-            }
-          });
-        },
-        onFailure: (message) => {
-          console.log("Falha na conexão: " + message.errorMessage);
-        },
-        userName: "",
-        password: "",
-        keepAliveInterval: 15,
-        timeout: 15000,
-        useSSL: false,
-      });
+    getRandomValue() {
+      return Math.floor(Math.random() * 100); // Gera um valor aleatório entre 0 e 99
     },
-    reconnect() {
-      setTimeout(() => {
-        if (this.client && !this.client.isConnected()) {
-          this.client.connect({
-            onSuccess: () => {
-              this.allSensores.forEach((sensor) => {
-                if (sensor.ValorSensor_Topico) {
-                  this.client.subscribe(sensor.ValorSensor_Topico);
-                }
-              });
-            },
-            onFailure: (message) => {
-              console.log("Falha na reconexão: " + message.errorMessage);
-            },
-          });
-        }
-      }, 5000); // Tenta reconectar após 5 segundos
-    },
-    updateSensorOnMap(sensor) {
-      // Encontra o marcador correspondente no mapa e atualiza o popup com o novo valor
-      this.markers.eachLayer((layer) => {
-        if (layer.getLatLng().lat === parseFloat(sensor.coordenada.split(",")[0]) &&
-            layer.getLatLng().lng === parseFloat(sensor.coordenada.split(",")[1])) {
-          layer.bindPopup(`<b>${sensor.Nome}</b><br>Tipo: ${sensor.TipoSensor_Nome}<br>Valor: ${sensor.ValorSensor_Valor}`);
-        }
-      });
+    startUpdatingSensorValues() {
+      setInterval(() => {
+        this.allSensores.forEach(sensor => {
+          sensor.valor = this.getRandomValue(); // Atualiza o valor do sensor com um valor aleatório
+        });
+      }, 2000); // Atualiza a cada 2 segundos (2000 milissegundos)
     },
     hasValidCoordinates(localizacao) {
       if (!localizacao) return false;
