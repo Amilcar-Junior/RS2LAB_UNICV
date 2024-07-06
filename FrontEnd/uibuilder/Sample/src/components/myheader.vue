@@ -13,22 +13,19 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav v-show="keys.islogged">
         <b-nav-item-dropdown text="Rs2Lab IOT" right>
-          <b-dropdown-item href="#" to="/grupoutilizadores"
-            ><i class="fa fa-users" aria-hidden="true"></i> Grupos de
-            Utilizadores</b-dropdown-item
-          >
-          <b-dropdown-item href="#" to="/utilizador"
-            ><i class="fa fa-user" aria-hidden="true"></i>
-            Utilizadores</b-dropdown-item
-          >
           <b-dropdown-item href="#" to="/tipoutilizador">
             <i class="fa fa-user-plus" aria-hidden="true"></i> Tipos de
             Utilizadores
           </b-dropdown-item>
-          <b-dropdown-item href="#" to="/tiposensor">
-            <i class="fa fa-list" aria-hidden="true"></i>
-            Tipos de Sensores
-          </b-dropdown-item>
+          <b-dropdown-item href="#" to="/utilizador"
+            ><i class="fa fa-user" aria-hidden="true"></i>
+            Utilizadores</b-dropdown-item
+          >
+          <b-dropdown-item href="#" to="/grupoutilizadores"
+            ><i class="fa fa-users" aria-hidden="true"></i> Grupos de
+            Utilizadores</b-dropdown-item
+          >
+          
           <b-dropdown-item href="#" to="/areadeagricultura">
             <i class="fa fa-leaf" aria-hidden="true"></i>
             Area De Agricultura
@@ -40,6 +37,10 @@
           <b-dropdown-item href="#" to="/sensor">
             <i class="fa fa-microchip" aria-hidden="true"></i>
             Sensores
+          </b-dropdown-item>
+          <b-dropdown-item href="#" to="/tiposensor">
+            <i class="fa fa-list" aria-hidden="true"></i>
+            Tipos de Sensores
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/valorsensor">
             <i class="fa fa-microchip" aria-hidden="true"></i>

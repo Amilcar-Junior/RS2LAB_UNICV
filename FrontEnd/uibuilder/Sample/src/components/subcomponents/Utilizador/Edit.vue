@@ -35,13 +35,17 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="id_tipoUtilizador" class="form-label">Tipo Utilizador</label>
+                <label for="id_tipoUtilizador" class="form-label"
+                  >Tipo Utilizador</label
+                >
                 <select
                   v-model="model.item.ID_TipoUtilizador"
                   class="form-control"
                   required
                 >
-                  <option value="" disabled selected>Selecione o tipo de utilizador</option>
+                  <option value="" disabled selected>
+                    Selecione o tipo de utilizador
+                  </option>
                   <option
                     v-for="tipo in TipoUtilizador"
                     :key="tipo.ID"
@@ -52,12 +56,13 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="id_grupoutilizadores" class="form-label">Grupos</label>
+                <label for="id_grupoutilizadores" class="form-label"
+                  >Grupos</label
+                >
                 <select
                   v-model="gruposSelecionados"
                   class="form-control"
                   multiple
-                  required
                 >
                   <option disabled value="">Selecione um grupo</option>
                   <option
@@ -108,10 +113,7 @@
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            class="btn btn-primary float-right"
-          >
+          <button type="submit" class="btn btn-primary float-right">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>
         </form>
@@ -126,9 +128,9 @@
 }
 </style>
 
-
 <script>
 module.exports = {
+  props: ["keys"],
   name: "EditUtilizador",
   data() {
     return {
@@ -183,10 +185,10 @@ module.exports = {
       // Verificar grupos removidos
       this.UtilizadorGrupo.forEach((utilizadorGrupo) => {
         if (
-          !this.gruposSelecionados.includes(utilizadorGrupo.ID_Grupo.toString())
+          !this.gruposSelecionados.includes(utilizadorGrupo.Grupo_ID.toString())
         ) {
           // Se o grupo não está mais selecionado, remova a associação
-          this.deleteUtilizadorGrupo(this.model.ID, utilizadorGrupo.ID_Grupo);
+          this.deleteUtilizadorGrupo(this.model.ID, utilizadorGrupo.Grupo_ID);
         }
       });
       console.log(this.gruposSelecionados);
@@ -194,7 +196,7 @@ module.exports = {
       this.gruposSelecionados.forEach((grupoId) => {
         if (
           !this.UtilizadorGrupo.some(
-            (utilizadorGrupo) => utilizadorGrupo.ID_Grupo.toString() === grupoId
+            (utilizadorGrupo) => utilizadorGrupo.Grupo_ID.toString() === grupoId
           )
         ) {
           // Se o grupo foi adicionado, adicione a associação
@@ -211,6 +213,22 @@ module.exports = {
         .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
         .then((response) => {
           console.log("Utilizador atualizado com sucesso!", response);
+
+          // Verificar se o ID do utilizador é o mesmo do localStorage
+          
+          console.log(localStorage);
+          if (this.keys.Utilizador_ID && this.model.ID === this.model.ID.toString()) {
+            // Atualizar os dados no localStorage
+            localStorage.setItem("user", JSON.stringify(this.model.item));
+            this.keys.Utilizador_Nome = this.model.item.Nome;
+            this.keys.Utilizador_Email = this.model.item.Email;
+            this.keys.Utilizador_image = this.model.item.image;
+            this.keys.Utilizador_isActive = this.model.item.isActive;
+            this.keys.TipoUtilizador_ID = this.model.item.ID_TipoUtilizador;
+            this.keys.Grupos = this.gruposSelecionados;
+          }
+          console.log("local sotrage atualizado: ",localStorage)
+
           this.showNotification();
         })
         .catch((error) => {
@@ -266,7 +284,7 @@ module.exports = {
 
           // Preencher os grupos selecionados com os IDs dos grupos associados ao utilizador
           this.gruposSelecionados = this.UtilizadorGrupo.map(
-            (utilizadorGrupo) => utilizadorGrupo.ID_Grupo.toString()
+            (utilizadorGrupo) => utilizadorGrupo.Grupo_ID.toString()
           );
         })
         .catch((errors) => {

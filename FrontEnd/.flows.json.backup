@@ -872,6 +872,49 @@
         "h": 1242
     },
     {
+        "id": "061d1e5e50d5e07e",
+        "type": "group",
+        "z": "ba85fe949960916b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "9b3b37b5be0acf74",
+            "70bb7e6f49223c30",
+            "937af55b56fc59ed",
+            "dd167bacd7506674",
+            "811a26f1ebf238f9",
+            "06e045f9ef1c53ba",
+            "e29adb0f8528ed4c",
+            "325248a3d1b0599f",
+            "eaca9719ea39d08e",
+            "8bfb63053b8036d7",
+            "c4625765f683d34b",
+            "43a552ea34917841",
+            "d25104867d79ba0a",
+            "b69f89521c4cc5ea",
+            "2dbc0bbf4fedab9f",
+            "e276534d9ebf0a06",
+            "c60cfbae164ca20a",
+            "fac15c865e73aa18",
+            "62ebc80fe08bd0f2",
+            "cb80f83edc9e1ba0",
+            "efee106788de5a18",
+            "d85f43ec5ed886af",
+            "8853a0140372f495"
+        ],
+        "x": 2994,
+        "y": 5379,
+        "w": 672,
+        "h": 522
+    },
+    {
         "id": "f3e8c660cf5205b5",
         "type": "MySQLdatabase",
         "name": "rs2lab",
@@ -4277,7 +4320,7 @@
         "z": "ba85fe949960916b",
         "g": "0c97019c13d4f365",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT\n    ug.ID_Utilizador,\n    GROUP_CONCAT(ug.ID_Grupo) AS ID_Grupos\nFROM\n    UtilizadorGrupo ug\nGROUP BY\n    ug.ID_Utilizador;`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    u.ID AS Utilizador_ID, \n    u.Nome AS Utilizador_Nome, \n    GROUP_CONCAT(g.ID) AS ID_Grupos, \n    GROUP_CONCAT(g.Nome) AS Nomes_Grupos\nFROM \n    UtilizadorGrupo ug\nLEFT JOIN \n    Utilizador u ON ug.ID_Utilizador = u.ID\nLEFT JOIN \n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY \n    u.ID, u.Nome;\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4670,15 +4713,15 @@
         "z": "ba85fe949960916b",
         "g": "0c97019c13d4f365",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT ID, ID_Utilizador, ID_Grupo \nFROM rs2lab.UtilizadorGrupo \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    ug.ID, \n    u.ID AS Utilizador_ID, \n    u.Nome AS Utilizador_Nome, \n    g.ID AS Grupo_ID, \n    g.Nome AS Grupo_Nome\nFROM \n    rs2lab.UtilizadorGrupo ug\nLEFT JOIN \n    rs2lab.Utilizador u ON ug.ID_Utilizador = u.ID\nLEFT JOIN \n    rs2lab.GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE \n    ug.ID = ${msg.req.params.ID};\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 4740,
+        "x": 340,
+        "y": 4720,
         "wires": [
             [
                 "6cc2de146a2545e5",
@@ -11662,7 +11705,7 @@
         "type": "debug",
         "z": "ba85fe949960916b",
         "name": "debug 8",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -12721,7 +12764,7 @@
         "type": "debug",
         "z": "ba85fe949960916b",
         "name": "debug 9",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -12737,10 +12780,11 @@
         "id": "9b3b37b5be0acf74",
         "type": "mysql",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 3250,
-        "y": 5740,
+        "x": 3330,
+        "y": 5820,
         "wires": [
             [
                 "dd167bacd7506674"
@@ -12751,6 +12795,7 @@
         "id": "70bb7e6f49223c30",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Query",
         "func": "msg.topic = 'SELECT * FROM rs2lab.ValorSensor;'\nreturn msg;",
         "outputs": 1,
@@ -12759,8 +12804,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3130,
-        "y": 5740,
+        "x": 3210,
+        "y": 5820,
         "wires": [
             [
                 "9b3b37b5be0acf74"
@@ -12771,6 +12816,7 @@
         "id": "937af55b56fc59ed",
         "type": "inject",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "",
         "props": [],
         "repeat": "",
@@ -12778,8 +12824,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 3010,
-        "y": 5740,
+        "x": 3090,
+        "y": 5820,
         "wires": [
             [
                 "70bb7e6f49223c30"
@@ -12790,6 +12836,7 @@
         "id": "dd167bacd7506674",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Result",
         "active": true,
         "tosidebar": true,
@@ -12799,18 +12846,19 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3370,
-        "y": 5740,
+        "x": 3450,
+        "y": 5820,
         "wires": []
     },
     {
         "id": "811a26f1ebf238f9",
         "type": "mysql",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 3250,
-        "y": 5780,
+        "x": 3330,
+        "y": 5860,
         "wires": [
             [
                 "e29adb0f8528ed4c",
@@ -12822,6 +12870,7 @@
         "id": "06e045f9ef1c53ba",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Query",
         "func": "msg.topic = 'SELECT * FROM rs2lab.ValorSensor;'\nreturn msg;",
         "outputs": 1,
@@ -12830,8 +12879,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3130,
-        "y": 5780,
+        "x": 3210,
+        "y": 5860,
         "wires": [
             [
                 "811a26f1ebf238f9"
@@ -12842,6 +12891,7 @@
         "id": "e29adb0f8528ed4c",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Result",
         "active": false,
         "tosidebar": true,
@@ -12851,32 +12901,34 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3370,
-        "y": 5780,
+        "x": 3450,
+        "y": 5860,
         "wires": []
     },
     {
         "id": "325248a3d1b0599f",
         "type": "http response",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 3510,
-        "y": 5780,
+        "x": 3590,
+        "y": 5860,
         "wires": []
     },
     {
         "id": "eaca9719ea39d08e",
         "type": "http in",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "IoTParams",
         "url": "/rs2lab/IoTParameters",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 3000,
-        "y": 5780,
+        "x": 3080,
+        "y": 5860,
         "wires": [
             [
                 "06e045f9ef1c53ba"
@@ -12887,6 +12939,7 @@
         "id": "8bfb63053b8036d7",
         "type": "mqtt out",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Temperature",
         "topic": "/MQTT/Temp",
         "qos": "",
@@ -12897,14 +12950,15 @@
         "correl": "",
         "expiry": "",
         "broker": "bee4f1305955a57b",
-        "x": 3330,
-        "y": 5380,
+        "x": 3470,
+        "y": 5480,
         "wires": []
     },
     {
         "id": "c4625765f683d34b",
         "type": "inject",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "",
         "props": [
             {
@@ -12918,8 +12972,8 @@
         "topic": "",
         "payload": "12",
         "payloadType": "num",
-        "x": 3010,
-        "y": 5540,
+        "x": 3090,
+        "y": 5620,
         "wires": [
             [
                 "b69f89521c4cc5ea",
@@ -12933,6 +12987,7 @@
         "id": "43a552ea34917841",
         "type": "mqtt out",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Humidity",
         "topic": "/MQTT/Humidity",
         "qos": "",
@@ -12943,14 +12998,15 @@
         "correl": "",
         "expiry": "",
         "broker": "bee4f1305955a57b",
-        "x": 3340,
-        "y": 5480,
+        "x": 3460,
+        "y": 5560,
         "wires": []
     },
     {
         "id": "d25104867d79ba0a",
         "type": "mqtt out",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Pressure",
         "topic": "/MQTT/Pressure",
         "qos": "",
@@ -12961,14 +13017,15 @@
         "correl": "",
         "expiry": "",
         "broker": "bee4f1305955a57b",
-        "x": 3340,
-        "y": 5540,
+        "x": 3460,
+        "y": 5640,
         "wires": []
     },
     {
         "id": "b69f89521c4cc5ea",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Random",
         "func": "var max = 32;\nvar min = 10;\nvar value = Math.floor(Math.random() * (max - min + 1) + min)\nmsg.payload = value;\nreturn msg;",
         "outputs": 1,
@@ -12977,8 +13034,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3140,
-        "y": 5500,
+        "x": 3260,
+        "y": 5560,
         "wires": [
             [
                 "8bfb63053b8036d7",
@@ -12990,6 +13047,7 @@
         "id": "2dbc0bbf4fedab9f",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -12998,14 +13056,15 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3330,
-        "y": 5340,
+        "x": 3470,
+        "y": 5520,
         "wires": []
     },
     {
         "id": "e276534d9ebf0a06",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Random",
         "func": "var max = 100;\nvar min = 60;\nvar value = Math.floor(Math.random() * (max - min + 1) + min)\nmsg.payload = value;\nreturn msg;",
         "outputs": 1,
@@ -13013,8 +13072,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3140,
-        "y": 5540,
+        "x": 3260,
+        "y": 5600,
         "wires": [
             [
                 "43a552ea34917841",
@@ -13026,6 +13085,7 @@
         "id": "c60cfbae164ca20a",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Random",
         "func": "var precision = 100; // 2 decimals\nvar randomnum = Math.floor(Math.random() * (2 * precision - 1 * precision) + 1 * precision) / (1*precision);\nmsg.payload = (randomnum-1).toFixed(2);\nreturn msg;",
         "outputs": 1,
@@ -13033,8 +13093,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3140,
-        "y": 5580,
+        "x": 3260,
+        "y": 5640,
         "wires": [
             [
                 "fac15c865e73aa18",
@@ -13046,6 +13106,7 @@
         "id": "fac15c865e73aa18",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -13054,14 +13115,15 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3350,
-        "y": 5580,
+        "x": 3470,
+        "y": 5680,
         "wires": []
     },
     {
         "id": "62ebc80fe08bd0f2",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -13070,14 +13132,15 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3350,
-        "y": 5440,
+        "x": 3470,
+        "y": 5600,
         "wires": []
     },
     {
         "id": "cb80f83edc9e1ba0",
         "type": "mqtt out",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Teste",
         "topic": "/MQTT/Teste",
         "qos": "",
@@ -13088,14 +13151,15 @@
         "correl": "",
         "expiry": "",
         "broker": "bee4f1305955a57b",
-        "x": 3350,
-        "y": 5640,
+        "x": 3450,
+        "y": 5720,
         "wires": []
     },
     {
         "id": "efee106788de5a18",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "Random",
         "func": "var precision = 50; // 2 decimals\nvar randomnum = Math.floor(Math.random() * (2 * precision - 1 * precision) + 1 * precision) / (1*precision);\nmsg.payload = (randomnum-1).toFixed(2);\nreturn msg;",
         "outputs": 1,
@@ -13104,8 +13168,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3140,
-        "y": 5620,
+        "x": 3260,
+        "y": 5680,
         "wires": [
             [
                 "cb80f83edc9e1ba0",
@@ -13117,6 +13181,7 @@
         "id": "d85f43ec5ed886af",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -13125,8 +13190,19 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3370,
-        "y": 5680,
+        "x": 3470,
+        "y": 5760,
+        "wires": []
+    },
+    {
+        "id": "8853a0140372f495",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "g": "061d1e5e50d5e07e",
+        "name": "Teste",
+        "info": "",
+        "x": 3310,
+        "y": 5420,
         "wires": []
     }
 ]

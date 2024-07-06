@@ -34,7 +34,7 @@
       <myheader :keys="user"></myheader>
       <mylogin v-show="!user.islogged" :keys="user"></mylogin>
       <b-container v-show="user.islogged" fluid>
-        <router-view></router-view>
+        <router-view :keys="user"></router-view>
       </b-container>
     </div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
