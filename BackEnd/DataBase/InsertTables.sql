@@ -12,10 +12,11 @@ INSERT INTO GrupoUtilizadores (Nome) VALUES
 
 -- Inserir dados na tabela Utilizador
 INSERT INTO Utilizador (Nome, Email, Senha, isActive, ID_TipoUtilizador) VALUES
-('João', 'joao@example.com', 'senha123', True, 1),
-('Maria', 'maria@example.com', 'senha456', True, 2),
-('Pedro', 'pedro@example.com', 'senha789', True, 2),
-('Ana', 'ana@example.com', 'senhaabc', True, 3);
+('João', 'joao@example.com', md5('senha123'), True, 1),
+('Maria', 'maria@example.com', md5('senha456'), True, 2),
+('Pedro', 'pedro@example.com', md5('senha789'), True, 2),
+('Ana', 'ana@example.com', md5('senhaabc'), True, 3);
+('Admin', 'admin@example.com', md5('admin'), True, 3);
 
 -- Inserir dados na tabela UtilizadorGrupo
 INSERT INTO UtilizadorGrupo (ID_Utilizador, ID_Grupo) VALUES

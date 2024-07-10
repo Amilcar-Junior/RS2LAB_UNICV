@@ -159,6 +159,43 @@ module.exports = {
     },
     deleteItem(ItemID) {
       axios
+        .get(`/rs2lab/sensor/tiposensor/${ItemID}`)
+        .then((res) => {
+          this.sensor = res.data;
+          console.log(this.sensor);
+          // Renomear as variáveis e ajustar o objeto
+          let self = this; // Armazena o "this" em uma variável
+          this.sensor.forEach(function (sens) {
+            sens.Nome = sens.Sensor_Nome;
+            sens.area_ID = sens.Area_ID;
+            sens.coordenada = sens.Sensor_Coordenada;
+            sens.isActive = sens.Utilizador_isActive;
+            sens.ID_ValorSensor = sens.ValorSensor_ID;
+            sens.ID_TipoSensor = null;
+
+            console.log("Sensor: ", sens);
+            axios
+              .put(`/rs2lab/editsensor/${sens.Sensor_ID}`, sens)
+              .then((resp) => {
+                console.log("PUT: ", resp);
+              })
+              .catch((errors) => {
+                console.error(errors);
+                self.$bvToast.toast("Ocorreu um erro ao atualizar os Sensor.", {
+                  title: "Erro",
+                  variant: "danger",
+                });
+              });
+          });
+        })
+        .catch((errors) => {
+          console.error(errors);
+          this.$bvToast.toast("Ocorreu um erro ao obter os Sensor.", {
+            title: "Erro",
+            variant: "danger",
+          });
+        });
+      axios
         .delete(`/rs2lab/deletetiposensor/${ItemID}`)
         .then(() => {
           this.ShowDeleteNotification();

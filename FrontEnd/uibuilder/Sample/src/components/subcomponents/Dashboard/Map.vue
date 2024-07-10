@@ -63,6 +63,8 @@ module.exports = {
       selectedAreaId: null,
       markers: null, // Marker cluster group
       client: null,
+      userTypes: window.appConfig.userTypes,
+      mqttConfig: window.appConfig.mqtt,
     };
   },
   mounted() {
@@ -233,8 +235,8 @@ module.exports = {
       }
     },
     connectMQTT() {
-      const clientid = "iot-amilcar" + Math.floor(Math.random() * 8999 + 1000);
-      this.client = new Paho.Client("62.171.180.52", Number("9001"), clientid);
+      
+      this.client = new Paho.Client(this.mqttConfig.brokerUrl, Number(this.mqttConfig.port), this.mqttConfig.clientId);
 
       this.client.onConnectionLost = (responseObject) => {
         console.log("Connection Lost: " + responseObject.errorMessage);

@@ -13,36 +13,36 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav v-show="keys.islogged">
         <b-nav-item-dropdown text="Rs2Lab IOT" right>
-          <b-dropdown-item href="#" to="/tipoutilizador">
+          <b-dropdown-item href="#" to="/tipoutilizador" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
             <i class="fa fa-user-plus" aria-hidden="true"></i> Tipos de
             Utilizadores
           </b-dropdown-item>
-          <b-dropdown-item href="#" to="/utilizador"
+          <b-dropdown-item href="#" to="/utilizador" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR"
             ><i class="fa fa-user" aria-hidden="true"></i>
             Utilizadores</b-dropdown-item
           >
-          <b-dropdown-item href="#" to="/grupoutilizadores"
+          <b-dropdown-item href="#" to="/grupoutilizadores" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR"
             ><i class="fa fa-users" aria-hidden="true"></i> Grupos de
             Utilizadores</b-dropdown-item
           >
           
-          <b-dropdown-item href="#" to="/areadeagricultura">
+          <b-dropdown-item href="#" to="/areadeagricultura" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
             <i class="fa fa-leaf" aria-hidden="true"></i>
             Area De Agricultura
           </b-dropdown-item>
-          <b-dropdown-item href="#" to="/local">
+          <b-dropdown-item href="#" to="/local" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
             <i class="fa fa-location-arrow" aria-hidden="true"></i>
             Locais
           </b-dropdown-item>
-          <b-dropdown-item href="#" to="/sensor">
+          <b-dropdown-item href="#" to="/sensor" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
             <i class="fa fa-microchip" aria-hidden="true"></i>
             Sensores
           </b-dropdown-item>
-          <b-dropdown-item href="#" to="/tiposensor">
+          <b-dropdown-item href="#" to="/tiposensor" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
             <i class="fa fa-list" aria-hidden="true"></i>
             Tipos de Sensores
           </b-dropdown-item>
-          <b-dropdown-item href="#" to="/valorsensor">
+          <b-dropdown-item href="#" to="/valorsensor" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
             <i class="fa fa-microchip" aria-hidden="true"></i>
             Topicos de Sensores
           </b-dropdown-item>
@@ -108,7 +108,10 @@
 module.exports = {
   props: ["keys"],
   data() {
-    return {};
+    return {
+      userTypes: window.appConfig.userTypes,
+      mqttConfig: window.appConfig.mqtt,
+    };
   },
   computed: {
     avatarImage() {
@@ -117,7 +120,10 @@ module.exports = {
   },
   mounted() {
     console.log("keys: ", this.keys);
+    // console.log("User Types:", this.userTypes);
+    // console.log("MQTT Config:", this.mqttConfig);
   },
   methods: {},
 };
 </script>
+

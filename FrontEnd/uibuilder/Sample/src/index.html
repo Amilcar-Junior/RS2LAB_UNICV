@@ -53,6 +53,13 @@
     <script src="../uibuilder/vendor/chart.js/dist/chart.js"></script>
     <script src="../uibuilder/vendor/paho-mqtt/paho-mqtt.js"></script>
     <script src="./index.js" type="module"></script>
+    <script type="module" src="./config.js"></script>
+
+    <script type="module">
+      import { config } from './config.js';
+
+      window.appConfig = config;
+    </script>
 
     <script>
       window.onload = function () {
@@ -82,6 +89,7 @@
               Utilizador_Nome: user.Utilizador_Nome,
               Utilizador_Email: user.Utilizador_Email,
               TipoUtilizador_ID: user.TipoUtilizador_ID,
+              TipoUtilizador_Nome: user.TipoUtilizador_Nome,
               Grupos: user.Grupos,
               Utilizador_image: user.Utilizador_image,
             },
