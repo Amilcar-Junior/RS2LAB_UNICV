@@ -46,7 +46,7 @@
                   <td>{{ item.Grupo_Nome }}</td>
                   <td>{{ item.Local_Nome }}</td>
 
-                  <td>
+                  <td class="text-center">
                     <button
                       v-if="hasValidCoordinates(item.Area_Localizacao)"
                       class="btn btn-info btn-sm"
@@ -57,7 +57,9 @@
                   </td>
                   <td class="text-right">
                     <router-link
-                      :to="{ path: '/areadeagricultura/' + item.Area_ID + '/edit' }"
+                      :to="{
+                        path: '/areadeagricultura/' + item.Area_ID + '/edit',
+                      }"
                       class="btn btn-success"
                     >
                       <i class="fa fa-pencil" aria-hidden="true"></i> Editar
@@ -210,15 +212,14 @@ module.exports = {
         }
       );
 
-      const satellite = L.tileLayer(
-        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+      const hybrid = L.tileLayer(
+        "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
         {
-          attribution: "Map data ©2023 Google",
-          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+          attribution: "© OpenTopoMap contributors",
         }
       );
 
-      const hybrid = L.tileLayer(
+      const satellite = L.tileLayer(
         "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
         {
           attribution: "Map data ©2023 Google",
@@ -229,7 +230,7 @@ module.exports = {
       const terrain = L.tileLayer(
         "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
         {
-          attribution: "Map data ©2023 Google",
+          attribution: "©2023 Google",
           subdomains: ["mt0", "mt1", "mt2", "mt3"],
         }
       );
@@ -239,10 +240,10 @@ module.exports = {
       });
 
       this.baseMaps = {
-        Streets: streets,
-        Hybrid: hybrid,
-        Satellite: satellite,
-        Terrain: terrain,
+        "Streets": streets,
+        "Satellite": satellite,
+        "Hibrido": hybrid,
+        "Terreno": terrain,
       };
 
       L.control.layers(this.baseMaps).addTo(this.modalMap);

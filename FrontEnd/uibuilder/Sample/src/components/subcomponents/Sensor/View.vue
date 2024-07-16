@@ -27,8 +27,8 @@
               <thead>
                 <tr>
                   <th scope="col" class="col-1">ID</th>
-                  <th scope="col" class="col-3">Nome</th>
-                  <th scope="col" class="col-3">Area</th>
+                  <th scope="col" class="col-2">Nome</th>
+                  <th scope="col" class="col-2">Area</th>
                   <th scope="col" class="col-2">Tipo Sensor</th>
                   <th scope="col" class="col-2">Tópico</th>
                   <th scope="col" class="col-1">Mapa</th>
@@ -42,7 +42,7 @@
                   <td>{{ item.Area_Nome }}</td>
                   <td>{{ item.TipoSensor_Nome }}</td>
                   <td>{{ item.ValorSensor_Topico }}</td>
-                  <td>
+                  <td  class="text-center">
                     <button
                       v-if="hasValidCoordinates(item.coordenada)"
                       class="btn btn-info btn-sm"
@@ -204,15 +204,14 @@ module.exports = {
         }
       );
 
-      const satellite = L.tileLayer(
-        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+      const hybrid = L.tileLayer(
+        "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
         {
-          attribution: "Map data ©2023 Google",
-          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+          attribution: "© OpenTopoMap contributors",
         }
       );
 
-      const hybrid = L.tileLayer(
+      const satellite = L.tileLayer(
         "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
         {
           attribution: "Map data ©2023 Google",
@@ -223,20 +222,21 @@ module.exports = {
       const terrain = L.tileLayer(
         "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
         {
-          attribution: "Map data ©2023 Google",
+          attribution: "©2023 Google",
           subdomains: ["mt0", "mt1", "mt2", "mt3"],
         }
       );
 
       this.modalMap = L.map("modalMap", {
         layers: [streets],
+        zoom: 15,
       });
 
       this.baseMaps = {
         Streets: streets,
-        Hybrid: hybrid,
         Satellite: satellite,
-        Terrain: terrain,
+        Hibrido: hybrid,
+        Terreno: terrain,
       };
 
       L.control.layers(this.baseMaps).addTo(this.modalMap);
@@ -266,7 +266,7 @@ module.exports = {
           .bindPopup(this.locationName)
           .openPopup();
 
-        this.modalMap.setView(latLng, 13);
+        this.modalMap.setView(latLng, this.modalMap.zoom);
       } else {
         console.error(
           "Erro: Coordenada selecionada é inválida ou não está definida."

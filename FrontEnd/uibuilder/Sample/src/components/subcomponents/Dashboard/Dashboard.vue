@@ -5,6 +5,36 @@
         class="card-header d-flex justify-content-between align-items-center"
       >
         <h4>Sensores</h4>
+        <div>
+          <select
+            v-model="selectedAreaId"
+            class="form-control d-inline-block w-auto"
+          >
+            <option value="" disabled selected>
+              Selecione a Área de Agricultura
+            </option>
+            <option
+              v-for="area in items"
+              :key="area.Area_ID"
+              :value="area.Area_ID"
+            >
+              {{ area.Area_Nome }}
+            </option>
+          </select>
+          <select
+            v-model="selectedSensorId"
+            class="form-control d-inline-block w-auto ml-2"
+          >
+            <option value="" disabled selected>Selecione um Sensor</option>
+            <option
+              v-for="sensor in filteredSensors"
+              :key="sensor.ID"
+              :value="sensor.ID"
+            >
+              {{ sensor.Nome }}
+            </option>
+          </select>
+        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -33,21 +63,20 @@
         </div>
         <div class="d-flex justify-content-center">
           <b-pagination
-            v-if="items.length > perPage"
+            v-if="filteredSensors.length > perPage"
             v-model="currentPage"
-            :total-rows="rows"
+            :total-rows="filteredSensors.length"
             :per-page="perPage"
             aria-controls="my-table"
             class="custom-pagination"
           ></b-pagination>
         </div>
         <div class="row mt-3">
-          <div v-for="sensor in items" :key="sensor.ID" class="col-md-4">
+          <div v-for="sensor in filteredSensors" :key="sensor.ID" class="col-md-4">
             <div class="card sensor-card mb-3 text-center">
               <div class="card-header text-center">
                 <h5>{{ sensor.Nome }}</h5>
               </div>
-
               <div class="card-body">
                 <canvas :ref="'chart-' + sensor.ID" height="210"></canvas>
                 <p class="sensor-value">{{ sensor.ValorSensor_Valor }}</p>
@@ -60,6 +89,8 @@
   </div>
 </template>
 
+
+
 <script>
 module.exports = {
   data() {
@@ -67,7 +98,10 @@ module.exports = {
       perPage: 10,
       currentPage: 1,
       items: [],
+      allSensores: [],
       client: undefined,
+      selectedSensorId: null,
+      selectedAreaId: null,
       charts: {}, // Armazena os gráficos de cada sensor
       isMonitoring: false, // Flag para monitoramento
       MAX_POINTS: 20, // Número máximo de pontos no gráfico
@@ -79,33 +113,56 @@ module.exports = {
     if (typeof Chart === "undefined") {
       console.error("Chart.js não foi carregado corretamente!");
     } else {
-      this.retrieveData();
+      this.retrieveItems();
+      this.retrieveSensores();
       this.monitor();
+    }
+  },
+  watch: {
+    filteredSensors() {
+      this.recreateCharts();
     }
   },
   computed: {
     rows() {
-      return this.items.length;
+      return this.filteredSensors.length;
+    },
+    filteredSensors() {
+      if (!this.selectedAreaId) return this.allSensores;
+      return this.allSensores.filter(
+        (sensor) => sensor.area_ID === this.selectedAreaId
+      );
     },
     paginatedItems() {
       const start = (this.currentPage - 1) * this.perPage;
       const end = start + this.perPage;
-      return this.items.slice(start, end);
+      return this.filteredSensors.slice(start, end);
     },
   },
   methods: {
-    retrieveData() {
+    retrieveItems() {
+      axios
+        .get("/rs2lab/areadeagricultura")
+        .then((response) => {
+          this.items = response.data;
+          console.log("Dados recuperados:", response);
+        })
+        .catch((error) => {
+          console.error("Erro ao recuperar Área de Agricultura:", error);
+        });
+    },
+    retrieveSensores() {
       axios
         .get("/rs2lab/sensor")
         .then((resp) => {
-          this.items = resp.data.map((sensor) => {
+          this.allSensores = resp.data.map((sensor) => {
             return {
               ...sensor,
               ValorSensor_Valor: sensor.ValorSensor_Valor || 0, // Inicializa com 0 se não houver valor
             };
           });
           this.$nextTick(() => {
-            this.items.forEach((sensor) => {
+            this.allSensores.forEach((sensor) => {
               this.createChart(sensor);
             });
           });
@@ -115,15 +172,30 @@ module.exports = {
         });
     },
     createChart(sensor) {
+      console.log("Sensor:", sensor);
+      if (!sensor.ID) {
+        console.error("ID do sensor não está definido:", sensor);
+        return;
+      }
+
       this.$nextTick(() => {
+        console.log("Refs:", this.$refs);
         const canvasArray = this.$refs["chart-" + sensor.ID];
+        if (canvasArray) {
+          console.log(
+            "CanvasArray encontrado para sensor ID",
+            sensor.ID,
+            ":",
+            canvasArray
+          );
+        }
         if (canvasArray && canvasArray.length > 0) {
           const canvas = canvasArray[0]; // Assumindo que o primeiro elemento é o correto
           const ctx = canvas.getContext("2d");
           this.charts[sensor.ID] = new Chart(ctx, {
             type: "line",
             data: {
-              labels: [],
+              labels: [], // Adicione os labels conforme necessário
               datasets: [
                 {
                   label: sensor.Nome,
@@ -144,10 +216,24 @@ module.exports = {
           });
         } else {
           console.error(
-            "Canvas não encontrado ou não é válido para o sensor:",
+            "Canvas não encontrado ou não é válido para o sensor com ID:",
             sensor.ID
           );
         }
+      });
+    },
+    recreateCharts() {
+      // Limpa todos os gráficos existentes
+      Object.keys(this.charts).forEach((key) => {
+        this.charts[key].destroy();
+      });
+      this.charts = {};
+
+      // Cria os gráficos novamente para os sensores filtrados
+      this.$nextTick(() => {
+        this.filteredSensors.forEach((sensor) => {
+          this.createChart(sensor);
+        });
       });
     },
     monitor() {
@@ -161,26 +247,23 @@ module.exports = {
       }
     },
     connect() {
-
-      
       this.client = new Paho.Client(
         this.mqttConfig.brokerUrl,
-        Number(this.mqttConfig.port),this.mqttConfig.clientId
+        Number(this.mqttConfig.port),
+        this.mqttConfig.clientId
       );
-
 
       this.client.onConnectionLost = (responseObject) => {
         console.log("Connection Lost: " + responseObject.errorMessage);
         // Reconnect
         this.reconnect();
       };
-      
 
       this.client.onMessageArrived = (message) => {
         let newValue = Number(message.payloadString).toFixed(2);
         let timestamp = new Date().toLocaleTimeString();
 
-        let itemToUpdate = this.items.find(
+        let itemToUpdate = this.allSensores.find(
           (item) => item.ValorSensor_Topico === message.destinationName
         );
         if (itemToUpdate) {
@@ -191,7 +274,7 @@ module.exports = {
 
       this.client.connect({
         onSuccess: () => {
-          this.items.forEach((sensor) => {
+          this.allSensores.forEach((sensor) => {
             if (sensor.ValorSensor_Topico) {
               this.client.subscribe(sensor.ValorSensor_Topico);
             }
@@ -212,7 +295,7 @@ module.exports = {
         if (this.client && !this.client.isConnected()) {
           this.client.connect({
             onSuccess: () => {
-              this.items.forEach((sensor) => {
+              this.allSensores.forEach((sensor) => {
                 if (sensor.ValorSensor_Topico) {
                   this.client.subscribe(sensor.ValorSensor_Topico);
                 }

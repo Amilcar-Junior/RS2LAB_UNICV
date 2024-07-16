@@ -29,8 +29,8 @@
             <thead>
               <tr>
                 <th scope="col" class="col-1">ID</th>
-                <th scope="col" class="col-4">Nome</th>
-                <th scope="col" class="col-5">Utilizadores</th>
+                <th scope="col" class="col-3">Nome</th>
+                <th scope="col" class="col-6">Utilizadores</th>
                 <th scope="col" class="col-2 text-right">Actions</th>
               </tr>
             </thead>

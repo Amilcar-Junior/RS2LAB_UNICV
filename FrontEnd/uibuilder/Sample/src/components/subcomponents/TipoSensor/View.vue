@@ -90,7 +90,7 @@
     <b-modal
       id="image-preview-modal"
       v-model="modalShow"
-      title="Icon Preview"
+      title="Icon"
       hide-footer
       centered
     >

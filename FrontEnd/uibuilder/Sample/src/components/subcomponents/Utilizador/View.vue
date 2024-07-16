@@ -43,7 +43,7 @@
                   <td>{{ item.Utilizador_Email }}</td>
                   <td>{{ item.TipoUtilizador_Nome }}</td>
                   <td>{{ formatGroups(item.Grupos) }}</td>
-                  <td>
+                  <td  class="text-center">
                     <b-icon-check
                       v-if="item.Utilizador_isActive === 1"
                       variant="success"
