@@ -277,9 +277,9 @@ module.exports = {
       this.model.item.coordenada = coords;
     },
     zoomToLocal() {
-      const selectedLocation = this.AreadeAgricultura.find(loc => loc.ID === this.model.item.area_ID);
-      if (selectedLocation && selectedLocation.Localizacao) {
-        const coordinates = selectedLocation.Localizacao.split(";").map(coord => coord.split(",").map(Number));
+      const selectedLocation = this.AreadeAgricultura.find(loc => loc.Area_ID === this.model.item.area_ID);
+      if (selectedLocation && selectedLocation.Area_Localizacao) {
+        const coordinates = selectedLocation.Area_Localizacao.split(";").map(coord => coord.split(",").map(Number));
         if (coordinates.length > 0) {
           const firstTwoCoordinates = coordinates.slice(0, 2);
           const latLng = [firstTwoCoordinates[0][0], firstTwoCoordinates[0][1]];

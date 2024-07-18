@@ -79,10 +79,18 @@ module.exports = {
         .post("/rs2lab/addtiposensor", this.model.item)
         .then((resp) => {
           console.log(resp);
-          self.showNotification(); //shows notification of successful add
+          this.showNotification(
+            "Tipo de Sensor adicionada com sucesso!",
+            "success","Sucesso"
+          ); //shows notification of successful add
+          this.cleanForm();
         })
         .catch((e) => {
           console.log(error);
+          this.showNotification(
+            "Erro ao adicionar a Tipo de Sensor.",
+            "danger","Erro"
+          );
         });
     },
     //Use to clean form upon succcessful insert
@@ -93,23 +101,12 @@ module.exports = {
     },
     //Shows a dialog notification
 
-    showNotification() {
-      var self = this; //Assign this to a variable
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Adicionados com sucesso!!", {
-          title: "Confirmation",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          self.cleanForm(); //clears form upon confirmation of user
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
     previewIcon(event) {
       const file = event.target.files[0];

@@ -143,37 +143,38 @@ module.exports = {
         .then(() => {})
         .catch((errors) => {
           console.error(errors);
-          this.$bvToast.toast(
-            "Ocorreu um erro ao obter os grupos de utilizadores.",
-            {
-              title: "Erro",
-              variant: "danger",
-            }
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Grupo de Utilizadores.",
+            "danger","Erro"
           );
         });
       axios
         .delete(`/rs2lab/deletegrupoutilizadores/${ItemID}`)
         .then(() => {
-          this.ShowDeleteNotification();
+          this.ShowDeleteNotification(
+            "Grupo deletado com sucesso!",
+            "success", "Sucesso"
+          );
+          this.retrieveItems();
         })
         .catch((errors) => {
           console.error(errors);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-            title: "Erro",
-            variant: "danger",
-          });
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Grupo.",
+            "danger","Erro"
+          );
         });
     },
-    ShowDeleteNotification() {
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
       });
-      this.retrieveItems(); // Chame a função corretamente para atualizar os itens
     },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar esse Grupo?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",

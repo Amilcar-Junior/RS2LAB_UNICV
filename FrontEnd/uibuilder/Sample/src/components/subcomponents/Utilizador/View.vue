@@ -186,10 +186,10 @@ module.exports = {
     },
   },
   mounted() {
-    this.retriveItem();
+    this.retrieveItems();
   },
   methods: {
-    retriveItem() {
+    retrieveItems() {
       axios
         .get("/rs2lab/utilizador")
         .then((response) => {
@@ -206,9 +206,45 @@ module.exports = {
     formatGroups(groups) {
       return groups.map((group) => group.Nome).join(", ");
     },
+    
+    deleteItem(ItemID) {
+      axios
+        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`)
+        .then(() => {})
+        .catch((errors) => {
+          console.error(errors);
+          this.ShowDeleteNotification(
+            "Erro ao Excluir Grupo de Utilizadores.",
+            "success", "Sucesso"
+          );
+        });
+      axios
+        .delete(`/rs2lab/deleteutilizador/${ItemID}`)
+        .then(() => {
+          this.ShowDeleteNotification(
+            "Utilizador deletado com sucesso!",
+            "success", "Sucesso"
+          );
+          this.retrieveItems();
+        })
+        .catch((error) => {
+          console.error("Erro ao deletar utilizador:", error);
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Utilizador.",
+            "danger","Erro"
+          );
+        });
+    },
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
+    },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar esse Utilizador?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",
@@ -227,40 +263,6 @@ module.exports = {
         .catch((err) => {
           console.error("Erro ao exibir a caixa de diálogo:", err);
         });
-    },
-    deleteItem(ItemID) {
-      axios
-        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`)
-        .then(() => {})
-        .catch((errors) => {
-          console.error(errors);
-          this.$bvToast.toast(
-            "Ocorreu um erro ao obter os grupos de utilizadores.",
-            {
-              title: "Erro",
-              variant: "danger",
-            }
-          );
-        });
-      axios
-        .delete(`/rs2lab/deleteutilizador/${ItemID}`)
-        .then(() => {
-          this.ShowDeleteNotification();
-          this.retriveItem();
-        })
-        .catch((error) => {
-          console.error("Erro ao deletar utilizador:", error);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-            title: "Erro",
-            variant: "danger",
-          });
-        });
-    },
-    ShowDeleteNotification() {
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
-      });
     },
   },
 };

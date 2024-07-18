@@ -132,22 +132,30 @@ module.exports = {
       axios
         .delete(`/rs2lab/deletevalorsensor/${ItemID}`)
         .then(() => {
-          this.ShowDeleteNotification();
+          this.ShowDeleteNotification(
+            "Topico deletado com sucesso.",
+            "success", "Sucesso"
+          );
           this.retriveItem();
         })
         .catch((error) => {
-          console.error("Erro ao excluir o tipo de sensor", error);
+          console.error("Erro ao Deletar o tipo de sensor", error);
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Topico.",
+            "danger","Erro"
+          );
         });
     },
-    ShowDeleteNotification() {
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
       });
     },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar esse Topico?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",

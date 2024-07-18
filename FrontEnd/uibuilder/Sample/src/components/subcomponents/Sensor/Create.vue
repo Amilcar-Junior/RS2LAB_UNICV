@@ -209,7 +209,7 @@ module.exports = {
           const polygon = L.polygon(coordinates, { color: "red", weight: 4 });
           this.drawnItems.clearLayers(); // Limpa qualquer desenho anterior
           this.drawnItems.addLayer(polygon);
-          this.map.setView(latLng, 13);
+          this.map.setView(latLng, 20);
           this.model.item.coordenada = firstTwoCoordinates.map(coord => coord.join(",")).join("; ");
         }
       }
@@ -218,12 +218,15 @@ module.exports = {
       axios
         .post("/rs2lab/addsensor", this.model.item)
         .then(() => {
-          this.showNotification("Sensor adicionada com sucesso!");
-          // this.$router.push("/sensor");
+          this.showNotification(
+            "Sensor adicionado com sucesso!",
+            "success","Sucesso"
+          );
+          this.cleanForm();
         })
         .catch((error) => {
-          console.error("Erro ao adicionar a Sensor:", error);
-          this.showNotificationToast("Erro ao adicionar a Sensor.", "danger");
+          console.error("Erro ao adicionar o Sensor:", error);
+          this.showNotificationToast("Erro ao adicionar o Sensor.", "danger","Erro");
         });
     },
     getAreadeAgricultura() {
@@ -234,7 +237,11 @@ module.exports = {
           console.log("Area:", response)
         })
         .catch((error) => {
-          console.error("Erro ao buscar grupos de utilizadores:", error);
+          console.error("Erro ao buscar Area de Agricultura:", error);
+          this.showNotification(
+            "Erro ao buscar dados das Áreas de Agricultura.",
+            "danger","Erro"
+          );
         });
     },
     getTipoSensor() {
@@ -246,6 +253,10 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar dados locais:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos locais.",
+            "danger","Erro"
+          );
         });
     },
     getValorSensor() {
@@ -256,30 +267,17 @@ module.exports = {
           this.ValorSensor = response.data;
         })
         .catch((error) => {
-          console.error("Erro ao buscar dados locais:", error);
+          console.error("Erro ao buscar dados dos Topicos:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos Topicos.",
+            "danger","Erro"
+          );
         });
     },
-    showNotification(message) {
-      var self = this; //Assign this to a variable
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk(message, {
-          title: "Confirmation",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          self.cleanForm(); //clears form upon confirmation of user
-        })
-        .catch((err) => {});
-    },
-    showNotificationToast(message, variant = "success") {
+    
+    showNotification(message, variant, title) {
       this.$bvToast.toast(message, {
-        title: "Confirmação",
+        title: title,
         variant: variant,
         solid: true,
       });
@@ -291,6 +289,7 @@ module.exports = {
       this.model.item.ID_ValorSensor = "";
       this.model.item.coordenada = "";
       this.model.item.map = null;
+      this.drawnItems.clearLayers();
     },
   },
 };

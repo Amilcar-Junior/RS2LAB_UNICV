@@ -152,50 +152,52 @@ module.exports = {
               })
               .catch((errors) => {
                 console.error(errors);
-                self.$bvToast.toast(
-                  "Ocorreu um erro ao atualizar os utilizadores.",
-                  {
-                    title: "Erro",
-                    variant: "danger",
-                  }
+                this.ShowDeleteNotification(
+                  "Erro ao Atualizar Tipo de Utilizador do Utilizador.",
+                  "danger",
+                  "Erro"
                 );
               });
           });
         })
         .catch((errors) => {
           console.error(errors);
-          this.$bvToast.toast("Ocorreu um erro ao obter os utilizadores.", {
-            title: "Erro",
-            variant: "danger",
-          });
+          this.ShowDeleteNotification(
+            "Erro ao Obter dados do Utilizador.",
+            "danger","Erro"
+          );
         });
       axios
         .delete(`/rs2lab/deletetipoutilizador/${ItemID}`)
         .then(() => {
-          this.retriveItem(); // Usar a variável this em vez de this
-          this.ShowDeleteNotification(); // Usar a variável this em vez de this
+          this.ShowDeleteNotification(
+            "Tipo Utilizador deletados com sucesso!",
+            "success",
+            "Sucesso"
+          );
+          this.retrieveItems();
         })
         .catch((errors) => {
           console.error(errors);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-            title: "Erro",
-            variant: "danger",
-          });
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Tipo Utilizador.",
+            "danger",
+            "Erro"
+          );
         });
     },
 
-    ShowDeleteNotification() {
-      this.boxOne = "";
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
       });
-      this.retriveItem();
     },
     ShowConfirmDelete(ItemID) {
       this.boxTwo = "";
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar esse Tipo de Utilizador?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",

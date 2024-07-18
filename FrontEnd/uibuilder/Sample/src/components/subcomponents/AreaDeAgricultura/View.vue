@@ -268,9 +268,35 @@ module.exports = {
     formatSensores(sensores) {
       return sensores.map((sensor) => sensor.Sensor_Nome).join(", ");
     },
+    
+    deleteItem(ItemID) {
+      axios
+        .delete(`/rs2lab/deleteareadeagricultura/${ItemID}`)
+        .then(() => {
+          this.ShowDeleteNotification(
+            "Area de Agricultura deletado com sucesso!",
+            "success", "Sucesso"
+          );
+          this.retrieveItems();
+        })
+        .catch((error) => {
+          console.error("Erro ao deletar areadeagricultura:", error);
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Area de Agricultura.",
+            "danger","Erro"
+          );
+        });
+    },
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
+    },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar essa Área de Agricultura?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",
@@ -289,27 +315,6 @@ module.exports = {
         .catch((err) => {
           console.error("Erro ao exibir a caixa de diálogo:", err);
         });
-    },
-    deleteItem(ItemID) {
-      axios
-        .delete(`/rs2lab/deleteareadeagricultura/${ItemID}`)
-        .then(() => {
-          this.ShowDeleteNotification();
-          this.retrieveItems();
-        })
-        .catch((error) => {
-          console.error("Erro ao deletar areadeagricultura:", error);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-            title: "Erro",
-            variant: "danger",
-          });
-        });
-    },
-    ShowDeleteNotification() {
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
-      });
     },
   },
 };

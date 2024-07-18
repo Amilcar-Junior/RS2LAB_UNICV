@@ -52,7 +52,7 @@
                 </option>
               </select>
             </div>
-            <div id="map"  style="height: 500px"></div>
+            <div id="map" style="height: 500px"></div>
           </div>
 
           <div class="mb-3">
@@ -109,25 +109,35 @@ module.exports = {
   methods: {
     initMap() {
       // Definir diferentes tipos de camadas de mapa
-      const streets = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenStreetMap contributors",
-      });
+      const streets = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "© OpenStreetMap contributors",
+        }
+      );
 
-      const hybrid = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenTopoMap contributors",
-      });
+      const hybrid = L.tileLayer(
+        "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "© OpenTopoMap contributors",
+        }
+      );
 
-      const satellite = L.tileLayer("https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const satellite = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
-
-      
+      const terrain = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
       // Inicializar o mapa com a camada padrão (streets)
       this.map = L.map("map", {
@@ -138,10 +148,10 @@ module.exports = {
 
       // Definir as opções de camadas de base
       this.baseMaps = {
-        "Streets": streets,
-        "Satellite": satellite,
-        "Hibrido": hybrid,
-        "Terreno": terrain,
+        Streets: streets,
+        Satellite: satellite,
+        Hibrido: hybrid,
+        Terreno: terrain,
       };
 
       // Adicionar controle de camadas ao mapa
@@ -167,6 +177,8 @@ module.exports = {
       // Eventos de criação e edição de desenho
       this.map.on(L.Draw.Event.CREATED, (e) => {
         const layer = e.layer;
+        // Limpar os polígonos existentes
+        this.drawnItems.clearLayers();
         this.drawnItems.addLayer(layer);
         this.updateLocationField();
       });
@@ -175,6 +187,7 @@ module.exports = {
         this.updateLocationField();
       });
     },
+
     updateLocationField() {
       const layers = this.drawnItems.getLayers();
       const coords = layers
@@ -186,7 +199,9 @@ module.exports = {
       this.model.item.Localizacao = coords;
     },
     zoomToLocal() {
-      const selectedLocation = this.Local.find((loc) => loc.ID === this.selectedLocal);
+      const selectedLocation = this.Local.find(
+        (loc) => loc.ID === this.selectedLocal
+      );
       if (selectedLocation) {
         const latLng = [selectedLocation.lat, selectedLocation.lng];
         this.map.setView(latLng, 13);
@@ -197,13 +212,27 @@ module.exports = {
       axios
         .post("/rs2lab/addareadeagricultura", this.model.item)
         .then(() => {
-          this.showNotification("Área de Agricultura adicionada com sucesso!");
-          this.$router.push("/areadeagricultura");
+          this.showNotification(
+            "Área de Agricultura adicionada com sucesso!",
+            "success","Sucesso"
+          );
+          this.cleanForm();
         })
         .catch((error) => {
           console.error("Erro ao adicionar a área de agricultura:", error);
-          this.showNotification("Erro ao adicionar a área de agricultura.", "danger");
+          this.showNotification(
+            "Erro ao adicionar a Área de Agricultura.",
+            "danger","Erro"
+          );
         });
+    },
+    cleanForm() {
+      this.model.item.Nome = "";
+      this.model.item.Localizacao = "";
+      this.model.item.ID_Grupo = "";
+      this.model.item.ID_Local = "";
+      this.selectedLocal = "";
+      this.drawnItems.clearLayers();
     },
     getGrupos() {
       axios
@@ -213,6 +242,10 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar grupos de utilizadores:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos grupos de utilizadores.",
+            "danger","Erro"
+          );
         });
     },
     getLocal() {
@@ -223,11 +256,15 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar dados locais:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos locais.",
+            "danger","Erro"
+          );
         });
     },
-    showNotification(message, variant = "success") {
+    showNotification(message, variant, title) {
       this.$bvToast.toast(message, {
-        title: "Confirmação",
+        title: title,
         variant: variant,
         solid: true,
       });

@@ -181,39 +181,51 @@ module.exports = {
               })
               .catch((errors) => {
                 console.error(errors);
-                self.$bvToast.toast("Ocorreu um erro ao atualizar os Sensor.", {
-                  title: "Erro",
-                  variant: "danger",
-                });
+                this.ShowDeleteNotification(
+                  "Erro ao Deletar Tipo de Sensor do Sensor.",
+                  "danger",
+                  "Erro"
+                );
               });
           });
         })
         .catch((errors) => {
           console.error(errors);
-          this.$bvToast.toast("Ocorreu um erro ao obter os Sensor.", {
-            title: "Erro",
-            variant: "danger",
-          });
+          this.ShowDeleteNotification(
+            "Erro ao Obter dados Do Sensor.",
+            "danger",
+            "Erro"
+          );
         });
       axios
         .delete(`/rs2lab/deletetiposensor/${ItemID}`)
         .then(() => {
-          this.ShowDeleteNotification();
+          this.ShowDeleteNotification(
+            "Tipo Sensor deletado com sucesso!",
+            "success",
+            "Sucesso"
+          );
           this.retriveItem();
         })
         .catch((error) => {
-          console.error("Erro ao excluir o tipo de sensor", error);
+          console.error("Erro ao Deletar o tipo de sensor", error);
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Tipo Sensor.",
+            "danger",
+            "Erro"
+          );
         });
     },
-    ShowDeleteNotification() {
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
       });
     },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar esse Tipo de Sensor?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",

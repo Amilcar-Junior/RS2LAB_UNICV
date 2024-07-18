@@ -86,10 +86,17 @@ module.exports = {
               self.addUtilizadorGrupo(utilizadorGrupo);
             });
           }
-          self.showNotification(); //shows notification of successful add
+          this.showNotification(
+            "Grupo adicionada com sucesso!",
+            "success","Sucesso"
+          ); //shows notification of successful add
         })
         .catch((e) => {
           console.log(error);
+          this.showNotification(
+            "Erro ao adicionar Grupo.",
+            "danger","Erro"
+          );
         });
     },
 
@@ -97,10 +104,18 @@ module.exports = {
       axios
         .post("/rs2lab/addutilizadorgrupo", utilizadorGrupo)
         .then((resp) => {
-          console.log(resp);
+          this.showNotification(
+            "Utilizador adicionada ao Grupo com sucesso!",
+            "success","Sucesso"
+          );
+          this.cleanForm();
         })
         .catch((e) => {
-          console.error(e);
+          console.error("Erro ao adicionar Utilizidador ao Grupo:", error);
+          this.showNotification(
+            "Erro ao adicionar Utilizidador ao Grupo.",
+            "danger","Erro"
+          );
         });
     },
 
@@ -120,25 +135,18 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+          this.showNotification(
+            "Erro ao buscar dados dos utilizadores.",
+            "danger","Erro"
+          );
         });
     },
-    showNotification() {
-      var self = this; //Assign this to a variable
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Adicionados com sucesso!!", {
-          title: "Confirmation",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          self.cleanForm(); //clears form upon confirmation of user
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };

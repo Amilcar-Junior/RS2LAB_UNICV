@@ -239,9 +239,35 @@ module.exports = {
 
       this.modalMap.invalidateSize();
     },
+    
+    deleteItem(ItemID) {
+      axios
+        .delete(`/rs2lab/deletelocal/${ItemID}`)
+        .then(() => {
+          this.ShowDeleteNotification(
+            "Local deletado com sucesso!",
+            "success", "Sucesso"
+          );
+          this.retrieveItems();
+        })
+        .catch((error) => {
+          console.error("Erro ao deletar o local:", error);
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Local.",
+            "danger","Erro"
+          );
+        });
+    },
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
+    },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar esse Local?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",
@@ -260,27 +286,6 @@ module.exports = {
         .catch((err) => {
           console.error("Erro ao exibir a caixa de diálogo:", err);
         });
-    },
-    deleteItem(ItemID) {
-      axios
-        .delete(`/rs2lab/deletelocal/${ItemID}`)
-        .then(() => {
-          this.ShowDeleteNotification();
-          this.retrieveItems();
-        })
-        .catch((error) => {
-          console.error("Erro ao deletar o local:", error);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-            title: "Erro",
-            variant: "danger",
-          });
-        });
-    },
-    ShowDeleteNotification() {
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
-      });
     },
   },
 };
