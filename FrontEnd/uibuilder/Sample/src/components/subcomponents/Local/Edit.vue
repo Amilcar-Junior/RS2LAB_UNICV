@@ -77,7 +77,12 @@ module.exports = {
           this.updateMapLocation();
         })
         .catch((error) => {
-          console.error("Erro ao recuperar dados do local:", error);
+          console.error("Erro ao recuperar os dados do local:", error);
+          this.showNotification(
+            "Erro ao recuperar os dados do local.",
+            "danger",
+            "Erro"
+          );
         });
     },
     initMap() {
@@ -163,31 +168,23 @@ module.exports = {
       axios
         .put(`/rs2lab/editlocal/${this.model.item.ID}`, this.model.item)
         .then(() => {
-          this.showNotification("Local atualizado com sucesso!");
+          this.showNotification(
+            "Área de Agricultura atualizado com sucesso!",
+            "success",
+            "Atualização"
+          );
         })
         .catch((error) => {
           console.error("Erro ao atualizar o local:", error);
-          this.showNotification("Erro ao atualizar o local.", "danger");
+          this.showNotification("Erro ao atualizar o Local.", "danger", "Erro");
         });
     },
-    showNotification(message,variante) {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk(message, {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: variante,
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          // Retorna para a URL anterior
-          this.$router.go(-1);
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };

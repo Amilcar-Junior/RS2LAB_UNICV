@@ -123,6 +123,10 @@ module.exports = {
             "Erro ao recuperar dados da área de agricultura:",
             error
           );
+          this.showNotification(
+            "Erro ao buscar dados das áreas de agricultura.",
+            "danger","Erro"
+          );
         });
     },
     getGrupos() {
@@ -134,6 +138,10 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar grupos:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos grupos de utilizadores.",
+            "danger","Erro"
+          );
         });
     },
     getLocal() {
@@ -145,6 +153,10 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar locais:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos locais.",
+            "danger","Erro"
+          );
         });
     },
     initMap() {
@@ -329,20 +341,23 @@ module.exports = {
       axios
         .put(`/rs2lab/editareadeagricultura/${this.model.ID}`, payload)
         .then(() => {
-          this.showNotification("Área de Agricultura atualizada com sucesso!");
+          this.showNotification(
+            "Área de Agricultura atualizado com sucesso!",
+            "success","Sucesso"
+          );
           this.$router.push("/areadeagricultura");
         })
         .catch((error) => {
           console.error("Erro ao editar a área de agricultura:", error);
           this.showNotification(
             "Erro ao atualizar a área de agricultura.",
-            "danger"
+            "danger","Erro"
           );
         });
     },
-    showNotification(message, variant = "success") {
+    showNotification(message, variant, title) {
       this.$bvToast.toast(message, {
-        title: "Atualização",
+        title: title,
         variant: variant,
         solid: true,
       });

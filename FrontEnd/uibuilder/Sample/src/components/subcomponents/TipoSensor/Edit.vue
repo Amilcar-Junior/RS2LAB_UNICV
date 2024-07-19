@@ -73,10 +73,10 @@ module.exports = {
   mounted() {
     // console.log(this.$router.app._route.params.ID);
     this.model.ID = this.$router.app._route.params.ID;
-    this.gettiposensor(this.$router.app._route.params.ID);
+    this.retrievetiposensor(this.$router.app._route.params.ID);
   },
   methods: {
-    gettiposensor(ItemID) {
+    retrievetiposensor(ItemID) {
       axios
         .get(`/rs2lab/tiposensor/${ItemID}`)
         .then((resp) => {
@@ -91,6 +91,11 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+          this.showNotification(
+            "Erro ao recuperar dados do Tipo Sensor.",
+            "danger",
+            "Erro"
+          );
         });
     },
 
@@ -102,32 +107,29 @@ module.exports = {
         .put(`/rs2lab/edittiposensor/${this.model.ID}`, this.model.item)
         .then((resp) => {
           console.log(resp);
-          self.showNotification(); //shows notification of successful add
+          this.showNotification(
+            "Tipo Sensor atualizado com sucesso!",
+            "success",
+            "Atualização"
+          ); //shows notification of successful add
         })
         .catch((e) => {
           console.log(error);
+          this.showNotification(
+            "Erro ao atualizar o Tipo Sensor.",
+            "danger",
+            "Erro"
+          );
         });
     },
     //Shows a dialog notification
 
-    showNotification() {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Editados Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          // Retorna para a URL anterior
-          this.$router.go(-1);
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
     previewIcon(event) {
       const file = event.target.files[0];

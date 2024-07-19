@@ -186,17 +186,17 @@ export default {
             component: EditSensor
         },
         {
-            path:'/valorsensor',
+            path:'/topico',
             name:'ViewValorSensor',
             component: ListValorSensor
         },
         {
-            path:'/valorsensor/create',
+            path:'/topico/create',
             name:'CreateValorSensor',
             component: CreateValorSensor
         },
         {
-            path:'/valorsensor/:ID/edit',
+            path:'/topico/:ID/edit',
             name:'EditValorSensor',
             component: EditValorSensor
         },

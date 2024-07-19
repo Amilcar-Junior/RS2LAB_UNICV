@@ -282,7 +282,7 @@ module.exports = {
         .catch((error) => {
           console.error("Erro ao deletar areadeagricultura:", error);
           this.ShowDeleteNotification(
-            "Erro ao Deletar Area de Agricultura.",
+            "Erro ao Deletar Área de Agricultura.",
             "danger","Erro"
           );
         });

@@ -16,7 +16,7 @@
               placeholder="Buscar por nome ou ID..."
               v-model="searchQuery"
             />
-            <router-link to="/valorsensor/create" class="btn btn-primary ml-2">
+            <router-link to="/topico/create" class="btn btn-primary ml-2">
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
           </div>
@@ -41,7 +41,7 @@
                   <td>{{ item.Data_Hora }}</td>
                   <td class="text-right">
                     <router-link
-                      :to="{ path: '/valorsensor/' + item.ID + '/edit' }"
+                      :to="{ path: '/topico/' + item.ID + '/edit' }"
                       class="btn btn-success"
                     >
                       <i class="fa fa-pencil" aria-hidden="true"></i> Editar

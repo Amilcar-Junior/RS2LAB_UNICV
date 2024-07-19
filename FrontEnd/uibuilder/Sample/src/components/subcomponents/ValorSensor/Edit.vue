@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid mt-5">
-    <router-link to="/valorsensor" class="btn btn-secondary mb-3">
+    <router-link to="/topico" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <b-card>
@@ -76,32 +76,30 @@ module.exports = {
         .put(`/rs2lab/editvalorsensor/${this.model.ID}`, this.model.item)
         .then((resp) => {
           console.log(resp);
-          self.showNotification(); //shows notification of successful add
+          this.showNotification(
+            "Topico atualizado com sucesso!",
+            "success",
+            "Atualização"
+          );
+          this.$router.push("/topico");
         })
         .catch((e) => {
           console.log(error);
+          this.showNotification(
+            "Erro ao atualizar o Topico.",
+            "danger",
+            "Erro"
+          );
         });
     },
     //Shows a dialog notification
 
-    showNotification() {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Editados Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          // Retorna para a URL anterior
-          this.$router.go(-1);
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
     previewIcon(event) {
       const file = event.target.files[0];

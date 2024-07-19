@@ -22,8 +22,14 @@
           </div>
           <div class="mb-3">
             <label for="id_tiposensor" class="form-label">Tipo Sensor</label>
-            <select v-model="model.item.ID_TipoSensor" class="form-control" required>
-              <option value="" disabled selected>Selecione o Tipo Sensor</option>
+            <select
+              v-model="model.item.ID_TipoSensor"
+              class="form-control"
+              required
+            >
+              <option value="" disabled selected>
+                Selecione o Tipo Sensor
+              </option>
               <option
                 v-for="tipo in TipoSensor"
                 :key="tipo.ID"
@@ -35,8 +41,14 @@
           </div>
           <div class="mb-3">
             <label for="id_tiposensor" class="form-label">Topico Sensor</label>
-            <select v-model="model.item.ID_ValorSensor" class="form-control" required>
-              <option value="" disabled selected>Selecione o Topico do Sensor</option>
+            <select
+              v-model="model.item.ID_ValorSensor"
+              class="form-control"
+              required
+            >
+              <option value="" disabled selected>
+                Selecione o Topico do Sensor
+              </option>
               <option
                 v-for="topico in ValorSensor"
                 :key="topico.ID"
@@ -55,7 +67,9 @@
                 @change="zoomToLocal"
                 class="form-control"
               >
-                <option disabled value="">Selecione uma Área de Agricultura</option>
+                <option disabled value="">
+                  Selecione uma Área de Agricultura
+                </option>
                 <option
                   v-for="area in AreadeAgricultura"
                   :key="area.Area_ID"
@@ -138,6 +152,11 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao recuperar dados do sensor:", error);
+          this.showNotification(
+            "Erro ao recuperar dados do Sensor.",
+            "danger",
+            "Erro"
+          );
         });
     },
     getAreadeAgricultura() {
@@ -148,6 +167,11 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar áreas de agricultura:", error);
+          this.showNotification(
+            "Erro ao buscar dados das Áreas de Agricultura.",
+            "danger",
+            "Erro"
+          );
         });
     },
     getTipoSensor() {
@@ -158,6 +182,11 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar tipos de sensor:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos Tipos de Sensores.",
+            "danger",
+            "Erro"
+          );
         });
     },
     getValorSensor() {
@@ -168,27 +197,44 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar topicos de sensor:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos Topicos.",
+            "danger",
+            "Erro"
+          );
         });
     },
     initMap() {
       // Definir diferentes tipos de camadas de mapa
-      const streets = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenStreetMap contributors",
-      });
+      const streets = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "© OpenStreetMap contributors",
+        }
+      );
 
-      const hybrid = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenTopoMap contributors",
-      });
+      const hybrid = L.tileLayer(
+        "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "© OpenTopoMap contributors",
+        }
+      );
 
-      const satellite = L.tileLayer("https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const satellite = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const terrain = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
       // Inicializar o mapa com a camada padrão (streets)
       this.map = L.map("editMap", {
@@ -199,10 +245,10 @@ module.exports = {
 
       // Definir as opções de camadas de base
       this.baseMaps = {
-        "Streets": streets,
-        "Satellite": satellite,
-        "Hibrido": hybrid,
-        "Terreno": terrain,
+        Streets: streets,
+        Satellite: satellite,
+        Hibrido: hybrid,
+        Terreno: terrain,
       };
 
       // Adicionar controle de camadas ao mapa
@@ -277,13 +323,20 @@ module.exports = {
       this.model.item.coordenada = coords;
     },
     zoomToLocal() {
-      const selectedLocation = this.AreadeAgricultura.find(loc => loc.Area_ID === this.model.item.area_ID);
+      const selectedLocation = this.AreadeAgricultura.find(
+        (loc) => loc.Area_ID === this.model.item.area_ID
+      );
       if (selectedLocation && selectedLocation.Area_Localizacao) {
-        const coordinates = selectedLocation.Area_Localizacao.split(";").map(coord => coord.split(",").map(Number));
+        const coordinates = selectedLocation.Area_Localizacao.split(";").map(
+          (coord) => coord.split(",").map(Number)
+        );
         if (coordinates.length > 0) {
           const firstTwoCoordinates = coordinates.slice(0, 2);
           const latLng = [firstTwoCoordinates[0][0], firstTwoCoordinates[0][1]];
-          console.log("Centralizando o mapa nas coordenadas da área de agricultura:", latLng);
+          console.log(
+            "Centralizando o mapa nas coordenadas da área de agricultura:",
+            latLng
+          );
           if (this.map) {
             this.map.setView(latLng, 13);
           } else {
@@ -293,7 +346,9 @@ module.exports = {
           console.warn("A área de agricultura não tem coordenadas válidas.");
         }
       } else {
-        console.warn("Localização da área de agricultura não está disponível ou é inválida.");
+        console.warn(
+          "Localização da área de agricultura não está disponível ou é inválida."
+        );
       }
     },
     zoomToLocation() {
@@ -301,7 +356,10 @@ module.exports = {
         const coordsArray = this.model.item.coordenada.split(",").map(Number);
         if (coordsArray.length === 2) {
           const latLng = coordsArray;
-          console.log("Centralizando o mapa nas coordenadas do sensor:", latLng);
+          console.log(
+            "Centralizando o mapa nas coordenadas do sensor:",
+            latLng
+          );
           if (this.map) {
             this.map.setView(latLng, 13);
           } else {
@@ -310,7 +368,9 @@ module.exports = {
           return;
         }
       }
-      console.warn("Coordenada do sensor não está disponível ou é inválida. Tentando área de agricultura.");
+      console.warn(
+        "Coordenada do sensor não está disponível ou é inválida. Tentando área de agricultura."
+      );
       this.zoomToLocal(); // Se não houver coordenadas do sensor, zoom na área de agricultura
     },
     editSensor() {
@@ -326,17 +386,25 @@ module.exports = {
       axios
         .put(`/rs2lab/editsensor/${this.model.ID}`, payload)
         .then(() => {
-          this.showNotification("Sensor atualizado com sucesso!");
+          this.showNotification(
+            "Sensor atualizado com sucesso!",
+            "success",
+            "Atualização"
+          );
           this.$router.push("/sensor");
         })
         .catch((error) => {
           console.error("Erro ao editar o sensor:", error);
-          this.showNotification("Erro ao atualizar o sensor.", "danger");
+          this.showNotification(
+            "Erro ao atualizar o Sensor.",
+            "danger",
+            "Erro"
+          );
         });
     },
-    showNotification(message, variant = "success") {
+    showNotification(message, variant, title) {
       this.$bvToast.toast(message, {
-        title: "Atualização",
+        title: title,
         variant: variant,
         solid: true,
       });

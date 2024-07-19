@@ -178,6 +178,11 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao recuperar os dados do Utilizador", error);
+          this.showNotification(
+            "Erro ao recuperar dados do Utilizador.",
+            "danger",
+            "Erro"
+          );
         });
     },
     editUtilizador() {
@@ -215,9 +220,12 @@ module.exports = {
           console.log("Utilizador atualizado com sucesso!", response);
 
           // Verificar se o ID do utilizador é o mesmo do localStorage
-          
+
           console.log(localStorage);
-          if (this.keys.Utilizador_ID && this.model.ID === this.model.ID.toString()) {
+          if (
+            this.keys.Utilizador_ID &&
+            this.model.ID === this.model.ID.toString()
+          ) {
             // Atualizar os dados no localStorage
             localStorage.setItem("user", JSON.stringify(this.model.item));
             this.keys.Utilizador_Nome = this.model.item.Nome;
@@ -227,12 +235,22 @@ module.exports = {
             this.keys.TipoUtilizador_ID = this.model.item.ID_TipoUtilizador;
             this.keys.Grupos = this.gruposSelecionados;
           }
-          console.log("local sotrage atualizado: ",localStorage)
+          console.log("local sotrage atualizado: ", localStorage);
 
-          this.showNotification();
+          this.showNotification(
+            "Utilizador atualizado com sucesso!",
+            "success",
+            "Atualização"
+          );
+          this.$router.push("/utilizador");
         })
         .catch((error) => {
           console.error("Erro ao atualizar o Utilizador", error);
+          this.showNotification(
+            "Erro ao atualizar o Utilizador.",
+            "danger",
+            "Erro"
+          );
         });
     },
 
@@ -246,10 +264,11 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
-          self.$bvToast.toast("Ocorreu um erro ao excluir o utilizadorgrupo.", {
-            title: "Erro",
-            variant: "danger",
-          });
+          this.ShowNotification(
+            "Erro ao Deletar Utilizador ao Grupo.",
+            "danger",
+            "Erro"
+          );
         });
     },
     addUtilizadorGrupo(utilizadorgrupo) {
@@ -273,6 +292,12 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+
+          this.showNotification(
+            "Erro ao buscar dados dos Grupos.",
+            "danger",
+            "Erro"
+          );
         });
     },
     getUtilizadorGrupo(ItemID) {
@@ -289,6 +314,8 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+
+          this.showNotification("Erro ao buscar dados.", "danger", "Erro");
         });
     },
     getTipoUtilizador() {
@@ -301,29 +328,23 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+
+          this.showNotification(
+            "Erro ao buscar dados dos Tipos de Utilizadores.",
+            "danger",
+            "Erro"
+          );
         });
     },
 
     //Shows a dialog notification
 
-    showNotification() {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Editados Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          // Retorna para a URL anterior
-          this.$router.go(-1);
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
 
     previewImage(event) {

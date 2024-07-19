@@ -1,0 +1,37 @@
+this.showNotification(
+  "Item atualizado com sucesso!",
+  "success",
+  "Atualização"
+);
+
+this.showNotification(
+            "Erro ao atualizar o Item.",
+            "danger",
+            "Erro"
+          );
+
+this.showNotification(
+  "Erro ao recuperar dados do Item.",
+  "danger",
+  "Erro"
+);
+
+this.showNotification(
+  "Erro ao buscar dados dos Item.",
+  "danger",
+  "Erro"
+);
+
+this.ShowDeleteNotification(
+  "Erro ao Deletar Item.",
+  "danger",
+  "Erro"
+);
+
+showNotification(message, variant, title) {
+    this.$bvToast.toast(message, {
+      title: title,
+      variant: variant,
+      solid: true,
+    });
+  },
