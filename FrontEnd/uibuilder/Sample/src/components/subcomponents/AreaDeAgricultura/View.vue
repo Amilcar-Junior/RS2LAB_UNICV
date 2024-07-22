@@ -19,6 +19,7 @@
             <router-link
               to="/areadeagricultura/create"
               class="btn btn-primary ml-2"
+               v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR "
             >
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
@@ -35,7 +36,7 @@
                   <th scope="col" class="col-1">Grupo</th>
                   <th scope="col" class="col-2">Localização</th>
                   <th scope="col" class="col-1">Mapa</th>
-                  <th scope="col" class="col-2 text-right">Ações</th>
+                  <th scope="col" class="col-2 text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">Ações</th>
                 </tr>
               </thead>
               <tbody v-if="paginatedItems.length > 0">
@@ -45,7 +46,6 @@
                   <td>{{ formatSensores(item.Sensores) }}</td>
                   <td>{{ item.Grupo_Nome }}</td>
                   <td>{{ item.Local_Nome }}</td>
-
                   <td class="text-center">
                     <button
                       v-if="hasValidCoordinates(item.Area_Localizacao)"
@@ -55,7 +55,10 @@
                       <i class="fa fa-map" aria-hidden="true"></i> Mapa
                     </button>
                   </td>
-                  <td class="text-right">
+                  <td
+                    class="text-right"
+                     v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR "
+                  >
                     <router-link
                       :to="{
                         path: '/areadeagricultura/' + item.Area_ID + '/edit',
@@ -110,6 +113,7 @@
 <script>
 module.exports = {
   name: "areaDeAgricultura",
+  props: ["keys"],
   data() {
     return {
       items: [],
@@ -120,6 +124,7 @@ module.exports = {
       selectedLocation: [],
       searchQuery: "",
       baseMaps: null, // Base map layers
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
@@ -133,22 +138,32 @@ module.exports = {
       return Math.ceil(this.totalRows / this.perPage);
     },
     filteredItems() {
-      return this.items.filter((item) => {
-        return (
-          item.Area_Nome.toLowerCase().includes(
-            this.searchQuery.toLowerCase()
-          ) ||
-          item.Area_ID.toString().includes(this.searchQuery) ||
-          (item.Grupo_Nome &&
-            item.Grupo_Nome.toLowerCase().includes(
+      return this.items
+        .filter((item) => {
+          if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+            return true;
+          }
+          const userGroupIds = this.keys.Grupos
+            ? this.keys.Grupos.map((group) => group.ID)
+            : [];
+          return userGroupIds.includes(item.Grupo_ID);
+        })
+        .filter((item) => {
+          return (
+            item.Area_Nome.toLowerCase().includes(
               this.searchQuery.toLowerCase()
-            )) ||
-          (item.Local_Nome &&
-            item.Local_Nome.toLowerCase().includes(
-              this.searchQuery.toLowerCase()
-            ))
-        );
-      });
+            ) ||
+            item.Area_ID.toString().includes(this.searchQuery) ||
+            (item.Grupo_Nome &&
+              item.Grupo_Nome.toLowerCase().includes(
+                this.searchQuery.toLowerCase()
+              )) ||
+            (item.Local_Nome &&
+              item.Local_Nome.toLowerCase().includes(
+                this.searchQuery.toLowerCase()
+              ))
+          );
+        });
     },
     paginatedItems() {
       const start = (this.currentPage - 1) * this.perPage;
@@ -162,7 +177,6 @@ module.exports = {
         .get("/rs2lab/areadeagricultura")
         .then((response) => {
           this.items = response.data;
-          console.log(response);
         })
         .catch((error) => {
           console.error("Erro ao recuperar Área de Agricultura:", error);
@@ -240,10 +254,10 @@ module.exports = {
       });
 
       this.baseMaps = {
-        "Streets": streets,
-        "Satellite": satellite,
-        "Hibrido": hybrid,
-        "Terreno": terrain,
+        Streets: streets,
+        Satellite: satellite,
+        Hibrido: hybrid,
+        Terreno: terrain,
       };
 
       L.control.layers(this.baseMaps).addTo(this.modalMap);
@@ -268,14 +282,14 @@ module.exports = {
     formatSensores(sensores) {
       return sensores.map((sensor) => sensor.Sensor_Nome).join(", ");
     },
-    
     deleteItem(ItemID) {
       axios
         .delete(`/rs2lab/deleteareadeagricultura/${ItemID}`)
         .then(() => {
           this.ShowDeleteNotification(
             "Area de Agricultura deletado com sucesso!",
-            "success", "Sucesso"
+            "success",
+            "Sucesso"
           );
           this.retrieveItems();
         })
@@ -283,7 +297,8 @@ module.exports = {
           console.error("Erro ao deletar areadeagricultura:", error);
           this.ShowDeleteNotification(
             "Erro ao Deletar Área de Agricultura.",
-            "danger","Erro"
+            "danger",
+            "Erro"
           );
         });
     },

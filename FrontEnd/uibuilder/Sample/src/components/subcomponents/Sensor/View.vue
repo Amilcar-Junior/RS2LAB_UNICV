@@ -16,7 +16,7 @@
               placeholder="Buscar por nome, ID, Grupo ou Localização..."
               v-model="searchQuery"
             />
-            <router-link to="/sensor/create" class="btn btn-primary ml-2">
+            <router-link to="/sensor/create" class="btn btn-primary ml-2" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
           </div>
@@ -28,20 +28,22 @@
                 <tr>
                   <th scope="col" class="col-1">ID</th>
                   <th scope="col" class="col-2">Nome</th>
-                  <th scope="col" class="col-2">Area</th>
                   <th scope="col" class="col-2">Tipo Sensor</th>
                   <th scope="col" class="col-2">Tópico</th>
+                  <th scope="col" class="col-2">Grupo</th>
+                  <th scope="col" class="col-2">Area</th>
                   <th scope="col" class="col-1">Mapa</th>
-                  <th scope="col" class="col-2 text-right">Ações</th>
+                  <th scope="col" class="col-2 text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">Ações</th>
                 </tr>
               </thead>
               <tbody v-if="paginatedItems.length > 0">
                 <tr v-for="(item, index) in paginatedItems" :key="index">
                   <td>{{ item.ID }}</td>
                   <td>{{ item.Nome }}</td>
-                  <td>{{ item.Area_Nome }}</td>
                   <td>{{ item.TipoSensor_Nome }}</td>
                   <td>{{ item.ValorSensor_Topico }}</td>
+                  <td>{{ item.Grupo_Nome }}</td>
+                  <td>{{ item.Area_Nome }}</td>
                   <td  class="text-center">
                     <button
                       v-if="hasValidCoordinates(item.coordenada)"
@@ -51,7 +53,7 @@
                       <i class="fa fa-map" aria-hidden="true"></i> Mapa
                     </button>
                   </td>
-                  <td class="text-right">
+                  <td class="text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
                     <router-link
                       :to="{ path: '/sensor/' + item.ID + '/edit' }"
                       class="btn btn-success"
@@ -104,6 +106,7 @@
 <script>
 module.exports = {
   name: "sensor",
+  props: ["keys"],
   data() {
     return {
       items: [],
@@ -115,6 +118,7 @@ module.exports = {
       searchQuery: "",
       baseMaps: null, // Base map layers
       iconBase64: "", // Store the icon base64 string
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
@@ -128,20 +132,24 @@ module.exports = {
       return Math.ceil(this.totalRows / this.perPage);
     },
     filteredItems() {
-      return this.items.filter((item) => {
-        return (
-          item.Nome.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.ID.toString().includes(this.searchQuery) ||
-          (item.Area_Nome &&
-            item.Area_Nome.toLowerCase().includes(
-              this.searchQuery.toLowerCase()
-            )) ||
-          (item.TipoSensor_Nome &&
-            item.TipoSensor_Nome.toLowerCase().includes(
-              this.searchQuery.toLowerCase()
-            ))
-        );
-      });
+      return this.items
+        .filter(item => {
+          if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+            return true;
+          }
+          const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+          return userGroupIds.includes(item.Grupo_ID);
+        })
+        .filter(item => {
+          return (
+            item.Nome.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+            item.ID.toString().includes(this.searchQuery) ||
+            (item.Area_Nome &&
+              item.Area_Nome.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
+            (item.TipoSensor_Nome &&
+              item.TipoSensor_Nome.toLowerCase().includes(this.searchQuery.toLowerCase()))
+          );
+        });
     },
     paginatedItems() {
       const start = (this.currentPage - 1) * this.perPage;

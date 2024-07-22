@@ -16,7 +16,7 @@
               placeholder="Buscar por nome ou ID..."
               v-model="searchQuery"
             />
-            <router-link to="/tiposensor/create" class="btn btn-primary ml-2">
+            <router-link to="/tiposensor/create" class="btn btn-primary ml-2" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
           </div>
@@ -29,14 +29,14 @@
                   <th scope="col" class="col-1">ID</th>
                   <th scope="col" class="col-7">Nome</th>
                   <th scope="col" class="col-2">Icon</th>
-                  <th scope="col" class="col-2 text-right">Actions</th>
+                  <th scope="col" class="col-2 text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">Actions</th>
                 </tr>
               </thead>
               <tbody v-if="paginatedItems.length > 0">
                 <tr v-for="(item, index) in paginatedItems" :key="index">
                   <td>{{ item.ID }}</td>
                   <td>{{ item.Nome }}</td>
-                  <td class="text-center">
+                  <td class="text-center" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
                     <button
                       v-if="item.icon"
                       @click="showModal(item.icon)"
@@ -108,6 +108,7 @@
 <script>
 module.exports = {
   name: "tiposensor",
+  props: ["keys"],
   data() {
     return {
       perPage: 8,
@@ -116,6 +117,7 @@ module.exports = {
       modalShow: false,
       searchQuery: "",
       currentIcon: "",
+      userTypes: window.appConfig.userTypes,
     };
   },
   computed: {

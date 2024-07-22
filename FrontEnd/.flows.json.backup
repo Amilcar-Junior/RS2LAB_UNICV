@@ -10339,7 +10339,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    s.ID, \n    s.Nome, \n    s.area_ID, \n    s.ID_TipoSensor,\n    s.coordenada,\n    s.ID_ValorSensor,\n    a.Nome AS Area_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    v.Valor AS ValorSensor_Valor,\n    v.Data_Hora AS ValorSensor_Data_Hora,\n    v.Topico AS ValorSensor_Topico\nFROM \n    rs2lab.Sensor s\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID;\n`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    s.ID, \n    s.Nome, \n    s.area_ID, \n    s.ID_TipoSensor,\n    s.coordenada,\n    s.ID_ValorSensor,\n    a.Nome AS Area_Nome,\n    a.ID_Grupo AS Grupo_ID,\n    g.Nome AS Grupo_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    v.Valor AS ValorSensor_Valor,\n    v.Data_Hora AS ValorSensor_Data_Hora,\n    v.Topico AS ValorSensor_Topico\nFROM \n    rs2lab.Sensor s\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nLEFT JOIN \n    rs2lab.GrupoUtilizadores g ON a.ID_Grupo = g.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID;\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -13145,7 +13145,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1820,
+        "x": 1880,
         "y": 5960,
         "wires": [
             [
@@ -13161,7 +13161,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2130,
+        "x": 2190,
         "y": 5960,
         "wires": []
     },
@@ -13169,12 +13169,12 @@
         "id": "21213068056406ed",
         "type": "http in",
         "z": "ba85fe949960916b",
-        "name": "Get sensor id",
-        "url": "/rs2lab/sensor/:ID",
+        "name": "Get sensor id by Tipo Sensor",
+        "url": "/rs2lab/sensor/tiposensor/:ID",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1610,
+        "x": 1660,
         "y": 5960,
         "wires": [
             [
@@ -13189,7 +13189,7 @@
         "z": "ba85fe949960916b",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1970,
+        "x": 2030,
         "y": 5960,
         "wires": [
             [
@@ -13211,7 +13211,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2150,
+        "x": 2210,
         "y": 5920,
         "wires": []
     },
@@ -13228,7 +13228,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1980,
+        "x": 2040,
         "y": 5920,
         "wires": []
     },
@@ -13245,7 +13245,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1790,
+        "x": 1850,
         "y": 5900,
         "wires": []
     },
@@ -13255,7 +13255,7 @@
         "z": "ba85fe949960916b",
         "name": "GET BY TIPOSENSOR",
         "info": "",
-        "x": 1840,
+        "x": 1900,
         "y": 5860,
         "wires": []
     },

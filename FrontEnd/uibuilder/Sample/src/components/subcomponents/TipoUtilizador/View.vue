@@ -15,7 +15,7 @@
             placeholder="Buscar por ID ou Nome..."
             v-model="searchQuery"
           />
-          <router-link to="/tipoutilizador/create" class="btn btn-primary ml-2">
+          <router-link to="/tipoutilizador/create" class="btn btn-primary ml-2" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
             <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
           </router-link>
         </div>
@@ -29,7 +29,7 @@
                 <th scope="col" class="col-1">ID</th>
                 <th scope="col" class="col-3">Nome</th>
                 <th scope="col" class="col-6">Descrição</th>
-                <th scope="col" class="col-2 text-right">Actions</th>
+                <th scope="col" class="col-2 text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">Actions</th>
               </tr>
             </thead>
             <tbody v-if="paginatedItems.length > 0">
@@ -37,7 +37,7 @@
                 <td class="col-1">{{ item.ID }}</td>
                 <td class="col-3">{{ item.Nome }}</td>
                 <td class="col-6">{{ item.Descricao }}</td>
-                <td class="col-2 text-right">
+                <td class="col-2 text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
                   <router-link
                     :to="{ path: '/tipoutilizador/' + item.ID + '/edit' }"
                     class="btn btn-success"
@@ -79,12 +79,14 @@
 <script>
 module.exports = {
   name: "tipoutilizador",
+  props: ["keys"],
   data() {
     return {
       perPage: 8,
       currentPage: 1,
       items: [],
       searchQuery: "", // Adicionado para rastrear a entrada de busca do usuário
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {

@@ -16,7 +16,14 @@
               placeholder="Buscar por nome ou ID..."
               v-model="searchQuery"
             />
-            <router-link to="/topico/create" class="btn btn-primary ml-2">
+            <router-link
+              to="/topico/create"
+              class="btn btn-primary ml-2"
+              v-show="
+                keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                keys.TipoUtilizador_Nome === userTypes.GESTOR
+              "
+            >
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
           </div>
@@ -30,7 +37,16 @@
                   <th scope="col" class="col-3">Topico</th>
                   <th scope="col" class="col-2">Valor</th>
                   <th scope="col" class="col-2">Data</th>
-                  <th scope="col" class="col-2 text-right">Actions</th>
+                  <th
+                    scope="col"
+                    class="col-2 text-right"
+                    v-show="
+                      keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                    "
+                  >
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody v-if="paginatedItems.length > 0">
@@ -39,7 +55,13 @@
                   <td>{{ item.Topico }}</td>
                   <td>{{ item.Valor }}</td>
                   <td>{{ item.Data_Hora }}</td>
-                  <td class="text-right">
+                  <td
+                    class="text-right"
+                    v-show="
+                      keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                    "
+                  >
                     <router-link
                       :to="{ path: '/topico/' + item.ID + '/edit' }"
                       class="btn btn-success"
@@ -80,12 +102,14 @@
 <script>
 module.exports = {
   name: "valorsensor",
+  props: ["keys"],
   data() {
     return {
       perPage: 8,
       currentPage: 1,
       items: [],
       searchQuery: "",
+      userTypes: window.appConfig.userTypes,
     };
   },
   computed: {
@@ -134,7 +158,8 @@ module.exports = {
         .then(() => {
           this.ShowDeleteNotification(
             "Topico deletado com sucesso.",
-            "success", "Sucesso"
+            "success",
+            "Sucesso"
           );
           this.retriveItem();
         })
@@ -142,7 +167,8 @@ module.exports = {
           console.error("Erro ao Deletar o tipo de sensor", error);
           this.ShowDeleteNotification(
             "Erro ao Deletar Topico.",
-            "danger","Erro"
+            "danger",
+            "Erro"
           );
         });
     },

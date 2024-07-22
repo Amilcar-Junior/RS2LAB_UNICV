@@ -16,7 +16,14 @@
               placeholder="Buscar por Nome, Email..."
               v-model="searchQuery"
             />
-            <router-link to="/utilizador/create" class="btn btn-primary ml-2">
+            <router-link
+              to="/utilizador/create"
+              class="btn btn-primary ml-2"
+              v-show="
+                keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                keys.TipoUtilizador_Nome === userTypes.GESTOR
+              "
+            >
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
           </div>
@@ -33,7 +40,16 @@
                   <th scope="col" class="col-2">Grupos</th>
                   <th scope="col" class="col-1">Ativo</th>
                   <th scope="col" class="col-1">Avatar</th>
-                  <th scope="col" class="col-2 text-right">Actions</th>
+                  <th
+                    scope="col"
+                    class="col-2 text-right"
+                    v-show="
+                      keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                    "
+                  >
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody v-if="paginatedItems.length > 0">
@@ -43,7 +59,7 @@
                   <td>{{ item.Utilizador_Email }}</td>
                   <td>{{ item.TipoUtilizador_Nome }}</td>
                   <td>{{ formatGroups(item.Grupos) }}</td>
-                  <td  class="text-center">
+                  <td class="text-center">
                     <b-icon-check
                       v-if="item.Utilizador_isActive === 1"
                       variant="success"
@@ -65,7 +81,13 @@
                       style="font-size: 1.8rem"
                     ></i>
                   </td>
-                  <td class="text-right">
+                  <td
+                    class="text-right"
+                    v-show="
+                      keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                    "
+                  >
                     <router-link
                       :to="{
                         path: '/utilizador/' + item.Utilizador_ID + '/edit',
@@ -125,6 +147,7 @@
 <script>
 module.exports = {
   name: "utilizador",
+  props: ["keys"],
   data() {
     return {
       perPage: 8,
@@ -133,6 +156,7 @@ module.exports = {
       modalShow: false,
       currentImage: "",
       searchQuery: "",
+      userTypes: window.appConfig.userTypes,
     };
   },
   computed: {
@@ -206,7 +230,7 @@ module.exports = {
     formatGroups(groups) {
       return groups.map((group) => group.Nome).join(", ");
     },
-    
+
     deleteItem(ItemID) {
       axios
         .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`)
@@ -215,7 +239,8 @@ module.exports = {
           console.error(errors);
           this.ShowDeleteNotification(
             "Erro ao Excluir Grupo de Utilizadores.",
-            "success", "Sucesso"
+            "success",
+            "Sucesso"
           );
         });
       axios
@@ -223,7 +248,8 @@ module.exports = {
         .then(() => {
           this.ShowDeleteNotification(
             "Utilizador deletado com sucesso!",
-            "success", "Sucesso"
+            "success",
+            "Sucesso"
           );
           this.retrieveItems();
         })
@@ -231,7 +257,8 @@ module.exports = {
           console.error("Erro ao deletar utilizador:", error);
           this.ShowDeleteNotification(
             "Erro ao Deletar Utilizador.",
-            "danger","Erro"
+            "danger",
+            "Erro"
           );
         });
     },

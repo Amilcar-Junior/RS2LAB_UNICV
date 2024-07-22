@@ -15,8 +15,8 @@
             placeholder="Buscar por nome, ID, Grupo ou Localização..."
             v-model="searchQuery"
           />
-          <router-link to="/local/create" class="btn btn-primary ml-2">
-            <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+          <router-link to="/local/create" class="btn btn-primary ml-2" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
+            <i class="fa fa-plus" aria-hidden="true" ></i> Adicionar
           </router-link>
         </div>
       </div>
@@ -30,7 +30,7 @@
                 <th scope="col" class="col-2">lat</th>
                 <th scope="col" class="col-2">lng</th>
                 <th scope="col" class="col-1">Mapa</th>
-                <th scope="col" class="col-2 text-right">Ações</th>
+                <th scope="col" class="col-2 text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">Ações</th>
               </tr>
             </thead>
             <tbody v-if="paginatedItems.length > 0">
@@ -48,7 +48,7 @@
                     <i class="fa fa-map" aria-hidden="true"></i> Mapa
                   </button>
                 </td>
-                <td class="text-right">
+                <td class="text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
                   <router-link
                     :to="{ path: '/local/' + item.ID + '/edit' }"
                     class="btn btn-success"
@@ -100,6 +100,7 @@
 <script>
 module.exports = {
   name: "Local",
+  props: ["keys"],
   data() {
     return {
       items: [],
@@ -110,6 +111,7 @@ module.exports = {
       selectedLocation: null,
       searchQuery: "",
       baseMaps: null, // Base map layers
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
