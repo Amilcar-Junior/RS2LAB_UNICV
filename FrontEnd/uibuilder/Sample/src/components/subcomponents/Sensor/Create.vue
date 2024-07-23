@@ -47,7 +47,7 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="localizacao" class="form-label">Area de Agricultura</label>
+            <label for="localizacao" class="form-label">Área de Agricultura</label>
             <div class="mb-3">
               <select
                 id="localizacao"
@@ -55,9 +55,9 @@
                 @change="zoomToLocal"
                 class="form-control"
               >
-                <option disabled value="">Selecione um Area de Agricultura</option>
+                <option disabled value="">Selecione uma Área de Agricultura</option>
                 <option
-                  v-for="area in AreadeAgricultura"
+                  v-for="area in filteredAreas"
                   :key="area.Area_ID"
                   :value="area.Area_ID"
                 >
@@ -89,6 +89,7 @@
 <script>
 module.exports = {
   name: "CreateSensor",
+  props: ["keys"],
   data() {
     return {
       model: {
@@ -106,6 +107,7 @@ module.exports = {
       map: null,
       drawnItems: new L.FeatureGroup(), // Initialize drawnItems
       baseMaps: null, // Adicionado baseMaps para camadas de mapa
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
@@ -120,6 +122,16 @@ module.exports = {
         }
       }, 500);
     });
+  },
+  computed: {
+    filteredAreas() {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.AreadeAgricultura;
+      } else {
+        const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+        return this.AreadeAgricultura.filter(area => userGroupIds.includes(area.Grupo_ID));
+      }
+    },
   },
   methods: {
     initMap() {
@@ -220,13 +232,13 @@ module.exports = {
         .then(() => {
           this.showNotification(
             "Sensor adicionado com sucesso!",
-            "success","Sucesso"
+            "success", "Sucesso"
           );
           this.cleanForm();
         })
         .catch((error) => {
           console.error("Erro ao adicionar o Sensor:", error);
-          this.showNotificationToast("Erro ao adicionar o Sensor.", "danger","Erro");
+          this.showNotification("Erro ao adicionar o Sensor.", "danger", "Erro");
         });
     },
     getAreadeAgricultura() {
@@ -234,13 +246,13 @@ module.exports = {
         .get("/rs2lab/areadeagricultura")
         .then((response) => {
           this.AreadeAgricultura = response.data;
-          console.log("Area:", response)
+          console.log("Área:", response)
         })
         .catch((error) => {
-          console.error("Erro ao buscar Area de Agricultura:", error);
+          console.error("Erro ao buscar Área de Agricultura:", error);
           this.showNotification(
             "Erro ao buscar dados das Áreas de Agricultura.",
-            "danger","Erro"
+            "danger", "Erro"
           );
         });
     },
@@ -255,7 +267,7 @@ module.exports = {
           console.error("Erro ao buscar dados locais:", error);
           this.showNotification(
             "Erro ao buscar dados dos locais.",
-            "danger","Erro"
+            "danger", "Erro"
           );
         });
     },
@@ -267,10 +279,10 @@ module.exports = {
           this.ValorSensor = response.data;
         })
         .catch((error) => {
-          console.error("Erro ao buscar dados dos Topicos:", error);
+          console.error("Erro ao buscar dados dos Tópicos:", error);
           this.showNotification(
-            "Erro ao buscar dados dos Topicos.",
-            "danger","Erro"
+            "Erro ao buscar dados dos Tópicos.",
+            "danger", "Erro"
           );
         });
     },

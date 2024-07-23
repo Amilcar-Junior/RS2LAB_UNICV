@@ -57,7 +57,7 @@
                     Selecione o tipo de utilizador
                   </option>
                   <option
-                    v-for="tipo in TipoUtilizador"
+                    v-for="tipo in filteredTipoUtilizador"
                     :key="tipo.ID"
                     :value="tipo.ID"
                   >
@@ -76,7 +76,7 @@
                 >
                   <option disabled value="">Selecione um grupo</option>
                   <option
-                    v-for="grupo in gruposDisponiveis"
+                    v-for="grupo in filteredGruposDisponiveis"
                     :key="grupo.Grupo_ID"
                     :value="grupo.Grupo_ID"
                   >
@@ -119,7 +119,6 @@
                     thumbnail
                   ></b-img>
                 </b-form-group>
-                
               </div>
             </div>
           </div>
@@ -141,6 +140,7 @@
 <script>
 module.exports = {
   name: "CreateUtilizador",
+  props: ["keys"],
   data() {
     return {
       model: {
@@ -158,11 +158,27 @@ module.exports = {
       gruposSelecionados: [], // Grupos selecionados pelo utilizador
       UtilizadorGrupo: [],
       imagePreview: "",
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
     this.getTipoUtilizador();
     this.getGruposDisponiveis();
+  },
+  computed: {
+    filteredTipoUtilizador() {
+      return this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR
+        ? this.TipoUtilizador
+        : this.TipoUtilizador.filter(tipo => tipo.Nome !== 'Administrador');
+    },
+    filteredGruposDisponiveis() {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.gruposDisponiveis;
+      } else {
+        const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+        return this.gruposDisponiveis.filter(grupo => userGroupIds.includes(grupo.Grupo_ID));
+      }
+    },
   },
   methods: {
     addUtilizador() {

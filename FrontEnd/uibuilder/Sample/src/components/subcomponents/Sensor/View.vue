@@ -147,7 +147,11 @@ module.exports = {
             (item.Area_Nome &&
               item.Area_Nome.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
             (item.TipoSensor_Nome &&
-              item.TipoSensor_Nome.toLowerCase().includes(this.searchQuery.toLowerCase()))
+              item.TipoSensor_Nome.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
+            (item.Grupo_Nome &&
+              item.Grupo_Nome.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
+            (item.ValorSensor_Topico &&
+              item.ValorSensor_Topico.toLowerCase().includes(this.searchQuery.toLowerCase()))
           );
         });
     },

@@ -30,7 +30,7 @@
               <option value="" disabled selected>
                 Selecione o Tipo Sensor
               </option>
-              <option
+              <option 
                 v-for="tipo in TipoSensor"
                 :key="tipo.ID"
                 :value="tipo.ID"
@@ -71,7 +71,7 @@
                   Selecione uma Área de Agricultura
                 </option>
                 <option
-                  v-for="area in AreadeAgricultura"
+                  v-for="area in filteredAreas"
                   :key="area.Area_ID"
                   :value="area.Area_ID"
                 >
@@ -102,6 +102,7 @@
 <script>
 module.exports = {
   name: "EditSensor",
+  props: ["keys"],
   data() {
     return {
       model: {
@@ -122,6 +123,7 @@ module.exports = {
       drawnItems: new L.FeatureGroup(), // Initialize drawnItems
       selectedAreadeAgricultura: "",
       baseMaps: null, // Adicionado baseMaps para camadas de mapa
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
@@ -135,6 +137,16 @@ module.exports = {
         this.initMap();
       }, 500);
     });
+  },
+  computed: {
+    filteredAreas() {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.AreadeAgricultura;
+      } else {
+        const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+        return this.AreadeAgricultura.filter(area => userGroupIds.includes(area.Grupo_ID));
+      }
+    },
   },
   methods: {
     retrieveSensor() {

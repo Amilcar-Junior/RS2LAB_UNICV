@@ -23,7 +23,7 @@
           <select v-model="model.item.Grupo_ID" class="form-control" required>
             <option disabled selected>Selecione o Grupo</option>
             <option
-              v-for="grupo in GrupoUtilizadores"
+              v-for="grupo in filteredGrupos"
               :key="grupo.Grupo_ID"
               :value="grupo.Grupo_ID"
             >
@@ -71,6 +71,7 @@
 <script>
 module.exports = {
   name: "editAreaagricultura",
+  props: ["keys"],
   data() {
     return {
       model: {
@@ -90,6 +91,7 @@ module.exports = {
       editMap: null,
       drawnItems: new L.FeatureGroup(), // Initialize the drawnItems here
       baseMaps: null, // Base map layers
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
@@ -102,6 +104,16 @@ module.exports = {
         this.initMap();
       }, 500);
     });
+  },
+  computed: {
+    filteredGrupos() {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.GrupoUtilizadores;
+      } else {
+        const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+        return this.GrupoUtilizadores.filter(grupo => userGroupIds.includes(grupo.Grupo_ID));
+      }
+    },
   },
   methods: {
     retrieveAreaDeAgricultura() {
@@ -125,7 +137,7 @@ module.exports = {
           );
           this.showNotification(
             "Erro ao buscar dados das áreas de agricultura.",
-            "danger","Erro"
+            "danger", "Erro"
           );
         });
     },
@@ -140,7 +152,7 @@ module.exports = {
           console.error("Erro ao buscar grupos:", error);
           this.showNotification(
             "Erro ao buscar dados dos grupos de utilizadores.",
-            "danger","Erro"
+            "danger", "Erro"
           );
         });
     },
@@ -155,7 +167,7 @@ module.exports = {
           console.error("Erro ao buscar locais:", error);
           this.showNotification(
             "Erro ao buscar dados dos locais.",
-            "danger","Erro"
+            "danger", "Erro"
           );
         });
     },
@@ -343,7 +355,7 @@ module.exports = {
         .then(() => {
           this.showNotification(
             "Área de Agricultura atualizado com sucesso!",
-            "success","Sucesso"
+            "success", "Sucesso"
           );
           this.$router.push("/areadeagricultura");
         })
@@ -351,7 +363,7 @@ module.exports = {
           console.error("Erro ao editar a área de agricultura:", error);
           this.showNotification(
             "Erro ao atualizar a área de agricultura.",
-            "danger","Erro"
+            "danger", "Erro"
           );
         });
     },

@@ -34,42 +34,20 @@
                   required
                 />
               </div>
-              <div class="mb-3">
-                <label for="id_tipoUtilizador" class="form-label"
-                  >Tipo Utilizador</label
-                >
-                <select
-                  v-model="model.item.ID_TipoUtilizador"
-                  class="form-control"
-                  required
-                >
-                  <option value="" disabled selected>
-                    Selecione o tipo de utilizador
-                  </option>
-                  <option
-                    v-for="tipo in TipoUtilizador"
-                    :key="tipo.ID"
-                    :value="tipo.ID"
-                  >
+              <div class="mb-3" v-if="filteredTipoUtilizador.length > 0">
+                <label for="id_tipoUtilizador" class="form-label">Tipo Utilizador</label>
+                <select v-model="model.item.ID_TipoUtilizador" class="form-control" required>
+                  <option value="" disabled selected>Selecione o tipo de utilizador</option>
+                  <option v-for="tipo in filteredTipoUtilizador" :key="tipo.ID" :value="tipo.ID">
                     {{ tipo.Nome }}
                   </option>
                 </select>
               </div>
               <div class="mb-3">
-                <label for="id_grupoutilizadores" class="form-label"
-                  >Grupos</label
-                >
-                <select
-                  v-model="gruposSelecionados"
-                  class="form-control"
-                  multiple
-                >
+                <label for="id_grupoutilizadores" class="form-label">Grupos</label>
+                <select v-model="gruposSelecionados" class="form-control" multiple>
                   <option disabled value="">Selecione um grupo</option>
-                  <option
-                    v-for="grupo in gruposDisponiveis"
-                    :key="grupo.Grupo_ID"
-                    :value="grupo.Grupo_ID"
-                  >
+                  <option v-for="grupo in filteredGruposDisponiveis" :key="grupo.Grupo_ID" :value="grupo.Grupo_ID">
                     {{ grupo.Grupo_Nome }}
                   </option>
                 </select>
@@ -90,25 +68,10 @@
             <!-- Coluna para a imagem de perfil -->
             <div class="col-md-3">
               <div class="mb-3">
-                <b-form-group
-                  label="Foto de Perfil:"
-                  label-for="image"
-                  class="mb-3"
-                >
-                  <b-form-file
-                    id="image"
-                    @change="previewImage"
-                    accept="image/*"
-                    placeholder="Escolha um arquivo..."
-                  >
+                <b-form-group label="Foto de Perfil:" label-for="image" class="mb-3">
+                  <b-form-file id="image" @change="previewImage" accept="image/*" placeholder="Escolha um arquivo...">
                   </b-form-file>
-                  <b-img
-                    v-if="imagePreview"
-                    :src="imagePreview"
-                    fluid
-                    class="mt-2"
-                    thumbnail
-                  ></b-img>
+                  <b-img v-if="imagePreview" :src="imagePreview" fluid class="mt-2" thumbnail></b-img>
                 </b-form-group>
               </div>
             </div>
@@ -150,13 +113,34 @@ module.exports = {
       gruposDisponiveis: [], // Todos os grupos disponíveis
       gruposSelecionados: [], // Grupos selecionados pelo utilizador
       UtilizadorGrupo: [],
+      userTypes: window.appConfig.userTypes,
     };
   },
+  computed: {
+    filteredTipoUtilizador() {
+      if (!this.keys || !this.userTypes) {
+        return [];
+      }
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.TipoUtilizador;
+      }
+      return this.TipoUtilizador.filter(tipo => tipo.Nome !== "Administrador");
+    },
+    filteredGruposDisponiveis() {
+      if (!this.keys || !this.keys.Grupos) {
+        return [];
+      }
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.gruposDisponiveis;
+      }
+      const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+      return this.gruposDisponiveis.filter(grupo => userGroupIds.includes(grupo.Grupo_ID));
+    }
+  },
   mounted() {
-    // console.log(this.$router.app._route.params.ID);
     this.model.ID = this.$router.app._route.params.ID;
-    this.getUtilizador(this.$router.app._route.params.ID);
-    this.getUtilizadorGrupo(this.$router.app._route.params.ID);
+    this.getUtilizador(this.model.ID);
+    this.getUtilizadorGrupo(this.model.ID);
     this.getTipoUtilizador();
     this.getGruposDisponiveis();
   },
@@ -235,7 +219,7 @@ module.exports = {
             this.keys.TipoUtilizador_ID = this.model.item.ID_TipoUtilizador;
             this.keys.Grupos = this.gruposSelecionados;
           }
-          console.log("local sotrage atualizado: ", localStorage);
+          console.log("local storage atualizado: ", localStorage);
 
           this.showNotification(
             "Utilizador atualizado com sucesso!",
@@ -272,14 +256,13 @@ module.exports = {
         });
     },
     addUtilizadorGrupo(utilizadorgrupo) {
-      var self = this; //Assign this to a variable
       axios
         .post("/rs2lab/addutilizadorgrupo", utilizadorgrupo)
         .then((resp) => {
           console.log("ADD utilizadorgrupo: ", resp);
         })
         .catch((e) => {
-          console.log(error);
+          console.log(e);
         });
     },
     getGruposDisponiveis() {

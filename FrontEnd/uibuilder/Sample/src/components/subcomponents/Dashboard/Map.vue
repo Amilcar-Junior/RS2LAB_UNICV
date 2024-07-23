@@ -19,7 +19,7 @@
                 Selecione a Área de Agricultura
               </option>
               <option
-                v-for="area in items"
+                v-for="area in filteredAreas"
                 :key="area.Area_ID"
                 :value="area.Area_ID"
               >
@@ -77,6 +77,7 @@
 <script>
 module.exports = {
   name: "MapaAreaDeAgricultura",
+  props: ["keys"],
   data() {
     return {
       items: [],
@@ -105,12 +106,36 @@ module.exports = {
     });
   },
   computed: {
-    filteredSensors() {
-      if (!this.selectedAreaId) return this.allSensores;
-      return this.allSensores.filter(
-        (sensor) => sensor.area_ID === this.selectedAreaId
-      );
+    filteredAreas() {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.items;
+      }
+      const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+      return this.items.filter(area => userGroupIds.includes(area.Grupo_ID));
     },
+    filteredSensors() {
+      const filteredAreas = this.filteredAreas.map(area => area.Area_ID);
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        if (!this.selectedAreaId) return this.allSensores;
+        return this.allSensores.filter(sensor => sensor.area_ID === this.selectedAreaId);
+      }
+      if (!this.selectedAreaId) {
+        return this.allSensores.filter(sensor => filteredAreas.includes(sensor.area_ID));
+      }
+      return this.allSensores.filter(sensor => sensor.area_ID === this.selectedAreaId && filteredAreas.includes(sensor.area_ID));
+    },
+  },
+  watch: {
+    filteredAreas(newVal) {
+      this.clearMap();
+      this.addAreasToMap();
+      this.addSensorsToMap();
+    },
+    filteredSensors(newVal) {
+      this.clearMap();
+      this.addSensorsToMap();
+      this.addAreasToMap();
+    }
   },
   methods: {
     retrieveItems() {
@@ -191,13 +216,18 @@ module.exports = {
       this.map.addLayer(this.markers); // Ensure the cluster group is added to the map
       console.log("Mapa inicializado");
     },
+    clearMap() {
+      if (this.markers) {
+        this.markers.clearLayers();
+      }
+    },
     addAreasToMap() {
       if (!this.map || !this.markers) {
         console.error("Mapa ou marcadores não estão inicializados.");
         return;
       }
 
-      this.items.forEach((item) => {
+      this.filteredAreas.forEach((item) => {
         // Adiciona polígono da área de agricultura
         if (this.hasValidCoordinates(item.Area_Localizacao)) {
           const areaCoords = item.Area_Localizacao.split("; ").map((coords) => {
@@ -205,7 +235,12 @@ module.exports = {
             return [lat, lng];
           });
 
-          const polygon = L.polygon(areaCoords, { color: "blue" }).bindPopup(
+          const polygon = L.polygon(areaCoords, {
+            color: "lightblue", // Adjust color to be lighter
+            weight: 2,
+            opacity: 0.8,
+            fillOpacity: 0.2
+          }).bindPopup(
             `<b>${item.Area_Nome}</b>`
           );
 
@@ -222,7 +257,7 @@ module.exports = {
       });
     },
     addSensorsToMap() {
-      this.allSensores.forEach((sensor) => {
+      this.filteredSensors.forEach((sensor) => {
         if (this.hasValidCoordinates(sensor.coordenada)) {
           const sensorCoords = sensor.coordenada.split(",").map(Number);
 

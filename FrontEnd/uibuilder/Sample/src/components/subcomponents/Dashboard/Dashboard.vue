@@ -1,36 +1,20 @@
 <template>
   <div class="container-fluid mt-5">
     <div class="card">
-      <div
-        class="card-header d-flex justify-content-between align-items-center"
-      >
+      <div class="card-header d-flex justify-content-between align-items-center">
         <h4>Sensores</h4>
         <div>
-          <select
-            v-model="selectedAreaId"
-            class="form-control d-inline-block w-auto"
-          >
+          <select v-model="selectedAreaId" class="form-control d-inline-block w-auto">
             <option value="" disabled selected>
               Selecione a Área de Agricultura
             </option>
-            <option
-              v-for="area in items"
-              :key="area.Area_ID"
-              :value="area.Area_ID"
-            >
+            <option v-for="area in filteredAreas" :key="area.Area_ID" :value="area.Area_ID">
               {{ area.Area_Nome }}
             </option>
           </select>
-          <select
-            v-model="selectedSensorId"
-            class="form-control d-inline-block w-auto ml-2"
-          >
+          <select v-model="selectedSensorId" class="form-control d-inline-block w-auto ml-2">
             <option value="" disabled selected>Selecione um Sensor</option>
-            <option
-              v-for="sensor in filteredSensors"
-              :key="sensor.ID"
-              :value="sensor.ID"
-            >
+            <option v-for="sensor in filteredSensors" :key="sensor.ID" :value="sensor.ID">
               {{ sensor.Nome }}
             </option>
           </select>
@@ -44,6 +28,7 @@
                 <th scope="col" class="col-1">ID</th>
                 <th scope="col" class="col-3">Nome</th>
                 <th scope="col" class="col-3">Area</th>
+                <th scope="col" class="col-3">Grupo</th>
                 <th scope="col" class="col-2">Tipo Sensor</th>
                 <th scope="col" class="col-2">Tópico</th>
                 <th scope="col" class="col-1">Valor</th>
@@ -54,6 +39,7 @@
                 <td>{{ item.ID }}</td>
                 <td>{{ item.Nome }}</td>
                 <td>{{ item.Area_Nome }}</td>
+                <td>{{ item.Grupo_Nome }}</td>
                 <td>{{ item.TipoSensor_Nome }}</td>
                 <td>{{ item.ValorSensor_Topico }}</td>
                 <td>{{ item.ValorSensor_Valor }}</td>
@@ -89,10 +75,9 @@
   </div>
 </template>
 
-
-
 <script>
 module.exports = {
+  props: ["keys"],
   data() {
     return {
       perPage: 10,
@@ -124,14 +109,24 @@ module.exports = {
     }
   },
   computed: {
-    rows() {
-      return this.filteredSensors.length;
+    filteredAreas() {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.items;
+      }
+      const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+      return this.items.filter(area => userGroupIds.includes(area.Grupo_ID));
     },
     filteredSensors() {
-      if (!this.selectedAreaId) return this.allSensores;
-      return this.allSensores.filter(
-        (sensor) => sensor.area_ID === this.selectedAreaId
-      );
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        if (!this.selectedAreaId) return this.allSensores;
+        return this.allSensores.filter(sensor => sensor.area_ID === this.selectedAreaId);
+      }
+      const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+      const areas = this.items.filter(area => userGroupIds.includes(area.Grupo_ID)).map(area => area.Area_ID);
+      if (!this.selectedAreaId) {
+        return this.allSensores.filter(sensor => areas.includes(sensor.area_ID));
+      }
+      return this.allSensores.filter(sensor => sensor.area_ID === this.selectedAreaId && areas.includes(sensor.area_ID));
     },
     paginatedItems() {
       const start = (this.currentPage - 1) * this.perPage;

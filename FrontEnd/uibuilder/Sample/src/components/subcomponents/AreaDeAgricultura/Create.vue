@@ -25,7 +25,7 @@
             <select v-model="model.item.ID_Grupo" class="form-control" required>
               <option value="" disabled selected>Selecione o Grupo</option>
               <option
-                v-for="grupo in GrupoUtilizadores"
+                v-for="grupo in filteredGrupos"
                 :key="grupo.Grupo_ID"
                 :value="grupo.Grupo_ID"
               >
@@ -76,6 +76,7 @@
 <script>
 module.exports = {
   name: "CreateAreadeAgricultura",
+  props: ["keys"],
   data() {
     return {
       model: {
@@ -92,6 +93,7 @@ module.exports = {
       drawnItems: new L.FeatureGroup(), // Initialize drawnItems
       selectedLocal: "",
       baseMaps: null, // Adicionado baseMaps para camadas de mapa
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
@@ -105,6 +107,16 @@ module.exports = {
         }
       }, 500);
     });
+  },
+  computed: {
+    filteredGrupos() {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.GrupoUtilizadores;
+      } else {
+        const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+        return this.GrupoUtilizadores.filter(grupo => userGroupIds.includes(grupo.Grupo_ID));
+      }
+    },
   },
   methods: {
     initMap() {

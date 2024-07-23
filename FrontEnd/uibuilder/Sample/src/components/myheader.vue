@@ -42,7 +42,7 @@
             <i class="fa fa-list" aria-hidden="true"></i>
             Tipos de Sensores
           </b-dropdown-item>
-          <b-dropdown-item href="#" to="/valorsensor" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
+          <b-dropdown-item href="#" to="/topico" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
             <i class="fa fa-microchip" aria-hidden="true"></i>
             Topicos de Sensores
           </b-dropdown-item>
