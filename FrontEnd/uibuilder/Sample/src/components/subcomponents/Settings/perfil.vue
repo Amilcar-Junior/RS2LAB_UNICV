@@ -35,47 +35,29 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="id_tipoUtilizador" class="form-label">Tipo Utilizador</label>
-                <select
-                  v-model="model.item.ID_TipoUtilizador"
-                  class="form-control"
-                  required
+                <label for="id_tipoUtilizador" class="form-label"
+                  >Tipo Utilizador</label
                 >
-                  <option value="" disabled selected>Selecione o tipo de utilizador</option>
-                  <option
-                    v-for="tipo in TipoUtilizador"
-                    :key="tipo.ID"
-                    :value="tipo.ID"
-                  >
-                    {{ tipo.Nome }}
-                  </option>
-                </select>
+                <input
+                  type="text"
+                  :value="tipoUtilizadorNome"
+                  class="form-control"
+                  readonly
+                />
               </div>
               <div class="mb-3">
                 <label class="form-label">Grupos</label>
-                <ul class="list-group">
-                  <li 
-                    v-for="grupo in gruposSelecionados" 
-                    :key="grupo.Grupo_ID" 
-                    class="list-group-item">
+                <div>
+                  <span
+                    v-for="grupo in gruposSelecionados"
+                    :key="grupo.Grupo_ID"
+                    class="badge badge-primary m-1"
+                  >
                     {{ grupo.Grupo_Nome }}
-                  </li>
-                </ul>
+                  </span>
+                </div>
               </div>
-              <!-- <div class="mb-3 form-check">
-                <input
-                  type="checkbox"
-                  id="isActive"
-                  v-model="model.item.isActive"
-                  :checked="model.item.isActive"
-                  class="form-check-input"
-                  true-value="1"
-                  false-value="0"
-                />
-                <label for="isActive" class="form-check-label">Ativo</label>
-              </div> -->
             </div>
-            <!-- Coluna para a imagem de perfil -->
             <div class="col-md-3">
               <div class="mb-3">
                 <b-form-group
@@ -101,10 +83,7 @@
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            class="btn btn-primary float-right"
-          >
+          <button type="submit" class="btn btn-primary float-right">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>
         </form>
@@ -132,6 +111,7 @@ module.exports = {
       imagePreview: "",
       TipoUtilizador: [],
       gruposSelecionados: [], // Grupos selecionados pelo utilizador com nomes
+      tipoUtilizadorNome: "", // Nome do tipo de utilizador
     };
   },
   mounted() {
@@ -146,9 +126,11 @@ module.exports = {
         .get(`/rs2lab/utilizador/${ItemID}`)
         .then((resp) => {
           this.model.item = resp.data[0];
+          console.log(resp);
           if (this.model.item.image) {
             this.imagePreview = `data:image/jpeg;base64,${this.model.item.image}`;
           }
+          this.setTipoUtilizadorNome();
         })
         .catch((error) => {
           console.error("Erro ao recuperar os dados do Utilizador", error);
@@ -159,15 +141,31 @@ module.exports = {
         .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
         .then((response) => {
           console.log("Utilizador atualizado com sucesso!", response);
-          localStorage.setItem('user', JSON.stringify(this.model.item));
-          console.log(localStorage)
-          console.log(this.keys)
-          this.keys.Utilizador_Nome = this.model.item.Nome;
-          this.keys.Utilizador_Email = this.model.item.Email;
-          this.keys.Utilizador_image = this.model.item.image;
 
-          
-        
+          // Atualizar o localStorage com todos os dados do utilizador atualizados
+          const updatedUser = {
+            ...JSON.parse(localStorage.getItem("user")),
+            Utilizador_Nome: this.model.item.Nome,
+            Utilizador_Email: this.model.item.Email,
+            Utilizador_image: this.model.item.image,
+          };
+
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+
+          // Atualizar o estado global
+          // this.keys.setUser(updatedUser);
+
+          // Enviar mensagem para o Node-RED para atualizar os detalhes do utilizador
+          const sessionID = localStorage.getItem("token");
+          uibuilder.send({
+            topic: "UpdateUser",
+            token: sessionID,
+            payload: updatedUser,
+          });
+
+          // Verificar o conteúdo do localStorage após a atualização
+          this.verifyLocalStorage();
+
           this.showNotification();
         })
         .catch((error) => {
@@ -190,10 +188,21 @@ module.exports = {
         .get("/rs2lab/tipoutilizador")
         .then((resp) => {
           this.TipoUtilizador = resp.data;
+          this.setTipoUtilizadorNome();
         })
         .catch((errors) => {
           console.error(errors);
         });
+    },
+    setTipoUtilizadorNome() {
+      if (this.TipoUtilizador.length > 0 && this.model.item.ID_TipoUtilizador) {
+        const tipo = this.TipoUtilizador.find(
+          (tipo) => tipo.ID === this.model.item.ID_TipoUtilizador
+        );
+        if (tipo) {
+          this.tipoUtilizadorNome = tipo.Nome;
+        }
+      }
     },
     showNotification() {
       this.$bvModal
@@ -206,9 +215,7 @@ module.exports = {
           footerClass: "p-2 border-top-0",
           centered: true,
         })
-        .then(() => {
-          
-        })
+        .then(() => {})
         .catch((err) => {});
     },
     previewImage(event) {
@@ -222,11 +229,12 @@ module.exports = {
         reader.readAsDataURL(file);
       }
     },
+    verifyLocalStorage() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      console.log("Dados do utilizador no localStorage: ", user);
+    },
   },
 };
 </script>
 
-
-<style scoped>
-/* Adicione seus estilos específicos aqui */
-</style>
+<style scoped></style>

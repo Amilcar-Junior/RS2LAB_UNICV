@@ -58,7 +58,15 @@
                   <td>{{ item.Utilizador_Nome }}</td>
                   <td>{{ item.Utilizador_Email }}</td>
                   <td>{{ item.TipoUtilizador_Nome }}</td>
-                  <td>{{ formatGroups(item.Grupos) }}</td>
+                  <td>
+                    <span
+                      v-for="grupo in item.Grupos"
+                      :key="grupo.ID"
+                      class="badge badge-primary m-1"
+                    >
+                      {{ grupo.Nome }}
+                    </span>
+                  </td>
                   <td class="text-center">
                     <b-icon-check
                       v-if="item.Utilizador_isActive === 1"
@@ -218,6 +226,7 @@ module.exports = {
         .get("/rs2lab/utilizador")
         .then((response) => {
           this.items = response.data;
+          console.log(response);
         })
         .catch((error) => {
           console.error("Erro ao recuperar utilizadores:", error);

@@ -1,9 +1,6 @@
-const Home = httpVueLoader('./components/subcomponents/home.vue');
 const Perfil = httpVueLoader('./components/subcomponents/Settings/perfil.vue');
+const PageNotFound = httpVueLoader('./components/PageNotFound.vue');
 
-const Form = httpVueLoader('./components/subcomponents/form.vue');
-const Table = httpVueLoader('./components/subcomponents/table.vue');
-const Chart = httpVueLoader('./components/subcomponents/chart.vue');
 
 const ListTipoUtilizador = httpVueLoader('./components/subcomponents/TipoUtilizador/View.vue');
 const CreateTipoUtilizador = httpVueLoader('./components/subcomponents/TipoUtilizador/Create.vue');
@@ -40,6 +37,7 @@ const EditValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Ed
 const Map = httpVueLoader('./components/subcomponents/Dashboard/Map.vue');
 const Dashboard = httpVueLoader('./components/subcomponents/Dashboard/Dashboard.vue');
 
+
 export default {
 
     routes: [
@@ -48,6 +46,11 @@ export default {
             name: 'Map',
             component: Map
         },
+        {
+            path: '*',
+            name: 'PageNotFound',
+            component: PageNotFound,
+          },
         {
             path: '/perfil/:ID',
             name: 'Perfil',
@@ -63,21 +66,6 @@ export default {
             name: 'Map',
             component: Map,
         },
-        // {
-        //     path:'/form',
-        //     name:'Form',
-        //     component: Form
-        // },
-        // {
-        //     path:'/table',
-        //     name:'Table',
-        //     component: Table
-        // },
-        // {
-        //     path:'/chart',
-        //     name:'Chart',
-        //     component: Chart
-        // },
         {
             path:'/tipoutilizador',
             name:'ViewTipoUtilizador',

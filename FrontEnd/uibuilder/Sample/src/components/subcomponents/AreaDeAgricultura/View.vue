@@ -44,7 +44,7 @@
                   <td>{{ item.Area_ID }}</td>
                   <td>{{ item.Area_Nome }}</td>
                   <td>{{ formatSensores(item.Sensores) }}</td>
-                  <td>{{ item.Grupo_Nome }}</td>
+                  <td ><span class="badge badge-primary m-1">{{ item.Grupo_Nome }}</span></td>
                   <td>{{ item.Local_Nome }}</td>
                   <td class="text-center">
                     <button

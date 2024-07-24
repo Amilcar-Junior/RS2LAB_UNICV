@@ -1,6 +1,4 @@
-"use strict";
-
-import router from "./router.js";
+import router from './router.js';
 
 const app = new Vue({
   el: "#app",
@@ -51,16 +49,19 @@ const app = new Vue({
       this.user.Grupos = param.Grupos;
       this.user.Utilizador_image = param.Utilizador_image;
       this.user.Utilizador_isActive = param.Utilizador_isActive;
+
+      // Atualizar o localStorage com o objeto completo
+      localStorage.setItem("user", JSON.stringify(this.user));
     },
     setToken(user) {
-      //Gets the unique session identifier
+      // Gets the unique session identifier
       var sessionID = user.Utilizador_Senha;
-      //Store session identifier to local browser
+      // Store session identifier to local browser
       localStorage.setItem("token", sessionID);
       localStorage.setItem("user", JSON.stringify(user));
       console.log(localStorage);
 
-      //Notify index.js that a session is created
+      // Notify index.js that a session is created
       uibuilder.send({
         topic: "Login",
         token: sessionID,
@@ -92,7 +93,7 @@ const app = new Vue({
     },
   },
   mounted: function () {
-    //navigates to home page at mount
+    // navigates to home page at mount
     // this.$router.push("/");
 
     uibuilder.start();
@@ -124,7 +125,7 @@ const app = new Vue({
           vueApp.user.TipoUtilizador_Nome =
             msg.payload.user.TipoUtilizador_Nome;
           vueApp.user.Utilizador_Nome = msg.payload.user.Utilizador_Nome;
-          vueApp.user.Utilizador_Email = msg.payload.Utilizador_Email;
+          vueApp.user.Utilizador_Email = msg.payload.user.Utilizador_Email;
           vueApp.user.Utilizador_image = msg.payload.user.Utilizador_image;
           vueApp.user.Grupos = msg.payload.Grupos;
           vueApp.user.islogged = true;
@@ -137,6 +138,15 @@ const app = new Vue({
           vueApp.freshlogin = false;
           localStorage.removeItem("token");
           localStorage.removeItem("user");
+          break;
+
+        case "UpdateUser":
+          // Atualizar os dados do usuário globalmente
+          vueApp.user.Utilizador_Nome = msg.payload.Utilizador_Nome;
+          vueApp.user.Utilizador_Email = msg.payload.Utilizador_Email;
+          vueApp.user.Utilizador_image = msg.payload.Utilizador_image;
+          // Atualizar o localStorage
+          localStorage.setItem("user", JSON.stringify(vueApp.user));
           break;
       }
     });

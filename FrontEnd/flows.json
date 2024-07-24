@@ -684,43 +684,6 @@
         "h": 302
     },
     {
-        "id": "30f71a271d2a4ba5",
-        "type": "group",
-        "z": "ba85fe949960916b",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "2b5fcb475301977b",
-            "dd89e0896485f1a9",
-            "2e8364255f20bfde",
-            "b9b4546bca08157d",
-            "3a9343d76bb40d2f",
-            "8ce8a3f1d24b87b0",
-            "89e1a4ceac90b0d3",
-            "1a0844636fea3a4f",
-            "674cd421bd6552f6",
-            "096608f9d8d74e86",
-            "5a6903702a9d65b4",
-            "10b80deb4d9ff607",
-            "bf867f6535aceded",
-            "ebb2649d7670cefd",
-            "4c9f400c8dd89ea8",
-            "81acd03b6fc94f3f",
-            "5fb0c54dd27a05dc"
-        ],
-        "x": 14,
-        "y": 79,
-        "w": 872,
-        "h": 282
-    },
-    {
         "id": "19a25057ac01befd",
         "type": "group",
         "z": "ba85fe949960916b",
@@ -841,6 +804,45 @@
         "h": 582
     },
     {
+        "id": "9e6382268e9dd573",
+        "type": "group",
+        "z": "ba85fe949960916b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "2b5fcb475301977b",
+            "dd89e0896485f1a9",
+            "2e8364255f20bfde",
+            "b9b4546bca08157d",
+            "3a9343d76bb40d2f",
+            "8ce8a3f1d24b87b0",
+            "89e1a4ceac90b0d3",
+            "1a0844636fea3a4f",
+            "674cd421bd6552f6",
+            "096608f9d8d74e86",
+            "5a6903702a9d65b4",
+            "10b80deb4d9ff607",
+            "bf867f6535aceded",
+            "ebb2649d7670cefd",
+            "4c9f400c8dd89ea8",
+            "81acd03b6fc94f3f",
+            "5fb0c54dd27a05dc",
+            "430812fd9f9d8c55",
+            "5cbc2b3e506bd1d9"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 872,
+        "h": 342
+    },
+    {
         "id": "f3e8c660cf5205b5",
         "type": "MySQLdatabase",
         "name": "rs2lab",
@@ -923,7 +925,7 @@
         "id": "2b5fcb475301977b",
         "type": "uibuilder",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "",
         "topic": "",
         "url": "Sample",
@@ -940,7 +942,7 @@
         "reload": false,
         "sourceFolder": "src",
         "x": 200,
-        "y": 180,
+        "y": 120,
         "wires": [
             [
                 "2e8364255f20bfde"
@@ -3412,7 +3414,7 @@
         "z": "ba85fe949960916b",
         "g": "2a89c69adb724fd2",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT ID, Nome, Email, Senha,image,\n ID_TipoUtilizador, isActive FROM rs2lab.Utilizador\n  WHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "func": "msg.topic = `SELECT ID, Nome, Email, Senha,image,\n ID_TipoUtilizador, isActive FROM rs2lab.Utilizador\n  WHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -6827,14 +6829,14 @@
         "id": "dd89e0896485f1a9",
         "type": "link in",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "",
         "links": [
             "89e1a4ceac90b0d3",
             "d451db08d12ba9c1"
         ],
         "x": 55,
-        "y": 180,
+        "y": 120,
         "wires": [
             [
                 "2b5fcb475301977b"
@@ -6845,7 +6847,7 @@
         "id": "2e8364255f20bfde",
         "type": "switch",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "modules",
         "property": "topic",
         "propertyType": "msg",
@@ -6864,13 +6866,18 @@
                 "t": "eq",
                 "v": "Startup",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "UpdateUser",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 3,
+        "outputs": 4,
         "x": 380,
-        "y": 180,
+        "y": 120,
         "wires": [
             [
                 "b9b4546bca08157d"
@@ -6880,6 +6887,9 @@
             ],
             [
                 "8ce8a3f1d24b87b0"
+            ],
+            [
+                "430812fd9f9d8c55"
             ]
         ]
     },
@@ -6887,7 +6897,7 @@
         "id": "b9b4546bca08157d",
         "type": "function",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "Login",
         "func": "flow.set(msg.token, msg.payload);\nreturn msg;",
         "outputs": 1,
@@ -6897,7 +6907,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 120,
+        "y": 60,
         "wires": [
             [
                 "89e1a4ceac90b0d3",
@@ -6909,7 +6919,7 @@
         "id": "3a9343d76bb40d2f",
         "type": "function",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "Logout",
         "func": "flow.set(msg.token, undefined);\nreturn msg;",
         "outputs": 1,
@@ -6919,7 +6929,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 160,
+        "y": 100,
         "wires": [
             [
                 "89e1a4ceac90b0d3",
@@ -6931,9 +6941,9 @@
         "id": "8ce8a3f1d24b87b0",
         "type": "function",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "Startup",
-        "func": "// Se não houver token, retorna session undefined\nif (!msg.token) {\n    msg.session = undefined;\n    return msg;\n}\n\n// Verifica se o servidor tem os detalhes do token\nvar details = flow.get(msg.token);\nif (!details) {\n    msg.session = undefined;\n} else {\n    // Detalhes da sessão\n    msg.session = {\n        'uniqueid': details.session.uniqueid,\n        'start_Time': undefined,\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n\n    // Detalhes do usuário\n    msg.payload = {\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n}\n\nreturn msg;\n",
+        "func": "\n\n// Se não houver token, retorna session undefined\nif (!msg.token) {\n    msg.session = undefined;\n    return msg;\n}\n\n// Verifica se o servidor tem os detalhes do token\nvar details = flow.get(msg.token);\nif (!details) {\n    msg.session = undefined;\n} else {\n    // Detalhes da sessão\n    msg.session = {\n        'uniqueid': details.session.uniqueid,\n        'start_Time': undefined,\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n\n    // Detalhes do usuário\n    msg.payload = {\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -6941,7 +6951,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 200,
+        "y": 140,
         "wires": [
             [
                 "89e1a4ceac90b0d3",
@@ -6953,21 +6963,21 @@
         "id": "89e1a4ceac90b0d3",
         "type": "link out",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "",
         "mode": "link",
         "links": [
             "dd89e0896485f1a9"
         ],
         "x": 715,
-        "y": 160,
+        "y": 100,
         "wires": []
     },
     {
         "id": "1a0844636fea3a4f",
         "type": "debug",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -6978,14 +6988,14 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 120,
+        "y": 60,
         "wires": []
     },
     {
         "id": "674cd421bd6552f6",
         "type": "debug",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "debug 6",
         "active": true,
         "tosidebar": true,
@@ -6996,14 +7006,14 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 760,
-        "y": 200,
+        "y": 180,
         "wires": []
     },
     {
         "id": "096608f9d8d74e86",
         "type": "debug",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "debug 7",
         "active": true,
         "tosidebar": true,
@@ -7013,14 +7023,14 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 760,
-        "y": 240,
+        "y": 140,
         "wires": []
     },
     {
         "id": "5a6903702a9d65b4",
         "type": "http in",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "login",
         "url": "/rs2lab/login",
         "method": "post",
@@ -7038,7 +7048,7 @@
         "id": "10b80deb4d9ff607",
         "type": "function",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "Query",
         "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\nu.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nwhere\nu.Email = '${Utilizador_Email}' \n             and u.Senha = '${Utilizador_Senha}'\nGROUP BY\nu.ID, t.ID;\n`\nreturn msg;\n",
         "outputs": 1,
@@ -7059,7 +7069,7 @@
         "id": "bf867f6535aceded",
         "type": "mysql",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 470,
@@ -7075,7 +7085,7 @@
         "id": "ebb2649d7670cefd",
         "type": "http response",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "",
         "statusCode": "",
         "headers": {},
@@ -13078,7 +13088,7 @@
         "id": "4c9f400c8dd89ea8",
         "type": "inject",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "",
         "props": [],
         "repeat": "",
@@ -13098,7 +13108,7 @@
         "id": "81acd03b6fc94f3f",
         "type": "debug",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "Result",
         "active": true,
         "tosidebar": true,
@@ -13116,7 +13126,7 @@
         "id": "5fb0c54dd27a05dc",
         "type": "function",
         "z": "ba85fe949960916b",
-        "g": "30f71a271d2a4ba5",
+        "g": "9e6382268e9dd573",
         "name": "Query",
         "func": "\n\nmsg.topic = `SELECT\nu.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nwhere\nu.Email = 'admin@gmail.com' \n             and u.Senha = '21232f297a57a5a743894a0e4a801fc3'\nGROUP BY\nu.ID, t.ID;\n`\nreturn msg;\n",
         "outputs": 1,
@@ -13328,5 +13338,45 @@
                 "fc5f9bda42a22a37"
             ]
         ]
+    },
+    {
+        "id": "430812fd9f9d8c55",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "9e6382268e9dd573",
+        "name": "UpdateUser",
+        "func": "\nvar updatedDetails = msg.payload;\n\n// Atualiza os detalhes do utilizador no fluxo\nvar session = flow.get(msg.token);\nif (session) {\n    session.user.Utilizador_Nome = updatedDetails.Utilizador_Nome;\n    session.user.Utilizador_Email = updatedDetails.Utilizador_Email;\n    session.user.Utilizador_image = updatedDetails.Utilizador_image;\n    // Atualize outros campos conforme necessário\n\n    flow.set(msg.token, session);\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 180,
+        "wires": [
+            [
+                "89e1a4ceac90b0d3",
+                "5cbc2b3e506bd1d9"
+            ]
+        ]
+    },
+    {
+        "id": "5cbc2b3e506bd1d9",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "9e6382268e9dd573",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "token",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 220,
+        "wires": []
     }
 ]
