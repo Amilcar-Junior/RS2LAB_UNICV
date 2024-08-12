@@ -8,7 +8,7 @@
         <div
           class="card-header d-flex justify-content-between align-items-center"
         >
-          <h4>Mapa da Área de Agricultura</h4>
+          <h4>Mapa</h4>
           <div>
             <select
               v-model="selectedAreaId"

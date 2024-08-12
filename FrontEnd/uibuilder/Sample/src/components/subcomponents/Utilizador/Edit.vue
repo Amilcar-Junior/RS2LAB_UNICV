@@ -35,19 +35,41 @@
                 />
               </div>
               <div class="mb-3" v-if="filteredTipoUtilizador.length > 0">
-                <label for="id_tipoUtilizador" class="form-label">Tipo Utilizador</label>
-                <select v-model="model.item.ID_TipoUtilizador" class="form-control" required>
-                  <option value="" disabled selected>Selecione o tipo de utilizador</option>
-                  <option v-for="tipo in filteredTipoUtilizador" :key="tipo.ID" :value="tipo.ID">
+                <label for="id_tipoUtilizador" class="form-label"
+                  >Tipo Utilizador</label
+                >
+                <select
+                  v-model="model.item.ID_TipoUtilizador"
+                  class="form-control"
+                  required
+                >
+                  <option value="" disabled selected>
+                    Selecione o tipo de utilizador
+                  </option>
+                  <option
+                    v-for="tipo in filteredTipoUtilizador"
+                    :key="tipo.ID"
+                    :value="tipo.ID"
+                  >
                     {{ tipo.Nome }}
                   </option>
                 </select>
               </div>
               <div class="mb-3">
-                <label for="id_grupoutilizadores" class="form-label">Grupos</label>
-                <select v-model="gruposSelecionados" class="form-control" multiple>
+                <label for="id_grupoutilizadores" class="form-label"
+                  >Grupos</label
+                >
+                <select
+                  v-model="gruposSelecionados"
+                  class="form-control"
+                  multiple
+                >
                   <option disabled value="">Selecione um grupo</option>
-                  <option v-for="grupo in filteredGruposDisponiveis" :key="grupo.Grupo_ID" :value="grupo.Grupo_ID">
+                  <option
+                    v-for="grupo in filteredGruposDisponiveis"
+                    :key="grupo.Grupo_ID"
+                    :value="grupo.Grupo_ID"
+                  >
                     {{ grupo.Grupo_Nome }}
                   </option>
                 </select>
@@ -68,10 +90,25 @@
             <!-- Coluna para a imagem de perfil -->
             <div class="col-md-3">
               <div class="mb-3">
-                <b-form-group label="Foto de Perfil:" label-for="image" class="mb-3">
-                  <b-form-file id="image" @change="previewImage" accept="image/*" placeholder="Escolha um arquivo...">
+                <b-form-group
+                  label="Foto de Perfil:"
+                  label-for="image"
+                  class="mb-3"
+                >
+                  <b-form-file
+                    id="image"
+                    @change="previewImage"
+                    accept="image/*"
+                    placeholder="Escolha um arquivo..."
+                  >
                   </b-form-file>
-                  <b-img v-if="imagePreview" :src="imagePreview" fluid class="mt-2" thumbnail></b-img>
+                  <b-img
+                    v-if="imagePreview"
+                    :src="imagePreview"
+                    fluid
+                    class="mt-2"
+                    thumbnail
+                  ></b-img>
                 </b-form-group>
               </div>
             </div>
@@ -124,7 +161,9 @@ module.exports = {
       if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
         return this.TipoUtilizador;
       }
-      return this.TipoUtilizador.filter(tipo => tipo.Nome !== "Administrador");
+      return this.TipoUtilizador.filter(
+        (tipo) => tipo.Nome !== "Administrador"
+      );
     },
     filteredGruposDisponiveis() {
       if (!this.keys || !this.keys.Grupos) {
@@ -133,9 +172,13 @@ module.exports = {
       if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
         return this.gruposDisponiveis;
       }
-      const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
-      return this.gruposDisponiveis.filter(grupo => userGroupIds.includes(grupo.Grupo_ID));
-    }
+      const userGroupIds = this.keys.Grupos
+        ? this.keys.Grupos.map((group) => group.ID)
+        : [];
+      return this.gruposDisponiveis.filter((grupo) =>
+        userGroupIds.includes(grupo.Grupo_ID)
+      );
+    },
   },
   mounted() {
     this.model.ID = this.$router.app._route.params.ID;
@@ -157,7 +200,7 @@ module.exports = {
           this.model.item.image = resp.data[0].image;
           if (this.model.item.image) {
             this.imagePreview = `data:image/jpeg;base64,${this.model.item.image}`;
-            console.log("Imagem carregada com sucesso:", this.model.item.image);
+            // console.log("Imagem carregada com sucesso:", this.model.item.image);
           }
         })
         .catch((error) => {
@@ -204,12 +247,7 @@ module.exports = {
           console.log("Utilizador atualizado com sucesso!", response);
 
           // Verificar se o ID do utilizador é o mesmo do localStorage
-
-          console.log(localStorage);
-          if (
-            this.keys.Utilizador_ID &&
-            this.model.ID === this.model.ID.toString()
-          ) {
+          if (this.keys.Utilizador_ID.toString() === this.model.ID.toString()) {
             // Atualizar os dados no localStorage
             localStorage.setItem("user", JSON.stringify(this.model.item));
             this.keys.Utilizador_Nome = this.model.item.Nome;
@@ -218,8 +256,22 @@ module.exports = {
             this.keys.Utilizador_isActive = this.model.item.isActive;
             this.keys.TipoUtilizador_ID = this.model.item.ID_TipoUtilizador;
             this.keys.Grupos = this.gruposSelecionados;
+            console.log("local storage atualizado: ", localStorage);
+            const updatedUser = {
+              ...JSON.parse(localStorage.getItem("user")),
+              Utilizador_Nome: this.model.item.Nome,
+              Utilizador_Email: this.model.item.Email,
+              Utilizador_image: this.model.item.image,
+            };
+            const sessionID = localStorage.getItem("token");
+            uibuilder.send({
+              topic: "UpdateUser",
+              token: sessionID,
+              payload: updatedUser,
+            });
+
+            localStorage.setItem("user", JSON.stringify(updatedUser));
           }
-          console.log("local storage atualizado: ", localStorage);
 
           this.showNotification(
             "Utilizador atualizado com sucesso!",

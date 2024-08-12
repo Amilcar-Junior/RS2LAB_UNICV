@@ -3,14 +3,14 @@
     <router-link to="/topico" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
-    <b-card>
-      <b-card-header>
-        <h4>Editar Topico Sensor</h4>
-      </b-card-header>
+    <div class="card">
+      <div class="card-header">
+        <h4>Editar Topico do Sensor</h4>
+      </div>
       <b-card-body>
         <b-form>
-          <b-row>
-            <b-col cols="12">
+          <b-row class="align-items-center">
+            <b-col cols="9">
               <b-form-group label="Topico" label-for="Topico" class="mb-3">
                 <b-form-input
                   id="Topico"
@@ -19,6 +19,20 @@
                   placeholder="Digite o Topico do sensor"
                 ></b-form-input>
               </b-form-group>
+            </b-col>
+            <b-col cols="3">
+              <div class="mb-0 form-check text-center">
+                <input
+                  type="checkbox"
+                  id="is_activatable"
+                  v-model="model.item.is_activatable"
+                  :checked="model.item.is_activatable"
+                  class="form-check-input custom-checkbox"
+                  true-value="1"
+                  false-value="0"
+                />
+                <label for="is_activatable" class="form-check-label">Ativavel</label>
+              </div>
             </b-col>
           </b-row>
           <b-button
@@ -30,9 +44,10 @@
           </b-button>
         </b-form>
       </b-card-body>
-    </b-card>
+    </div>
   </div>
 </template>
+
 
 <script>
 module.exports = {
@@ -44,6 +59,7 @@ module.exports = {
         item: {
           Topico: "",
           Valor: "",
+          is_activatable: "",
         },
       },
     };
@@ -61,6 +77,7 @@ module.exports = {
           console.log(resp);
           this.model.item.Topico = resp.data[0].Topico;
           this.model.item.Valor = resp.data[0].Valor;
+          this.model.item.is_activatable = resp.data[0].is_activatable;
           // console.log(this.model.item);
         })
         .catch((errors) => {
@@ -119,3 +136,15 @@ module.exports = {
   },
 };
 </script>
+
+<style>
+.custom-checkbox {
+  transform: scale(2.5); /* Aumenta o tamanho da checkbox */
+  margin-top: 8px; /* Ajuste o alinhamento vertical */
+}
+
+.form-check-label {
+  margin-left: 10px; /* Adiciona espaçamento entre a checkbox e o label */
+  font-weight: bold; /* Torna o texto do label mais visível */
+}
+</style>

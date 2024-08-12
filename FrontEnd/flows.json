@@ -269,7 +269,13 @@
             "801d9406c645cbb4",
             "687352ef861ad6c1",
             "822e003fa279635d",
-            "abaa18e71bf9fe1d"
+            "abaa18e71bf9fe1d",
+            "c64a27bd3fbb3376",
+            "60036d4e32f4c896",
+            "65d0e3ca84c3870b",
+            "ebc91180d383e9f2",
+            "023fc16f0bbe25b4",
+            "b1dea10e4c7a9bdd"
         ],
         "x": 24,
         "y": 2839,
@@ -3261,7 +3267,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
+        "x": 360,
         "y": 3240,
         "wires": [
             [
@@ -3621,7 +3627,7 @@
         "z": "ba85fe949960916b",
         "g": "2a89c69adb724fd2",
         "name": "QUERY",
-        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Nome = '${msg.payload.Nome}', \nEmail = '${msg.payload.Email}',  \nimage = '${msg.payload.image}', \nID_TipoUtilizador = ${msg.payload.ID_TipoUtilizador}, \nisActive = ${msg.payload.isActive} \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
+        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Nome = '${msg.payload.Nome}', \nEmail = '${msg.payload.Email}', \nimage = '${msg.payload.image}', \nID_TipoUtilizador = ${msg.payload.ID_TipoUtilizador}, \nisActive = ${msg.payload.isActive} \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4004,7 +4010,7 @@
         "z": "ba85fe949960916b",
         "g": "2a89c69adb724fd2",
         "name": "QUERY",
-        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador(Nome, Email, Senha, Avatar, isActive, ID_TipoUtilizador)\nVALUES('Teste', 'teste@gmail.com', 'Teste', NULL, '1', 1);`;\nreturn msg;",
+        "func": "msg.topic = `INSERT INTO rs2lab.Utilizador(Nome, Email, Senha, Avatar, isActive, ID_TipoUtilizador)\nVALUES('Teste', 'teste@gmail.com', 'Teste', NULL, '1', 1);`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -11602,7 +11608,7 @@
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    ID, \n    Valor, \n    Data_Hora, \n    Topico\n    FROM \n    rs2lab.ValorSensor\n`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    ID, \n    Valor, \n    Data_Hora, \n    Topico,\n    is_activatable\n    FROM \n    rs2lab.ValorSensor\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -11661,7 +11667,7 @@
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    ID, \n    Valor, \n    Data_Hora, \n    Topico\n    FROM \n    rs2lab.ValorSensor\n`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    ID, \n    Valor, \n    Data_Hora, \n    Topico,\n    is_activatable\n    FROM \n    rs2lab.ValorSensor\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -11868,7 +11874,7 @@
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
         "name": "QUERY",
-        "func": "msg.topic = `INSERT INTO rs2lab.ValorSensor (Valor, Data_Hora, Topico) \nVALUES (${msg.payload.Valor}, NOW(), '${msg.payload.Topico}');`;\nreturn msg;\n",
+        "func": "msg.topic = `INSERT INTO rs2lab.ValorSensor (Valor, Data_Hora, Topico, is_activatable) \nVALUES (${msg.payload.Valor}, NOW(), '${msg.payload.Topico}','${msg.payload.is_activatable}');`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -11995,7 +12001,7 @@
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
         "name": "QUERY",
-        "func": "msg.topic = `Select\n ID, \n    Valor, \n    Data_Hora, \n    Topico\n    FROM \n    rs2lab.ValorSensor\nWHERE \n    ID = ${msg.req.params.ID};\n`;\nreturn msg;\n",
+        "func": "msg.topic = `Select\n ID, \n    Valor, \n    Data_Hora, \n    Topico,\n    is_activatable\n    FROM \n    rs2lab.ValorSensor\nWHERE \n    ID = ${msg.req.params.ID};\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -12133,7 +12139,7 @@
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
         "name": "QUERY",
-        "func": "msg.topic = `UPDATE rs2lab.ValorSensor \nSET Valor = ${msg.payload.Valor}, \n    Data_Hora = NOW(), \n    Topico = '${msg.payload.Topico}'\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "func": "msg.topic = `UPDATE rs2lab.ValorSensor \nSET Valor = ${msg.payload.Valor}, \n    Data_Hora = NOW(), \n    Topico = '${msg.payload.Topico}',\n    is_activatable = '${msg.payload.is_activatable}'\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -12549,7 +12555,7 @@
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
         "name": "QUERY",
-        "func": "msg.topic = `Select\n ID, \n    Valor, \n    Data_Hora, \n    Topico\n    FROM \n    rs2lab.ValorSensor\nWHERE \n    ID = ${msg.req.params.ID};\n`;\nreturn msg;\n",
+        "func": "msg.topic = `Select\n ID, \n    Valor, \n    Data_Hora, \n    Topico,\n    is_activatable\n    FROM \n    rs2lab.ValorSensor\nWHERE \n    ID = ${msg.req.params.ID};\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -13377,6 +13383,102 @@
         "statusType": "auto",
         "x": 760,
         "y": 220,
+        "wires": []
+    },
+    {
+        "id": "c64a27bd3fbb3376",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "QUERY",
+        "func": "// Verificar se o email já existe\nmsg.topic = `SELECT COUNT(*) AS count FROM rs2lab.Utilizador WHERE Email = '${msg.payload.Email}';`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 3240,
+        "wires": [
+            [
+                "023fc16f0bbe25b4"
+            ]
+        ]
+    },
+    {
+        "id": "60036d4e32f4c896",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1450,
+        "y": 3240,
+        "wires": []
+    },
+    {
+        "id": "65d0e3ca84c3870b",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Check Email Utilizador",
+        "url": "/rs2lab/checkutilizador",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 900,
+        "y": 3240,
+        "wires": [
+            [
+                "c64a27bd3fbb3376"
+            ]
+        ]
+    },
+    {
+        "id": "ebc91180d383e9f2",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1450,
+        "y": 3200,
+        "wires": []
+    },
+    {
+        "id": "023fc16f0bbe25b4",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1270,
+        "y": 3240,
+        "wires": [
+            [
+                "60036d4e32f4c896",
+                "ebc91180d383e9f2"
+            ]
+        ]
+    },
+    {
+        "id": "b1dea10e4c7a9bdd",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Check Utilizador Email",
+        "info": "",
+        "x": 1100,
+        "y": 3180,
         "wires": []
     }
 ]

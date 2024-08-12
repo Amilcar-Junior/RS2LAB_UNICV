@@ -34,8 +34,9 @@
               <thead>
                 <tr>
                   <th scope="col" class="col-1">ID</th>
-                  <th scope="col" class="col-3">Topico</th>
-                  <th scope="col" class="col-2">Valor</th>
+                  <th scope="col" class="col-5">Topico</th>
+                  <th scope="col" class="col-1 text-center">Ativavel</th>
+                  <th scope="col" class="col-1 text-center">Valor</th>
                   <th scope="col" class="col-2">Data</th>
                   <th
                     scope="col"
@@ -53,7 +54,14 @@
                 <tr v-for="(item, index) in paginatedItems" :key="index">
                   <td>{{ item.ID }}</td>
                   <td>{{ item.Topico }}</td>
-                  <td>{{ item.Valor }}</td>
+                  <td class="text-center">
+                    <b-icon-check
+                      v-if="item.is_activatable === 1"
+                      variant="success"
+                    ></b-icon-check>
+                    <b-icon-x v-else variant="danger"></b-icon-x>
+                  </td>
+                  <td class="text-center">{{ item.Valor }}</td>
                   <td>{{ item.Data_Hora }}</td>
                   <td
                     class="text-right"

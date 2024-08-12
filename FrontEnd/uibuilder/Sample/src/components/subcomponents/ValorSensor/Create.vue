@@ -9,8 +9,8 @@
       </div>
       <div class="card-body">
         <form @submit.prevent="addvalorsensor">
-          <div class="row">
-            <div class="col-md-12">
+          <div class="row align-items-center">
+            <div class="col-md-8">
               <div class="mb-3">
                 <label for="Topico" class="form-label">Topico</label>
                 <input
@@ -23,8 +23,22 @@
                 />
               </div>
             </div>
-            
-            
+            <div class="col-md-4">
+              <div class="mb-0 form-check text-center">
+                <input
+                  type="checkbox"
+                  id="is_activatable"
+                  v-model="model.item.is_activatable"
+                  :checked="model.item.is_activatable"
+                  class="form-check-input custom-checkbox"
+                  true-value="1"
+                  false-value="0"
+                />
+                <label for="is_activatable" class="form-check-label"
+                  >Ativavel</label
+                >
+              </div>
+            </div>
           </div>
 
           <button type="submit" class="btn btn-primary float-right">
@@ -46,12 +60,12 @@ module.exports = {
           Topico: "",
           // Data_Hora: "",
           Valor: 0,
+          is_activatable: 0,
         },
       },
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     addvalorsensor() {
       var self = this; //Assign this to a variable
@@ -61,7 +75,8 @@ module.exports = {
           console.log(resp);
           this.showNotification(
             "Topico adicionado com sucesso!",
-            "success","Sucesso"
+            "success",
+            "Sucesso"
           );
           this.cleanForm();
         })
@@ -72,6 +87,8 @@ module.exports = {
     //Use to clean form upon succcessful insert
     cleanForm() {
       this.model.item.Topico = "";
+      this.model.item.is_activatable = 0;
+
     },
     //Shows a dialog notification
     showNotification(message, variant, title) {
@@ -84,3 +101,15 @@ module.exports = {
   },
 };
 </script>
+
+<style>
+.custom-checkbox {
+  transform: scale(2.5); /* Aumenta o tamanho da checkbox */
+  margin-top: 8px; /* Ajuste o alinhamento vertical */
+}
+
+.form-check-label {
+  margin-left: 10px; /* Adiciona espaçamento entre a checkbox e o label */
+  font-weight: bold; /* Torna o texto do label mais visível */
+}
+</style>

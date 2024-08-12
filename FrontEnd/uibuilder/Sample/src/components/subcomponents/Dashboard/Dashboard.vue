@@ -75,6 +75,17 @@
   </div>
 </template>
 
+
+<!-- sensor ou ativador
+ 
+  enviar payload com id: e com stats: 
+  
+  topico
+  ai4afs/node/cmd/unicv
+  
+  -->
+
+
 <script>
 module.exports = {
   props: ["keys"],

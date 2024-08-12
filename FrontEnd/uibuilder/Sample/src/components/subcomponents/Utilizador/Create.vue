@@ -169,40 +169,61 @@ module.exports = {
     filteredTipoUtilizador() {
       return this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR
         ? this.TipoUtilizador
-        : this.TipoUtilizador.filter(tipo => tipo.Nome !== 'Administrador');
+        : this.TipoUtilizador.filter((tipo) => tipo.Nome !== "Administrador");
     },
     filteredGruposDisponiveis() {
       if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
         return this.gruposDisponiveis;
       } else {
-        const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
-        return this.gruposDisponiveis.filter(grupo => userGroupIds.includes(grupo.Grupo_ID));
+        const userGroupIds = this.keys.Grupos
+          ? this.keys.Grupos.map((group) => group.ID)
+          : [];
+        return this.gruposDisponiveis.filter((grupo) =>
+          userGroupIds.includes(grupo.Grupo_ID)
+        );
       }
     },
   },
   methods: {
     addUtilizador() {
       var self = this;
+
       axios
-        .post("/rs2lab/addutilizador", this.model.item)
+        .post("/rs2lab/checkutilizador", self.model.item)
         .then((resp) => {
-          console.log(resp);
-          // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
-          if (this.gruposSelecionados.length > 0) {
-            this.gruposSelecionados.forEach((grupoId) => {
-              const utilizadorGrupo = {
-                ID_Utilizador: resp.data.insertId, // ID do utilizador criado
-                ID_Grupo: grupoId, // ID do grupo selecionado
-              };
-              // console.log(utilizadorGrupo);
-              self.addUtilizadorGrupo(utilizadorGrupo);
+          if ((resp.data[0].count === 0)) {
+          axios
+            .post("/rs2lab/addutilizador", this.model.item)
+            .then((resp) => {
+              console.log(resp);
+              // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
+              if (this.gruposSelecionados.length > 0) {
+                this.gruposSelecionados.forEach((grupoId) => {
+                  const utilizadorGrupo = {
+                    ID_Utilizador: resp.data.insertId, // ID do utilizador criado
+                    ID_Grupo: grupoId, // ID do grupo selecionado
+                  };
+                  // console.log(utilizadorGrupo);
+                  self.addUtilizadorGrupo(utilizadorGrupo);
+                });
+              }
+              this.showNotification(
+                "Utilizador adicionada com sucesso!",
+                "success",
+                "Sucesso"
+              );
+              this.cleanForm();
+            })
+            .catch((e) => {
+              console.error(e);
             });
+          }else{
+            this.showNotification(
+                "Email já Existente!",
+                "warning",
+                "Erro"
+              );
           }
-          this.showNotification(
-            "Utilizador adicionada com sucesso!",
-            "success","Sucesso"
-          );
-          this.cleanForm();
         })
         .catch((e) => {
           console.error(e);
@@ -212,14 +233,13 @@ module.exports = {
     addUtilizadorGrupo(utilizadorGrupo) {
       axios
         .post("/rs2lab/addutilizadorgrupo", utilizadorGrupo)
-        .then((resp) => {
-          
-        })
+        .then((resp) => {})
         .catch((e) => {
           console.error("Erro ao adicionar a Utilizador:", error);
           this.showNotification(
             "Erro ao adicionar a Utilizador ao Grupo.",
-            "danger","Erro"
+            "danger",
+            "Erro"
           );
         });
     },
@@ -236,7 +256,8 @@ module.exports = {
           console.error(errors);
           this.showNotification(
             "Erro ao buscar dados dos grupos.",
-            "danger","Erro"
+            "danger",
+            "Erro"
           );
         });
     },
@@ -252,7 +273,8 @@ module.exports = {
           console.error(errors);
           this.showNotification(
             "Erro ao buscar dados dos Tipo Utilizador.",
-            "danger","Erro"
+            "danger",
+            "Erro"
           );
         });
     },
