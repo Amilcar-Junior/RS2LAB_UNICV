@@ -1,36 +1,20 @@
 <template>
   <div class="container-fluid mt-5">
     <div class="card">
-      <div
-        class="card-header d-flex justify-content-between align-items-center"
-      >
-        <h4>Sensores / Ativadores</h4>
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4>Sensores</h4>
         <div>
-          <select
-            v-model="selectedAreaId"
-            class="form-control d-inline-block w-auto"
-          >
+          <select v-model="selectedAreaId" class="form-control d-inline-block w-auto">
             <option value="" disabled selected>
               Selecione a Área de Agricultura
             </option>
-            <option
-              v-for="area in filteredAreas"
-              :key="area.Area_ID"
-              :value="area.Area_ID"
-            >
+            <option v-for="area in filteredAreas" :key="area.Area_ID" :value="area.Area_ID">
               {{ area.Area_Nome }}
             </option>
           </select>
-          <select
-            v-model="selectedSensorId"
-            class="form-control d-inline-block w-auto ml-2"
-          >
+          <select v-model="selectedSensorId" class="form-control d-inline-block w-auto ml-2">
             <option value="" disabled selected>Selecione um Sensor</option>
-            <option
-              v-for="sensor in filteredSensors"
-              :key="sensor.ID"
-              :value="sensor.ID"
-            >
+            <option v-for="sensor in filteredSensors" :key="sensor.ID" :value="sensor.ID">
               {{ sensor.Nome }}
             </option>
           </select>
@@ -59,7 +43,7 @@
                 <td>{{ item.Grupo_Nome }}</td>
                 <td>{{ item.TipoSensor_Nome }}</td>
                 <td>{{ item.ValorSensor_Topico }}</td>
-                <td>{{ item.ValorSensor_IsActivable ? "Sim" : "Não" }}</td>
+                <td>{{ item.ValorSensor_IsActivable }}</td>
                 <td>{{ item.ValorSensor_Valor }}</td>
               </tr>
             </tbody>
@@ -76,16 +60,8 @@
           ></b-pagination>
         </div>
         <div class="row mt-3">
-          <div
-            v-for="sensor in filteredSensors"
-            :key="sensor.ID"
-            class="col-md-4"
-          >
-            <!-- Verifica se o sensor é ativável -->
-            <div
-              v-if="!sensor.ValorSensor_IsActivable"
-              class="card sensor-card mb-3 text-center"
-            >
+          <div v-for="sensor in filteredSensors" :key="sensor.ID" class="col-md-4">
+            <div class="card sensor-card mb-3 text-center">
               <div class="card-header text-center">
                 <h5>{{ sensor.Nome }}</h5>
               </div>
@@ -94,28 +70,23 @@
                 <p class="sensor-value">{{ sensor.ValorSensor_Valor }}</p>
               </div>
             </div>
-            <div v-else class="card sensor-card mb-3 text-center">
-              <div class="card-header text-center">
-                <h5>{{ sensor.Nome }}</h5>
-              </div>
-              <div class="card-body">
-                <p class="sensor-value">{{ sensor.ValorSensor_Valor === "1"? "Ligado" : "Desligado" }}</p>
-                <button
-                  @click="toggleActivation(sensor)"
-                  class="btn btn-primary"
-                >
-                  {{
-                    sensor.ValorSensor_Valor === "1" ? "Desativar" : "Ativar"
-                  }}
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+
+<!-- sensor ou ativador
+ 
+  enviar payload com id: e com stats: 
+  
+  topico
+  ai4afs/node/cmd/unicv
+  
+  -->
+
 
 <script>
 module.exports = {
@@ -148,41 +119,27 @@ module.exports = {
   watch: {
     filteredSensors() {
       this.recreateCharts();
-    },
+    }
   },
   computed: {
     filteredAreas() {
       if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
         return this.items;
       }
-      const userGroupIds = this.keys.Grupos
-        ? this.keys.Grupos.map((group) => group.ID)
-        : [];
-      return this.items.filter((area) => userGroupIds.includes(area.Grupo_ID));
+      const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+      return this.items.filter(area => userGroupIds.includes(area.Grupo_ID));
     },
     filteredSensors() {
       if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
         if (!this.selectedAreaId) return this.allSensores;
-        return this.allSensores.filter(
-          (sensor) => sensor.area_ID === this.selectedAreaId
-        );
+        return this.allSensores.filter(sensor => sensor.area_ID === this.selectedAreaId);
       }
-      const userGroupIds = this.keys.Grupos
-        ? this.keys.Grupos.map((group) => group.ID)
-        : [];
-      const areas = this.items
-        .filter((area) => userGroupIds.includes(area.Grupo_ID))
-        .map((area) => area.Area_ID);
+      const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+      const areas = this.items.filter(area => userGroupIds.includes(area.Grupo_ID)).map(area => area.Area_ID);
       if (!this.selectedAreaId) {
-        return this.allSensores.filter((sensor) =>
-          areas.includes(sensor.area_ID)
-        );
+        return this.allSensores.filter(sensor => areas.includes(sensor.area_ID));
       }
-      return this.allSensores.filter(
-        (sensor) =>
-          sensor.area_ID === this.selectedAreaId &&
-          areas.includes(sensor.area_ID)
-      );
+      return this.allSensores.filter(sensor => sensor.area_ID === this.selectedAreaId && areas.includes(sensor.area_ID));
     },
     paginatedItems() {
       const start = (this.currentPage - 1) * this.perPage;
@@ -206,6 +163,7 @@ module.exports = {
       axios
         .get("/rs2lab/sensor")
         .then((resp) => {
+          console.log("sensores:", resp)
           this.allSensores = resp.data.map((sensor) => {
             return {
               ...sensor,
@@ -214,9 +172,7 @@ module.exports = {
           });
           this.$nextTick(() => {
             this.allSensores.forEach((sensor) => {
-              if (!sensor.ValorSensor_IsActivable) {
-                this.createChart(sensor);
-              }
+              this.createChart(sensor);
             });
           });
         })
@@ -285,9 +241,7 @@ module.exports = {
       // Cria os gráficos novamente para os sensores filtrados
       this.$nextTick(() => {
         this.filteredSensors.forEach((sensor) => {
-          if (!sensor.ValorSensor_IsActivable) {
-            this.createChart(sensor);
-          }
+          this.createChart(sensor);
         });
       });
     },
@@ -321,7 +275,7 @@ module.exports = {
         let itemToUpdate = this.allSensores.find(
           (item) => item.ValorSensor_Topico === message.destinationName
         );
-        if (itemToUpdate && !itemToUpdate.ValorSensor_IsActivable) {
+        if (itemToUpdate) {
           itemToUpdate.ValorSensor_Valor = newValue;
           this.updateChart(itemToUpdate, newValue);
         }
@@ -330,7 +284,7 @@ module.exports = {
       this.client.connect({
         onSuccess: () => {
           this.allSensores.forEach((sensor) => {
-            if (sensor.ValorSensor_Topico && !sensor.ValorSensor_IsActivable) {
+            if (sensor.ValorSensor_Topico) {
               this.client.subscribe(sensor.ValorSensor_Topico);
             }
           });
@@ -351,10 +305,7 @@ module.exports = {
           this.client.connect({
             onSuccess: () => {
               this.allSensores.forEach((sensor) => {
-                if (
-                  sensor.ValorSensor_Topico &&
-                  !sensor.ValorSensor_IsActivable
-                ) {
+                if (sensor.ValorSensor_Topico) {
                   this.client.subscribe(sensor.ValorSensor_Topico);
                 }
               });
@@ -383,50 +334,6 @@ module.exports = {
         chart.update();
       } else {
         console.error("Gráfico não encontrado para o sensor:", sensor.ID);
-      }
-    },
-    // toggleActivation(sensor) {
-    //   const newValue = sensor.ValorSensor_Valor === '1' ? '0' : '1';
-    //   const message = new Paho.Message(newValue);
-    //   message.destinationName = sensor.ValorSensor_Topico;
-    //   this.client.send(message);
-    //   sensor.ValorSensor_Valor = newValue; // Atualiza o valor localmente
-    // }
-    toggleActivation(sensor) {
-      if (this.client && this.client.isConnected()) {
-        const newValue = sensor.ValorSensor_Valor === "1" ? "0" : "1";
-
-        // Criando o payload com o ID e o novo status
-        const payload = JSON.stringify({
-          // id: sensor.ID,
-          // id: keys.Utilizador_ID,
-          id: 1,
-          stats: newValue,
-        });
-
-        // Criando a mensagem MQTT
-        const message = new Paho.Message(payload);
-
-        // Definindo o tópico onde a mensagem será enviada
-        message.destinationName = sensor.ValorSensor_Topico;
-
-        // Enviando a mensagem para o broker MQTT
-        this.client.send(message);
-        console.log(message)
-
-        // Atualizando o valor localmente (para refletir a mudança na interface)
-        sensor.ValorSensor_Valor = newValue;
-
-        // Notificando sucesso
-        console.log(
-          "Mensagem enviada com sucesso para o tópico:",
-          sensor.ValorSensor_Topico
-        );
-      } else {
-        // Notificando falha na conexão
-        console.error(
-          "Falha ao enviar mensagem: Cliente MQTT não está conectado."
-        );
       }
     },
   },

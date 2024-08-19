@@ -38,11 +38,11 @@
             <i class="fa fa-location-arrow" aria-hidden="true"></i> Locais
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/tiposensor">
-            <i class="fa fa-list" aria-hidden="true"></i> Tipos de Sensores
+            <i class="fa fa-list" aria-hidden="true"></i> Tipos de Sensores / Ativadores
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/topico">
             <i class="fa fa-microchip" aria-hidden="true"></i> Tópicos de
-            Sensores
+            Sensores / Ativadores
           </b-dropdown-item>
         </b-nav-item-dropdown>
         <!-- Menu Gestão -->
@@ -58,7 +58,7 @@
             <i class="fa fa-leaf" aria-hidden="true"></i> Área de Agricultura
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/sensor">
-            <i class="fa fa-microchip" aria-hidden="true"></i> Sensores
+            <i class="fa fa-microchip" aria-hidden="true"></i> Sensores / Ativadores
           </b-dropdown-item>
         </b-nav-item-dropdown>
 
