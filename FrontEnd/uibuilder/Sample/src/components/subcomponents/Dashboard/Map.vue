@@ -50,7 +50,7 @@
         <div
           v-for="sensor in filteredSensors"
           :key="sensor.ID"
-          class="col-md-4"
+          class="col-md-4" v-if="sensor.ValorSensor_IsActivable == 0"
         >
           <div class="card sensor-card mb-3 text-center">
             <div class="card-header text-center">

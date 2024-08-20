@@ -5,7 +5,7 @@
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Adicionar Topico do Sensor</h4>
+        <h4>Adicionar Topico do Sensor / Atuador</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="addvalorsensor">
@@ -18,7 +18,7 @@
                   id="Topico"
                   v-model="model.item.Topico"
                   class="form-control"
-                  placeholder="Digite o Topico do sensor"
+                  placeholder="Digite o Topico do Sensor / Atuador"
                   required
                 />
               </div>
@@ -35,7 +35,7 @@
                   false-value="0"
                 />
                 <label for="is_activatable" class="form-check-label"
-                  >Ativavel</label
+                  >Atuador</label
                 >
               </div>
             </div>

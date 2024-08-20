@@ -5,7 +5,7 @@
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Adicionar Sensor</h4>
+        <h4>Adicionar Sensor / Atuador</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="addSensor">
@@ -16,14 +16,14 @@
               id="nome"
               v-model="model.item.Nome"
               class="form-control"
-              placeholder="Insira o nome do Sensor"
+              placeholder="Insira o nome do Sensor / Atuador"
               required
             />
           </div>
           <div class="mb-3">
-            <label for="id_grupo" class="form-label">Tipo Sensor</label>
+            <label for="id_grupo" class="form-label">Tipo Sensor / Atuador</label>
             <select v-model="model.item.ID_TipoSensor" class="form-control" required>
-              <option value="" disabled selected>Selecione o Tipo Sensor</option>
+              <option value="" disabled selected>Selecione o Tipo Sensor / Atuador</option>
               <option
                 v-for="tipo in TipoSensor"
                 :key="tipo.ID"
@@ -34,9 +34,9 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="id_grupo" class="form-label">Topico Sensor</label>
+            <label for="id_grupo" class="form-label">Topico Sensor / Atuador</label>
             <select v-model="model.item.ID_ValorSensor" class="form-control" required>
-              <option value="" disabled selected>Selecione o Topico Sensor</option>
+              <option value="" disabled selected>Selecione o Topico Sensor / Atuador</option>
               <option
                 v-for="topico in ValorSensor"
                 :key="topico.ID"
@@ -231,14 +231,14 @@ module.exports = {
         .post("/rs2lab/addsensor", this.model.item)
         .then(() => {
           this.showNotification(
-            "Sensor adicionado com sucesso!",
+            "Sensor / Atuador adicionado com sucesso!",
             "success", "Sucesso"
           );
           this.cleanForm();
         })
         .catch((error) => {
-          console.error("Erro ao adicionar o Sensor:", error);
-          this.showNotification("Erro ao adicionar o Sensor.", "danger", "Erro");
+          console.error("Erro ao adicionar o Sensor / Atuador:", error);
+          this.showNotification("Erro ao adicionar o Sensor / Atuador.", "danger", "Erro");
         });
     },
     getAreadeAgricultura() {

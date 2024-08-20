@@ -5,18 +5,18 @@
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Editar Topico do Sensor</h4>
+        <h4>Editar Tópico do Sensor / Atuador</h4>
       </div>
       <b-card-body>
         <b-form>
           <b-row class="align-items-center">
             <b-col cols="9">
-              <b-form-group label="Topico" label-for="Topico" class="mb-3">
+              <b-form-group label="Tópico" label-for="Topico" class="mb-3">
                 <b-form-input
                   id="Topico"
                   v-model="model.item.Topico"
                   required
-                  placeholder="Digite o Topico do sensor"
+                  placeholder="Digite o Tópico do Sensor / Atuador"
                 ></b-form-input>
               </b-form-group>
             </b-col>
@@ -31,7 +31,7 @@
                   true-value="1"
                   false-value="0"
                 />
-                <label for="is_activatable" class="form-check-label">Ativavel</label>
+                <label for="is_activatable" class="form-check-label">Atuador</label>
               </div>
             </b-col>
           </b-row>

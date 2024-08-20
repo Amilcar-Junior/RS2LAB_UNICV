@@ -8,7 +8,7 @@
         <div
           class="card-header d-flex justify-content-between align-items-center"
         >
-          <h4>Topicos de Sensores</h4>
+          <h4>Topicos de Sensores / Atuadores</h4>
           <div>
             <input
               type="text"
@@ -35,7 +35,7 @@
                 <tr>
                   <th scope="col" class="col-1">ID</th>
                   <th scope="col" class="col-5">Topico</th>
-                  <th scope="col" class="col-1 text-center">Ativavel</th>
+                  <th scope="col" class="col-1 text-center">Atuador</th>
                   <th scope="col" class="col-1 text-center">Valor</th>
                   <th scope="col" class="col-2">Data</th>
                   <th
@@ -157,7 +157,7 @@ module.exports = {
           console.log(response);
         })
         .catch((error) => {
-          console.error("Erro ao recuperar Topicos de sensor", error);
+          console.error("Erro ao recuperar Topicos de Sensor / Atuador", error);
         });
     },
     deleteItem(ItemID) {
@@ -172,7 +172,7 @@ module.exports = {
           this.retriveItem();
         })
         .catch((error) => {
-          console.error("Erro ao Deletar o tipo de sensor", error);
+          console.error("Erro ao Deletar o tipo de Sensor / Atuador", error);
           this.ShowDeleteNotification(
             "Erro ao Deletar Topico.",
             "danger",

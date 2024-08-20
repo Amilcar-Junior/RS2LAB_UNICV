@@ -275,7 +275,19 @@
             "65d0e3ca84c3870b",
             "ebc91180d383e9f2",
             "023fc16f0bbe25b4",
-            "b1dea10e4c7a9bdd"
+            "b1dea10e4c7a9bdd",
+            "0932b92cb4d26028",
+            "fa2bbd14d9f2fcd6",
+            "b66bb438fc60623f",
+            "ef6e6d3faf04ee2f",
+            "2c72bf3935c908bb",
+            "5ae860e6e46544c1",
+            "4a29595db18827d9",
+            "ed6e9f5d61174406",
+            "f58926ad0c4159e8",
+            "8b38c0f8a6cbd42b",
+            "0e110f26a98f2612",
+            "4c4f90bd029cc906"
         ],
         "x": 24,
         "y": 2839,
@@ -765,49 +777,6 @@
         "y": 5339,
         "w": 742,
         "h": 1242
-    },
-    {
-        "id": "061d1e5e50d5e07e",
-        "type": "group",
-        "z": "ba85fe949960916b",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "9b3b37b5be0acf74",
-            "70bb7e6f49223c30",
-            "937af55b56fc59ed",
-            "dd167bacd7506674",
-            "811a26f1ebf238f9",
-            "06e045f9ef1c53ba",
-            "e29adb0f8528ed4c",
-            "325248a3d1b0599f",
-            "eaca9719ea39d08e",
-            "8bfb63053b8036d7",
-            "c4625765f683d34b",
-            "43a552ea34917841",
-            "d25104867d79ba0a",
-            "b69f89521c4cc5ea",
-            "2dbc0bbf4fedab9f",
-            "e276534d9ebf0a06",
-            "c60cfbae164ca20a",
-            "fac15c865e73aa18",
-            "62ebc80fe08bd0f2",
-            "cb80f83edc9e1ba0",
-            "efee106788de5a18",
-            "d85f43ec5ed886af",
-            "8853a0140372f495"
-        ],
-        "x": 2314,
-        "y": 7019,
-        "w": 672,
-        "h": 582
     },
     {
         "id": "9e6382268e9dd573",
@@ -3244,7 +3213,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"Nome\":\"Testesssss\",\"Senha\":\"admin\",\"Email\":\"admin@gmail.com\",\"isActive\":\"1\",\"Avatar\":null,\"ID_TipoUtilizador\":\"1\"}",
+        "payload": "{\"Nome\":\"teste\",\"Senha\":\"teste\",\"Email\":\"testeteste@gmail.com\",\"isActive\":\"1\",\"Avatar\":null,\"ID_TipoUtilizador\":\"1\"}",
         "payloadType": "json",
         "x": 130,
         "y": 3300,
@@ -3457,7 +3426,7 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "query",
-        "url": "http://127.0.0.1:1882/rs2lab/utilizador/32",
+        "url": "http://127.0.0.1:1882/rs2lab/utilizador/43",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -3507,7 +3476,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"ID\":32}",
+        "payload": "{\"ID\":43}",
         "payloadType": "json",
         "x": 130,
         "y": 3520,
@@ -10727,7 +10696,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    s.ID, \n    s.Nome, \n    s.area_ID, \n    s.ID_TipoSensor,\n    s.coordenada,\n    s.ID_ValorSensor,\n    a.Nome AS Area_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    v.Valor AS ValorSensor_Valor,\n    v.Data_Hora AS ValorSensor_Data_Hora,\n    v.is_activatable AS ValorSensor_IsActivable\n    v.Topico AS ValorSensor_Topico\nFROM \n    rs2lab.Sensor s\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID\nWHERE \n    s.ID = ${msg.req.params.ID};\n`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    s.ID, \n    s.Nome, \n    s.area_ID, \n    s.ID_TipoSensor,\n    s.coordenada,\n    s.ID_ValorSensor,\n    a.Nome AS Area_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    v.Valor AS ValorSensor_Valor,\n    v.Data_Hora AS ValorSensor_Data_Hora,\n    v.is_activatable AS ValorSensor_IsActivable,\n    v.Topico AS ValorSensor_Topico\nFROM \n    rs2lab.Sensor s\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID\nWHERE \n    s.ID = ${msg.req.params.ID};\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -12662,435 +12631,6 @@
         "wires": []
     },
     {
-        "id": "9b3b37b5be0acf74",
-        "type": "mysql",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "DB",
-        "x": 2650,
-        "y": 7460,
-        "wires": [
-            [
-                "dd167bacd7506674"
-            ]
-        ]
-    },
-    {
-        "id": "70bb7e6f49223c30",
-        "type": "function",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Query",
-        "func": "msg.topic = 'SELECT * FROM rs2lab.ValorSensor;'\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2530,
-        "y": 7460,
-        "wires": [
-            [
-                "9b3b37b5be0acf74"
-            ]
-        ]
-    },
-    {
-        "id": "937af55b56fc59ed",
-        "type": "inject",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 2410,
-        "y": 7460,
-        "wires": [
-            [
-                "70bb7e6f49223c30"
-            ]
-        ]
-    },
-    {
-        "id": "dd167bacd7506674",
-        "type": "debug",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Result",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2770,
-        "y": 7460,
-        "wires": []
-    },
-    {
-        "id": "811a26f1ebf238f9",
-        "type": "mysql",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "DB",
-        "x": 2650,
-        "y": 7500,
-        "wires": [
-            [
-                "e29adb0f8528ed4c",
-                "325248a3d1b0599f"
-            ]
-        ]
-    },
-    {
-        "id": "06e045f9ef1c53ba",
-        "type": "function",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Query",
-        "func": "msg.topic = 'SELECT * FROM rs2lab.ValorSensor;'\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2530,
-        "y": 7500,
-        "wires": [
-            [
-                "811a26f1ebf238f9"
-            ]
-        ]
-    },
-    {
-        "id": "e29adb0f8528ed4c",
-        "type": "debug",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Result",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2810,
-        "y": 7560,
-        "wires": []
-    },
-    {
-        "id": "325248a3d1b0599f",
-        "type": "http response",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 2910,
-        "y": 7500,
-        "wires": []
-    },
-    {
-        "id": "eaca9719ea39d08e",
-        "type": "http in",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "IoTParams",
-        "url": "/rs2lab/IoTParameters",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 2400,
-        "y": 7500,
-        "wires": [
-            [
-                "06e045f9ef1c53ba"
-            ]
-        ]
-    },
-    {
-        "id": "8bfb63053b8036d7",
-        "type": "mqtt out",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Temperature",
-        "topic": "/MQTT/Temp",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "bee4f1305955a57b",
-        "x": 2790,
-        "y": 7120,
-        "wires": []
-    },
-    {
-        "id": "c4625765f683d34b",
-        "type": "inject",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "12",
-        "payloadType": "num",
-        "x": 2410,
-        "y": 7260,
-        "wires": [
-            [
-                "b69f89521c4cc5ea",
-                "e276534d9ebf0a06",
-                "c60cfbae164ca20a",
-                "efee106788de5a18"
-            ]
-        ]
-    },
-    {
-        "id": "43a552ea34917841",
-        "type": "mqtt out",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Humidity",
-        "topic": "/MQTT/Humidity",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "bee4f1305955a57b",
-        "x": 2780,
-        "y": 7200,
-        "wires": []
-    },
-    {
-        "id": "d25104867d79ba0a",
-        "type": "mqtt out",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Pressure",
-        "topic": "/MQTT/Pressure",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "bee4f1305955a57b",
-        "x": 2780,
-        "y": 7280,
-        "wires": []
-    },
-    {
-        "id": "b69f89521c4cc5ea",
-        "type": "function",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Random",
-        "func": "var max = 32;\nvar min = 10;\nvar value = Math.floor(Math.random() * (max - min + 1) + min)\nmsg.payload = value;\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2580,
-        "y": 7200,
-        "wires": [
-            [
-                "8bfb63053b8036d7",
-                "2dbc0bbf4fedab9f"
-            ]
-        ]
-    },
-    {
-        "id": "2dbc0bbf4fedab9f",
-        "type": "debug",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2790,
-        "y": 7160,
-        "wires": []
-    },
-    {
-        "id": "e276534d9ebf0a06",
-        "type": "function",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Random",
-        "func": "var max = 100;\nvar min = 60;\nvar value = Math.floor(Math.random() * (max - min + 1) + min)\nmsg.payload = value;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2580,
-        "y": 7240,
-        "wires": [
-            [
-                "43a552ea34917841",
-                "62ebc80fe08bd0f2"
-            ]
-        ]
-    },
-    {
-        "id": "c60cfbae164ca20a",
-        "type": "function",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Random",
-        "func": "var precision = 100; // 2 decimals\nvar randomnum = Math.floor(Math.random() * (2 * precision - 1 * precision) + 1 * precision) / (1*precision);\nmsg.payload = (randomnum-1).toFixed(2);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2580,
-        "y": 7280,
-        "wires": [
-            [
-                "fac15c865e73aa18",
-                "d25104867d79ba0a"
-            ]
-        ]
-    },
-    {
-        "id": "fac15c865e73aa18",
-        "type": "debug",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2790,
-        "y": 7320,
-        "wires": []
-    },
-    {
-        "id": "62ebc80fe08bd0f2",
-        "type": "debug",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2790,
-        "y": 7240,
-        "wires": []
-    },
-    {
-        "id": "cb80f83edc9e1ba0",
-        "type": "mqtt out",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Teste",
-        "topic": "/MQTT/Teste",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "bee4f1305955a57b",
-        "x": 2770,
-        "y": 7360,
-        "wires": []
-    },
-    {
-        "id": "efee106788de5a18",
-        "type": "function",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Random",
-        "func": "var precision = 50; // 2 decimals\nvar randomnum = Math.floor(Math.random() * (2 * precision - 1 * precision) + 1 * precision) / (1*precision);\nmsg.payload = (randomnum-1).toFixed(2);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2580,
-        "y": 7320,
-        "wires": [
-            [
-                "cb80f83edc9e1ba0",
-                "d85f43ec5ed886af"
-            ]
-        ]
-    },
-    {
-        "id": "d85f43ec5ed886af",
-        "type": "debug",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2790,
-        "y": 7400,
-        "wires": []
-    },
-    {
-        "id": "8853a0140372f495",
-        "type": "comment",
-        "z": "ba85fe949960916b",
-        "g": "061d1e5e50d5e07e",
-        "name": "Teste",
-        "info": "",
-        "x": 2630,
-        "y": 7060,
-        "wires": []
-    },
-    {
         "id": "4c9f400c8dd89ea8",
         "type": "inject",
         "z": "ba85fe949960916b",
@@ -13480,5 +13020,207 @@
         "x": 1100,
         "y": 3180,
         "wires": []
+    },
+    {
+        "id": "0932b92cb4d26028",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Senha = md5(${msg.payload.NewSenha}) \nWHERE ID = ${msg.req.params.ID} AND Senha = md5(${msg.payload.Senha});`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 3680,
+        "wires": [
+            [
+                "2c72bf3935c908bb"
+            ]
+        ]
+    },
+    {
+        "id": "fa2bbd14d9f2fcd6",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1450,
+        "y": 3680,
+        "wires": []
+    },
+    {
+        "id": "b66bb438fc60623f",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Edit Utilizador",
+        "url": "/rs2lab/editsenhautilizador/:ID",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 870,
+        "y": 3680,
+        "wires": [
+            [
+                "0932b92cb4d26028",
+                "ef6e6d3faf04ee2f"
+            ]
+        ]
+    },
+    {
+        "id": "ef6e6d3faf04ee2f",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 3620,
+        "wires": []
+    },
+    {
+        "id": "2c72bf3935c908bb",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1310,
+        "y": 3680,
+        "wires": [
+            [
+                "fa2bbd14d9f2fcd6",
+                "5ae860e6e46544c1"
+            ]
+        ]
+    },
+    {
+        "id": "5ae860e6e46544c1",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1450,
+        "y": 3620,
+        "wires": []
+    },
+    {
+        "id": "4a29595db18827d9",
+        "type": "comment",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "UPDATE Password",
+        "info": "",
+        "x": 1090,
+        "y": 3580,
+        "wires": []
+    },
+    {
+        "id": "ed6e9f5d61174406",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Senha = md5('testeteste') \nWHERE ID = 43 AND Senha = '698dc19d489c4e4db73e28a713eab07b';`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 3780,
+        "wires": [
+            [
+                "8b38c0f8a6cbd42b"
+            ]
+        ]
+    },
+    {
+        "id": "f58926ad0c4159e8",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1430,
+        "y": 3780,
+        "wires": []
+    },
+    {
+        "id": "8b38c0f8a6cbd42b",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1290,
+        "y": 3780,
+        "wires": [
+            [
+                "f58926ad0c4159e8",
+                "0e110f26a98f2612"
+            ]
+        ]
+    },
+    {
+        "id": "0e110f26a98f2612",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1430,
+        "y": 3740,
+        "wires": []
+    },
+    {
+        "id": "4c4f90bd029cc906",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Inject",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 890,
+        "y": 3780,
+        "wires": [
+            [
+                "ed6e9f5d61174406"
+            ]
+        ]
     }
 ]

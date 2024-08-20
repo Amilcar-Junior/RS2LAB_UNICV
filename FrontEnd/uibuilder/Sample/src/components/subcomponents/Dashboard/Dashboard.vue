@@ -25,7 +25,7 @@
             v-model="selectedSensorId"
             class="form-control d-inline-block w-auto ml-2"
           >
-            <option value="" disabled selected>Selecione um Sensor</option>
+            <option value="" disabled selected>Selecione um Sensor / Atuador</option>
             <option
               v-for="sensor in filteredSensors"
               :key="sensor.ID"
@@ -116,6 +116,8 @@
     </div>
   </div>
 </template>
+
+<!-- Atuador em vez de ativavel -->
 
 <script>
 module.exports = {
@@ -422,12 +424,29 @@ module.exports = {
           "Mensagem enviada com sucesso para o tópico:",
           sensor.ValorSensor_Topico
         );
+        this.showNotification(
+                "Mensagem enviada com sucesso!",
+                "success",
+                "Sucesso"
+              );
       } else {
         // Notificando falha na conexão
         console.error(
           "Falha ao enviar mensagem: Cliente MQTT não está conectado."
         );
+        this.showNotification(
+            "Falha ao enviar mensagem: Cliente MQTT não está conectado.",
+            "danger",
+            "Erro"
+          );
       }
+    },
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };

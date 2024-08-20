@@ -8,7 +8,7 @@
         <div
           class="card-header d-flex justify-content-between align-items-center"
         >
-          <h4>Sensor</h4>
+          <h4>Sensor / Atuador</h4>
           <div>
             <input
               type="text"
@@ -28,8 +28,9 @@
                 <tr>
                   <th scope="col" class="col-1">ID</th>
                   <th scope="col" class="col-2">Nome</th>
-                  <th scope="col" class="col-2">Tipo Sensor</th>
+                  <th scope="col" class="col-2">Tipo Sensor / Atuador</th>
                   <th scope="col" class="col-2">Tópico</th>
+                  <th scope="col" class="col-2">Ativavel</th>
                   <th scope="col" class="col-2">Grupo</th>
                   <th scope="col" class="col-2">Area</th>
                   <th scope="col" class="col-1">Mapa</th>
@@ -42,6 +43,7 @@
                   <td>{{ item.Nome }}</td>
                   <td>{{ item.TipoSensor_Nome }}</td>
                   <td>{{ item.ValorSensor_Topico }}</td>
+                  <td>{{ item.ValorSensor_IsActivable ? "Sim" : "Não" }}</td>
                   <td>{{ item.Grupo_Nome }}</td>
                   <td>{{ item.Area_Nome }}</td>
                   <td  class="text-center">
@@ -170,7 +172,7 @@ module.exports = {
           console.log(response);
         })
         .catch((error) => {
-          console.error("Erro ao recuperar Sensor:", error);
+          console.error("Erro ao recuperar Sensor / Atuador:", error);
         });
     },
     hasValidCoordinates(coordenada) {
@@ -293,15 +295,15 @@ module.exports = {
         .delete(`/rs2lab/deletesensor/${ItemID}`)
         .then(() => {
           this.ShowDeleteNotification(
-            "Sensor deletado com sucesso!",
+            "Sensor / Atuador deletado com sucesso!",
             "success", "Sucesso"
           );
           this.retrieveItems();
         })
         .catch((error) => {
-          console.error("Erro ao deletar sensor:", error);
+          console.error("Erro ao deletar Sensor / Atuador:", error);
           this.ShowDeleteNotification(
-            "Erro ao Deletar Sensor.",
+            "Erro ao Deletar Sensor / Atuador.",
             "danger","Erro"
           );
         });
@@ -315,7 +317,7 @@ module.exports = {
     },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esse Sensor?", {
+        .msgBoxConfirm("Deseja deletar esse Sensor / Atuador?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",

@@ -5,7 +5,7 @@
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Editar Sensor</h4>
+        <h4>Editar Sensor / Atuador</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="editSensor">
@@ -16,19 +16,19 @@
               id="nome"
               v-model="model.item.Nome"
               class="form-control"
-              placeholder="Insira o nome do Sensor"
+              placeholder="Insira o nome do Sensor / Atuador"
               required
             />
           </div>
           <div class="mb-3">
-            <label for="id_tiposensor" class="form-label">Tipo Sensor</label>
+            <label for="id_tiposensor" class="form-label">Tipo Sensor / Atuador</label>
             <select
               v-model="model.item.ID_TipoSensor"
               class="form-control"
               required
             >
               <option value="" disabled selected>
-                Selecione o Tipo Sensor
+                Selecione o Tipo Sensor / Atuador
               </option>
               <option 
                 v-for="tipo in TipoSensor"
@@ -40,14 +40,14 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="id_tiposensor" class="form-label">Topico Sensor</label>
+            <label for="id_tiposensor" class="form-label">Topico Sensor / Atuador</label>
             <select
               v-model="model.item.ID_ValorSensor"
               class="form-control"
               required
             >
               <option value="" disabled selected>
-                Selecione o Topico do Sensor
+                Selecione o Topico do Sensor / Atuador
               </option>
               <option
                 v-for="topico in ValorSensor"
@@ -113,7 +113,7 @@ module.exports = {
           ID_TipoSensor: "",
           ID_ValorSensor: "",
           coordenada: "",
-          TipoSensor_Icon: "", // Adicionado para ícone do sensor
+          TipoSensor_Icon: "", // Adicionado para ícone do Sensor / Atuador
         },
       },
       AreadeAgricultura: [],
@@ -153,7 +153,7 @@ module.exports = {
       axios
         .get(`/rs2lab/sensor/${this.model.ID}`)
         .then((response) => {
-          console.log("Dados do sensor:", response.data);
+          console.log("Dados do Sensor / Atuador:", response.data);
           this.model.item = response.data[0];
           this.$nextTick(() => {
             setTimeout(() => {
@@ -163,9 +163,9 @@ module.exports = {
           });
         })
         .catch((error) => {
-          console.error("Erro ao recuperar dados do sensor:", error);
+          console.error("Erro ao recuperar dados do Sensor / Atuador:", error);
           this.showNotification(
-            "Erro ao recuperar dados do Sensor.",
+            "Erro ao recuperar dados do Sensor / Atuador.",
             "danger",
             "Erro"
           );
@@ -193,9 +193,9 @@ module.exports = {
           this.TipoSensor = response.data;
         })
         .catch((error) => {
-          console.error("Erro ao buscar tipos de sensor:", error);
+          console.error("Erro ao buscar tipos de Sensores / Atuadores:", error);
           this.showNotification(
-            "Erro ao buscar dados dos Tipos de Sensores.",
+            "Erro ao buscar dados dos Tipos de Sensores / Atuadores.",
             "danger",
             "Erro"
           );
@@ -208,7 +208,7 @@ module.exports = {
           this.ValorSensor = response.data;
         })
         .catch((error) => {
-          console.error("Erro ao buscar topicos de sensor:", error);
+          console.error("Erro ao buscar topicos de Sensor / Atuador:", error);
           this.showNotification(
             "Erro ao buscar dados dos Topicos.",
             "danger",
@@ -314,14 +314,14 @@ module.exports = {
           console.log("Marcador atualizado no mapa.");
           if (this.map) {
             this.map.setView(latLng, 13);
-            console.log("Mapa centralizado nas coordenadas do sensor:", latLng);
+            console.log("Mapa centralizado nas coordenadas do Sensor / Atuador:", latLng);
           } else {
             console.warn("Mapa não está inicializado.");
           }
           return;
         }
       }
-      console.warn("Coordenada do sensor não está disponível ou é inválida.");
+      console.warn("Coordenada do Sensor / Atuador não está disponível ou é inválida.");
     },
     updateLocationField() {
       const layers = this.drawnItems.getLayers();
@@ -369,7 +369,7 @@ module.exports = {
         if (coordsArray.length === 2) {
           const latLng = coordsArray;
           console.log(
-            "Centralizando o mapa nas coordenadas do sensor:",
+            "Centralizando o mapa nas coordenadas do Sensor / Atuador:",
             latLng
           );
           if (this.map) {
@@ -381,9 +381,9 @@ module.exports = {
         }
       }
       console.warn(
-        "Coordenada do sensor não está disponível ou é inválida. Tentando área de agricultura."
+        "Coordenada do Sensor / Atuador não está disponível ou é inválida. Tentando área de agricultura."
       );
-      this.zoomToLocal(); // Se não houver coordenadas do sensor, zoom na área de agricultura
+      this.zoomToLocal(); // Se não houver coordenadas do Sensor / Atuador, zoom na área de agricultura
     },
     editSensor() {
       const payload = {
@@ -399,16 +399,16 @@ module.exports = {
         .put(`/rs2lab/editsensor/${this.model.ID}`, payload)
         .then(() => {
           this.showNotification(
-            "Sensor atualizado com sucesso!",
+            "Sensor / Atuador atualizado com sucesso!",
             "success",
             "Atualização"
           );
           this.$router.push("/sensor");
         })
         .catch((error) => {
-          console.error("Erro ao editar o sensor:", error);
+          console.error("Erro ao editar o Sensor / Atuador:", error);
           this.showNotification(
-            "Erro ao atualizar o Sensor.",
+            "Erro ao atualizar o Sensor / Atuador.",
             "danger",
             "Erro"
           );

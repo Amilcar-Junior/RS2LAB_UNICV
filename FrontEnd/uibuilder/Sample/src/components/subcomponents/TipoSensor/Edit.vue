@@ -5,7 +5,7 @@
     </router-link>
     <b-card>
       <b-card-header>
-        <h4>Editar Tipo Sensor</h4>
+        <h4>Editar Tipo Sensor / Atuador</h4>
       </b-card-header>
       <b-card-body>
         <b-form>
@@ -16,13 +16,13 @@
                   id="nome"
                   v-model="model.item.Nome"
                   required
-                  placeholder="Digite o nome do sensor"
+                  placeholder="Digite o nome do Sensor / Atuador"
                 ></b-form-input>
               </b-form-group>
             </b-col>
             <b-col cols="4">
               <b-form-group
-                label="Icon do Sensor:"
+                label="Icon do Sensor / Atuador:"
                 label-for="icon"
                 class="mb-4"
               >
@@ -92,7 +92,7 @@ module.exports = {
         .catch((errors) => {
           console.error(errors);
           this.showNotification(
-            "Erro ao recuperar dados do Tipo Sensor.",
+            "Erro ao recuperar dados do Tipo Sensor / Atuador.",
             "danger",
             "Erro"
           );
@@ -108,7 +108,7 @@ module.exports = {
         .then((resp) => {
           console.log(resp);
           this.showNotification(
-            "Tipo Sensor atualizado com sucesso!",
+            "Tipo Sensor / Atuador atualizado com sucesso!",
             "success",
             "Atualização"
           ); //shows notification of successful add
@@ -116,7 +116,7 @@ module.exports = {
         .catch((e) => {
           console.log(error);
           this.showNotification(
-            "Erro ao atualizar o Tipo Sensor.",
+            "Erro ao atualizar o Tipo Sensor / Atuador.",
             "danger",
             "Erro"
           );

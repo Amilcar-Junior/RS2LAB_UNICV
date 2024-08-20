@@ -8,7 +8,7 @@
         <div
           class="card-header d-flex justify-content-between align-items-center"
         >
-          <h4>Tipo Sensor</h4>
+          <h4>Tipo Sensor / Atuador</h4>
           <div>
             <input
               type="text"
@@ -156,7 +156,7 @@ module.exports = {
           console.log(response);
         })
         .catch((error) => {
-          console.error("Erro ao recuperar tipos de sensor", error);
+          console.error("Erro ao recuperar tipos de Sensor / Atuador", error);
         });
     },
     deleteItem(ItemID) {
@@ -184,7 +184,7 @@ module.exports = {
               .catch((errors) => {
                 console.error(errors);
                 this.ShowDeleteNotification(
-                  "Erro ao Deletar Tipo de Sensor do Sensor.",
+                  "Erro ao Deletar Tipo de Sensor / Atuador do Sensor / Atuador.",
                   "danger",
                   "Erro"
                 );
@@ -194,7 +194,7 @@ module.exports = {
         .catch((errors) => {
           console.error(errors);
           this.ShowDeleteNotification(
-            "Erro ao Obter dados Do Sensor.",
+            "Erro ao Obter dados Do Sensor / Atuador.",
             "danger",
             "Erro"
           );
@@ -203,16 +203,16 @@ module.exports = {
         .delete(`/rs2lab/deletetiposensor/${ItemID}`)
         .then(() => {
           this.ShowDeleteNotification(
-            "Tipo Sensor deletado com sucesso!",
+            "Tipo Sensor / Atuador deletado com sucesso!",
             "success",
             "Sucesso"
           );
           this.retriveItem();
         })
         .catch((error) => {
-          console.error("Erro ao Deletar o tipo de sensor", error);
+          console.error("Erro ao Deletar o tipo de Sensor / Atuador", error);
           this.ShowDeleteNotification(
-            "Erro ao Deletar Tipo Sensor.",
+            "Erro ao Deletar Tipo Sensor / Atuador.",
             "danger",
             "Erro"
           );
@@ -227,7 +227,7 @@ module.exports = {
     },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esse Tipo de Sensor?", {
+        .msgBoxConfirm("Deseja deletar esse Tipo de Sensor / Atuador?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",

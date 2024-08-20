@@ -5,7 +5,7 @@
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Adicionar Tipo Sensor</h4>
+        <h4>Adicionar Tipo Sensor / Atuador</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="addtiposensor">
@@ -18,7 +18,7 @@
                   id="nome"
                   v-model="model.item.Nome"
                   class="form-control"
-                  placeholder="Digite o nome do sensor"
+                  placeholder="Digite o nome do Sensor / Atuador"
                   required
                 />
               </div>
@@ -26,7 +26,7 @@
             <div class="col-md-3">
               <div class="mb-3">
                 <b-form-group
-                  label="Icon do Sensor:"
+                  label="Icon do Sensor / Atuador:"
                   label-for="icon"
                   class="mb-3"
                 >
@@ -80,7 +80,7 @@ module.exports = {
         .then((resp) => {
           console.log(resp);
           this.showNotification(
-            "Tipo de Sensor adicionada com sucesso!",
+            "Tipo de Sensor / Atuador adicionada com sucesso!",
             "success","Sucesso"
           ); //shows notification of successful add
           this.cleanForm();
@@ -88,7 +88,7 @@ module.exports = {
         .catch((e) => {
           console.log(error);
           this.showNotification(
-            "Erro ao adicionar a Tipo de Sensor.",
+            "Erro ao adicionar a Tipo de Sensor / Atuador.",
             "danger","Erro"
           );
         });
