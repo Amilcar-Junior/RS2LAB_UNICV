@@ -287,7 +287,26 @@
             "f58926ad0c4159e8",
             "8b38c0f8a6cbd42b",
             "0e110f26a98f2612",
-            "4c4f90bd029cc906"
+            "4c4f90bd029cc906",
+            "2b1af6fb047621c7",
+            "52440a4ea7db311c",
+            "a1eeb88d5c51d014",
+            "2adcbe8496003e27",
+            "23b24145e00d7b4b",
+            "2ae31a1e28a56d35",
+            "3b7886fd75f42af1",
+            "fb4ff569e529605b",
+            "6fbf380e9626018f",
+            "a03777f28326220c",
+            "a6f73227cb582c12",
+            "1",
+            "2",
+            "3",
+            "4547dc1513ce39b8",
+            "0c46c345d4ad2366",
+            "16b11905800f1dad",
+            "88e3901191e5f5b4",
+            "d26144a0dc389b4b"
         ],
         "x": 24,
         "y": 2839,
@@ -10380,7 +10399,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    s.ID, \n    s.Nome, \n    s.area_ID, \n    s.ID_TipoSensor,\n    s.coordenada,\n    s.ID_ValorSensor,\n    a.Nome AS Area_Nome,\n    a.ID_Grupo AS Grupo_ID,\n    g.Nome AS Grupo_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    v.Valor AS ValorSensor_Valor,\n    v.Data_Hora AS ValorSensor_Data_Hora,\n    v.Topico AS ValorSensor_Topico,\n    v.is_activatable AS ValorSensor_IsActivable\nFROM \n    rs2lab.Sensor s\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nLEFT JOIN \n    rs2lab.GrupoUtilizadores g ON a.ID_Grupo = g.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID;\n`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    s.ID, \n    s.Nome, \n    s.area_ID, \n    s.ID_TipoSensor,\n    s.coordenada,\n    s.ID_ValorSensor,\n    a.Nome AS Area_Nome,\n    a.ID_Grupo AS Grupo_ID,\n    g.Nome AS Grupo_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    v.Valor AS ValorSensor_Valor,\n    v.Data_Hora AS ValorSensor_Data_Hora,\n    v.Topico AS ValorSensor_Topico,\n    v.is_activatable AS ValorSensor_IsActivable,\n    p.Valor AS ValorSensor_Principal_Valor,\n    p.Data_Hora AS ValorSensor_Principal_Data_Hora,\n    p.Topico AS ValorSensor_Principal_Topico,\n    p.is_activatable AS ValorSensor_Principal_IsActivable\nFROM \n    rs2lab.Sensor s\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nLEFT JOIN \n    rs2lab.GrupoUtilizadores g ON a.ID_Grupo = g.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor p ON s.ID_ValorSensor_Principal = p.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID;\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -10577,7 +10596,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `INSERT INTO rs2lab.Sensor (Nome, area_ID, ID_TipoSensor, coordenada, ID_ValorSensor) \nVALUES ('${msg.payload.Nome}', ${msg.payload.area_ID}, ${msg.payload.ID_TipoSensor}, '${msg.payload.coordenada}', ${msg.payload.ID_ValorSensor});`;\nreturn msg;\n",
+        "func": "msg.topic = `INSERT INTO rs2lab.Sensor (Nome, area_ID, ID_TipoSensor, coordenada, ID_ValorSensor_Principal, ID_ValorSensor) \nVALUES ('${msg.payload.Nome}', ${msg.payload.area_ID}, ${msg.payload.ID_TipoSensor}, '${msg.payload.coordenada}',${msg.payload.ID_ValorSensor_Principal}, ${msg.payload.ID_ValorSensor});`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -10696,7 +10715,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    s.ID, \n    s.Nome, \n    s.area_ID, \n    s.ID_TipoSensor,\n    s.coordenada,\n    s.ID_ValorSensor,\n    a.Nome AS Area_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    v.Valor AS ValorSensor_Valor,\n    v.Data_Hora AS ValorSensor_Data_Hora,\n    v.is_activatable AS ValorSensor_IsActivable,\n    v.Topico AS ValorSensor_Topico\nFROM \n    rs2lab.Sensor s\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID\nWHERE \n    s.ID = ${msg.req.params.ID};\n`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    s.ID, \n    s.Nome, \n    s.area_ID, \n    s.ID_TipoSensor,\n    s.coordenada,\n    s.ID_ValorSensor,\n    a.Nome AS Area_Nome,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    v.Valor AS ValorSensor_Valor,\n    v.Data_Hora AS ValorSensor_Data_Hora,\n    v.is_activatable AS ValorSensor_IsActivable,\n    v.Topico AS ValorSensor_Topico,\n        p.Valor AS ValorSensor_Principal_Valor,\n    p.Valor AS ValorSensor_Principal_Valor,\n    p.Data_Hora AS ValorSensor_Principal_Data_Hora,\n    p.Topico AS ValorSensor_Principal_Topico,\n    p.is_activatable AS ValorSensor_Principal_IsActivable\nFROM \n    rs2lab.Sensor s\nLEFT JOIN \n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nLEFT JOIN \n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor p ON s.ID_ValorSensor_Principal = p.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID\nWHERE \n    s.ID = ${msg.req.params.ID};\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -10827,7 +10846,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `UPDATE rs2lab.Sensor \nSET Nome = '${msg.payload.Nome}', \n    area_ID = ${msg.payload.area_ID}, \n    ID_TipoSensor = ${msg.payload.ID_TipoSensor}, \n    coordenada = '${msg.payload.coordenada}', \n    ID_ValorSensor = ${msg.payload.ID_ValorSensor}\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "func": "msg.topic = `UPDATE rs2lab.Sensor \nSET Nome = '${msg.payload.Nome}', \n    area_ID = ${msg.payload.area_ID}, \n    ID_TipoSensor = ${msg.payload.ID_TipoSensor}, \n    coordenada = '${msg.payload.coordenada}', \n    ID_ValorSensor_Principal = ${msg.payload.ID_ValorSensor_Principal},\n    ID_ValorSensor = ${msg.payload.ID_ValorSensor}\nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -12694,7 +12713,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    s.ID AS Sensor_ID,\n    s.Nome AS Sensor_Nome,\n    s.area_ID AS Area_ID,\n    s.coordenada AS Sensor_Coordenada,\n    s.ID_ValorSensor AS ValorSensor_ID,\n    t.ID AS TipoSensor_ID,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    JSON_OBJECT(\n        'Valor', v.Valor,\n        'Data_Hora', v.Data_Hora,\n        'Topico', v.Topico,\n        'is_activable', v.is_activatable\n    ) AS ValorSensor_Detalhes,\n    JSON_OBJECT(\n        'Area_ID', a.ID,\n        'Area_Nome', a.Nome,\n        'Area_Localizacao', a.Localizacao\n    ) AS Area_Detalhes\nFROM\n    rs2lab.Sensor s\nJOIN\n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID\nLEFT JOIN\n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nWHERE\n    t.ID = ${msg.req.params.ID}\nGROUP BY\n    s.ID, t.ID;\n`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT\n    s.ID AS Sensor_ID,\n    s.Nome AS Sensor_Nome,\n    s.area_ID AS Area_ID,\n    s.coordenada AS Sensor_Coordenada,\n    s.ID_ValorSensor AS ValorSensor_ID,\n    t.ID AS TipoSensor_ID,\n    t.Nome AS TipoSensor_Nome,\n    t.icon AS TipoSensor_Icon,\n    JSON_OBJECT(\n        'Valor', v.Valor,\n        'Data_Hora', v.Data_Hora,\n        'Topico', v.Topico,\n        'is_activable', v.is_activatable\n    ) AS ValorSensor_Detalhes,\n    JSON_OBJECT(\n        'Valor', p.Valor,\n        'Data_Hora', p.Data_Hora,\n        'Topico', p.Topico,\n        'is_activable', p.is_activatable\n    ) AS ValorSensor_Principal_Detalhes,\n    JSON_OBJECT(\n        'Area_ID', a.ID,\n        'Area_Nome', a.Nome,\n        'Area_Localizacao', a.Localizacao\n    ) AS Area_Detalhes\nFROM\n    rs2lab.Sensor s\nJOIN\n    rs2lab.TipoSensor t ON s.ID_TipoSensor = t.ID\nLEFT JOIN\n    rs2lab.ValorSensor p ON s.ID_ValorSensor_Principal = p.ID\nLEFT JOIN\n    rs2lab.ValorSensor v ON s.ID_ValorSensor = v.ID\nLEFT JOIN\n    rs2lab.AreaDeAgricultura a ON s.area_ID = a.ID\nWHERE\n    t.ID = ${msg.req.params.ID}\nGROUP BY\n    s.ID, t.ID;\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -13027,7 +13046,7 @@
         "z": "ba85fe949960916b",
         "g": "2a89c69adb724fd2",
         "name": "QUERY",
-        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Senha = md5(${msg.payload.NewSenha}) \nWHERE ID = ${msg.req.params.ID} AND Senha = md5(${msg.payload.Senha});`;\nreturn msg;",
+        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Senha = md5('${msg.payload.newPassword}') \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -13222,5 +13241,332 @@
                 "ed6e9f5d61174406"
             ]
         ]
+    },
+    {
+        "id": "2b1af6fb047621c7",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "QUERY",
+        "func": "msg.topic = `UPDATE rs2lab.Utilizador \nSET Senha = md5('${msg.payload.newPassword}')\nWHERE Email = '${msg.payload.Utilizador_Email}';`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 3680,
+        "wires": [
+            [
+                "23b24145e00d7b4b"
+            ]
+        ]
+    },
+    {
+        "id": "52440a4ea7db311c",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2190,
+        "y": 3680,
+        "wires": []
+    },
+    {
+        "id": "a1eeb88d5c51d014",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": " recover Senha Utilizador",
+        "url": "/rs2lab/recoversenhautilizador",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1650,
+        "y": 3680,
+        "wires": [
+            [
+                "2b1af6fb047621c7",
+                "2adcbe8496003e27"
+            ]
+        ]
+    },
+    {
+        "id": "2adcbe8496003e27",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1830,
+        "y": 3620,
+        "wires": []
+    },
+    {
+        "id": "23b24145e00d7b4b",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2050,
+        "y": 3680,
+        "wires": [
+            [
+                "52440a4ea7db311c",
+                "2ae31a1e28a56d35"
+            ]
+        ]
+    },
+    {
+        "id": "2ae31a1e28a56d35",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2190,
+        "y": 3620,
+        "wires": []
+    },
+    {
+        "id": "3b7886fd75f42af1",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "QUERY",
+        "func": "\nmsg.topic = `UPDATE rs2lab.Utilizador \nSET Senha = md5('teste')\nWHERE Email = 'admin@gmail.com';`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1820,
+        "y": 3780,
+        "wires": [
+            [
+                "6fbf380e9626018f"
+            ]
+        ]
+    },
+    {
+        "id": "fb4ff569e529605b",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2170,
+        "y": 3780,
+        "wires": []
+    },
+    {
+        "id": "6fbf380e9626018f",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2030,
+        "y": 3780,
+        "wires": [
+            [
+                "fb4ff569e529605b",
+                "a03777f28326220c"
+            ]
+        ]
+    },
+    {
+        "id": "a03777f28326220c",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2170,
+        "y": 3740,
+        "wires": []
+    },
+    {
+        "id": "a6f73227cb582c12",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Inject",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1630,
+        "y": 3780,
+        "wires": [
+            [
+                "3b7886fd75f42af1"
+            ]
+        ]
+    },
+    {
+        "id": "1",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Recovery Account",
+        "url": "/rs2lab/send-recovery-code",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2370,
+        "y": 3800,
+        "wires": [
+            [
+                "2"
+            ]
+        ]
+    },
+    {
+        "id": "2",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Gerar Código",
+        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nmsg.recoveryCode = Math.floor(100000 + Math.random() * 900000).toString();\nmsg.payload = `Seu código de recuperação é: ${msg.recoveryCode}`;\nmsg.to = `${Utilizador_Email}`;  // Configurando explicitamente o destinatário\nmsg.topic = 'Código de Recuperação';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2580,
+        "y": 3800,
+        "wires": [
+            [
+                "3",
+                "4547dc1513ce39b8",
+                "0c46c345d4ad2366"
+            ]
+        ]
+    },
+    {
+        "id": "3",
+        "type": "e-mail",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "authtype": "BASIC",
+        "saslformat": false,
+        "token": "oauth2Response.access_token",
+        "secure": true,
+        "tls": false,
+        "name": "",
+        "dname": "Enviar E-mail",
+        "x": 2770,
+        "y": 3800,
+        "wires": []
+    },
+    {
+        "id": "4547dc1513ce39b8",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2730,
+        "y": 3760,
+        "wires": []
+    },
+    {
+        "id": "0c46c345d4ad2366",
+        "type": "link out",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "links": [
+            "16b11905800f1dad"
+        ],
+        "x": 2685,
+        "y": 3860,
+        "wires": []
+    },
+    {
+        "id": "16b11905800f1dad",
+        "type": "link in",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "links": [
+            "0c46c345d4ad2366"
+        ],
+        "x": 2380,
+        "y": 3900,
+        "wires": [
+            [
+                "88e3901191e5f5b4"
+            ]
+        ]
+    },
+    {
+        "id": "88e3901191e5f5b4",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Criar Resposta",
+        "func": "msg.payload = { success: true, message: 'Código de recuperação enviado com sucesso.' };\nmsg.headers = { 'Content-Type': 'application/json' };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2580,
+        "y": 3900,
+        "wires": [
+            [
+                "d26144a0dc389b4b"
+            ]
+        ]
+    },
+    {
+        "id": "d26144a0dc389b4b",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 2780,
+        "y": 3900,
+        "wires": []
     }
 ]

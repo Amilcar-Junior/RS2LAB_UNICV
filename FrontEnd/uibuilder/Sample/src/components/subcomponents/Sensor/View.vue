@@ -29,6 +29,7 @@
                   <th scope="col" class="col-1">ID</th>
                   <th scope="col" class="col-2">Nome</th>
                   <th scope="col" class="col-2">Tipo Sensor / Atuador</th>
+                  <th scope="col" class="col-2">Tópico Principal</th>
                   <th scope="col" class="col-2">Tópico</th>
                   <th scope="col" class="col-2">Ativavel</th>
                   <th scope="col" class="col-2">Grupo</th>
@@ -42,6 +43,7 @@
                   <td>{{ item.ID }}</td>
                   <td>{{ item.Nome }}</td>
                   <td>{{ item.TipoSensor_Nome }}</td>
+                  <td>{{ item.ValorSensor_Principal_Topico }}</td>
                   <td>{{ item.ValorSensor_Topico }}</td>
                   <td>{{ item.ValorSensor_IsActivable ? "Sim" : "Não" }}</td>
                   <td>{{ item.Grupo_Nome }}</td>
@@ -152,6 +154,8 @@ module.exports = {
               item.TipoSensor_Nome.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
             (item.Grupo_Nome &&
               item.Grupo_Nome.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
+            (item.ValorSensor_Principal_Topico &&
+              item.ValorSensor_Principal_Topico.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
             (item.ValorSensor_Topico &&
               item.ValorSensor_Topico.toLowerCase().includes(this.searchQuery.toLowerCase()))
           );

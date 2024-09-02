@@ -96,6 +96,11 @@
             :to="{ path: '/perfil/' + keys.Utilizador_ID }"
             >Perfil</b-dropdown-item
           >
+          <b-dropdown-item
+            href="#"
+            :to="{ path: '/alterarsenha/' + keys.Utilizador_ID }"
+            >Aterar Senha</b-dropdown-item
+          >
           <b-dropdown-item href="#" @click="keys.performLogout()">
             <i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out
           </b-dropdown-item>

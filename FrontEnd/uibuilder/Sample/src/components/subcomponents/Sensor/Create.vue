@@ -34,9 +34,22 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="id_grupo" class="form-label">Topico Sensor / Atuador</label>
+            <label for="id_grupo" class="form-label">Tópico Principal</label>
             <select v-model="model.item.ID_ValorSensor" class="form-control" required>
-              <option value="" disabled selected>Selecione o Topico Sensor / Atuador</option>
+              <option value="" disabled selected>Selecione o Topico Principal</option>
+              <option
+                v-for="topico in ValorSensor_Principal"
+                :key="topico.ID"
+                :value="topico.ID"
+              >
+                {{ topico.Topico }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="id_grupo" class="form-label">Tópico Sensor / Atuador</label>
+            <select v-model="model.item.ID_ValorSensor" class="form-control" required>
+              <option value="" disabled selected>Selecione o Tópico Sensor / Atuador</option>
               <option
                 v-for="topico in ValorSensor"
                 :key="topico.ID"
@@ -98,12 +111,14 @@ module.exports = {
           area_ID: "",
           ID_TipoSensor: "",
           ID_ValorSensor: "",
+          ID_ValorSensor_Principal: "",
           coordenada: "",
         },
       },
       AreadeAgricultura: [],
       TipoSensor: [],
       ValorSensor: [],
+      ValorSensor_Principal: [],
       map: null,
       drawnItems: new L.FeatureGroup(), // Initialize drawnItems
       baseMaps: null, // Adicionado baseMaps para camadas de mapa
@@ -277,6 +292,7 @@ module.exports = {
         .then((response) => {
           console.log(response)
           this.ValorSensor = response.data;
+          this.ValorSensor_Principal = response.data;
         })
         .catch((error) => {
           console.error("Erro ao buscar dados dos Tópicos:", error);
@@ -299,6 +315,7 @@ module.exports = {
       this.model.item.area_ID = "";
       this.model.item.ID_TipoSensor = "";
       this.model.item.ID_ValorSensor = "";
+      this.model.item.ID_ValorSensor_Principal = "";
       this.model.item.coordenada = "";
       this.model.item.map = null;
       this.drawnItems.clearLayers();

@@ -99,6 +99,8 @@
                 <h5>{{ sensor.Nome }}</h5>
               </div>
               <div class="card-body">
+                <p class="sensor-value">{{ sensor.ValorSensor_Principal_Topico}}</p>
+                <p class="sensor-value">{{ sensor.ValorSensor_Topico}}</p>
                 <p class="sensor-value">{{ sensor.ValorSensor_Valor === "1"? "Ligado" : "Desligado" }}</p>
                 <button
                   @click="toggleActivation(sensor)"
@@ -387,60 +389,113 @@ module.exports = {
         console.error("Gráfico não encontrado para o sensor:", sensor.ID);
       }
     },
-    // toggleActivation(sensor) {
-    //   const newValue = sensor.ValorSensor_Valor === '1' ? '0' : '1';
-    //   const message = new Paho.Message(newValue);
-    //   message.destinationName = sensor.ValorSensor_Topico;
-    //   this.client.send(message);
-    //   sensor.ValorSensor_Valor = newValue; // Atualiza o valor localmente
-    // }
     toggleActivation(sensor) {
       if (this.client && this.client.isConnected()) {
         const newValue = sensor.ValorSensor_Valor === "1" ? "0" : "1";
 
         // Criando o payload com o ID e o novo status
         const payload = JSON.stringify({
-          // id: sensor.ID,
-          // id: keys.Utilizador_ID,
-          id: 1,
-          stats: newValue,
+          topic: sensor.ValorSensor_Topico,
+          status: newValue,
         });
 
         // Criando a mensagem MQTT
         const message = new Paho.Message(payload);
 
-        // Definindo o tópico onde a mensagem será enviada
-        message.destinationName = sensor.ValorSensor_Topico;
+        // Definindo o tópico onde a mensagem será enviada (tópico principal)
+        message.destinationName = sensor.ValorSensor_Principal_Topico;
 
         // Enviando a mensagem para o broker MQTT
         this.client.send(message);
-        console.log(message)
+        console.log("Mensagem enviada:", message);
+
+        // Inscrevendo-se no tópico onde o valor será verificado (ValorSensor_Topico)
+        this.client.subscribe(sensor.ValorSensor_Topico);
+        console.log(this.client.subscribe(sensor.ValorSensor_Topico))
+
+        // Adicionando um callback para receber a mensagem do tópico
+        this.client.onMessageArrived = (message) => {
+          console.log("Mensagem recebida:", message.payloadString);
+
+          // Verificando se a mensagem recebida corresponde ao valor esperado
+          console.log(message.payloadString)
+          const receivedValue = JSON.parse(message.payloadString).status;
+          if (receivedValue === newValue) {
+            this.showNotification(
+              newValue === "1"
+                ? sensor.Nome + " Ligado com sucesso!"
+                : sensor.Nome + " Desligado com sucesso!",
+              "success",
+              "Sucesso"
+            );
+          } else {
+            console.error("Valor recebido não corresponde ao valor esperado.");
+            this.showNotification(
+              "Valor recebido não corresponde ao valor esperado.",
+              "warning",
+              "Aviso"
+            );
+          }
+        };
 
         // Atualizando o valor localmente (para refletir a mudança na interface)
         sensor.ValorSensor_Valor = newValue;
-
-        // Notificando sucesso
-        console.log(
-          "Mensagem enviada com sucesso para o tópico:",
-          sensor.ValorSensor_Topico
-        );
-        this.showNotification(
-                "Mensagem enviada com sucesso!",
-                "success",
-                "Sucesso"
-              );
       } else {
         // Notificando falha na conexão
         console.error(
           "Falha ao enviar mensagem: Cliente MQTT não está conectado."
         );
         this.showNotification(
-            "Falha ao enviar mensagem: Cliente MQTT não está conectado.",
-            "danger",
-            "Erro"
-          );
+          "Falha ao enviar mensagem: Cliente MQTT não está conectado.",
+          "danger",
+          "Erro"
+        );
       }
     },
+    // toggleActivation(sensor) {
+    //   if (this.client && this.client.isConnected()) {
+    //     const newValue = sensor.ValorSensor_Valor === "1" ? "0" : "1";
+
+    //     // Criando o payload com o ID e o novo status
+    //     const payload = JSON.stringify({
+    //       // id: sensor.ID,
+    //       // id: keys.Utilizador_ID,
+    //       topic: sensor.ValorSensor_Topico,
+    //       status: newValue,
+    //     });
+
+    //     // Criando a mensagem MQTT
+    //     const message = new Paho.Message(payload);
+
+    //     // Definindo o tópico onde a mensagem será enviada
+    //     message.destinationName = sensor.ValorSensor_Principal_Topico;
+
+    //     // Enviando a mensagem para o broker MQTT
+    //     this.client.send(message);
+    //     console.log(message)
+
+    //     // Atualizando o valor localmente (para refletir a mudança na interface)
+    //     sensor.ValorSensor_Valor = newValue;
+
+    //     // Notificando sucesso
+         
+    //     this.showNotification(
+    //             sensor.ValorSensor_Valor === "1" ? sensor.Nome + " Ligado com sucesso!" : sensor.Nome + " Desligado com sucesso!",
+    //             "success",
+    //             "Sucesso"
+    //           );
+    //   } else {
+    //     // Notificando falha na conexão
+    //     console.error(
+    //       "Falha ao enviar mensagem: Cliente MQTT não está conectado."
+    //     );
+    //     this.showNotification(
+    //         "Falha ao enviar mensagem: Cliente MQTT não está conectado.",
+    //         "danger",
+    //         "Erro"
+    //       );
+    //   }
+    // },
     showNotification(message, variant, title) {
       this.$bvToast.toast(message, {
         title: title,

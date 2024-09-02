@@ -40,6 +40,25 @@
             </select>
           </div>
           <div class="mb-3">
+            <label for="id_tiposensor" class="form-label">Topico Principal</label>
+            <select
+              v-model="model.item.ID_ValorSensor_Principal"
+              class="form-control"
+              required
+            >
+              <option value="" disabled selected>
+                Selecione o Topico Principal
+              </option>
+              <option
+                v-for="topico in ValorSensor_Principal"
+                :key="topico.ID"
+                :value="topico.ID"
+              >
+                {{ topico.Topico }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
             <label for="id_tiposensor" class="form-label">Topico Sensor / Atuador</label>
             <select
               v-model="model.item.ID_ValorSensor"
@@ -111,6 +130,7 @@ module.exports = {
           Nome: "",
           area_ID: "",
           ID_TipoSensor: "",
+          ID_ValorSensor_Principal: "",
           ID_ValorSensor: "",
           coordenada: "",
           TipoSensor_Icon: "", // Adicionado para ícone do Sensor / Atuador
@@ -119,6 +139,7 @@ module.exports = {
       AreadeAgricultura: [],
       TipoSensor: [],
       ValorSensor: [],
+      ValorSensor_Principal: [],
       map: null,
       drawnItems: new L.FeatureGroup(), // Initialize drawnItems
       selectedAreadeAgricultura: "",
@@ -206,6 +227,7 @@ module.exports = {
         .get("/rs2lab/valorsensor")
         .then((response) => {
           this.ValorSensor = response.data;
+          this.ValorSensor_Principal = response.data;
         })
         .catch((error) => {
           console.error("Erro ao buscar topicos de Sensor / Atuador:", error);
@@ -391,6 +413,7 @@ module.exports = {
         area_ID: this.model.item.area_ID,
         ID_TipoSensor: this.model.item.ID_TipoSensor,
         coordenada: this.model.item.coordenada,
+        ID_ValorSensor_Principal: this.model.item.ID_ValorSensor_Principal,
         ID_ValorSensor: this.model.item.ID_ValorSensor,
       };
       console.log("Enviando dados para atualização:", payload);

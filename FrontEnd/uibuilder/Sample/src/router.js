@@ -1,4 +1,6 @@
+
 const Perfil = httpVueLoader('./components/subcomponents/Settings/perfil.vue');
+const ChangePassword = httpVueLoader('./components/subcomponents/Settings/ChangePassword.vue');
 const PageNotFound = httpVueLoader('./components/PageNotFound.vue');
 
 
@@ -55,6 +57,11 @@ export default {
             path: '/perfil/:ID',
             name: 'Perfil',
             component: Perfil,
+        },
+        {
+            path: '/alterarsenha/:ID',
+            name: 'ChangePassword',
+            component: ChangePassword,
         },
         {
             path: '/dashboard',
