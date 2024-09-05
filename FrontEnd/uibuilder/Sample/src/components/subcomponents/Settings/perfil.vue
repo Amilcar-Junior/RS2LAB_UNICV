@@ -165,11 +165,14 @@ module.exports = {
 
           // Verificar o conteúdo do localStorage após a atualização
           this.verifyLocalStorage();
-
-          this.showNotification();
+          this.showNotification(
+            "Seu perfil foi alterado com sucesso!",
+            "success", "Sucesso"
+          );
         })
         .catch((error) => {
           console.error("Erro ao atualizar o Utilizador", error);
+          this.showNotification("Erro ao atualizar seu perfil", "danger", "Erro");
         });
     },
     getUtilizadorGrupo(ItemID) {
@@ -204,19 +207,13 @@ module.exports = {
         }
       }
     },
-    showNotification() {
-      this.$bvModal
-        .msgBoxOk("Dados Editados Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then(() => {})
-        .catch((err) => {});
+    
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
     previewImage(event) {
       const file = event.target.files[0];

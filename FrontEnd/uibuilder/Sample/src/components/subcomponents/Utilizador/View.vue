@@ -26,6 +26,13 @@
             >
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
+            <button
+              class="btn btn-danger ml-2"
+              @click="deleteSelectedItems"
+              :disabled="selectedItems.length === 0"
+            >
+              <i class="fa fa-trash" aria-hidden="true"></i> Deletar Selecionados
+            </button>
           </div>
         </div>
         <div class="card-body">
@@ -33,6 +40,9 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
+                  <th scope="col" class="col-1">
+                    <input type="checkbox" @change="toggleSelectAll($event)" />
+                  </th>
                   <th scope="col" class="col-1">ID</th>
                   <th scope="col" class="col-2">Nome</th>
                   <th scope="col" class="col-2">Email</th>
@@ -48,12 +58,19 @@
                       keys.TipoUtilizador_Nome === userTypes.GESTOR
                     "
                   >
-                    Actions
+                    Ações
                   </th>
                 </tr>
               </thead>
               <tbody v-if="paginatedItems.length > 0">
                 <tr v-for="(item, index) in paginatedItems" :key="index">
+                  <td>
+                    <input
+                      type="checkbox"
+                      :value="item.Utilizador_ID"
+                      v-model="selectedItems"
+                    />
+                  </td>
                   <td>{{ item.Utilizador_ID }}</td>
                   <td>{{ item.Utilizador_Nome }}</td>
                   <td>{{ item.Utilizador_Email }}</td>
@@ -161,6 +178,7 @@ module.exports = {
       perPage: 8,
       currentPage: 1,
       items: [],
+      selectedItems: [], // Para armazenar os IDs selecionados
       modalShow: false,
       currentImage: "",
       searchQuery: "",
@@ -180,7 +198,6 @@ module.exports = {
       }
       const searchLower = this.searchQuery.toLowerCase();
       return this.items.filter((item) => {
-        // Verifica se o nome, email, tipo, grupos ou ID correspondem à query de pesquisa
         const matchesID = item.Utilizador_ID
           ? item.Utilizador_ID.toString().includes(searchLower)
           : false;
@@ -239,19 +256,60 @@ module.exports = {
     formatGroups(groups) {
       return groups.map((group) => group.Nome).join(", ");
     },
-
-    deleteItem(ItemID) {
-      axios
-        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`)
-        .then(() => {})
-        .catch((errors) => {
-          console.error(errors);
-          this.ShowDeleteNotification(
-            "Erro ao Excluir Grupo de Utilizadores.",
-            "success",
-            "Sucesso"
-          );
+    toggleSelectAll(event) {
+      if (event.target.checked) {
+        this.selectedItems = this.paginatedItems.map((item) => item.Utilizador_ID);
+      } else {
+        this.selectedItems = [];
+      }
+    },
+    deleteSelectedItems() {
+      this.$bvModal
+        .msgBoxConfirm(
+          `Deseja deletar os seguintes utilizadores? ${this.selectedItems.join(", ")}`,
+          {
+            title: "Deletar Selecionados",
+            size: "sm",
+            buttonSize: "sm",
+            okVariant: "danger",
+            okTitle: "Sim",
+            cancelTitle: "Não",
+            footerClass: "p-2",
+            hideHeaderClose: false,
+            centered: true,
+          }
+        )
+        .then((value) => {
+          if (value) {
+            Promise.all(
+              this.selectedItems.map((id) =>
+                axios.delete(`/rs2lab/deleteutilizador/${id}`)
+              )
+            )
+              .then(() => {
+                this.ShowDeleteNotification(
+                  "Utilizadores deletados com sucesso!",
+                  "success",
+                  "Sucesso"
+                );
+                this.selectedItems = [];
+                this.retrieveItems();
+              })
+              .catch((error) => {
+                console.error("Erro ao deletar utilizadores:", error);
+                this.ShowDeleteNotification(
+                  "Erro ao deletar utilizadores.",
+                  "danger",
+                  "Erro"
+                );
+              });
+          }
+        })
+        .catch((err) => {
+          console.error("Erro ao exibir a caixa de diálogo", err);
         });
+    },
+    deleteItem(ItemID) {
       axios
         .delete(`/rs2lab/deleteutilizador/${ItemID}`)
         .then(() => {
@@ -297,7 +355,7 @@ module.exports = {
           }
         })
         .catch((err) => {
-          console.error("Erro ao exibir a caixa de diálogo:", err);
+          console.error("Erro ao exibir a caixa de diálogo", err);
         });
     },
   },

@@ -306,7 +306,15 @@
             "0c46c345d4ad2366",
             "16b11905800f1dad",
             "88e3901191e5f5b4",
-            "d26144a0dc389b4b"
+            "d26144a0dc389b4b",
+            "c7c05b6c88622bc3",
+            "3aa3a63b3cc1e7d1",
+            "b0f5cfbcde7586b2",
+            "cbf4feee31a38437",
+            "923bd37d3f05ac17",
+            "0376c3901bf46021",
+            "ccf0d2ae978fe1fe",
+            "3bf2d0d70a92dbdf"
         ],
         "x": 24,
         "y": 2839,
@@ -12285,7 +12293,7 @@
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
         "name": "QUERY",
-        "func": "msg.topic = `DELETE FROM rs2lab.ValorSensor \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
+        "func": "msg.topic = `\nUPDATE Sensor\nSET ID_ValorSensor_Principal = NULL\nWHERE ID_ValorSensor_Principal = ${msg.req.params.ID};\n\nDELETE FROM rs2lab.ValorSensor \nWHERE ID = ${msg.req.params.ID};`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -13438,13 +13446,13 @@
         "type": "http in",
         "z": "ba85fe949960916b",
         "g": "2a89c69adb724fd2",
-        "name": "Recovery Account",
-        "url": "/rs2lab/send-recovery-code",
+        "name": "Send account to email",
+        "url": "/rs2lab/send-account",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2370,
-        "y": 3800,
+        "x": 1760,
+        "y": 3000,
         "wires": [
             [
                 "2"
@@ -13457,15 +13465,15 @@
         "z": "ba85fe949960916b",
         "g": "2a89c69adb724fd2",
         "name": "Gerar Código",
-        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nmsg.recoveryCode = Math.floor(100000 + Math.random() * 900000).toString();\nmsg.payload = `Seu código de recuperação é: ${msg.recoveryCode}`;\nmsg.to = `${Utilizador_Email}`;  // Configurando explicitamente o destinatário\nmsg.topic = 'Código de Recuperação';\nreturn msg;\n",
+        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\nvar Utilizador_Nome = msg.payload.Utilizador_Nome;\n\n// Melhoria na formatação do email\nmsg.payload = `\n  <div style=\"font-family: Arial, sans-serif; color: #333;\">\n    <h2 style=\"color: #AB162B;\">Bem-vind@ à Plataforma RS2Lab, ${Utilizador_Nome}!</h2>\n    <p>Estamos felizes por tê-l@ connosco.</p>\n    <p>Aqui estão as suas credenciais para aceder à plataforma:</p>\n    <table style=\"border-collapse: collapse; width: 100%; margin-top: 10px;\">\n      <tr>\n        <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Email:</td>\n        <td style=\"padding: 8px; border: 1px solid #ddd;\">${Utilizador_Email}</td>\n      </tr>\n      <tr>\n        <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Senha:</td>\n        <td style=\"padding: 8px; border: 1px solid #ddd;\">${Utilizador_Senha}</td>\n      </tr>\n    </table>\n    <p style=\"margin-top: 20px;\">Por favor, utilize essas credenciais para aceder à nossa plataforma e explorar os serviços disponíveis.</p>\n    <p style=\"color: #AB162B;\">Atenciosamente,<br>Equipe RS2Lab</p>\n  </div>\n`;\n\nmsg.to = `${Utilizador_Email}`;  // Configurando explicitamente o destinatário\nmsg.topic = `Bem-vind@ ${Utilizador_Nome} à Plataforma RS2Lab`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2580,
-        "y": 3800,
+        "x": 1960,
+        "y": 3000,
         "wires": [
             [
                 "3",
@@ -13488,8 +13496,8 @@
         "tls": false,
         "name": "",
         "dname": "Enviar E-mail",
-        "x": 2770,
-        "y": 3800,
+        "x": 2150,
+        "y": 3000,
         "wires": []
     },
     {
@@ -13506,8 +13514,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2730,
-        "y": 3760,
+        "x": 2110,
+        "y": 2960,
         "wires": []
     },
     {
@@ -13519,8 +13527,8 @@
         "links": [
             "16b11905800f1dad"
         ],
-        "x": 2685,
-        "y": 3860,
+        "x": 2065,
+        "y": 3060,
         "wires": []
     },
     {
@@ -13532,8 +13540,8 @@
         "links": [
             "0c46c345d4ad2366"
         ],
-        "x": 2380,
-        "y": 3900,
+        "x": 1760,
+        "y": 3100,
         "wires": [
             [
                 "88e3901191e5f5b4"
@@ -13546,11 +13554,15 @@
         "z": "ba85fe949960916b",
         "g": "2a89c69adb724fd2",
         "name": "Criar Resposta",
-        "func": "msg.payload = { success: true, message: 'Código de recuperação enviado com sucesso.' };\nmsg.headers = { 'Content-Type': 'application/json' };\nreturn msg;",
+        "func": "msg.payload = { success: true, message: 'Email enviado com sucesso' };\nmsg.headers = { 'Content-Type': 'application/json' };\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
-        "x": 2580,
-        "y": 3900,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1960,
+        "y": 3100,
         "wires": [
             [
                 "d26144a0dc389b4b"
@@ -13565,8 +13577,144 @@
         "name": "",
         "statusCode": "200",
         "headers": {},
+        "x": 2160,
+        "y": 3100,
+        "wires": []
+    },
+    {
+        "id": "c7c05b6c88622bc3",
+        "type": "http in",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Recovery Account",
+        "url": "/rs2lab/send-recovery-code",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2370,
+        "y": 3000,
+        "wires": [
+            [
+                "3aa3a63b3cc1e7d1"
+            ]
+        ]
+    },
+    {
+        "id": "3aa3a63b3cc1e7d1",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Gerar Código",
+        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar recoveryCode = msg.payload.recoveryCode;\n\nmsg.recoveryCode = `${recoveryCode}`;\nmsg.payload = `\n  <div style=\"font-family: Arial, sans-serif; color: #333;\">\n    <h2 style=\"color: #AB162B;\">Código de Recuperação</h2>\n    <p>Olá,</p>\n    <p>Você solicitou a recuperação de sua conta na plataforma RS2Lab.</p>\n    <p>Aqui está o seu código de recuperação:</p>\n    <div style=\"font-size: 24px; font-weight: bold; color: #2a9d8f; margin: 20px 0;\">\n      ${msg.recoveryCode}\n    </div>\n    <p>Use este código para redefinir a sua senha.</p>\n    <p style=\"margin-top: 20px;\">Se você não solicitou a recuperação da conta, por favor, ignore este e-mail.</p>\n    <p style=\"color: #AB162B;\">Atenciosamente,<br>Equipe RS2Lab</p>\n  </div>\n`;\n\nmsg.to = `${Utilizador_Email}`;\nmsg.topic = `Código de Recuperação - ${msg.recoveryCode}`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2580,
+        "y": 3000,
+        "wires": [
+            [
+                "b0f5cfbcde7586b2",
+                "cbf4feee31a38437",
+                "3bf2d0d70a92dbdf"
+            ]
+        ]
+    },
+    {
+        "id": "b0f5cfbcde7586b2",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2730,
+        "y": 2960,
+        "wires": []
+    },
+    {
+        "id": "cbf4feee31a38437",
+        "type": "link out",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "links": [
+            "923bd37d3f05ac17"
+        ],
+        "x": 2685,
+        "y": 3060,
+        "wires": []
+    },
+    {
+        "id": "923bd37d3f05ac17",
+        "type": "link in",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "links": [
+            "cbf4feee31a38437"
+        ],
+        "x": 2380,
+        "y": 3100,
+        "wires": [
+            [
+                "0376c3901bf46021"
+            ]
+        ]
+    },
+    {
+        "id": "0376c3901bf46021",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "Criar Resposta",
+        "func": "msg.payload = { success: true, message: 'Código de recuperação enviado com sucesso.' };\nmsg.headers = { 'Content-Type': 'application/json' };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2580,
+        "y": 3100,
+        "wires": [
+            [
+                "ccf0d2ae978fe1fe"
+            ]
+        ]
+    },
+    {
+        "id": "ccf0d2ae978fe1fe",
+        "type": "http response",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
         "x": 2780,
-        "y": 3900,
+        "y": 3100,
+        "wires": []
+    },
+    {
+        "id": "3bf2d0d70a92dbdf",
+        "type": "e-mail",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "authtype": "BASIC",
+        "saslformat": false,
+        "token": "oauth2Response.access_token",
+        "secure": true,
+        "tls": false,
+        "name": "",
+        "dname": "Enviar E-mail",
+        "x": 2790,
+        "y": 3020,
         "wires": []
     }
 ]

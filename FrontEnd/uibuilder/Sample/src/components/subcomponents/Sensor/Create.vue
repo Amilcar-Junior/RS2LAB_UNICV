@@ -309,7 +309,7 @@ module.exports = {
         variant: variant,
         solid: true,
       });
-    },
+    },  
     cleanForm() {
       this.model.item.Nome = "";
       this.model.item.area_ID = "";

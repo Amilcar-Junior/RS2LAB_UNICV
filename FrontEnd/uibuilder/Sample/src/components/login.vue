@@ -5,11 +5,18 @@
         <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
           <div class="card login">
             <h3 style="text-align: center" v-if="step === 1">Sign In</h3>
-            <h3 style="text-align: center" v-else-if="step === 2">Recuperar Senha</h3>
+            <h3 style="text-align: center" v-else-if="step === 2">
+              Recuperar Senha
+            </h3>
             <h3 style="text-align: center" v-else>Redefinir Senha</h3>
 
             <!-- Formulário de Login -->
-            <form v-if="step === 1" class="form-group" @submit.prevent="login" novalidate>
+            <form
+              v-if="step === 1"
+              class="form-group"
+              @submit.prevent="login"
+              novalidate
+            >
               <input
                 v-model="postBody.Utilizador_Email"
                 type="text"
@@ -26,20 +33,36 @@
                 required
               />
               <input type="submit" class="btn btn-info eon-btn" />
-              <b-alert v-show="displayError" variant="danger" show class="error-Msg">
+              <b-alert
+                v-show="displayError"
+                variant="danger"
+                show
+                class="error-Msg"
+              >
                 {{ errormessage }}
               </b-alert>
-              
-              <p @click="showRecoveryForm" style="cursor: pointer; color: #007bff; text-align: center">
+
+              <p
+                @click="showRecoveryForm"
+                style="cursor: pointer; color: #007bff; text-align: center"
+              >
                 Esqueceu a senha?
               </p>
-              <p class="mt-4 text-muted" style="font-size: 15px; margin-top: 20px; text-align: center">
+              <p
+                class="mt-4 text-muted"
+                style="font-size: 15px; margin-top: 20px; text-align: center"
+              >
                 Rs2lab
               </p>
             </form>
 
             <!-- Formulário de Solicitação de Recuperação -->
-            <form v-else-if="step === 2" class="form-group" @submit.prevent="sendRecoveryCode" novalidate>
+            <form
+              v-else-if="step === 2"
+              class="form-group"
+              @submit.prevent="sendRecoveryCode"
+              novalidate
+            >
               <input
                 v-model="recoveryEmail"
                 type="text"
@@ -47,17 +70,34 @@
                 placeholder="Digite seu email"
                 required
               />
-              <input type="submit" class="btn btn-info eon-btn" value="Enviar Código de Recuperação" />
-              <b-alert v-show="displayError" variant="danger" show class="error-Msg">
+              <input
+                type="submit"
+                class="btn btn-info eon-btn"
+                value="Enviar Código de Recuperação"
+              />
+              <b-alert
+                v-show="displayError"
+                variant="danger"
+                show
+                class="error-Msg"
+              >
                 {{ errormessage }}
               </b-alert>
-              <p @click="step = 1" style="cursor: pointer; color: #007bff; text-align: center">
+              <p
+                @click="step = 1"
+                style="cursor: pointer; color: #007bff; text-align: center"
+              >
                 Voltar ao login
               </p>
             </form>
 
             <!-- Formulário de Verificação do Código e Redefinição de Senha -->
-            <form v-else class="form-group" @submit.prevent="resetPassword" novalidate>
+            <form
+              v-else
+              class="form-group"
+              @submit.prevent="resetPassword"
+              novalidate
+            >
               <input
                 v-model="recoveryCode"
                 type="text"
@@ -73,11 +113,23 @@
                 maxlength="16"
                 required
               />
-              <input type="submit" class="btn btn-info eon-btn" value="Redefinir Senha" />
-              <b-alert v-show="displayError" variant="success" show class="error-Msg">
+              <input
+                type="submit"
+                class="btn btn-info eon-btn"
+                value="Redefinir Senha"
+              />
+              <b-alert
+                v-show="displayError"
+                variant="success"
+                show
+                class="error-Msg"
+              >
                 {{ errormessage }}
               </b-alert>
-              <p @click="step = 1" style="cursor: pointer; color: #007bff; text-align: center">
+              <p
+                @click="step = 1"
+                style="cursor: pointer; color: #007bff; text-align: center"
+              >
                 Voltar ao login
               </p>
             </form>
@@ -108,6 +160,7 @@ module.exports = {
       return this.errormessage !== "";
     },
   },
+
   methods: {
     login() {
       this.errormessage = "";
@@ -160,7 +213,9 @@ module.exports = {
         this.errormessage = "Por favor, insira seu email.";
         return;
       }
-      this.recoverySentCode = Math.floor(100000 + Math.random() * 900000).toString();
+      this.recoverySentCode = Math.floor(
+        100000 + Math.random() * 900000
+      ).toString();
       axios
         .post("/rs2lab/send-recovery-code", {
           Utilizador_Email: this.recoveryEmail,
@@ -182,11 +237,14 @@ module.exports = {
       this.errormessage = "";
 
       if (!this.recoveryCode || !this.newPassword) {
-        this.errormessage = "Por favor, insira o código de recuperação e a nova senha.";
+        this.errormessage =
+          "Por favor, insira o código de recuperação e a nova senha.";
+        this.errorVariant = "danger"; // Ajusta a variante para erro
         return;
       }
-      if (this.recoveryCode !== this.recoverySentCode){
+      if (this.recoveryCode !== this.recoverySentCode) {
         this.errormessage = "Código de recuperação inválido ou expirado.";
+        this.errorVariant = "danger"; // Ajusta a variante para erro
         return;
       }
       axios
@@ -196,110 +254,111 @@ module.exports = {
           newPassword: this.newPassword,
         })
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (res.status == 200) {
             this.errormessage = "Senha redefinida com sucesso.";
+            this.errorVariant = "success"; // Ajusta a variante para sucesso
             this.step = 1;
           } else {
             this.errormessage = "Código de recuperação inválido ou expirado.";
+            this.errorVariant = "danger"; // Ajusta a variante para erro
           }
         })
         .catch((e) => {
           console.error(e);
           this.errormessage = "Erro ao tentar redefinir a senha.";
+          this.errorVariant = "danger"; // Ajusta a variante para erro
         });
     },
   },
 };
 </script>
 
- 
- <style scoped>
- input {
-   text-align: center;
- }
- 
- .error-Msg {
-   text-align: center;
- }
- 
- p {
-   line-height: 1rem;
- }
- 
- .card {
-   padding: 20px;
-   margin-top: 25%;
- }
- 
- .form-group input {
-   margin-top: 10px;
-   margin-bottom: 10px;
-   width: 100%;
- }
- 
- .eon-btn {
-   background-color: #ab162b;
-   margin-top: 5px;
- }
- 
- .login-page {
-   align-items: center;
-   display: flex;
-   height: 100%;
-   z-index: 1;
- }
- 
- .wallpaper-login {
-   background-size: cover;
-   height: 100%;
-   position: absolute;
-   width: 100%;
- }
- 
- .fade-enter-active,
- .fade-leave-active {
-   transition: opacity 0.5s;
- }
- 
- .fade-enter,
- .fade-leave-to {
-   opacity: 0;
- }
- 
- .wallpaper-register {
-   background-size: cover;
-   height: 100%;
-   position: absolute;
-   width: 100%;
-   z-index: -1;
- }
- 
- h1 {
-   margin-bottom: 1.5rem;
- }
- 
- .error {
-   animation-name: errorShake;
-   animation-duration: 0.3s;
- }
- 
- @keyframes errorShake {
-   0% {
-     transform: translateX(-25px);
-   }
-   25% {
-     transform: translateX(25px);
-   }
-   50% {
-     transform: translateX(-25px);
-   }
-   75% {
-     transform: translateX(25px);
-   }
-   100% {
-     transform: translateX(0);
-   }
- }
- </style>
- 
+<style scoped>
+input {
+  text-align: center;
+}
+
+.error-Msg {
+  text-align: center;
+}
+
+p {
+  line-height: 1rem;
+}
+
+.card {
+  padding: 20px;
+  margin-top: 25%;
+}
+
+.form-group input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.eon-btn {
+  background-color: #ab162b;
+  margin-top: 5px;
+}
+
+.login-page {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  z-index: 1;
+}
+
+.wallpaper-login {
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.wallpaper-register {
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+}
+
+.error {
+  animation-name: errorShake;
+  animation-duration: 0.3s;
+}
+
+@keyframes errorShake {
+  0% {
+    transform: translateX(-25px);
+  }
+  25% {
+    transform: translateX(25px);
+  }
+  50% {
+    transform: translateX(-25px);
+  }
+  75% {
+    transform: translateX(25px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+</style>

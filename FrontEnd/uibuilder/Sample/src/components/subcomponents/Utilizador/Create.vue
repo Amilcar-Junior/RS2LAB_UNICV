@@ -34,7 +34,7 @@
                   required
                 />
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label for="senha">Senha:</label>
                 <input
                   type="password"
@@ -42,9 +42,8 @@
                   v-model="model.item.Senha"
                   class="form-control"
                   placeholder="Insira a senha do utilizador"
-                  required
                 />
-              </div>
+              </div> -->
               <div class="mb-3">
                 <label for="id_tipoUtilizador">Tipo Utilizador:</label>
                 <select
@@ -72,7 +71,6 @@
                   v-model="gruposSelecionados"
                   class="form-control"
                   multiple
-                  required
                 >
                   <option disabled value="">Selecione um grupo</option>
                   <option
@@ -147,7 +145,7 @@ module.exports = {
         item: {
           Nome: "",
           Email: "",
-          Senha: "",
+          Senha: "", // A senha será gerada automaticamente
           ID_TipoUtilizador: "",
           isActive: "0",
           image: "",
@@ -188,41 +186,61 @@ module.exports = {
     addUtilizador() {
       var self = this;
 
+      // Gera a senha automaticamente antes de enviar o formulário
+      this.model.item.Senha = this.gerarSenhaSegura();
+
       axios
         .post("/rs2lab/checkutilizador", self.model.item)
         .then((resp) => {
-          if ((resp.data[0].count === 0)) {
-          axios
-            .post("/rs2lab/addutilizador", this.model.item)
-            .then((resp) => {
-              console.log(resp);
-              // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
-              if (this.gruposSelecionados.length > 0) {
-                this.gruposSelecionados.forEach((grupoId) => {
-                  const utilizadorGrupo = {
-                    ID_Utilizador: resp.data.insertId, // ID do utilizador criado
-                    ID_Grupo: grupoId, // ID do grupo selecionado
-                  };
-                  // console.log(utilizadorGrupo);
-                  self.addUtilizadorGrupo(utilizadorGrupo);
-                });
-              }
-              this.showNotification(
-                "Utilizador adicionada com sucesso!",
-                "success",
-                "Sucesso"
-              );
-              this.cleanForm();
-            })
-            .catch((e) => {
-              console.error(e);
-            });
-          }else{
-            this.showNotification(
-                "Email já Existente!",
-                "warning",
-                "Erro"
-              );
+          if (resp.data[0].count === 0) {
+            axios
+              .post("/rs2lab/addutilizador", this.model.item)
+              .then((resp) => {
+                console.log(resp);
+                // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
+                if (this.gruposSelecionados.length > 0) {
+                  this.gruposSelecionados.forEach((grupoId) => {
+                    const utilizadorGrupo = {
+                      ID_Utilizador: resp.data.insertId, // ID do utilizador criado
+                      ID_Grupo: grupoId, // ID do grupo selecionado
+                    };
+                    // console.log(utilizadorGrupo);
+                    self.addUtilizadorGrupo(utilizadorGrupo);
+                  });
+                }
+                this.showNotification(
+                  "Utilizador adicionada com sucesso!",
+                  "success",
+                  "Sucesso"
+                );
+                axios
+                  .post("/rs2lab/send-account", {
+                    Utilizador_Email: this.model.item.Email,
+                    Utilizador_Senha: this.model.item.Senha,
+                    Utilizador_Nome: this.model.item.Nome,
+                  })
+                  .then((res) => {
+                    console.log(res);
+                    this.showNotification(
+                  "Convite de acesso enviado ao utilizador!",
+                  "success",
+                  "Sucesso"
+                );
+                  })
+                  .catch((e) => {
+                    console.error(e);
+                    this.showNotification(
+                      "Erro ao enviar Email ao utilizador!",
+                      "warning", "Erro"
+                    );
+                  });
+                this.cleanForm();
+              })
+              .catch((e) => {
+                console.error(e);
+              });
+          } else {
+            this.showNotification("Email já Existente!", "warning", "Erro");
           }
         })
         .catch((e) => {
@@ -279,13 +297,26 @@ module.exports = {
         });
     },
 
+    // Função para gerar senha segura
+    gerarSenhaSegura() {
+      const caracteres =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?";
+      let senha = "";
+      for (let i = 0; i < 16; i++) {
+        senha += caracteres.charAt(
+          Math.floor(Math.random() * caracteres.length)
+        );
+      }
+      return senha;
+    },
+
     previewImage(event) {
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
           this.imagePreview = e.target.result;
-          this.model.item.image = e.target.result.split(",")[1]; // Store base64 encoded string without prefix
+          this.model.item.image = e.target.result.split(",")[1]; // Armazena a string codificada em base64 sem o prefixo
           console.log("Imagem pré-visualizada e convertida para base64");
         };
         reader.readAsDataURL(file);
@@ -298,7 +329,7 @@ module.exports = {
     cleanForm() {
       this.model.item.Nome = "";
       this.model.item.Email = "";
-      this.model.item.Senha = "";
+      this.model.item.Senha = ""; // Limpa a senha gerada
       this.model.item.ID_TipoUtilizador = "";
       this.model.item.isActive = "";
       this.model.item.image = null;
