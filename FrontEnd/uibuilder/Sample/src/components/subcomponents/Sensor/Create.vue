@@ -33,12 +33,13 @@
               </option>
             </select>
           </div>
+          
           <div class="mb-3">
-            <label for="id_grupo" class="form-label">Tópico Principal</label>
-            <select v-model="model.item.ID_ValorSensor" class="form-control" required>
-              <option value="" disabled selected>Selecione o Topico Principal</option>
+            <label for="id_grupo" class="form-label">Tópico Sensor / Atuador</label>
+            <select v-model="model.item.ID_ValorSensor" class="form-control">
+              <option value="" selected>Selecione o Tópico Sensor / Atuador</option>
               <option
-                v-for="topico in ValorSensor_Principal"
+                v-for="topico in ValorSensor"
                 :key="topico.ID"
                 :value="topico.ID"
               >
@@ -47,11 +48,11 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="id_grupo" class="form-label">Tópico Sensor / Atuador</label>
-            <select v-model="model.item.ID_ValorSensor" class="form-control" required>
-              <option value="" disabled selected>Selecione o Tópico Sensor / Atuador</option>
+            <label for="id_grupo" class="form-label">Tópico Principal ( Atuadores )</label>
+            <select v-model="model.item.ID_ValorSensor_Principal" class="form-control">
+              <option value="" selected>Selecione o Topico Principal</option>
               <option
-                v-for="topico in ValorSensor"
+                v-for="topico in ValorSensor_Principal"
                 :key="topico.ID"
                 :value="topico.ID"
               >

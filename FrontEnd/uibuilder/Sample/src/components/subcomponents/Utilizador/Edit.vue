@@ -113,6 +113,9 @@
               </div>
             </div>
           </div>
+          <!-- <button @click="sendConvite" class="btn btn-primary float-right">
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Convidar
+          </button> -->
           <button type="submit" class="btn btn-primary float-right">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>

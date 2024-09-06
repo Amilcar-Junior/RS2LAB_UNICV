@@ -99,8 +99,8 @@
                 <h5>{{ sensor.Nome }}</h5>
               </div>
               <div class="card-body">
-                <p class="sensor-value">{{ sensor.ValorSensor_Principal_Topico}}</p>
-                <p class="sensor-value">{{ sensor.ValorSensor_Topico}}</p>
+                <!-- <p class="sensor-value">{{ sensor.ValorSensor_Principal_Topico}}</p>
+                <p class="sensor-value">{{ sensor.ValorSensor_Topico}}</p> -->
                 <p class="sensor-value">{{ sensor.ValorSensor_Valor === "1"? "Ligado" : "Desligado" }}</p>
                 <button
                   @click="toggleActivation(sensor)"
@@ -411,31 +411,34 @@ module.exports = {
 
         // Inscrevendo-se no tópico onde o valor será verificado (ValorSensor_Topico)
         this.client.subscribe(sensor.ValorSensor_Topico);
-        console.log(this.client.subscribe(sensor.ValorSensor_Topico))
+        
 
         // Adicionando um callback para receber a mensagem do tópico
         this.client.onMessageArrived = (message) => {
-          console.log("Mensagem recebida:", message.payloadString);
-
+          // console.log("Mensagem recebida:", message.payloadString);
+          // console.log("subscrição: ",sensor.ValorSensor_Topico)
+          // console.log("subscrição: ",client)
           // Verificando se a mensagem recebida corresponde ao valor esperado
-          console.log(message.payloadString)
-          const receivedValue = JSON.parse(message.payloadString).status;
-          if (receivedValue === newValue) {
-            this.showNotification(
-              newValue === "1"
-                ? sensor.Nome + " Ligado com sucesso!"
-                : sensor.Nome + " Desligado com sucesso!",
-              "success",
-              "Sucesso"
-            );
-          } else {
-            console.error("Valor recebido não corresponde ao valor esperado.");
-            this.showNotification(
-              "Valor recebido não corresponde ao valor esperado.",
-              "warning",
-              "Aviso"
-            );
-          }
+          const receivedValue = message.payloadString;
+          // console.log("stats: ",receivedValue)
+          // console.log("Novo Valor: ",newValue)
+
+          // if (receivedValue === (newValue + 0.00)) {
+          //   this.showNotification(
+          //     newValue === "1"
+          //       ? sensor.Nome + " Ligado com sucesso!"
+          //       : sensor.Nome + " Desligado com sucesso!",
+          //     "success",
+          //     "Sucesso"
+          //   );
+          // } else {
+          //   console.error("Valor recebido não corresponde ao valor esperado.");
+          //   this.showNotification(
+          //     "Valor recebido não corresponde ao valor esperado.",
+          //     "warning",
+          //     "Aviso"
+          //   );
+          // }
         };
 
         // Atualizando o valor localmente (para refletir a mudança na interface)

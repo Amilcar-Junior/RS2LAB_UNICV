@@ -4,8 +4,11 @@
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
-      <div class="card-header">
+      <div class="card-header d-flex justify-content-between align-items-center">
         <h4>Adicionar Utilizador</h4>
+        <!-- <button @click="sendConvite" class="form-control d-inline-block w-auto btn btn-primary float-right">
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Convidar
+          </button> -->
       </div>
       <div class="card-body">
         <form @submit.prevent="addUtilizador">
@@ -120,6 +123,7 @@
               </div>
             </div>
           </div>
+          
           <button type="submit" class="btn btn-primary float-right">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>
@@ -213,27 +217,7 @@ module.exports = {
                   "success",
                   "Sucesso"
                 );
-                axios
-                  .post("/rs2lab/send-account", {
-                    Utilizador_Email: this.model.item.Email,
-                    Utilizador_Senha: this.model.item.Senha,
-                    Utilizador_Nome: this.model.item.Nome,
-                  })
-                  .then((res) => {
-                    console.log(res);
-                    this.showNotification(
-                  "Convite de acesso enviado ao utilizador!",
-                  "success",
-                  "Sucesso"
-                );
-                  })
-                  .catch((e) => {
-                    console.error(e);
-                    this.showNotification(
-                      "Erro ao enviar Email ao utilizador!",
-                      "warning", "Erro"
-                    );
-                  });
+                this.sendConvite();
                 this.cleanForm();
               })
               .catch((e) => {
@@ -247,7 +231,30 @@ module.exports = {
           console.error(e);
         });
     },
-
+    sendConvite() {
+      axios
+        .post("/rs2lab/send-account", {
+          Utilizador_Email: this.model.item.Email,
+          Utilizador_Senha: this.model.item.Senha,
+          Utilizador_Nome: this.model.item.Nome,
+        })
+        .then((res) => {
+          console.log(res);
+          this.showNotification(
+            "Convite de acesso enviado ao utilizador!",
+            "success",
+            "Sucesso"
+          );
+        })
+        .catch((e) => {
+          console.error(e);
+          this.showNotification(
+            "Erro ao enviar Email ao utilizador!",
+            "warning",
+            "Erro"
+          );
+        });
+    },
     addUtilizadorGrupo(utilizadorGrupo) {
       axios
         .post("/rs2lab/addutilizadorgrupo", utilizadorGrupo)

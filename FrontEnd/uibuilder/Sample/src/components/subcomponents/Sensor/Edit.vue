@@ -39,18 +39,19 @@
               </option>
             </select>
           </div>
+          
           <div class="mb-3">
-            <label for="id_tiposensor" class="form-label">Topico Principal</label>
+            <label for="id_tiposensor" class="form-label">Tópico Sensor / Atuador</label>
             <select
-              v-model="model.item.ID_ValorSensor_Principal"
+              v-model="model.item.ID_ValorSensor"
               class="form-control"
-              required
+              
             >
               <option value="" disabled selected>
-                Selecione o Topico Principal
+                Selecione o Tópico do Sensor / Atuador
               </option>
               <option
-                v-for="topico in ValorSensor_Principal"
+                v-for="topico in ValorSensor"
                 :key="topico.ID"
                 :value="topico.ID"
               >
@@ -59,17 +60,17 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="id_tiposensor" class="form-label">Topico Sensor / Atuador</label>
+            <label for="id_tiposensor" class="form-label">Tópico Principal</label>
             <select
-              v-model="model.item.ID_ValorSensor"
+              v-model="model.item.ID_ValorSensor_Principal"
               class="form-control"
-              required
+              
             >
-              <option value="" disabled selected>
-                Selecione o Topico do Sensor / Atuador
+              <option value="" selected>
+                Selecione o Tópico Principal
               </option>
               <option
-                v-for="topico in ValorSensor"
+                v-for="topico in ValorSensor_Principal"
                 :key="topico.ID"
                 :value="topico.ID"
               >
@@ -232,7 +233,7 @@ module.exports = {
         .catch((error) => {
           console.error("Erro ao buscar topicos de Sensor / Atuador:", error);
           this.showNotification(
-            "Erro ao buscar dados dos Topicos.",
+            "Erro ao buscar dados dos Tópicos.",
             "danger",
             "Erro"
           );
