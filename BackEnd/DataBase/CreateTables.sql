@@ -1,7 +1,5 @@
--- Criação da base de dados
+-- Criação da Base de Dados
 CREATE DATABASE IF NOT EXISTS rs2lab;
-
--- Usar a base de dados rs2lab
 USE rs2lab;
 
 -- Tabela TipoUtilizador
@@ -37,7 +35,7 @@ CREATE TABLE IF NOT EXISTS Utilizador (
     FOREIGN KEY (ID_TipoUtilizador) REFERENCES TipoUtilizador(ID)
 );
 
--- Tabela UtilizadorGrupo
+-- Tabela UtilizadorGrupo (tabela intermediária entre Utilizador e GrupoUtilizadores)
 CREATE TABLE IF NOT EXISTS UtilizadorGrupo (
     ID_Utilizador INT,
     ID_Grupo INT,
@@ -69,7 +67,8 @@ CREATE TABLE IF NOT EXISTS ValorSensor (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Valor FLOAT NOT NULL,
     Data_Hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    Topico VARCHAR(255) NOT NULL
+    Topico VARCHAR(255) NOT NULL,
+    is_activatable BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 -- Tabela Sensor
@@ -80,7 +79,11 @@ CREATE TABLE IF NOT EXISTS Sensor (
     ID_TipoSensor INT,
     coordenada VARCHAR(255),
     ID_ValorSensor INT,
+    ID_ValorSensor_Principal INT,
     FOREIGN KEY (area_ID) REFERENCES AreaDeAgricultura(ID),
     FOREIGN KEY (ID_TipoSensor) REFERENCES TipoSensor(ID),
-    FOREIGN KEY (ID_ValorSensor) REFERENCES ValorSensor(ID)
+    FOREIGN KEY (ID_ValorSensor) REFERENCES ValorSensor(ID),
+    FOREIGN KEY (ID_ValorSensor_Principal) REFERENCES ValorSensor(ID)
 );
+
+-- Criando todas as tabelas necessárias
