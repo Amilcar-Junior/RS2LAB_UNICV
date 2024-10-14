@@ -1,6 +1,4 @@
-"use strict";
-
-import router from "./router.js";
+import router from './router.js';
 
 const app = new Vue({
   el: "#app",
@@ -17,6 +15,7 @@ const app = new Vue({
         Utilizador_Nome: undefined,
         Utilizador_isActive: undefined,
         TipoUtilizador_ID: undefined,
+        TipoUtilizador_Nome: undefined,
         Utilizador_Email: undefined,
         Utilizador_image: "",
         Grupos: undefined,
@@ -46,19 +45,23 @@ const app = new Vue({
       this.user.Utilizador_Nome = param.Utilizador_Nome;
       this.user.Utilizador_Email = param.Utilizador_Email;
       this.user.TipoUtilizador_ID = param.TipoUtilizador_ID;
+      this.user.TipoUtilizador_Nome = param.TipoUtilizador_Nome;
       this.user.Grupos = param.Grupos;
       this.user.Utilizador_image = param.Utilizador_image;
       this.user.Utilizador_isActive = param.Utilizador_isActive;
+
+      // Atualizar o localStorage com o objeto completo
+      localStorage.setItem("user", JSON.stringify(this.user));
     },
     setToken(user) {
-      //Gets the unique session identifier
+      // Gets the unique session identifier
       var sessionID = user.Utilizador_Senha;
-      //Store session identifier to local browser
+      // Store session identifier to local browser
       localStorage.setItem("token", sessionID);
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(localStorage)
+      console.log(localStorage);
 
-      //Notify index.js that a session is created
+      // Notify index.js that a session is created
       uibuilder.send({
         topic: "Login",
         token: sessionID,
@@ -69,6 +72,7 @@ const app = new Vue({
             Utilizador_Email: user.Utilizador_Email,
             Utilizador_Nome: user.Utilizador_Nome,
             TipoUtilizador_ID: user.TipoUtilizador_ID,
+            TipoUtilizador_Nome: user.TipoUtilizador_Nome,
             Grupos: user.Grupos,
             Utilizador_image: user.Utilizador_image,
           },
@@ -79,6 +83,7 @@ const app = new Vue({
             Utilizador_Email: user.Utilizador_Email,
             Utilizador_Nome: user.Utilizador_Nome,
             TipoUtilizador_ID: user.TipoUtilizador_ID,
+            TipoUtilizador_Nome: user.TipoUtilizador_Nome,
             Grupos: user.Grupos,
             Utilizador_image: user.Utilizador_image,
             startTime: undefined,
@@ -88,7 +93,7 @@ const app = new Vue({
     },
   },
   mounted: function () {
-    //navigates to home page at mount
+    // navigates to home page at mount
     // this.$router.push("/");
 
     uibuilder.start();
@@ -102,6 +107,7 @@ const app = new Vue({
             vueApp.user.Utilizador_ID = msg.payload.Utilizador_ID;
             vueApp.user.Utilizador_isActive = msg.payload.Utilizador_isActive;
             vueApp.user.TipoUtilizador_ID = msg.payload.TipoUtilizador_ID;
+            vueApp.user.TipoUtilizador_Nome = msg.payload.TipoUtilizador_Nome;
             vueApp.user.Utilizador_Nome = msg.payload.Utilizador_Nome;
             vueApp.user.Utilizador_Email = msg.payload.Utilizador_Email;
             vueApp.user.Utilizador_image = msg.payload.Utilizador_image;
@@ -116,8 +122,10 @@ const app = new Vue({
           vueApp.user.Utilizador_isActive =
             msg.payload.user.Utilizador_isActive;
           vueApp.user.TipoUtilizador_ID = msg.payload.user.TipoUtilizador_ID;
+          vueApp.user.TipoUtilizador_Nome =
+            msg.payload.user.TipoUtilizador_Nome;
           vueApp.user.Utilizador_Nome = msg.payload.user.Utilizador_Nome;
-          vueApp.user.Utilizador_Email = msg.payload.Utilizador_Email;
+          vueApp.user.Utilizador_Email = msg.payload.user.Utilizador_Email;
           vueApp.user.Utilizador_image = msg.payload.user.Utilizador_image;
           vueApp.user.Grupos = msg.payload.Grupos;
           vueApp.user.islogged = true;
@@ -131,17 +139,26 @@ const app = new Vue({
           localStorage.removeItem("token");
           localStorage.removeItem("user");
           break;
+
+        case "UpdateUser":
+          // Atualizar os dados do usuário globalmente
+          vueApp.user.Utilizador_Nome = msg.payload.Utilizador_Nome;
+          vueApp.user.Utilizador_Email = msg.payload.Utilizador_Email;
+          vueApp.user.Utilizador_image = msg.payload.Utilizador_image;
+          // Atualizar o localStorage
+          localStorage.setItem("user", JSON.stringify(vueApp.user));
+          break;
       }
     });
     // Verificar se há um token no localStorage
-    // var token = localStorage.getItem("token");
-    // if (token) {
-    //   // Enviar mensagem para o servidor para recuperar os dados do usuário
-    //   uibuilder.send({
-    //     topic: "GetUser",
-    //     token: token,
-    //   });
-    // }
+    var token = localStorage.getItem("token");
+    if (token) {
+      // Enviar mensagem para o servidor para recuperar os dados do usuário
+      uibuilder.send({
+        topic: "GetUser",
+        token: token,
+      });
+    }
   },
   router: new VueRouter(router),
 });

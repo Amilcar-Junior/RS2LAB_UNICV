@@ -121,11 +121,15 @@ module.exports = {
       axios
         .post("/rs2lab/addlocal", this.model.item)
         .then(() => {
-          this.showNotification();
+          this.showNotification(
+            "Local adicionada com sucesso!",
+            "success","Sucesso"
+          );
+          this.cleanForm();
         })
         .catch((error) => {
           console.error("Erro ao adicionar o local:", error);
-          this.showNotification("Erro ao adicionar o local.", "danger");
+          this.showNotification("Erro ao adicionar o local.", "danger","Erro");
         });
     },
     cleanForm() {
@@ -138,22 +142,12 @@ module.exports = {
       
       this.marker = null;
     },
-    showNotification() {
-      var self = this;
-      this.$bvModal
-        .msgBoxOk("Dados Adicionados com sucesso!!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          self.cleanForm();
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };

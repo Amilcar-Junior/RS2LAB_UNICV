@@ -16,9 +16,23 @@
               placeholder="Buscar por Nome, Email..."
               v-model="searchQuery"
             />
-            <router-link to="/utilizador/create" class="btn btn-primary ml-2">
+            <router-link
+              to="/utilizador/create"
+              class="btn btn-primary ml-2"
+              v-show="
+                keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                keys.TipoUtilizador_Nome === userTypes.GESTOR
+              "
+            >
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
+            <button
+              class="btn btn-danger ml-2"
+              @click="deleteSelectedItems"
+              :disabled="selectedItems.length === 0"
+            >
+              <i class="fa fa-trash" aria-hidden="true"></i> Deletar Selecionados
+            </button>
           </div>
         </div>
         <div class="card-body">
@@ -26,6 +40,9 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
+                  <th scope="col" class="col-1">
+                    <input type="checkbox" @change="toggleSelectAll($event)" />
+                  </th>
                   <th scope="col" class="col-1">ID</th>
                   <th scope="col" class="col-2">Nome</th>
                   <th scope="col" class="col-2">Email</th>
@@ -33,17 +50,41 @@
                   <th scope="col" class="col-2">Grupos</th>
                   <th scope="col" class="col-1">Ativo</th>
                   <th scope="col" class="col-1">Avatar</th>
-                  <th scope="col" class="col-2 text-right">Actions</th>
+                  <th
+                    scope="col"
+                    class="col-2 text-right"
+                    v-show="
+                      keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                    "
+                  >
+                    Ações
+                  </th>
                 </tr>
               </thead>
               <tbody v-if="paginatedItems.length > 0">
                 <tr v-for="(item, index) in paginatedItems" :key="index">
+                  <td>
+                    <input
+                      type="checkbox"
+                      :value="item.Utilizador_ID"
+                      v-model="selectedItems"
+                    />
+                  </td>
                   <td>{{ item.Utilizador_ID }}</td>
                   <td>{{ item.Utilizador_Nome }}</td>
                   <td>{{ item.Utilizador_Email }}</td>
                   <td>{{ item.TipoUtilizador_Nome }}</td>
-                  <td>{{ formatGroups(item.Grupos) }}</td>
                   <td>
+                    <span
+                      v-for="grupo in item.Grupos"
+                      :key="grupo.ID"
+                      class="badge badge-primary m-1"
+                    >
+                      {{ grupo.Nome }}
+                    </span>
+                  </td>
+                  <td class="text-center">
                     <b-icon-check
                       v-if="item.Utilizador_isActive === 1"
                       variant="success"
@@ -65,7 +106,13 @@
                       style="font-size: 1.8rem"
                     ></i>
                   </td>
-                  <td class="text-right">
+                  <td
+                    class="text-right"
+                    v-show="
+                      keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                    "
+                  >
                     <router-link
                       :to="{
                         path: '/utilizador/' + item.Utilizador_ID + '/edit',
@@ -125,14 +172,17 @@
 <script>
 module.exports = {
   name: "utilizador",
+  props: ["keys"],
   data() {
     return {
       perPage: 8,
       currentPage: 1,
       items: [],
+      selectedItems: [], // Para armazenar os IDs selecionados
       modalShow: false,
       currentImage: "",
       searchQuery: "",
+      userTypes: window.appConfig.userTypes,
     };
   },
   computed: {
@@ -148,7 +198,6 @@ module.exports = {
       }
       const searchLower = this.searchQuery.toLowerCase();
       return this.items.filter((item) => {
-        // Verifica se o nome, email, tipo, grupos ou ID correspondem à query de pesquisa
         const matchesID = item.Utilizador_ID
           ? item.Utilizador_ID.toString().includes(searchLower)
           : false;
@@ -186,14 +235,15 @@ module.exports = {
     },
   },
   mounted() {
-    this.retriveItem();
+    this.retrieveItems();
   },
   methods: {
-    retriveItem() {
+    retrieveItems() {
       axios
         .get("/rs2lab/utilizador")
         .then((response) => {
           this.items = response.data;
+          console.log(response);
         })
         .catch((error) => {
           console.error("Erro ao recuperar utilizadores:", error);
@@ -206,9 +256,89 @@ module.exports = {
     formatGroups(groups) {
       return groups.map((group) => group.Nome).join(", ");
     },
+    toggleSelectAll(event) {
+      if (event.target.checked) {
+        this.selectedItems = this.paginatedItems.map((item) => item.Utilizador_ID);
+      } else {
+        this.selectedItems = [];
+      }
+    },
+    deleteSelectedItems() {
+      this.$bvModal
+        .msgBoxConfirm(
+          `Deseja deletar os seguintes utilizadores? ${this.selectedItems.join(", ")}`,
+          {
+            title: "Deletar Selecionados",
+            size: "sm",
+            buttonSize: "sm",
+            okVariant: "danger",
+            okTitle: "Sim",
+            cancelTitle: "Não",
+            footerClass: "p-2",
+            hideHeaderClose: false,
+            centered: true,
+          }
+        )
+        .then((value) => {
+          if (value) {
+            Promise.all(
+              this.selectedItems.map((id) =>
+                axios.delete(`/rs2lab/deleteutilizador/${id}`)
+              )
+            )
+              .then(() => {
+                this.ShowDeleteNotification(
+                  "Utilizadores deletados com sucesso!",
+                  "success",
+                  "Sucesso"
+                );
+                this.selectedItems = [];
+                this.retrieveItems();
+              })
+              .catch((error) => {
+                console.error("Erro ao deletar utilizadores:", error);
+                this.ShowDeleteNotification(
+                  "Erro ao deletar utilizadores.",
+                  "danger",
+                  "Erro"
+                );
+              });
+          }
+        })
+        .catch((err) => {
+          console.error("Erro ao exibir a caixa de diálogo", err);
+        });
+    },
+    deleteItem(ItemID) {
+      axios
+        .delete(`/rs2lab/deleteutilizador/${ItemID}`)
+        .then(() => {
+          this.ShowDeleteNotification(
+            "Utilizador deletado com sucesso!",
+            "success",
+            "Sucesso"
+          );
+          this.retrieveItems();
+        })
+        .catch((error) => {
+          console.error("Erro ao deletar utilizador:", error);
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Utilizador.",
+            "danger",
+            "Erro"
+          );
+        });
+    },
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
+    },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar esse Utilizador?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",
@@ -225,42 +355,8 @@ module.exports = {
           }
         })
         .catch((err) => {
-          console.error("Erro ao exibir a caixa de diálogo:", err);
+          console.error("Erro ao exibir a caixa de diálogo", err);
         });
-    },
-    deleteItem(ItemID) {
-      axios
-        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`)
-        .then(() => {})
-        .catch((errors) => {
-          console.error(errors);
-          this.$bvToast.toast(
-            "Ocorreu um erro ao obter os grupos de utilizadores.",
-            {
-              title: "Erro",
-              variant: "danger",
-            }
-          );
-        });
-      axios
-        .delete(`/rs2lab/deleteutilizador/${ItemID}`)
-        .then(() => {
-          this.ShowDeleteNotification();
-          this.retriveItem();
-        })
-        .catch((error) => {
-          console.error("Erro ao deletar utilizador:", error);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-            title: "Erro",
-            variant: "danger",
-          });
-        });
-    },
-    ShowDeleteNotification() {
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
-      });
     },
   },
 };

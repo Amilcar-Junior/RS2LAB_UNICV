@@ -5,7 +5,7 @@
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Adicionar Sensor</h4>
+        <h4>Adicionar Sensor / Atuador</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="addSensor">
@@ -16,14 +16,14 @@
               id="nome"
               v-model="model.item.Nome"
               class="form-control"
-              placeholder="Insira o nome do Sensor"
+              placeholder="Insira o nome do Sensor / Atuador"
               required
             />
           </div>
           <div class="mb-3">
-            <label for="id_grupo" class="form-label">Tipo Sensor</label>
+            <label for="id_grupo" class="form-label">Tipo Sensor / Atuador</label>
             <select v-model="model.item.ID_TipoSensor" class="form-control" required>
-              <option value="" disabled selected>Selecione o Tipo Sensor</option>
+              <option value="" disabled selected>Selecione o Tipo Sensor / Atuador</option>
               <option
                 v-for="tipo in TipoSensor"
                 :key="tipo.ID"
@@ -33,10 +33,11 @@
               </option>
             </select>
           </div>
+          
           <div class="mb-3">
-            <label for="id_grupo" class="form-label">Topico Sensor</label>
-            <select v-model="model.item.ID_ValorSensor" class="form-control" required>
-              <option value="" disabled selected>Selecione o Topico Sensor</option>
+            <label for="id_grupo" class="form-label">Tópico Sensor / Atuador</label>
+            <select v-model="model.item.ID_ValorSensor" class="form-control">
+              <option value="" selected>Selecione o Tópico Sensor / Atuador</option>
               <option
                 v-for="topico in ValorSensor"
                 :key="topico.ID"
@@ -47,7 +48,20 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="localizacao" class="form-label">Area de Agricultura</label>
+            <label for="id_grupo" class="form-label">Tópico Principal ( Atuadores )</label>
+            <select v-model="model.item.ID_ValorSensor_Principal" class="form-control">
+              <option value="" selected>Selecione o Topico Principal</option>
+              <option
+                v-for="topico in ValorSensor_Principal"
+                :key="topico.ID"
+                :value="topico.ID"
+              >
+                {{ topico.Topico }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="localizacao" class="form-label">Área de Agricultura</label>
             <div class="mb-3">
               <select
                 id="localizacao"
@@ -55,9 +69,9 @@
                 @change="zoomToLocal"
                 class="form-control"
               >
-                <option disabled value="">Selecione um Area de Agricultura</option>
+                <option disabled value="">Selecione uma Área de Agricultura</option>
                 <option
-                  v-for="area in AreadeAgricultura"
+                  v-for="area in filteredAreas"
                   :key="area.Area_ID"
                   :value="area.Area_ID"
                 >
@@ -89,6 +103,7 @@
 <script>
 module.exports = {
   name: "CreateSensor",
+  props: ["keys"],
   data() {
     return {
       model: {
@@ -97,15 +112,18 @@ module.exports = {
           area_ID: "",
           ID_TipoSensor: "",
           ID_ValorSensor: "",
+          ID_ValorSensor_Principal: "",
           coordenada: "",
         },
       },
       AreadeAgricultura: [],
       TipoSensor: [],
       ValorSensor: [],
+      ValorSensor_Principal: [],
       map: null,
       drawnItems: new L.FeatureGroup(), // Initialize drawnItems
       baseMaps: null, // Adicionado baseMaps para camadas de mapa
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
@@ -120,6 +138,16 @@ module.exports = {
         }
       }, 500);
     });
+  },
+  computed: {
+    filteredAreas() {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.AreadeAgricultura;
+      } else {
+        const userGroupIds = this.keys.Grupos ? this.keys.Grupos.map(group => group.ID) : [];
+        return this.AreadeAgricultura.filter(area => userGroupIds.includes(area.Grupo_ID));
+      }
+    },
   },
   methods: {
     initMap() {
@@ -209,7 +237,7 @@ module.exports = {
           const polygon = L.polygon(coordinates, { color: "red", weight: 4 });
           this.drawnItems.clearLayers(); // Limpa qualquer desenho anterior
           this.drawnItems.addLayer(polygon);
-          this.map.setView(latLng, 13);
+          this.map.setView(latLng, 20);
           this.model.item.coordenada = firstTwoCoordinates.map(coord => coord.join(",")).join("; ");
         }
       }
@@ -218,12 +246,15 @@ module.exports = {
       axios
         .post("/rs2lab/addsensor", this.model.item)
         .then(() => {
-          this.showNotification("Sensor adicionada com sucesso!");
-          // this.$router.push("/sensor");
+          this.showNotification(
+            "Sensor / Atuador adicionado com sucesso!",
+            "success", "Sucesso"
+          );
+          this.cleanForm();
         })
         .catch((error) => {
-          console.error("Erro ao adicionar a Sensor:", error);
-          this.showNotificationToast("Erro ao adicionar a Sensor.", "danger");
+          console.error("Erro ao adicionar o Sensor / Atuador:", error);
+          this.showNotification("Erro ao adicionar o Sensor / Atuador.", "danger", "Erro");
         });
     },
     getAreadeAgricultura() {
@@ -231,10 +262,14 @@ module.exports = {
         .get("/rs2lab/areadeagricultura")
         .then((response) => {
           this.AreadeAgricultura = response.data;
-          console.log("Area:", response)
+          console.log("Área:", response)
         })
         .catch((error) => {
-          console.error("Erro ao buscar grupos de utilizadores:", error);
+          console.error("Erro ao buscar Área de Agricultura:", error);
+          this.showNotification(
+            "Erro ao buscar dados das Áreas de Agricultura.",
+            "danger", "Erro"
+          );
         });
     },
     getTipoSensor() {
@@ -246,6 +281,10 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao buscar dados locais:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos locais.",
+            "danger", "Erro"
+          );
         });
     },
     getValorSensor() {
@@ -254,43 +293,33 @@ module.exports = {
         .then((response) => {
           console.log(response)
           this.ValorSensor = response.data;
+          this.ValorSensor_Principal = response.data;
         })
         .catch((error) => {
-          console.error("Erro ao buscar dados locais:", error);
+          console.error("Erro ao buscar dados dos Tópicos:", error);
+          this.showNotification(
+            "Erro ao buscar dados dos Tópicos.",
+            "danger", "Erro"
+          );
         });
     },
-    showNotification(message) {
-      var self = this; //Assign this to a variable
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk(message, {
-          title: "Confirmation",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          self.cleanForm(); //clears form upon confirmation of user
-        })
-        .catch((err) => {});
-    },
-    showNotificationToast(message, variant = "success") {
+    
+    showNotification(message, variant, title) {
       this.$bvToast.toast(message, {
-        title: "Confirmação",
+        title: title,
         variant: variant,
         solid: true,
       });
-    },
+    },  
     cleanForm() {
       this.model.item.Nome = "";
       this.model.item.area_ID = "";
       this.model.item.ID_TipoSensor = "";
       this.model.item.ID_ValorSensor = "";
+      this.model.item.ID_ValorSensor_Principal = "";
       this.model.item.coordenada = "";
       this.model.item.map = null;
+      this.drawnItems.clearLayers();
     },
   },
 };

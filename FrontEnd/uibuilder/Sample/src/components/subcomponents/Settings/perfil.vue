@@ -1,92 +1,101 @@
 <template>
-  <div class="container mt-5">
-    <b-button to="/" variant="secondary" class="mb-4">
+  <div class="container-fluid mt-5">
+    <router-link to="/" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
-    </b-button>
-
-    <b-card title="Perfil do Utilizador">
-      <b-form @submit.prevent="editUtilizador">
-        <b-row>
-          <!-- Coluna para os campos de entrada -->
-          <b-col cols="8">
-            <b-form-group
-              label="Nome:"
-              label-for="nome"
-              class="mb-3">
-              <b-form-input
-                id="nome"
-                v-model="model.item.Nome"
-                required
-                placeholder="Digite seu nome">
-              </b-form-input>
-            </b-form-group>
-            
-            <b-form-group
-              label="Email:"
-              label-for="email"
-              class="mb-3">
-              <b-form-input
-                type="email"
-                id="email"
-                v-model="model.item.Email"
-                required
-                placeholder="Digite seu email">
-              </b-form-input>
-            </b-form-group>
-            
-            <b-form-group
-              label="Tipo de Utilizador:"
-              label-for="tipoUtilizador"
-              class="mb-3">
-              <b-form-select
-                id="tipoUtilizador"
-                v-model="model.item.ID_TipoUtilizador"
-                :options="TipoUtilizador"
-                disabled>
-              </b-form-select>
-            </b-form-group>
-            
-            <!-- <b-form-group
-              label="Ativo:"
-              class="mb-3">
-              <b-form-checkbox
-                id="ativo"
-                v-model="model.item.isActive"
-                disabled>
-              </b-form-checkbox>
-            </b-form-group> -->
-          </b-col>
-
-          <!-- Coluna para a imagem de perfil -->
-          <b-col cols="4">
-            <b-form-group
-              label="Foto de Perfil:"
-              label-for="image"
-              class="mb-3">
-              <b-form-file
-                id="image"
-                @change="previewImage"
-                accept="image/*"
-                placeholder="Escolha um arquivo...">
-              </b-form-file>
-              <b-img v-if="imagePreview" :src="imagePreview" fluid class="mt-2" thumbnail></b-img>
-            </b-form-group>
-          </b-col>
-        </b-row>
-
-        <b-button type="submit" variant="primary" class="float-right">
-          <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
-        </b-button>
-      </b-form>
-    </b-card>
+    </router-link>
+    <div class="card">
+      <div class="card-header">
+        <h4>Perfil</h4>
+      </div>
+      <div class="card-body">
+        <form @submit.prevent="editUtilizador">
+          <div class="row">
+            <!-- Coluna principal -->
+            <div class="col-md-9">
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input
+                  type="text"
+                  id="nome"
+                  v-model="model.item.Nome"
+                  class="form-control"
+                  placeholder="Insira o nome do utilizador"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  v-model="model.item.Email"
+                  class="form-control"
+                  placeholder="Insira o email do utilizador"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="id_tipoUtilizador" class="form-label"
+                  >Tipo Utilizador</label
+                >
+                <input
+                  type="text"
+                  :value="tipoUtilizadorNome"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Grupos</label>
+                <div>
+                  <span
+                    v-for="grupo in gruposSelecionados"
+                    :key="grupo.Grupo_ID"
+                    class="badge badge-primary m-1"
+                  >
+                    {{ grupo.Grupo_Nome }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-3">
+                <b-form-group
+                  label="Foto de Perfil:"
+                  label-for="image"
+                  class="mb-3"
+                >
+                  <b-form-file
+                    id="image"
+                    @change="previewImage"
+                    accept="image/*"
+                    placeholder="Escolha um arquivo..."
+                  >
+                  </b-form-file>
+                  <b-img
+                    v-if="imagePreview"
+                    :src="imagePreview"
+                    fluid
+                    class="mt-2"
+                    thumbnail
+                  ></b-img>
+                </b-form-group>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary float-right">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
-
-
 <script>
 module.exports = {
-  name: "PerfilUtilizador",
+  props: ["keys"],
+  name: "EditUtilizador",
   data() {
     return {
       model: {
@@ -101,94 +110,128 @@ module.exports = {
       },
       imagePreview: "",
       TipoUtilizador: [],
+      gruposSelecionados: [], // Grupos selecionados pelo utilizador com nomes
+      tipoUtilizadorNome: "", // Nome do tipo de utilizador
     };
   },
   mounted() {
-    this.model.ID = this.$router.app._route.params.ID; // Set ID from URL params
-    this.retrieveProfile();
+    this.model.ID = this.$router.app._route.params.ID;
+    this.getUtilizador(this.model.ID);
+    this.getUtilizadorGrupo(this.model.ID);
     this.getTipoUtilizador();
   },
   methods: {
-    retrieveProfile() {
+    getUtilizador(ItemID) {
       axios
-        .get(`/rs2lab/utilizador/${this.model.ID}`)
-        .then((response) => {
-          this.model.item = response.data[0]; // Assuming response.data is an array
-          console.log(this.model.item)
+        .get(`/rs2lab/utilizador/${ItemID}`)
+        .then((resp) => {
+          this.model.item = resp.data[0];
+          console.log(resp);
           if (this.model.item.image) {
             this.imagePreview = `data:image/jpeg;base64,${this.model.item.image}`;
-            console.log("Imagem carregada com sucesso:", this.model.item.image);
           }
+          this.setTipoUtilizadorNome();
         })
         .catch((error) => {
-          console.error("Erro ao recuperar os dados do perfil", error);
+          console.error("Erro ao recuperar os dados do Utilizador", error);
         });
     },
-
     editUtilizador() {
-      console.log("Enviando dados para atualização:", this.model.item);
       axios
         .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
         .then((response) => {
-          console.log("Perfil atualizado com sucesso!", response);
-          this.showNotification();
+          console.log("Utilizador atualizado com sucesso!", response);
+
+          // Atualizar o localStorage com todos os dados do utilizador atualizados
+          const updatedUser = {
+            ...JSON.parse(localStorage.getItem("user")),
+            Utilizador_Nome: this.model.item.Nome,
+            Utilizador_Email: this.model.item.Email,
+            Utilizador_image: this.model.item.image,
+          };
+
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+
+          // Atualizar o estado global
+          // this.keys.setUser(updatedUser);
+
+          // Enviar mensagem para o Node-RED para atualizar os detalhes do utilizador
+          const sessionID = localStorage.getItem("token");
+          uibuilder.send({
+            topic: "UpdateUser",
+            token: sessionID,
+            payload: updatedUser,
+          });
+
+          // Verificar o conteúdo do localStorage após a atualização
+          this.verifyLocalStorage();
+          this.showNotification(
+            "Seu perfil foi alterado com sucesso!",
+            "success", "Sucesso"
+          );
         })
         .catch((error) => {
-          console.error("Erro ao atualizar o perfil", error);
+          console.error("Erro ao atualizar o Utilizador", error);
+          this.showNotification("Erro ao atualizar seu perfil", "danger", "Erro");
         });
     },
-
+    getUtilizadorGrupo(ItemID) {
+      axios
+        .get(`/rs2lab/utilizadorgrupo/utilizador/${ItemID}`)
+        .then((resp) => {
+          console.log("UtilizadorGrupo: ", resp);
+          this.gruposSelecionados = resp.data;
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
+    },
+    getTipoUtilizador() {
+      axios
+        .get("/rs2lab/tipoutilizador")
+        .then((resp) => {
+          this.TipoUtilizador = resp.data;
+          this.setTipoUtilizadorNome();
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
+    },
+    setTipoUtilizadorNome() {
+      if (this.TipoUtilizador.length > 0 && this.model.item.ID_TipoUtilizador) {
+        const tipo = this.TipoUtilizador.find(
+          (tipo) => tipo.ID === this.model.item.ID_TipoUtilizador
+        );
+        if (tipo) {
+          this.tipoUtilizadorNome = tipo.Nome;
+        }
+      }
+    },
+    
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
+    },
     previewImage(event) {
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
           this.imagePreview = e.target.result;
-          this.model.item.image = e.target.result.split(',')[1]; // Store base64 encoded string without prefix
-          console.log("Imagem pré-visualizada e convertida para base64");
+          this.model.item.image = e.target.result.split(",")[1];
         };
         reader.readAsDataURL(file);
-        console.log("Arquivo selecionado para upload:", file);
-      } else {
-        console.log("Nenhum arquivo selecionado");
       }
     },
-
-
-    getTipoUtilizador() {
-      axios
-        .get("/rs2lab/tipoutilizador")
-        .then((resp) => {
-          console.log("tipoutilizador: ", resp);
-          this.TipoUtilizador = resp.data;
-          // console.log(this.TipoUtilizador);
-        })
-        .catch((errors) => {
-          console.error(errors);
-        });
-    },
-    showNotification() {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Perfil Editado Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          // Retorna para a URL anterior
-        })
-        .catch((err) => {});
+    verifyLocalStorage() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      console.log("Dados do utilizador no localStorage: ", user);
     },
   },
 };
 </script>
 
-<style>
-/* Adicione seus estilos específicos aqui */
-</style>
+<style scoped></style>

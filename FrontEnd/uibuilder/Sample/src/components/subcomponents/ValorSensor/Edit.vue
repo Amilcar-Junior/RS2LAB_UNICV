@@ -1,24 +1,38 @@
 <template>
   <div class="container-fluid mt-5">
-    <router-link to="/valorsensor" class="btn btn-secondary mb-3">
+    <router-link to="/topico" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
-    <b-card>
-      <b-card-header>
-        <h4>Editar Topico Sensor</h4>
-      </b-card-header>
+    <div class="card">
+      <div class="card-header">
+        <h4>Editar Tópico do Sensor / Atuador</h4>
+      </div>
       <b-card-body>
         <b-form>
-          <b-row>
-            <b-col cols="12">
-              <b-form-group label="Topico" label-for="Topico" class="mb-3">
+          <b-row class="align-items-center">
+            <b-col cols="9">
+              <b-form-group label="Tópico" label-for="Topico" class="mb-3">
                 <b-form-input
                   id="Topico"
                   v-model="model.item.Topico"
                   required
-                  placeholder="Digite o Topico do sensor"
+                  placeholder="Digite o Tópico do Sensor / Atuador"
                 ></b-form-input>
               </b-form-group>
+            </b-col>
+            <b-col cols="3">
+              <div class="mb-0 form-check text-center">
+                <input
+                  type="checkbox"
+                  id="is_activatable"
+                  v-model="model.item.is_activatable"
+                  :checked="model.item.is_activatable"
+                  class="form-check-input custom-checkbox"
+                  true-value="1"
+                  false-value="0"
+                />
+                <label for="is_activatable" class="form-check-label">Atuador</label>
+              </div>
             </b-col>
           </b-row>
           <b-button
@@ -30,9 +44,10 @@
           </b-button>
         </b-form>
       </b-card-body>
-    </b-card>
+    </div>
   </div>
 </template>
+
 
 <script>
 module.exports = {
@@ -44,6 +59,7 @@ module.exports = {
         item: {
           Topico: "",
           Valor: "",
+          is_activatable: "",
         },
       },
     };
@@ -61,6 +77,7 @@ module.exports = {
           console.log(resp);
           this.model.item.Topico = resp.data[0].Topico;
           this.model.item.Valor = resp.data[0].Valor;
+          this.model.item.is_activatable = resp.data[0].is_activatable;
           // console.log(this.model.item);
         })
         .catch((errors) => {
@@ -76,32 +93,30 @@ module.exports = {
         .put(`/rs2lab/editvalorsensor/${this.model.ID}`, this.model.item)
         .then((resp) => {
           console.log(resp);
-          self.showNotification(); //shows notification of successful add
+          this.showNotification(
+            "Topico atualizado com sucesso!",
+            "success",
+            "Atualização"
+          );
+          this.$router.push("/topico");
         })
         .catch((e) => {
           console.log(error);
+          this.showNotification(
+            "Erro ao atualizar o Topico.",
+            "danger",
+            "Erro"
+          );
         });
     },
     //Shows a dialog notification
 
-    showNotification() {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Editados Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          // Retorna para a URL anterior
-          this.$router.go(-1);
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
     previewIcon(event) {
       const file = event.target.files[0];
@@ -121,3 +136,15 @@ module.exports = {
   },
 };
 </script>
+
+<style>
+.custom-checkbox {
+  transform: scale(2.5); /* Aumenta o tamanho da checkbox */
+  margin-top: 8px; /* Ajuste o alinhamento vertical */
+}
+
+.form-check-label {
+  margin-left: 10px; /* Adiciona espaçamento entre a checkbox e o label */
+  font-weight: bold; /* Torna o texto do label mais visível */
+}
+</style>

@@ -79,6 +79,11 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+          this.showNotification(
+            "Erro ao recuperar os dados do grupo de utilizadores.",
+            "danger",
+            "Erro"
+          );
         });
     },
 
@@ -87,14 +92,14 @@ module.exports = {
       this.UtilizadorGrupo.forEach((utilizadorGrupo) => {
         if (
           !this.utilizadoresSelecionados.includes(
-            utilizadorGrupo.ID_Utilizador.toString()
+            utilizadorGrupo.Utilizador_ID.toString()
           )
         ) {
           console.log(
-            `Removendo associação para o utilizador ${utilizadorGrupo.ID_Utilizador}`
+            `Removendo associação para o utilizador ${utilizadorGrupo.Utilizador_ID}`
           );
           this.deleteUtilizadorGrupo(
-            utilizadorGrupo.ID_Utilizador,
+            utilizadorGrupo.Utilizador_ID,
             this.model.ID
           );
         }
@@ -106,7 +111,7 @@ module.exports = {
         if (
           !this.UtilizadorGrupo.some(
             (utilizadorGrupo) =>
-              utilizadorGrupo.ID_Utilizador.toString() === utilizadorID
+              utilizadorGrupo.Utilizador_ID.toString() === utilizadorID
           )
         ) {
           // Se o grupo foi adicionado, adicione a associação
@@ -121,10 +126,19 @@ module.exports = {
         .put(`/rs2lab/editgrupoutilizadores/${this.model.ID}`, this.model.item)
         .then((resp) => {
           console.log(resp);
-          self.showNotification(); //shows notification of successful add
+          this.showNotification(
+            "Grupo de Utilizadores atualizado com sucesso!",
+            "success",
+            "Sucesso"
+          );
         })
         .catch((e) => {
           console.log(error);
+          this.showNotification(
+            "Erro ao atualizar o Grupo de Utilizadores.",
+            "danger",
+            "Erro"
+          );
         });
     },
     getUtilizadorGrupo(ItemID) {
@@ -136,7 +150,7 @@ module.exports = {
 
           // Preencher os utilizadores selecionados com os IDs dos utilizadores associados ao utilizador
           this.utilizadoresSelecionados = this.UtilizadorGrupo.map(
-            (utilizadorGrupo) => utilizadorGrupo.ID_Utilizador.toString()
+            (utilizadorGrupo) => utilizadorGrupo.Utilizador_ID.toString()
           );
         })
         .catch((errors) => {
@@ -153,10 +167,11 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
-          self.$bvToast.toast("Ocorreu um erro ao excluir o utilizadorgrupo.", {
-            title: "Erro",
-            variant: "danger",
-          });
+          this.showNotification(
+            "Erro ao buscar dados dos grupos de utilizadores.",
+            "danger",
+            "Erro"
+          );
         });
     },
     addUtilizadorGrupo(utilizadorgrupo) {
@@ -176,32 +191,24 @@ module.exports = {
         .then((resp) => {
           console.log("utilizador: ", resp);
           this.utilizadoresDisponiveis = resp.data;
-          console.log(this.utilizadoresDisponiveis);
         })
         .catch((errors) => {
           console.error(errors);
+          this.showNotification(
+            "Erro ao buscar dados dos Utilizadores.",
+            "danger",
+            "Erro"
+          );
         });
     },
 
     //Shows a dialog notification
-    showNotification() {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Editados Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          // Retorna para a URL anterior
-          this.$router.go(-1);
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };

@@ -8,7 +8,7 @@
         <div
           class="card-header d-flex justify-content-between align-items-center"
         >
-          <h4>Topicos de Sensores</h4>
+          <h4>Topicos de Sensores / Atuadores</h4>
           <div>
             <input
               type="text"
@@ -16,9 +16,23 @@
               placeholder="Buscar por nome ou ID..."
               v-model="searchQuery"
             />
-            <router-link to="/valorsensor/create" class="btn btn-primary ml-2">
+            <router-link
+              to="/topico/create"
+              class="btn btn-primary ml-2"
+              v-show="
+                keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                keys.TipoUtilizador_Nome === userTypes.GESTOR
+              "
+            >
               <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
             </router-link>
+            <button
+              class="btn btn-danger ml-2"
+              @click="deleteSelectedItems"
+              :disabled="selectedItems.length === 0"
+            >
+              <i class="fa fa-trash" aria-hidden="true"></i> Deletar Selecionados
+            </button>
           </div>
         </div>
         <div class="card-body">
@@ -26,22 +40,55 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
+                  <th scope="col" class="col-1">
+                    <input type="checkbox" @change="toggleSelectAll($event)" />
+                  </th>
                   <th scope="col" class="col-1">ID</th>
-                  <th scope="col" class="col-3">Topico</th>
-                  <th scope="col" class="col-2">Valor</th>
+                  <th scope="col" class="col-4">Topico</th>
+                  <th scope="col" class="col-1 text-center">Atuador</th>
+                  <th scope="col" class="col-1 text-center">Valor</th>
                   <th scope="col" class="col-2">Data</th>
-                  <th scope="col" class="col-2 text-right">Actions</th>
+                  <th
+                    scope="col"
+                    class="col-2 text-right"
+                    v-show="
+                      keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                    "
+                  >
+                    Ações
+                  </th>
                 </tr>
               </thead>
               <tbody v-if="paginatedItems.length > 0">
                 <tr v-for="(item, index) in paginatedItems" :key="index">
+                  <td>
+                    <input
+                      type="checkbox"
+                      :value="item.ID"
+                      v-model="selectedItems"
+                    />
+                  </td>
                   <td>{{ item.ID }}</td>
                   <td>{{ item.Topico }}</td>
-                  <td>{{ item.Valor }}</td>
+                  <td class="text-center">
+                    <b-icon-check
+                      v-if="item.is_activatable === 1"
+                      variant="success"
+                    ></b-icon-check>
+                    <b-icon-x v-else variant="danger"></b-icon-x>
+                  </td>
+                  <td class="text-center">{{ item.Valor }}</td>
                   <td>{{ item.Data_Hora }}</td>
-                  <td class="text-right">
+                  <td
+                    class="text-right"
+                    v-show="
+                      keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                    "
+                  >
                     <router-link
-                      :to="{ path: '/valorsensor/' + item.ID + '/edit' }"
+                      :to="{ path: '/topico/' + item.ID + '/edit' }"
                       class="btn btn-success"
                     >
                       <i class="fa fa-pencil" aria-hidden="true"></i> Editar
@@ -57,7 +104,7 @@
                 </tr>
               </tbody>
               <tbody v-else>
-                <td colspan="5">Carregando...</td>
+                <td colspan="7">Carregando...</td>
               </tbody>
             </table>
           </div>
@@ -80,12 +127,15 @@
 <script>
 module.exports = {
   name: "valorsensor",
+  props: ["keys"],
   data() {
     return {
       perPage: 8,
       currentPage: 1,
       items: [],
+      selectedItems: [], // Para armazenar os IDs selecionados
       searchQuery: "",
+      userTypes: window.appConfig.userTypes,
     };
   },
   computed: {
@@ -122,32 +172,94 @@ module.exports = {
         .get("/rs2lab/valorsensor")
         .then((response) => {
           this.items = response.data;
-          console.log(response);
         })
         .catch((error) => {
-          console.error("Erro ao recuperar Topicos de sensor", error);
+          console.error("Erro ao recuperar Topicos de Sensor / Atuador", error);
+        });
+    },
+    toggleSelectAll(event) {
+      if (event.target.checked) {
+        this.selectedItems = this.paginatedItems.map((item) => item.ID);
+      } else {
+        this.selectedItems = [];
+      }
+    },
+    deleteSelectedItems() {
+      this.$bvModal
+        .msgBoxConfirm(
+          `Deseja deletar os seguintes itens? ${this.selectedItems.join(", ")}`,
+          {
+            title: "Deletar Selecionados",
+            size: "sm",
+            buttonSize: "sm",
+            okVariant: "danger",
+            okTitle: "Sim",
+            cancelTitle: "Não",
+            footerClass: "p-2",
+            hideHeaderClose: false,
+            centered: true,
+          }
+        )
+        .then((value) => {
+          if (value) {
+            Promise.all(
+              this.selectedItems.map((id) =>
+                axios.delete(`/rs2lab/deletevalorsensor/${id}`)
+              )
+            )
+              .then(() => {
+                this.ShowDeleteNotification(
+                  "Tópicos deletados com sucesso.",
+                  "success",
+                  "Sucesso"
+                );
+                this.selectedItems = [];
+                this.retriveItem();
+              })
+              .catch((error) => {
+                console.error("Erro ao deletar tópicos", error);
+                this.ShowDeleteNotification(
+                  "Erro ao deletar tópicos.",
+                  "danger",
+                  "Erro"
+                );
+              });
+          }
+        })
+        .catch((err) => {
+          console.error("Erro ao exibir a caixa de diálogo", err);
         });
     },
     deleteItem(ItemID) {
       axios
         .delete(`/rs2lab/deletevalorsensor/${ItemID}`)
         .then(() => {
-          this.ShowDeleteNotification();
+          this.ShowDeleteNotification(
+            "Tópico deletado com sucesso.",
+            "success",
+            "Sucesso"
+          );
           this.retriveItem();
         })
         .catch((error) => {
-          console.error("Erro ao excluir o tipo de sensor", error);
+          console.error("Erro ao deletar o tópico", error);
+          this.ShowDeleteNotification(
+            "Erro ao deletar tópico.",
+            "danger",
+            "Erro"
+          );
         });
     },
-    ShowDeleteNotification() {
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
       });
     },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar esse tópico?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",

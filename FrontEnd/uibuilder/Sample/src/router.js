@@ -1,9 +1,8 @@
-const Home = httpVueLoader('./components/subcomponents/home.vue');
-const Perfil = httpVueLoader('./components/subcomponents/Settings/perfil.vue');
 
-const Form = httpVueLoader('./components/subcomponents/form.vue');
-const Table = httpVueLoader('./components/subcomponents/table.vue');
-const Chart = httpVueLoader('./components/subcomponents/chart.vue');
+const Perfil = httpVueLoader('./components/subcomponents/Settings/perfil.vue');
+const ChangePassword = httpVueLoader('./components/subcomponents/Settings/ChangePassword.vue');
+const PageNotFound = httpVueLoader('./components/PageNotFound.vue');
+
 
 const ListTipoUtilizador = httpVueLoader('./components/subcomponents/TipoUtilizador/View.vue');
 const CreateTipoUtilizador = httpVueLoader('./components/subcomponents/TipoUtilizador/Create.vue');
@@ -37,41 +36,43 @@ const ListValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Vi
 const CreateValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Create.vue');
 const EditValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Edit.vue');
 
+const Map = httpVueLoader('./components/subcomponents/Dashboard/Map.vue');
 const Dashboard = httpVueLoader('./components/subcomponents/Dashboard/Dashboard.vue');
+
 
 export default {
 
     routes: [
         {
             path: '/',
-            name: 'Dashboard',
-            component: Dashboard
+            name: 'Map',
+            component: Map
         },
+        {
+            path: '*',
+            name: 'PageNotFound',
+            component: PageNotFound,
+          },
         {
             path: '/perfil/:ID',
             name: 'Perfil',
             component: Perfil,
         },
         {
+            path: '/alterarsenha/:ID',
+            name: 'ChangePassword',
+            component: ChangePassword,
+        },
+        {
             path: '/dashboard',
             name: 'Dashboard',
             component: Dashboard,
         },
-        // {
-        //     path:'/form',
-        //     name:'Form',
-        //     component: Form
-        // },
-        // {
-        //     path:'/table',
-        //     name:'Table',
-        //     component: Table
-        // },
-        // {
-        //     path:'/chart',
-        //     name:'Chart',
-        //     component: Chart
-        // },
+        {
+            path: '/map',
+            name: 'Map',
+            component: Map,
+        },
         {
             path:'/tipoutilizador',
             name:'ViewTipoUtilizador',
@@ -180,17 +181,17 @@ export default {
             component: EditSensor
         },
         {
-            path:'/valorsensor',
+            path:'/topico',
             name:'ViewValorSensor',
             component: ListValorSensor
         },
         {
-            path:'/valorsensor/create',
+            path:'/topico/create',
             name:'CreateValorSensor',
             component: CreateValorSensor
         },
         {
-            path:'/valorsensor/:ID/edit',
+            path:'/topico/:ID/edit',
             name:'EditValorSensor',
             component: EditValorSensor
         },

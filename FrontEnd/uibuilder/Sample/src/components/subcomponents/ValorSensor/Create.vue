@@ -1,16 +1,16 @@
 <template>
   <div class="container-fluid mt-5">
-    <router-link to="/valorsensor" class="btn btn-secondary mb-3">
+    <router-link to="/topico" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Adicionar Topico do Sensor</h4>
+        <h4>Adicionar Topico do Sensor / Atuador</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="addvalorsensor">
-          <div class="row">
-            <div class="col-md-12">
+          <div class="row align-items-center">
+            <div class="col-md-8">
               <div class="mb-3">
                 <label for="Topico" class="form-label">Topico</label>
                 <input
@@ -18,13 +18,27 @@
                   id="Topico"
                   v-model="model.item.Topico"
                   class="form-control"
-                  placeholder="Digite o Topico do sensor"
+                  placeholder="Digite o Topico do Sensor / Atuador"
                   required
                 />
               </div>
             </div>
-            
-            
+            <div class="col-md-4">
+              <div class="mb-0 form-check text-center">
+                <input
+                  type="checkbox"
+                  id="is_activatable"
+                  v-model="model.item.is_activatable"
+                  :checked="model.item.is_activatable"
+                  class="form-check-input custom-checkbox"
+                  true-value="1"
+                  false-value="0"
+                />
+                <label for="is_activatable" class="form-check-label"
+                  >Atuador</label
+                >
+              </div>
+            </div>
           </div>
 
           <button type="submit" class="btn btn-primary float-right">
@@ -46,12 +60,12 @@ module.exports = {
           Topico: "",
           // Data_Hora: "",
           Valor: 0,
+          is_activatable: 0,
         },
       },
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     addvalorsensor() {
       var self = this; //Assign this to a variable
@@ -59,7 +73,12 @@ module.exports = {
         .post("/rs2lab/addvalorsensor", this.model.item)
         .then((resp) => {
           console.log(resp);
-          self.showNotification(); //shows notification of successful add
+          this.showNotification(
+            "Topico adicionado com sucesso!",
+            "success",
+            "Sucesso"
+          );
+          this.cleanForm();
         })
         .catch((e) => {
           console.log(error);
@@ -68,27 +87,29 @@ module.exports = {
     //Use to clean form upon succcessful insert
     cleanForm() {
       this.model.item.Topico = "";
-      this.movel.item.Valor = 0;
+      this.model.item.is_activatable = 0;
+
     },
     //Shows a dialog notification
-    showNotification() {
-      var self = this; //Assign this to a variable
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Adicionados com sucesso!!", {
-          title: "Confirmation",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          self.cleanForm(); //clears form upon confirmation of user
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };
 </script>
+
+<style>
+.custom-checkbox {
+  transform: scale(2.5); /* Aumenta o tamanho da checkbox */
+  margin-top: 8px; /* Ajuste o alinhamento vertical */
+}
+
+.form-check-label {
+  margin-left: 10px; /* Adiciona espaçamento entre a checkbox e o label */
+  font-weight: bold; /* Torna o texto do label mais visível */
+}
+</style>

@@ -4,8 +4,11 @@
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
-      <div class="card-header">
+      <div class="card-header d-flex justify-content-between align-items-center">
         <h4>Adicionar Utilizador</h4>
+        <!-- <button @click="sendConvite" class="form-control d-inline-block w-auto btn btn-primary float-right">
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Convidar
+          </button> -->
       </div>
       <div class="card-body">
         <form @submit.prevent="addUtilizador">
@@ -34,7 +37,7 @@
                   required
                 />
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label for="senha">Senha:</label>
                 <input
                   type="password"
@@ -42,9 +45,8 @@
                   v-model="model.item.Senha"
                   class="form-control"
                   placeholder="Insira a senha do utilizador"
-                  required
                 />
-              </div>
+              </div> -->
               <div class="mb-3">
                 <label for="id_tipoUtilizador">Tipo Utilizador:</label>
                 <select
@@ -57,7 +59,7 @@
                     Selecione o tipo de utilizador
                   </option>
                   <option
-                    v-for="tipo in TipoUtilizador"
+                    v-for="tipo in filteredTipoUtilizador"
                     :key="tipo.ID"
                     :value="tipo.ID"
                   >
@@ -72,11 +74,10 @@
                   v-model="gruposSelecionados"
                   class="form-control"
                   multiple
-                  required
                 >
                   <option disabled value="">Selecione um grupo</option>
                   <option
-                    v-for="grupo in gruposDisponiveis"
+                    v-for="grupo in filteredGruposDisponiveis"
                     :key="grupo.Grupo_ID"
                     :value="grupo.Grupo_ID"
                   >
@@ -119,10 +120,10 @@
                     thumbnail
                   ></b-img>
                 </b-form-group>
-                
               </div>
             </div>
           </div>
+          
           <button type="submit" class="btn btn-primary float-right">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>
@@ -141,13 +142,14 @@
 <script>
 module.exports = {
   name: "CreateUtilizador",
+  props: ["keys"],
   data() {
     return {
       model: {
         item: {
           Nome: "",
           Email: "",
-          Senha: "",
+          Senha: "", // A senha será gerada automaticamente
           ID_TipoUtilizador: "",
           isActive: "0",
           image: "",
@@ -158,45 +160,112 @@ module.exports = {
       gruposSelecionados: [], // Grupos selecionados pelo utilizador
       UtilizadorGrupo: [],
       imagePreview: "",
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
     this.getTipoUtilizador();
     this.getGruposDisponiveis();
   },
+  computed: {
+    filteredTipoUtilizador() {
+      return this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR
+        ? this.TipoUtilizador
+        : this.TipoUtilizador.filter((tipo) => tipo.Nome !== "Administrador");
+    },
+    filteredGruposDisponiveis() {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.gruposDisponiveis;
+      } else {
+        const userGroupIds = this.keys.Grupos
+          ? this.keys.Grupos.map((group) => group.ID)
+          : [];
+        return this.gruposDisponiveis.filter((grupo) =>
+          userGroupIds.includes(grupo.Grupo_ID)
+        );
+      }
+    },
+  },
   methods: {
     addUtilizador() {
       var self = this;
+
+      // Gera a senha automaticamente antes de enviar o formulário
+      this.model.item.Senha = this.gerarSenhaSegura();
+
       axios
-        .post("/rs2lab/addutilizador", this.model.item)
+        .post("/rs2lab/checkutilizador", self.model.item)
         .then((resp) => {
-          console.log(resp);
-          // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
-          if (this.gruposSelecionados.length > 0) {
-            this.gruposSelecionados.forEach((grupoId) => {
-              const utilizadorGrupo = {
-                ID_Utilizador: resp.data.insertId, // ID do utilizador criado
-                ID_Grupo: grupoId, // ID do grupo selecionado
-              };
-              // console.log(utilizadorGrupo);
-              self.addUtilizadorGrupo(utilizadorGrupo);
-            });
+          if (resp.data[0].count === 0) {
+            axios
+              .post("/rs2lab/addutilizador", this.model.item)
+              .then((resp) => {
+                console.log(resp);
+                // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
+                if (this.gruposSelecionados.length > 0) {
+                  this.gruposSelecionados.forEach((grupoId) => {
+                    const utilizadorGrupo = {
+                      ID_Utilizador: resp.data.insertId, // ID do utilizador criado
+                      ID_Grupo: grupoId, // ID do grupo selecionado
+                    };
+                    // console.log(utilizadorGrupo);
+                    self.addUtilizadorGrupo(utilizadorGrupo);
+                  });
+                }
+                this.showNotification(
+                  "Utilizador adicionada com sucesso!",
+                  "success",
+                  "Sucesso"
+                );
+                this.sendConvite();
+                this.cleanForm();
+              })
+              .catch((e) => {
+                console.error(e);
+              });
+          } else {
+            this.showNotification("Email já Existente!", "warning", "Erro");
           }
-          self.showNotification();
         })
         .catch((e) => {
           console.error(e);
         });
     },
-
-    addUtilizadorGrupo(utilizadorGrupo) {
+    sendConvite() {
       axios
-        .post("/rs2lab/addutilizadorgrupo", utilizadorGrupo)
-        .then((resp) => {
-          console.log(resp);
+        .post("/rs2lab/send-account", {
+          Utilizador_Email: this.model.item.Email,
+          Utilizador_Senha: this.model.item.Senha,
+          Utilizador_Nome: this.model.item.Nome,
+        })
+        .then((res) => {
+          console.log(res);
+          this.showNotification(
+            "Convite de acesso enviado ao utilizador!",
+            "success",
+            "Sucesso"
+          );
         })
         .catch((e) => {
           console.error(e);
+          this.showNotification(
+            "Erro ao enviar Email ao utilizador!",
+            "warning",
+            "Erro"
+          );
+        });
+    },
+    addUtilizadorGrupo(utilizadorGrupo) {
+      axios
+        .post("/rs2lab/addutilizadorgrupo", utilizadorGrupo)
+        .then((resp) => {})
+        .catch((e) => {
+          console.error("Erro ao adicionar a Utilizador:", error);
+          this.showNotification(
+            "Erro ao adicionar a Utilizador ao Grupo.",
+            "danger",
+            "Erro"
+          );
         });
     },
 
@@ -210,6 +279,11 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+          this.showNotification(
+            "Erro ao buscar dados dos grupos.",
+            "danger",
+            "Erro"
+          );
         });
     },
     getTipoUtilizador() {
@@ -222,7 +296,25 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+          this.showNotification(
+            "Erro ao buscar dados dos Tipo Utilizador.",
+            "danger",
+            "Erro"
+          );
         });
+    },
+
+    // Função para gerar senha segura
+    gerarSenhaSegura() {
+      const caracteres =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?";
+      let senha = "";
+      for (let i = 0; i < 16; i++) {
+        senha += caracteres.charAt(
+          Math.floor(Math.random() * caracteres.length)
+        );
+      }
+      return senha;
     },
 
     previewImage(event) {
@@ -231,7 +323,7 @@ module.exports = {
         const reader = new FileReader();
         reader.onload = (e) => {
           this.imagePreview = e.target.result;
-          this.model.item.image = e.target.result.split(",")[1]; // Store base64 encoded string without prefix
+          this.model.item.image = e.target.result.split(",")[1]; // Armazena a string codificada em base64 sem o prefixo
           console.log("Imagem pré-visualizada e convertida para base64");
         };
         reader.readAsDataURL(file);
@@ -244,7 +336,7 @@ module.exports = {
     cleanForm() {
       this.model.item.Nome = "";
       this.model.item.Email = "";
-      this.model.item.Senha = "";
+      this.model.item.Senha = ""; // Limpa a senha gerada
       this.model.item.ID_TipoUtilizador = "";
       this.model.item.isActive = "";
       this.model.item.image = null;
@@ -252,22 +344,12 @@ module.exports = {
       this.gruposSelecionados = [];
     },
 
-    showNotification() {
-      var self = this;
-      this.$bvModal
-        .msgBoxOk("Dados Adicionados com sucesso!!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          self.cleanForm();
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };

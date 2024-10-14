@@ -34,16 +34,20 @@
                   required
                 />
               </div>
-              <div class="mb-3">
-                <label for="id_tipoUtilizador" class="form-label">Tipo Utilizador</label>
+              <div class="mb-3" v-if="filteredTipoUtilizador.length > 0">
+                <label for="id_tipoUtilizador" class="form-label"
+                  >Tipo Utilizador</label
+                >
                 <select
                   v-model="model.item.ID_TipoUtilizador"
                   class="form-control"
                   required
                 >
-                  <option value="" disabled selected>Selecione o tipo de utilizador</option>
+                  <option value="" disabled selected>
+                    Selecione o tipo de utilizador
+                  </option>
                   <option
-                    v-for="tipo in TipoUtilizador"
+                    v-for="tipo in filteredTipoUtilizador"
                     :key="tipo.ID"
                     :value="tipo.ID"
                   >
@@ -52,16 +56,17 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="id_grupoutilizadores" class="form-label">Grupos</label>
+                <label for="id_grupoutilizadores" class="form-label"
+                  >Grupos</label
+                >
                 <select
                   v-model="gruposSelecionados"
                   class="form-control"
                   multiple
-                  required
                 >
                   <option disabled value="">Selecione um grupo</option>
                   <option
-                    v-for="grupo in gruposDisponiveis"
+                    v-for="grupo in filteredGruposDisponiveis"
                     :key="grupo.Grupo_ID"
                     :value="grupo.Grupo_ID"
                   >
@@ -108,10 +113,10 @@
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            class="btn btn-primary float-right"
-          >
+          <!-- <button @click="sendConvite" class="btn btn-primary float-right">
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Convidar
+          </button> -->
+          <button type="submit" class="btn btn-primary float-right">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>
         </form>
@@ -126,9 +131,9 @@
 }
 </style>
 
-
 <script>
 module.exports = {
+  props: ["keys"],
   name: "EditUtilizador",
   data() {
     return {
@@ -148,13 +153,40 @@ module.exports = {
       gruposDisponiveis: [], // Todos os grupos disponíveis
       gruposSelecionados: [], // Grupos selecionados pelo utilizador
       UtilizadorGrupo: [],
+      userTypes: window.appConfig.userTypes,
     };
   },
+  computed: {
+    filteredTipoUtilizador() {
+      if (!this.keys || !this.userTypes) {
+        return [];
+      }
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.TipoUtilizador;
+      }
+      return this.TipoUtilizador.filter(
+        (tipo) => tipo.Nome !== "Administrador"
+      );
+    },
+    filteredGruposDisponiveis() {
+      if (!this.keys || !this.keys.Grupos) {
+        return [];
+      }
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+        return this.gruposDisponiveis;
+      }
+      const userGroupIds = this.keys.Grupos
+        ? this.keys.Grupos.map((group) => group.ID)
+        : [];
+      return this.gruposDisponiveis.filter((grupo) =>
+        userGroupIds.includes(grupo.Grupo_ID)
+      );
+    },
+  },
   mounted() {
-    // console.log(this.$router.app._route.params.ID);
     this.model.ID = this.$router.app._route.params.ID;
-    this.getUtilizador(this.$router.app._route.params.ID);
-    this.getUtilizadorGrupo(this.$router.app._route.params.ID);
+    this.getUtilizador(this.model.ID);
+    this.getUtilizadorGrupo(this.model.ID);
     this.getTipoUtilizador();
     this.getGruposDisponiveis();
   },
@@ -171,11 +203,16 @@ module.exports = {
           this.model.item.image = resp.data[0].image;
           if (this.model.item.image) {
             this.imagePreview = `data:image/jpeg;base64,${this.model.item.image}`;
-            console.log("Imagem carregada com sucesso:", this.model.item.image);
+            // console.log("Imagem carregada com sucesso:", this.model.item.image);
           }
         })
         .catch((error) => {
           console.error("Erro ao recuperar os dados do Utilizador", error);
+          this.showNotification(
+            "Erro ao recuperar dados do Utilizador.",
+            "danger",
+            "Erro"
+          );
         });
     },
     editUtilizador() {
@@ -183,10 +220,10 @@ module.exports = {
       // Verificar grupos removidos
       this.UtilizadorGrupo.forEach((utilizadorGrupo) => {
         if (
-          !this.gruposSelecionados.includes(utilizadorGrupo.ID_Grupo.toString())
+          !this.gruposSelecionados.includes(utilizadorGrupo.Grupo_ID.toString())
         ) {
           // Se o grupo não está mais selecionado, remova a associação
-          this.deleteUtilizadorGrupo(this.model.ID, utilizadorGrupo.ID_Grupo);
+          this.deleteUtilizadorGrupo(this.model.ID, utilizadorGrupo.Grupo_ID);
         }
       });
       console.log(this.gruposSelecionados);
@@ -194,7 +231,7 @@ module.exports = {
       this.gruposSelecionados.forEach((grupoId) => {
         if (
           !this.UtilizadorGrupo.some(
-            (utilizadorGrupo) => utilizadorGrupo.ID_Grupo.toString() === grupoId
+            (utilizadorGrupo) => utilizadorGrupo.Grupo_ID.toString() === grupoId
           )
         ) {
           // Se o grupo foi adicionado, adicione a associação
@@ -211,10 +248,48 @@ module.exports = {
         .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
         .then((response) => {
           console.log("Utilizador atualizado com sucesso!", response);
-          this.showNotification();
+
+          // Verificar se o ID do utilizador é o mesmo do localStorage
+          if (this.keys.Utilizador_ID.toString() === this.model.ID.toString()) {
+            // Atualizar os dados no localStorage
+            localStorage.setItem("user", JSON.stringify(this.model.item));
+            this.keys.Utilizador_Nome = this.model.item.Nome;
+            this.keys.Utilizador_Email = this.model.item.Email;
+            this.keys.Utilizador_image = this.model.item.image;
+            this.keys.Utilizador_isActive = this.model.item.isActive;
+            this.keys.TipoUtilizador_ID = this.model.item.ID_TipoUtilizador;
+            this.keys.Grupos = this.gruposSelecionados;
+            console.log("local storage atualizado: ", localStorage);
+            const updatedUser = {
+              ...JSON.parse(localStorage.getItem("user")),
+              Utilizador_Nome: this.model.item.Nome,
+              Utilizador_Email: this.model.item.Email,
+              Utilizador_image: this.model.item.image,
+            };
+            const sessionID = localStorage.getItem("token");
+            uibuilder.send({
+              topic: "UpdateUser",
+              token: sessionID,
+              payload: updatedUser,
+            });
+
+            localStorage.setItem("user", JSON.stringify(updatedUser));
+          }
+
+          this.showNotification(
+            "Utilizador atualizado com sucesso!",
+            "success",
+            "Atualização"
+          );
+          this.$router.push("/utilizador");
         })
         .catch((error) => {
           console.error("Erro ao atualizar o Utilizador", error);
+          this.showNotification(
+            "Erro ao atualizar o Utilizador.",
+            "danger",
+            "Erro"
+          );
         });
     },
 
@@ -228,21 +303,21 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
-          self.$bvToast.toast("Ocorreu um erro ao excluir o utilizadorgrupo.", {
-            title: "Erro",
-            variant: "danger",
-          });
+          this.ShowNotification(
+            "Erro ao Deletar Utilizador ao Grupo.",
+            "danger",
+            "Erro"
+          );
         });
     },
     addUtilizadorGrupo(utilizadorgrupo) {
-      var self = this; //Assign this to a variable
       axios
         .post("/rs2lab/addutilizadorgrupo", utilizadorgrupo)
         .then((resp) => {
           console.log("ADD utilizadorgrupo: ", resp);
         })
         .catch((e) => {
-          console.log(error);
+          console.log(e);
         });
     },
     getGruposDisponiveis() {
@@ -255,6 +330,12 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+
+          this.showNotification(
+            "Erro ao buscar dados dos Grupos.",
+            "danger",
+            "Erro"
+          );
         });
     },
     getUtilizadorGrupo(ItemID) {
@@ -266,11 +347,13 @@ module.exports = {
 
           // Preencher os grupos selecionados com os IDs dos grupos associados ao utilizador
           this.gruposSelecionados = this.UtilizadorGrupo.map(
-            (utilizadorGrupo) => utilizadorGrupo.ID_Grupo.toString()
+            (utilizadorGrupo) => utilizadorGrupo.Grupo_ID.toString()
           );
         })
         .catch((errors) => {
           console.error(errors);
+
+          this.showNotification("Erro ao buscar dados.", "danger", "Erro");
         });
     },
     getTipoUtilizador() {
@@ -283,29 +366,23 @@ module.exports = {
         })
         .catch((errors) => {
           console.error(errors);
+
+          this.showNotification(
+            "Erro ao buscar dados dos Tipos de Utilizadores.",
+            "danger",
+            "Erro"
+          );
         });
     },
 
     //Shows a dialog notification
 
-    showNotification() {
-      var self = this; // Atribui this a uma variável
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Editados Com Sucesso!", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          // Retorna para a URL anterior
-          this.$router.go(-1);
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
 
     previewImage(event) {

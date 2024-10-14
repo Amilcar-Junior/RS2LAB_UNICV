@@ -15,8 +15,8 @@
             placeholder="Buscar por nome, ID, Grupo ou Localização..."
             v-model="searchQuery"
           />
-          <router-link to="/local/create" class="btn btn-primary ml-2">
-            <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+          <router-link to="/local/create" class="btn btn-primary ml-2" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
+            <i class="fa fa-plus" aria-hidden="true" ></i> Adicionar
           </router-link>
         </div>
       </div>
@@ -26,11 +26,11 @@
             <thead>
               <tr>
                 <th scope="col" class="col-1">ID</th>
-                <th scope="col" class="col-3">Nome</th>
-                <th scope="col" class="col-3">lat</th>
+                <th scope="col" class="col-4">Nome</th>
+                <th scope="col" class="col-2">lat</th>
                 <th scope="col" class="col-2">lng</th>
                 <th scope="col" class="col-1">Mapa</th>
-                <th scope="col" class="col-2 text-right">Ações</th>
+                <th scope="col" class="col-2 text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">Ações</th>
               </tr>
             </thead>
             <tbody v-if="paginatedItems.length > 0">
@@ -39,7 +39,7 @@
                 <td>{{ item.Nome }}</td>
                 <td>{{ item.lat }}</td>
                 <td>{{ item.lng }}</td>
-                <td>
+                <td  class="text-center">
                   <button
                     v-if="hasValidCoordinates(item.lat, item.lng)"
                     class="btn btn-info btn-sm"
@@ -48,7 +48,7 @@
                     <i class="fa fa-map" aria-hidden="true"></i> Mapa
                   </button>
                 </td>
-                <td class="text-right">
+                <td class="text-right" v-show="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR ">
                   <router-link
                     :to="{ path: '/local/' + item.ID + '/edit' }"
                     class="btn btn-success"
@@ -100,6 +100,7 @@
 <script>
 module.exports = {
   name: "Local",
+  props: ["keys"],
   data() {
     return {
       items: [],
@@ -110,6 +111,7 @@ module.exports = {
       selectedLocation: null,
       searchQuery: "",
       baseMaps: null, // Base map layers
+      userTypes: window.appConfig.userTypes,
     };
   },
   mounted() {
@@ -185,15 +187,14 @@ module.exports = {
         }
       );
 
-      const satellite = L.tileLayer(
-        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+      const hybrid = L.tileLayer(
+        "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
         {
-          attribution: "Map data ©2023 Google",
-          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+          attribution: "© OpenTopoMap contributors",
         }
       );
 
-      const hybrid = L.tileLayer(
+      const satellite = L.tileLayer(
         "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
         {
           attribution: "Map data ©2023 Google",
@@ -204,26 +205,27 @@ module.exports = {
       const terrain = L.tileLayer(
         "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
         {
-          attribution: "Map data ©2023 Google",
+          attribution: "©2023 Google",
           subdomains: ["mt0", "mt1", "mt2", "mt3"],
         }
       );
 
       this.modalMap = L.map("modalMap", {
         layers: [streets],
+        zoom: 15,
       });
 
       this.baseMaps = {
         Streets: streets,
-        Hybrid: hybrid,
         Satellite: satellite,
-        Terrain: terrain,
+        Hibrido: hybrid,
+        Terreno: terrain,
       };
 
       L.control.layers(this.baseMaps).addTo(this.modalMap);
 
       if (this.selectedLocation) {
-        this.modalMap.setView(this.selectedLocation, 10);
+        this.modalMap.setView(this.selectedLocation, this.modalMap.zoom);
 
         L.marker(this.selectedLocation, {
           color: "blue",
@@ -239,9 +241,35 @@ module.exports = {
 
       this.modalMap.invalidateSize();
     },
+    
+    deleteItem(ItemID) {
+      axios
+        .delete(`/rs2lab/deletelocal/${ItemID}`)
+        .then(() => {
+          this.ShowDeleteNotification(
+            "Local deletado com sucesso!",
+            "success", "Sucesso"
+          );
+          this.retrieveItems();
+        })
+        .catch((error) => {
+          console.error("Erro ao deletar o local:", error);
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Local.",
+            "danger","Erro"
+          );
+        });
+    },
+    ShowDeleteNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
+    },
     ShowConfirmDelete(ItemID) {
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esses dados?", {
+        .msgBoxConfirm("Deseja deletar esse Local?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",
@@ -260,27 +288,6 @@ module.exports = {
         .catch((err) => {
           console.error("Erro ao exibir a caixa de diálogo:", err);
         });
-    },
-    deleteItem(ItemID) {
-      axios
-        .delete(`/rs2lab/deletelocal/${ItemID}`)
-        .then(() => {
-          this.ShowDeleteNotification();
-          this.retrieveItems();
-        })
-        .catch((error) => {
-          console.error("Erro ao deletar o local:", error);
-          this.$bvToast.toast("Ocorreu um erro ao excluir o item.", {
-            title: "Erro",
-            variant: "danger",
-          });
-        });
-    },
-    ShowDeleteNotification() {
-      this.$bvToast.toast("Dados deletados com sucesso!", {
-        title: "Sucesso",
-        variant: "success",
-      });
     },
   },
 };

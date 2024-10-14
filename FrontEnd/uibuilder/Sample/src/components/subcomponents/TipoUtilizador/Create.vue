@@ -31,10 +31,7 @@
               required
             />
           </div>
-          <button
-            type="submit"
-            class="btn btn-primary float-right"
-          >
+          <button type="submit" class="btn btn-primary float-right">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
           </button>
         </form>
@@ -42,7 +39,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 module.exports = {
@@ -65,10 +61,18 @@ module.exports = {
         .post("/rs2lab/addtipoutilizador", this.model.item)
         .then((resp) => {
           console.log(resp);
-          self.showNotification(); //shows notification of successful add
+          this.showNotification(
+            "Tipo Utilizador adicionada com sucesso!",
+            "success","Sucesso"
+          );
+          this.cleanForm();
         })
-        .catch((e) => {
-          console.log(error);
+        .catch((error) => {
+          console.error("Erro ao adicionar a Tipo Utilizador:", error);
+          this.showNotification(
+            "Erro ao adicionar a Tipo Utilizador.",
+            "danger","Erro"
+          );
         });
     },
     //Use to clean form upon succcessful insert
@@ -78,23 +82,12 @@ module.exports = {
     },
     //Shows a dialog notification
 
-    showNotification() {
-      var self = this; //Assign this to a variable
-      this.boxTwo = "";
-      this.$bvModal
-        .msgBoxOk("Dados Adicionados com sucesso!!", {
-          title: "Confirmation",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "success",
-          headerClass: "p-2 border-bottom-0",
-          footerClass: "p-2 border-top-0",
-          centered: true,
-        })
-        .then((value) => {
-          self.cleanForm(); //clears form upon confirmation of user
-        })
-        .catch((err) => {});
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };
