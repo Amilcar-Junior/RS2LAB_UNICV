@@ -13482,24 +13482,6 @@
         ]
     },
     {
-        "id": "3",
-        "type": "e-mail",
-        "z": "ba85fe949960916b",
-        "g": "2a89c69adb724fd2",
-        "server": "smtp.gmail.com",
-        "port": "465",
-        "authtype": "BASIC",
-        "saslformat": false,
-        "token": "oauth2Response.access_token",
-        "secure": true,
-        "tls": false,
-        "name": "",
-        "dname": "Enviar E-mail",
-        "x": 2150,
-        "y": 3000,
-        "wires": []
-    },
-    {
         "id": "4547dc1513ce39b8",
         "type": "debug",
         "z": "ba85fe949960916b",
@@ -13696,6 +13678,24 @@
         "headers": {},
         "x": 2780,
         "y": 3100,
+        "wires": []
+    },
+    {
+        "id": "3",
+        "type": "e-mail",
+        "z": "ba85fe949960916b",
+        "g": "2a89c69adb724fd2",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "authtype": "BASIC",
+        "saslformat": false,
+        "token": "oauth2Response.access_token",
+        "secure": true,
+        "tls": false,
+        "name": "",
+        "dname": "Enviar E-mail",
+        "x": 2150,
+        "y": 3000,
         "wires": []
     },
     {

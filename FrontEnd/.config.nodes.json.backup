@@ -430,8 +430,8 @@
     "node-red-contrib-uibuilder": {
         "name": "node-red-contrib-uibuilder",
         "version": "4.1.4",
-        "local": false,
-        "user": false,
+        "local": true,
+        "user": true,
         "nodes": {
             "uibuilder": {
                 "name": "uibuilder",
@@ -439,10 +439,10 @@
                     "uibuilder"
                 ],
                 "enabled": true,
-                "local": false,
+                "local": true,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
-                "file": "C:\\Users\\Admin\\node_modules\\node-red-contrib-uibuilder\\nodes\\uibuilder.js"
+                "file": "C:\\Developer\\Projects\\RS2LAB_UNICV\\FrontEnd\\node_modules\\node-red-contrib-uibuilder\\nodes\\uibuilder.js"
             }
         }
     },
@@ -463,26 +463,6 @@
                 "user": false,
                 "module": "node-red-node-mysql",
                 "file": "C:\\Developer\\Projects\\RS2LAB_UNICV\\FrontEnd\\node_modules\\node-red-node-mysql\\68-mysql.js"
-            }
-        }
-    },
-    "node-red-node-mysql": {
-        "name": "node-red-node-mysql",
-        "version": "2.0.0",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "mysql": {
-                "name": "mysql",
-                "types": [
-                    "MySQLdatabase",
-                    "mysql"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-node-mysql",
-                "file": "C:\\Users\\Amilc\\OneDrive\\Documentos\\Git\\RS2LAB_UNICV\\FrontEnd\\node_modules\\node-red-node-mysql\\68-mysql.js"
             }
         }
     }
