@@ -4,8 +4,9 @@
   "vuex",
   "bootstrap",
   "bootstrap-vue",
-  "http-vue-loader",
+  "jquery",
   "bootstrap-icons",
+  "http-vue-loader",
   "vue-router",
   "axios",
   "md5",
@@ -14,6 +15,5 @@
   "leaflet.markercluster",
   "@fortawesome/fontawesome-svg-core",
   "@fortawesome/vue-fontawesome",
-  "@fortawesome/free-solid-svg-icons",
-  "jquery"
+  "@fortawesome/free-solid-svg-icons"
 ]

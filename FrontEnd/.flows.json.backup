@@ -6823,8 +6823,7 @@
         "g": "30f71a271d2a4ba5",
         "name": "",
         "links": [
-            "89e1a4ceac90b0d3",
-            "d451db08d12ba9c1"
+            "89e1a4ceac90b0d3"
         ],
         "x": 55,
         "y": 180,
@@ -6950,8 +6949,7 @@
         "name": "",
         "mode": "link",
         "links": [
-            "dd89e0896485f1a9",
-            "ee8893d06b12d247"
+            "dd89e0896485f1a9"
         ],
         "x": 715,
         "y": 160,
@@ -12662,7 +12660,7 @@
         "type": "mqtt in",
         "z": "ba85fe949960916b",
         "name": "Sensores Teste ASF",
-        "topic": "ai4afs/node/af/1",
+        "topic": "ai4afs/gat/af/status/c",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "b0e7208048a256dc",
