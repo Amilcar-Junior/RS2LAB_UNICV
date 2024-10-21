@@ -11561,44 +11561,6 @@
         "wires": []
     },
     {
-        "id": "571255402670eafe",
-        "type": "mqtt in",
-        "z": "ba85fe949960916b",
-        "name": "Sensores Teste UNICV",
-        "topic": "ai4afs/gat/204/status/c",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "b0e7208048a256dc",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 1780,
-        "y": 7080,
-        "wires": [
-            [
-                "2fb73bd4857254cb"
-            ]
-        ]
-    },
-    {
-        "id": "2fb73bd4857254cb",
-        "type": "debug",
-        "z": "ba85fe949960916b",
-        "name": "debug 8",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2060,
-        "y": 7080,
-        "wires": []
-    },
-    {
         "id": "a4e922ba7044082f",
         "type": "function",
         "z": "ba85fe949960916b",
@@ -12618,44 +12580,6 @@
                 "c12ce9047b687408"
             ]
         ]
-    },
-    {
-        "id": "51dbcb7f201fc48e",
-        "type": "mqtt in",
-        "z": "ba85fe949960916b",
-        "name": "Sensores Teste ASF",
-        "topic": "ai4afs/gat/af/status/c",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "b0e7208048a256dc",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 1770,
-        "y": 7160,
-        "wires": [
-            [
-                "cc2bb1cd24a4cd23"
-            ]
-        ]
-    },
-    {
-        "id": "cc2bb1cd24a4cd23",
-        "type": "debug",
-        "z": "ba85fe949960916b",
-        "name": "debug 9",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2060,
-        "y": 7160,
-        "wires": []
     },
     {
         "id": "4c9f400c8dd89ea8",
@@ -13715,6 +13639,499 @@
         "dname": "Enviar E-mail",
         "x": 2790,
         "y": 3020,
+        "wires": []
+    },
+    {
+        "id": "571255402670eafe",
+        "type": "mqtt in",
+        "z": "ba85fe949960916b",
+        "name": "Sensores Teste UNICV",
+        "topic": "ai4afs/gat/204/status/c",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b0e7208048a256dc",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1080,
+        "y": 1000,
+        "wires": [
+            [
+                "2fb73bd4857254cb"
+            ]
+        ]
+    },
+    {
+        "id": "2fb73bd4857254cb",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "51dbcb7f201fc48e",
+        "type": "mqtt in",
+        "z": "ba85fe949960916b",
+        "name": "Sensores Teste ASF",
+        "topic": "ai4afs/gat/af/status/c",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b0e7208048a256dc",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1070,
+        "y": 1080,
+        "wires": [
+            [
+                "cc2bb1cd24a4cd23"
+            ]
+        ]
+    },
+    {
+        "id": "cc2bb1cd24a4cd23",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "debug 9",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "f083bf6e5c9c0476",
+        "type": "inject",
+        "z": "ba85fe949960916b",
+        "name": "Coletar a cada 5 minutos",
+        "props": [],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "x": 1010,
+        "y": 720,
+        "wires": [
+            [
+                "e462ffa72b462a7b"
+            ]
+        ]
+    },
+    {
+        "id": "e462ffa72b462a7b",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Buscar Sensores e Tópicos",
+        "func": "msg.topic = `SELECT s.ID as Sensor_ID, v.ID as ValorSensor_ID, v.Topico \nFROM Sensor s \nJOIN ValorSensor v ON s.ID_ValorSensor = v.ID\nWHERE v.is_activatable = FALSE;`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 820,
+        "wires": [
+            [
+                "f65a05221f1c993f",
+                "4225910ac985617e"
+            ]
+        ]
+    },
+    {
+        "id": "f65a05221f1c993f",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "Conexão MySQL",
+        "x": 1480,
+        "y": 720,
+        "wires": [
+            [
+                "7e91648685fc02b1",
+                "0f2092944fa32aa3",
+                "633c74f403d0ba71"
+            ]
+        ]
+    },
+    {
+        "id": "7e91648685fc02b1",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Assinar Tópicos MQTT",
+        "func": "var sensors = msg.payload;\nfor (var i = 0; i < sensors.length; i++) {\n    var sensor = sensors[i];\n    node.send({\n        topic: sensor.Topico,\n        sensorID: sensor.Sensor_ID,\n        valorSensorID: sensor.ValorSensor_ID,\n        action: \"subscribe\",\n    });\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1680,
+        "y": 820,
+        "wires": [
+            [
+                "b8d018092f744d92",
+                "4cbfad550e67f493"
+            ]
+        ]
+    },
+    {
+        "id": "4cbfad550e67f493",
+        "type": "mqtt in",
+        "z": "ba85fe949960916b",
+        "name": "Receber Valores dos Sensores",
+        "topic": "",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "b0e7208048a256dc",
+        "nl": false,
+        "rap": false,
+        "inputs": 1,
+        "x": 1910,
+        "y": 720,
+        "wires": [
+            [
+                "bbe1399ca7cd4452",
+                "974392b3ae16a155"
+            ]
+        ]
+    },
+    {
+        "id": "0f2092944fa32aa3",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1670,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "b8d018092f744d92",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1890,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "bbe1399ca7cd4452",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2150,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "4225910ac985617e",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "974392b3ae16a155",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Buscar ID do ValorSensor",
+        "func": "var topico = msg.topic;\nvar valor = msg.payload;\nmsg.topic = `SELECT ID FROM ValorSensor WHERE Topico = '${topico}' LIMIT 1;`;\nmsg.valor = valor\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2130,
+        "y": 820,
+        "wires": [
+            [
+                "200afd51e3468cd7",
+                "71fbdb44733a5971"
+            ]
+        ]
+    },
+    {
+        "id": "71fbdb44733a5971",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "Conexão MySQL - Buscar ValorSensor",
+        "x": 2410,
+        "y": 720,
+        "wires": [
+            [
+                "3b43a45864c2909b",
+                "2ef0e2ed39bae378"
+            ]
+        ]
+    },
+    {
+        "id": "3b43a45864c2909b",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Buscar Sensor pelo ValorSensor",
+        "func": "if (msg.payload.length > 0) {\n    var idValorSensor = msg.payload[0].ID;\n    msg.ID_Topico = idValorSensor; // Armazenar o ID do ValorSensor\n    msg.topic = `SELECT ID FROM Sensor WHERE ID_ValorSensor = ${idValorSensor} OR ID_ValorSensor_Principal = ${idValorSensor} LIMIT 1;`;\n    return msg;\n} else {\n    node.error('Nenhum ID de ValorSensor encontrado para o tópico: ' + msg.topic);\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2650,
+        "y": 820,
+        "wires": [
+            [
+                "93534a75266875b7"
+            ]
+        ]
+    },
+    {
+        "id": "93534a75266875b7",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "Conexão MySQL - Buscar Sensor",
+        "x": 2920,
+        "y": 720,
+        "wires": [
+            [
+                "835e58686d07c9e5",
+                "d472f2bf916f60f4"
+            ]
+        ]
+    },
+    {
+        "id": "835e58686d07c9e5",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Armazenar dados no Histórico do Sensor",
+        "func": "if (msg.payload.length > 0) {\n    var idSensor = msg.payload[0].ID; // ID do Sensor\n    var valorColetado = msg.valor; // Valor coletado do MQTT\n\n    // Obter a data atual no formato que o MySQL aceita: 'YYYY-MM-DD HH:MM:SS'\n    var now = new Date();\n    var timestamp = now.getFullYear() + '-' +\n        ('0' + (now.getMonth() + 1)).slice(-2) + '-' +\n        ('0' + now.getDate()).slice(-2) + ' ' +\n        ('0' + now.getHours()).slice(-2) + ':' +\n        ('0' + now.getMinutes()).slice(-2) + ':' +\n        ('0' + now.getSeconds()).slice(-2);\n\n    // Montar a query para inserir no histórico\n    msg.topic = `INSERT INTO HistoricoSensor (ID_Sensor, ValorColetado, DataHora) VALUES (${idSensor}, '${valorColetado}', '${timestamp}');`;\n    return msg;\n} else {\n    node.error('Nenhum sensor encontrado para o ID de ValorSensor: ' + msg.sensorID);\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3160,
+        "y": 840,
+        "wires": [
+            [
+                "3141c96d26558b3f",
+                "0a7721de43a60ce3"
+            ]
+        ]
+    },
+    {
+        "id": "3141c96d26558b3f",
+        "type": "mysql",
+        "z": "ba85fe949960916b",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "Conexão MySQL - Armazenar Histórico",
+        "x": 3440,
+        "y": 720,
+        "wires": [
+            [
+                "ad542b3bdf19430e"
+            ]
+        ]
+    },
+    {
+        "id": "ad542b3bdf19430e",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "Operação concluída",
+        "active": true,
+        "tosidebar": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 3760,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "200afd51e3468cd7",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2350,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "2ef0e2ed39bae378",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2670,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "d472f2bf916f60f4",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3150,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "0a7721de43a60ce3",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3470,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "11debc1595a22375",
+        "type": "function",
+        "z": "ba85fe949960916b",
+        "name": "Assinar Tópicos MQTT",
+        "func": "var sensors = msg.payload;\nfor (var i = 0; i < sensors.length; i++) {\n    var sensor = sensors[i];\n    node.send({\n        topic: sensor.Topico,\n        sensorID: sensor.Sensor_ID,\n        valorSensorID: sensor.ValorSensor_ID,\n        action: \"unsubscribe\",\n    });\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 600,
+        "wires": [
+            [
+                "4cbfad550e67f493",
+                "22717aad5e6ca5c2"
+            ]
+        ]
+    },
+    {
+        "id": "633c74f403d0ba71",
+        "type": "delay",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1580,
+        "y": 600,
+        "wires": [
+            [
+                "11debc1595a22375"
+            ]
+        ]
+    },
+    {
+        "id": "22717aad5e6ca5c2",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2050,
+        "y": 600,
         "wires": []
     }
 ]
