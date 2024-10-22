@@ -57,7 +57,7 @@
           </button>
         </div>
         <div v-if="filteredSensorHistory.length > 0">
-          <canvas id="sensorChart" class="chart-canvas" height="500"></canvas>
+          <canvas id="sensorChart" class="chart-canvas" height="500px"></canvas>
         </div>
         <div v-else>
           <p class="text-center">
@@ -101,10 +101,8 @@ module.exports = {
         .get("/rs2lab/areadeagricultura")
         .then((response) => {
           this.areas = response.data;
-          // console.log("Áreas carregadas:", this.areas);
         })
         .catch((error) => {
-          // console.error("Erro ao buscar áreas de agricultura:", error);
           this.showNotification(
             "Erro ao buscar áreas de agricultura. Tente novamente mais tarde.",
             "danger",
@@ -121,7 +119,6 @@ module.exports = {
           this.sensors = response.data.filter(
             (sensor) => sensor.area_ID === this.selectedAreaId
           );
-          // console.log("Sensores carregados:", this.sensors);
           if (this.sensors.length === 0) {
             this.showNotification(
               "Nenhum sensor encontrado para a área selecionada.",
@@ -131,7 +128,6 @@ module.exports = {
           }
         })
         .catch((error) => {
-          // console.error("Erro ao buscar sensores:", error);
           this.showNotification(
             "Erro ao buscar sensores. Tente novamente mais tarde.",
             "danger",
@@ -139,14 +135,14 @@ module.exports = {
           );
         });
     },
+
     fetchSensorHistory() {
       if (!this.selectedSensorId) return;
       axios
         .get(`/rs2lab/historicosensor/${this.selectedSensorId}`)
         .then((response) => {
           this.sensorHistory = response.data;
-          // console.log("Histórico de sensores carregados:", this.sensorHistory);
-          this.filteredSensorHistory = [...this.sensorHistory]; // Inicialmente, todos os dados
+          this.filteredSensorHistory = [...this.sensorHistory];
 
           if (this.filteredSensorHistory.length === 0) {
             this.showNotification(
@@ -161,7 +157,6 @@ module.exports = {
           });
         })
         .catch((error) => {
-          // console.error("Erro ao buscar histórico do sensor:", error);
           this.showNotification(
             "Erro ao buscar histórico do sensor. Tente novamente mais tarde.",
             "danger",
@@ -171,10 +166,8 @@ module.exports = {
     },
 
     applyDateFilter() {
+      // Verificar se as datas de início e fim estão preenchidas
       if (!this.startDate || !this.endDate) {
-        // console.error(
-        //   "As datas de início e fim são obrigatórias para o filtro."
-        // );
         this.showNotification(
           "As datas de início e fim são obrigatórias para o filtro.",
           "warning",
@@ -183,24 +176,21 @@ module.exports = {
         return;
       }
 
-      // console.log("Datas de filtro:", this.startDate, this.endDate);
+      // Ajustar a data de início para o início do dia
+      const adjustedStartDate = new Date(this.startDate);
+      adjustedStartDate.setHours(0, 0, 0, 0); // 00:00:00.000
 
-      // Ajusta a data de fim para incluir todo o dia
+      // Ajustar a data final para o final do dia
       const adjustedEndDate = new Date(this.endDate);
-      adjustedEndDate.setHours(23, 59, 59, 999); // Define para o final do dia
-      // console.log("Data de fim ajustada:", adjustedEndDate);
+      adjustedEndDate.setHours(23, 59, 59, 999); // 23:59:59.999
 
-      // Filtrar o histórico de sensores com base nas datas
+      // Filtrar o histórico do sensor com base nas datas fornecidas
       this.filteredSensorHistory = this.sensorHistory.filter((entry) => {
-        const entryDate = new Date(entry.DataHora);
-        // console.log("Data do registro:", entryDate);
-        return (
-          entryDate >= new Date(this.startDate) && entryDate <= adjustedEndDate
-        );
+        const entryDate = new Date(entry.DataHora); // Certifique-se de que está em UTC
+        return entryDate >= adjustedStartDate && entryDate <= adjustedEndDate;
       });
 
-      // Renderizar o gráfico após aplicar o filtro
-      // console.log("Histórico filtrado:", this.filteredSensorHistory);
+      // Renderizar o gráfico ou mostrar uma notificação se não houver dados
       if (this.filteredSensorHistory.length > 0) {
         this.renderChart();
       } else {
@@ -209,29 +199,22 @@ module.exports = {
           "danger",
           "Erro"
         );
-        // console.error("Não há dados disponíveis para o gráfico após o filtro.");
       }
     },
-
     renderChart() {
-      // Verifica se o canvas existe
       const ctx = document.getElementById("sensorChart");
-      if (!ctx) {
-        // console.error("Elemento canvas não encontrado.");
-        return;
-      }
+      if (!ctx) return;
 
       const context = ctx.getContext("2d");
 
-      // Se o gráfico já existir, destruí-lo antes de criar um novo
+      // Destruir a instância anterior do gráfico se existir
       if (this.chartInstance) {
         this.chartInstance.destroy();
       }
 
-      // Obter o nome do sensor usando o ID do sensor (presumindo que o ID está presente nas entradas)
-      const sensorId = this.selectedSensorId; // O ID do sensor selecionado
-      const sensor = this.sensors.find((s) => s.ID === sensorId); // Ajuste conforme o seu modelo
-      const sensorName = sensor ? sensor.Nome : "Sensor Desconhecido"; // Obter nome ou usar um padrão
+      const sensorId = this.selectedSensorId;
+      const sensor = this.sensors.find((s) => s.ID === sensorId);
+      const sensorName = sensor ? sensor.Nome : "Sensor Desconhecido";
 
       const labels = this.filteredSensorHistory.map((entry) =>
         new Date(entry.DataHora).toLocaleString()
@@ -244,58 +227,37 @@ module.exports = {
         labels: labels,
         datasets: [
           {
-            label: `Valor Coletado do Sensor: ${sensorName}`, // Inclui o nome do sensor
-            backgroundColor: "rgba(66, 165, 245, 0.5)",
-            borderColor: "rgba(66, 165, 245, 1)",
+            label: `Valor Coletado do Sensor: ${sensorName}`,
+            backgroundColor: "rgba(66, 134, 244, 0.2)",
+            borderColor: "rgba(66, 134, 244, 1)",
+            borderWidth: 1,
             data: data,
-            fill: false,
           },
         ],
       };
 
-      // Criar novo gráfico
       this.chartInstance = new Chart(context, {
-        type: "line",
+        type: "line", // Ou o tipo de gráfico que você estiver utilizando
         data: chartData,
         options: {
           responsive: true,
-          maintainAspectRatio: true, // Mantenha a proporção do gráfico
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: "Data/Hora",
-              },
-            },
-            y: {
-              title: {
-                display: true,
-                text: "Valor Coletado",
-              },
-            },
-          },
+          maintainAspectRatio: false, // Permite que o gráfico utilize a altura definida no CSS
         },
       });
-    },
 
-    showNotification(message, variant, title) {
-      this.$bvToast.toast(message, {
-        title: title,
-        variant: variant, // Pode ser 'success', 'info', 'warning', 'danger', etc.
-        autoHideDelay: 5000, // Tempo em milissegundos para ocultar automaticamente
-        appendToast: true, // Adiciona ao final da lista de notificações
-      });
+      // Forçar o redimensionamento do gráfico
+      this.chartInstance.resize();
     },
   },
   mounted() {
-    this.fetchAreas();
+    this.fetchAreas(); // Carregar áreas ao montar o componente
   },
 };
 </script>
 
 <style scoped>
 .chart-canvas {
-  height: 500px; /* Ajuste a altura conforme necessário */
-  width: 100%; /* Largura flexível */
+  width: 100%; /* Faz o gráfico ocupar 100% da largura do contêiner */
+  height: 500px; /* Defina uma altura fixa adequada */
 }
 </style>
