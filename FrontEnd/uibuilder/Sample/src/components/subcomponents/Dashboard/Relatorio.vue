@@ -230,8 +230,8 @@ module.exports = {
 
       // Obter o nome do sensor usando o ID do sensor (presumindo que o ID está presente nas entradas)
       const sensorId = this.selectedSensorId; // O ID do sensor selecionado
-      const sensor = this.sensors.find((s) => s.id === sensorId); // Ajuste conforme o seu modelo
-      const sensorName = sensor ? sensor.name : "Sensor Desconhecido"; // Obter nome ou usar um padrão
+      const sensor = this.sensors.find((s) => s.ID === sensorId); // Ajuste conforme o seu modelo
+      const sensorName = sensor ? sensor.Nome : "Sensor Desconhecido"; // Obter nome ou usar um padrão
 
       const labels = this.filteredSensorHistory.map((entry) =>
         new Date(entry.DataHora).toLocaleString()
