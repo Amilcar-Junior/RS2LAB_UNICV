@@ -336,6 +336,13 @@ module.exports = {
         console.error("Gráfico não encontrado para o sensor:", sensor.ID);
       }
     },
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
+    },
   },
 };
 </script>

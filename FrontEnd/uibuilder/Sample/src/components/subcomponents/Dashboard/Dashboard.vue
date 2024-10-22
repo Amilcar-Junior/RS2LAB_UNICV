@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
+        <!-- <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -64,8 +64,8 @@
               </tr>
             </tbody>
           </table>
-        </div>
-        <div class="d-flex justify-content-center">
+        </div> -->
+        <!-- <div class="d-flex justify-content-center">
           <b-pagination
             v-if="filteredSensors.length > perPage"
             v-model="currentPage"
@@ -74,7 +74,7 @@
             aria-controls="my-table"
             class="custom-pagination"
           ></b-pagination>
-        </div>
+        </div> -->
         <div class="row mt-3">
           <div
             v-for="sensor in filteredSensors"

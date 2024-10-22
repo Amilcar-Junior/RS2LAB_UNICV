@@ -71,6 +71,9 @@
           <b-dropdown-item href="#" to="/dashboard">
             <i class="fa fa-tachometer" aria-hidden="true"></i> DashBoard
           </b-dropdown-item>
+          <b-dropdown-item href="#" to="/relatorio">
+            <i class="fa fa-chart" aria-hidden="true"></i> Relatorio
+          </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 

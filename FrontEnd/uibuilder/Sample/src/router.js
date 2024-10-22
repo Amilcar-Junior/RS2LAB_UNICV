@@ -38,6 +38,7 @@ const EditValorSensor = httpVueLoader('./components/subcomponents/ValorSensor/Ed
 
 const Map = httpVueLoader('./components/subcomponents/Dashboard/Map.vue');
 const Dashboard = httpVueLoader('./components/subcomponents/Dashboard/Dashboard.vue');
+const Relatorio = httpVueLoader('./components/subcomponents/Dashboard/Relatorio.vue');
 
 
 export default {
@@ -72,6 +73,11 @@ export default {
             path: '/map',
             name: 'Map',
             component: Map,
+        },
+        {
+            path: '/relatorio',
+            name: 'Relatorio',
+            component: Relatorio,
         },
         {
             path:'/tipoutilizador',
