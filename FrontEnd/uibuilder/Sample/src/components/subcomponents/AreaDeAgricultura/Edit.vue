@@ -45,7 +45,7 @@
               </option>
             </select>
           </div>
-          <div id="editMap" style="height: 300px"></div>
+          <div id="editMap" style="height: 500px"></div>
         </div>
         <div class="mb-3">
           <button
@@ -63,7 +63,7 @@
 
 <style>
 #editMap {
-  height: 300px; /* Ensure the height is defined */
+  height: 500px; /* Ensure the height is defined */
   width: 100%; /* Optionally set the width if necessary */
 }
 </style>

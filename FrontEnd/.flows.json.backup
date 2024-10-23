@@ -845,6 +845,74 @@
         "h": 342
     },
     {
+        "id": "079dd86e44d9d48f",
+        "type": "group",
+        "z": "ba85fe949960916b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f083bf6e5c9c0476",
+            "e462ffa72b462a7b",
+            "f65a05221f1c993f",
+            "7e91648685fc02b1",
+            "4cbfad550e67f493",
+            "0f2092944fa32aa3",
+            "b8d018092f744d92",
+            "bbe1399ca7cd4452",
+            "4225910ac985617e",
+            "974392b3ae16a155",
+            "71fbdb44733a5971",
+            "3b43a45864c2909b",
+            "93534a75266875b7",
+            "835e58686d07c9e5",
+            "3141c96d26558b3f",
+            "ad542b3bdf19430e",
+            "200afd51e3468cd7",
+            "2ef0e2ed39bae378",
+            "d472f2bf916f60f4",
+            "0a7721de43a60ce3",
+            "11debc1595a22375",
+            "633c74f403d0ba71",
+            "22717aad5e6ca5c2",
+            "45b3be9807b3ae07",
+            "4b0c5d9f97750fb4",
+            "41644bbcf6f111d8",
+            "4709ec3351eedbe8",
+            "f6e867dae6d2418d",
+            "6705cd1758c2d954",
+            "f7513d1a70de2cc9",
+            "ee361bb04c921bd1",
+            "d959fcb3e48111fa",
+            "498a1e17a7427b22",
+            "2c3853202266b2f8",
+            "451aea8d4ceff0b1",
+            "fbed322ac18760b6",
+            "ef0d67bf4705abf8",
+            "797c732b6e48a181",
+            "15d87ab8eedc07d9",
+            "1e67346edd0db164",
+            "fc8e1e768684b863",
+            "c4fbd9f10558dfdd",
+            "3ad6f8d01d06af80",
+            "72a2ce5cafd9c8a9",
+            "e4a39f53fae10346",
+            "26606f3b1b9bccfd",
+            "5085affc0c1a54c1",
+            "5cee7b232110548f"
+        ],
+        "x": 884,
+        "y": 539,
+        "w": 1722,
+        "h": 1182
+    },
+    {
         "id": "f3e8c660cf5205b5",
         "type": "MySQLdatabase",
         "name": "rs2lab",
@@ -13654,8 +13722,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 1080,
-        "y": 1000,
+        "x": 1040,
+        "y": 400,
         "wires": [
             [
                 "2fb73bd4857254cb"
@@ -13675,8 +13743,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1360,
-        "y": 1000,
+        "x": 1320,
+        "y": 400,
         "wires": []
     },
     {
@@ -13692,8 +13760,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 1070,
-        "y": 1080,
+        "x": 1030,
+        "y": 480,
         "wires": [
             [
                 "cc2bb1cd24a4cd23"
@@ -13713,14 +13781,15 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1360,
-        "y": 1080,
+        "x": 1320,
+        "y": 480,
         "wires": []
     },
     {
         "id": "f083bf6e5c9c0476",
         "type": "inject",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Coletar a cada 5 minutos",
         "props": [],
         "repeat": "300",
@@ -13728,8 +13797,8 @@
         "once": true,
         "onceDelay": "",
         "topic": "",
-        "x": 1010,
-        "y": 720,
+        "x": 1050,
+        "y": 760,
         "wires": [
             [
                 "e462ffa72b462a7b"
@@ -13740,6 +13809,7 @@
         "id": "e462ffa72b462a7b",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Buscar Sensores e Tópicos",
         "func": "msg.topic = `SELECT s.ID as Sensor_ID, v.ID as ValorSensor_ID, v.Topico \nFROM Sensor s \nJOIN ValorSensor v ON s.ID_ValorSensor = v.ID\nWHERE v.is_activatable = FALSE;`;\nreturn msg;",
         "outputs": 1,
@@ -13748,8 +13818,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1240,
-        "y": 820,
+        "x": 1280,
+        "y": 860,
         "wires": [
             [
                 "f65a05221f1c993f",
@@ -13761,10 +13831,11 @@
         "id": "f65a05221f1c993f",
         "type": "mysql",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "Conexão MySQL",
-        "x": 1480,
-        "y": 720,
+        "x": 1520,
+        "y": 760,
         "wires": [
             [
                 "7e91648685fc02b1",
@@ -13777,6 +13848,7 @@
         "id": "7e91648685fc02b1",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Assinar Tópicos MQTT",
         "func": "var sensors = msg.payload;\nfor (var i = 0; i < sensors.length; i++) {\n    var sensor = sensors[i];\n    node.send({\n        topic: sensor.Topico,\n        sensorID: sensor.Sensor_ID,\n        valorSensorID: sensor.ValorSensor_ID,\n        action: \"subscribe\",\n    });\n}\nreturn null;",
         "outputs": 1,
@@ -13785,8 +13857,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1680,
-        "y": 820,
+        "x": 1720,
+        "y": 860,
         "wires": [
             [
                 "b8d018092f744d92",
@@ -13798,6 +13870,7 @@
         "id": "4cbfad550e67f493",
         "type": "mqtt in",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Receber Valores dos Sensores",
         "topic": "",
         "qos": "0",
@@ -13806,8 +13879,8 @@
         "nl": false,
         "rap": false,
         "inputs": 1,
-        "x": 1910,
-        "y": 720,
+        "x": 1950,
+        "y": 760,
         "wires": [
             [
                 "bbe1399ca7cd4452",
@@ -13819,6 +13892,25 @@
         "id": "0f2092944fa32aa3",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1710,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "b8d018092f744d92",
+        "type": "debug",
+        "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -13828,31 +13920,15 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1670,
-        "y": 720,
-        "wires": []
-    },
-    {
-        "id": "b8d018092f744d92",
-        "type": "debug",
-        "z": "ba85fe949960916b",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1890,
-        "y": 820,
+        "x": 1930,
+        "y": 860,
         "wires": []
     },
     {
         "id": "bbe1399ca7cd4452",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -13862,16 +13938,17 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2150,
-        "y": 720,
+        "x": 2190,
+        "y": 760,
         "wires": []
     },
     {
         "id": "4225910ac985617e",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -13879,14 +13956,15 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1470,
-        "y": 820,
+        "x": 1510,
+        "y": 860,
         "wires": []
     },
     {
         "id": "974392b3ae16a155",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Buscar ID do ValorSensor",
         "func": "var topico = msg.topic;\nvar valor = msg.payload;\nmsg.topic = `SELECT ID FROM ValorSensor WHERE Topico = '${topico}' LIMIT 1;`;\nmsg.valor = valor\nreturn msg;",
         "outputs": 1,
@@ -13895,8 +13973,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2130,
-        "y": 820,
+        "x": 2170,
+        "y": 860,
         "wires": [
             [
                 "200afd51e3468cd7",
@@ -13908,10 +13986,11 @@
         "id": "71fbdb44733a5971",
         "type": "mysql",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "Conexão MySQL - Buscar ValorSensor",
-        "x": 2410,
-        "y": 720,
+        "x": 1110,
+        "y": 1000,
         "wires": [
             [
                 "3b43a45864c2909b",
@@ -13923,6 +14002,7 @@
         "id": "3b43a45864c2909b",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Buscar Sensor pelo ValorSensor",
         "func": "if (msg.payload.length > 0) {\n    var idValorSensor = msg.payload[0].ID;\n    msg.ID_Topico = idValorSensor; // Armazenar o ID do ValorSensor\n    msg.topic = `SELECT ID FROM Sensor WHERE ID_ValorSensor = ${idValorSensor} OR ID_ValorSensor_Principal = ${idValorSensor} LIMIT 1;`;\n    return msg;\n} else {\n    node.error('Nenhum ID de ValorSensor encontrado para o tópico: ' + msg.topic);\n}\n",
         "outputs": 1,
@@ -13931,8 +14011,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2650,
-        "y": 820,
+        "x": 1350,
+        "y": 1100,
         "wires": [
             [
                 "93534a75266875b7"
@@ -13943,10 +14023,11 @@
         "id": "93534a75266875b7",
         "type": "mysql",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "Conexão MySQL - Buscar Sensor",
-        "x": 2920,
-        "y": 720,
+        "x": 1620,
+        "y": 1000,
         "wires": [
             [
                 "835e58686d07c9e5",
@@ -13958,6 +14039,7 @@
         "id": "835e58686d07c9e5",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Armazenar dados no Histórico do Sensor",
         "func": "if (msg.payload.length > 0) {\n    var idSensor = msg.payload[0].ID; // ID do Sensor\n    var valorColetado = msg.valor; // Valor coletado do MQTT\n    // Verificar se o valor coletado é um número válido\n    if (isNaN(valorColetado) || valorColetado === null) {\n        valorColetado = 0; // Definir como 0 se não for um número\n    }\n\n    // Obter a data atual no formato que o MySQL aceita: 'YYYY-MM-DD HH:MM:SS'\n    var now = new Date();\n    var timestamp = now.getFullYear() + '-' +\n        ('0' + (now.getMonth() + 1)).slice(-2) + '-' +\n        ('0' + now.getDate()).slice(-2) + ' ' +\n        ('0' + now.getHours()).slice(-2) + ':' +\n        ('0' + now.getMinutes()).slice(-2) + ':' +\n        ('0' + now.getSeconds()).slice(-2);\n\n    // Montar a query para inserir no histórico\n    msg.topic = `INSERT INTO HistoricoSensor (ID_Sensor, ValorColetado, DataHora) VALUES (${idSensor}, '${valorColetado}', '${timestamp}');`;\n    return msg;\n} else {\n    node.error('Nenhum sensor encontrado para o ID de ValorSensor: ' + msg.sensorID);\n}\n",
         "outputs": 1,
@@ -13966,8 +14048,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3160,
-        "y": 840,
+        "x": 1860,
+        "y": 1120,
         "wires": [
             [
                 "3141c96d26558b3f",
@@ -13979,10 +14061,11 @@
         "id": "3141c96d26558b3f",
         "type": "mysql",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "Conexão MySQL - Armazenar Histórico",
-        "x": 3440,
-        "y": 720,
+        "x": 2140,
+        "y": 1000,
         "wires": [
             [
                 "ad542b3bdf19430e"
@@ -13993,20 +14076,22 @@
         "id": "ad542b3bdf19430e",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Operação concluída",
         "active": true,
         "tosidebar": true,
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 3760,
-        "y": 720,
+        "x": 2460,
+        "y": 1000,
         "wires": []
     },
     {
         "id": "200afd51e3468cd7",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -14016,16 +14101,17 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2350,
-        "y": 820,
+        "x": 2430,
+        "y": 860,
         "wires": []
     },
     {
         "id": "2ef0e2ed39bae378",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -14033,16 +14119,17 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2670,
-        "y": 720,
+        "x": 1370,
+        "y": 1000,
         "wires": []
     },
     {
         "id": "d472f2bf916f60f4",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -14050,14 +14137,15 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3150,
-        "y": 720,
+        "x": 1850,
+        "y": 1000,
         "wires": []
     },
     {
         "id": "0a7721de43a60ce3",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -14067,14 +14155,15 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3470,
-        "y": 840,
+        "x": 2170,
+        "y": 1120,
         "wires": []
     },
     {
         "id": "11debc1595a22375",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Assinar Tópicos MQTT",
         "func": "var sensors = msg.payload;\nfor (var i = 0; i < sensors.length; i++) {\n    var sensor = sensors[i];\n    node.send({\n        topic: sensor.Topico,\n        sensorID: sensor.Sensor_ID,\n        valorSensorID: sensor.ValorSensor_ID,\n        action: \"unsubscribe\",\n    });\n}\nreturn null;",
         "outputs": 1,
@@ -14083,8 +14172,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1800,
-        "y": 600,
+        "x": 1840,
+        "y": 640,
         "wires": [
             [
                 "4cbfad550e67f493",
@@ -14096,6 +14185,7 @@
         "id": "633c74f403d0ba71",
         "type": "delay",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "pauseType": "delay",
         "timeout": "5",
@@ -14109,8 +14199,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1580,
-        "y": 600,
+        "x": 1620,
+        "y": 640,
         "wires": [
             [
                 "11debc1595a22375"
@@ -14121,8 +14211,9 @@
         "id": "22717aad5e6ca5c2",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -14130,14 +14221,15 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2050,
-        "y": 600,
+        "x": 2090,
+        "y": 640,
         "wires": []
     },
     {
         "id": "45b3be9807b3ae07",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "QUERY",
         "func": "msg.topic = `\nSELECT \n    hs.ID AS HistoricoSensor_ID, \n    hs.ID_Sensor, \n    hs.ValorColetado, \n    hs.DataHora, \n    s.Nome AS Sensor_Nome\nFROM \n    HistoricoSensor hs\nJOIN \n    Sensor s ON hs.ID_Sensor = s.ID;\n`;\nreturn msg;\n\n",
         "outputs": 1,
@@ -14146,8 +14238,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1800,
-        "y": 1020,
+        "x": 1640,
+        "y": 1340,
         "wires": [
             [
                 "2c3853202266b2f8"
@@ -14158,6 +14250,7 @@
         "id": "4b0c5d9f97750fb4",
         "type": "inject",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "props": [],
         "repeat": "",
@@ -14165,8 +14258,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1670,
-        "y": 1020,
+        "x": 1510,
+        "y": 1340,
         "wires": [
             [
                 "45b3be9807b3ae07"
@@ -14177,6 +14270,7 @@
         "id": "41644bbcf6f111d8",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Result",
         "active": true,
         "tosidebar": true,
@@ -14186,14 +14280,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2090,
-        "y": 1020,
+        "x": 1930,
+        "y": 1340,
         "wires": []
     },
     {
         "id": "4709ec3351eedbe8",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "QUERY",
         "func": "msg.topic = `\nSELECT \n    hs.ID AS HistoricoSensor_ID, \n    hs.ID_Sensor, \n    hs.ValorColetado, \n    hs.DataHora, \n    s.Nome AS Sensor_Nome\nFROM \n    HistoricoSensor hs\nJOIN \n    Sensor s ON hs.ID_Sensor = s.ID;\n`;\nreturn msg;\n",
         "outputs": 1,
@@ -14202,8 +14297,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1880,
-        "y": 1080,
+        "x": 1720,
+        "y": 1400,
         "wires": [
             [
                 "451aea8d4ceff0b1"
@@ -14214,6 +14309,7 @@
         "id": "f6e867dae6d2418d",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Result",
         "active": false,
         "tosidebar": true,
@@ -14223,25 +14319,27 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2170,
-        "y": 1080,
+        "x": 2010,
+        "y": 1400,
         "wires": []
     },
     {
         "id": "6705cd1758c2d954",
         "type": "http response",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2170,
-        "y": 1120,
+        "x": 2010,
+        "y": 1440,
         "wires": []
     },
     {
         "id": "f7513d1a70de2cc9",
         "type": "http request",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "request",
         "method": "GET",
         "ret": "txt",
@@ -14254,8 +14352,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1800,
-        "y": 1140,
+        "x": 1640,
+        "y": 1460,
         "wires": [
             [
                 "ee361bb04c921bd1"
@@ -14266,6 +14364,7 @@
         "id": "ee361bb04c921bd1",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -14275,14 +14374,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1950,
-        "y": 1140,
+        "x": 1790,
+        "y": 1460,
         "wires": []
     },
     {
         "id": "d959fcb3e48111fa",
         "type": "inject",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Inject",
         "props": [
             {
@@ -14296,8 +14396,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1670,
-        "y": 1140,
+        "x": 1510,
+        "y": 1460,
         "wires": [
             [
                 "f7513d1a70de2cc9"
@@ -14308,13 +14408,14 @@
         "id": "498a1e17a7427b22",
         "type": "http in",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Get Historico de Sensor",
         "url": "/rs2lab/historicosensor",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1690,
-        "y": 1080,
+        "x": 1530,
+        "y": 1400,
         "wires": [
             [
                 "4709ec3351eedbe8"
@@ -14325,10 +14426,11 @@
         "id": "2c3853202266b2f8",
         "type": "mysql",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1930,
-        "y": 1020,
+        "x": 1770,
+        "y": 1340,
         "wires": [
             [
                 "41644bbcf6f111d8"
@@ -14339,10 +14441,11 @@
         "id": "451aea8d4ceff0b1",
         "type": "mysql",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 2010,
-        "y": 1080,
+        "x": 1850,
+        "y": 1400,
         "wires": [
             [
                 "f6e867dae6d2418d",
@@ -14354,16 +14457,18 @@
         "id": "fbed322ac18760b6",
         "type": "comment",
         "z": "ba85fe949960916b",
-        "name": "START TIPOUTILIZADOR",
+        "g": "079dd86e44d9d48f",
+        "name": "START HISTORICOSENSOR",
         "info": "",
-        "x": 1870,
-        "y": 920,
+        "x": 1680,
+        "y": 580,
         "wires": []
     },
     {
         "id": "ef0d67bf4705abf8",
         "type": "function",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "QUERY",
         "func": "msg.topic = `\nSELECT \n    hs.ID AS HistoricoSensor_ID, \n    hs.ID_Sensor, \n    hs.ValorColetado, \n    hs.DataHora, \n    s.Nome AS Sensor_Nome\nFROM \n    HistoricoSensor hs\nJOIN \n    Sensor s ON hs.ID_Sensor = s.ID\nWHERE \n    hs.ID_Sensor = ${msg.req.params.ID_Sensor};\n`;\nreturn msg;\n",
         "outputs": 1,
@@ -14372,8 +14477,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1840,
-        "y": 1300,
+        "x": 1680,
+        "y": 1620,
         "wires": [
             [
                 "3ad6f8d01d06af80",
@@ -14385,17 +14490,19 @@
         "id": "797c732b6e48a181",
         "type": "http response",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2150,
-        "y": 1300,
+        "x": 1990,
+        "y": 1620,
         "wires": []
     },
     {
         "id": "15d87ab8eedc07d9",
         "type": "http request",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "request",
         "method": "GET",
         "ret": "obj",
@@ -14408,8 +14515,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1800,
-        "y": 1360,
+        "x": 1640,
+        "y": 1680,
         "wires": [
             [
                 "1e67346edd0db164"
@@ -14420,6 +14527,7 @@
         "id": "1e67346edd0db164",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -14429,14 +14537,15 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1950,
-        "y": 1360,
+        "x": 1790,
+        "y": 1680,
         "wires": []
     },
     {
         "id": "fc8e1e768684b863",
         "type": "inject",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Inject",
         "props": [
             {
@@ -14450,8 +14559,8 @@
         "topic": "",
         "payload": "{\"ID_Sensor\":35}",
         "payloadType": "json",
-        "x": 1630,
-        "y": 1360,
+        "x": 1470,
+        "y": 1680,
         "wires": [
             [
                 "15d87ab8eedc07d9"
@@ -14462,13 +14571,14 @@
         "id": "c4fbd9f10558dfdd",
         "type": "http in",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Get Historico Sensor ID",
         "url": "/rs2lab/historicosensor/:ID_Sensor",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1660,
-        "y": 1300,
+        "x": 1500,
+        "y": 1620,
         "wires": [
             [
                 "ef0d67bf4705abf8",
@@ -14480,10 +14590,11 @@
         "id": "3ad6f8d01d06af80",
         "type": "mysql",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1990,
-        "y": 1300,
+        "x": 1830,
+        "y": 1620,
         "wires": [
             [
                 "797c732b6e48a181",
@@ -14495,6 +14606,7 @@
         "id": "72a2ce5cafd9c8a9",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "Result",
         "active": true,
         "tosidebar": true,
@@ -14504,14 +14616,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2170,
-        "y": 1260,
+        "x": 2010,
+        "y": 1580,
         "wires": []
     },
     {
         "id": "e4a39f53fae10346",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -14521,14 +14634,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2000,
-        "y": 1260,
+        "x": 1840,
+        "y": 1580,
         "wires": []
     },
     {
         "id": "26606f3b1b9bccfd",
         "type": "debug",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -14538,28 +14652,30 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1810,
-        "y": 1240,
+        "x": 1650,
+        "y": 1560,
         "wires": []
     },
     {
         "id": "5085affc0c1a54c1",
         "type": "comment",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "GET ALL",
         "info": "",
-        "x": 1860,
-        "y": 960,
+        "x": 1700,
+        "y": 1280,
         "wires": []
     },
     {
         "id": "5cee7b232110548f",
         "type": "comment",
         "z": "ba85fe949960916b",
+        "g": "079dd86e44d9d48f",
         "name": "GET Historico do Sensor by ID",
         "info": "",
-        "x": 1890,
-        "y": 1200,
+        "x": 1730,
+        "y": 1520,
         "wires": []
     }
 ]

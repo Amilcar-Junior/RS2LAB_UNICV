@@ -86,4 +86,13 @@ CREATE TABLE IF NOT EXISTS Sensor (
     FOREIGN KEY (ID_ValorSensor_Principal) REFERENCES ValorSensor(ID)
 );
 
+-- Tabela HistoricoSensor
+CREATE TABLE IF NOT EXISTS  HistoricoSensor (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Sensor INT NOT NULL,
+    ValorColetado DECIMAL(10, 2) NOT NULL,
+    DataHora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ID_Sensor) REFERENCES Sensor(ID)
+);
+
 -- Criando todas as tabelas necessárias

@@ -65,6 +65,7 @@ module.exports = {
     this.$nextTick(() => {
       setTimeout(() => {
         this.initMap();
+        this.updateMapLocation();
       }, 500);
     });
   },
@@ -154,16 +155,16 @@ module.exports = {
       this.model.item.lng = lng;
     },
     updateMapLocation() {
-      if (this.model.item.lat && this.model.item.lng) {
-        const latLng = [this.model.item.lat, this.model.item.lng];
-        if (this.marker) {
-          this.marker.setLatLng(latLng);
-        } else {
-          this.marker = L.marker(latLng).addTo(this.map);
-        }
-        this.map.setView(latLng, 13);
-      }
-    },
+  if (this.map && this.model.item.lat && this.model.item.lng) {
+    const latLng = [this.model.item.lat, this.model.item.lng];
+    if (this.marker) {
+      this.marker.setLatLng(latLng);
+    } else {
+      this.marker = L.marker(latLng).addTo(this.map);
+    }
+    this.map.setView(latLng, 13);
+  }
+},
     editLocal() {
       axios
         .put(`/rs2lab/editlocal/${this.model.item.ID}`, this.model.item)

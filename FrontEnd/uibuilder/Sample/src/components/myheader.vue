@@ -52,13 +52,13 @@
           "
         >
           <b-dropdown-item href="#" to="/areadeagricultura">
-            <i class="fa fa-leaf" aria-hidden="true"></i> Área de Agricultura
+            <i class="fa fa-leaf" aria-hidden="true"></i> Áreas de Agriculturas
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/sensor">
             <i class="fa fa-microchip" aria-hidden="true"></i> Sensores / Ativadores
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/topico">
-            <i class="fa fa-microchip" aria-hidden="true"></i> Tópicos de
+            <i class="fa fa-wifi" aria-hidden="true"></i> Tópicos de
             Sensores / Ativadores
           </b-dropdown-item>
         </b-nav-item-dropdown>
@@ -72,7 +72,7 @@
             <i class="fa fa-tachometer" aria-hidden="true"></i> DashBoard
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/relatorio">
-            <i class="fa fa-chart" aria-hidden="true"></i> Relatorio
+            <i class="fa fa-bar-chart-o" aria-hidden="true"></i> Relatório
           </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>

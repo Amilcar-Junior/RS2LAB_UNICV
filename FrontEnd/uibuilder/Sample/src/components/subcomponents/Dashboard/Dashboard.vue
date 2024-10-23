@@ -4,7 +4,7 @@
       <div
         class="card-header d-flex justify-content-between align-items-center"
       >
-        <h4>Sensores / Ativadores</h4>
+        <h4>Sensores / Atuadores</h4>
         <div>
           <select
             v-model="selectedAreaId"
