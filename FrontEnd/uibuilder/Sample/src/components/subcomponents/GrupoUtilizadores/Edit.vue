@@ -5,7 +5,7 @@
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Edit Grupo Utilizadores</h4>
+        <h4>Editar Grupo Utilizadores</h4>
       </div>
       <div class="card-body">
         <div class="mb-3">

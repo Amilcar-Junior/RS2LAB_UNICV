@@ -94,7 +94,7 @@ module.exports = {
         .then((resp) => {
           console.log(resp);
           this.showNotification(
-            "Topico atualizado com sucesso!",
+            "Tópico atualizado com sucesso!",
             "success",
             "Atualização"
           );
@@ -103,7 +103,7 @@ module.exports = {
         .catch((e) => {
           console.log(error);
           this.showNotification(
-            "Erro ao atualizar o Topico.",
+            "Erro ao atualizar o Tópico.",
             "danger",
             "Erro"
           );

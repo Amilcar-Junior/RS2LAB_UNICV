@@ -8,7 +8,7 @@
         <div
           class="card-header d-flex justify-content-between align-items-center"
         >
-          <h4>Topicos de Sensores / Atuadores</h4>
+          <h4>Tópicos de Sensores / Atuadores</h4>
           <div>
             <input
               type="text"
@@ -44,10 +44,10 @@
                     <input type="checkbox" @change="toggleSelectAll($event)" />
                   </th>
                   <th scope="col" class="col-1">ID</th>
-                  <th scope="col" class="col-4">Topico</th>
+                  <th scope="col" class="col-4">Tópico</th>
                   <th scope="col" class="col-1 text-center">Atuador</th>
-                  <th scope="col" class="col-1 text-center">Valor</th>
-                  <th scope="col" class="col-2">Data</th>
+                  <!-- <th scope="col" class="col-1 text-center">Valor</th>
+                  <th scope="col" class="col-2">Data</th> -->
                   <th
                     scope="col"
                     class="col-2 text-right"
@@ -78,8 +78,8 @@
                     ></b-icon-check>
                     <b-icon-x v-else variant="danger"></b-icon-x>
                   </td>
-                  <td class="text-center">{{ item.Valor }}</td>
-                  <td>{{ item.Data_Hora }}</td>
+                  <!-- <td class="text-center">{{ item.Valor }}</td>
+                  <td>{{ item.Data_Hora }}</td> -->
                   <td
                     class="text-right"
                     v-show="
@@ -174,7 +174,7 @@ module.exports = {
           this.items = response.data;
         })
         .catch((error) => {
-          console.error("Erro ao recuperar Topicos de Sensor / Atuador", error);
+          console.error("Erro ao recuperar Tópicos de Sensor / Atuador", error);
         });
     },
     toggleSelectAll(event) {

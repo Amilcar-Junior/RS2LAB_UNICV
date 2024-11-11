@@ -5,20 +5,20 @@
     </router-link>
     <div class="card">
       <div class="card-header">
-        <h4>Adicionar Topico do Sensor / Atuador</h4>
+        <h4>Adicionar Tópico do Sensor / Atuador</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="addvalorsensor">
           <div class="row align-items-center">
             <div class="col-md-8">
               <div class="mb-3">
-                <label for="Topico" class="form-label">Topico</label>
+                <label for="Topico" class="form-label">Tópico</label>
                 <input
                   type="text"
                   id="Topico"
                   v-model="model.item.Topico"
                   class="form-control"
-                  placeholder="Digite o Topico do Sensor / Atuador"
+                  placeholder="Digite o Tópico do Sensor / Atuador"
                   required
                 />
               </div>
@@ -74,7 +74,7 @@ module.exports = {
         .then((resp) => {
           console.log(resp);
           this.showNotification(
-            "Topico adicionado com sucesso!",
+            "Tópico adicionado com sucesso!",
             "success",
             "Sucesso"
           );

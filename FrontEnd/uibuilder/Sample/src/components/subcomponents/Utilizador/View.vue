@@ -47,7 +47,7 @@
                   <th scope="col" class="col-2">Nome</th>
                   <th scope="col" class="col-2">Email</th>
                   <th scope="col" class="col-1">Tipo</th>
-                  <th scope="col" class="col-2">Grupos</th>
+                  <th scope="col" class="col-1">Grupos</th>
                   <th scope="col" class="col-1">Ativo</th>
                   <th scope="col" class="col-1">Avatar</th>
                   <th
