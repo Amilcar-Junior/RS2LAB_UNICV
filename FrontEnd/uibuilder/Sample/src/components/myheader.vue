@@ -26,6 +26,16 @@
           </b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item-dropdown
+          text="Grupos de Utilizadores"
+          right
+          v-if="keys.TipoUtilizador_Nome === userTypes.GESTOR"
+        >
+          <b-dropdown-item href="#" to="/grupoutilizadores">
+            <i class="fa fa-users" aria-hidden="true"></i> Grupos de
+            Utilizadores
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-nav-item-dropdown
           text="Parametrização"
           right
           v-if="keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR"
@@ -38,7 +48,7 @@
             <i class="fa fa-location-arrow" aria-hidden="true"></i> Locais
           </b-dropdown-item>
           <b-dropdown-item href="#" to="/tiposensor">
-            <i class="fa fa-list" aria-hidden="true"></i> Tipos de Sensores / Ativadores
+            <i class="fa fa-list" aria-hidden="true"></i> Tipos de Sensores / Atuadores
           </b-dropdown-item>
           
         </b-nav-item-dropdown>
