@@ -160,5 +160,5 @@ const app = new Vue({
       });
     }
   },
-  router: new VueRouter(router),
+  router,
 });

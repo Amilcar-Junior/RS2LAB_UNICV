@@ -244,14 +244,15 @@ module.exports = {
         }
       );
 
-      const hybrid = L.tileLayer(
-        "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+      const satellite = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
         {
-          attribution: "© OpenTopoMap contributors",
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
         }
       );
 
-      const satellite = L.tileLayer(
+      const hybrid = L.tileLayer(
         "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
         {
           attribution: "Map data ©2023 Google",
@@ -262,21 +263,25 @@ module.exports = {
       const terrain = L.tileLayer(
         "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
         {
-          attribution: "©2023 Google",
+          attribution: "Map data ©2023 Google",
           subdomains: ["mt0", "mt1", "mt2", "mt3"],
         }
       );
+
+
+      // Definir as opções de camadas de base
+      this.baseMaps = {
+        Streets: streets,
+        Hybrid: hybrid,
+        Satelite: satellite,
+        Terrain: terrain,
+      };
 
       this.modalMap = L.map("modalMap", {
         layers: [streets],
       });
 
-      this.baseMaps = {
-        Streets: streets,
-        Satellite: satellite,
-        Hibrido: hybrid,
-        Terreno: terrain,
-      };
+      
 
       L.control.layers(this.baseMaps).addTo(this.modalMap);
 

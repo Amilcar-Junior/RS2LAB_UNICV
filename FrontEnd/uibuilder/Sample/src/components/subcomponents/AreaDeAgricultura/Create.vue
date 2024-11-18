@@ -128,14 +128,15 @@ module.exports = {
         }
       );
 
-      const hybrid = L.tileLayer(
-        "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+      const satellite = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
         {
-          attribution: "© OpenTopoMap contributors",
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
         }
       );
 
-      const satellite = L.tileLayer(
+      const hybrid = L.tileLayer(
         "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
         {
           attribution: "Map data ©2023 Google",
@@ -152,18 +153,18 @@ module.exports = {
       );
 
       // Inicializar o mapa com a camada padrão (streets)
-      this.map = L.map("map", {
+      this.editMap = L.map("editMap", {
         center: [0, 0],
-        zoom: 2,
+        zoom: 1,
         layers: [streets],
       });
 
       // Definir as opções de camadas de base
       this.baseMaps = {
         Streets: streets,
-        Satellite: satellite,
-        Hibrido: hybrid,
-        Terreno: terrain,
+        Hybrid: hybrid,
+        Satelite: satellite,
+        Terrain: terrain,
       };
 
       // Adicionar controle de camadas ao mapa

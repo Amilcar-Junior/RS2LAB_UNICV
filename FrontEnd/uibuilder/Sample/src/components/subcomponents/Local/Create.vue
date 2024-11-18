@@ -65,24 +65,45 @@ module.exports = {
   },
   methods: {
     initMap() {
-      // Definir diferentes tipos de camadas de mapa
-      const streets = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenStreetMap contributors",
-      });
+      const streets = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "© OpenStreetMap contributors",
+        }
+      );
 
-      const hybrid = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenTopoMap contributors",
-      });
+      const satellite = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const satellite = L.tileLayer("https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const hybrid = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
 
-      const terrain = L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
-        attribution: "Map data ©2023 Google",
-        subdomains: ["mt0", "mt1", "mt2", "mt3"]
-      });
+      const terrain = L.tileLayer(
+        "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+        {
+          attribution: "Map data ©2023 Google",
+          subdomains: ["mt0", "mt1", "mt2", "mt3"],
+        }
+      );
+
+
+      // Definir as opções de camadas de base
+      this.baseMaps = {
+        Streets: streets,
+        Hybrid: hybrid,
+        Satelite: satellite,
+        Terrain: terrain,
+      };
 
       // Inicializar o mapa com a camada padrão (streets)
       this.map = L.map("map", {
@@ -91,13 +112,7 @@ module.exports = {
         layers: [streets],
       });
 
-      // Definir as opções de camadas de base
-      this.baseMaps = {
-        "Streets": streets,
-        "Satellite": satellite,
-        "Híbrido": hybrid,
-        "Terreno": terrain,
-      };
+
 
       // Adicionar controle de camadas ao mapa
       L.control.layers(this.baseMaps).addTo(this.map);
