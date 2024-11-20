@@ -243,7 +243,7 @@ module.exports = {
         .get("/rs2lab/utilizador")
         .then((response) => {
           this.items = response.data;
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => {
           console.error("Erro ao recuperar utilizadores:", error);

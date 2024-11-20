@@ -200,10 +200,10 @@ module.exports = {
         .get("/rs2lab/areadeagricultura")
         .then((response) => {
           this.items = response.data;
-          console.log("Dados recuperados:", response);
+          // console.log("Dados recuperados:", response);
         })
         .catch((error) => {
-          console.error("Erro ao recuperar Área de Agricultura:", error);
+          // console.error("Erro ao recuperar Área de Agricultura:", error);
         });
     },
     retrieveSensores() {
@@ -229,22 +229,22 @@ module.exports = {
         });
     },
     createChart(sensor) {
-      console.log("Sensor:", sensor);
+      // console.log("Sensor:", sensor);
       if (!sensor.ID) {
-        console.error("ID do sensor não está definido:", sensor);
+        // console.error("ID do sensor não está definido:", sensor);
         return;
       }
 
       this.$nextTick(() => {
-        console.log("Refs:", this.$refs);
+        // console.log("Refs:", this.$refs);
         const canvasArray = this.$refs["chart-" + sensor.ID];
         if (canvasArray) {
-          console.log(
-            "CanvasArray encontrado para sensor ID",
-            sensor.ID,
-            ":",
-            canvasArray
-          );
+          // console.log(
+          //   "CanvasArray encontrado para sensor ID",
+          //   sensor.ID,
+          //   ":",
+          //   canvasArray
+          // );
         }
         if (canvasArray && canvasArray.length > 0) {
           const canvas = canvasArray[0]; // Assumindo que o primeiro elemento é o correto
@@ -313,7 +313,7 @@ module.exports = {
       );
 
       this.client.onConnectionLost = (responseObject) => {
-        console.log("Connection Lost: " + responseObject.errorMessage);
+        // console.log("Connection Lost: " + responseObject.errorMessage);
         // Reconnect
         this.reconnect();
       };
@@ -340,7 +340,7 @@ module.exports = {
           });
         },
         onFailure: (message) => {
-          console.log("Falha na conexão: " + message.errorMessage);
+          // console.log("Falha na conexão: " + message.errorMessage);
         },
         userName: "",
         password: "",
@@ -364,7 +364,7 @@ module.exports = {
               });
             },
             onFailure: (message) => {
-              console.log("Falha na reconexão: " + message.errorMessage);
+              // console.log("Falha na reconexão: " + message.errorMessage);
             },
           });
         }
@@ -407,7 +407,7 @@ module.exports = {
 
         // Enviando a mensagem para o broker MQTT
         this.client.send(message);
-        console.log("Mensagem enviada:", message);
+        // console.log("Mensagem enviada:", message);
 
         // Inscrevendo-se no tópico onde o valor será verificado (ValorSensor_Topico)
         this.client.subscribe(sensor.ValorSensor_Topico);

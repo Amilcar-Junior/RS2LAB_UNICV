@@ -59,7 +59,7 @@ const app = new Vue({
       // Store session identifier to local browser
       localStorage.setItem("token", sessionID);
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(localStorage);
+      // console.log(localStorage);
 
       // Notify index.js that a session is created
       uibuilder.send({

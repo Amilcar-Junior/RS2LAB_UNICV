@@ -200,7 +200,7 @@ module.exports = {
             axios
               .post("/rs2lab/addutilizador", this.model.item)
               .then((resp) => {
-                console.log(resp);
+                // console.log(resp);
                 // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
                 if (this.gruposSelecionados.length > 0) {
                   this.gruposSelecionados.forEach((grupoId) => {
@@ -273,9 +273,9 @@ module.exports = {
       axios
         .get("/rs2lab/grupoutilizadores")
         .then((resp) => {
-          console.log(resp);
+          // console.log(resp);
           this.gruposDisponiveis = resp.data;
-          console.log(this.gruposDisponiveis);
+          // console.log(this.gruposDisponiveis);
         })
         .catch((errors) => {
           console.error(errors);
@@ -290,9 +290,9 @@ module.exports = {
       axios
         .get("/rs2lab/tipoutilizador")
         .then((resp) => {
-          console.log(resp);
+          // console.log(resp);
           this.TipoUtilizador = resp.data;
-          console.log(this.TipoUtilizador);
+          // console.log(this.TipoUtilizador);
         })
         .catch((errors) => {
           console.error(errors);
@@ -324,7 +324,7 @@ module.exports = {
         reader.onload = (e) => {
           this.imagePreview = e.target.result;
           this.model.item.image = e.target.result.split(",")[1]; // Armazena a string codificada em base64 sem o prefixo
-          console.log("Imagem pré-visualizada e convertida para base64");
+          // console.log("Imagem pré-visualizada e convertida para base64");
         };
         reader.readAsDataURL(file);
         console.log("Arquivo selecionado para upload:", file);

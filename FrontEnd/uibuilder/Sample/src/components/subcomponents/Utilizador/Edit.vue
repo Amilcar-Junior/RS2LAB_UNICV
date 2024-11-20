@@ -226,7 +226,7 @@ module.exports = {
           this.deleteUtilizadorGrupo(this.model.ID, utilizadorGrupo.Grupo_ID);
         }
       });
-      console.log(this.gruposSelecionados);
+      // console.log(this.gruposSelecionados);
       // Verificar grupos adicionados
       this.gruposSelecionados.forEach((grupoId) => {
         if (
@@ -247,7 +247,7 @@ module.exports = {
       axios
         .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
         .then((response) => {
-          console.log("Utilizador atualizado com sucesso!", response);
+          // console.log("Utilizador atualizado com sucesso!", response);
 
           // Verificar se o ID do utilizador é o mesmo do localStorage
           if (this.keys.Utilizador_ID.toString() === this.model.ID.toString()) {
@@ -259,7 +259,7 @@ module.exports = {
             this.keys.Utilizador_isActive = this.model.item.isActive;
             this.keys.TipoUtilizador_ID = this.model.item.ID_TipoUtilizador;
             this.keys.Grupos = this.gruposSelecionados;
-            console.log("local storage atualizado: ", localStorage);
+            // console.log("local storage atualizado: ", localStorage);
             const updatedUser = {
               ...JSON.parse(localStorage.getItem("user")),
               Utilizador_Nome: this.model.item.Nome,
@@ -284,7 +284,7 @@ module.exports = {
           this.$router.push("/utilizador");
         })
         .catch((error) => {
-          console.error("Erro ao atualizar o Utilizador", error);
+          // console.error("Erro ao atualizar o Utilizador", error);
           this.showNotification(
             "Erro ao atualizar o Utilizador.",
             "danger",
@@ -299,7 +299,7 @@ module.exports = {
           `/rs2lab/deleteutilizadorgrupo/utilizador/grupoutilizadores/${utilizador}/${grupo}`
         )
         .then((res) => {
-          console.log("utilizadorgrupo Delete: ", res);
+          // console.log("utilizadorgrupo Delete: ", res);
         })
         .catch((errors) => {
           console.error(errors);
@@ -314,7 +314,7 @@ module.exports = {
       axios
         .post("/rs2lab/addutilizadorgrupo", utilizadorgrupo)
         .then((resp) => {
-          console.log("ADD utilizadorgrupo: ", resp);
+          // console.log("ADD utilizadorgrupo: ", resp);
         })
         .catch((e) => {
           console.log(e);
@@ -324,7 +324,7 @@ module.exports = {
       axios
         .get("/rs2lab/grupoutilizadores")
         .then((resp) => {
-          console.log("grupoutilizadores: ", resp);
+          // console.log("grupoutilizadores: ", resp);
           this.gruposDisponiveis = resp.data;
           // console.log(this.gruposDisponiveis);
         })
@@ -342,7 +342,7 @@ module.exports = {
       axios
         .get(`/rs2lab/utilizadorgrupo/utilizador/${ItemID}`)
         .then((resp) => {
-          console.log("UtilizadorGrupo: ", resp);
+          // console.log("UtilizadorGrupo: ", resp);
           this.UtilizadorGrupo = resp.data;
 
           // Preencher os grupos selecionados com os IDs dos grupos associados ao utilizador
@@ -360,7 +360,7 @@ module.exports = {
       axios
         .get("/rs2lab/tipoutilizador")
         .then((resp) => {
-          console.log("tipoutilizador: ", resp);
+          // console.log("tipoutilizador: ", resp);
           this.TipoUtilizador = resp.data;
           // console.log(this.TipoUtilizador);
         })
@@ -392,7 +392,7 @@ module.exports = {
         reader.onload = (e) => {
           this.imagePreview = e.target.result;
           this.model.item.image = e.target.result.split(",")[1]; // Store base64 encoded string without prefix
-          console.log("Imagem pré-visualizada e convertida para base64");
+          // console.log("Imagem pré-visualizada e convertida para base64");
         };
         reader.readAsDataURL(file);
         console.log("Arquivo selecionado para upload:", file);

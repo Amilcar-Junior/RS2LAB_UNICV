@@ -219,7 +219,7 @@ module.exports = {
       // Initialize the marker cluster group
       this.markers = L.markerClusterGroup();
       this.map.addLayer(this.markers); // Ensure the cluster group is added to the map
-      console.log("Mapa inicializado");
+      // console.log("Mapa inicializado");
     },
     clearMap() {
       if (this.markers) {
@@ -312,17 +312,17 @@ module.exports = {
         ) {
           const latLng = [coordsArray[0][0], coordsArray[0][1]];
           this.map.setView(latLng, 20);
-          console.log(
-            "Mapa centralizado nas primeiras coordenadas da localização:",
-            latLng
-          );
+          // console.log(
+          //   "Mapa centralizado nas primeiras coordenadas da localização:",
+          //   latLng
+          // );
         } else {
-          console.error("Coordenadas inválidas na localização selecionada.");
+          // console.error("Coordenadas inválidas na localização selecionada.");
         }
       } else {
-        console.error(
-          "Erro: Localização não definida ou inválida para a área selecionada."
-        );
+        // console.error(
+        //   "Erro: Localização não definida ou inválida para a área selecionada."
+        // );
       }
     },
     zoomToSensor() {
@@ -335,14 +335,14 @@ module.exports = {
       ) {
         const sensorCoords = selectedSensor.coordenada.split(",").map(Number);
         this.map.setView(sensorCoords, 20);
-        console.log(
-          "Mapa centralizado nas coordenadas do sensor:",
-          sensorCoords
-        );
+        // console.log(
+        //   "Mapa centralizado nas coordenadas do sensor:",
+        //   sensorCoords
+        // );
       } else {
-        console.error(
-          "Erro: Coordenada não definida ou inválida para o sensor selecionado."
-        );
+        // console.error(
+        //   "Erro: Coordenada não definida ou inválida para o sensor selecionado."
+        // );
       }
     },
     connectMQTT() {
@@ -353,7 +353,7 @@ module.exports = {
       );
 
       this.client.onConnectionLost = (responseObject) => {
-        console.log("Connection Lost: " + responseObject.errorMessage);
+        // console.log("Connection Lost: " + responseObject.errorMessage);
         // Reconnect
         this.reconnect();
       };
@@ -371,7 +371,7 @@ module.exports = {
 
       this.client.connect({
         onSuccess: () => {
-          console.log("Conectado ao broker MQTT");
+          // console.log("Conectado ao broker MQTT");
           this.allSensores.forEach((sensor) => {
             if (sensor.ValorSensor_Topico) {
               this.client.subscribe(sensor.ValorSensor_Topico);
@@ -379,7 +379,7 @@ module.exports = {
           });
         },
         onFailure: (message) => {
-          console.log("Falha na conexão: " + message.errorMessage);
+          // console.log("Falha na conexão: " + message.errorMessage);
         },
         userName: "",
         password: "",
@@ -400,7 +400,7 @@ module.exports = {
               });
             },
             onFailure: (message) => {
-              console.log("Falha na reconexão: " + message.errorMessage);
+              // console.log("Falha na reconexão: " + message.errorMessage);
             },
           });
         }
