@@ -151,7 +151,7 @@ module.exports = {
           Email: "",
           Senha: "", // A senha será gerada automaticamente
           ID_TipoUtilizador: "",
-          isActive: "0",
+          isActive: "1",
           image: "",
         },
       },
