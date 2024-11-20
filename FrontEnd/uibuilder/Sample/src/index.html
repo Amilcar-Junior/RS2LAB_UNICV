@@ -32,11 +32,14 @@
   <body>
     <div id="app">
       <myheader :keys="user"></myheader>
-      <mylogin v-show="!user.islogged" :keys="user"></mylogin>
-      <b-container v-show="user.islogged" fluid>
-        <router-view :keys="user"></router-view>
-      </b-container>
-    </div>
+      <main class="main-content">
+        <mylogin v-show="!user.islogged" :keys="user"></mylogin>
+        <b-container v-show="user.islogged" fluid>
+          <router-view :keys="user"></router-view>
+        </b-container>
+      </main>
+      <myfooter></myfooter>
+    </div>    
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>

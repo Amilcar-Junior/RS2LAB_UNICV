@@ -5,6 +5,7 @@ const app = new Vue({
   components: {
     myheader: httpVueLoader("./components/myheader.vue"),
     mylogin: httpVueLoader("./components/login.vue"),
+    myfooter: httpVueLoader("./components/myfooter.vue"),
   },
   data() {
     return {
