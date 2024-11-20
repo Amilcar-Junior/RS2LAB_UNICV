@@ -10,7 +10,7 @@
       <div class="card-body">
         <form @submit.prevent="addLocal">
           <div class="mb-3">
-            <label for="nome" class="form-label">Nome</label>
+            <label for="Nome" class="form-label">Nome</label>
             <input
               type="text"
               id="nome"
@@ -149,8 +149,8 @@ module.exports = {
     },
     cleanForm() {
       this.model.item.Nome = "";
-      this.movel.item.lat = 0;
-      this.movel.item.lng = 0;
+      this.model.item.lat = 0;
+      this.model.item.lng = 0;
       if (this.map && this.marker) {
         this.map.removeLayer(this.marker);
       }
