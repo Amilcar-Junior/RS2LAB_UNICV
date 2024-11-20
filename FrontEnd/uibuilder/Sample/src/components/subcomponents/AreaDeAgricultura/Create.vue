@@ -153,7 +153,7 @@ module.exports = {
       );
 
       // Inicializar o mapa com a camada padrão (streets)
-      this.editMap = L.map("editMap", {
+      this.map = L.map("map", {
         center: [0, 0],
         zoom: 1,
         layers: [streets],
