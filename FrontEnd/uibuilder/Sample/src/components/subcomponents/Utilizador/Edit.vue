@@ -281,7 +281,7 @@ module.exports = {
             "success",
             "Atualização"
           );
-          this.$router.push("/utilizador");
+          // this.$router.push("/utilizador");
         })
         .catch((error) => {
           // console.error("Erro ao atualizar o Utilizador", error);
