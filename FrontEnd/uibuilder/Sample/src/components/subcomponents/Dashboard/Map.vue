@@ -143,7 +143,7 @@ module.exports = {
         .get("/rs2lab/areadeagricultura")
         .then((response) => {
           this.items = response.data;
-          console.log("Dados recuperados:", response);
+          // console.log("Dados recuperados:", response);
           this.addAreasToMap();
         })
         .catch((error) => {
@@ -158,7 +158,7 @@ module.exports = {
             ...sensor,
             ValorSensor_Valor: sensor.ValorSensor_Valor || 0, // Inicializa com 0 se não houver valor
           }));
-          console.log("Sensores recuperados:", response);
+          // console.log("Sensores recuperados:", response);
           this.addSensorsToMap();
         })
         .catch((error) => {
@@ -228,7 +228,7 @@ module.exports = {
     },
     addAreasToMap() {
       if (!this.map || !this.markers) {
-        console.error("Mapa ou marcadores não estão inicializados.");
+        // console.error("Mapa ou marcadores não estão inicializados.");
         return;
       }
 
