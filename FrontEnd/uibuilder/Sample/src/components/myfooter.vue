@@ -74,7 +74,6 @@
   color: #ffffff; /* Texto branco */
   font-size: 0.9rem; /* Tamanho do texto pequeno */
   text-align: center;
-  padding: 0.5rem 0;
   width: 100%;
 }
 
