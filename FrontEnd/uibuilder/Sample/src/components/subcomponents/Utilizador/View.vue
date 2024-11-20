@@ -31,7 +31,8 @@
               @click="deleteSelectedItems"
               :disabled="selectedItems.length === 0"
             >
-              <i class="fa fa-trash" aria-hidden="true"></i> Deletar Selecionados
+              <i class="fa fa-trash" aria-hidden="true"></i> Deletar
+              Selecionados
             </button>
           </div>
         </div>
@@ -258,15 +259,20 @@ module.exports = {
     },
     toggleSelectAll(event) {
       if (event.target.checked) {
-        this.selectedItems = this.paginatedItems.map((item) => item.Utilizador_ID);
+        this.selectedItems = this.paginatedItems.map(
+          (item) => item.Utilizador_ID
+        );
       } else {
         this.selectedItems = [];
       }
     },
     deleteSelectedItems() {
+      // Exibir confirmação antes de deletar
       this.$bvModal
         .msgBoxConfirm(
-          `Deseja deletar os seguintes utilizadores? ${this.selectedItems.join(", ")}`,
+          `Deseja deletar os seguintes utilizadores? ${this.selectedItems.join(
+            ", "
+          )}`,
           {
             title: "Deletar Selecionados",
             size: "sm",
@@ -281,19 +287,23 @@ module.exports = {
         )
         .then((value) => {
           if (value) {
-            Promise.all(
-              this.selectedItems.map((id) =>
-                axios.delete(`/rs2lab/deleteutilizador/${id}`)
-              )
-            )
+            // Criar uma lista de promessas para lidar com a exclusão
+            const deletePromises = this.selectedItems.map((id) =>
+              axios
+                .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${id}`)
+                .then(() => axios.delete(`/rs2lab/deleteutilizador/${id}`))
+            );
+
+            // Executar todas as promessas em paralelo
+            Promise.all(deletePromises)
               .then(() => {
                 this.ShowDeleteNotification(
                   "Utilizadores deletados com sucesso!",
                   "success",
                   "Sucesso"
                 );
-                this.selectedItems = [];
-                this.retrieveItems();
+                this.selectedItems = []; // Limpar itens selecionados
+                this.retrieveItems(); // Atualizar a tabela
               })
               .catch((error) => {
                 console.error("Erro ao deletar utilizadores:", error);
@@ -310,6 +320,17 @@ module.exports = {
         });
     },
     deleteItem(ItemID) {
+      axios
+        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`)
+        .then(() => {})
+        .catch((errors) => {
+          console.error(errors);
+          this.ShowDeleteNotification(
+            "Erro ao Excluir Grupo de Utilizadores.",
+            "success",
+            "Sucesso"
+          );
+        });
       axios
         .delete(`/rs2lab/deleteutilizador/${ItemID}`)
         .then(() => {

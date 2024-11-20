@@ -214,6 +214,64 @@ module.exports = {
         )
         .then((value) => {
           if (value) {
+            // Criar uma lista de promessas para deletar grupos e suas dependências
+            const deletePromises = this.selectedItems.map((id) =>
+              axios
+                .delete(`/rs2lab/deleteutilizadorgrupo/grupoutilizadores/${id}`)
+                .then(() =>
+                  axios.delete(`/rs2lab/deletegrupoutilizadores/${id}`)
+                )
+            );
+
+            // Executar todas as promessas em paralelo
+            Promise.all(deletePromises)
+              .then(() => {
+                this.ShowDeleteNotification(
+                  "Grupos deletados com sucesso!",
+                  "success",
+                  "Sucesso"
+                );
+                this.selectedItems = []; // Limpar a seleção
+                this.retrieveItems(); // Atualizar a lista
+              })
+              .catch((error) => {
+                console.error("Erro ao deletar grupos:", error);
+                this.ShowDeleteNotification(
+                  "Erro ao deletar grupos.",
+                  "danger",
+                  "Erro"
+                );
+              });
+          }
+        })
+        .catch((err) => {
+          console.error("Erro ao exibir a caixa de diálogo", err);
+          this.$bvToast.toast("Ocorreu um erro ao exibir a caixa de diálogo.", {
+            title: "Erro",
+            variant: "danger",
+          });
+        });
+    },
+    deleteSelectedItems() {
+      this.$bvModal
+        .msgBoxConfirm(
+          `Deseja deletar os seguintes grupos? ${this.selectedItems.join(
+            ", "
+          )}`,
+          {
+            title: "Deletar Selecionados",
+            size: "sm",
+            buttonSize: "sm",
+            okVariant: "danger",
+            okTitle: "Sim",
+            cancelTitle: "Não",
+            footerClass: "p-2",
+            hideHeaderClose: false,
+            centered: true,
+          }
+        )
+        .then((value) => {
+          if (value) {
             Promise.all(
               this.selectedItems.map((id) =>
                 axios.delete(`/rs2lab/deletegrupoutilizadores/${id}`)
@@ -243,6 +301,17 @@ module.exports = {
         });
     },
     deleteItem(ItemID) {
+      axios
+        .delete(`/rs2lab/deleteutilizadorgrupo/grupoutilizadores/${ItemID}`)
+        .then(() => {})
+        .catch((errors) => {
+          console.error(errors);
+          this.ShowDeleteNotification(
+            "Erro ao Deletar Grupo de Utilizadores.",
+            "danger",
+            "Erro"
+          );
+        });
       axios
         .delete(`/rs2lab/deletegrupoutilizadores/${ItemID}`)
         .then(() => {
