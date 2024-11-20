@@ -147,7 +147,7 @@ module.exports = {
     },
   },
   mounted() {
-    console.log("keys: ", this.keys);
+    // console.log("keys: ", this.keys);
     // console.log("User Types:", this.userTypes);
     // console.log("MQTT Config:", this.mqttConfig);
   },
