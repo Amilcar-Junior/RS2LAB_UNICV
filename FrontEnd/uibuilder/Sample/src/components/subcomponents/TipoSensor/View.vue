@@ -102,7 +102,7 @@
                 </tr>
               </tbody>
               <tbody v-else>
-                <td colspan="4">Carregando...</td>
+                <td colspan="5">Carregando...</td>
               </tbody>
             </table>
           </div>
