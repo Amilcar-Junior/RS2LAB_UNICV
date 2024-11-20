@@ -93,7 +93,7 @@ const routes = [
     name: "Map",
     component: Map,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
       roles: [
         'Administrador',
         'Gestor',
