@@ -143,11 +143,12 @@ module.exports = {
         .then((response) => {
           this.sensorHistory = response.data.map((entry) => {
             try {
-              // Interpretar a data retornada pela API
+              // Interpretar a data como UTC
               const utcDate = new Date(entry.DataHora);
 
+              // Validar a data
               if (isNaN(utcDate.getTime())) {
-                throw new Error("Formato de data inválido.");
+                throw new Error("Formato de data inválido");
               }
 
               // Ajustar para o horário de Cabo Verde (UTC-1)
@@ -155,18 +156,19 @@ module.exports = {
                 utcDate.getTime() - 60 * 60 * 1000
               ); // Subtrair 1 hora
 
-              // Formatar a data para o fuso horário de Cabo Verde
-              const formattedDate = caboVerdeDate.toLocaleString("pt-PT", {
-                timeZone: "Atlantic/Cape_Verde",
-              });
+              // Formatar a data no formato desejado
+              const formattedDate = caboVerdeDate
+                .toISOString()
+                .slice(0, 19)
+                .replace("T", " ");
 
               return {
                 ...entry,
-                DataHora: formattedDate, // Salvar a data formatada
+                DataHora: formattedDate, // Atualiza para o formato legível
               };
             } catch (error) {
               console.error("Erro ao processar a data:", entry.DataHora, error);
-              return entry; // Retornar a entrada original em caso de erro
+              return entry; // Retorna a entrada original em caso de erro
             }
           });
           this.filteredSensorHistory = [...this.sensorHistory];
