@@ -188,10 +188,12 @@ module.exports = {
 
       // Ajustar a data de início para o início do dia
       const adjustedStartDate = new Date(this.startDate);
+      adjustedStartDate.setDate(adjustedStartDate.getDate() + 1); 
       adjustedStartDate.setHours(0, 0, 0, 0); // 00:00:00.000
 
       // Ajustar a data final para o final do dia
       const adjustedEndDate = new Date(this.endDate);
+      adjustedEndDate.setDate(adjustedEndDate.getDate() + 1); 
       adjustedEndDate.setHours(23, 59, 59, 999); // 23:59:59.999
 
       // Filtrar o histórico do sensor com base nas datas fornecidas
@@ -260,6 +262,13 @@ module.exports = {
 
       // Forçar o redimensionamento do gráfico
       this.chartInstance.resize();
+    },
+    showNotification(message, variant, title) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
     },
   },
   mounted() {
