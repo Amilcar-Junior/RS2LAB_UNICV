@@ -142,19 +142,32 @@ module.exports = {
         .get(`/rs2lab/historicosensor/${this.selectedSensorId}`)
         .then((response) => {
           this.sensorHistory = response.data.map((entry) => {
-            // Hora no formato UTC retornado pela API
-            const utcDate = new Date(entry.DataHora);
+            try {
+              // Interpretar a data retornada pela API
+              const utcDate = new Date(entry.DataHora);
 
-            // Ajustar para o horário de Cabo Verde (UTC-1)
-            const caboVerdeDate = new Date(utcDate.getTime() - 60 * 60 * 1000); // Subtrair 1 hora
+              if (isNaN(utcDate.getTime())) {
+                throw new Error("Formato de data inválido.");
+              }
 
-            // Retornar o dado ajustado no formato desejado
-            return {
-              ...entry,
-              DataHora: caboVerdeDate.toLocaleString("pt-PT", {
-                timeZone: "Atlantic/Cape_Verde", // Fuso horário Cabo Verde
-              }),
-            };
+              // Ajustar para o horário de Cabo Verde (UTC-1)
+              const caboVerdeDate = new Date(
+                utcDate.getTime() - 60 * 60 * 1000
+              ); // Subtrair 1 hora
+
+              // Formatar a data para o fuso horário de Cabo Verde
+              const formattedDate = caboVerdeDate.toLocaleString("pt-PT", {
+                timeZone: "Atlantic/Cape_Verde",
+              });
+
+              return {
+                ...entry,
+                DataHora: formattedDate, // Salvar a data formatada
+              };
+            } catch (error) {
+              console.error("Erro ao processar a data:", entry.DataHora, error);
+              return entry; // Retornar a entrada original em caso de erro
+            }
           });
           this.filteredSensorHistory = [...this.sensorHistory];
 
