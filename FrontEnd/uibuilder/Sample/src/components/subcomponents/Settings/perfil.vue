@@ -126,7 +126,7 @@ module.exports = {
         .get(`/rs2lab/utilizador/${ItemID}`)
         .then((resp) => {
           this.model.item = resp.data[0];
-          console.log(resp);
+          // console.log(resp);
           if (this.model.item.image) {
             this.imagePreview = `data:image/jpeg;base64,${this.model.item.image}`;
           }
@@ -140,7 +140,7 @@ module.exports = {
       axios
         .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
         .then((response) => {
-          console.log("Utilizador atualizado com sucesso!", response);
+          // console.log("Utilizador atualizado com sucesso!", response);
 
           // Atualizar o localStorage com todos os dados do utilizador atualizados
           const updatedUser = {
@@ -179,7 +179,7 @@ module.exports = {
       axios
         .get(`/rs2lab/utilizadorgrupo/utilizador/${ItemID}`)
         .then((resp) => {
-          console.log("UtilizadorGrupo: ", resp);
+          // console.log("UtilizadorGrupo: ", resp);
           this.gruposSelecionados = resp.data;
         })
         .catch((errors) => {
@@ -228,7 +228,7 @@ module.exports = {
     },
     verifyLocalStorage() {
       const user = JSON.parse(localStorage.getItem("user"));
-      console.log("Dados do utilizador no localStorage: ", user);
+      // console.log("Dados do utilizador no localStorage: ", user);
     },
   },
 };

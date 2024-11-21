@@ -68,7 +68,7 @@ module.exports = {
         .get(`/rs2lab/utilizador/${ItemID}`)
         .then((resp) => {
           this.model.item = resp.data[0];
-          console.log(resp);
+          // console.log(resp);
         })
         .catch((error) => {
           console.error("Erro ao recuperar os dados do Utilizador", error);
@@ -87,7 +87,7 @@ module.exports = {
         axios
           .put(`/rs2lab/editsenhautilizador/${this.model.ID}`, payload)
           .then((response) => {
-            console.log("Utilizador atualizado com sucesso!", response);
+            // console.log("Utilizador atualizado com sucesso!", response);
             this.model.item.Senha = hashedCurrentPassword;
             this.cleanForm();
             this.showToast("Senha alterada com sucesso!", "success", "Sucesso");
