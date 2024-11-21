@@ -142,7 +142,7 @@ module.exports = {
         .get(`/rs2lab/historicosensor/${this.selectedSensorId}`)
         .then((response) => {
           this.sensorHistory = response.data;
-          console.log(this.sensorHistory)
+          console.log(this.sensorHistory);
           this.filteredSensorHistory = [...this.sensorHistory];
 
           if (this.filteredSensorHistory.length === 0) {
@@ -217,8 +217,11 @@ module.exports = {
       const sensor = this.sensors.find((s) => s.ID === sensorId);
       const sensorName = sensor ? sensor.Nome : "Sensor Desconhecido";
 
-      const labels = this.filteredSensorHistory.map((entry) =>
-        new Date(entry.DataHora).toLocaleString()
+      const labels = this.filteredSensorHistory.map(
+        (entry) =>
+          new Date(entry.DataHora).toLocaleString("pt-PT", {
+            timeZone: "Atlantic/Cape_Verde",
+          }) // Ajustar para o fuso horário local
       );
       const data = this.filteredSensorHistory.map(
         (entry) => entry.ValorColetado
