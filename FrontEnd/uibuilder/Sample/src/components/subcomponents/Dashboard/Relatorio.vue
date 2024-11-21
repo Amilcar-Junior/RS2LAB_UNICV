@@ -141,8 +141,17 @@ module.exports = {
       axios
         .get(`/rs2lab/historicosensor/${this.selectedSensorId}`)
         .then((response) => {
-          this.sensorHistory = response.data;
-          console.log(this.sensorHistory);
+          this.sensorHistory = response.data.map((entry) => {
+            const utcDate = new Date(entry.DataHora);
+            const caboVerdeDate = new Date(
+              utcDate.getTime() + 9 * 60 * 60 * 1000
+            ); // Adicionar 9 horas
+            return {
+              ...entry,
+              DataHora: caboVerdeDate.toISOString(), // Atualizar o horário ajustado
+            };
+          });
+
           this.filteredSensorHistory = [...this.sensorHistory];
 
           if (this.filteredSensorHistory.length === 0) {
