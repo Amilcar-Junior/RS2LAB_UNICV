@@ -141,36 +141,8 @@ module.exports = {
       axios
         .get(`/rs2lab/historicosensor/${this.selectedSensorId}`)
         .then((response) => {
-          this.sensorHistory = response.data.map((entry) => {
-            try {
-              // Interpretar a data como UTC
-              const utcDate = new Date(entry.DataHora);
-
-              // Validar a data
-              if (isNaN(utcDate.getTime())) {
-                throw new Error("Formato de data inválido");
-              }
-
-              // Ajustar para o horário de Cabo Verde (UTC-1)
-              const caboVerdeDate = new Date(
-                utcDate.getTime() - 60 * 60 * 1000
-              ); // Subtrair 1 hora
-
-              // Formatar a data no formato desejado
-              const formattedDate = caboVerdeDate
-                .toISOString()
-                .slice(0, 19)
-                .replace("T", " ");
-
-              return {
-                ...entry,
-                DataHora: formattedDate, // Atualiza para o formato legível
-              };
-            } catch (error) {
-              console.error("Erro ao processar a data:", entry.DataHora, error);
-              return entry; // Retorna a entrada original em caso de erro
-            }
-          });
+          this.sensorHistory = response.data;
+          console.log(this.sensorHistory)
           this.filteredSensorHistory = [...this.sensorHistory];
 
           if (this.filteredSensorHistory.length === 0) {
