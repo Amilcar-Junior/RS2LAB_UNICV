@@ -6,9 +6,9 @@
           <div class="card login">
             <h3 style="text-align: center" v-if="step === 1">Sign In</h3>
             <h3 style="text-align: center" v-else-if="step === 2">
-              Recuperar Senha
+              Recuperar Credenciais
             </h3>
-            <h3 style="text-align: center" v-else>Redefinir Senha</h3>
+            <h3 style="text-align: center" v-else>Redefinir Credenciais</h3>
 
             <!-- Formulário de Login -->
             <form
@@ -28,7 +28,7 @@
                 v-model="postBody.Utilizador_Senha"
                 type="password"
                 class="form-control"
-                placeholder="Senha"
+                placeholder="Palavra-passe"
                 maxlength="16"
                 required
               />
@@ -46,7 +46,7 @@
                 @click="showRecoveryForm"
                 style="cursor: pointer; color: #007bff; text-align: center"
               >
-                Esqueceu a senha?
+                Esqueceu a Palavra-passe?
               </p>
               <p
                 class="mt-4 text-muted"
@@ -109,14 +109,14 @@
                 v-model="newPassword"
                 type="password"
                 class="form-control"
-                placeholder="Digite sua nova senha"
+                placeholder="Digite sua nova palavra-passe"
                 maxlength="16"
                 required
               />
               <input
                 type="submit"
                 class="btn btn-info eon-btn"
-                value="Redefinir Senha"
+                value="Redefinir Credenciais"
               />
               <b-alert
                 v-show="displayError"
@@ -171,7 +171,7 @@ module.exports = {
       }
 
       if (!this.postBody.Utilizador_Senha) {
-        this.errormessage = "Por favor, insira sua senha.";
+        this.errormessage = "Por favor, insira sua Palavra-passe.";
         return;
       }
 
@@ -195,7 +195,7 @@ module.exports = {
                 "Sua conta está inativa. Entre em contato com o administrador.";
             }
           } else {
-            this.errormessage = "Email ou Senha Invalidos.";
+            this.errormessage = "Email ou Palavra-passe Invalidos.";
           }
         })
         .catch((e) => {
@@ -238,7 +238,7 @@ module.exports = {
 
       if (!this.recoveryCode || !this.newPassword) {
         this.errormessage =
-          "Por favor, insira o código de recuperação e a nova senha.";
+          "Por favor, insira o código de recuperação e a nova palavra-passe.";
         this.errorVariant = "danger"; // Ajusta a variante para erro
         return;
       }
@@ -256,7 +256,7 @@ module.exports = {
         .then((res) => {
           console.log(res);
           if (res.status == 200) {
-            this.errormessage = "Senha redefinida com sucesso.";
+            this.errormessage = "Palavra-passe redefinida com sucesso.";
             this.errorVariant = "success"; // Ajusta a variante para sucesso
             this.step = 1;
           } else {
@@ -266,7 +266,7 @@ module.exports = {
         })
         .catch((e) => {
           console.error(e);
-          this.errormessage = "Erro ao tentar redefinir a senha.";
+          this.errormessage = "Erro ao tentar redefinir a palavra-passe.";
           this.errorVariant = "danger"; // Ajusta a variante para erro
         });
     },

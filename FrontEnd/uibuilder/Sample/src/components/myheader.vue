@@ -112,7 +112,7 @@
           <b-dropdown-item
             href="#"
             :to="{ path: '/alterarsenha/' + keys.Utilizador_ID }"
-            >Aterar Senha</b-dropdown-item
+            >Aterar palavra-passe</b-dropdown-item
           >
           <b-dropdown-item href="#" @click="keys.performLogout()">
             <i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out

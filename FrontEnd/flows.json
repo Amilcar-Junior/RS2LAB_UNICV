@@ -907,10 +907,10 @@
             "5085affc0c1a54c1",
             "5cee7b232110548f"
         ],
-        "x": 884,
-        "y": 539,
-        "w": 1722,
-        "h": 1182
+        "x": 904,
+        "y": 579,
+        "w": 1682,
+        "h": 742
     },
     {
         "id": "f3e8c660cf5205b5",
@@ -2897,12 +2897,12 @@
         "type": "http in",
         "z": "ba85fe949960916b",
         "g": "63d59090aac9b7e0",
-        "name": "Delete Utilizador id",
+        "name": "Delete grupoutilizadores id",
         "url": "/rs2lab/deletegrupoutilizadores/:ID",
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
-        "x": 150,
+        "x": 170,
         "y": 2680,
         "wires": [
             [
@@ -11774,12 +11774,12 @@
         "type": "http in",
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
-        "name": "Get valorsensor",
+        "name": "Get topico",
         "url": "/rs2lab/valorsensor",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2510,
+        "x": 2490,
         "y": 5540,
         "wires": [
             [
@@ -11894,12 +11894,12 @@
         "type": "http in",
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
-        "name": "add ValorSensor",
+        "name": "add topico",
         "url": "/rs2lab/addvalorsensor",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2520,
+        "x": 2500,
         "y": 5760,
         "wires": [
             [
@@ -11977,9 +11977,9 @@
         "type": "comment",
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
-        "name": "START VALORSENSOR",
+        "name": "START TOPICO",
         "info": "",
-        "x": 2730,
+        "x": 2700,
         "y": 5380,
         "wires": []
     },
@@ -12022,12 +12022,12 @@
         "type": "http in",
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
-        "name": "Get valorsensor id",
+        "name": "Get topico id",
         "url": "/rs2lab/valorsensor/:ID",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2530,
+        "x": 2510,
         "y": 5980,
         "wires": [
             [
@@ -12159,12 +12159,12 @@
         "type": "http in",
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
-        "name": "Edit Sensor",
+        "name": "Edit topico",
         "url": "/rs2lab/editvalorsensor/:ID",
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2510,
+        "x": 2500,
         "y": 6200,
         "wires": [
             [
@@ -12387,7 +12387,7 @@
         "type": "http in",
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
-        "name": "Delete Sensor id",
+        "name": "Delete topico id",
         "url": "/rs2lab/deletevalorsensor/:ID",
         "method": "delete",
         "upload": false,
@@ -12476,9 +12476,9 @@
         "type": "comment",
         "z": "ba85fe949960916b",
         "g": "19a25057ac01befd",
-        "name": "END SENSOR",
+        "name": "END TOPICO",
         "info": "",
-        "x": 2660,
+        "x": 2650,
         "y": 6540,
         "wires": []
     },
@@ -13419,7 +13419,7 @@
         "z": "ba85fe949960916b",
         "g": "2a89c69adb724fd2",
         "name": "Gerar Código",
-        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\nvar Utilizador_Nome = msg.payload.Utilizador_Nome;\n\n// Melhoria na formatação do email\nmsg.payload = `\n  <div style=\"font-family: Arial, sans-serif; color: #333;\">\n    <h2 style=\"color: #AB162B;\">Bem-vind@ à Plataforma RS2Lab, ${Utilizador_Nome}!</h2>\n    <p>Estamos felizes por tê-l@ connosco.</p>\n    <p>Aqui estão as suas credenciais para aceder à plataforma:</p>\n    <table style=\"border-collapse: collapse; width: 100%; margin-top: 10px;\">\n      <tr>\n        <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Email:</td>\n        <td style=\"padding: 8px; border: 1px solid #ddd;\">${Utilizador_Email}</td>\n      </tr>\n      <tr>\n        <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Senha:</td>\n        <td style=\"padding: 8px; border: 1px solid #ddd;\">${Utilizador_Senha}</td>\n      </tr>\n    </table>\n    <p style=\"margin-top: 20px;\">Por favor, utilize essas credenciais para aceder à nossa plataforma e explorar os serviços disponíveis.</p>\n    <p style=\"color: #AB162B;\">Atenciosamente,<br>Equipe RS2Lab</p>\n  </div>\n`;\n\nmsg.to = `${Utilizador_Email}`;  // Configurando explicitamente o destinatário\nmsg.topic = `Bem-vind@ ${Utilizador_Nome} à Plataforma RS2Lab`;\nreturn msg;\n",
+        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\nvar Utilizador_Nome = msg.payload.Utilizador_Nome;\n\n// Melhoria na formatação do email\nmsg.payload = `\n  <div style=\"font-family: Arial, sans-serif; color: #333;\">\n    <h2 style=\"color: #AB162B;\">Bem-vind@ à Plataforma RS2Lab, ${Utilizador_Nome}!</h2>\n    <p>Estamos felizes por tê-l@ connosco.</p>\n    <p>Aqui estão as suas credenciais para aceder à plataforma:</p>\n    <table style=\"border-collapse: collapse; width: 100%; margin-top: 10px;\">\n      <tr>\n        <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Email:</td>\n        <td style=\"padding: 8px; border: 1px solid #ddd;\">${Utilizador_Email}</td>\n      </tr>\n      <tr>\n        <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Palavra-passe:</td>\n        <td style=\"padding: 8px; border: 1px solid #ddd;\">${Utilizador_Senha}</td>\n      </tr>\n    </table>\n    <p style=\"margin-top: 20px;\">Por favor, utilize essas credenciais para aceder à nossa plataforma e explorar os serviços disponíveis.</p>\n    <p style=\"color: #AB162B;\">Atenciosamente,<br>Equipe RS2Lab</p>\n  </div>\n`;\n\nmsg.to = `${Utilizador_Email}`;  // Configurando explicitamente o destinatário\nmsg.topic = `Bem-vind@ ${Utilizador_Nome} à Plataforma RS2Lab`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -13759,7 +13759,7 @@
         "once": true,
         "onceDelay": "",
         "topic": "",
-        "x": 1050,
+        "x": 1070,
         "y": 760,
         "wires": [
             [
@@ -13781,7 +13781,7 @@
         "finalize": "",
         "libs": [],
         "x": 1280,
-        "y": 860,
+        "y": 840,
         "wires": [
             [
                 "f65a05221f1c993f",
@@ -13820,7 +13820,7 @@
         "finalize": "",
         "libs": [],
         "x": 1720,
-        "y": 860,
+        "y": 840,
         "wires": [
             [
                 "b8d018092f744d92",
@@ -13883,7 +13883,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1930,
-        "y": 860,
+        "y": 840,
         "wires": []
     },
     {
@@ -13919,7 +13919,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1510,
-        "y": 860,
+        "y": 840,
         "wires": []
     },
     {
@@ -13927,7 +13927,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "g": "079dd86e44d9d48f",
-        "name": "Buscar ID do ValorSensor",
+        "name": "Buscar ID do Topico",
         "func": "var topico = msg.topic;\nvar valor = msg.payload;\nmsg.topic = `SELECT ID FROM ValorSensor WHERE Topico = '${topico}' LIMIT 1;`;\nmsg.valor = valor\nreturn msg;",
         "outputs": 1,
         "timeout": "",
@@ -13935,8 +13935,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2170,
-        "y": 860,
+        "x": 2160,
+        "y": 840,
         "wires": [
             [
                 "200afd51e3468cd7",
@@ -13950,9 +13950,9 @@
         "z": "ba85fe949960916b",
         "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
-        "name": "Conexão MySQL - Buscar ValorSensor",
-        "x": 1110,
-        "y": 1000,
+        "name": "Conexão MySQL - Buscar Topico",
+        "x": 1100,
+        "y": 940,
         "wires": [
             [
                 "3b43a45864c2909b",
@@ -13965,7 +13965,7 @@
         "type": "function",
         "z": "ba85fe949960916b",
         "g": "079dd86e44d9d48f",
-        "name": "Buscar Sensor pelo ValorSensor",
+        "name": "Buscar Sensor pelo Topico",
         "func": "if (msg.payload.length > 0) {\n    var idValorSensor = msg.payload[0].ID;\n    msg.ID_Topico = idValorSensor; // Armazenar o ID do ValorSensor\n    msg.topic = `SELECT ID FROM Sensor WHERE ID_ValorSensor = ${idValorSensor} OR ID_ValorSensor_Principal = ${idValorSensor} LIMIT 1;`;\n    return msg;\n} else {\n    node.error('Nenhum ID de ValorSensor encontrado para o tópico: ' + msg.topic);\n}\n",
         "outputs": 1,
         "timeout": "",
@@ -13973,8 +13973,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1350,
-        "y": 1100,
+        "x": 1340,
+        "y": 1020,
         "wires": [
             [
                 "93534a75266875b7"
@@ -13989,7 +13989,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "Conexão MySQL - Buscar Sensor",
         "x": 1620,
-        "y": 1000,
+        "y": 940,
         "wires": [
             [
                 "835e58686d07c9e5",
@@ -14011,7 +14011,7 @@
         "finalize": "",
         "libs": [],
         "x": 1860,
-        "y": 1120,
+        "y": 1020,
         "wires": [
             [
                 "3141c96d26558b3f",
@@ -14027,7 +14027,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "Conexão MySQL - Armazenar Histórico",
         "x": 2140,
-        "y": 1000,
+        "y": 940,
         "wires": [
             [
                 "ad542b3bdf19430e"
@@ -14045,8 +14045,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 2460,
-        "y": 1000,
+        "x": 2440,
+        "y": 940,
         "wires": []
     },
     {
@@ -14064,7 +14064,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2430,
-        "y": 860,
+        "y": 840,
         "wires": []
     },
     {
@@ -14082,7 +14082,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1370,
-        "y": 1000,
+        "y": 940,
         "wires": []
     },
     {
@@ -14100,7 +14100,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1850,
-        "y": 1000,
+        "y": 940,
         "wires": []
     },
     {
@@ -14118,7 +14118,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2170,
-        "y": 1120,
+        "y": 1020,
         "wires": []
     },
     {
@@ -14135,7 +14135,7 @@
         "finalize": "",
         "libs": [],
         "x": 1840,
-        "y": 640,
+        "y": 680,
         "wires": [
             [
                 "4cbfad550e67f493",
@@ -14162,7 +14162,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1620,
-        "y": 640,
+        "y": 680,
         "wires": [
             [
                 "11debc1595a22375"
@@ -14184,7 +14184,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2090,
-        "y": 640,
+        "y": 680,
         "wires": []
     },
     {
@@ -14200,8 +14200,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1640,
-        "y": 1340,
+        "x": 1140,
+        "y": 1160,
         "wires": [
             [
                 "2c3853202266b2f8"
@@ -14220,8 +14220,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1510,
-        "y": 1340,
+        "x": 1010,
+        "y": 1160,
         "wires": [
             [
                 "45b3be9807b3ae07"
@@ -14242,8 +14242,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1930,
-        "y": 1340,
+        "x": 1430,
+        "y": 1160,
         "wires": []
     },
     {
@@ -14259,8 +14259,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1720,
-        "y": 1400,
+        "x": 1220,
+        "y": 1220,
         "wires": [
             [
                 "451aea8d4ceff0b1"
@@ -14281,8 +14281,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2010,
-        "y": 1400,
+        "x": 1510,
+        "y": 1220,
         "wires": []
     },
     {
@@ -14293,8 +14293,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2010,
-        "y": 1440,
+        "x": 1510,
+        "y": 1260,
         "wires": []
     },
     {
@@ -14314,8 +14314,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1640,
-        "y": 1460,
+        "x": 1140,
+        "y": 1280,
         "wires": [
             [
                 "ee361bb04c921bd1"
@@ -14336,8 +14336,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1790,
-        "y": 1460,
+        "x": 1290,
+        "y": 1280,
         "wires": []
     },
     {
@@ -14358,8 +14358,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1510,
-        "y": 1460,
+        "x": 1010,
+        "y": 1280,
         "wires": [
             [
                 "f7513d1a70de2cc9"
@@ -14376,8 +14376,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1530,
-        "y": 1400,
+        "x": 1030,
+        "y": 1220,
         "wires": [
             [
                 "4709ec3351eedbe8"
@@ -14391,8 +14391,8 @@
         "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1770,
-        "y": 1340,
+        "x": 1270,
+        "y": 1160,
         "wires": [
             [
                 "41644bbcf6f111d8"
@@ -14406,8 +14406,8 @@
         "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1850,
-        "y": 1400,
+        "x": 1350,
+        "y": 1220,
         "wires": [
             [
                 "f6e867dae6d2418d",
@@ -14423,7 +14423,7 @@
         "name": "START HISTORICOSENSOR",
         "info": "",
         "x": 1680,
-        "y": 580,
+        "y": 620,
         "wires": []
     },
     {
@@ -14439,8 +14439,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1680,
-        "y": 1620,
+        "x": 1940,
+        "y": 1220,
         "wires": [
             [
                 "3ad6f8d01d06af80",
@@ -14456,8 +14456,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1990,
-        "y": 1620,
+        "x": 2250,
+        "y": 1220,
         "wires": []
     },
     {
@@ -14477,8 +14477,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1640,
-        "y": 1680,
+        "x": 1900,
+        "y": 1280,
         "wires": [
             [
                 "1e67346edd0db164"
@@ -14499,8 +14499,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1790,
-        "y": 1680,
+        "x": 2050,
+        "y": 1280,
         "wires": []
     },
     {
@@ -14521,8 +14521,8 @@
         "topic": "",
         "payload": "{\"ID_Sensor\":35}",
         "payloadType": "json",
-        "x": 1470,
-        "y": 1680,
+        "x": 1730,
+        "y": 1280,
         "wires": [
             [
                 "15d87ab8eedc07d9"
@@ -14539,8 +14539,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1500,
-        "y": 1620,
+        "x": 1760,
+        "y": 1220,
         "wires": [
             [
                 "ef0d67bf4705abf8",
@@ -14555,8 +14555,8 @@
         "g": "079dd86e44d9d48f",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1830,
-        "y": 1620,
+        "x": 2090,
+        "y": 1220,
         "wires": [
             [
                 "797c732b6e48a181",
@@ -14578,8 +14578,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2010,
-        "y": 1580,
+        "x": 2270,
+        "y": 1180,
         "wires": []
     },
     {
@@ -14596,8 +14596,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1840,
-        "y": 1580,
+        "x": 2100,
+        "y": 1180,
         "wires": []
     },
     {
@@ -14614,8 +14614,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1650,
-        "y": 1560,
+        "x": 1910,
+        "y": 1160,
         "wires": []
     },
     {
@@ -14625,8 +14625,8 @@
         "g": "079dd86e44d9d48f",
         "name": "GET ALL",
         "info": "",
-        "x": 1700,
-        "y": 1280,
+        "x": 1200,
+        "y": 1100,
         "wires": []
     },
     {
@@ -14636,8 +14636,8 @@
         "g": "079dd86e44d9d48f",
         "name": "GET Historico do Sensor by ID",
         "info": "",
-        "x": 1730,
-        "y": 1520,
+        "x": 1990,
+        "y": 1120,
         "wires": []
     }
 ]
