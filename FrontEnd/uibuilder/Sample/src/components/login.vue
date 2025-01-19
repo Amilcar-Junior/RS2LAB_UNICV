@@ -263,11 +263,11 @@ module.exports = {
           newPassword: this.newPassword,
         })
         .then((res) => {
-          console.log(res);
+          //console.log(res);
           if (res.status == 200) {
             this.errormessage = "Palavra-passe redefinida com sucesso.";
             this.errorVariant = "success"; // Ajusta a variante para sucesso
-            console.log(this.errorVariant)
+           // console.log(this.errorVariant)
             this.step = 1;
           } else {
             this.errormessage = "Código de recuperação inválido ou expirado.";
