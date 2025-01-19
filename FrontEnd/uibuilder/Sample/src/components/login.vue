@@ -35,7 +35,7 @@
               <input type="submit" class="btn btn-info eon-btn" />
               <b-alert
                 v-show="displayError"
-                variant="danger"
+                :variant="errorVariant"
                 show
                 class="error-Msg"
               >
@@ -77,7 +77,7 @@
               />
               <b-alert
                 v-show="displayError"
-                variant="danger"
+                :variant="errorVariant"
                 show
                 class="error-Msg"
               >
@@ -120,7 +120,7 @@
               />
               <b-alert
                 v-show="displayError"
-                variant="success"
+                :variant="errorVariant"
                 show
                 class="error-Msg"
               >
@@ -153,6 +153,7 @@ module.exports = {
       step: 1,
       errors: [],
       errormessage: "",
+      errorVariant: "danger",
     };
   },
   computed: {
@@ -167,11 +168,13 @@ module.exports = {
 
       if (!this.postBody.Utilizador_Email) {
         this.errormessage = "Por favor, insira seu email.";
+        this.errorVariant = "danger";
         return;
       }
 
       if (!this.postBody.Utilizador_Senha) {
         this.errormessage = "Por favor, insira sua Palavra-passe.";
+        this.errorVariant = "danger";
         return;
       }
 
@@ -196,21 +199,25 @@ module.exports = {
             }
           } else {
             this.errormessage = "Email ou Palavra-passe Invalidos.";
+            this.errorVariant = "danger";
           }
         })
         .catch((e) => {
           console.error(e);
           this.errormessage = "Erro ao tentar fazer login.";
+          this.errorVariant = "danger";
         });
     },
     showRecoveryForm() {
       this.step = 2;
+      this.errormessage = "";
     },
     sendRecoveryCode() {
       this.errormessage = "";
 
       if (!this.recoveryEmail) {
         this.errormessage = "Por favor, insira seu email.";
+        this.errorVariant = "danger";
         return;
       }
       this.recoverySentCode = Math.floor(
@@ -226,11 +233,13 @@ module.exports = {
             this.step = 3;
           } else {
             this.errormessage = "Erro ao enviar o código de recuperação.";
+            this.errorVariant = "danger";
           }
         })
         .catch((e) => {
           console.error(e);
           this.errormessage = "Erro ao tentar enviar o código de recuperação.";
+          this.errorVariant = "danger";
         });
     },
     resetPassword() {
@@ -239,7 +248,7 @@ module.exports = {
       if (!this.recoveryCode || !this.newPassword) {
         this.errormessage =
           "Por favor, insira o código de recuperação e a nova palavra-passe.";
-        this.errorVariant = "danger"; // Ajusta a variante para erro
+        this.errorVariant = "info"; // Ajusta a variante para erro
         return;
       }
       if (this.recoveryCode !== this.recoverySentCode) {
@@ -258,6 +267,7 @@ module.exports = {
           if (res.status == 200) {
             this.errormessage = "Palavra-passe redefinida com sucesso.";
             this.errorVariant = "success"; // Ajusta a variante para sucesso
+            console.log(this.errorVariant)
             this.step = 1;
           } else {
             this.errormessage = "Código de recuperação inválido ou expirado.";
