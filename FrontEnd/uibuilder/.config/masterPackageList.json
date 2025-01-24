@@ -17,6 +17,7 @@
     "angular",
     "picnic",
     "md5",
+    "crypto-js",
     "leaflet",
     "leaflet-draw",
     "umbrellajs",

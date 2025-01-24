@@ -75,7 +75,8 @@ module.exports = {
         });
     },
     editUtilizador() {
-      const hashedCurrentPassword = MD5(this.currentPassword);
+      const hashedCurrentPassword = CryptoJS.SHA256(this.currentPassword).toString();
+
       console.log(hashedCurrentPassword)
       // Verifica se a senha atual está correta
       if (hashedCurrentPassword === this.model.item.Senha) {

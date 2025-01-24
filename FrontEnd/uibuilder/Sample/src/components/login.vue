@@ -29,7 +29,7 @@
                 type="password"
                 class="form-control"
                 placeholder="Palavra-passe"
-                maxlength="16"
+                maxlength="20"
                 required
               />
               <input type="submit" class="btn btn-info eon-btn" />
@@ -110,7 +110,7 @@
                 type="password"
                 class="form-control"
                 placeholder="Digite sua nova palavra-passe"
-                maxlength="16"
+                maxlength="20"
                 required
               />
               <input
@@ -178,7 +178,7 @@ module.exports = {
         return;
       }
 
-      var Utilizador_Senha = MD5(this.postBody.Utilizador_Senha).toString();
+      var Utilizador_Senha = this.postBody.Utilizador_Senha
       axios
         .post("/rs2lab/login", {
           Utilizador_Email: this.postBody.Utilizador_Email,

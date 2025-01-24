@@ -9,6 +9,7 @@
   "vue-router",
   "axios",
   "md5",
+  "crypto-js",
   "leaflet",
   "chart.js",
   "paho-mqtt",
