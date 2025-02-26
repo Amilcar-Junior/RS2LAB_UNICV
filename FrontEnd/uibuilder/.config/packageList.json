@@ -2,6 +2,8 @@
   "socket.io",
   "vue",
   "vuex",
+  "vue-router",
+  "paho-mqtt",
   "bootstrap",
   "bootstrap-vue",
   "http-vue-loader",

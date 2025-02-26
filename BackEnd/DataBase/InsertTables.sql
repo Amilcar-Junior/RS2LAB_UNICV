@@ -4,6 +4,8 @@ INSERT INTO TipoUtilizador (Nome, Descricao) VALUES
 ('Agricultor', 'Usuário responsável pela área de agricultura'),
 ('Gestor', 'Usuário com funções de gestão');
 
+
+
 -- Inserir dados na tabela GrupoUtilizadores
 INSERT INTO GrupoUtilizadores (Nome) VALUES
 ('Grupo A'),
