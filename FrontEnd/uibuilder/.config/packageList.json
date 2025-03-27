@@ -4,5 +4,20 @@
   "vuex",
   "bootstrap",
   "bootstrap-vue",
-  "jquery"
+  "jquery",
+  "bootstrap-icons",
+  "http-vue-loader",
+  "vue-router",
+  "axios",
+  "chart.js",
+  "paho-mqtt",
+  "mqtt",
+  "md5",
+  "crypto-js",
+  "leaflet",
+  "leaflet-draw",
+  "leaflet.markercluster",
+  "@fortawesome/fontawesome-svg-core",
+  "@fortawesome/vue-fontawesome",
+  "@fortawesome/free-solid-svg-icons"
 ]
