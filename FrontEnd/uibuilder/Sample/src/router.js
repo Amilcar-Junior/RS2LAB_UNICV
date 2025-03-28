@@ -87,6 +87,14 @@ const Relatorio = httpVueLoader(
   "./components/agriIOT/Dashboard/Relatorio.vue"
 );
 
+// BioSentry
+const DashboardB = httpVueLoader('./components/subcomponents/BioSentry/Pages/Dashboard.vue');
+const DeviceManagement = httpVueLoader('./components/subcomponents/BioSentry/Pages/DeviceManagement.vue');
+const StudentsManagement = httpVueLoader('./components/subcomponents/BioSentry/Pages/StudentsManagement.vue');
+const LogsStudents = httpVueLoader('./components/subcomponents/BioSentry/Pages/LogsStudents.vue');
+const VisitManagement = httpVueLoader('./components/subcomponents/BioSentry/Pages/VisitManagement.vue');
+const RelatorioLogs = httpVueLoader('./components/subcomponents/BioSentry/Pages/Relatorio.vue');
+
 const routes = [
   {
     path: "/",
@@ -336,6 +344,78 @@ const routes = [
       roles: ['Administrador', 'Gestor'],
     },
   },
+  {
+    path:'/biosentry/dashboard',
+    name:'DashboardB',
+    component: DashboardB,
+    meta: {
+      requiresAuth: false,
+      roles: [
+        'AdminBiosEntry'
+        
+      ],
+    },
+},
+{
+    path:'/biosentry/dispositivos',
+    name:'DeviceManagement',
+    component: DeviceManagement,
+    meta: {
+      requiresAuth: false,
+      roles: [
+        'AdminBiosEntry'
+      ],
+    },
+},
+{
+    path:'/biosentry/gestao-alunos',
+    name:'StudentsManagement',
+    component: StudentsManagement,
+    meta: {
+      requiresAuth: false,
+      roles: [
+        'AdminBiosEntry'
+        
+      ],
+    },
+},
+{
+    path:'/biosentry/historico-acesso',
+    name:'LogsStudents',
+    component: LogsStudents,
+    meta: {
+      requiresAuth: false,
+      roles: [
+        'AdminBiosEntry'
+        
+      ],
+    },
+},
+{
+    path:'/biosentry/gestao-visitantes',
+    name:'VisitManagement',
+    component: VisitManagement,
+    meta: {
+      requiresAuth: false,
+      roles: [
+        'AdminBiosEntry'
+        
+      ],
+    },
+},
+{
+    path:'/biosentry/gerar-relatorio',
+    name: 'Relatorio',
+    component: RelatorioLogs,
+    meta: {
+      requiresAuth: false,
+      roles: [
+        'AdminBiosEntry'
+        
+      ],
+    },
+},
+
 ];
 
 // Configuração do router

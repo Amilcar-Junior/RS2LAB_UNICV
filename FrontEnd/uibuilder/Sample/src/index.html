@@ -31,7 +31,7 @@
   </head>
   <body>
     <div id="app">
-      <myheader :keys="user"></myheader>
+      <myheader :keys="user" ></myheader>
       <main class="main-content">
         <mylogin v-show="!user.islogged" :keys="user"></mylogin>
         <b-container v-show="user.islogged" fluid>

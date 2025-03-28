@@ -1,5 +1,6 @@
 <template>
-  <b-navbar toggleable="lg" type="dark" class="custom-navbar">
+  <!--Navbar AgriIOT -->
+  <b-navbar toggleable="lg" type="dark" class="custom-navbar" >
     <b-navbar-brand href="#" to="/">
       <img src="./images/rs2lab_logo_black.png" alt="RS2LAB" class="logo-img" />
     </b-navbar-brand>
@@ -74,7 +75,12 @@
         </b-nav-item-dropdown>
 
         <!-- Menu Visualização -->
-        <b-nav-item-dropdown text="Visualização" right>
+        <b-nav-item-dropdown text="Visualização" right
+        v-if="
+            keys.TipoUtilizador_Nome === userTypes.AGRICULTOR ||
+            keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
+            keys.TipoUtilizador_Nome === userTypes.GESTOR
+          ">
           <b-dropdown-item href="#" to="/map">
             <i class="fa fa-map" aria-hidden="true"></i> Mapa
           </b-dropdown-item>
@@ -86,6 +92,36 @@
           </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
+
+       <!-- Menus para BioSentry -->
+       <b-navbar-nav v-show="keys.islogged " v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+          <b-nav-item  href="#" to="/biosentry/dashboard"> Dashboard</b-nav-item>
+         
+          <b-nav-item-dropdown text="Cadastro"
+          right
+          > 
+          <b-dropdown-item href="#" to="/biosentry/gestao-alunos">
+             Residentes
+          </b-dropdown-item>
+          <b-dropdown-item href="#" to="/biosentry/gestao-visitantes">
+             Visitantes
+          </b-dropdown-item>
+          </b-nav-item-dropdown>
+
+          <b-nav-item-dropdown text="Acessos"
+          right
+           
+          > 
+          <b-dropdown-item href="#" to="/biosentry/historico-acesso">
+             Histórico
+          </b-dropdown-item>
+          <b-dropdown-item href="#" to="/biosentry/gerar-relatorio">
+             Relatório
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
+
+          <b-nav-item  href="#" to="/biosentry/dispositivos"> Dispositivos</b-nav-item>
+        </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto" v-show="keys.islogged">
         <b-nav-item-dropdown right v-show="keys.islogged">
