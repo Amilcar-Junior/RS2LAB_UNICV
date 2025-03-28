@@ -1,90 +1,90 @@
 
 
-const Perfil = httpVueLoader("./components/subcomponents/Settings/perfil.vue");
+const Perfil = httpVueLoader("./components/agriIOT/Settings/perfil.vue");
 const ChangePassword = httpVueLoader(
-  "./components/subcomponents/Settings/ChangePassword.vue"
+  "./components/agriIOT/Settings/ChangePassword.vue"
 );
 const PageNotFound = httpVueLoader("./components/PageNotFound.vue");
 const PageNotPermited = httpVueLoader("./components/PageNotPermitted.vue");
 
 const ListTipoUtilizador = httpVueLoader(
-  "./components/subcomponents/TipoUtilizador/View.vue"
+  "./components/agriIOT/TipoUtilizador/View.vue"
 );
 const CreateTipoUtilizador = httpVueLoader(
-  "./components/subcomponents/TipoUtilizador/Create.vue"
+  "./components/agriIOT/TipoUtilizador/Create.vue"
 );
 const EditTipoUtilizador = httpVueLoader(
-  "./components/subcomponents/TipoUtilizador/Edit.vue"
+  "./components/agriIOT/TipoUtilizador/Edit.vue"
 );
 
 const ListGrupoUtilizadores = httpVueLoader(
-  "./components/subcomponents/GrupoUtilizadores/View.vue"
+  "./components/agriIOT/GrupoUtilizadores/View.vue"
 );
 const CreateGrupoUtilizadores = httpVueLoader(
-  "./components/subcomponents/GrupoUtilizadores/Create.vue"
+  "./components/agriIOT/GrupoUtilizadores/Create.vue"
 );
 const EditGrupoUtilizadores = httpVueLoader(
-  "./components/subcomponents/GrupoUtilizadores/Edit.vue"
+  "./components/agriIOT/GrupoUtilizadores/Edit.vue"
 );
 
 const ListUtilizador = httpVueLoader(
-  "./components/subcomponents/Utilizador/View.vue"
+  "./components/agriIOT/Utilizador/View.vue"
 );
 const CreateUtilizador = httpVueLoader(
-  "./components/subcomponents/Utilizador/Create.vue"
+  "./components/agriIOT/Utilizador/Create.vue"
 );
 const EditUtilizador = httpVueLoader(
-  "./components/subcomponents/Utilizador/Edit.vue"
+  "./components/agriIOT/Utilizador/Edit.vue"
 );
 
 const ListTipoSensor = httpVueLoader(
-  "./components/subcomponents/TipoSensor/View.vue"
+  "./components/agriIOT/TipoSensor/View.vue"
 );
 const CreateTipoSensor = httpVueLoader(
-  "./components/subcomponents/TipoSensor/Create.vue"
+  "./components/agriIOT/TipoSensor/Create.vue"
 );
 const EditTipoSensor = httpVueLoader(
-  "./components/subcomponents/TipoSensor/Edit.vue"
+  "./components/agriIOT/TipoSensor/Edit.vue"
 );
 
 const ListAreaDeAgricultura = httpVueLoader(
-  "./components/subcomponents/AreaDeAgricultura/View.vue"
+  "./components/agriIOT/AreaDeAgricultura/View.vue"
 );
 const CreateAreaDeAgricultura = httpVueLoader(
-  "./components/subcomponents/AreaDeAgricultura/Create.vue"
+  "./components/agriIOT/AreaDeAgricultura/Create.vue"
 );
 const EditAreaDeAgricultura = httpVueLoader(
-  "./components/subcomponents/AreaDeAgricultura/Edit.vue"
+  "./components/agriIOT/AreaDeAgricultura/Edit.vue"
 );
 
-const ListLocal = httpVueLoader("./components/subcomponents/Local/View.vue");
+const ListLocal = httpVueLoader("./components/agriIOT/Local/View.vue");
 const CreateLocal = httpVueLoader(
-  "./components/subcomponents/Local/Create.vue"
+  "./components/agriIOT/Local/Create.vue"
 );
-const EditLocal = httpVueLoader("./components/subcomponents/Local/Edit.vue");
+const EditLocal = httpVueLoader("./components/agriIOT/Local/Edit.vue");
 
-const ListSensor = httpVueLoader("./components/subcomponents/Sensor/View.vue");
+const ListSensor = httpVueLoader("./components/agriIOT/Sensor/View.vue");
 const CreateSensor = httpVueLoader(
-  "./components/subcomponents/Sensor/Create.vue"
+  "./components/agriIOT/Sensor/Create.vue"
 );
-const EditSensor = httpVueLoader("./components/subcomponents/Sensor/Edit.vue");
+const EditSensor = httpVueLoader("./components/agriIOT/Sensor/Edit.vue");
 
 const ListValorSensor = httpVueLoader(
-  "./components/subcomponents/ValorSensor/View.vue"
+  "./components/agriIOT/ValorSensor/View.vue"
 );
 const CreateValorSensor = httpVueLoader(
-  "./components/subcomponents/ValorSensor/Create.vue"
+  "./components/agriIOT/ValorSensor/Create.vue"
 );
 const EditValorSensor = httpVueLoader(
-  "./components/subcomponents/ValorSensor/Edit.vue"
+  "./components/agriIOT/ValorSensor/Edit.vue"
 );
 
-const Map = httpVueLoader("./components/subcomponents/Dashboard/Map.vue");
+const Map = httpVueLoader("./components/agriIOT/Dashboard/Map.vue");
 const Dashboard = httpVueLoader(
-  "./components/subcomponents/Dashboard/Dashboard.vue"
+  "./components/agriIOT/Dashboard/Dashboard.vue"
 );
 const Relatorio = httpVueLoader(
-  "./components/subcomponents/Dashboard/Relatorio.vue"
+  "./components/agriIOT/Dashboard/Relatorio.vue"
 );
 
 const routes = [
