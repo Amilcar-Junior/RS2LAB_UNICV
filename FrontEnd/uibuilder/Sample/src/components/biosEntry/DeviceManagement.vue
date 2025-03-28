@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="container-fluid mt-5">
-      <router-link to="/biosentry/dashboard" class="btn btn-secondary mb-3 rounded-buttonback">
+      <!-- <router-link to="/biosentry/dashboard" class="btn btn-secondary mb-3 rounded-buttonback">
         <i class="fa fa-arrow-left" aria-hidden="true"></i> 
-      </router-link>
+      </router-link> -->
       <!-- Título da Página -->
       <h2
         class="text-center"

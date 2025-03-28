@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="container-fluid mt-5">
-      <router-link to="/biosentry/dashboard" class="btn btn-secondary mb-3 rounded-buttonback">
+      <!-- <router-link to="/biosentry/dashboard" class="btn btn-secondary mb-3 rounded-buttonback">
         <i class="fa fa-arrow-left" aria-hidden="true"></i> 
-      </router-link>
+      </router-link> -->
       <!-- Título da Página -->
       <h3
         class="text-center"
@@ -41,18 +41,20 @@
               v-show="
                 keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
               "
+          
             >
               <i class="fa fa-plus " aria-hidden="true"></i> Adicionar
             </b-button>
 
-            <button
+            <b-button
+            
               class="btn btn-danger ml-2"
               @click="deleteSelectedItems"
               :disabled="selectedItems.length === 0"
             >
               <i class="fa fa-trash" aria-hidden="true"></i> Deletar
               Selecionados
-            </button>
+            </b-button>
           </div>
         </div>
         <div class="card-body">
@@ -147,107 +149,124 @@
         </div>
       </div>
 
-      <!-- Modal para Adição -->
       <b-modal v-model="showModalAdd" title="Adicionar Aluno" hide-footer>
-        <b-form @submit.prevent="saveUser">
-          <b-form-group label="Nome" label-for="name">
-            <b-form-input
-              id="name"
-              v-model="model.item.name"
-              required
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="Codigo de Estudante"
-            label-for="codigo_estudante"
-            description="Codigo deve ter apenas 6 digitos."
-          >
-            <b-form-input
-              id="codigo_estudante"
-              v-model="model.item.codigo"
-              @keypress="preventLetters"
-              required
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group label="Curso" label-for="curso">
-            <b-form-input
-              id="curso"
-              v-model="model.item.curso"
-              required
-            ></b-form-input>
-          </b-form-group>
-
-          <div class="mb-3">
-            <label for="device_id">Edificio:</label>
-            <select
-              id="device_id"
-              v-model="model.item.device_id"
-              @change="atualizarUID" 
-              class="form-control"
-              required
-            >
-              <option value="" disabled >Selecione o Edificio</option>
-              <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
-                {{ edi.edificio }}
-              </option>
-            </select>
-          </div>
-          
-          <b-form-group label="Email" label-for="email">
-            <b-form-input
-              id="email"
-              v-model="model.item.email"
-              type="email"
-              required
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group label="Status" label-for="status">
-              <b-form-checkbox
-                id="status"
-                v-model="model.item.status_"
+          <b-form @submit.prevent="saveUser">
+            <b-form-group label="Código de Estudante" label-for="codigo_estudante"
+            description="Insira o código de estudante para adicionar o aluno">
+              <div class="d-flex">
+                <b-form-input
+                  id="codigo_estudante"
+                  v-model="codigo"
+                  @keypress="preventLetters"
+                  required
+                ></b-form-input>
+                <b-button variant="outline-info" @click="pesquisarAluno" class="ml-2">
+                  Pesquisar
+                </b-button>
+              </div>
+            </b-form-group>
+            
+            <!-- Separador -->
+            <hr/>
+  
+            <b-form-group label="Nome" label-for="name">
+              <b-form-input
+                id="name"
+                v-model="model.item.name"    
+                readonly
+                required 
+              ></b-form-input>
+            </b-form-group>
+  
+  
+            <b-form-group label="Curso" label-for="curso">
+              <b-form-input
+                id="curso"
+                v-model="model.item.curso"
+  
+                readonly
+                required
+              ></b-form-input>
+            </b-form-group>
+  
+            <div class="mb-3">
+              <label for="device_id">Edificio:</label>
+              <select
+                id="device_id"
+                v-model="model.item.device_id"
+                @change="atualizarUID" 
+                class="form-control"
+                required
               >
+                <option value="" disabled >Selecione o Edificio</option>
+                <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
+                  {{ edi.edificio }}
+                </option>
+              </select>
+            </div>
+            
+            <b-form-group label="Email" label-for="email">
+              <b-form-input
+                id="email"
+                v-model="model.item.email"
+                type="email"
+                readonly
+                required
+              ></b-form-input>
+            </b-form-group>
+  
+            <b-row>
+              <b-col>
+                <b-form-group label="Status" label-for="status">
+                  <b-form-checkbox
+                    id="status"
+                    v-model="model.item.status_"
+                    :true-value="1"
+                    :false-value="0"
+                  >
+                    Ativo
+                  </b-form-checkbox>
+                </b-form-group>
+              </b-col>
 
-              Ativo
-            </b-form-checkbox>
-          </b-form-group>
-
-            <b-button
-              variant="primary"
-              @click="startBiometriaProcess"
-              :disabled="isSaving "
-            >
-              Obter Biometria
-            </b-button>
-
-          <b-button
-              type="submit"
-              variant="success"
-              :disabled="isSaving || !biometriaRegistrada"
-            >
-            Registar
-            </b-button>
-
-            <b-button variant="secondary" @click="showModalAdd = false"
-            >Cancelar</b-button
-            >
-        </b-form>
-      </b-modal> 
+              <b-col class="text-right">
+                <b-button
+                 
+                  variant="outline-secondary"
+                  @click="startBiometriaProcess"
+                  :disabled="isSaving"
+                  style="background-image: url('./images/bi2.png'); background-size: cover; background-position: center; width: 70px; height: 70px;  padding: 0;"
+                >
+                <!-- <b-icon icon="person-check" class="mr-2"> </b-icon>
+                  Obter Biometria -->
+                </b-button>
+              </b-col>
+            </b-row>
+  
+  
+              <b-button
+                type="submit"
+          
+                variant="success"
+                :disabled="isSaving || !biometriaRegistrada"
+              >
+              Registar
+              </b-button>
+  
+<!--   
+              <b-button variant="secondary" @click="showModalAdd = false"
+              >Cancelar</b-button -->
+              
+  
+          </b-form>
+        </b-modal>
 
     
 
       <!-- Modal para Editar -->
     <b-modal v-model="showModalEdit" title="Editar Aluno" hide-footer>
         <b-form @submit.prevent="saveUser">
-          <b-form-group label="Nome" label-for="name">
-            <b-form-input
-              id="name"
-              v-model="currentUser.name"
-              required
-            ></b-form-input>
-          </b-form-group>
+          
 
           <b-form-group
             label="Codigo de Estudante"
@@ -258,6 +277,18 @@
               v-model="currentUser.codigo"
               @keypress="preventLetters"
               required
+              readonly
+            ></b-form-input>
+          </b-form-group>
+
+        <hr/>
+
+          <b-form-group label="Nome" label-for="name">
+            <b-form-input
+              id="name"
+              v-model="currentUser.name"
+              required
+              readonly
             ></b-form-input>
           </b-form-group>
 
@@ -266,6 +297,7 @@
               id="curso"
               v-model="currentUser.curso"
               required
+              readonly
             ></b-form-input>
           </b-form-group>
 
@@ -290,6 +322,7 @@
               v-model="currentUser.email"
               type="email"
               required
+              readonly
             ></b-form-input>
           </b-form-group>
 
@@ -300,7 +333,6 @@
                 :true-value="1"
                 :false-value="0"
               >
-
               Ativo
             </b-form-checkbox>
             <!-- <div>State: <strong>{{ Boolean(currentUser.status_) }}</strong></div> -->
@@ -474,28 +506,28 @@ module.exports = {
     },
 
 //para quando for dado a api do STI
-//     async pesquisarAluno() {
-//       try{
-//         const codigo = this.codigo;
-//         this.model.item.name = "";
-//         this.model.item.curso = "";
-//         this.model.item.email = "";
+    async pesquisarAluno() {
+      try{
+        const codigo = this.codigo;
+        this.model.item.name = "";
+        this.model.item.curso = "";
+        this.model.item.email = "";
 
-//         const response = await axios.get(`/biosentry/students/${codigo}`);
+        const response = await axios.get(`/biosentry/studentsycode/${codigo}`);
 
-//         if (response.data.length > 0) {
-//           const estudante = response.data[0];
-//           this.model.item.name = estudante.name;
-//           this.model.item.curso = estudante.curso;
-//           this.model.item.email = estudante.email;
-//       } else {
-//         this.showNotification("Estudante não encontrado.", "danger", "Erro");
-//       }
-//     } catch (error) {
-//       this.showNotification("Erro ao buscar estudante.", "danger", "Erro");
-//     }
+        if (response.data.length > 0) {
+          const estudante = response.data[0];
+          this.model.item.name = estudante.name;
+          this.model.item.curso = estudante.curso;
+          this.model.item.email = estudante.email;
+      } else {
+        this.showNotification("Estudante não encontrado.", "danger", "Erro");
+      }
+    } catch (error) {
+      this.showNotification("Erro ao buscar estudante.", "danger", "Erro");
+    }
    
-// },
+},
    
     async saveUser() {  
       if (this.currentUser.id) {
