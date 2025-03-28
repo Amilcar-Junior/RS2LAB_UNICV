@@ -1,5 +1,3 @@
-
-
 const Perfil = httpVueLoader("./components/agriIOT/Settings/perfil.vue");
 const ChangePassword = httpVueLoader(
   "./components/agriIOT/Settings/ChangePassword.vue"
@@ -88,12 +86,12 @@ const Relatorio = httpVueLoader(
 );
 
 // BioSentry
-const DashboardB = httpVueLoader('./components/subcomponents/BioSentry/Pages/Dashboard.vue');
-const DeviceManagement = httpVueLoader('./components/subcomponents/BioSentry/Pages/DeviceManagement.vue');
-const StudentsManagement = httpVueLoader('./components/subcomponents/BioSentry/Pages/StudentsManagement.vue');
-const LogsStudents = httpVueLoader('./components/subcomponents/BioSentry/Pages/LogsStudents.vue');
-const VisitManagement = httpVueLoader('./components/subcomponents/BioSentry/Pages/VisitManagement.vue');
-const RelatorioLogs = httpVueLoader('./components/subcomponents/BioSentry/Pages/Relatorio.vue');
+const DashboardB = httpVueLoader('./components/biosEntry/Dashboard.vue');
+const DeviceManagement = httpVueLoader('./components/biosEntry/DeviceManagement.vue');
+const StudentsManagement = httpVueLoader('./components/biosEntry/StudentsManagement.vue');
+const LogsStudents = httpVueLoader('./components/biosEntry/LogsStudents.vue');
+const VisitManagement = httpVueLoader('./components/biosEntry/VisitManagement.vue');
+const RelatorioLogs = httpVueLoader('./components/biosEntry/Relatorio.vue');
 
 const routes = [
   {
@@ -424,7 +422,10 @@ const router = new VueRouter({
   routes,
 });
 
+export default router; // Add this line to export the router instance
+
 // Verificação de permissões no `beforeEach`
+
 router.beforeEach((to, from, next) => {
   
     // Obter os dados do utilizador logado do localStorage ou do sistema global
@@ -437,27 +438,28 @@ router.beforeEach((to, from, next) => {
         console.warn("Acesso negado: utilizador não autenticado.");
         next({ path: "/page-not-permitted" });
       } else {
-  
-        // Verificar se o utilizador tem permissão para a rota
-        const allowedRoles = to.meta.roles || []; 
-  
-        if (allowedRoles.includes(loggedUser.TipoUtilizador_Nome)) {
-          next(); // Tem permissão, continua
+        // Check for AdminBiosEntry user type
+        if (loggedUser.TipoUtilizador_Nome === 'AdminBiosEntry') {
+          next({ path: '/biosentry/dashboard' }); // Redirect AdminBiosEntry to DashboardB
         } else {
-          console.warn(
-            "Acesso negado: função não permitida.",
-            "Utilizador:",
-            loggedUser.TipoUtilizador_Nome,
-            "Rota:",
-            to.fullPath
-          );
-          next({ path: "/page-not-permitted" });
+          // Verificar se o utilizador tem permissão para a rota
+          const allowedRoles = to.meta.roles || []; 
+  
+          if (allowedRoles.includes(loggedUser.TipoUtilizador_Nome)) {
+            next(); // Tem permissão, continua
+          } else {
+            console.warn(
+              "Acesso negado: função não permitida.",
+              "Utilizador:",
+              loggedUser.TipoUtilizador_Nome,
+              "Rota:",
+              to.fullPath
+            );
+            next({ path: "/page-not-permitted" });
+          }
         }
       }
     } else {
       next(); // Para rotas públicas
     }
   });
-  
-  export default router;
-  

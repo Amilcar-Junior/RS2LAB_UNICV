@@ -2,7 +2,15 @@
     {
         "id": "43734a494ac50a59",
         "type": "tab",
-        "label": "Fluxo 1",
+        "label": "AgriIOT",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b945a241e156bcfb",
+        "type": "tab",
+        "label": "BioSentry",
         "disabled": false,
         "info": "",
         "env": []
@@ -1002,6 +1010,281 @@
         "h": 1242
     },
     {
+        "id": "6cfa3712cf99a987",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "72e67570cf326190",
+            "fce8c93ac6e48920",
+            "554d20b900ad5cbb",
+            "0a524ad079f34203",
+            "eaa2d2071e6250a7",
+            "5c54f72b897c6517",
+            "37bd74ac69065a70",
+            "ba0994c95d7552f1",
+            "73af561b31fb322e",
+            "f3943e5bc772c866",
+            "f280e08bc97eb3c0",
+            "566661a86397ab79",
+            "ebbf2a7adf2c684f",
+            "73635e26adeb3d94",
+            "e7fdd60da7d9ad5d",
+            "f45ba199e838387e",
+            "66a910ee4212dae7",
+            "e788bad50b4b9863",
+            "49b3cfdf30d1f4d9",
+            "2c8b51e8eb7aba4e",
+            "2aa78c839855119d",
+            "850b284a4fe7a4ee",
+            "9c45b0dd95f283a1",
+            "53abed1cfaeb8c87",
+            "cfe675c9e79d855e",
+            "f294a8684ae37438",
+            "a11ed243fa470286",
+            "e0459a6ce308f113",
+            "232061cde7e4b4d0",
+            "86bfe3f14febd10d",
+            "35073258ad86f2c0",
+            "76771964a1d8bf48",
+            "548a4c188beec72c",
+            "cc001c593a5480bf",
+            "094a0b76dae7672a",
+            "b403d937b4308483",
+            "dd21b302437bd660",
+            "fb9285b3cecbd0f3",
+            "ad61c2c1f72d56ae",
+            "64bb99dd1c6c8a8a",
+            "083cdf04ad74cba5",
+            "6b8711c00ecb42ab",
+            "02f849f525961e51",
+            "a034727a6aab0fd2",
+            "2623cfb205341b91",
+            "b7146fa483d081df",
+            "a97e5c00fee23a2d",
+            "b472bdbc5a9ef5ba",
+            "358534e7d555d95e",
+            "ca7da1323f1bbc2d",
+            "538f6f82e2d5fde9",
+            "8b0bd55489fd0be7"
+        ],
+        "x": 54,
+        "y": 19,
+        "w": 892,
+        "h": 1202
+    },
+    {
+        "id": "e23f91c6c90719a6",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "b675e73917345971",
+            "fd01c3a2687c4d5a",
+            "67dd302767260216",
+            "68210cc4b33a97d8",
+            "db02c2b708612b9b",
+            "3b9e025148c19869",
+            "28cd34950669a479",
+            "27e4a3c9c223cc25",
+            "6f5b06e51d29a999",
+            "ecb6ab809742f491",
+            "dbd0d3bdab775f7b",
+            "2334ed5fe60640de",
+            "cd5274331186766e",
+            "01e8b8655c698a26",
+            "3ed4d89775460558",
+            "9369a29f46c50c55",
+            "76d5a1b1823dc012",
+            "3f24d89febcf041d",
+            "4912df7c1ca63e76",
+            "2338d112c2ea6b9a",
+            "2f88126a4a418b1a",
+            "d7f3baf127f02fab",
+            "7593d438901e8a84",
+            "d84d6f070a455e55",
+            "102c1294b0084a5b",
+            "84d77279bb86a487",
+            "c5562ccf908be2c1",
+            "60a657af006d4f0b",
+            "02a4c04f8393d689",
+            "74d3b96e10bc2483",
+            "291a92a8941e1d8d",
+            "7093e25c52c6aa03",
+            "ade5439bdcc62918",
+            "25305f3b3881c5af",
+            "030cd0a9f03e0251",
+            "07d4ed1fc797ef90",
+            "8c18284f520caea1",
+            "28a21fd75e0a609c",
+            "2d0336cd76812691",
+            "583d6602eebeb86a",
+            "9ee9531c024001ea",
+            "c4aca42eb1ba6526",
+            "fa62c7142bfc758b"
+        ],
+        "x": 968,
+        "y": 19,
+        "w": 1624,
+        "h": 1208
+    },
+    {
+        "id": "e0914e4a4497fb15",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "b3aefbe05f3d07c5",
+            "e365e3ac2bf95a97",
+            "d8a0044258a2af21",
+            "5b6c9c53fb409b0e",
+            "0d7d9e12862d789b",
+            "e044e7f8c2d0c46f",
+            "121c2efb532dd863",
+            "5ab28ed7ab6ab427",
+            "fab3a2ca659c7014",
+            "146f45c3bfa8a3f8",
+            "5c4ca93d9c9623ba",
+            "b67099c45258cfd3"
+        ],
+        "x": 54,
+        "y": 1259,
+        "w": 832,
+        "h": 382
+    },
+    {
+        "id": "d7f3baf127f02fab",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f844e8a2c6181605",
+            "88629126eec09698",
+            "f6c879b8e4daaaa2",
+            "6ba66a9e150a512e",
+            "507c66dbc7c07a58",
+            "572897b33cd56f98",
+            "d9cbf202e2ca7d78",
+            "c9823ca8246d0e50",
+            "201c6deaf8b1e8d3",
+            "7095c2997cf22b93",
+            "dd68f537f8d106c8",
+            "85b3a80720622ced",
+            "e8c8b4955ed257bf"
+        ],
+        "x": 1814,
+        "y": 99,
+        "w": 752,
+        "h": 262
+    },
+    {
+        "id": "030cd0a9f03e0251",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "97829b7ee7afa223",
+            "33f1241bf7a57a4b",
+            "870faf16bf488d4b",
+            "9e00a91620fe92a1",
+            "b9dd6c43c4e0cb04",
+            "25fa820ac801af66",
+            "90724238b1a1d624",
+            "10a99a7742e6bf3c",
+            "a1de6f892b38c6b6",
+            "3742abac55a33d27",
+            "bd7550ec9d56ba18",
+            "1b568c19d1c72465",
+            "4f0ca8dd552ed87c",
+            "c277d52c07917e3d",
+            "d8c658e890aeb439",
+            "25832e5902cd5ef3",
+            "048916557373ef1e",
+            "c95a7d46ac6a0c4e",
+            "c6b8d07176e89f9c",
+            "7b2bd4fed1f3ba8c"
+        ],
+        "x": 1874,
+        "y": 399,
+        "w": 652,
+        "h": 782
+    },
+    {
+        "id": "2d0336cd76812691",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "92516c4af715c483",
+            "58880b1f31242fa1",
+            "a37d06db70cd9111",
+            "cff55f5eba07a4b0",
+            "7e41d56e66b2a131",
+            "d4c91ae8cf1572f2",
+            "18cff2b4a63a12ad",
+            "a7a5079a74886965",
+            "d62c9fe751211c9b",
+            "2eaf303a7a63596e",
+            "5c1250c1fc7fcd11",
+            "d5e15266eda0fa28"
+        ],
+        "x": 994,
+        "y": 979,
+        "w": 792,
+        "h": 222
+    },
+    {
         "id": "b0e7208048a256dc",
         "type": "mqtt-broker",
         "name": "",
@@ -1040,6 +1323,56 @@
         "port": "3306",
         "db": "db_iot_rs2lab",
         "tz": "+08:00",
+        "charset": "UTF8"
+    },
+    {
+        "id": "c04d9c37659ca8d5",
+        "type": "mqtt-broker",
+        "name": "BioSentry",
+        "broker": "172.16.80.150",
+        "port": "1883",
+        "clientid": "a01core",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "5581410adca722cb",
+        "type": "websocket-client",
+        "path": "ws://127.0.0.1:1882/biometria-mensagem",
+        "tls": "",
+        "wholemsg": "false",
+        "hb": "0",
+        "subprotocol": ""
+    },
+    {
+        "id": "89deb89aacc99f16",
+        "type": "MySQLdatabase",
+        "name": "BDTeste",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "bdteste",
+        "tz": "",
         "charset": "UTF8"
     },
     {
@@ -14795,6 +15128,2722 @@
         "dname": "Enviar E-mail",
         "x": 2790,
         "y": 3000,
+        "wires": []
+    },
+    {
+        "id": "72e67570cf326190",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 160,
+        "wires": [
+            [
+                "554d20b900ad5cbb"
+            ]
+        ]
+    },
+    {
+        "id": "fce8c93ac6e48920",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "0a524ad079f34203"
+            ]
+        ]
+    },
+    {
+        "id": "554d20b900ad5cbb",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "Query ",
+        "func": "msg.topic = `SELECT \n    id,\n    edificio,\n    UID_disposit,\n    data_registo\n    FROM rs2lab.dispositivos;`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "fce8c93ac6e48920"
+            ]
+        ]
+    },
+    {
+        "id": "0a524ad079f34203",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "eaa2d2071e6250a7",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "GET DEVICES",
+        "info": "\n",
+        "x": 220,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5c54f72b897c6517",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "devices",
+        "url": "/biosentry/devices",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 220,
+        "wires": [
+            [
+                "37bd74ac69065a70"
+            ]
+        ]
+    },
+    {
+        "id": "37bd74ac69065a70",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "Query",
+        "func": "msg.topic = `SELECT \n    id,\n    edificio,\n    UID_disposit,\n    data_registo\n    FROM rs2lab.dispositivos;`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 220,
+        "wires": [
+            [
+                "ba0994c95d7552f1"
+            ]
+        ]
+    },
+    {
+        "id": "ba0994c95d7552f1",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 550,
+        "y": 220,
+        "wires": [
+            [
+                "f3943e5bc772c866",
+                "8b0bd55489fd0be7"
+            ]
+        ]
+    },
+    {
+        "id": "73af561b31fb322e",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 870,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f3943e5bc772c866",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f280e08bc97eb3c0",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 300,
+        "wires": [
+            [
+                "566661a86397ab79"
+            ]
+        ]
+    },
+    {
+        "id": "566661a86397ab79",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/biosentry/devices",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "ebbf2a7adf2c684f"
+            ]
+        ]
+    },
+    {
+        "id": "ebbf2a7adf2c684f",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "73635e26adeb3d94",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "Add Devices",
+        "url": "/biosentry/addDevices",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 460,
+        "wires": [
+            [
+                "e7fdd60da7d9ad5d",
+                "e788bad50b4b9863"
+            ]
+        ]
+    },
+    {
+        "id": "e7fdd60da7d9ad5d",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "Query",
+        "func": "msg.topic = `INSERT INTO rs2lab.dispositivos (edificio, UID_disposit, data_registo) ` +\n    `VALUES ('${msg.payload.edificio}', '${msg.payload.UID_disposit}', NOW());`;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 480,
+        "wires": [
+            [
+                "66a910ee4212dae7"
+            ]
+        ]
+    },
+    {
+        "id": "f45ba199e838387e",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "66a910ee4212dae7",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 550,
+        "y": 480,
+        "wires": [
+            [
+                "f45ba199e838387e",
+                "02f849f525961e51"
+            ]
+        ]
+    },
+    {
+        "id": "e788bad50b4b9863",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "49b3cfdf30d1f4d9",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 540,
+        "wires": [
+            [
+                "2c8b51e8eb7aba4e"
+            ]
+        ]
+    },
+    {
+        "id": "2c8b51e8eb7aba4e",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/biosentry/addDevices",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 390,
+        "y": 540,
+        "wires": [
+            [
+                "2aa78c839855119d"
+            ]
+        ]
+    },
+    {
+        "id": "2aa78c839855119d",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "850b284a4fe7a4ee",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "Update Devices",
+        "url": "/biosentry/devices/:id",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 700,
+        "wires": [
+            [
+                "9c45b0dd95f283a1",
+                "f294a8684ae37438"
+            ]
+        ]
+    },
+    {
+        "id": "9c45b0dd95f283a1",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "Query",
+        "func": "msg.topic = `UPDATE dispositivos ` +\n    `SET edificio = '${msg.payload.edificio}', UID_disposit = '${msg.payload.UID_disposit}' ` +\n    `WHERE id = ${msg.payload.id};`;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 700,
+        "wires": [
+            [
+                "cfe675c9e79d855e"
+            ]
+        ]
+    },
+    {
+        "id": "53abed1cfaeb8c87",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "cfe675c9e79d855e",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 570,
+        "y": 700,
+        "wires": [
+            [
+                "53abed1cfaeb8c87",
+                "76771964a1d8bf48"
+            ]
+        ]
+    },
+    {
+        "id": "f294a8684ae37438",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "a11ed243fa470286",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 760,
+        "wires": [
+            [
+                "e0459a6ce308f113"
+            ]
+        ]
+    },
+    {
+        "id": "e0459a6ce308f113",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/biosentry/devices/1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 390,
+        "y": 760,
+        "wires": [
+            [
+                "232061cde7e4b4d0"
+            ]
+        ]
+    },
+    {
+        "id": "232061cde7e4b4d0",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "86bfe3f14febd10d",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "ADD DEVICES",
+        "info": "",
+        "x": 220,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "35073258ad86f2c0",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "UPDATE DEVICES",
+        "info": "",
+        "x": 230,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "76771964a1d8bf48",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "548a4c188beec72c",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "DELETE DEVICES",
+        "info": "",
+        "x": 230,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "cc001c593a5480bf",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "Delete Devices",
+        "url": "/biosentry/deletedevices/:id",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 940,
+        "wires": [
+            [
+                "094a0b76dae7672a",
+                "fb9285b3cecbd0f3"
+            ]
+        ]
+    },
+    {
+        "id": "094a0b76dae7672a",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "Query",
+        "func": "msg.topic = `DELETE FROM dispositivos WHERE id = ${msg.req.params.id};`;  \n\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 940,
+        "wires": [
+            [
+                "dd21b302437bd660"
+            ]
+        ]
+    },
+    {
+        "id": "b403d937b4308483",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "dd21b302437bd660",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 550,
+        "y": 940,
+        "wires": [
+            [
+                "b403d937b4308483",
+                "6b8711c00ecb42ab"
+            ]
+        ]
+    },
+    {
+        "id": "fb9285b3cecbd0f3",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "ad61c2c1f72d56ae",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 1000,
+        "wires": [
+            [
+                "64bb99dd1c6c8a8a"
+            ]
+        ]
+    },
+    {
+        "id": "64bb99dd1c6c8a8a",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/biosentry/deletedevices/10",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 410,
+        "y": 1000,
+        "wires": [
+            [
+                "083cdf04ad74cba5"
+            ]
+        ]
+    },
+    {
+        "id": "083cdf04ad74cba5",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "debug 22",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "6b8711c00ecb42ab",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "02f849f525961e51",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "a034727a6aab0fd2",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "START DISPOSITIVOS",
+        "info": "",
+        "x": 460,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b675e73917345971",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "START ESTUDANTES",
+        "info": "",
+        "x": 1100,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "fd01c3a2687c4d5a",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "GET ESTUDANTES",
+        "info": "",
+        "x": 1190,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "67dd302767260216",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1180,
+        "y": 200,
+        "wires": [
+            [
+                "68210cc4b33a97d8"
+            ]
+        ]
+    },
+    {
+        "id": "68210cc4b33a97d8",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "function 1",
+        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.email,\n    e.data_registo,\n    e.status_,\n    d.edificio\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id;`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1340,
+        "y": 200,
+        "wires": [
+            [
+                "db02c2b708612b9b"
+            ]
+        ]
+    },
+    {
+        "id": "db02c2b708612b9b",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1510,
+        "y": 180,
+        "wires": [
+            [
+                "3b9e025148c19869"
+            ]
+        ]
+    },
+    {
+        "id": "3b9e025148c19869",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 23",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1660,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "28cd34950669a479",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "students",
+        "url": "/biosentry/students",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1140,
+        "y": 260,
+        "wires": [
+            [
+                "27e4a3c9c223cc25"
+            ]
+        ]
+    },
+    {
+        "id": "27e4a3c9c223cc25",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "function 2",
+        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.email,\n    e.curso,\n    e.data_registo,\n    e.status_ ,\n    d.edificio,\n    d.UID_disposit,\n    e.device_id\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id;`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 260,
+        "wires": [
+            [
+                "6f5b06e51d29a999"
+            ]
+        ]
+    },
+    {
+        "id": "6f5b06e51d29a999",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1470,
+        "y": 260,
+        "wires": [
+            [
+                "ecb6ab809742f491",
+                "dbd0d3bdab775f7b"
+            ]
+        ]
+    },
+    {
+        "id": "ecb6ab809742f491",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 24",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "dbd0d3bdab775f7b",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "2334ed5fe60640de",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1180,
+        "y": 320,
+        "wires": [
+            [
+                "cd5274331186766e"
+            ]
+        ]
+    },
+    {
+        "id": "cd5274331186766e",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/biosentry/students",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1350,
+        "y": 320,
+        "wires": [
+            [
+                "01e8b8655c698a26"
+            ]
+        ]
+    },
+    {
+        "id": "01e8b8655c698a26",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 25",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1520,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3ed4d89775460558",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "Add Students",
+        "url": "/biosentry/addStudents",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1170,
+        "y": 460,
+        "wires": [
+            [
+                "9369a29f46c50c55",
+                "c4aca42eb1ba6526"
+            ]
+        ]
+    },
+    {
+        "id": "9369a29f46c50c55",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "Query",
+        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.payload.finger_id = global.get(\"finger_id\") || null;\n\nmsg.topic = `INSERT INTO rs2lab.estudantes (nome, codigo, email, curso, status_, device_id, finger_id) ` +\n    `VALUES ('${msg.payload.name}', '${msg.payload.codigo}', '${msg.payload.email}', ` +\n    `'${msg.payload.curso}','${msg.payload.status_}', ${msg.payload.device_id}, ${msg.payload.finger_id});`;\nreturn msg;\n\n\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 460,
+        "wires": [
+            [
+                "3f24d89febcf041d",
+                "fa62c7142bfc758b"
+            ]
+        ]
+    },
+    {
+        "id": "76d5a1b1823dc012",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 26",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1740,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "3f24d89febcf041d",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1590,
+        "y": 460,
+        "wires": [
+            [
+                "2338d112c2ea6b9a",
+                "76d5a1b1823dc012"
+            ]
+        ]
+    },
+    {
+        "id": "4912df7c1ca63e76",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "ADD ESTUDANTES",
+        "info": "",
+        "x": 1190,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "2338d112c2ea6b9a",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1730,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f844e8a2c6181605",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1920,
+        "y": 200,
+        "wires": [
+            [
+                "88629126eec09698"
+            ]
+        ]
+    },
+    {
+        "id": "88629126eec09698",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "function 13",
+        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome,\n    e.codigo,\n    e.email,\n    e.data_registo,\n    e.status_,\n    d.id AS id_Dispositivo\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id;`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2090,
+        "y": 200,
+        "wires": [
+            [
+                "f6c879b8e4daaaa2"
+            ]
+        ]
+    },
+    {
+        "id": "f6c879b8e4daaaa2",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "",
+        "x": 2250,
+        "y": 200,
+        "wires": [
+            [
+                "6ba66a9e150a512e"
+            ]
+        ]
+    },
+    {
+        "id": "6ba66a9e150a512e",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "debug 29",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2400,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "507c66dbc7c07a58",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "endpoint pra verificar dispositivos que tem estudantes registado",
+        "info": "",
+        "x": 2150,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "572897b33cd56f98",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "Get Devices with Students",
+        "url": "/biosentry/students/devices/:id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1950,
+        "y": 260,
+        "wires": [
+            [
+                "d9cbf202e2ca7d78"
+            ]
+        ]
+    },
+    {
+        "id": "d9cbf202e2ca7d78",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "function 14",
+        "func": "msg.topic = `SELECT \n    e.nome,\n    e.codigo,\n    e.email,\n    e.data_registo,\n    e.status_,\n    d.id AS id_Dispositivo\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id\n    WHERE\n    d.id = ${msg.req.params.id};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2150,
+        "y": 260,
+        "wires": [
+            [
+                "c9823ca8246d0e50"
+            ]
+        ]
+    },
+    {
+        "id": "c9823ca8246d0e50",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2310,
+        "y": 260,
+        "wires": [
+            [
+                "7095c2997cf22b93",
+                "201c6deaf8b1e8d3"
+            ]
+        ]
+    },
+    {
+        "id": "201c6deaf8b1e8d3",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2450,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "7095c2997cf22b93",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "debug 30",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2460,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "dd68f537f8d106c8",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1920,
+        "y": 320,
+        "wires": [
+            [
+                "85b3a80720622ced"
+            ]
+        ]
+    },
+    {
+        "id": "85b3a80720622ced",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/biosentry/students/devices/:id",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2070,
+        "y": 320,
+        "wires": [
+            [
+                "e8c8b4955ed257bf"
+            ]
+        ]
+    },
+    {
+        "id": "e8c8b4955ed257bf",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "d7f3baf127f02fab",
+        "name": "debug 31",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2240,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "2f88126a4a418b1a",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "UPDATE STUDENTS",
+        "info": "",
+        "x": 1200,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "7593d438901e8a84",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "Update Students",
+        "url": "/biosentry/updatestudents/:id",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1180,
+        "y": 680,
+        "wires": [
+            [
+                "d84d6f070a455e55"
+            ]
+        ]
+    },
+    {
+        "id": "d84d6f070a455e55",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "function 15",
+        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.topic = `UPDATE estudantes ` +\n    `SET nome = '${msg.payload.name}', codigo = '${msg.payload.codigo}', email = '${msg.payload.email}', curso = '${msg.payload.curso}', status_ = '${msg.payload.status_}', device_id = '${msg.payload.device_id}' ` +\n    `WHERE id = ${msg.payload.id};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1370,
+        "y": 680,
+        "wires": [
+            [
+                "102c1294b0084a5b"
+            ]
+        ]
+    },
+    {
+        "id": "102c1294b0084a5b",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1530,
+        "y": 680,
+        "wires": [
+            [
+                "84d77279bb86a487"
+            ]
+        ]
+    },
+    {
+        "id": "84d77279bb86a487",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1670,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "c5562ccf908be2c1",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1180,
+        "y": 740,
+        "wires": [
+            [
+                "60a657af006d4f0b"
+            ]
+        ]
+    },
+    {
+        "id": "60a657af006d4f0b",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/biosentry/updatestudents/2",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1350,
+        "y": 740,
+        "wires": [
+            [
+                "02a4c04f8393d689"
+            ]
+        ]
+    },
+    {
+        "id": "02a4c04f8393d689",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 32",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1520,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "74d3b96e10bc2483",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "DELETE STUDENTS",
+        "info": "",
+        "x": 1200,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "291a92a8941e1d8d",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "DELETE STUDENTS",
+        "url": "/biosentry/deleteStudents/:id",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1200,
+        "y": 880,
+        "wires": [
+            [
+                "7093e25c52c6aa03"
+            ]
+        ]
+    },
+    {
+        "id": "7093e25c52c6aa03",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "function 16",
+        "func": "msg.topic = `DELETE FROM estudantes WHERE id = ${msg.req.params.id};`;\nreturn msg; ",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 880,
+        "wires": [
+            [
+                "ade5439bdcc62918"
+            ]
+        ]
+    },
+    {
+        "id": "ade5439bdcc62918",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1590,
+        "y": 880,
+        "wires": [
+            [
+                "25305f3b3881c5af"
+            ]
+        ]
+    },
+    {
+        "id": "25305f3b3881c5af",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1730,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "2623cfb205341b91",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "name": "Get Devices by id",
+        "url": "/biosentry/getdevices/:id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1180,
+        "wires": [
+            [
+                "b7146fa483d081df",
+                "358534e7d555d95e"
+            ]
+        ]
+    },
+    {
+        "id": "b7146fa483d081df",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "name": "Query",
+        "func": "msg.topic = `SELECT \n    id,\n    edificio,\n    FROM rs2lab.dispositivos\n    WHERE id = ${msg.req.params.id};`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1180,
+        "wires": [
+            [
+                "b472bdbc5a9ef5ba"
+            ]
+        ]
+    },
+    {
+        "id": "a97e5c00fee23a2d",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "name": "debug 35",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "b472bdbc5a9ef5ba",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 550,
+        "y": 1180,
+        "wires": [
+            [
+                "a97e5c00fee23a2d",
+                "538f6f82e2d5fde9"
+            ]
+        ]
+    },
+    {
+        "id": "358534e7d555d95e",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "name": "debug 36",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "ca7da1323f1bbc2d",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "name": "Get DEVICES by id",
+        "info": "",
+        "x": 170,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "538f6f82e2d5fde9",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "8b0bd55489fd0be7",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "function 19",
+        "func": "if (Array.isArray(msg.payload)) {\n    msg.payload = msg.payload.map((item) => {\n        if (item.data_registo) {  // Verifica se a data existe\n            const date = new Date(item.data_registo);\n\n            // Corrigir a diferença de fuso horário para UTC-1 (Cabo Verde)\n            const cvOffset = -1 * 60;  // UTC-1 em minutos\n            const cvDate = new Date(date.getTime() + cvOffset * 60000);  // Ajustar a hora\n\n            // Formatar para \"DD/MM/YYYY HH:mm:ss\"\n            item.data_registo = cvDate.toLocaleString(\"pt-CV\", {\n                timeZone: 'UTC'\n            });\n        }\n        return item;\n    });\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 260,
+        "wires": [
+            [
+                "73af561b31fb322e"
+            ]
+        ]
+    },
+    {
+        "id": "85c919bbd47c948e",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1020,
+        "y": 1260,
+        "wires": [
+            [
+                "dd339cc4674285fa"
+            ]
+        ]
+    },
+    {
+        "id": "dd339cc4674285fa",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "function 20",
+        "func": "const localDate = new Date();\nconst hours = localDate.getHours();\nconst minutes = localDate.getMinutes();\nconst seconds = localDate.getSeconds();\n\nconsole.log(`Horário local: ${hours}:${minutes}:${seconds}`);\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 1260,
+        "wires": [
+            [
+                "569dd0dee148fb8c"
+            ]
+        ]
+    },
+    {
+        "id": "569dd0dee148fb8c",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "name": "debug 37",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "97829b7ee7afa223",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "debug 38",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2180,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "33f1241bf7a57a4b",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "Endpoint HTTP para Recebimento de Dados Biométricos no Node-RED",
+        "info": "",
+        "x": 2190,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "870faf16bf488d4b",
+        "type": "mqtt out",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "topic": "fingerprint_CMD",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c04d9c37659ca8d5",
+        "x": 2420,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "9e00a91620fe92a1",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "CMD EDIT ESP",
+        "url": "/biosentry/editbiometria",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1980,
+        "y": 660,
+        "wires": [
+            [
+                "25fa820ac801af66",
+                "b9dd6c43c4e0cb04",
+                "870faf16bf488d4b"
+            ]
+        ]
+    },
+    {
+        "id": "b9dd6c43c4e0cb04",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2170,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "25fa820ac801af66",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "debug 39",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2160,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "90724238b1a1d624",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "CMD ADD ESP",
+        "url": "/biosentry/biometria",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2000,
+        "y": 540,
+        "wires": [
+            [
+                "97829b7ee7afa223",
+                "870faf16bf488d4b",
+                "10a99a7742e6bf3c"
+            ]
+        ]
+    },
+    {
+        "id": "10a99a7742e6bf3c",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2390,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a1de6f892b38c6b6",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "CMD DELETE ESP",
+        "url": "biosentry/deletebiometria",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1990,
+        "y": 760,
+        "wires": [
+            [
+                "bd7550ec9d56ba18",
+                "3742abac55a33d27",
+                "870faf16bf488d4b"
+            ]
+        ]
+    },
+    {
+        "id": "3742abac55a33d27",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2210,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "bd7550ec9d56ba18",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "debug 40",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2220,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "1b568c19d1c72465",
+        "type": "mqtt in",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "topic": "debug_BioSentry",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c04d9c37659ca8d5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 2000,
+        "y": 1000,
+        "wires": [
+            [
+                "25832e5902cd5ef3",
+                "4f0ca8dd552ed87c"
+            ]
+        ]
+    },
+    {
+        "id": "4f0ca8dd552ed87c",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "debug 41",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2200,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "c277d52c07917e3d",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "Mensagens de notificação",
+        "info": "",
+        "x": 2010,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "07d4ed1fc797ef90",
+        "type": "mqtt in",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "topic": "fingerprint_REGISTED",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c04d9c37659ca8d5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1200,
+        "y": 540,
+        "wires": [
+            [
+                "583d6602eebeb86a",
+                "8c18284f520caea1"
+            ]
+        ]
+    },
+    {
+        "id": "8c18284f520caea1",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "function 21",
+        "func": "// Guardar o finger_id recebido\nglobal.set(\"finger_id\", msg.payload.finger_id);\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 540,
+        "wires": [
+            [
+                "28a21fd75e0a609c"
+            ]
+        ]
+    },
+    {
+        "id": "28a21fd75e0a609c",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 42",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "d8c658e890aeb439",
+        "type": "websocket out",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "030cd0a9f03e0251",
+        "name": "mensagens",
+        "server": "",
+        "client": "5581410adca722cb",
+        "x": 1990,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "92516c4af715c483",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "Buscar estudante por codigo",
+        "info": "",
+        "x": 1180,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "58880b1f31242fa1",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "Buscar por codigo",
+        "url": "/biosentry/students/:codigo",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1170,
+        "y": 1060,
+        "wires": [
+            [
+                "a37d06db70cd9111"
+            ]
+        ]
+    },
+    {
+        "id": "a37d06db70cd9111",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "function 22",
+        "func": "msg.topic = `SELECT \n                id,\n                nome AS name,\n                codigo,\n                email,\n                curso\n                FROM bdteste.estudantes \n                WHERE codigo = '${msg.req.params.codigo}';`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1370,
+        "y": 1060,
+        "wires": [
+            [
+                "cff55f5eba07a4b0"
+            ]
+        ]
+    },
+    {
+        "id": "cff55f5eba07a4b0",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "mydb": "89deb89aacc99f16",
+        "name": "",
+        "x": 1540,
+        "y": 1060,
+        "wires": [
+            [
+                "7e41d56e66b2a131",
+                "d4c91ae8cf1572f2"
+            ]
+        ]
+    },
+    {
+        "id": "7e41d56e66b2a131",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1690,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "d4c91ae8cf1572f2",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "debug 43",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1680,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "583d6602eebeb86a",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 44",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "25832e5902cd5ef3",
+        "type": "file",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "filename": "",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2200,
+        "y": 1000,
+        "wires": [
+            [
+                "048916557373ef1e"
+            ]
+        ]
+    },
+    {
+        "id": "048916557373ef1e",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "030cd0a9f03e0251",
+        "name": "debug 45",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2380,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "c95a7d46ac6a0c4e",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "url": "",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1970,
+        "y": 1060,
+        "wires": [
+            [
+                "c6b8d07176e89f9c"
+            ]
+        ]
+    },
+    {
+        "id": "c6b8d07176e89f9c",
+        "type": "file in",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "filename": "",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2140,
+        "y": 1060,
+        "wires": [
+            [
+                "7b2bd4fed1f3ba8c"
+            ]
+        ]
+    },
+    {
+        "id": "7b2bd4fed1f3ba8c",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2310,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "b3aefbe05f3d07c5",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "para capturar o log dos estudantes",
+        "info": "",
+        "x": 480,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "e365e3ac2bf95a97",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "LOGS STUDENTS",
+        "info": "",
+        "x": 470,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "d8a0044258a2af21",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "debug 33",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "5b6c9c53fb409b0e",
+        "type": "mqtt in",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "",
+        "topic": "fingerprint_RESP_BioSentry",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c04d9c37659ca8d5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 1540,
+        "wires": [
+            [
+                "0d7d9e12862d789b",
+                "121c2efb532dd863"
+            ]
+        ]
+    },
+    {
+        "id": "0d7d9e12862d789b",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "e044e7f8c2d0c46f",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "",
+        "x": 610,
+        "y": 1540,
+        "wires": [
+            [
+                "5ab28ed7ab6ab427"
+            ]
+        ]
+    },
+    {
+        "id": "121c2efb532dd863",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "function 12",
+        "func": "\nmsg.topic = `INSERT INTO logs_estudantes (\n    codigo,\n    data_hora,\n    log_info,\n    UID_disposit) ` +\n    `VALUES ('${msg.payload.codigo}',NOW(),'${msg.payload.logg_info}' ,'${msg.payload.device_id}');`;\nreturn msg;\n\n//colocar o device id e no get selecionar o UID do dispositivo\n// colocar UID como chave primaria?\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1540,
+        "wires": [
+            [
+                "e044e7f8c2d0c46f"
+            ]
+        ]
+    },
+    {
+        "id": "5ab28ed7ab6ab427",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "fab3a2ca659c7014",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "LogsStudents",
+        "url": "/biosentry/logsStudents",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 1440,
+        "wires": [
+            [
+                "146f45c3bfa8a3f8"
+            ]
+        ]
+    },
+    {
+        "id": "146f45c3bfa8a3f8",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "function 17",
+        "func": "msg.topic = `SELECT \n    e.codigo,\n    l.data_hora,\n    l.UID_disposit,\n    e.nome AS name,\n    l.log_info AS logg_info,\n    e.status_\nFROM logs_estudantes l \nJOIN estudantes e ON l.codigo = e.codigo\nORDER BY l.data_hora DESC;`;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1440,
+        "wires": [
+            [
+                "5c4ca93d9c9623ba"
+            ]
+        ]
+    },
+    {
+        "id": "5c4ca93d9c9623ba",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "",
+        "x": 550,
+        "y": 1440,
+        "wires": [
+            [
+                "d8a0044258a2af21",
+                "b67099c45258cfd3"
+            ]
+        ]
+    },
+    {
+        "id": "b67099c45258cfd3",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "18cff2b4a63a12ad",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "Buscar finder_id por codigo",
+        "url": "/biosentry/fingerid/:id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1130,
+        "y": 1160,
+        "wires": [
+            [
+                "a7a5079a74886965",
+                "d5e15266eda0fa28"
+            ]
+        ]
+    },
+    {
+        "id": "a7a5079a74886965",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "function 24",
+        "func": "msg.topic = `SELECT finger_id \n            FROM estudantes\n            WHERE id = ${msg.req.params.id};`;\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1390,
+        "y": 1160,
+        "wires": [
+            [
+                "d62c9fe751211c9b"
+            ]
+        ]
+    },
+    {
+        "id": "d62c9fe751211c9b",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "BD",
+        "x": 1550,
+        "y": 1160,
+        "wires": [
+            [
+                "2eaf303a7a63596e"
+            ]
+        ]
+    },
+    {
+        "id": "2eaf303a7a63596e",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1710,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "9ee9531c024001ea",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1630,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c4aca42eb1ba6526",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 46",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "fa62c7142bfc758b",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 47",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1580,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "5c1250c1fc7fcd11",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "Buscar finder_id por codigo",
+        "info": "Para poder pegar o valor do finger_id e envia-lo para o node-red\n",
+        "x": 1130,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "d5e15266eda0fa28",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "2d0336cd76812691",
+        "name": "debug 48",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 1100,
         "wires": []
     }
 ]

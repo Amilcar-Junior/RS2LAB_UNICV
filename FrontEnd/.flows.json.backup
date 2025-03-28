@@ -2,7 +2,15 @@
     {
         "id": "43734a494ac50a59",
         "type": "tab",
-        "label": "Fluxo 1",
+        "label": "AgriIOT",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "171462429b57c65d",
+        "type": "tab",
+        "label": "Flow 1",
         "disabled": false,
         "info": "",
         "env": []
@@ -1450,8 +1458,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 310,
-        "y": 720,
+        "x": 350,
+        "y": 740,
         "wires": []
     },
     {
