@@ -519,7 +519,8 @@ module.exports = {
           return;
         }
 
-        const response = await axios.get(`/getstudentbycode?codigo=${codigo}`);
+        const response = await axios.get(`/getstudentbycode?codigo=${codigo}`); 
+        this.model.item.codigo = codigo; // Ensure codigo is set in model.item
 
         if (response.data && response.data.data) {
           const estudante = response.data.data;

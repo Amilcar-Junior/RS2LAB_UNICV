@@ -16381,7 +16381,7 @@
         "z": "b945a241e156bcfb",
         "g": "76d13409270878fb",
         "name": "Query",
-        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.payload.finger_id = global.get(\"finger_id\") || null;\n\nmsg.topic = `INSERT INTO rs2lab.estudantes (nome, codigo, email, curso, status_, device_id, finger_id) ` +\n    `VALUES ('${msg.payload.name}', '${msg.payload.codigo}', '${msg.payload.email}', ` +\n    `'${msg.payload.curso}','${msg.payload.status_}', ${msg.payload.device_id}, ${msg.payload.finger_id});`;\nreturn msg;\n\n\n\n\n",
+        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.payload.finger_id = global.get(\"finger_id\") || null;\n\nmsg.topic = `INSERT INTO estudantes (nome, codigo, email, curso, status_, device_id, finger_id) ` +\n    `VALUES ('${msg.payload.name}', '${msg.payload.codigo}', '${msg.payload.email}', ` +\n    `'${msg.payload.curso}','${msg.payload.status_}', ${msg.payload.device_id}, ${msg.payload.finger_id});`;\nreturn msg;\n\n\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
