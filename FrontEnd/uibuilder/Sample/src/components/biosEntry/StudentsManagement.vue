@@ -231,7 +231,6 @@
 
               <b-col class="text-right">
                 <b-button
-                 
                   variant="outline-secondary"
                   @click="startBiometriaProcess"
                   :disabled="isSaving"
@@ -239,6 +238,8 @@
                 >
                 <!-- <b-icon icon="person-check" class="mr-2"> </b-icon>
                   Obter Biometria -->
+                  Clique aqui
+                
                 </b-button>
               </b-col>
             </b-row>
@@ -488,7 +489,7 @@ module.exports = {
       }
       const payload = { 
         Cmd: "Register_finger_" + this.model.item.uid_disposit,
-        codigo: this.model.item.codigo,
+        codigo: this.codigo,
         status_: this.model.item.status_ ? "1":"0",
       };
       axios
@@ -525,7 +526,7 @@ module.exports = {
 
           this.model.item.name = estudante.name || "Não disponível";
           this.model.item.email = estudante.email_academico || "Não disponível";
-          this.model.item.curso = "Null"; // Set to default or leave empty if not available
+          this.model.item.curso = "Não disponivel"; // Set to default or leave empty if not available
         } else {
           this.showNotification("Estudante não encontrado.", "danger", "Erro");
         }
