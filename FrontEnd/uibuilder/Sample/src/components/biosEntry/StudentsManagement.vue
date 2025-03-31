@@ -507,25 +507,33 @@ module.exports = {
 
 //para quando for dado a api do STI
     async pesquisarAluno() {
-      try{
+      try {
         const codigo = this.codigo;
         this.model.item.name = "";
         this.model.item.curso = "";
         this.model.item.email = "";
 
-        const response = await axios.get(`/biosentry/studentsycode/${codigo}`);
+        if (!codigo) {
+          this.showNotification("Por favor, insira um código de estudante.", "warning", "Atenção");
+          return;
+        }
 
-        if (response.data.length > 0) {
-          const estudante = response.data[0];
-          this.model.item.name = estudante.name;
-          this.model.item.curso = estudante.curso;
-          this.model.item.email = estudante.email;
-      } else {
-        this.showNotification("Estudante não encontrado.", "danger", "Erro");
+        const response = await axios.get(`/getstudentbycode?codigo=${codigo}`);
+
+        if (response.data && response.data.data) {
+          const estudante = response.data.data;
+
+          this.model.item.name = estudante.name || "Não disponível";
+          this.model.item.email = estudante.email_academico || "Não disponível";
+          this.model.item.curso = "Null"; // Set to default or leave empty if not available
+        } else {
+          this.showNotification("Estudante não encontrado.", "danger", "Erro");
+        }
+      } catch (error) {
+        console.error("Erro ao buscar estudante:", error);
+        this.showNotification("Erro ao buscar estudante. Verifique a conexão ou tente novamente.", "danger", "Erro");
       }
-    } catch (error) {
-      this.showNotification("Erro ao buscar estudante.", "danger", "Erro");
-    }
+
    
 },
    
@@ -732,5 +740,3 @@ module.exports = {
 }
 
 </style>
-
-

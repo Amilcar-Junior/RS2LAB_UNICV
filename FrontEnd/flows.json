@@ -16,6 +16,13 @@
         "env": []
     },
     {
+        "id": "a1b2c3d4e5",
+        "type": "tab",
+        "label": "Buscar Estudante",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "d2691f9bf8687a53",
         "type": "group",
         "z": "43734a494ac50a59",
@@ -1057,11 +1064,15 @@
             "6232b0d6144ee826",
             "a5ce558546355090",
             "6c1d7d922a575a2e",
-            "03316dc279f7fbf9"
+            "03316dc279f7fbf9",
+            "4427b4ef5e9c4398",
+            "1b478a47ce59422e",
+            "b0d8ba6642adb8a4",
+            "741c10b4e0c44e06"
         ],
         "x": 988,
         "y": 19,
-        "w": 1484,
+        "w": 1578,
         "h": 1288
     },
     {
@@ -17313,6 +17324,7 @@
         "id": "18cff2b4a63a12ad",
         "type": "http in",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "2d0336cd76812691",
         "name": "Buscar finder_id por id",
         "url": "/biosentry/fingerid/:id",
@@ -17332,6 +17344,7 @@
         "id": "a7a5079a74886965",
         "type": "function",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "2d0336cd76812691",
         "name": "function 24",
         "func": "msg.topic = `SELECT finger_id \n            FROM estudantes\n            WHERE id = ${msg.req.params.id};`;\nreturn msg;\n\n\n",
@@ -17353,6 +17366,7 @@
         "id": "d62c9fe751211c9b",
         "type": "mysql",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "2d0336cd76812691",
         "mydb": "f3e8c660cf5205b5",
         "name": "BD",
@@ -17368,6 +17382,7 @@
         "id": "2eaf303a7a63596e",
         "type": "http response",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "2d0336cd76812691",
         "name": "",
         "statusCode": "",
@@ -17753,6 +17768,7 @@
         "id": "a5ce558546355090",
         "type": "inject",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "e23f91c6c90719a6",
         "name": "",
         "props": [
@@ -17771,8 +17787,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1900,
-        "y": 160,
+        "x": 1980,
+        "y": 140,
         "wires": [
             [
                 "6c1d7d922a575a2e"
@@ -17783,6 +17799,7 @@
         "id": "6c1d7d922a575a2e",
         "type": "http request",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "e23f91c6c90719a6",
         "name": "",
         "method": "GET",
@@ -17803,8 +17820,8 @@
                 "valueValue": "Bearer w0ZQ8aoDby1Pv-EyiFOhZPo_rHJcL8ATS58NfcKum7AD7Dza6Jcxsf5-KnncCinb_8M45rOldE72uaDYvoVqs9RYRNTyeCK0zglgP7WFei-jX4zvA3W8RvyyR4_fcM35XD0XB3BF_zyP2WY9UkKZ9AblNhHDhS9aDN1Ml1nz3GkHwHdvmAsZVSSHvlkzfRQg69__KF4QgiiyQc75h0e3S6jGpySqnmgWNIlE42SV3-Nuszq46OPTfWEj4kZuRUks"
             }
         ],
-        "x": 2070,
-        "y": 160,
+        "x": 2150,
+        "y": 140,
         "wires": [
             [
                 "03316dc279f7fbf9"
@@ -17815,6 +17832,7 @@
         "id": "03316dc279f7fbf9",
         "type": "debug",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "e23f91c6c90719a6",
         "name": "debug 49",
         "active": true,
@@ -17824,8 +17842,319 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2240,
+        "x": 2320,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4427b4ef5e9c4398",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "e23f91c6c90719a6",
+        "name": "Obter dados por codigo",
+        "url": "/biosentry/studentsycode/:codigo/",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2080,
+        "y": 300,
+        "wires": [
+            [
+                "741c10b4e0c44e06"
+            ]
+        ]
+    },
+    {
+        "id": "1b478a47ce59422e",
+        "type": "change",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "req.params.codigo",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2100,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b0d8ba6642adb8a4",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2490,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "741c10b4e0c44e06",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://betaapi.unicv.cv/api-basic-v1/person/view?id={{{payload}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2290,
+        "y": 300,
+        "wires": [
+            [
+                "b0d8ba6642adb8a4"
+            ]
+        ]
+    },
+    {
+        "id": "b1a2c3d4e5",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "name": "Recebe Requisição do Vue.js",
+        "url": "/getstudentbycode",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2740,
         "y": 160,
+        "wires": [
+            [
+                "c6c2aa92338df8fb"
+            ]
+        ]
+    },
+    {
+        "id": "http-request",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "name": "Chama API da UNICV",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [],
+        "x": 3140,
+        "y": 160,
+        "wires": [
+            [
+                "http-out"
+            ]
+        ]
+    },
+    {
+        "id": "http-out",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "name": "Retorna dados",
+        "statusCode": "200",
+        "headers": {},
+        "x": 3360,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c5902c749072b8a1",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "url": "/test",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2740,
+        "y": 240,
+        "wires": [
+            [
+                "0e294721761cbb1f"
+            ]
+        ]
+    },
+    {
+        "id": "0e294721761cbb1f",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2890,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "function-node",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "Processa resposta",
+        "func": "if (msg.payload.success && msg.payload.data) {\n    msg.payload = msg.payload.data;\n} else {\n    msg.payload = { error: 'Estudante não encontrado' };\n    msg.statusCode = 404;\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3210,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c6c2aa92338df8fb",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "function 25",
+        "func": "var codigo = msg.req.query.codigo;\nmsg.url = \"http://betaapi.unicv.cv/api-basic-v1/person/view?id=\" + codigo;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2950,
+        "y": 160,
+        "wires": [
+            [
+                "http-request"
+            ]
+        ]
+    },
+    {
+        "id": "1a2b3c4d",
+        "type": "http in",
+        "z": "a1b2c3d4e5",
+        "name": "Receber Requisição",
+        "url": "/buscar-estudante",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "2a3b4c5d"
+            ]
+        ]
+    },
+    {
+        "id": "2a3b4c5d",
+        "type": "function",
+        "z": "a1b2c3d4e5",
+        "name": "Montar URL API",
+        "func": "let codigo = msg.req.query.codigo;\nif (!codigo) {\n    msg.payload = { error: \"Código de estudante não fornecido\" };\n    msg.statusCode = 400;\n    return msg;\n}\nmsg.url = `http://betaapi.unicv.cv/api-basic-v1/person/view?id=${codigo}`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 100,
+        "wires": [
+            [
+                "3a4b5c6d"
+            ]
+        ]
+    },
+    {
+        "id": "3a4b5c6d",
+        "type": "http request",
+        "z": "a1b2c3d4e5",
+        "name": "Chamar API UNICV",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "4a5b6c7d"
+            ]
+        ]
+    },
+    {
+        "id": "4a5b6c7d",
+        "type": "json",
+        "z": "a1b2c3d4e5",
+        "name": "Converter JSON",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 730,
+        "y": 100,
+        "wires": [
+            [
+                "5a6b7c8d"
+            ]
+        ]
+    },
+    {
+        "id": "5a6b7c8d",
+        "type": "function",
+        "z": "a1b2c3d4e5",
+        "name": "Filtrar Dados",
+        "func": "let data = msg.payload.data;\nif (msg.payload.success && data) {\n    msg.payload = {\n        name: data.name || \"Não disponível\",\n        curso: data.course || \"Não disponível\",\n        email: data.email || \"Não disponível\"\n    };\n} else {\n    msg.payload = { error: \"Estudante não encontrado\" };\n    msg.statusCode = 404;\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 100,
+        "wires": [
+            [
+                "6a7b8c9d"
+            ]
+        ]
+    },
+    {
+        "id": "6a7b8c9d",
+        "type": "http response",
+        "z": "a1b2c3d4e5",
+        "name": "Retornar Resposta",
+        "statusCode": "",
+        "headers": {},
+        "x": 1100,
+        "y": 100,
         "wires": []
     }
 ]
