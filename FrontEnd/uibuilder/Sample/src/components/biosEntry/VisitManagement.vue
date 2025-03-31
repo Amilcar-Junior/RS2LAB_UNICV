@@ -69,6 +69,7 @@
                     <th scope="col" class="col-2">Codigo</th>
                     <th scope="col" class="col-1">Status</th>
                     <th scope="col" class="col-1">Edificio</th>
+                    <th scope="col" class="col-1">Função</th>
                     <th
                       scope="col"
                       class="col-1 text-center"
@@ -94,6 +95,7 @@
                     <td>{{ item.codigo }}</td>
                     <td>{{ item.status_ }}</td>
                     <td>{{ item.edificio }}</td>
+                    <td>{{ item.nivel }}</td>
               
                     <td
                       class="text-center"
@@ -145,7 +147,7 @@
         </div>
   
         <!-- Modal para Adição -->
-        <b-modal v-model="showModalAdd" title="Adicionar Aluno" hide-footer>
+        <b-modal v-model="showModalAdd" title="Adicionar Visitantes" hide-footer>
           <b-form @submit.prevent="saveUser">
             <b-form-group label="Nome" label-for="name">
               <b-form-input
@@ -183,7 +185,19 @@
                   {{ edi.edificio }}
                 </option>
               </select>
-            </div>
+              </div>
+              
+              <div>
+                <label for="nivel">Função:</label>
+                <select id="nivel" v-model="model.item.nivel" class="form-control">
+                  <option value="" disabled >Selecione a função</option>
+                  <option value="Estudante">Estudante</option>
+                  <option value="Docente">Docente</option>
+                  <option value="Funcionário">Funcionário</option>
+              </select>
+              </div>
+     
+
   
             <b-form-group label="Status" label-for="status">
               <b-form-checkbox
@@ -289,6 +303,7 @@
             device_id: "",
             status_: "",
             UID_disposit: "", 
+            nivel:"",
             finger_id: null,
           },
         },
@@ -307,6 +322,7 @@
           name: "",
           device_id: "",
           status_: "",
+          nivel:"",
           UID_disposit : "",
           finger_id:null,
         },
@@ -393,32 +409,6 @@
         this.showModalEdit = true;
         this.atualizarUID();
       },
-    
-  
-      async startBiometriaProcess() {
-     
-        if (!this.model.item.uid_disposit) {
-          this.showNotification("Selecione um edifício válido!", "warning", "Aviso");
-          return;
-        }
-        const payload = { 
-          Cmd: "Register_finger_" + this.model.item.uid_disposit,
-          codigo: this.model.item.codigo,
-          status_: this.model.item.status_ ? "1":"0",
-        };
-        axios
-          .post("/biosentry/biometria", payload)
-          .then((response) => {
-            console.log("Comando enviado com sucesso:", response.data);
-  
-            this.biometriaRegistrada = true;
-  
-          })
-          .catch((error) => {
-            console.error("Erro ao enviar comando:", error);
-            this.showNotification("Erro ao enviar comando!", "danger", "Erro");
-          });
-      },
      
       async saveUser() {
   
@@ -435,11 +425,11 @@
               this.showNotification("Falha ao atualizar o estudante!", "danger", "Erro");
             });
              //inicio comando para enviar para node-red
-          const payload = {
-            Cmd: "Edit_finger_status_" + this.currentUser.uid_disposit,
-            finger_id: Number(this.currentUser.finger_id), 
-            status_: this.model.item.status_ ? "1":"0",
-          };
+          // const payload = {
+          //   Cmd: "Edit_finger_status_" + this.currentUser.uid_disposit,
+          //   finger_id: Number(this.currentUser.finger_id), 
+          //   status_: this.model.item.status_ ? "1":"0",
+          // };
           axios
             .post("/biosentry/editbiometria", payload)
             .then((response) => {
@@ -481,6 +471,7 @@
           name: "",
           codigo: "",
           device_id: "",
+          nivel:"",
           status_: "",
         };
         this.currentUser = {
@@ -488,6 +479,7 @@
           name: "",
           codigo: "",
           device_id: "",
+          nivel:"",
           status_: 1,
         };
       },
@@ -607,13 +599,20 @@
   };
   </script>
   
-  <style scoped>
-  .logo-img {
+<style scoped>
+.custom-dropdown {
+    border: 2px solid #007bff; /* Custom border color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px; /* Padding for better spacing */
+    background-color: #f8f9fa; /* Light background color */
+    font-size: 16px; /* Font size */
+}
+.logo-img {
     width: 25px;
     height: auto;
-  }
-  .custom-img{
+}
+.custom-img {
     width: 100px;
     height: auto;
-  }
-  </style>
+}
+</style>
