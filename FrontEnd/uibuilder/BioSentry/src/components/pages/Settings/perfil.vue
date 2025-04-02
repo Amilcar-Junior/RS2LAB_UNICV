@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid mt-5">
-    <router-link to="/" class="btn btn-secondary mb-3">
+    <!-- <router-link to="/" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
-    </router-link>
+    </router-link> -->
     <div class="card">
       <div class="card-header">
         <h4>Perfil</h4>

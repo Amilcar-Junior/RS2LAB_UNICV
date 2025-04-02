@@ -855,7 +855,7 @@
             "5cbc2b3e506bd1d9"
         ],
         "x": 14,
-        "y": -1,
+        "y": 19,
         "w": 872,
         "h": 342
     },
@@ -1038,7 +1038,7 @@
             "5e97604028904057"
         ],
         "x": 68,
-        "y": 19,
+        "y": 439,
         "w": 884,
         "h": 1368
     },
@@ -1095,8 +1095,8 @@
             "5c4ca93d9c9623ba",
             "b67099c45258cfd3"
         ],
-        "x": 74,
-        "y": 1439,
+        "x": 1054,
+        "y": 1319,
         "w": 832,
         "h": 382
     },
@@ -1302,7 +1302,7 @@
             "e8c8b4955ed257bf"
         ],
         "x": 94,
-        "y": 1099,
+        "y": 1519,
         "w": 752,
         "h": 262
     },
@@ -1333,7 +1333,7 @@
             "6b8711c00ecb42ab"
         ],
         "x": 94,
-        "y": 859,
+        "y": 1279,
         "w": 712,
         "h": 202
     },
@@ -1364,7 +1364,7 @@
             "76771964a1d8bf48"
         ],
         "x": 94,
-        "y": 619,
+        "y": 1039,
         "w": 712,
         "h": 222
     },
@@ -1395,7 +1395,7 @@
             "02f849f525961e51"
         ],
         "x": 94,
-        "y": 379,
+        "y": 799,
         "w": 712,
         "h": 222
     },
@@ -1430,7 +1430,7 @@
             "8b0bd55489fd0be7"
         ],
         "x": 94,
-        "y": 119,
+        "y": 539,
         "w": 832,
         "h": 242
     },
@@ -11666,7 +11666,7 @@
         "reload": false,
         "sourceFolder": "src",
         "x": 200,
-        "y": 100,
+        "y": 120,
         "wires": [
             [
                 "2e8364255f20bfde"
@@ -11685,7 +11685,7 @@
             "d451db08d12ba9c1"
         ],
         "x": 55,
-        "y": 100,
+        "y": 120,
         "wires": [
             [
                 "2b5fcb475301977b"
@@ -11726,7 +11726,7 @@
         "repair": false,
         "outputs": 4,
         "x": 380,
-        "y": 100,
+        "y": 120,
         "wires": [
             [
                 "b9b4546bca08157d"
@@ -11756,7 +11756,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 40,
+        "y": 60,
         "wires": [
             [
                 "89e1a4ceac90b0d3",
@@ -11778,7 +11778,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 80,
+        "y": 100,
         "wires": [
             [
                 "89e1a4ceac90b0d3",
@@ -11800,7 +11800,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 120,
+        "y": 140,
         "wires": [
             [
                 "89e1a4ceac90b0d3",
@@ -11819,7 +11819,7 @@
             "dd89e0896485f1a9"
         ],
         "x": 715,
-        "y": 80,
+        "y": 100,
         "wires": []
     },
     {
@@ -11837,7 +11837,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 40,
+        "y": 60,
         "wires": []
     },
     {
@@ -11855,7 +11855,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 760,
-        "y": 160,
+        "y": 180,
         "wires": []
     },
     {
@@ -11872,7 +11872,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 760,
-        "y": 120,
+        "y": 140,
         "wires": []
     },
     {
@@ -11886,7 +11886,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 230,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "10b80deb4d9ff607"
@@ -11907,7 +11907,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "bf867f6535aceded"
@@ -11923,7 +11923,7 @@
         "statusCode": "",
         "headers": {},
         "x": 590,
-        "y": 300,
+        "y": 320,
         "wires": []
     },
     {
@@ -11939,7 +11939,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 210,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
                 "5fb0c54dd27a05dc"
@@ -11961,7 +11961,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 240,
+        "y": 260,
         "wires": []
     },
     {
@@ -11978,7 +11978,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
                 "bf867f6535aceded"
@@ -11999,7 +11999,7 @@
         "finalize": "",
         "libs": [],
         "x": 570,
-        "y": 160,
+        "y": 180,
         "wires": [
             [
                 "89e1a4ceac90b0d3",
@@ -12022,7 +12022,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 760,
-        "y": 200,
+        "y": 220,
         "wires": []
     },
     {
@@ -15003,7 +15003,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 470,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "ebb2649d7670cefd",
@@ -15303,7 +15303,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 200,
-        "y": 200,
+        "y": 620,
         "wires": [
             [
                 "554d20b900ad5cbb"
@@ -15318,7 +15318,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 200,
+        "y": 620,
         "wires": [
             [
                 "0a524ad079f34203"
@@ -15339,7 +15339,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 200,
+        "y": 620,
         "wires": [
             [
                 "fce8c93ac6e48920"
@@ -15360,7 +15360,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 640,
-        "y": 200,
+        "y": 620,
         "wires": []
     },
     {
@@ -15371,7 +15371,7 @@
         "name": "GET DEVICES",
         "info": "\n",
         "x": 200,
-        "y": 160,
+        "y": 580,
         "wires": []
     },
     {
@@ -15385,7 +15385,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 170,
-        "y": 260,
+        "y": 680,
         "wires": [
             [
                 "37bd74ac69065a70"
@@ -15406,7 +15406,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 260,
+        "y": 680,
         "wires": [
             [
                 "ba0994c95d7552f1"
@@ -15421,7 +15421,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 260,
+        "y": 680,
         "wires": [
             [
                 "f3943e5bc772c866",
@@ -15438,7 +15438,7 @@
         "statusCode": "",
         "headers": {},
         "x": 850,
-        "y": 300,
+        "y": 720,
         "wires": []
     },
     {
@@ -15455,7 +15455,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 720,
-        "y": 260,
+        "y": 680,
         "wires": []
     },
     {
@@ -15481,7 +15481,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 200,
-        "y": 320,
+        "y": 740,
         "wires": [
             [
                 "566661a86397ab79"
@@ -15506,7 +15506,7 @@
         "senderr": false,
         "headers": [],
         "x": 370,
-        "y": 320,
+        "y": 740,
         "wires": [
             [
                 "ebbf2a7adf2c684f"
@@ -15527,7 +15527,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 540,
-        "y": 320,
+        "y": 740,
         "wires": []
     },
     {
@@ -15541,7 +15541,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 190,
-        "y": 480,
+        "y": 900,
         "wires": [
             [
                 "e7fdd60da7d9ad5d",
@@ -15563,7 +15563,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 500,
+        "y": 920,
         "wires": [
             [
                 "66a910ee4212dae7"
@@ -15584,7 +15584,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 700,
-        "y": 460,
+        "y": 880,
         "wires": []
     },
     {
@@ -15595,7 +15595,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 500,
+        "y": 920,
         "wires": [
             [
                 "f45ba199e838387e",
@@ -15617,7 +15617,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 360,
-        "y": 460,
+        "y": 880,
         "wires": []
     },
     {
@@ -15643,7 +15643,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 200,
-        "y": 560,
+        "y": 980,
         "wires": [
             [
                 "2c8b51e8eb7aba4e"
@@ -15668,7 +15668,7 @@
         "senderr": false,
         "headers": [],
         "x": 370,
-        "y": 560,
+        "y": 980,
         "wires": [
             [
                 "2aa78c839855119d"
@@ -15689,7 +15689,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 540,
-        "y": 560,
+        "y": 980,
         "wires": []
     },
     {
@@ -15703,7 +15703,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 200,
-        "y": 740,
+        "y": 1160,
         "wires": [
             [
                 "9c45b0dd95f283a1",
@@ -15725,7 +15725,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 740,
+        "y": 1160,
         "wires": [
             [
                 "cfe675c9e79d855e"
@@ -15746,7 +15746,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 700,
-        "y": 700,
+        "y": 1120,
         "wires": []
     },
     {
@@ -15757,7 +15757,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 740,
+        "y": 1160,
         "wires": [
             [
                 "53abed1cfaeb8c87",
@@ -15779,7 +15779,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 380,
-        "y": 700,
+        "y": 1120,
         "wires": []
     },
     {
@@ -15805,7 +15805,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 240,
-        "y": 800,
+        "y": 1220,
         "wires": [
             [
                 "e0459a6ce308f113"
@@ -15830,7 +15830,7 @@
         "senderr": false,
         "headers": [],
         "x": 410,
-        "y": 800,
+        "y": 1220,
         "wires": [
             [
                 "232061cde7e4b4d0"
@@ -15851,7 +15851,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 620,
-        "y": 800,
+        "y": 1220,
         "wires": []
     },
     {
@@ -15862,7 +15862,7 @@
         "name": "ADD DEVICES",
         "info": "",
         "x": 200,
-        "y": 420,
+        "y": 840,
         "wires": []
     },
     {
@@ -15873,7 +15873,7 @@
         "name": "UPDATE DEVICES",
         "info": "",
         "x": 210,
-        "y": 660,
+        "y": 1080,
         "wires": []
     },
     {
@@ -15885,7 +15885,7 @@
         "statusCode": "",
         "headers": {},
         "x": 690,
-        "y": 740,
+        "y": 1160,
         "wires": []
     },
     {
@@ -15896,7 +15896,7 @@
         "name": "DELETE DEVICES",
         "info": "",
         "x": 210,
-        "y": 900,
+        "y": 1320,
         "wires": []
     },
     {
@@ -15910,7 +15910,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 200,
-        "y": 960,
+        "y": 1380,
         "wires": [
             [
                 "094a0b76dae7672a",
@@ -15932,7 +15932,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 960,
+        "y": 1380,
         "wires": [
             [
                 "dd21b302437bd660"
@@ -15953,7 +15953,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 700,
-        "y": 920,
+        "y": 1340,
         "wires": []
     },
     {
@@ -15964,7 +15964,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 960,
+        "y": 1380,
         "wires": [
             [
                 "b403d937b4308483",
@@ -15986,7 +15986,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 380,
-        "y": 920,
+        "y": 1340,
         "wires": []
     },
     {
@@ -16012,7 +16012,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 200,
-        "y": 1020,
+        "y": 1440,
         "wires": [
             [
                 "64bb99dd1c6c8a8a"
@@ -16037,7 +16037,7 @@
         "senderr": false,
         "headers": [],
         "x": 390,
-        "y": 1020,
+        "y": 1440,
         "wires": [
             [
                 "083cdf04ad74cba5"
@@ -16058,7 +16058,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 580,
-        "y": 1020,
+        "y": 1440,
         "wires": []
     },
     {
@@ -16070,7 +16070,7 @@
         "statusCode": "",
         "headers": {},
         "x": 710,
-        "y": 960,
+        "y": 1380,
         "wires": []
     },
     {
@@ -16082,7 +16082,7 @@
         "statusCode": "",
         "headers": {},
         "x": 710,
-        "y": 520,
+        "y": 940,
         "wires": []
     },
     {
@@ -16093,7 +16093,7 @@
         "name": "START DISPOSITIVOS",
         "info": "",
         "x": 460,
-        "y": 60,
+        "y": 480,
         "wires": []
     },
     {
@@ -16692,7 +16692,7 @@
         "finalize": "",
         "libs": [],
         "x": 710,
-        "y": 300,
+        "y": 720,
         "wires": [
             [
                 "73af561b31fb322e"
@@ -17118,8 +17118,8 @@
         "g": "e0914e4a4497fb15",
         "name": "para capturar o logS",
         "info": "",
-        "x": 450,
-        "y": 1520,
+        "x": 1430,
+        "y": 1400,
         "wires": []
     },
     {
@@ -17129,8 +17129,8 @@
         "g": "e0914e4a4497fb15",
         "name": "ACESSOS",
         "info": "",
-        "x": 460,
-        "y": 1480,
+        "x": 1440,
+        "y": 1360,
         "wires": []
     },
     {
@@ -17147,8 +17147,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 720,
-        "y": 1580,
+        "x": 1700,
+        "y": 1460,
         "wires": []
     },
     {
@@ -17165,8 +17165,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 220,
-        "y": 1720,
+        "x": 1200,
+        "y": 1600,
         "wires": [
             [
                 "0d7d9e12862d789b",
@@ -17188,8 +17188,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 1780,
+        "x": 1440,
+        "y": 1660,
         "wires": []
     },
     {
@@ -17199,8 +17199,8 @@
         "g": "e0914e4a4497fb15",
         "mydb": "f3e8c660cf5205b5",
         "name": "",
-        "x": 630,
-        "y": 1720,
+        "x": 1610,
+        "y": 1600,
         "wires": [
             [
                 "5ab28ed7ab6ab427"
@@ -17220,8 +17220,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 1720,
+        "x": 1450,
+        "y": 1600,
         "wires": [
             [
                 "e044e7f8c2d0c46f"
@@ -17241,8 +17241,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 800,
-        "y": 1720,
+        "x": 1780,
+        "y": 1600,
         "wires": []
     },
     {
@@ -17255,8 +17255,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 210,
-        "y": 1620,
+        "x": 1190,
+        "y": 1500,
         "wires": [
             [
                 "146f45c3bfa8a3f8"
@@ -17276,8 +17276,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
-        "y": 1620,
+        "x": 1390,
+        "y": 1500,
         "wires": [
             [
                 "5c4ca93d9c9623ba"
@@ -17291,8 +17291,8 @@
         "g": "e0914e4a4497fb15",
         "mydb": "f3e8c660cf5205b5",
         "name": "",
-        "x": 570,
-        "y": 1620,
+        "x": 1550,
+        "y": 1500,
         "wires": [
             [
                 "d8a0044258a2af21",
@@ -17308,8 +17308,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 770,
-        "y": 1620,
+        "x": 1750,
+        "y": 1500,
         "wires": []
     },
     {
@@ -17441,7 +17441,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 200,
-        "y": 1200,
+        "y": 1620,
         "wires": [
             [
                 "88629126eec09698"
@@ -17462,7 +17462,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 1200,
+        "y": 1620,
         "wires": [
             [
                 "f6c879b8e4daaaa2"
@@ -17477,7 +17477,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 500,
-        "y": 1200,
+        "y": 1620,
         "wires": [
             [
                 "6ba66a9e150a512e"
@@ -17498,7 +17498,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 680,
-        "y": 1200,
+        "y": 1620,
         "wires": []
     },
     {
@@ -17509,7 +17509,7 @@
         "name": "endpoint pra verificar dispositivos que tem estudantes registado",
         "info": "",
         "x": 430,
-        "y": 1140,
+        "y": 1560,
         "wires": []
     },
     {
@@ -17523,7 +17523,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 230,
-        "y": 1260,
+        "y": 1680,
         "wires": [
             [
                 "d9cbf202e2ca7d78"
@@ -17544,7 +17544,7 @@
         "finalize": "",
         "libs": [],
         "x": 430,
-        "y": 1260,
+        "y": 1680,
         "wires": [
             [
                 "c9823ca8246d0e50"
@@ -17559,7 +17559,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 590,
-        "y": 1260,
+        "y": 1680,
         "wires": [
             [
                 "7095c2997cf22b93",
@@ -17576,7 +17576,7 @@
         "statusCode": "",
         "headers": {},
         "x": 730,
-        "y": 1300,
+        "y": 1720,
         "wires": []
     },
     {
@@ -17593,7 +17593,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 740,
-        "y": 1240,
+        "y": 1660,
         "wires": []
     },
     {
@@ -17619,7 +17619,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 200,
-        "y": 1320,
+        "y": 1740,
         "wires": [
             [
                 "85b3a80720622ced"
@@ -17644,7 +17644,7 @@
         "senderr": false,
         "headers": [],
         "x": 350,
-        "y": 1320,
+        "y": 1740,
         "wires": [
             [
                 "e8c8b4955ed257bf"
@@ -17665,7 +17665,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 520,
-        "y": 1320,
+        "y": 1740,
         "wires": []
     },
     {
@@ -17743,6 +17743,263 @@
                 "e81c3c9247a0a3a8"
             ]
         ]
+    },
+    {
+        "id": "a0cd5592381514f4",
+        "type": "uibuilder",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "topic": "",
+        "url": "BioSentry",
+        "fwdInMessages": false,
+        "allowScripts": false,
+        "allowStyles": false,
+        "copyIndex": true,
+        "templateFolder": "blank",
+        "extTemplate": "",
+        "showfolder": false,
+        "useSecurity": false,
+        "sessionLength": 432000,
+        "tokenAutoExtend": false,
+        "reload": false,
+        "sourceFolder": "src",
+        "x": 220,
+        "y": 180,
+        "wires": [
+            [
+                "b4a48dbaaf2cd054"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "41af33d6cda29f0b",
+        "type": "link in",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "links": [
+            "93b218d551ad041b"
+        ],
+        "x": 75,
+        "y": 180,
+        "wires": [
+            [
+                "a0cd5592381514f4"
+            ]
+        ]
+    },
+    {
+        "id": "b4a48dbaaf2cd054",
+        "type": "switch",
+        "z": "b945a241e156bcfb",
+        "name": "modules",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Login",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Logout",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Startup",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "UpdateUser",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "09b34f5abec9ba5d"
+            ],
+            [
+                "43a6fe02e9395650"
+            ],
+            [
+                "15802d7318159d5c"
+            ],
+            [
+                "4a2f1ff8514bc128"
+            ]
+        ]
+    },
+    {
+        "id": "09b34f5abec9ba5d",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "Login",
+        "func": "flow.set(msg.token, msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 120,
+        "wires": [
+            [
+                "93b218d551ad041b",
+                "ec312b5b4d49c726"
+            ]
+        ]
+    },
+    {
+        "id": "43a6fe02e9395650",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "Logout",
+        "func": "flow.set(msg.token, undefined);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 160,
+        "wires": [
+            [
+                "93b218d551ad041b",
+                "edb3f8512ae72464"
+            ]
+        ]
+    },
+    {
+        "id": "15802d7318159d5c",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "Startup",
+        "func": "\n\n// Se não houver token, retorna session undefined\nif (!msg.token) {\n    msg.session = undefined;\n    return msg;\n}\n\n// Verifica se o servidor tem os detalhes do token\nvar details = flow.get(msg.token);\nif (!details) {\n    msg.session = undefined;\n} else {\n    // Detalhes da sessão\n    msg.session = {\n        'uniqueid': details.session.uniqueid,\n        'start_Time': undefined,\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n\n    // Detalhes do usuário\n    msg.payload = {\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "93b218d551ad041b",
+                "65008fd4a621b47e"
+            ]
+        ]
+    },
+    {
+        "id": "93b218d551ad041b",
+        "type": "link out",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "41af33d6cda29f0b"
+        ],
+        "x": 735,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "ec312b5b4d49c726",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "65008fd4a621b47e",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "name": "debug 49",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "token",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "edb3f8512ae72464",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "name": "debug 50",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4a2f1ff8514bc128",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "UpdateUser",
+        "func": "\nvar updatedDetails = msg.payload;\n\n// Atualiza os detalhes do utilizador no fluxo\nvar session = flow.get(msg.token);\nif (session) {\n    session.user.Utilizador_Nome = updatedDetails.Utilizador_Nome;\n    session.user.Utilizador_Email = updatedDetails.Utilizador_Email;\n    session.user.Utilizador_image = updatedDetails.Utilizador_image;\n    // Atualize outros campos conforme necessário\n\n    flow.set(msg.token, session);\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 240,
+        "wires": [
+            [
+                "93b218d551ad041b",
+                "7c6ed059ca31b322"
+            ]
+        ]
+    },
+    {
+        "id": "7c6ed059ca31b322",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "name": "debug 51",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "token",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 280,
+        "wires": []
     },
     {
         "id": "1a2b3c4d",
