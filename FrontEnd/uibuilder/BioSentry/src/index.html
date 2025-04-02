@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Uni-Systems</title>
-    <meta name="description" content="RS2LAB" />
+    <title>UNI-Systems</title>
+    <meta name="description" content="Node-RED UI Builder - Blank template" />
     <link
       type="text/css"
       rel="stylesheet"
@@ -21,27 +21,27 @@
       rel="stylesheet"
       href="../uibuilder/vendor/bootstrap-vue/dist/bootstrap-vue.css"
     />
-    <link rel="icon" href="./components/images/rs2lab_logo.ico" />
+    <link rel="icon" href="./components/images/node-blue.ico" />
     <link
       rel="stylesheet"
       href="./components/images/font-awesome-4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="styles.css" media="all">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./index.css" media="all" />
+    <link rel="stylesheet" href="styles.css" media="all">
+   
     
   </head>
   <body>
     <div id="app">
-      <myheader :keys="user" ></myheader>
-      <main class="main-content">
-        <mylogin v-show="!user.islogged" :keys="user"></mylogin>
-        <b-container v-show="user.islogged" fluid>
-          <router-view :keys="user"></router-view>
-        </b-container>
-      </main>
-      <myfooter></myfooter>
-    </div>    
+      <myheader :keys="user"></myheader>
+      <!-- <sidebar></sidebar> -->
+      <mylogin v-show="!user.islogged" :keys="user"></mylogin>
+      <b-container v-show="user.islogged" fluid>
+        
+        <router-view :keys="user"></router-view>
+      </b-container>
+    </div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
@@ -55,7 +55,6 @@
     <script src="../uibuilder/vendor/axios/dist/axios.js"></script>
     <script src="../uibuilder/vendor/md5/dist/md5.min.js"></script>
     <script src="./uibuilderfe.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="../uibuilder/vendor/chart.js/dist/chart.js"></script>
     <script src="../uibuilder/vendor/paho-mqtt/paho-mqtt.js"></script>
     <script src="./index.js" type="module"></script>
@@ -70,9 +69,9 @@
     <script>
       window.onload = function () {
         var id = localStorage.getItem("token"); // verificar token válido
-        // console.log(id);
+        console.log(id);
         var session = { topic: "Startup", token: id }; // Enviar valor ao iniciar
-        // console.log("sessão: ",session);
+        console.log("sessão: ",session);
 
         // Iniciar uibuilder e enviar mensagem
         uibuilder.start();
@@ -105,3 +104,4 @@
     </script>
   </body>
 </html>
+

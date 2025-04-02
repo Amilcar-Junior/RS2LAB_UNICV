@@ -17116,9 +17116,9 @@
         "type": "comment",
         "z": "b945a241e156bcfb",
         "g": "e0914e4a4497fb15",
-        "name": "para capturar o log dos estudantes",
+        "name": "para capturar o logS",
         "info": "",
-        "x": 500,
+        "x": 450,
         "y": 1520,
         "wires": []
     },
@@ -17127,9 +17127,9 @@
         "type": "comment",
         "z": "b945a241e156bcfb",
         "g": "e0914e4a4497fb15",
-        "name": "LOGS STUDENTS",
+        "name": "ACESSOS",
         "info": "",
-        "x": 490,
+        "x": 460,
         "y": 1480,
         "wires": []
     },
