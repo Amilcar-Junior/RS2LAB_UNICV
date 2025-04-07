@@ -1,0 +1,111 @@
+@startuml
+skinparam linetype ortho
+skinparam packageStyle rectangle
+hide circle
+
+' Entidades Principais
+entity residencias {
+  *id : int <<PK>>
+  --
+  nome : varchar(50)
+  descricao : text
+}
+
+entity dispositivos {
+  *id : int <<PK>>
+  --
+  residencia_id : int <<FK>>
+  UID_disposit : varchar(50)
+  tipo : enum
+  localizacao : varchar(100)
+  data_registro : datetime
+}
+
+entity estudantes {
+  *codigo : varchar(50) <<PK>>
+  --
+  nome : varchar(100)
+  residencia_id : int <<FK>>
+  finger_id : int
+  status_ : tinyint(1)
+}
+
+entity funcionarios {
+  *id : int <<PK>>
+  --
+  nome : varchar(100)
+  residencia_id : int <<FK>>
+  rfid_uid : varchar(50)
+  status_ : tinyint(1)
+}
+
+entity visitantes {
+  *id : int <<PK>>
+  --
+  nome : varchar(100)
+  residencia_id : int <<FK>>
+  rfid_uid : varchar(50)
+  data_validade : date
+}
+
+entity TipoUtilizador {
+  *ID : int <<PK>>
+  --
+  Nome : varchar(50)
+  Descricao : text
+}
+
+entity Utilizador {
+  *ID : int <<PK>>
+  --
+  ID_TipoUtilizador : int <<FK>>
+  codigo_estudante : varchar(50) <<FK>> {optional}
+  id_funcionario : int <<FK>> {optional}
+  id_visitante : int <<FK>> {optional}
+  Email : varchar(100)
+  Senha : varchar(255)
+}
+
+entity logs_acessos {
+  *id : int <<PK>>
+  --
+  dispositivo_id : int <<FK>>
+  tipo_entidade : enum
+  entidade_id : varchar(50)
+  utilizador_id : int <<FK>> {optional}
+}
+
+' Relacionamentos
+residencias ||--o{ dispositivos : "1-N"
+residencias ||--o{ estudantes : "1-N"
+residencias ||--o{ funcionarios : "1-N"
+residencias ||--o{ visitantes : "1-N"
+
+dispositivos ||--o{ logs_acessos : "1-N"
+
+estudantes }o--|| Utilizador : "0-1 (opcional)"
+funcionarios }o--|| Utilizador : "0-1 (opcional)"
+visitantes }o--|| Utilizador : "0-1 (opcional)"
+
+TipoUtilizador ||--o{ Utilizador : "1-N"
+
+Utilizador ||--o{ logs_acessos : "0-N (registro)"
+
+' Legenda
+note right of residencias
+  **Relacionamentos Físicos**:
+  - Cada entidade física pertence
+  a uma residência
+  - Controle de acesso por
+  dispositivo/residência
+end note
+
+note left of Utilizador
+  **Sistema de Login**:
+  - Relacionamentos opcionais
+  com entidades físicas
+  - Permissões definidas por
+  TipoUtilizador
+end note
+
+@enduml

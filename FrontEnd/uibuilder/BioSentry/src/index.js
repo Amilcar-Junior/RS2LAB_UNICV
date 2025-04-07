@@ -5,7 +5,7 @@ const app = new Vue({
   components: {
     myheader: httpVueLoader("./components/myheader.vue"),
     mylogin: httpVueLoader("./components/login.vue"),
-    sidebar: httpVueLoader("./components/sidebar.vue"),
+    myfooter: httpVueLoader("./components/myfooter.vue"),
   },
   data() {
     return {
@@ -17,7 +17,7 @@ const app = new Vue({
         Utilizador_isActive: undefined,
         TipoUtilizador_ID: undefined,
         TipoUtilizador_Nome: undefined,
-        Utilizador_Email: undefined, 
+        Utilizador_Email: undefined,
         Utilizador_image: "",
         Grupos: undefined,
 
@@ -32,18 +32,6 @@ const app = new Vue({
   methods: {
     succesfulLogin() {
       this.user.islogged = true;
-
-        //  // Redirecionamento baseado no tipo de usuário
-        //  switch (vueApp.user.TipoUtilizador_Nome) {
-        //   case "ADMINISTRADOR":
-        //     vueApp.$router.push("/");
-        //     break;
-        //   case "ADMINBIOSENTRY":
-        //     vueApp.$router.push("/biosentry/dashboard");
-        //     break;
-        //   default:
-        //     vueApp.$router.push("/"); // Página padrão se o tipo não for reconhecido
-        // }
     },
     logoutUser() {
       var id = localStorage.getItem("token");
@@ -72,7 +60,7 @@ const app = new Vue({
       // Store session identifier to local browser
       localStorage.setItem("token", sessionID);
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(localStorage);
+      // console.log(localStorage);
 
       // Notify index.js that a session is created
       uibuilder.send({
@@ -144,8 +132,6 @@ const app = new Vue({
           vueApp.user.islogged = true;
           vueApp.freshlogin = true;
           localStorage.setItem("user", JSON.stringify(vueApp.user));
-
-        
           break;
 
         case "Logout":
@@ -175,5 +161,5 @@ const app = new Vue({
       });
     }
   },
-  router: new VueRouter(router),
+  router,
 });

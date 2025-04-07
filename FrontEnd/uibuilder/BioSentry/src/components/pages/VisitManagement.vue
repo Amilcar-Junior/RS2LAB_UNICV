@@ -147,8 +147,25 @@
         </div>
   
         <!-- Modal para Adição -->
-        <b-modal v-model="showModalAdd" title="Adicionar Visitantes" hide-footer>
+        <b-modal v-model="showModalAdd" title="Adicionar" hide-footer>
           <b-form @submit.prevent="saveUser">
+            <div class="mb-3">
+              <label for="device_id">Edificio:</label>
+              <select
+                id="device_id"
+                v-model="model.item.device_id"
+                @change="atualizarUID" 
+                class="form-control"
+                required
+              >
+                <option value="" disabled >Selecione o Edificio</option>
+                <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
+                  {{ edi.edificio }}
+                </option>
+              </select>
+              </div>
+            <hr/>
+            
             <b-form-group label="Nome" label-for="name">
               <b-form-input
                 id="name"
@@ -169,35 +186,16 @@
                 required
               ></b-form-input>
             </b-form-group>
-  
-  
-            <div class="mb-3">
-              <label for="device_id">Edificio:</label>
-              <select
-                id="device_id"
-                v-model="model.item.device_id"
-                @change="atualizarUID" 
-                class="form-control"
-                required
-              >
-                <option value="" disabled >Selecione o Edificio</option>
-                <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
-                  {{ edi.edificio }}
-                </option>
-              </select>
-              </div>
               
               <div>
                 <label for="nivel">Função:</label>
                 <select id="nivel" v-model="model.item.nivel" class="form-control">
-                  <option value="" disabled >Selecione a função</option>
+                  <option value="" disabled >Selecione a função da pessoa a ser registada</option>
                   <option value="Estudante">Estudante</option>
-                  <option value="Docente">Docente</option>
+                  <option value="Docente">Adminstrador</option>
                   <option value="Funcionário">Funcionário</option>
               </select>
               </div>
-     
-
   
             <b-form-group label="Status" label-for="status">
               <b-form-checkbox
@@ -225,13 +223,26 @@
   
           </b-form>
         </b-modal> 
-  
 
   
-  
         <!-- Modal para Editar -->
-      <b-modal v-model="showModalEdit" title="Editar Aluno" hide-footer>
+      <b-modal v-model="showModalEdit" title="Editar " hide-footer>
           <b-form @submit.prevent="saveUser">
+            <div class="mb-3">
+              <label for="device_id">Edificio:</label>
+              <select
+                id="device_id"
+                v-model.number="currentUser.device_id"
+                class="form-control"
+                required
+              >
+                <option value="" disabled >Selecione o Edificio</option>
+                <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
+                  {{ edi.edificio }}
+                </option>
+              </select>
+            </div>
+            <hr/>
             <b-form-group label="Nome" label-for="name">
               <b-form-input
                 id="name"
@@ -252,20 +263,16 @@
               ></b-form-input>
             </b-form-group>
   
-            <div class="mb-3">
-              <label for="device_id">Edificio:</label>
-              <select
-                id="device_id"
-                v-model.number="currentUser.device_id"
-                class="form-control"
-                required
-              >
-                <option value="" disabled >Selecione o Edificio</option>
-                <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
-                  {{ edi.edificio }}
-                </option>
+            <div>
+                <label for="nivel">Função:</label>
+                <select id="nivel" v-model="currentUser.nivel" class="form-control">
+                  <option value="" disabled >Selecione a função da pessoa a ser registada</option>
+                  <option value="Estudante">Estudante</option>
+                  <option value="Administrador">Administrador</option>
+                  <option value="Funcionário">Funcionário</option>
               </select>
-            </div>
+              </div>
+     
   
             <b-form-group label="Status" label-for="status">
               <b-form-checkbox
@@ -379,7 +386,7 @@
       },
       retrieveItems() {
         axios
-          .get("/biosentry/students")
+          .get("/biosentry/visitants")
           .then((response) => {
             this.items = response.data;
           })
@@ -424,12 +431,12 @@
             .catch(() => {
               this.showNotification("Falha ao atualizar o estudante!", "danger", "Erro");
             });
-             //inicio comando para enviar para node-red
-          // const payload = {
-          //   Cmd: "Edit_finger_status_" + this.currentUser.uid_disposit,
-          //   finger_id: Number(this.currentUser.finger_id), 
-          //   status_: this.model.item.status_ ? "1":"0",
-          // };
+            //  inicio comando para enviar para node-red
+          const payload = {
+            Cmd: "Edit_finger_status_" + this.currentUser.uid_disposit,
+            finger_id: Number(this.currentUser.finger_id), 
+            status_: this.model.item.status_ ? "1":"0",
+          };
           axios
             .post("/biosentry/editbiometria", payload)
             .then((response) => {
@@ -446,14 +453,10 @@
             this.showNotification('O codigo de estudante deve ser único para cada estudante!', 'danger', 'O codigo inserido já existe!');
             return;
           }
-          const existsEmail = this.items.some((item) => item.email === this.model.item.email);
-          if (existsEmail) {
-            this.showNotification('Este email já está registado. Tente usar um email diferente.', 'danger', 'O email inserido já existe!');
-            return;
-          } 
+          
   
           axios
-            .post("/biosentry/addStudents", this.model.item)
+            .post("/biosentry/addVisits", this.model.item)
             .then(() => { 
               this.showNotification("Estudante adicionado com sucesso!", "success", "Sucesso");
               this.retrieveItems();

@@ -1061,12 +1061,18 @@
             "2d0336cd76812691",
             "76d13409270878fb",
             "8ddbe2bebacc9245",
-            "6232b0d6144ee826"
+            "6232b0d6144ee826",
+            "b11e1f71e8119fb5",
+            "636ac6044284a3d1",
+            "db2b0f074c5a2595",
+            "673756bf618276ae",
+            "c2cd3326d58e5487",
+            "ba7d4145bf366ec8"
         ],
         "x": 928,
         "y": 59,
-        "w": 1644,
-        "h": 1288
+        "w": 1704,
+        "h": 1608
     },
     {
         "id": "e0914e4a4497fb15",
@@ -1099,6 +1105,38 @@
         "y": 1359,
         "w": 832,
         "h": 342
+    },
+    {
+        "id": "a6adededcdd25826",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "a0cd5592381514f4",
+            "41af33d6cda29f0b",
+            "b4a48dbaaf2cd054",
+            "09b34f5abec9ba5d",
+            "43a6fe02e9395650",
+            "15802d7318159d5c",
+            "93b218d551ad041b",
+            "ec312b5b4d49c726",
+            "65008fd4a621b47e",
+            "edb3f8512ae72464",
+            "4a2f1ff8514bc128",
+            "7c6ed059ca31b322"
+        ],
+        "x": 34,
+        "y": 59,
+        "w": 872,
+        "h": 242
     },
     {
         "id": "030cd0a9f03e0251",
@@ -1137,7 +1175,7 @@
             "7b2bd4fed1f3ba8c"
         ],
         "x": 1894,
-        "y": 479,
+        "y": 859,
         "w": 652,
         "h": 782
     },
@@ -1435,9 +1473,10 @@
         "h": 242
     },
     {
-        "id": "a6adededcdd25826",
+        "id": "b11e1f71e8119fb5",
         "type": "group",
         "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
         "style": {
             "stroke": "#999999",
             "stroke-opacity": "1",
@@ -1448,23 +1487,24 @@
             "color": "#a4a4a4"
         },
         "nodes": [
-            "a0cd5592381514f4",
-            "41af33d6cda29f0b",
-            "b4a48dbaaf2cd054",
-            "09b34f5abec9ba5d",
-            "43a6fe02e9395650",
-            "15802d7318159d5c",
-            "93b218d551ad041b",
-            "ec312b5b4d49c726",
-            "65008fd4a621b47e",
-            "edb3f8512ae72464",
-            "4a2f1ff8514bc128",
-            "7c6ed059ca31b322"
+            "84565aa7c66ff3af",
+            "a2057fb2ca4ccb40",
+            "efd1e766bbdd4f98",
+            "b05e3805654449cb",
+            "a477b1cb1d4ba384",
+            "03181043652a695a",
+            "ac9b9763727ca63a",
+            "7a99372b6d1da40d",
+            "087ffe4bb508bef4",
+            "dc9b6ddbd5ad64f6",
+            "981932b819530803",
+            "6723793f65ab6fe7",
+            "0cee265b807e226e"
         ],
-        "x": 34,
-        "y": 59,
-        "w": 872,
-        "h": 242
+        "x": 1874,
+        "y": 159,
+        "w": 732,
+        "h": 282
     },
     {
         "id": "b0e7208048a256dc",
@@ -16257,7 +16297,7 @@
         "z": "b945a241e156bcfb",
         "g": "6232b0d6144ee826",
         "name": "function 2",
-        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.email,\n    e.curso,\n    e.data_registo,\n    e.status_ ,\n    d.edificio,\n    d.UID_disposit,\n    e.device_id\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id;`;\nreturn msg;",
+        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.email,\n    e.curso,\n    e.data_registo,\n    e.status_ ,\n    d.edificio,\n    d.UID_disposit,\n    e.device_id\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id\n    WHERE e.nivel = 'Estudante';`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16413,7 +16453,7 @@
         "z": "b945a241e156bcfb",
         "g": "76d13409270878fb",
         "name": "Query",
-        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.payload.finger_id = global.get(\"finger_id\") || null;\n\nmsg.topic = `INSERT INTO estudantes (nome, codigo, email, curso, status_, device_id, finger_id) ` +\n    `VALUES ('${msg.payload.name}', '${msg.payload.codigo}', '${msg.payload.email}', ` +\n    `'${msg.payload.curso}','${msg.payload.status_}', ${msg.payload.device_id}, ${msg.payload.finger_id});`;\nreturn msg;\n\n\n\n\n",
+        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.payload.finger_id = global.get(\"finger_id\") || null;\n\n// Se o email não for fornecido, define como NULL\nlet email = msg.payload.email ? `'${msg.payload.email}'` : 'NULL'; \n\n// Garantir que nivel seja uma string envolvida por aspas simples\nlet nivel = msg.payload.nivel ? `'${msg.payload.nivel}'` : `'estudante'`;\n\nmsg.topic = `INSERT INTO estudantes (nome, codigo, email, curso, status_, device_id, finger_id, nivel) ` +\n    `VALUES ('${msg.payload.name}', '${msg.payload.codigo}', '${msg.payload.email}', ` +\n    `'${msg.payload.curso}','${msg.payload.status_}', ${msg.payload.device_id}, ${msg.payload.finger_id}, ${nivel});`;\nreturn msg;\n\n\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16519,7 +16559,7 @@
         "z": "b945a241e156bcfb",
         "g": "2d0336cd76812691",
         "name": "function 15",
-        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.topic = `UPDATE estudantes ` +\n    `SET nome = '${msg.payload.name}', codigo = '${msg.payload.codigo}', email = '${msg.payload.email}', curso = '${msg.payload.curso}', status_ = '${msg.payload.status_}', device_id = '${msg.payload.device_id}' ` +\n    `WHERE id = ${msg.payload.id};`;\nreturn msg;\n",
+        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.topic = `UPDATE estudantes ` +\n    `SET nome = '${msg.payload.name}', codigo = '${msg.payload.codigo}', curso = '${msg.payload.curso}', status_ = '${msg.payload.status_}', device_id = '${msg.payload.device_id}', nivel = '${msg.payload.nivel}' ` +\n    `WHERE id = ${msg.payload.id};`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16745,7 +16785,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2220,
-        "y": 580,
+        "y": 960,
         "wires": []
     },
     {
@@ -16756,13 +16796,14 @@
         "name": "Endpoint HTTP para Recebimento de Dados Biométricos no Node-RED",
         "info": "",
         "x": 2210,
-        "y": 520,
+        "y": 900,
         "wires": []
     },
     {
         "id": "870faf16bf488d4b",
         "type": "mqtt out",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "030cd0a9f03e0251",
         "name": "",
         "topic": "fingerprint_CMD",
@@ -16775,7 +16816,7 @@
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
         "x": 2440,
-        "y": 700,
+        "y": 1080,
         "wires": []
     },
     {
@@ -16789,7 +16830,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2000,
-        "y": 740,
+        "y": 1120,
         "wires": [
             [
                 "25fa820ac801af66",
@@ -16807,7 +16848,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2190,
-        "y": 760,
+        "y": 1140,
         "wires": []
     },
     {
@@ -16824,7 +16865,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2180,
-        "y": 700,
+        "y": 1080,
         "wires": []
     },
     {
@@ -16838,7 +16879,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2020,
-        "y": 620,
+        "y": 1000,
         "wires": [
             [
                 "97829b7ee7afa223",
@@ -16856,7 +16897,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2410,
-        "y": 600,
+        "y": 980,
         "wires": []
     },
     {
@@ -16870,7 +16911,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2010,
-        "y": 840,
+        "y": 1220,
         "wires": [
             [
                 "bd7550ec9d56ba18",
@@ -16888,7 +16929,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2230,
-        "y": 900,
+        "y": 1280,
         "wires": []
     },
     {
@@ -16905,7 +16946,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2240,
-        "y": 860,
+        "y": 1240,
         "wires": []
     },
     {
@@ -16923,7 +16964,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 2020,
-        "y": 1080,
+        "y": 1460,
         "wires": [
             [
                 "25832e5902cd5ef3",
@@ -16945,7 +16986,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2220,
-        "y": 1040,
+        "y": 1420,
         "wires": []
     },
     {
@@ -16956,7 +16997,7 @@
         "name": "Mensagens de notificação",
         "info": "",
         "x": 2030,
-        "y": 1000,
+        "y": 1380,
         "wires": []
     },
     {
@@ -17030,7 +17071,7 @@
         "server": "",
         "client": "5581410adca722cb",
         "x": 2010,
-        "y": 1220,
+        "y": 1600,
         "wires": []
     },
     {
@@ -17064,7 +17105,7 @@
         "overwriteFile": "false",
         "encoding": "none",
         "x": 2220,
-        "y": 1080,
+        "y": 1460,
         "wires": [
             [
                 "048916557373ef1e"
@@ -17086,7 +17127,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2400,
-        "y": 1080,
+        "y": 1460,
         "wires": []
     },
     {
@@ -17101,7 +17142,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1990,
-        "y": 1140,
+        "y": 1520,
         "wires": [
             [
                 "c6b8d07176e89f9c"
@@ -17123,7 +17164,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 2160,
-        "y": 1140,
+        "y": 1520,
         "wires": [
             [
                 "7b2bd4fed1f3ba8c"
@@ -17140,7 +17181,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2330,
-        "y": 1140,
+        "y": 1520,
         "wires": []
     },
     {
@@ -18043,6 +18084,338 @@
         "statusType": "auto",
         "x": 780,
         "y": 260,
+        "wires": []
+    },
+    {
+        "id": "84565aa7c66ff3af",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "GET OUTROS",
+        "info": "",
+        "x": 2000,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "a2057fb2ca4ccb40",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 2000,
+        "y": 260,
+        "wires": [
+            [
+                "efd1e766bbdd4f98"
+            ]
+        ]
+    },
+    {
+        "id": "efd1e766bbdd4f98",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "function 26",
+        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.data_registo,\n    e.nivel,\n    d.edificio,\n    d.UID_disposit,\n    e.device_id\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id\n    WHERE e.nivel IN ('Funcionário', 'Administrador');`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2160,
+        "y": 260,
+        "wires": [
+            [
+                "b05e3805654449cb"
+            ]
+        ]
+    },
+    {
+        "id": "b05e3805654449cb",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2330,
+        "y": 260,
+        "wires": [
+            [
+                "a477b1cb1d4ba384"
+            ]
+        ]
+    },
+    {
+        "id": "a477b1cb1d4ba384",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "debug 52",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2480,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "03181043652a695a",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "students",
+        "url": "/biosentry/visitants",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1960,
+        "y": 320,
+        "wires": [
+            [
+                "ac9b9763727ca63a"
+            ]
+        ]
+    },
+    {
+        "id": "ac9b9763727ca63a",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "function 27",
+        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.data_registo,\n    e.nivel,\n    e.status_,\n    d.edificio,\n    d.UID_disposit,\n    e.device_id\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id\n    WHERE e.nivel IN ('Funcionário', 'Administrador');`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2140,
+        "y": 320,
+        "wires": [
+            [
+                "7a99372b6d1da40d"
+            ]
+        ]
+    },
+    {
+        "id": "7a99372b6d1da40d",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2290,
+        "y": 320,
+        "wires": [
+            [
+                "087ffe4bb508bef4",
+                "dc9b6ddbd5ad64f6"
+            ]
+        ]
+    },
+    {
+        "id": "087ffe4bb508bef4",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "debug 53",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2500,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "dc9b6ddbd5ad64f6",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2510,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "981932b819530803",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 2000,
+        "y": 380,
+        "wires": [
+            [
+                "6723793f65ab6fe7"
+            ]
+        ]
+    },
+    {
+        "id": "6723793f65ab6fe7",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1882/biosentry/students",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2170,
+        "y": 380,
+        "wires": [
+            [
+                "0cee265b807e226e"
+            ]
+        ]
+    },
+    {
+        "id": "0cee265b807e226e",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "b11e1f71e8119fb5",
+        "name": "debug 54",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2340,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "636ac6044284a3d1",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "Add Students",
+        "url": "/biosentry/addVisits",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1970,
+        "y": 580,
+        "wires": [
+            [
+                "db2b0f074c5a2595"
+            ]
+        ]
+    },
+    {
+        "id": "db2b0f074c5a2595",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "Query",
+        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.payload.finger_id = global.get(\"finger_id\") || null;\n\n// Se o email não for fornecido, define como NULL\nlet email = msg.payload.email ? `'${msg.payload.email}'` : 'NULL'; \n\n// Garantir que nivel seja uma string envolvida por aspas simples\nlet nivel = msg.payload.nivel ? `'${msg.payload.nivel}'` : `'estudante'`;\n\nmsg.topic = `INSERT INTO estudantes (nome, codigo,curso, status_, device_id,nivel) ` +\n    `VALUES ('${msg.payload.name}', '${msg.payload.codigo}', ` +\n    `'${msg.payload.curso}','${msg.payload.status_}', ${msg.payload.device_id}, ${nivel});`;\nreturn msg;\n\n\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2150,
+        "y": 580,
+        "wires": [
+            [
+                "c2cd3326d58e5487"
+            ]
+        ]
+    },
+    {
+        "id": "673756bf618276ae",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 55",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2500,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "c2cd3326d58e5487",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2310,
+        "y": 580,
+        "wires": [
+            [
+                "673756bf618276ae"
+            ]
+        ]
+    },
+    {
+        "id": "ba7d4145bf366ec8",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "ADD OUTROS",
+        "info": "",
+        "x": 1980,
+        "y": 520,
         "wires": []
     },
     {

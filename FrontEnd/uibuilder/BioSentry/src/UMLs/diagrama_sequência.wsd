@@ -1,0 +1,23 @@
+@startuml
+
+title Sequência de Acesso Biométrico
+
+actor Usuário
+participant "Leitor Biométrico" as LB
+participant "Sistema Web" as SW
+participant "Banco de Dados" as DB
+
+Usuário -> LB: Posiciona dedo no sensor
+LB -> SW: Envia dados biométricos
+SW -> DB: Verifica biometria e status do usuário
+DB --> SW: Retorna validação (Aprovado/Rejeitado)
+SW -> LB: Envia resposta (Acesso Permitido/Negado)
+LB -> Usuário: Exibe resultado
+
+note right of SW
+Se aprovado, gera um log de entrada/saída
+end note
+
+SW -> DB: Registra log de acesso
+
+@enduml

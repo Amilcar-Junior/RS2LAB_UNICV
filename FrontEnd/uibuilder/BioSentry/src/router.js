@@ -22,13 +22,19 @@ const StudentsManagement = httpVueLoader('./components/Pages/StudentsManagement.
 const LogsStudents = httpVueLoader('./components/Pages/LogsStudents.vue');
 const VisitManagement = httpVueLoader('./components/Pages/VisitManagement.vue');
 const Relatorio = httpVueLoader('./components/Pages/Relatorio.vue');
-export default {
 
-    routes: [
+const routes = [
         {
             path: '/',
             name: 'Dashboard', 
-            component: Dashboard
+            component: Dashboard,
+            meta: {
+                requiresAuth: false,
+                roles: [
+                  'AdminBiosEntry'
+                ],
+              },
+            
         },
         {
             path: '*',
@@ -48,32 +54,68 @@ export default {
         {
             path:'/tipoutilizador',
             name:'ViewTipoUtilizador',
-            component: ListTipoUtilizador
+            component: ListTipoUtilizador,
+            meta: {
+                requiresAuth: false,
+                roles: [
+                  'AdminBiosEntry'
+                ],
+              },
         },
         {
             path:'/tipoutilizador/create',
             name:'CreateTipoUtilizador',
-            component: CreateTipoUtilizador
+            component: CreateTipoUtilizador,
+            meta: {
+                requiresAuth: false,
+                roles: [
+                  'AdminBiosEntry'
+                ],
+              },
         },
         {
             path:'/tipoutilizador/:ID/edit',
             name:'EditTipoUtilizador',
-            component: EditTipoUtilizador
+            component: EditTipoUtilizador,
+            meta: {
+                requiresAuth: false,
+                roles: [
+                  'AdminBiosEntry'
+                ],
+              },
         },
         {
             path:'/utilizador',
             name:'ViewUtilizador',
-            component: ListUtilizador
+            component: ListUtilizador,
+            meta: {
+                requiresAuth: false,
+                roles: [
+                  'AdminBiosEntry'
+                ],
+              },
         },
         {
             path:'/utilizador/create',
             name:'CreateUtilizador',
-            component: CreateUtilizador
+            component: CreateUtilizador,
+            meta: {
+                requiresAuth: false,
+                roles: [
+                  'AdminBiosEntry'
+                ],
+              },
         },
         {
             path:'/utilizador/:ID/edit',
             name:'EditUtilizador',
-            component: EditUtilizador
+            component: EditUtilizador,
+            meta: {
+                requiresAuth: false,
+                roles: [
+                  'AdminBiosEntry'
+                ],
+              },
         },
         // {
         //     path:'/biosentry/dashboard',
@@ -83,29 +125,109 @@ export default {
         {
             path:'/biosentry/dispositivos',
             name:'DeviceManagement',
-            component: DeviceManagement
+            component: DeviceManagement,
+            meta: {
+              requiresAuth: false,
+              roles: [
+                'AdminBiosEntry'
+              ],
+            },
         },
         {
             path:'/biosentry/gestao-alunos',
             name:'StudentsManagement',
-            component: StudentsManagement
+            component: StudentsManagement,
+            meta: {
+              requiresAuth: false,
+              roles: [
+                'AdminBiosEntry'
+              ],
+            },
         },
         {
             path:'/biosentry/historico-acesso',
             name:'LogsStudents',
-            component: LogsStudents
+            component: LogsStudents,
+            meta: {
+              requiresAuth: false,
+              roles: [
+                'AdminBiosEntry'
+                
+              ],
+            },
         },
         {
             path:'/biosentry/gestao-visitantes',
             name:'VisitManagement',
-            component: VisitManagement
+            component: VisitManagement,
+            meta: {
+              requiresAuth: false,
+              roles: [
+                'AdminBiosEntry'
+                
+              ],
+            },
         },
         {
             path:'/biosentry/gerar-relatorio',
             name: 'Relatorio',
-            component: Relatorio
+            component: Relatorio,
+            meta: {
+              requiresAuth: false,
+              roles: [
+                'AdminBiosEntry'
+                
+              ],
+            },
         },
-
         
-    ],
-};
+    ];
+
+    // Configuração do router
+const router = new VueRouter({
+    mode: "hash",
+    routes,
+  });
+  
+  export default router; // Add this line to export the router instance
+  
+  // Verificação de permissões no `beforeEach`
+  
+  router.beforeEach((to, from, next) => {
+    
+      // Obter os dados do utilizador logado do localStorage ou do sistema global
+      const loggedUser = JSON.parse(localStorage.getItem("user"));
+    
+      // Verificar se a rota requer autenticação
+      if (to.matched.some((record) => record.meta.requiresAuth)) {
+    
+        if (!loggedUser || !loggedUser.islogged) {
+          console.warn("Acesso negado: utilizador não autenticado.");
+          next({ path: "/page-not-permitted" });
+        } else {
+          // Check for AdminBiosEntry user type
+          if (loggedUser.TipoUtilizador_Nome === 'AdminBiosEntry') {
+            next({ path: '/biosentry/dashboard' }); // Redirect AdminBiosEntry to DashboardB
+          } else {
+            // Verificar se o utilizador tem permissão para a rota
+            const allowedRoles = to.meta.roles || []; 
+    
+            if (allowedRoles.includes(loggedUser.TipoUtilizador_Nome)) {
+              next(); // Tem permissão, continua
+            } else {
+              console.warn(
+                "Acesso negado: função não permitida.",
+                "Utilizador:",
+                loggedUser.TipoUtilizador_Nome,
+                "Rota:",
+                to.fullPath
+              );
+              next({ path: "/page-not-permitted" });
+            }
+          }
+        }
+      } else {
+        next(); // Para rotas públicas
+      }
+    });
+  

@@ -144,7 +144,7 @@
               :per-page="perPage"
               aria-controls="utilizadores-table"
               class="custom-pagination"
-            ></b-pagination>
+        ></b-pagination>
           </div>
         </div>
       </div>
@@ -256,7 +256,7 @@
   
 <!--   
               <b-button variant="secondary" @click="showModalAdd = false"
-              >Cancelar</b-button -->
+              >Cancelar</b-button> -->
               
   
           </b-form>
