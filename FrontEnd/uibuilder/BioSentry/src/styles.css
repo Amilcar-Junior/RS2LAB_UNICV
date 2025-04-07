@@ -1,3 +1,7 @@
+:root {
+  --sidebar-color: #AB162B;
+}
+
 .input {
     border: none;
     outline: none;

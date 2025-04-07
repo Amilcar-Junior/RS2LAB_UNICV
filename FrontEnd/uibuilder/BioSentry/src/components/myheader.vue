@@ -1,45 +1,16 @@
 <template>
-  <!--Navbar AgriIOT -->
-  <b-navbar toggleable="lg" type="dark" class="custom-navbar" >
-    <b-navbar-brand href="#" to="/">
-      <img src="./components/images/rs2lab_logo_black.png" alt="RS2LAB" class="logo-img" />
-    </b-navbar-brand>
 
+  <b-navbar toggleable="lg" type="dark" class="custom-navbar" >
+    <b-navbar-brand href="#" @click.prevent="toggleSidebar">
+      <i class="fa fa-bars"></i>
+    </b-navbar-brand>
+<!-- 
     <b-navbar-toggle
       target="nav-collapse"
       v-show="keys.islogged"
-    ></b-navbar-toggle>
+    ></b-navbar-toggle> -->
 
     <b-collapse id="nav-collapse" is-nav>
-       <b-navbar-nav v-show="keys.islogged " v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
-          <b-nav-item  href="#" to="/"> Dashboard</b-nav-item>
-         
-          <b-nav-item-dropdown text="Cadastro"
-          right
-          > 
-          <b-dropdown-item href="#" to="/biosentry/gestao-alunos">
-             Residentes
-          </b-dropdown-item>
-          <b-dropdown-item href="#" to="/biosentry/gestao-visitantes">
-             Visitantes
-          </b-dropdown-item>
-          </b-nav-item-dropdown>
-
-          <b-nav-item-dropdown text="Acessos"
-          right
-           
-          > 
-          <b-dropdown-item href="#" to="/biosentry/historico-acesso">
-             Histórico
-          </b-dropdown-item>
-          <b-dropdown-item href="#" to="/biosentry/gerar-relatorio">
-             Relatório
-          </b-dropdown-item>
-        </b-nav-item-dropdown>
-
-          <b-nav-item  href="#" to="/biosentry/dispositivos"> Dispositivos</b-nav-item>
-        </b-navbar-nav>
-
       <b-navbar-nav class="ml-auto" v-show="keys.islogged">
         <b-nav-item-dropdown right v-show="keys.islogged">
           <template #button-content>
@@ -104,6 +75,10 @@ module.exports = {
     // console.log("User Types:", this.userTypes);
     // console.log("MQTT Config:", this.mqttConfig);
   },
-  methods: {},
+  methods: {
+    toggleSidebar() {
+      this.$root.$emit('toggle-sidebar')
+    }
+  },
 };
 </script>
