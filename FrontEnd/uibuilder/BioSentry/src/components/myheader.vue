@@ -1,10 +1,10 @@
 <template>
 
   <b-navbar toggleable="lg" type="dark" class="custom-navbar" >
-    <b-navbar-brand href="#" @click.prevent="toggleSidebar">
+    <b-navbar-brand href="#" @click.prevent="toggleSidebar" v-show="keys.islogged">
       <i class="fa fa-bars"></i>
     </b-navbar-brand>
-<!-- 
+    <!-- 
     <b-navbar-toggle
       target="nav-collapse"
       v-show="keys.islogged"

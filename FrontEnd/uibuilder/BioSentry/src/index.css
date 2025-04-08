@@ -53,6 +53,8 @@ html, body {
   overflow-y: auto;
   transition: transform 0.3s ease;
   transform: translateX(0);
+  padding: 10px 14px;
+  
 }
 
 .sidebar.hidden {

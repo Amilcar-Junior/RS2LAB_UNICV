@@ -78,8 +78,8 @@ module.exports = {
 
 <style scoped>
 .sidebar {
-  background-color: var(--sidebar-color);
-  color: white;
+  /* Background removido pois já está definido no #sidebar */
+  color: white !important;
 }
 
 .sidebar .nav-link {
