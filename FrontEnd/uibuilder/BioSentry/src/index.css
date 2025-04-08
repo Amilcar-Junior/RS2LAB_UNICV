@@ -7,7 +7,7 @@
 .syntax-highlight > .string {color:#5dff39;}
 .syntax-highlight > .number {color:#70aeff;}
 .syntax-highlight > .boolean {color:#b993ff;}
-.custom-navbar {background-color: #AB162B;}
+.custom-navbar {background-color: #AB162B;  }
 .btn-custom {background-color: #AB162B;margin-top: 5px;color: white;}
 .custom-pagination .page-item .page-link {
   background-color: #AB162B;
@@ -45,7 +45,7 @@ html, body {
 
 .sidebar {
   position: fixed;
-  top: 56px; /* Below header */
+  top: 61px;
   left: 0;
   bottom: 0;
   width: 250px;

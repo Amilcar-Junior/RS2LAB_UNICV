@@ -16803,7 +16803,6 @@
         "id": "870faf16bf488d4b",
         "type": "mqtt out",
         "z": "b945a241e156bcfb",
-        "d": true,
         "g": "030cd0a9f03e0251",
         "name": "",
         "topic": "fingerprint_CMD",

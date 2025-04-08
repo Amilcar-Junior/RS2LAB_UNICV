@@ -1,58 +1,66 @@
 <template>
   <b-sidebar
     id="sidebar"
-    title="BiosEntry"
     shadow
     width="250px"
-    :class="['sidebar', {'hidden': !isVisible}]"
-    v-if="keys.islogged"
+    class="sidebar"
+    v-if="keys.islogged && $route.name !== 'login'"
     no-close-on-route-change
     no-enforce-focus
-    :visible="isVisible"
-    @hidden="isVisible = false"
-    @shown="isVisible = true"
-  >
-    <b-nav vertical>
-      <b-nav-item 
-        href="#" 
-        to="/" 
-        v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY"
-      >
-        <i class="fa fa-tachometer mr-2"></i> Dashboard
-      </b-nav-item>
+    visible
+    
+  > 
+    <div class="sidebar-menu">
+      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+        <div class="menu-item">
+          <router-link to="/" class="menu-link">
+            <i class="fa fa-tachometer"></i>
+            <span>Dashboard</span>
+          </router-link>
+        </div>
+      </div>
 
-      <b-nav-item-dropdown
-        text="Cadastro"
-        v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY"
-      >
-        <b-dropdown-item href="#" to="/biosentry/gestao-alunos">
-          <i class="fa fa-users mr-2"></i> Residentes
-        </b-dropdown-item>
-        <b-dropdown-item href="#" to="/biosentry/gestao-visitantes">
-          <i class="fa fa-user-plus mr-2"></i> Visitantes
-        </b-dropdown-item>
-      </b-nav-item-dropdown>
+      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+        <div class="menu-title">Cadastro</div>
+        <div class="menu-item">
+          <router-link to="/biosentry/gestao-alunos" class="menu-link">
+            <i class="fa fa-users"></i>
+            <span>Residentes</span>
+          </router-link>
+        </div>
+        <div class="menu-item">
+          <router-link to="/biosentry/gestao-visitantes" class="menu-link">
+            <i class="fa fa-user-plus"></i>
+            <span>Visitantes</span>
+          </router-link>
+        </div>
+      </div>
 
-      <b-nav-item-dropdown
-        text="Acessos"
-        v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY"
-      >
-        <b-dropdown-item href="#" to="/biosentry/historico-acesso">
-          <i class="fa fa-history mr-2"></i> Histórico
-        </b-dropdown-item>
-        <b-dropdown-item href="#" to="/biosentry/gerar-relatorio">
-          <i class="fa fa-file-text mr-2"></i> Relatório
-        </b-dropdown-item>
-      </b-nav-item-dropdown>
+      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+        <div class="menu-title">Acessos</div>
+        <div class="menu-item">
+          <router-link to="/biosentry/historico-acesso" class="menu-link">
+            <i class="fa fa-history"></i>
+            <span>Histórico</span>
+          </router-link>
+        </div>
+        <div class="menu-item">
+          <router-link to="/biosentry/gerar-relatorio" class="menu-link">
+            <i class="fa fa-file-text"></i>
+            <span>Relatório</span>
+          </router-link>
+        </div>
+      </div>
 
-      <b-nav-item 
-        href="#" 
-        to="/biosentry/dispositivos"
-        v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY"
-      >
-        <i class="fa fa-microchip mr-2"></i> Dispositivos
-      </b-nav-item>
-    </b-nav>
+      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+        <div class="menu-item">
+          <router-link to="/biosentry/dispositivos" class="menu-link">
+            <i class="fa fa-microchip"></i>
+            <span>Dispositivos</span>
+          </router-link>
+        </div>
+      </div>
+    </div>
   </b-sidebar>
 </template>
 
@@ -61,54 +69,68 @@ module.exports = {
   props: ["keys"],
   data() {
     return {
-      userTypes: window.appConfig.userTypes,
-      isVisible: true
+      userTypes: window.appConfig.userTypes
     };
-  },
-  mounted() {
-    this.$root.$on('toggle-sidebar', () => {
-      this.isVisible = !this.isVisible
-    })
-  },
-  beforeDestroy() {
-    this.$root.$off('toggle-sidebar')
   },
 };
 </script>
 
 <style scoped>
 .sidebar {
-  /* Background removido pois já está definido no #sidebar */
-  color: white !important;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: rgb(113, 50, 50);
 }
 
-.sidebar .nav-link {
-  color: rgba(255, 255, 255, 0.8);
-  padding: 0.75rem 1.5rem;
+.sidebar-menu {
+  padding: 1rem 0;
 }
 
-.sidebar .nav-link:hover {
-  color: white;
-  background-color: rgba(255, 255, 255, 0.1);
+.menu-section {
+  margin-bottom: 1.5rem;
 }
 
-.sidebar .nav-link.active {
-  color: white;
-  background-color: rgb(131, 30, 30);
-}
-
-.sidebar .dropdown-menu {
-  background-color: #2c0505;
-  border: none;
-}
-
-.sidebar .dropdown-item {
-  color: rgba(40, 157, 159, 0.8);
+.menu-title {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   padding: 0.5rem 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.sidebar .dropdown-item:hover {
-  color: white;
-  background-color: rgba(54, 163, 116, 0.1);
+.menu-item {
+  margin: 0.25rem 0;
 }
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.menu-link:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid #4cc9f0;
+}
+
+.menu-link i {
+  width: 24px;
+  text-align: center;
+  margin-right: 12px;
+  font-size: 1.1rem;
+}
+
+.menu-link.router-link-exact-active {
+  color: rgb(9, 9, 9);
+  background-color: rgba(131, 30, 30, 0.2);
+  border-left: 3px solid #831e1e;
+}
+
+
 </style>
+  

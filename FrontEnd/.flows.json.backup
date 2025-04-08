@@ -1072,7 +1072,7 @@
         "x": 928,
         "y": 59,
         "w": 1704,
-        "h": 1608
+        "h": 1388
     },
     {
         "id": "e0914e4a4497fb15",
@@ -1102,7 +1102,7 @@
             "b67099c45258cfd3"
         ],
         "x": 934,
-        "y": 1359,
+        "y": 1479,
         "w": 832,
         "h": 342
     },
@@ -1175,7 +1175,7 @@
             "7b2bd4fed1f3ba8c"
         ],
         "x": 1894,
-        "y": 859,
+        "y": 639,
         "w": 652,
         "h": 782
     },
@@ -16785,7 +16785,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2220,
-        "y": 960,
+        "y": 740,
         "wires": []
     },
     {
@@ -16796,14 +16796,13 @@
         "name": "Endpoint HTTP para Recebimento de Dados Biométricos no Node-RED",
         "info": "",
         "x": 2210,
-        "y": 900,
+        "y": 680,
         "wires": []
     },
     {
         "id": "870faf16bf488d4b",
         "type": "mqtt out",
         "z": "b945a241e156bcfb",
-        "d": true,
         "g": "030cd0a9f03e0251",
         "name": "",
         "topic": "fingerprint_CMD",
@@ -16816,7 +16815,7 @@
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
         "x": 2440,
-        "y": 1080,
+        "y": 860,
         "wires": []
     },
     {
@@ -16830,7 +16829,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2000,
-        "y": 1120,
+        "y": 900,
         "wires": [
             [
                 "25fa820ac801af66",
@@ -16848,7 +16847,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2190,
-        "y": 1140,
+        "y": 920,
         "wires": []
     },
     {
@@ -16865,7 +16864,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2180,
-        "y": 1080,
+        "y": 860,
         "wires": []
     },
     {
@@ -16879,7 +16878,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2020,
-        "y": 1000,
+        "y": 780,
         "wires": [
             [
                 "97829b7ee7afa223",
@@ -16897,7 +16896,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2410,
-        "y": 980,
+        "y": 760,
         "wires": []
     },
     {
@@ -16911,7 +16910,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2010,
-        "y": 1220,
+        "y": 1000,
         "wires": [
             [
                 "bd7550ec9d56ba18",
@@ -16929,7 +16928,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2230,
-        "y": 1280,
+        "y": 1060,
         "wires": []
     },
     {
@@ -16946,7 +16945,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2240,
-        "y": 1240,
+        "y": 1020,
         "wires": []
     },
     {
@@ -16964,7 +16963,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 2020,
-        "y": 1460,
+        "y": 1240,
         "wires": [
             [
                 "25832e5902cd5ef3",
@@ -16986,7 +16985,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2220,
-        "y": 1420,
+        "y": 1200,
         "wires": []
     },
     {
@@ -16997,7 +16996,7 @@
         "name": "Mensagens de notificação",
         "info": "",
         "x": 2030,
-        "y": 1380,
+        "y": 1160,
         "wires": []
     },
     {
@@ -17071,7 +17070,7 @@
         "server": "",
         "client": "5581410adca722cb",
         "x": 2010,
-        "y": 1600,
+        "y": 1380,
         "wires": []
     },
     {
@@ -17105,7 +17104,7 @@
         "overwriteFile": "false",
         "encoding": "none",
         "x": 2220,
-        "y": 1460,
+        "y": 1240,
         "wires": [
             [
                 "048916557373ef1e"
@@ -17127,7 +17126,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2400,
-        "y": 1460,
+        "y": 1240,
         "wires": []
     },
     {
@@ -17142,7 +17141,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1990,
-        "y": 1520,
+        "y": 1300,
         "wires": [
             [
                 "c6b8d07176e89f9c"
@@ -17164,7 +17163,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 2160,
-        "y": 1520,
+        "y": 1300,
         "wires": [
             [
                 "7b2bd4fed1f3ba8c"
@@ -17181,7 +17180,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2330,
-        "y": 1520,
+        "y": 1300,
         "wires": []
     },
     {
@@ -17192,7 +17191,7 @@
         "name": "para capturar o logS",
         "info": "",
         "x": 1310,
-        "y": 1440,
+        "y": 1560,
         "wires": []
     },
     {
@@ -17203,7 +17202,7 @@
         "name": "ACESSOS",
         "info": "",
         "x": 1320,
-        "y": 1400,
+        "y": 1520,
         "wires": []
     },
     {
@@ -17221,7 +17220,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1580,
-        "y": 1500,
+        "y": 1620,
         "wires": []
     },
     {
@@ -17239,7 +17238,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 1080,
-        "y": 1660,
+        "y": 1780,
         "wires": [
             [
                 "0d7d9e12862d789b",
@@ -17262,7 +17261,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1320,
-        "y": 1620,
+        "y": 1740,
         "wires": []
     },
     {
@@ -17273,7 +17272,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "",
         "x": 1490,
-        "y": 1660,
+        "y": 1780,
         "wires": [
             [
                 "5ab28ed7ab6ab427"
@@ -17294,7 +17293,7 @@
         "finalize": "",
         "libs": [],
         "x": 1330,
-        "y": 1660,
+        "y": 1780,
         "wires": [
             [
                 "e044e7f8c2d0c46f"
@@ -17315,7 +17314,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1660,
-        "y": 1660,
+        "y": 1780,
         "wires": []
     },
     {
@@ -17329,7 +17328,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1070,
-        "y": 1540,
+        "y": 1660,
         "wires": [
             [
                 "146f45c3bfa8a3f8"
@@ -17350,7 +17349,7 @@
         "finalize": "",
         "libs": [],
         "x": 1270,
-        "y": 1540,
+        "y": 1660,
         "wires": [
             [
                 "5c4ca93d9c9623ba"
@@ -17365,7 +17364,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "",
         "x": 1430,
-        "y": 1540,
+        "y": 1660,
         "wires": [
             [
                 "d8a0044258a2af21",
@@ -17382,7 +17381,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1630,
-        "y": 1540,
+        "y": 1660,
         "wires": []
     },
     {
