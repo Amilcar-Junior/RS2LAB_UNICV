@@ -1530,15 +1530,24 @@
             "fda4c757cadaf7eb",
             "e2f9b7afa65f5ce8",
             "6ed7edffb077d181",
-            "3dafd79e5a844ffd",
             "b00bac600827eb6b",
             "2e970f49a76366a7",
-            "bf8763186b6ea79b"
+            "bf8763186b6ea79b",
+            "c2fcad8c947bb579",
+            "4846f42305bdc761",
+            "d793516227976462",
+            "fab23505738af742",
+            "40a7e9c1b1543d42",
+            "4ba567f91bc95870",
+            "8a91e23ce64e2898",
+            "ae4d50583f8f3df8",
+            "947fe1399c32e3c5",
+            "bcaf84441a1a7d51"
         ],
         "x": 14,
         "y": 1779,
-        "w": 1112,
-        "h": 322
+        "w": 912,
+        "h": 302
     },
     {
         "id": "b0e7208048a256dc",
@@ -18486,8 +18495,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1020,
-        "y": 1860,
+        "x": 820,
+        "y": 1840,
         "wires": []
     },
     {
@@ -18495,19 +18504,16 @@
         "type": "http in",
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
-        "name": "",
-        "url": "/biosentry/dashboard-data",
+        "name": "Count students",
+        "url": "/biosentry/studentsCount",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 190,
-        "y": 1940,
+        "x": 120,
+        "y": 1900,
         "wires": [
             [
-                "0310a9fa962dcf70",
-                "fda4c757cadaf7eb",
-                "e2f9b7afa65f5ce8",
-                "6ed7edffb077d181"
+                "0310a9fa962dcf70"
             ]
         ]
     },
@@ -18519,8 +18525,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1050,
-        "y": 1980,
+        "x": 810,
+        "y": 1900,
         "wires": []
     },
     {
@@ -18529,15 +18535,15 @@
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 28",
-        "func": "msg.label = \"studentCount\";\n\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM estudantes WHERE status_ = '1' \";\nreturn msg;",
+        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM estudantes WHERE status_ = '1' \";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
-        "y": 1940,
+        "x": 330,
+        "y": 1900,
         "wires": [
             [
                 "6e69100c6ef896cd"
@@ -18551,11 +18557,11 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 590,
-        "y": 1940,
+        "x": 510,
+        "y": 1900,
         "wires": [
             [
-                "3dafd79e5a844ffd"
+                "8a91e23ce64e2898"
             ]
         ]
     },
@@ -18572,8 +18578,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
-        "y": 1980,
+        "x": 310,
+        "y": 1960,
         "wires": [
             [
                 "b00bac600827eb6b"
@@ -18593,8 +18599,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
-        "y": 2020,
+        "x": 310,
+        "y": 2000,
         "wires": [
             [
                 "2e970f49a76366a7"
@@ -18614,41 +18620,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
-        "y": 2060,
+        "x": 310,
+        "y": 2040,
         "wires": [
             [
                 "bf8763186b6ea79b"
-            ]
-        ]
-    },
-    {
-        "id": "3dafd79e5a844ffd",
-        "type": "join",
-        "z": "b945a241e156bcfb",
-        "g": "e9bc3d9e88c8e3b7",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "topic",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "4",
-        "reduceRight": false,
-        "reduceExp": "",
-        "reduceInit": "",
-        "reduceInitType": "num",
-        "reduceFixup": "",
-        "x": 810,
-        "y": 1960,
-        "wires": [
-            [
-                "aa92af3dde97dea8",
-                "bb7228e46f1bfab5"
             ]
         ]
     },
@@ -18659,11 +18635,11 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 590,
-        "y": 1980,
+        "x": 490,
+        "y": 1960,
         "wires": [
             [
-                "3dafd79e5a844ffd"
+                "ae4d50583f8f3df8"
             ]
         ]
     },
@@ -18674,11 +18650,11 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 590,
-        "y": 2060,
+        "x": 470,
+        "y": 2040,
         "wires": [
             [
-                "3dafd79e5a844ffd"
+                "bcaf84441a1a7d51"
             ]
         ]
     },
@@ -18689,11 +18665,186 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 590,
-        "y": 2020,
+        "x": 470,
+        "y": 2000,
         "wires": [
             [
-                "3dafd79e5a844ffd"
+                "947fe1399c32e3c5"
+            ]
+        ]
+    },
+    {
+        "id": "c2fcad8c947bb579",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "4846f42305bdc761",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "Count exits",
+        "url": "/biosentry/exitCount",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 2000,
+        "wires": [
+            [
+                "e2f9b7afa65f5ce8"
+            ]
+        ]
+    },
+    {
+        "id": "d793516227976462",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "fab23505738af742",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "Count entrys",
+        "url": "/biosentry/entryCount",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 1960,
+        "wires": [
+            [
+                "fda4c757cadaf7eb"
+            ]
+        ]
+    },
+    {
+        "id": "40a7e9c1b1543d42",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "Count device",
+        "url": "/biosentry/deviceCount",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 2040,
+        "wires": [
+            [
+                "6ed7edffb077d181"
+            ]
+        ]
+    },
+    {
+        "id": "4ba567f91bc95870",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 2040,
+        "wires": []
+    },
+    {
+        "id": "8a91e23ce64e2898",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "function 32",
+        "func": "msg.payload = {\n    count: msg.payload[0].studentCount\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 1900,
+        "wires": [
+            [
+                "aa92af3dde97dea8",
+                "bb7228e46f1bfab5"
+            ]
+        ]
+    },
+    {
+        "id": "ae4d50583f8f3df8",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "function 33",
+        "func": "msg.payload = {\n    count: msg.payload[0].entryCount\n};\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 1960,
+        "wires": [
+            [
+                "c2fcad8c947bb579"
+            ]
+        ]
+    },
+    {
+        "id": "947fe1399c32e3c5",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "function 34",
+        "func": "msg.payload = {\n    count: msg.payload[0].exitCount\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 2000,
+        "wires": [
+            [
+                "d793516227976462"
+            ]
+        ]
+    },
+    {
+        "id": "bcaf84441a1a7d51",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "function 35",
+        "func": "msg.payload = {\n    count: msg.payload[0].deviceCount\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 2040,
+        "wires": [
+            [
+                "4ba567f91bc95870"
             ]
         ]
     },

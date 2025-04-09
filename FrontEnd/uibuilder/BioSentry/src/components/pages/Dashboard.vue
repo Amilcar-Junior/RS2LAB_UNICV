@@ -59,12 +59,19 @@ module.exports = {
   methods: {
     async fetchData() {
       try {
-        const response = await axios.get('/biosentry/dashboard-data'); // Replace with actual API endpoint
-        this.studentCount = response.data.studentCount;
-        this.entryCount = response.data.entryCount;
-        this.exitCount = response.data.exitCount;
-        this.deviceCount = response.data.deviceCount;
-        this.renderChart();
+         // Chamadas paralelas para melhor performance
+    const [studentsRes, entriesRes, exitsRes, devicesRes] = await Promise.all([
+      axios.get('/biosentry/studentsCount'),
+      axios.get('/biosentry/entryCount'),
+      axios.get('/biosentry/exitCount'), 
+      axios.get('/biosentry/deviceCount')
+    ]);
+
+    this.studentCount = studentsRes.data.count;
+    this.entryCount = entriesRes.data.count;
+    this.exitCount = exitsRes.data.count;
+    this.deviceCount = devicesRes.data.count;
+    this.renderChart();
       } catch (error) {
         console.error('Error fetching data:', error);
       }

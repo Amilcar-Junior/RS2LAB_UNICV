@@ -1530,18 +1530,20 @@
             "fda4c757cadaf7eb",
             "e2f9b7afa65f5ce8",
             "6ed7edffb077d181",
-            "3dafd79e5a844ffd",
             "b00bac600827eb6b",
             "2e970f49a76366a7",
             "bf8763186b6ea79b",
-            "8b900ad5368222d8",
-            "8945d0beee7ccba4",
-            "58fb2465abf77e58",
-            "0cf7e0cb8fc531ee"
+            "c2fcad8c947bb579",
+            "4846f42305bdc761",
+            "d793516227976462",
+            "fab23505738af742",
+            "40a7e9c1b1543d42",
+            "4ba567f91bc95870",
+            "8a91e23ce64e2898"
         ],
-        "x": -6,
-        "y": 1719,
-        "w": 1112,
+        "x": 14,
+        "y": 1779,
+        "w": 912,
         "h": 322
     },
     {
@@ -18462,8 +18464,8 @@
         "g": "e9bc3d9e88c8e3b7",
         "name": "Dasboard",
         "info": "",
-        "x": 260,
-        "y": 1760,
+        "x": 280,
+        "y": 1820,
         "wires": []
     },
     {
@@ -18473,8 +18475,8 @@
         "g": "e9bc3d9e88c8e3b7",
         "name": "count estudantes",
         "info": "",
-        "x": 100,
-        "y": 1760,
+        "x": 120,
+        "y": 1820,
         "wires": []
     },
     {
@@ -18490,8 +18492,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1000,
-        "y": 1800,
+        "x": 820,
+        "y": 1840,
         "wires": []
     },
     {
@@ -18499,19 +18501,16 @@
         "type": "http in",
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
-        "name": "",
-        "url": "/biosentry/dashboard-data",
+        "name": "Count students",
+        "url": "/biosentry/studentsCount",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 170,
-        "y": 1880,
+        "x": 120,
+        "y": 1900,
         "wires": [
             [
-                "0310a9fa962dcf70",
-                "fda4c757cadaf7eb",
-                "e2f9b7afa65f5ce8",
-                "6ed7edffb077d181"
+                "0310a9fa962dcf70"
             ]
         ]
     },
@@ -18523,7 +18522,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1010,
+        "x": 810,
         "y": 1900,
         "wires": []
     },
@@ -18533,15 +18532,15 @@
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 28",
-        "func": "msg.label = \"studentCount\";\n\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM estudantes WHERE status_ = '1' \";\nreturn msg;",
+        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM estudantes WHERE status_ = '1' \";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
-        "y": 1880,
+        "x": 330,
+        "y": 1900,
         "wires": [
             [
                 "6e69100c6ef896cd"
@@ -18555,11 +18554,11 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 570,
-        "y": 1880,
+        "x": 510,
+        "y": 1900,
         "wires": [
             [
-                "8b900ad5368222d8"
+                "8a91e23ce64e2898"
             ]
         ]
     },
@@ -18576,8 +18575,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
-        "y": 1920,
+        "x": 310,
+        "y": 1960,
         "wires": [
             [
                 "b00bac600827eb6b"
@@ -18597,8 +18596,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
-        "y": 1960,
+        "x": 310,
+        "y": 2000,
         "wires": [
             [
                 "2e970f49a76366a7"
@@ -18618,41 +18617,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
-        "y": 2000,
+        "x": 310,
+        "y": 2040,
         "wires": [
             [
                 "bf8763186b6ea79b"
-            ]
-        ]
-    },
-    {
-        "id": "3dafd79e5a844ffd",
-        "type": "join",
-        "z": "b945a241e156bcfb",
-        "g": "e9bc3d9e88c8e3b7",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "topic",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "4",
-        "reduceRight": false,
-        "reduceExp": "",
-        "reduceInit": "",
-        "reduceInitType": "num",
-        "reduceFixup": "",
-        "x": 890,
-        "y": 1920,
-        "wires": [
-            [
-                "aa92af3dde97dea8",
-                "bb7228e46f1bfab5"
             ]
         ]
     },
@@ -18663,11 +18632,11 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 570,
-        "y": 1920,
+        "x": 490,
+        "y": 1960,
         "wires": [
             [
-                "8945d0beee7ccba4"
+                "c2fcad8c947bb579"
             ]
         ]
     },
@@ -18678,11 +18647,11 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 570,
-        "y": 2000,
+        "x": 470,
+        "y": 2040,
         "wires": [
             [
-                "0cf7e0cb8fc531ee"
+                "4ba567f91bc95870"
             ]
         ]
     },
@@ -18693,95 +18662,123 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 570,
-        "y": 1960,
+        "x": 470,
+        "y": 2000,
         "wires": [
             [
-                "58fb2465abf77e58"
+                "d793516227976462"
             ]
         ]
     },
     {
-        "id": "8b900ad5368222d8",
+        "id": "c2fcad8c947bb579",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "4846f42305bdc761",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "Count exits",
+        "url": "/biosentry/exitCount",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 2000,
+        "wires": [
+            [
+                "e2f9b7afa65f5ce8"
+            ]
+        ]
+    },
+    {
+        "id": "d793516227976462",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "fab23505738af742",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "Count entrys",
+        "url": "/biosentry/entryCount",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 1960,
+        "wires": [
+            [
+                "fda4c757cadaf7eb"
+            ]
+        ]
+    },
+    {
+        "id": "40a7e9c1b1543d42",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "Count device",
+        "url": "/biosentry/deviceCount",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 2040,
+        "wires": [
+            [
+                "6ed7edffb077d181"
+            ]
+        ]
+    },
+    {
+        "id": "4ba567f91bc95870",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 2060,
+        "wires": []
+    },
+    {
+        "id": "8a91e23ce64e2898",
         "type": "function",
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 32",
-        "func": "msg.payload = msg.payload[0]; // Transforma [{studentCount: 124}] em {studentCount: 124}\nmsg.topic = \"studentCount\";\nreturn msg;\n",
+        "func": "msg.payload = {\n    count: msg.payload[0].studentCount\n};\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 1880,
+        "x": 670,
+        "y": 1900,
         "wires": [
             [
-                "3dafd79e5a844ffd"
-            ]
-        ]
-    },
-    {
-        "id": "8945d0beee7ccba4",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "e9bc3d9e88c8e3b7",
-        "name": "function 33",
-        "func": "msg.payload = msg.payload[0]; // Transforma [{studentCount: 124}] em {studentCount: 124}\nmsg.topic = \"entryCount\";\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 1920,
-        "wires": [
-            [
-                "3dafd79e5a844ffd"
-            ]
-        ]
-    },
-    {
-        "id": "58fb2465abf77e58",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "e9bc3d9e88c8e3b7",
-        "name": "function 34",
-        "func": "msg.payload = msg.payload[0]; // Transforma [{studentCount: 124}] em {studentCount: 124}\nmsg.topic = \"exitCount\";\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 1960,
-        "wires": [
-            [
-                "3dafd79e5a844ffd"
-            ]
-        ]
-    },
-    {
-        "id": "0cf7e0cb8fc531ee",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "e9bc3d9e88c8e3b7",
-        "name": "function 35",
-        "func": "msg.payload = msg.payload[0]; // Transforma [{studentCount: 124}] em {studentCount: 124}\nmsg.topic = \"deviceCount\";\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 2000,
-        "wires": [
-            [
-                "3dafd79e5a844ffd"
+                "aa92af3dde97dea8",
+                "bb7228e46f1bfab5"
             ]
         ]
     },
