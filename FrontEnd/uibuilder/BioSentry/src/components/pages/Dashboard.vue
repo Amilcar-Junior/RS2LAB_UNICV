@@ -1,41 +1,41 @@
 <template>
-  <b-container>
-    <h2 class="text-center" style="font-family: 'Roboto', sans-serif; font-weight: 700; margin-bottom: 20px;">
+  <b-container class="dashboard-container">
+    <h2 class="dashboard-title">
       Dashboard
     </h2>
-    <b-row>
-      <b-col md="4">
-        <b-card>
-          <h4>Estudantes Registrados</h4>
-          <p>{{ studentCount }}</p>
+    <b-row class="metrics-row">
+      <b-col md="3" class="mb-4">
+        <b-card class="metric-card">
+          <h4 class="metric-title">Estudantes Registrados</h4>
+          <p class="metric-value">{{ studentCount }}</p>
         </b-card>
       </b-col>
-      <b-col md="4">
-        <b-card>
-          <h4>Entradas Hoje</h4>
-          <p>{{ entryCount }}</p>
+      <b-col md="3" class="mb-4">
+        <b-card class="metric-card">
+          <h4 class="metric-title">Entradas Hoje</h4>
+          <p class="metric-value">{{ entryCount }}</p>
         </b-card>
       </b-col>
-      <b-col md="4">
-        <b-card>
-          <h4>Saídas Hoje</h4>
-          <p>{{ exitCount }}</p>
+      <b-col md="3" class="mb-4">
+        <b-card class="metric-card">
+          <h4 class="metric-title">Saídas Hoje</h4>
+          <p class="metric-value">{{ exitCount }}</p>
+        </b-card>
+      </b-col>
+      <b-col md="3" class="mb-4">
+        <b-card class="metric-card">
+          <h4 class="metric-title">Dispositivos Ativos</h4>
+          <p class="metric-value">{{ deviceCount }}</p>
         </b-card>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-card>
-          <h4>Dispositivos Ativos</h4>
-          <p>{{ deviceCount }}</p>
-        </b-card>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-card>
-          <h4>Gráfico de Entradas e Saídas</h4>
-          <canvas id="entryExitChart"></canvas>
+        <b-card class="chart-card">
+          <h4 class="chart-title">Gráfico de Entradas e Saídas</h4>
+          <div class="chart-container">
+            <canvas id="entryExitChart"></canvas>
+          </div>
         </b-card>
       </b-col>
     </b-row>
@@ -59,7 +59,7 @@ module.exports = {
   methods: {
     async fetchData() {
       try {
-        const response = await axios.get('API_ENDPOINT'); // Replace with actual API endpoint
+        const response = await axios.get('/biosentry/dashboard-data'); // Replace with actual API endpoint
         this.studentCount = response.data.studentCount;
         this.entryCount = response.data.entryCount;
         this.exitCount = response.data.exitCount;
@@ -96,5 +96,68 @@ module.exports = {
 </script>
 
 <style scoped>
-/* Add any additional styles here */
+.dashboard-container {
+  padding: 2rem;
+}
+
+.dashboard-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+.metrics-row {
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.metric-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.metric-value {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #AB162B;
+  margin-top: 0.5rem;
+}
+
+.chart-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.chart-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
 </style>
