@@ -2,7 +2,7 @@
   <!--Navbar AgriIOT -->
   <b-navbar toggleable="lg" type="dark" class="custom-navbar" >
     <b-navbar-brand href="#" to="/">
-      <img src="./components/images/rs2lab_logo_black.png" alt="RS2LAB" class="logo-img" />
+      <img src="./images/rs2lab_logo_black.png" alt="RS2LAB" class="logo-img" />
     </b-navbar-brand>
 
     <b-navbar-toggle

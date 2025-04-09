@@ -1,13 +1,49 @@
 :root {
   --sidebar-color:#f7f7f7;
+  --primary-color: #AB162B;
+  --primary-light: #e63946;
+  --secondary-color: #2a9d8f;
+  --dark-color: #333;
+  --light-color: #f8f9fa;
+  --gray-color: #6c757d;
 }
 
-/* Sobrescreve estilos do Bootstrap para o sidebar */
-#sidebar {
-  background-color: var(--sidebar-color) !important;
-  background-image: none !important;
+/* Dashboard specific styles */
+.metric-card {
+  background: white;
+  border-left: 4px solid var(--primary-color);
 }
 
+.metric-card:hover {
+  border-left-color: var(--secondary-color);
+}
+
+.chart-card {
+  background: white;
+}
+
+/* Animation for metric cards */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.metric-card {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.metric-card:nth-child(1) { animation-delay: 0.1s; }
+.metric-card:nth-child(2) { animation-delay: 0.2s; }
+.metric-card:nth-child(3) { animation-delay: 0.3s; }
+.metric-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Chart improvements */
+#entryExitChart {
+  max-height: 100%;
+  width: 100% !important;
+}
+
+/* Existing styles */
 .input {
     border: none;
     outline: none;
@@ -26,8 +62,8 @@
 }
 
 .custom-img {
-    width: 60px; /* Allow it to take full width */
-    height: auto; /* Maintain aspect ratio */
+    width: 60px;
+    height: auto;
 }
 
 .rounded-buttonback {
@@ -45,11 +81,8 @@
 .button {border-radius: 50%;}
 
 .sidebar{
-    /* Propriedades movidas para index.css */
     height: 100%;
     width: 250px;
     padding: 10px 14px;
     background: var(--sidebar-color);
-
-
 }

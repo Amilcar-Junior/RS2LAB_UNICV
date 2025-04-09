@@ -6,6 +6,8 @@
     class="sidebar"
     v-if="keys.islogged && $route.name !== 'login'"
     no-close-on-route-change
+    no-close-on-esc
+    no-header
     no-enforce-focus
     visible
     
