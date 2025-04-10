@@ -55,6 +55,7 @@
       </div>
 
       <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+        <div class="menu-title">Manutenção</div>
         <div class="menu-item">
           <router-link to="/biosentry/dispositivos" class="menu-link">
             <i class="fa fa-microchip"></i>
@@ -115,7 +116,7 @@ module.exports = {
 }
 
 .menu-link:hover {
-  color: rgb(0, 0, 0);
+  color: rgb(117, 6, 6);
   background-color: rgba(255, 255, 255, 0.05);
   border-left: 3px solid #4cc9f0;
 }

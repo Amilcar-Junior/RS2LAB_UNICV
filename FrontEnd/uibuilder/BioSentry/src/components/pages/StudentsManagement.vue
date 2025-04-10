@@ -741,4 +741,140 @@ module.exports = {
   height: auto;
 }
 
+/* Table styling */
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+  padding: 12px 15px;
+}
+
+.table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.table tbody td {
+  padding: 12px 15px;
+  vertical-align: middle;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Action buttons */
+.button {
+  min-width: 30px;
+  padding: 5px 8px;
+  margin: 0 2px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+}
+
+/* Search input */
+.form-control {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #2c3e50;
+  box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+}
+
+/* Pagination */
+.custom-pagination .page-item.active .page-link {
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+}
+
+.custom-pagination .page-link {
+  color: #2c3e50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table-responsive {
+    border: 0;
+  }
+  
+  .table thead {
+    display: none;
+  }
+  
+  .table tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    border-top: 1px solid #e9ecef;
+  }
+  
+  .table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    width: 45%;
+    padding-right: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
+}
 </style>

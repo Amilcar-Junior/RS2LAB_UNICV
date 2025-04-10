@@ -382,3 +382,135 @@ module.exports = {
   },
 };
 </script>
+
+<style scoped>
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.table thead th {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+  padding: 12px 15px;
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.table tbody td {
+  padding: 12px 15px;
+  vertical-align: middle;
+  border-top: 1px solid #e9ecef;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-control {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+}
+
+.form-control:focus {
+  border-color: #2c3e50;
+  box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+}
+
+.custom-pagination .page-link {
+  color: #2c3e50;
+  padding: 8px 16px;
+}
+
+.btn {
+  transition: all 0.2s ease;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.badge {
+  transition: all 0.2s ease;
+}
+
+.badge:hover {
+  transform: scale(1.05);
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .btn {
+    margin-bottom: 5px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+  
+  .table tbody td {
+    padding: 8px;
+  }
+}
+</style>
