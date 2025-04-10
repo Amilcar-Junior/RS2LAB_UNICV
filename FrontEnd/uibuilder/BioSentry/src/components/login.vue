@@ -299,7 +299,8 @@ p {
 
 .card {
   padding: 20px;
-  margin-top: 25%;
+  margin-top: 10%;
+  margin-bottom: 60px; /* Space for footer */
 }
 
 .form-group input {
@@ -316,9 +317,11 @@ p {
 .login-page {
   flex: 1;
   display: flex;
+  margin-top: 150px;
   z-index: 1;
   padding: 20px;
-  
+  min-height: 100vh;
+  position: relative;
 }
 
 .wallpaper-login {

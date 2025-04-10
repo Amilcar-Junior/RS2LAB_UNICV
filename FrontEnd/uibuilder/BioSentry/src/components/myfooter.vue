@@ -25,12 +25,16 @@
 
 <style scoped>
 .custom-footer {
-  background-color: #AB162B; /* Cor semelhante ao header */
-  color: #ffffff; /* Texto branco */
-  font-size: 0.9rem; /* Tamanho do texto pequeno */
+  background-color: #AB162B;
+  color: #ffffff;
+  font-size: 0.9rem;
   text-align: center;
   padding: 0.5rem 0;
   width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
 }
 
 .footer-link {
