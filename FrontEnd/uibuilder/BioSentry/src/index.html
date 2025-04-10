@@ -35,9 +35,11 @@
     <div id="app">
       <myheader :keys="user"></myheader>
       <sidebar :keys="user" v-show="user.islogged"></sidebar>
+
+      <mylogin v-show="!user.islogged" :keys="user"></mylogin>
       <div class="app-container">
         <main class="main-content">
-          <mylogin v-show="!user.islogged" :keys="user"></mylogin>
+          
           <b-container v-show="user.islogged" fluid>
             <router-view :keys="user"></router-view>
           </b-container>

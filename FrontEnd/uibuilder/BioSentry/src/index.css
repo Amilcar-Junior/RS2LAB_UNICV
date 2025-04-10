@@ -71,6 +71,8 @@ html, body {
   flex-direction: column;
 }
 
+
+
 .sidebar.hidden + .main-content {
   margin-left: 0;
   display: flex;

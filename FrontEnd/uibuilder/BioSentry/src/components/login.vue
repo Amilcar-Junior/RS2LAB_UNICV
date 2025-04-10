@@ -314,10 +314,11 @@ p {
 }
 
 .login-page {
-  align-items: center;
+  flex: 1;
   display: flex;
-  height: 100%;
   z-index: 1;
+  padding: 20px;
+  
 }
 
 .wallpaper-login {

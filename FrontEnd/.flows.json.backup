@@ -1107,6 +1107,79 @@
         "h": 242
     },
     {
+        "id": "e0914e4a4497fb15",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "b3aefbe05f3d07c5",
+            "e365e3ac2bf95a97",
+            "d8a0044258a2af21",
+            "5b6c9c53fb409b0e",
+            "0d7d9e12862d789b",
+            "e044e7f8c2d0c46f",
+            "121c2efb532dd863",
+            "5ab28ed7ab6ab427",
+            "fab3a2ca659c7014",
+            "146f45c3bfa8a3f8",
+            "5c4ca93d9c9623ba",
+            "b67099c45258cfd3"
+        ],
+        "x": 954,
+        "y": 39,
+        "w": 832,
+        "h": 282
+    },
+    {
+        "id": "e9bc3d9e88c8e3b7",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "fed30b0d7693de84",
+            "faf881a4b47cf655",
+            "aa92af3dde97dea8",
+            "0310a9fa962dcf70",
+            "6e69100c6ef896cd",
+            "fda4c757cadaf7eb",
+            "e2f9b7afa65f5ce8",
+            "6ed7edffb077d181",
+            "b00bac600827eb6b",
+            "2e970f49a76366a7",
+            "bf8763186b6ea79b",
+            "c2fcad8c947bb579",
+            "4846f42305bdc761",
+            "d793516227976462",
+            "fab23505738af742",
+            "40a7e9c1b1543d42",
+            "4ba567f91bc95870",
+            "8a91e23ce64e2898",
+            "ae4d50583f8f3df8",
+            "947fe1399c32e3c5",
+            "bcaf84441a1a7d51"
+        ],
+        "x": 14,
+        "y": 1779,
+        "w": 872,
+        "h": 302
+    },
+    {
         "id": "030cd0a9f03e0251",
         "type": "group",
         "z": "b945a241e156bcfb",
@@ -1473,78 +1546,6 @@
         "y": 439,
         "w": 732,
         "h": 282
-    },
-    {
-        "id": "e0914e4a4497fb15",
-        "type": "group",
-        "z": "b945a241e156bcfb",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "b3aefbe05f3d07c5",
-            "e365e3ac2bf95a97",
-            "d8a0044258a2af21",
-            "5b6c9c53fb409b0e",
-            "0d7d9e12862d789b",
-            "e044e7f8c2d0c46f",
-            "121c2efb532dd863",
-            "5ab28ed7ab6ab427",
-            "fab3a2ca659c7014",
-            "146f45c3bfa8a3f8",
-            "5c4ca93d9c9623ba",
-            "b67099c45258cfd3"
-        ],
-        "x": 954,
-        "y": 39,
-        "w": 832,
-        "h": 282
-    },
-    {
-        "id": "e9bc3d9e88c8e3b7",
-        "type": "group",
-        "z": "b945a241e156bcfb",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "fed30b0d7693de84",
-            "3a6569625250758d",
-            "bb7228e46f1bfab5",
-            "faf881a4b47cf655",
-            "aa92af3dde97dea8",
-            "0310a9fa962dcf70",
-            "6e69100c6ef896cd",
-            "fda4c757cadaf7eb",
-            "e2f9b7afa65f5ce8",
-            "6ed7edffb077d181",
-            "b00bac600827eb6b",
-            "2e970f49a76366a7",
-            "bf8763186b6ea79b",
-            "c2fcad8c947bb579",
-            "4846f42305bdc761",
-            "d793516227976462",
-            "fab23505738af742",
-            "40a7e9c1b1543d42",
-            "4ba567f91bc95870",
-            "8a91e23ce64e2898"
-        ],
-        "x": 14,
-        "y": 1779,
-        "w": 912,
-        "h": 322
     },
     {
         "id": "b0e7208048a256dc",
@@ -18464,36 +18465,8 @@
         "g": "e9bc3d9e88c8e3b7",
         "name": "Dasboard",
         "info": "",
-        "x": 280,
+        "x": 100,
         "y": 1820,
-        "wires": []
-    },
-    {
-        "id": "3a6569625250758d",
-        "type": "comment",
-        "z": "b945a241e156bcfb",
-        "g": "e9bc3d9e88c8e3b7",
-        "name": "count estudantes",
-        "info": "",
-        "x": 120,
-        "y": 1820,
-        "wires": []
-    },
-    {
-        "id": "bb7228e46f1bfab5",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "e9bc3d9e88c8e3b7",
-        "name": "debug 56",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 820,
-        "y": 1840,
         "wires": []
     },
     {
@@ -18636,7 +18609,7 @@
         "y": 1960,
         "wires": [
             [
-                "c2fcad8c947bb579"
+                "ae4d50583f8f3df8"
             ]
         ]
     },
@@ -18651,7 +18624,7 @@
         "y": 2040,
         "wires": [
             [
-                "4ba567f91bc95870"
+                "bcaf84441a1a7d51"
             ]
         ]
     },
@@ -18666,7 +18639,7 @@
         "y": 2000,
         "wires": [
             [
-                "d793516227976462"
+                "947fe1399c32e3c5"
             ]
         ]
     },
@@ -18678,7 +18651,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 730,
+        "x": 790,
         "y": 1960,
         "wires": []
     },
@@ -18708,7 +18681,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 610,
+        "x": 790,
         "y": 2000,
         "wires": []
     },
@@ -18756,8 +18729,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 610,
-        "y": 2060,
+        "x": 750,
+        "y": 2040,
         "wires": []
     },
     {
@@ -18777,8 +18750,70 @@
         "y": 1900,
         "wires": [
             [
-                "aa92af3dde97dea8",
-                "bb7228e46f1bfab5"
+                "aa92af3dde97dea8"
+            ]
+        ]
+    },
+    {
+        "id": "ae4d50583f8f3df8",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "function 33",
+        "func": "msg.payload = {\n    count: msg.payload[0].entryCount\n};\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 1960,
+        "wires": [
+            [
+                "c2fcad8c947bb579"
+            ]
+        ]
+    },
+    {
+        "id": "947fe1399c32e3c5",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "function 34",
+        "func": "msg.payload = {\n    count: msg.payload[0].exitCount\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 2000,
+        "wires": [
+            [
+                "d793516227976462"
+            ]
+        ]
+    },
+    {
+        "id": "bcaf84441a1a7d51",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "function 35",
+        "func": "msg.payload = {\n    count: msg.payload[0].deviceCount\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 2040,
+        "wires": [
+            [
+                "4ba567f91bc95870"
             ]
         ]
     },

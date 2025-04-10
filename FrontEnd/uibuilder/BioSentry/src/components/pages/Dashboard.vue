@@ -6,7 +6,7 @@
     <b-row class="metrics-row">
       <b-col md="3" class="mb-4">
         <b-card class="metric-card">
-          <h4 class="metric-title">Estudantes Registrados</h4>
+          <h4 class="metric-title">Estudantes Registados</h4>
           <p class="metric-value">{{ studentCount }}</p>
         </b-card>
       </b-col>

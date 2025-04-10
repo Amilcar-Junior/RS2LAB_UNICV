@@ -23,7 +23,7 @@
       </div>
 
       <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
-        <div class="menu-title">Cadastro</div>
+        <div class="menu-title">Registos</div>
         <div class="menu-item">
           <router-link to="/biosentry/gestao-alunos" class="menu-link">
             <i class="fa fa-users"></i>
