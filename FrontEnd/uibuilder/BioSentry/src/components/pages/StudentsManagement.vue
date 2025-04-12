@@ -67,7 +67,7 @@
                   </th>
                 <!--  <th scope="col" class="col-1">ID</th>--> 
                   <th scope="col" class="col-2">Nome</th>
-                  <th scope="col" class="col-2">Codigo de Estudante</th>
+                  <th scope="col" class="col-1">Codigo de Estudante</th>
                   <th scope="col" class="col-1">Email</th>
                   <th scope="col" class="col-1">Curso</th>
                   <th scope="col" class="col-1">Status</th>

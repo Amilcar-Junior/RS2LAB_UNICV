@@ -7,7 +7,7 @@
 .syntax-highlight > .string {color:#5dff39;}
 .syntax-highlight > .number {color:#70aeff;}
 .syntax-highlight > .boolean {color:#b993ff;}
-.custom-navbar {background-color: #AB162B;  }
+.custom-navbar {background-color: #AB162B; width: 100%;  position: fixed;}
 .btn-custom {background-color: #AB162B;margin-top: 5px;color: white;}
 .custom-pagination .page-item .page-link {
   background-color: #AB162B;
@@ -47,7 +47,7 @@ html, body {
   position: fixed;
   top: 76px;
   left: 0;
-  bottom: 0;
+  bottom: -600px;
   width: 250px;
   z-index: 1000;
   overflow-y: auto;

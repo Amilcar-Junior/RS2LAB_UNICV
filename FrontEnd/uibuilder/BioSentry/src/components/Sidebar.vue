@@ -82,6 +82,7 @@ module.exports = {
 .sidebar {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: rgb(113, 50, 50);
+  
 }
 
 .sidebar-menu {
@@ -118,7 +119,7 @@ module.exports = {
 .menu-link:hover {
   color: rgb(117, 6, 6);
   background-color: rgba(255, 255, 255, 0.05);
-  border-left: 3px solid #4cc9f0;
+  border-left: 3px solid #8f2626;
 }
 
 .menu-link i {
