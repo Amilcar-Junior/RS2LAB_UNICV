@@ -1,5 +1,8 @@
 <template>
   <b-navbar toggleable="lg" type="dark" class="custom-navbar" >
+    <button class="btn btn-custom d-md-none" @click="toggleSidebar">
+  <i class="fa fa-bars"></i>
+</button>
     <b-navbar-brand href="#" to="/">
       <img src="./components/images/logo3.png" alt="RS2LAB" class="logo-img" />
     </b-navbar-brand>
