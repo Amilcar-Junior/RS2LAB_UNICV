@@ -83,13 +83,27 @@ html, body {
 
 @media (max-width: 768px) {
   .main-content {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
   
   .sidebar:not(.hidden) + .main-content {
     margin-left: 250px;
   }
+
+  .sidebar {
+    transform: translateX(-100%);
+    position: absolute;
+    z-index: 1050;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  
 }
+
 
 .custom-footer {
   background-color: #AB162B;
