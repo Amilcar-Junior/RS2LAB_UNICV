@@ -1040,7 +1040,7 @@
         "x": 28,
         "y": 339,
         "w": 884,
-        "h": 1368
+        "h": 1248
     },
     {
         "id": "e23f91c6c90719a6",
@@ -1072,7 +1072,7 @@
         "x": 948,
         "y": 339,
         "w": 1704,
-        "h": 1368
+        "h": 1328
     },
     {
         "id": "a6adededcdd25826",
@@ -1174,8 +1174,8 @@
             "947fe1399c32e3c5",
             "bcaf84441a1a7d51"
         ],
-        "x": 14,
-        "y": 1779,
+        "x": 34,
+        "y": 1639,
         "w": 872,
         "h": 302
     },
@@ -1216,7 +1216,7 @@
             "7b2bd4fed1f3ba8c"
         ],
         "x": 1914,
-        "y": 899,
+        "y": 859,
         "w": 652,
         "h": 782
     },
@@ -1245,15 +1245,12 @@
             "7593d438901e8a84",
             "d84d6f070a455e55",
             "102c1294b0084a5b",
-            "84d77279bb86a487",
-            "c5562ccf908be2c1",
-            "60a657af006d4f0b",
-            "02a4c04f8393d689"
+            "84d77279bb86a487"
         ],
         "x": 974,
         "y": 1139,
         "w": 732,
-        "h": 302
+        "h": 242
     },
     {
         "id": "76d13409270878fb",
@@ -1313,7 +1310,7 @@
             "25305f3b3881c5af"
         ],
         "x": 974,
-        "y": 1459,
+        "y": 1419,
         "w": 732,
         "h": 142
     },
@@ -1381,7 +1378,7 @@
             "e8c8b4955ed257bf"
         ],
         "x": 54,
-        "y": 1419,
+        "y": 1299,
         "w": 752,
         "h": 262
     },
@@ -1406,15 +1403,12 @@
             "094a0b76dae7672a",
             "b403d937b4308483",
             "dd21b302437bd660",
-            "ad61c2c1f72d56ae",
-            "64bb99dd1c6c8a8a",
-            "083cdf04ad74cba5",
             "6b8711c00ecb42ab"
         ],
         "x": 54,
-        "y": 1179,
+        "y": 1119,
         "w": 712,
-        "h": 202
+        "h": 142
     },
     {
         "id": "92690e765c8e1970",
@@ -1436,16 +1430,13 @@
             "53abed1cfaeb8c87",
             "cfe675c9e79d855e",
             "f294a8684ae37438",
-            "a11ed243fa470286",
-            "e0459a6ce308f113",
-            "232061cde7e4b4d0",
             "35073258ad86f2c0",
             "76771964a1d8bf48"
         ],
         "x": 54,
-        "y": 939,
+        "y": 919,
         "w": 712,
-        "h": 222
+        "h": 162
     },
     {
         "id": "e2dc358dfe1caf1d",
@@ -1467,16 +1458,13 @@
             "f45ba199e838387e",
             "66a910ee4212dae7",
             "e788bad50b4b9863",
-            "49b3cfdf30d1f4d9",
-            "2c8b51e8eb7aba4e",
-            "2aa78c839855119d",
             "86bfe3f14febd10d",
             "02f849f525961e51"
         ],
         "x": 54,
         "y": 699,
         "w": 712,
-        "h": 222
+        "h": 182
     },
     {
         "id": "5e97604028904057",
@@ -1509,7 +1497,7 @@
             "8b0bd55489fd0be7"
         ],
         "x": 54,
-        "y": 439,
+        "y": 419,
         "w": 832,
         "h": 242
     },
@@ -1537,15 +1525,12 @@
             "ac9b9763727ca63a",
             "7a99372b6d1da40d",
             "087ffe4bb508bef4",
-            "dc9b6ddbd5ad64f6",
-            "981932b819530803",
-            "6723793f65ab6fe7",
-            "0cee265b807e226e"
+            "dc9b6ddbd5ad64f6"
         ],
         "x": 1894,
         "y": 439,
         "w": 732,
-        "h": 282
+        "h": 242
     },
     {
         "id": "b0e7208048a256dc",
@@ -15416,7 +15401,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 160,
-        "y": 520,
+        "y": 500,
         "wires": [
             [
                 "554d20b900ad5cbb"
@@ -15431,7 +15416,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 450,
-        "y": 520,
+        "y": 500,
         "wires": [
             [
                 "0a524ad079f34203"
@@ -15452,7 +15437,7 @@
         "finalize": "",
         "libs": [],
         "x": 310,
-        "y": 520,
+        "y": 500,
         "wires": [
             [
                 "fce8c93ac6e48920"
@@ -15473,7 +15458,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 600,
-        "y": 520,
+        "y": 500,
         "wires": []
     },
     {
@@ -15484,7 +15469,7 @@
         "name": "GET DEVICES",
         "info": "\n",
         "x": 160,
-        "y": 480,
+        "y": 460,
         "wires": []
     },
     {
@@ -15498,7 +15483,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "37bd74ac69065a70"
@@ -15519,7 +15504,7 @@
         "finalize": "",
         "libs": [],
         "x": 310,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "ba0994c95d7552f1"
@@ -15534,7 +15519,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "f3943e5bc772c866",
@@ -15551,7 +15536,7 @@
         "statusCode": "",
         "headers": {},
         "x": 810,
-        "y": 620,
+        "y": 600,
         "wires": []
     },
     {
@@ -15568,7 +15553,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 680,
-        "y": 580,
+        "y": 560,
         "wires": []
     },
     {
@@ -15594,7 +15579,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 160,
-        "y": 640,
+        "y": 620,
         "wires": [
             [
                 "566661a86397ab79"
@@ -15619,7 +15604,7 @@
         "senderr": false,
         "headers": [],
         "x": 330,
-        "y": 640,
+        "y": 620,
         "wires": [
             [
                 "ebbf2a7adf2c684f"
@@ -15640,7 +15625,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 500,
-        "y": 640,
+        "y": 620,
         "wires": []
     },
     {
@@ -15734,78 +15719,6 @@
         "wires": []
     },
     {
-        "id": "49b3cfdf30d1f4d9",
-        "type": "inject",
-        "z": "b945a241e156bcfb",
-        "g": "e2dc358dfe1caf1d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 880,
-        "wires": [
-            [
-                "2c8b51e8eb7aba4e"
-            ]
-        ]
-    },
-    {
-        "id": "2c8b51e8eb7aba4e",
-        "type": "http request",
-        "z": "b945a241e156bcfb",
-        "g": "e2dc358dfe1caf1d",
-        "name": "",
-        "method": "POST",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://127.0.0.1:1882/biosentry/addDevices",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 330,
-        "y": 880,
-        "wires": [
-            [
-                "2aa78c839855119d"
-            ]
-        ]
-    },
-    {
-        "id": "2aa78c839855119d",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "e2dc358dfe1caf1d",
-        "name": "debug 16",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 500,
-        "y": 880,
-        "wires": []
-    },
-    {
         "id": "850b284a4fe7a4ee",
         "type": "http in",
         "z": "b945a241e156bcfb",
@@ -15816,7 +15729,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1060,
+        "y": 1040,
         "wires": [
             [
                 "9c45b0dd95f283a1",
@@ -15838,7 +15751,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1060,
+        "y": 1040,
         "wires": [
             [
                 "cfe675c9e79d855e"
@@ -15859,7 +15772,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 660,
-        "y": 1020,
+        "y": 1000,
         "wires": []
     },
     {
@@ -15870,7 +15783,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 1060,
+        "y": 1040,
         "wires": [
             [
                 "53abed1cfaeb8c87",
@@ -15892,79 +15805,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 340,
-        "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "a11ed243fa470286",
-        "type": "inject",
-        "z": "b945a241e156bcfb",
-        "g": "92690e765c8e1970",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 200,
-        "y": 1120,
-        "wires": [
-            [
-                "e0459a6ce308f113"
-            ]
-        ]
-    },
-    {
-        "id": "e0459a6ce308f113",
-        "type": "http request",
-        "z": "b945a241e156bcfb",
-        "g": "92690e765c8e1970",
-        "name": "",
-        "method": "PUT",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://127.0.0.1:1882/biosentry/devices/1",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 370,
-        "y": 1120,
-        "wires": [
-            [
-                "232061cde7e4b4d0"
-            ]
-        ]
-    },
-    {
-        "id": "232061cde7e4b4d0",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "92690e765c8e1970",
-        "name": "debug 19",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 580,
-        "y": 1120,
+        "y": 1000,
         "wires": []
     },
     {
@@ -15986,7 +15827,7 @@
         "name": "UPDATE DEVICES",
         "info": "",
         "x": 170,
-        "y": 980,
+        "y": 960,
         "wires": []
     },
     {
@@ -15998,7 +15839,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 1060,
+        "y": 1040,
         "wires": []
     },
     {
@@ -16009,7 +15850,7 @@
         "name": "DELETE DEVICES",
         "info": "",
         "x": 170,
-        "y": 1220,
+        "y": 1160,
         "wires": []
     },
     {
@@ -16023,7 +15864,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1280,
+        "y": 1220,
         "wires": [
             [
                 "094a0b76dae7672a",
@@ -16045,7 +15886,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1280,
+        "y": 1220,
         "wires": [
             [
                 "dd21b302437bd660"
@@ -16066,7 +15907,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 660,
-        "y": 1240,
+        "y": 1180,
         "wires": []
     },
     {
@@ -16077,7 +15918,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 1280,
+        "y": 1220,
         "wires": [
             [
                 "b403d937b4308483",
@@ -16099,79 +15940,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 340,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "ad61c2c1f72d56ae",
-        "type": "inject",
-        "z": "b945a241e156bcfb",
-        "g": "0082a16d52412f29",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 1340,
-        "wires": [
-            [
-                "64bb99dd1c6c8a8a"
-            ]
-        ]
-    },
-    {
-        "id": "64bb99dd1c6c8a8a",
-        "type": "http request",
-        "z": "b945a241e156bcfb",
-        "g": "0082a16d52412f29",
-        "name": "",
-        "method": "PUT",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://127.0.0.1:1882/biosentry/deletedevices/10",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 350,
-        "y": 1340,
-        "wires": [
-            [
-                "083cdf04ad74cba5"
-            ]
-        ]
-    },
-    {
-        "id": "083cdf04ad74cba5",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "0082a16d52412f29",
-        "name": "debug 22",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 1340,
+        "y": 1180,
         "wires": []
     },
     {
@@ -16183,7 +15952,7 @@
         "statusCode": "",
         "headers": {},
         "x": 670,
-        "y": 1280,
+        "y": 1220,
         "wires": []
     },
     {
@@ -16643,78 +16412,6 @@
         "wires": []
     },
     {
-        "id": "c5562ccf908be2c1",
-        "type": "inject",
-        "z": "b945a241e156bcfb",
-        "g": "2d0336cd76812691",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 1080,
-        "y": 1300,
-        "wires": [
-            [
-                "60a657af006d4f0b"
-            ]
-        ]
-    },
-    {
-        "id": "60a657af006d4f0b",
-        "type": "http request",
-        "z": "b945a241e156bcfb",
-        "g": "2d0336cd76812691",
-        "name": "",
-        "method": "PUT",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://127.0.0.1:1882/biosentry/updatestudents/2",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 1250,
-        "y": 1300,
-        "wires": [
-            [
-                "02a4c04f8393d689"
-            ]
-        ]
-    },
-    {
-        "id": "02a4c04f8393d689",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "2d0336cd76812691",
-        "name": "debug 32",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1420,
-        "y": 1300,
-        "wires": []
-    },
-    {
         "id": "74d3b96e10bc2483",
         "type": "comment",
         "z": "b945a241e156bcfb",
@@ -16722,7 +16419,7 @@
         "name": "DELETE STUDENTS",
         "info": "",
         "x": 1100,
-        "y": 1500,
+        "y": 1460,
         "wires": []
     },
     {
@@ -16736,7 +16433,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1100,
-        "y": 1560,
+        "y": 1520,
         "wires": [
             [
                 "7093e25c52c6aa03"
@@ -16757,7 +16454,7 @@
         "finalize": "",
         "libs": [],
         "x": 1310,
-        "y": 1560,
+        "y": 1520,
         "wires": [
             [
                 "ade5439bdcc62918"
@@ -16772,7 +16469,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 1490,
-        "y": 1560,
+        "y": 1520,
         "wires": [
             [
                 "25305f3b3881c5af"
@@ -16788,7 +16485,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1630,
-        "y": 1560,
+        "y": 1520,
         "wires": []
     },
     {
@@ -16805,7 +16502,7 @@
         "finalize": "",
         "libs": [],
         "x": 670,
-        "y": 620,
+        "y": 600,
         "wires": [
             [
                 "73af561b31fb322e"
@@ -16826,7 +16523,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2240,
-        "y": 1000,
+        "y": 960,
         "wires": []
     },
     {
@@ -16837,7 +16534,7 @@
         "name": "Endpoint HTTP para Recebimento de Dados Biométricos no Node-RED",
         "info": "",
         "x": 2230,
-        "y": 940,
+        "y": 900,
         "wires": []
     },
     {
@@ -16856,7 +16553,7 @@
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
         "x": 2460,
-        "y": 1120,
+        "y": 1080,
         "wires": []
     },
     {
@@ -16870,7 +16567,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2020,
-        "y": 1160,
+        "y": 1120,
         "wires": [
             [
                 "25fa820ac801af66",
@@ -16888,7 +16585,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2210,
-        "y": 1180,
+        "y": 1140,
         "wires": []
     },
     {
@@ -16905,7 +16602,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2200,
-        "y": 1120,
+        "y": 1080,
         "wires": []
     },
     {
@@ -16919,7 +16616,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2040,
-        "y": 1040,
+        "y": 1000,
         "wires": [
             [
                 "97829b7ee7afa223",
@@ -16937,7 +16634,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2430,
-        "y": 1020,
+        "y": 980,
         "wires": []
     },
     {
@@ -16951,7 +16648,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2030,
-        "y": 1260,
+        "y": 1220,
         "wires": [
             [
                 "bd7550ec9d56ba18",
@@ -16969,7 +16666,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2250,
-        "y": 1320,
+        "y": 1280,
         "wires": []
     },
     {
@@ -16986,7 +16683,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2260,
-        "y": 1280,
+        "y": 1240,
         "wires": []
     },
     {
@@ -17004,7 +16701,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 2040,
-        "y": 1500,
+        "y": 1460,
         "wires": [
             [
                 "25832e5902cd5ef3",
@@ -17026,7 +16723,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2240,
-        "y": 1460,
+        "y": 1420,
         "wires": []
     },
     {
@@ -17037,7 +16734,7 @@
         "name": "Mensagens de notificação",
         "info": "",
         "x": 2050,
-        "y": 1420,
+        "y": 1380,
         "wires": []
     },
     {
@@ -17111,7 +16808,7 @@
         "server": "",
         "client": "5581410adca722cb",
         "x": 2030,
-        "y": 1640,
+        "y": 1600,
         "wires": []
     },
     {
@@ -17145,7 +16842,7 @@
         "overwriteFile": "false",
         "encoding": "none",
         "x": 2240,
-        "y": 1500,
+        "y": 1460,
         "wires": [
             [
                 "048916557373ef1e"
@@ -17167,7 +16864,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2420,
-        "y": 1500,
+        "y": 1460,
         "wires": []
     },
     {
@@ -17182,7 +16879,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 2010,
-        "y": 1560,
+        "y": 1520,
         "wires": [
             [
                 "c6b8d07176e89f9c"
@@ -17204,7 +16901,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 2180,
-        "y": 1560,
+        "y": 1520,
         "wires": [
             [
                 "7b2bd4fed1f3ba8c"
@@ -17221,7 +16918,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2350,
-        "y": 1560,
+        "y": 1520,
         "wires": []
     },
     {
@@ -17235,7 +16932,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1100,
-        "y": 1400,
+        "y": 1340,
         "wires": [
             [
                 "a7a5079a74886965",
@@ -17257,7 +16954,7 @@
         "finalize": "",
         "libs": [],
         "x": 1350,
-        "y": 1400,
+        "y": 1340,
         "wires": [
             [
                 "d62c9fe751211c9b"
@@ -17272,7 +16969,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "BD",
         "x": 1510,
-        "y": 1400,
+        "y": 1340,
         "wires": [
             [
                 "2eaf303a7a63596e"
@@ -17288,7 +16985,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1630,
-        "y": 1400,
+        "y": 1340,
         "wires": []
     },
     {
@@ -17299,7 +16996,7 @@
         "name": "Buscar finder_id por id",
         "info": "Para poder pegar o valor do finger_id e envia-lo para o node-red para editar\n",
         "x": 1100,
-        "y": 1360,
+        "y": 1300,
         "wires": []
     },
     {
@@ -17316,7 +17013,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1340,
-        "y": 1360,
+        "y": 1300,
         "wires": []
     },
     {
@@ -17353,7 +17050,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 160,
-        "y": 1520,
+        "y": 1400,
         "wires": [
             [
                 "88629126eec09698"
@@ -17374,7 +17071,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1520,
+        "y": 1400,
         "wires": [
             [
                 "f6c879b8e4daaaa2"
@@ -17389,7 +17086,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 460,
-        "y": 1520,
+        "y": 1400,
         "wires": [
             [
                 "6ba66a9e150a512e"
@@ -17410,7 +17107,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 640,
-        "y": 1520,
+        "y": 1400,
         "wires": []
     },
     {
@@ -17421,7 +17118,7 @@
         "name": "endpoint pra verificar dispositivos que tem estudantes registado",
         "info": "",
         "x": 390,
-        "y": 1460,
+        "y": 1340,
         "wires": []
     },
     {
@@ -17435,7 +17132,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 190,
-        "y": 1580,
+        "y": 1460,
         "wires": [
             [
                 "d9cbf202e2ca7d78"
@@ -17456,7 +17153,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1580,
+        "y": 1460,
         "wires": [
             [
                 "c9823ca8246d0e50"
@@ -17471,7 +17168,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 550,
-        "y": 1580,
+        "y": 1460,
         "wires": [
             [
                 "7095c2997cf22b93",
@@ -17488,7 +17185,7 @@
         "statusCode": "",
         "headers": {},
         "x": 690,
-        "y": 1620,
+        "y": 1500,
         "wires": []
     },
     {
@@ -17505,7 +17202,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 700,
-        "y": 1560,
+        "y": 1440,
         "wires": []
     },
     {
@@ -17531,7 +17228,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 160,
-        "y": 1640,
+        "y": 1520,
         "wires": [
             [
                 "85b3a80720622ced"
@@ -17556,7 +17253,7 @@
         "senderr": false,
         "headers": [],
         "x": 310,
-        "y": 1640,
+        "y": 1520,
         "wires": [
             [
                 "e8c8b4955ed257bf"
@@ -17577,7 +17274,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 480,
-        "y": 1640,
+        "y": 1520,
         "wires": []
     },
     {
@@ -18104,78 +17801,6 @@
         "wires": []
     },
     {
-        "id": "981932b819530803",
-        "type": "inject",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 2020,
-        "y": 660,
-        "wires": [
-            [
-                "6723793f65ab6fe7"
-            ]
-        ]
-    },
-    {
-        "id": "6723793f65ab6fe7",
-        "type": "http request",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://127.0.0.1:1882/biosentry/students",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 2190,
-        "y": 660,
-        "wires": [
-            [
-                "0cee265b807e226e"
-            ]
-        ]
-    },
-    {
-        "id": "0cee265b807e226e",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "debug 54",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2360,
-        "y": 680,
-        "wires": []
-    },
-    {
         "id": "636ac6044284a3d1",
         "type": "http in",
         "z": "b945a241e156bcfb",
@@ -18186,7 +17811,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1990,
-        "y": 860,
+        "y": 800,
         "wires": [
             [
                 "db2b0f074c5a2595"
@@ -18207,7 +17832,7 @@
         "finalize": "",
         "libs": [],
         "x": 2170,
-        "y": 860,
+        "y": 800,
         "wires": [
             [
                 "c2cd3326d58e5487"
@@ -18228,7 +17853,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2520,
-        "y": 820,
+        "y": 760,
         "wires": []
     },
     {
@@ -18239,7 +17864,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 2330,
-        "y": 860,
+        "y": 800,
         "wires": [
             [
                 "673756bf618276ae"
@@ -18254,7 +17879,7 @@
         "name": "ADD OUTROS",
         "info": "",
         "x": 2000,
-        "y": 800,
+        "y": 740,
         "wires": []
     },
     {
@@ -18465,8 +18090,8 @@
         "g": "e9bc3d9e88c8e3b7",
         "name": "Dasboard",
         "info": "",
-        "x": 100,
-        "y": 1820,
+        "x": 120,
+        "y": 1680,
         "wires": []
     },
     {
@@ -18479,8 +18104,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 120,
-        "y": 1900,
+        "x": 140,
+        "y": 1760,
         "wires": [
             [
                 "0310a9fa962dcf70"
@@ -18495,8 +18120,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 810,
-        "y": 1900,
+        "x": 830,
+        "y": 1760,
         "wires": []
     },
     {
@@ -18512,8 +18137,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 1900,
+        "x": 350,
+        "y": 1760,
         "wires": [
             [
                 "6e69100c6ef896cd"
@@ -18527,8 +18152,8 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 510,
-        "y": 1900,
+        "x": 530,
+        "y": 1760,
         "wires": [
             [
                 "8a91e23ce64e2898"
@@ -18548,8 +18173,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 1960,
+        "x": 330,
+        "y": 1820,
         "wires": [
             [
                 "b00bac600827eb6b"
@@ -18569,8 +18194,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 2000,
+        "x": 330,
+        "y": 1860,
         "wires": [
             [
                 "2e970f49a76366a7"
@@ -18590,8 +18215,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 2040,
+        "x": 330,
+        "y": 1900,
         "wires": [
             [
                 "bf8763186b6ea79b"
@@ -18605,8 +18230,8 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 490,
-        "y": 1960,
+        "x": 510,
+        "y": 1820,
         "wires": [
             [
                 "ae4d50583f8f3df8"
@@ -18620,8 +18245,8 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 470,
-        "y": 2040,
+        "x": 490,
+        "y": 1900,
         "wires": [
             [
                 "bcaf84441a1a7d51"
@@ -18635,8 +18260,8 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 470,
-        "y": 2000,
+        "x": 490,
+        "y": 1860,
         "wires": [
             [
                 "947fe1399c32e3c5"
@@ -18651,8 +18276,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 790,
-        "y": 1960,
+        "x": 810,
+        "y": 1820,
         "wires": []
     },
     {
@@ -18665,8 +18290,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 100,
-        "y": 2000,
+        "x": 120,
+        "y": 1860,
         "wires": [
             [
                 "e2f9b7afa65f5ce8"
@@ -18681,8 +18306,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 790,
-        "y": 2000,
+        "x": 810,
+        "y": 1860,
         "wires": []
     },
     {
@@ -18695,8 +18320,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 110,
-        "y": 1960,
+        "x": 130,
+        "y": 1820,
         "wires": [
             [
                 "fda4c757cadaf7eb"
@@ -18713,8 +18338,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 110,
-        "y": 2040,
+        "x": 130,
+        "y": 1900,
         "wires": [
             [
                 "6ed7edffb077d181"
@@ -18729,8 +18354,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 750,
-        "y": 2040,
+        "x": 770,
+        "y": 1900,
         "wires": []
     },
     {
@@ -18746,8 +18371,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 1900,
+        "x": 690,
+        "y": 1760,
         "wires": [
             [
                 "aa92af3dde97dea8"
@@ -18767,8 +18392,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 1960,
+        "x": 670,
+        "y": 1820,
         "wires": [
             [
                 "c2fcad8c947bb579"
@@ -18788,8 +18413,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 2000,
+        "x": 650,
+        "y": 1860,
         "wires": [
             [
                 "d793516227976462"
@@ -18809,8 +18434,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 610,
-        "y": 2040,
+        "x": 630,
+        "y": 1900,
         "wires": [
             [
                 "4ba567f91bc95870"

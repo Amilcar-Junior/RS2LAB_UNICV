@@ -551,7 +551,7 @@ module.exports = {
 }
 
 .table thead th {
-  background-color: #2c3e50;
+  background-color: #ab162b;
   color: white;
   font-weight: 600;
   text-transform: uppercase;

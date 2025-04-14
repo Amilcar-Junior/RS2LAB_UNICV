@@ -615,7 +615,7 @@
 }
 
 .table thead th {
-  background-color: #2c3e50;
+  background-color: #ab162a;
   color: white;
   font-weight: 600;
   text-transform: uppercase;

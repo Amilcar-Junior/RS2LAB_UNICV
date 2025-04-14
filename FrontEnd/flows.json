@@ -1099,12 +1099,16 @@
             "65008fd4a621b47e",
             "edb3f8512ae72464",
             "4a2f1ff8514bc128",
-            "7c6ed059ca31b322"
+            "7c6ed059ca31b322",
+            "19984216f5e7312a",
+            "603607c2c2c5dbb9",
+            "6c103389a472c46a",
+            "1b43fe1b9d2c3f74"
         ],
         "x": 34,
         "y": 59,
         "w": 872,
-        "h": 242
+        "h": 282
     },
     {
         "id": "e0914e4a4497fb15",
@@ -18439,6 +18443,72 @@
         "wires": [
             [
                 "4ba567f91bc95870"
+            ]
+        ]
+    },
+    {
+        "id": "19984216f5e7312a",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "a6adededcdd25826",
+        "name": "login",
+        "url": "/rs2lab/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "603607c2c2c5dbb9"
+            ]
+        ]
+    },
+    {
+        "id": "603607c2c2c5dbb9",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "a6adededcdd25826",
+        "name": "Query",
+        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.Email = '${Utilizador_Email}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "1b43fe1b9d2c3f74"
+            ]
+        ]
+    },
+    {
+        "id": "6c103389a472c46a",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "a6adededcdd25826",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 510,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1b43fe1b9d2c3f74",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "a6adededcdd25826",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "6c103389a472c46a"
             ]
         ]
     },
