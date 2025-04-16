@@ -55,7 +55,7 @@
       </div>
 
       <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
-        <div class="menu-title">Manutenção</div>
+        <div class="menu-title">Gestão</div>
         <div class="menu-item">
           <router-link to="/biosentry/dispositivos" class="menu-link">
             <i class="fa fa-microchip"></i>

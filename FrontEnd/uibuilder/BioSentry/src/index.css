@@ -45,7 +45,7 @@ html, body {
 
 .sidebar {
   position: fixed;
-  top: 76px;
+  top: 66px;
   left: 0;
   bottom: -600px;
   width: 250px;

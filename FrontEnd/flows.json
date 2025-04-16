@@ -1628,6 +1628,16 @@
         "charset": "UTF8"
     },
     {
+        "id": "mysql-config",
+        "type": "MySQLdatabase",
+        "name": "Conexão BD Biometria",
+        "host": "localhost",
+        "port": "3306",
+        "db": "nome_do_banco",
+        "tz": "Z",
+        "charset": "UTF8"
+    },
+    {
         "id": "1",
         "type": "http in",
         "z": "43734a494ac50a59",
@@ -18511,6 +18521,78 @@
                 "6c103389a472c46a"
             ]
         ]
+    },
+    {
+        "id": "49238f228ca0723a",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "name": "Relatorio",
+        "info": "",
+        "x": 100,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "filtro-api-report",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "name": "GET /biosentry/report",
+        "url": "/biosentry/report",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 2100,
+        "wires": [
+            [
+                "montar-sql-report"
+            ]
+        ]
+    },
+    {
+        "id": "montar-sql-report",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "Montar SQL com filtros",
+        "func": "// Receber os parâmetros do frontend\nlet params = msg.req.query;\nlet where = [];\nlet values = [];\n\nif (params.startDate) {\n    where.push(\"data_hora_entrada >= ?\");\n    values.push(params.startDate);\n}\nif (params.endDate) {\n    where.push(\"data_hora_entrada <= ?\");\n    values.push(params.endDate);\n}\nif (params.residence) {\n    where.push(\"residencia = ?\");\n    values.push(params.residence);\n}\nif (params.device) {\n    where.push(\"device_id = ?\");\n    values.push(params.device);\n}\nif (params.userType) {\n    where.push(\"tipo_utilizador = ?\");\n    values.push(params.userType);\n}\nif (params.studentName) {\n    where.push(\"nome LIKE ?\");\n    values.push('%' + params.studentName + '%');\n}\nif (params.accessStatus) {\n    where.push(\"status_ = ?\");\n    values.push(params.accessStatus);\n}\nif (params.accessType) {\n    where.push(\"log_info = ?\");\n    values.push(params.accessType);\n}\n\nlet sql = `\n    SELECT \n      codigo_estudante, nome, data_hora_entrada, data_hora_saida, \n      log_info AS accessType, status_ AS accessStatus, \n      tipo_utilizador AS userType, residencia, device_id AS device,\n      COALESCE(data_hora_entrada, data_hora_saida) AS timestamp\n    FROM logs_estudantes\n`;\n\nif (where.length > 0) {\n    sql += \" WHERE \" + where.join(\" AND \");\n}\n\nmsg.topic = sql;\nmsg.payload = values;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 2100,
+        "wires": [
+            [
+                "consulta-sql-report"
+            ]
+        ]
+    },
+    {
+        "id": "consulta-sql-report",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "Consulta Report (MySQL)",
+        "x": 610,
+        "y": 2100,
+        "wires": [
+            [
+                "resposta-api-report"
+            ]
+        ]
+    },
+    {
+        "id": "resposta-api-report",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "name": "Resposta Report",
+        "statusCode": "",
+        "headers": {},
+        "x": 840,
+        "y": 2100,
+        "wires": []
     },
     {
         "id": "1a2b3c4d",

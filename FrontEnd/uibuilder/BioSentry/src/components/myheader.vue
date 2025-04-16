@@ -1,8 +1,6 @@
 <template>
   <b-navbar toggleable="lg" type="dark" class="custom-navbar" >
-    <button class="btn btn-custom d-md-none" @click="toggleSidebar">
-  <i class="fa fa-bars"></i>
-</button>
+
     <b-navbar-brand href="#" to="/">
       <img src="./components/images/logo3.png" alt="RS2LAB" class="logo-img" />
     </b-navbar-brand>
@@ -55,7 +53,7 @@
 <style scoped>
 .logo-img {
   width: 300px; /* Defina o tamanho desejado para a largura da imagem */
-  height: 50px; /* Mantenha a proporção da altura */
+  height: 40px; /* Mantenha a proporção da altura */
 }
 </style>
 
