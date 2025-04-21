@@ -61,7 +61,8 @@
                   </th> -->
                   <th scope="col" class="col-1">Identificador</th>
                   <th scope="col" class="col-2">Edificio</th>
-                  <th scope="col" class="col-2">tipo</th>
+                  <th scope="col" class="col-2">Tipo</th>
+                  <th scope="col" class="col-2">Status</th>
                   <th scope="col" class="col-1">Data de Registo</th>
                   <th
                     scope="col"
@@ -84,9 +85,10 @@
                     />
                   </td> -->
                   <td>{{ item.id_dispositivo }}</td>
-                  <td>{{ item.edificio }}</td>
+                  <td>{{ item.nome_edificio  }}</td>
                   <td>{{ item.tipo }}</td>
-                  <td>{{ item.data_registo }}</td>
+                  <td>{{ item.status }}</td>
+                  <td>{{formatDate(item.data_registo) }}</td>
                   <td
                     class="text-center"
                     v-show="
@@ -139,18 +141,35 @@
       <!-- Modal para edicao -->
       <b-modal v-model="showModalEdit" title="Editar Dispositivo" hide-footer>
         <b-form @submit.prevent="saveDevice">
-          <b-form-group label="Edifício" label-for="edificio">
-            <b-form-input
-              id="edificio"
-              v-model="currentDevice.edificio"
+          <b-form-group label="Edifício" label-for="id_edificio">
+            <b-form-select
+              id="id_edificio"
+              v-model="currentDevice.id_edificio"
+              :options="edificios.map(edificio => ({ value: edificio.id_edificio, text: edificio.nome_edificio  }))"
               required
-            ></b-form-input>
+            ></b-form-select>
           </b-form-group>
 
           <b-form-group label="UID do Dispositivo" label-for="id_dispositivo">
             <b-form-input
               id="id_dispositivo"
               v-model="currentDevice.id_dispositivo"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group label="Tipo" label-for="tipo">
+            <b-form-input
+              id="tipo"
+              v-model="currentDevice.tipo"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group label="Status" label-for="status">
+            <b-form-input
+              id="status"
+              v-model="currentDevice.status"
               required
             ></b-form-input>
           </b-form-group>
@@ -175,17 +194,34 @@
       <b-modal v-model="showModalAdd" title="Adicionar Dispositivo" hide-footer>
         <b-form @submit.prevent="saveDevice">
           <b-form-group label="Edifício" label-for="edificio">
-            <b-form-input
+            <b-form-select
               id="edificio"
-              v-model="model.item.edificio"
+              v-model="model.item.id_edificio"
+              :options="edificios.map(edificio => ({ value: edificio.id_edificio, text: edificio.nome_edificio  }))"
               required
-            ></b-form-input>
+            ></b-form-select>
           </b-form-group>
 
           <b-form-group label="UID do Dispositivo" label-for="id_dispositivo">
             <b-form-input
               id="id_dispositivo"
               v-model="model.item.id_dispositivo"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group label="Tipo" label-for="tipo">
+            <b-form-input
+              id="tipo"
+              v-model="model.item.tipo"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group label="Status" label-for="status">
+            <b-form-input
+              id="status"
+              v-model="model.item.status"
               required
             ></b-form-input>
           </b-form-group>
@@ -217,11 +253,14 @@ module.exports = {
     return {
       model: {
         item: {
-          edificio: "",
+          id_edificio: "",
           id_dispositivo: "",
+          tipo: "",
+          status: "",
         },
       },
       items: [],
+      edificios: [],
       showModalEdit: false,
       showModalAdd: false,
       selectedItems: [], // Adiciona esta linha
@@ -231,14 +270,17 @@ module.exports = {
       userTypes: window.appConfig.userTypes,
       currentDevice: {
         id: null,
-        edificio: "",
+        id_edificio: "",
         id_dispositivo: "",
+        tipo: "",
+        status: "",
         // data_registo: ''
       },
     };
   },
   mounted() {
     this.retrieveItems();
+    this.retrieveEdificios();
   },
   computed: {
     totalRows() {
@@ -276,6 +318,13 @@ module.exports = {
     },
   },
   methods: {
+    formatDate(dateString) {
+      const date = new Date(dateString);
+      // Ajusta para o fuso horário de Cabo Verde (UTC -1)
+    const caboVerdeDate = new Date(date.getTime()); // Subtrai 1 hora para Cabo Verde
+    return caboVerdeDate.toLocaleString("pt-PT", { timeZone: "Atlantic/Cape_Verde" });
+      },
+
     retrieveItems() {
       axios
         .get("/biosentry/devices")
@@ -284,6 +333,16 @@ module.exports = {
         })
         .catch((error) => {
           console.error("Erro ao recuperar Dispositivo:", error);
+        });
+    },
+    retrieveEdificios() {
+      axios
+        .get("/biosentry/edificios")
+        .then((response) => {
+          this.edificios = response.data;
+        })
+        .catch((error) => {
+          console.error("Erro ao recuperar Edificios:", error);
         });
     },
     toggleSelectAll(event) {
@@ -303,11 +362,15 @@ module.exports = {
       });
     },
     editItem(item) {
-      this.currentDevice = { ...item };
+      // Map edificio to id_edificio if needed
+      this.currentDevice = {
+        ...item,
+        id_edificio: item.id_edificio || item.nome_edificio  || "",
+      };
       this.showModalEdit = true;
     },
     async saveDevice() {
-      if (this.currentDevice.id) {
+      if (this.currentDevice.id_dispositivo) {
         const uidExists = this.items.some(
           (item) =>
             item.id_dispositivo === this.currentDevice.id_dispositivo &&
@@ -383,14 +446,18 @@ module.exports = {
     resetCurrentDevice() {
       (this.model.item = {
         id: null,
-        edificio: "",
+        id_edificio: "",
         id_dispositivo: "",
+        tipo: "",
+        status: "",
         data_registo: "",
       }),
         (this.currentDevice = {
           id: null,
-          edificio: "",
+          id_edificio: "",
           id_dispositivo: "",
+          tipo: "",
+          status: "",
           data_registo: "",
         });
     },

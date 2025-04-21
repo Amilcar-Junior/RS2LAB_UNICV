@@ -1035,12 +1035,16 @@
             "0082a16d52412f29",
             "92690e765c8e1970",
             "e2dc358dfe1caf1d",
-            "5e97604028904057"
+            "5e97604028904057",
+            "b471b497c140f6df",
+            "d952e942d6d57f6b",
+            "2347fc0074a4507d",
+            "4fd62affc6d437d2"
         ],
-        "x": 28,
+        "x": 8,
         "y": 339,
-        "w": 884,
-        "h": 1248
+        "w": 824,
+        "h": 1328
     },
     {
         "id": "e23f91c6c90719a6",
@@ -1069,7 +1073,7 @@
             "c2cd3326d58e5487",
             "ba7d4145bf366ec8"
         ],
-        "x": 948,
+        "x": 968,
         "y": 339,
         "w": 1704,
         "h": 1328
@@ -1179,7 +1183,7 @@
             "bcaf84441a1a7d51"
         ],
         "x": 34,
-        "y": 1639,
+        "y": 1679,
         "w": 872,
         "h": 302
     },
@@ -1219,7 +1223,7 @@
             "c6b8d07176e89f9c",
             "7b2bd4fed1f3ba8c"
         ],
-        "x": 1914,
+        "x": 1934,
         "y": 859,
         "w": 652,
         "h": 782
@@ -1251,7 +1255,7 @@
             "102c1294b0084a5b",
             "84d77279bb86a487"
         ],
-        "x": 974,
+        "x": 994,
         "y": 1139,
         "w": 732,
         "h": 242
@@ -1287,7 +1291,7 @@
             "e33fe3b0a3c0af8b",
             "32ba2818dca4e055"
         ],
-        "x": 974,
+        "x": 994,
         "y": 759,
         "w": 872,
         "h": 362
@@ -1313,7 +1317,7 @@
             "ade5439bdcc62918",
             "25305f3b3881c5af"
         ],
-        "x": 974,
+        "x": 994,
         "y": 1419,
         "w": 732,
         "h": 142
@@ -1347,7 +1351,7 @@
             "cd5274331186766e",
             "01e8b8655c698a26"
         ],
-        "x": 974,
+        "x": 994,
         "y": 439,
         "w": 732,
         "h": 282
@@ -1381,8 +1385,8 @@
             "85b3a80720622ced",
             "e8c8b4955ed257bf"
         ],
-        "x": 54,
-        "y": 1299,
+        "x": 34,
+        "y": 1379,
         "w": 752,
         "h": 262
     },
@@ -1409,8 +1413,8 @@
             "dd21b302437bd660",
             "6b8711c00ecb42ab"
         ],
-        "x": 54,
-        "y": 1119,
+        "x": 34,
+        "y": 1199,
         "w": 712,
         "h": 142
     },
@@ -1437,8 +1441,8 @@
             "35073258ad86f2c0",
             "76771964a1d8bf48"
         ],
-        "x": 54,
-        "y": 919,
+        "x": 34,
+        "y": 999,
         "w": 712,
         "h": 162
     },
@@ -1465,7 +1469,7 @@
             "86bfe3f14febd10d",
             "02f849f525961e51"
         ],
-        "x": 54,
+        "x": 34,
         "y": 699,
         "w": 712,
         "h": 182
@@ -1497,12 +1501,11 @@
             "f3943e5bc772c866",
             "f280e08bc97eb3c0",
             "566661a86397ab79",
-            "ebbf2a7adf2c684f",
-            "8b0bd55489fd0be7"
+            "ebbf2a7adf2c684f"
         ],
-        "x": 54,
+        "x": 34,
         "y": 419,
-        "w": 832,
+        "w": 772,
         "h": 242
     },
     {
@@ -1531,7 +1534,7 @@
             "087ffe4bb508bef4",
             "dc9b6ddbd5ad64f6"
         ],
-        "x": 1894,
+        "x": 1914,
         "y": 439,
         "w": 732,
         "h": 242
@@ -1574,8 +1577,8 @@
         "host": "127.0.0.1",
         "port": "3306",
         "db": "db_iot_rs2lab",
-        "tz": "+08:00",
-        "charset": "UTF8"
+        "tz": "",
+        "charset": ""
     },
     {
         "id": "c04d9c37659ca8d5",
@@ -15414,7 +15417,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
+        "x": 140,
         "y": 500,
         "wires": [
             [
@@ -15429,7 +15432,7 @@
         "g": "5e97604028904057",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 450,
+        "x": 430,
         "y": 500,
         "wires": [
             [
@@ -15443,14 +15446,14 @@
         "z": "b945a241e156bcfb",
         "g": "5e97604028904057",
         "name": "Query ",
-        "func": "msg.topic = `SELECT * FROM dispositivo;`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT d.*, e.id_edificio ,e.nome_edificio FROM dispositivo d JOIN edificio e ON d.id_edificio = e.id_edificio;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 290,
         "y": 500,
         "wires": [
             [
@@ -15471,7 +15474,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 600,
+        "x": 580,
         "y": 500,
         "wires": []
     },
@@ -15482,7 +15485,7 @@
         "g": "5e97604028904057",
         "name": "GET DEVICES",
         "info": "\n",
-        "x": 160,
+        "x": 140,
         "y": 460,
         "wires": []
     },
@@ -15496,7 +15499,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 130,
+        "x": 110,
         "y": 560,
         "wires": [
             [
@@ -15510,14 +15513,14 @@
         "z": "b945a241e156bcfb",
         "g": "5e97604028904057",
         "name": "Query",
-        "func": "msg.topic = `SELECT * FROM dispositivo;`;\nreturn msg;\n",
+        "func": "\nmsg.topic = `SELECT d.*, e.id_edificio ,e.nome_edificio FROM dispositivo d JOIN edificio e ON d.id_edificio = e.id_edificio;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
+        "x": 310,
         "y": 560,
         "wires": [
             [
@@ -15532,12 +15535,12 @@
         "g": "5e97604028904057",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 490,
+        "x": 470,
         "y": 560,
         "wires": [
             [
                 "f3943e5bc772c866",
-                "8b0bd55489fd0be7"
+                "73af561b31fb322e"
             ]
         ]
     },
@@ -15549,8 +15552,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 810,
-        "y": 600,
+        "x": 610,
+        "y": 580,
         "wires": []
     },
     {
@@ -15566,8 +15569,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 680,
-        "y": 560,
+        "x": 700,
+        "y": 540,
         "wires": []
     },
     {
@@ -15592,7 +15595,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
+        "x": 140,
         "y": 620,
         "wires": [
             [
@@ -15617,7 +15620,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 330,
+        "x": 310,
         "y": 620,
         "wires": [
             [
@@ -15638,7 +15641,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 500,
+        "x": 480,
         "y": 620,
         "wires": []
     },
@@ -15652,7 +15655,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 150,
+        "x": 130,
         "y": 800,
         "wires": [
             [
@@ -15674,7 +15677,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 290,
         "y": 820,
         "wires": [
             [
@@ -15695,7 +15698,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
+        "x": 640,
         "y": 780,
         "wires": []
     },
@@ -15706,7 +15709,7 @@
         "g": "e2dc358dfe1caf1d",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 490,
+        "x": 470,
         "y": 820,
         "wires": [
             [
@@ -15728,7 +15731,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 320,
+        "x": 300,
         "y": 780,
         "wires": []
     },
@@ -15738,12 +15741,12 @@
         "z": "b945a241e156bcfb",
         "g": "92690e765c8e1970",
         "name": "Update Devices",
-        "url": "/biosentry/devices/:id",
+        "url": "/biosentry/devices/:id_dispositivo",
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
-        "x": 160,
-        "y": 1040,
+        "x": 140,
+        "y": 1120,
         "wires": [
             [
                 "9c45b0dd95f283a1",
@@ -15757,15 +15760,15 @@
         "z": "b945a241e156bcfb",
         "g": "92690e765c8e1970",
         "name": "Query",
-        "func": "msg.topic = `UPDATE dispositivo ` +\n    `SET tipo = '${msg.payload.tipo}', status = '${msg.payload.status}', id_edificio = ${msg.payload.id_edificio} ` +\n    `WHERE id_dispositivo = '${msg.payload.id_dispositivo}';`;\nreturn msg;\n",
+        "func": "msg.topic = `UPDATE dispositivo ` +\n    `SET  tipo = '${msg.payload.tipo}', status = '${msg.payload.status}', id_edificio = ${msg.payload.id_edificio} ` +\n    `WHERE id_dispositivo = '${msg.payload.id_dispositivo}';`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 1040,
+        "x": 310,
+        "y": 1120,
         "wires": [
             [
                 "cfe675c9e79d855e"
@@ -15785,8 +15788,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
-        "y": 1000,
+        "x": 640,
+        "y": 1080,
         "wires": []
     },
     {
@@ -15796,8 +15799,8 @@
         "g": "92690e765c8e1970",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 490,
-        "y": 1040,
+        "x": 470,
+        "y": 1120,
         "wires": [
             [
                 "53abed1cfaeb8c87",
@@ -15818,8 +15821,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 340,
-        "y": 1000,
+        "x": 320,
+        "y": 1080,
         "wires": []
     },
     {
@@ -15829,7 +15832,7 @@
         "g": "e2dc358dfe1caf1d",
         "name": "ADD DEVICES",
         "info": "",
-        "x": 160,
+        "x": 140,
         "y": 740,
         "wires": []
     },
@@ -15840,8 +15843,8 @@
         "g": "92690e765c8e1970",
         "name": "UPDATE DEVICES",
         "info": "",
-        "x": 170,
-        "y": 960,
+        "x": 150,
+        "y": 1040,
         "wires": []
     },
     {
@@ -15852,8 +15855,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 650,
-        "y": 1040,
+        "x": 630,
+        "y": 1120,
         "wires": []
     },
     {
@@ -15863,8 +15866,8 @@
         "g": "0082a16d52412f29",
         "name": "DELETE DEVICES",
         "info": "",
-        "x": 170,
-        "y": 1160,
+        "x": 150,
+        "y": 1240,
         "wires": []
     },
     {
@@ -15877,8 +15880,8 @@
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
-        "x": 160,
-        "y": 1220,
+        "x": 140,
+        "y": 1300,
         "wires": [
             [
                 "094a0b76dae7672a",
@@ -15899,8 +15902,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 1220,
+        "x": 310,
+        "y": 1300,
         "wires": [
             [
                 "dd21b302437bd660"
@@ -15920,8 +15923,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
-        "y": 1180,
+        "x": 640,
+        "y": 1260,
         "wires": []
     },
     {
@@ -15931,8 +15934,8 @@
         "g": "0082a16d52412f29",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 490,
-        "y": 1220,
+        "x": 470,
+        "y": 1300,
         "wires": [
             [
                 "b403d937b4308483",
@@ -15953,8 +15956,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 340,
-        "y": 1180,
+        "x": 320,
+        "y": 1260,
         "wires": []
     },
     {
@@ -15965,8 +15968,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 670,
-        "y": 1220,
+        "x": 650,
+        "y": 1300,
         "wires": []
     },
     {
@@ -15977,7 +15980,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 670,
+        "x": 650,
         "y": 840,
         "wires": []
     },
@@ -15988,7 +15991,7 @@
         "g": "6cfa3712cf99a987",
         "name": "START DISPOSITIVOS",
         "info": "",
-        "x": 420,
+        "x": 400,
         "y": 380,
         "wires": []
     },
@@ -15999,7 +16002,7 @@
         "g": "e23f91c6c90719a6",
         "name": "START ESTUDANTES",
         "info": "",
-        "x": 1800,
+        "x": 1820,
         "y": 380,
         "wires": []
     },
@@ -16010,7 +16013,7 @@
         "g": "6232b0d6144ee826",
         "name": "GET ESTUDANTES",
         "info": "",
-        "x": 1110,
+        "x": 1130,
         "y": 480,
         "wires": []
     },
@@ -16036,7 +16039,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1100,
+        "x": 1120,
         "y": 540,
         "wires": [
             [
@@ -16050,14 +16053,14 @@
         "z": "b945a241e156bcfb",
         "g": "6232b0d6144ee826",
         "name": "function 1",
-        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.email,\n    e.data_registo,\n    e.status_,\n    d.edificio\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id;`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT \n    p.nome AS name,\n    p.codigo,\n    p.email,\n    p.status,\n    e.nome_edificio\n    FROM pessoa p \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE p.id_perfil = 1;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
+        "x": 1280,
         "y": 540,
         "wires": [
             [
@@ -16072,7 +16075,7 @@
         "g": "6232b0d6144ee826",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1430,
+        "x": 1450,
         "y": 540,
         "wires": [
             [
@@ -16093,7 +16096,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1580,
+        "x": 1600,
         "y": 540,
         "wires": []
     },
@@ -16107,7 +16110,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1060,
+        "x": 1080,
         "y": 600,
         "wires": [
             [
@@ -16121,14 +16124,14 @@
         "z": "b945a241e156bcfb",
         "g": "6232b0d6144ee826",
         "name": "function 2",
-        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.email,\n    e.curso,\n    e.data_registo,\n    e.status_ ,\n    d.edificio,\n    d.UID_disposit,\n    e.device_id\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id\n    WHERE e.nivel = 'Estudante';`;\nreturn msg;",
+        "func": "msg.topic = `SELECT DISTINCT \n    p.nome AS name,\n    p.codigo,\n    p.email,\n    p.status AS status_,\n    p.curso,\n    e.nome_edificio\n    FROM pessoa p \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE p.id_perfil = 1;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1240,
+        "x": 1260,
         "y": 600,
         "wires": [
             [
@@ -16143,7 +16146,7 @@
         "g": "6232b0d6144ee826",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1390,
+        "x": 1410,
         "y": 600,
         "wires": [
             [
@@ -16165,7 +16168,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1600,
+        "x": 1620,
         "y": 600,
         "wires": []
     },
@@ -16177,7 +16180,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1610,
+        "x": 1630,
         "y": 640,
         "wires": []
     },
@@ -16203,7 +16206,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1100,
+        "x": 1120,
         "y": 660,
         "wires": [
             [
@@ -16228,7 +16231,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1270,
+        "x": 1290,
         "y": 660,
         "wires": [
             [
@@ -16249,7 +16252,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1440,
+        "x": 1460,
         "y": 680,
         "wires": []
     },
@@ -16263,7 +16266,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1070,
+        "x": 1090,
         "y": 860,
         "wires": [
             [
@@ -16284,7 +16287,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1250,
+        "x": 1270,
         "y": 860,
         "wires": [
             [
@@ -16305,7 +16308,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1600,
+        "x": 1620,
         "y": 820,
         "wires": []
     },
@@ -16316,7 +16319,7 @@
         "g": "76d13409270878fb",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1410,
+        "x": 1430,
         "y": 860,
         "wires": [
             [
@@ -16332,7 +16335,7 @@
         "g": "76d13409270878fb",
         "name": "ADD ESTUDANTES",
         "info": "",
-        "x": 1090,
+        "x": 1110,
         "y": 800,
         "wires": []
     },
@@ -16344,7 +16347,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1610,
+        "x": 1630,
         "y": 900,
         "wires": []
     },
@@ -16355,7 +16358,7 @@
         "g": "2d0336cd76812691",
         "name": "UPDATE STUDENTS",
         "info": "",
-        "x": 1100,
+        "x": 1120,
         "y": 1180,
         "wires": []
     },
@@ -16369,7 +16372,7 @@
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1080,
+        "x": 1100,
         "y": 1240,
         "wires": [
             [
@@ -16390,7 +16393,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1270,
+        "x": 1290,
         "y": 1240,
         "wires": [
             [
@@ -16405,7 +16408,7 @@
         "g": "2d0336cd76812691",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1430,
+        "x": 1450,
         "y": 1240,
         "wires": [
             [
@@ -16421,7 +16424,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1570,
+        "x": 1590,
         "y": 1240,
         "wires": []
     },
@@ -16432,7 +16435,7 @@
         "g": "8ddbe2bebacc9245",
         "name": "DELETE STUDENTS",
         "info": "",
-        "x": 1100,
+        "x": 1120,
         "y": 1460,
         "wires": []
     },
@@ -16446,7 +16449,7 @@
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1100,
+        "x": 1120,
         "y": 1520,
         "wires": [
             [
@@ -16467,7 +16470,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1310,
+        "x": 1330,
         "y": 1520,
         "wires": [
             [
@@ -16482,7 +16485,7 @@
         "g": "8ddbe2bebacc9245",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1490,
+        "x": 1510,
         "y": 1520,
         "wires": [
             [
@@ -16498,30 +16501,9 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1630,
+        "x": 1650,
         "y": 1520,
         "wires": []
-    },
-    {
-        "id": "8b0bd55489fd0be7",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "5e97604028904057",
-        "name": "function 19",
-        "func": "if (Array.isArray(msg.payload)) {\n    msg.payload = msg.payload.map((item) => {\n        if (item.data_registo) {  // Verifica se a data existe\n            const date = new Date(item.data_registo);\n\n            // Corrigir a diferença de fuso horário para UTC-1 (Cabo Verde)\n            const cvOffset = -1 * 60;  // UTC-1 em minutos\n            const cvDate = new Date(date.getTime() + cvOffset * 60000);  // Ajustar a hora\n\n            // Formatar para \"DD/MM/YYYY HH:mm:ss\"\n            item.data_registo = cvDate.toLocaleString(\"pt-CV\", {\n                timeZone: 'UTC'\n            });\n        }\n        return item;\n    });\n}\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 670,
-        "y": 600,
-        "wires": [
-            [
-                "73af561b31fb322e"
-            ]
-        ]
     },
     {
         "id": "97829b7ee7afa223",
@@ -16536,7 +16518,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2240,
+        "x": 2260,
         "y": 960,
         "wires": []
     },
@@ -16547,7 +16529,7 @@
         "g": "030cd0a9f03e0251",
         "name": "Endpoint HTTP para Recebimento de Dados Biométricos no Node-RED",
         "info": "",
-        "x": 2230,
+        "x": 2250,
         "y": 900,
         "wires": []
     },
@@ -16566,7 +16548,7 @@
         "correl": "",
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
-        "x": 2460,
+        "x": 2480,
         "y": 1080,
         "wires": []
     },
@@ -16580,7 +16562,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2020,
+        "x": 2040,
         "y": 1120,
         "wires": [
             [
@@ -16598,7 +16580,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2210,
+        "x": 2230,
         "y": 1140,
         "wires": []
     },
@@ -16615,7 +16597,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2200,
+        "x": 2220,
         "y": 1080,
         "wires": []
     },
@@ -16629,7 +16611,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2040,
+        "x": 2060,
         "y": 1000,
         "wires": [
             [
@@ -16647,7 +16629,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2430,
+        "x": 2450,
         "y": 980,
         "wires": []
     },
@@ -16661,7 +16643,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2030,
+        "x": 2050,
         "y": 1220,
         "wires": [
             [
@@ -16679,7 +16661,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2250,
+        "x": 2270,
         "y": 1280,
         "wires": []
     },
@@ -16696,7 +16678,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2260,
+        "x": 2280,
         "y": 1240,
         "wires": []
     },
@@ -16714,7 +16696,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 2040,
+        "x": 2060,
         "y": 1460,
         "wires": [
             [
@@ -16736,7 +16718,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2240,
+        "x": 2260,
         "y": 1420,
         "wires": []
     },
@@ -16747,7 +16729,7 @@
         "g": "030cd0a9f03e0251",
         "name": "Mensagens de notificação",
         "info": "",
-        "x": 2050,
+        "x": 2070,
         "y": 1380,
         "wires": []
     },
@@ -16765,7 +16747,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 1100,
+        "x": 1120,
         "y": 940,
         "wires": [
             [
@@ -16787,7 +16769,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1330,
+        "x": 1350,
         "y": 940,
         "wires": [
             [
@@ -16808,7 +16790,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1480,
+        "x": 1500,
         "y": 940,
         "wires": []
     },
@@ -16821,7 +16803,7 @@
         "name": "mensagens",
         "server": "",
         "client": "5581410adca722cb",
-        "x": 2030,
+        "x": 2050,
         "y": 1600,
         "wires": []
     },
@@ -16838,7 +16820,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1320,
+        "x": 1340,
         "y": 980,
         "wires": []
     },
@@ -16855,7 +16837,7 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 2240,
+        "x": 2260,
         "y": 1460,
         "wires": [
             [
@@ -16877,7 +16859,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2420,
+        "x": 2440,
         "y": 1460,
         "wires": []
     },
@@ -16892,7 +16874,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2010,
+        "x": 2030,
         "y": 1520,
         "wires": [
             [
@@ -16914,7 +16896,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 2180,
+        "x": 2200,
         "y": 1520,
         "wires": [
             [
@@ -16931,7 +16913,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2350,
+        "x": 2370,
         "y": 1520,
         "wires": []
     },
@@ -16945,7 +16927,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1100,
+        "x": 1120,
         "y": 1340,
         "wires": [
             [
@@ -16967,7 +16949,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1350,
+        "x": 1370,
         "y": 1340,
         "wires": [
             [
@@ -16982,7 +16964,7 @@
         "g": "2d0336cd76812691",
         "mydb": "f3e8c660cf5205b5",
         "name": "BD",
-        "x": 1510,
+        "x": 1530,
         "y": 1340,
         "wires": [
             [
@@ -16998,7 +16980,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1630,
+        "x": 1650,
         "y": 1340,
         "wires": []
     },
@@ -17009,7 +16991,7 @@
         "g": "2d0336cd76812691",
         "name": "Buscar finder_id por id",
         "info": "Para poder pegar o valor do finger_id e envia-lo para o node-red para editar\n",
-        "x": 1100,
+        "x": 1120,
         "y": 1300,
         "wires": []
     },
@@ -17026,7 +17008,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1340,
+        "x": 1360,
         "y": 1300,
         "wires": []
     },
@@ -17037,7 +17019,7 @@
         "g": "76d13409270878fb",
         "name": "Buscar estudante por codigo",
         "info": "",
-        "x": 1120,
+        "x": 1140,
         "y": 1040,
         "wires": []
     },
@@ -17063,8 +17045,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 1400,
+        "x": 140,
+        "y": 1480,
         "wires": [
             [
                 "88629126eec09698"
@@ -17084,8 +17066,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 1400,
+        "x": 310,
+        "y": 1480,
         "wires": [
             [
                 "f6c879b8e4daaaa2"
@@ -17099,8 +17081,8 @@
         "g": "d7f3baf127f02fab",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 490,
-        "y": 1400,
+        "x": 470,
+        "y": 1480,
         "wires": [
             [
                 "6ba66a9e150a512e"
@@ -17120,8 +17102,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 1400,
+        "x": 620,
+        "y": 1480,
         "wires": []
     },
     {
@@ -17131,8 +17113,8 @@
         "g": "d7f3baf127f02fab",
         "name": "endpoint pra verificar dispositivos que tem estudantes registado",
         "info": "",
-        "x": 390,
-        "y": 1340,
+        "x": 370,
+        "y": 1420,
         "wires": []
     },
     {
@@ -17145,8 +17127,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 190,
-        "y": 1460,
+        "x": 170,
+        "y": 1540,
         "wires": [
             [
                 "d9cbf202e2ca7d78"
@@ -17166,8 +17148,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
-        "y": 1460,
+        "x": 370,
+        "y": 1540,
         "wires": [
             [
                 "c9823ca8246d0e50"
@@ -17181,8 +17163,8 @@
         "g": "d7f3baf127f02fab",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 550,
-        "y": 1460,
+        "x": 530,
+        "y": 1540,
         "wires": [
             [
                 "7095c2997cf22b93",
@@ -17198,8 +17180,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 690,
-        "y": 1500,
+        "x": 670,
+        "y": 1580,
         "wires": []
     },
     {
@@ -17215,8 +17197,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 700,
-        "y": 1440,
+        "x": 680,
+        "y": 1520,
         "wires": []
     },
     {
@@ -17241,8 +17223,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 1520,
+        "x": 140,
+        "y": 1600,
         "wires": [
             [
                 "85b3a80720622ced"
@@ -17266,8 +17248,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 310,
-        "y": 1520,
+        "x": 290,
+        "y": 1600,
         "wires": [
             [
                 "e8c8b4955ed257bf"
@@ -17287,8 +17269,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 480,
-        "y": 1520,
+        "x": 460,
+        "y": 1600,
         "wires": []
     },
     {
@@ -17301,7 +17283,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1120,
+        "x": 1140,
         "y": 1080,
         "wires": [
             [
@@ -17326,7 +17308,7 @@
         "authType": "bearer",
         "senderr": false,
         "headers": [],
-        "x": 1520,
+        "x": 1540,
         "y": 1080,
         "wires": [
             [
@@ -17342,7 +17324,7 @@
         "name": "Retorna dados",
         "statusCode": "200",
         "headers": {},
-        "x": 1740,
+        "x": 1760,
         "y": 1080,
         "wires": []
     },
@@ -17359,7 +17341,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1330,
+        "x": 1350,
         "y": 1080,
         "wires": [
             [
@@ -17643,7 +17625,7 @@
         "g": "b11e1f71e8119fb5",
         "name": "GET Dados Cartão",
         "info": "",
-        "x": 2030,
+        "x": 2050,
         "y": 480,
         "wires": []
     },
@@ -17669,7 +17651,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 2020,
+        "x": 2040,
         "y": 540,
         "wires": [
             [
@@ -17690,7 +17672,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2180,
+        "x": 2200,
         "y": 540,
         "wires": [
             [
@@ -17705,7 +17687,7 @@
         "g": "b11e1f71e8119fb5",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 2350,
+        "x": 2370,
         "y": 540,
         "wires": [
             [
@@ -17726,7 +17708,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2500,
+        "x": 2520,
         "y": 540,
         "wires": []
     },
@@ -17740,7 +17722,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1980,
+        "x": 2000,
         "y": 600,
         "wires": [
             [
@@ -17761,7 +17743,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2160,
+        "x": 2180,
         "y": 600,
         "wires": [
             [
@@ -17776,7 +17758,7 @@
         "g": "b11e1f71e8119fb5",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 2310,
+        "x": 2330,
         "y": 600,
         "wires": [
             [
@@ -17798,7 +17780,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2520,
+        "x": 2540,
         "y": 600,
         "wires": []
     },
@@ -17810,7 +17792,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2530,
+        "x": 2550,
         "y": 640,
         "wires": []
     },
@@ -17824,7 +17806,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1990,
+        "x": 2010,
         "y": 800,
         "wires": [
             [
@@ -17845,7 +17827,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2170,
+        "x": 2190,
         "y": 800,
         "wires": [
             [
@@ -17866,7 +17848,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2520,
+        "x": 2540,
         "y": 760,
         "wires": []
     },
@@ -17877,7 +17859,7 @@
         "g": "e23f91c6c90719a6",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 2330,
+        "x": 2350,
         "y": 800,
         "wires": [
             [
@@ -17892,7 +17874,7 @@
         "g": "e23f91c6c90719a6",
         "name": "ADD OUTROS",
         "info": "",
-        "x": 2000,
+        "x": 2020,
         "y": 740,
         "wires": []
     },
@@ -18105,7 +18087,7 @@
         "name": "Dasboard",
         "info": "",
         "x": 120,
-        "y": 1680,
+        "y": 1720,
         "wires": []
     },
     {
@@ -18119,7 +18101,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 1760,
+        "y": 1800,
         "wires": [
             [
                 "0310a9fa962dcf70"
@@ -18135,7 +18117,7 @@
         "statusCode": "",
         "headers": {},
         "x": 830,
-        "y": 1760,
+        "y": 1800,
         "wires": []
     },
     {
@@ -18152,7 +18134,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 1760,
+        "y": 1800,
         "wires": [
             [
                 "6e69100c6ef896cd"
@@ -18167,7 +18149,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 1760,
+        "y": 1800,
         "wires": [
             [
                 "8a91e23ce64e2898"
@@ -18188,7 +18170,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1820,
+        "y": 1860,
         "wires": [
             [
                 "b00bac600827eb6b"
@@ -18209,7 +18191,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1860,
+        "y": 1900,
         "wires": [
             [
                 "2e970f49a76366a7"
@@ -18230,7 +18212,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1900,
+        "y": 1940,
         "wires": [
             [
                 "bf8763186b6ea79b"
@@ -18245,7 +18227,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 510,
-        "y": 1820,
+        "y": 1860,
         "wires": [
             [
                 "ae4d50583f8f3df8"
@@ -18260,7 +18242,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 1900,
+        "y": 1940,
         "wires": [
             [
                 "bcaf84441a1a7d51"
@@ -18275,7 +18257,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 1860,
+        "y": 1900,
         "wires": [
             [
                 "947fe1399c32e3c5"
@@ -18291,7 +18273,7 @@
         "statusCode": "",
         "headers": {},
         "x": 810,
-        "y": 1820,
+        "y": 1860,
         "wires": []
     },
     {
@@ -18305,7 +18287,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 1860,
+        "y": 1900,
         "wires": [
             [
                 "e2f9b7afa65f5ce8"
@@ -18321,7 +18303,7 @@
         "statusCode": "",
         "headers": {},
         "x": 810,
-        "y": 1860,
+        "y": 1900,
         "wires": []
     },
     {
@@ -18335,7 +18317,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1820,
+        "y": 1860,
         "wires": [
             [
                 "fda4c757cadaf7eb"
@@ -18353,7 +18335,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1900,
+        "y": 1940,
         "wires": [
             [
                 "6ed7edffb077d181"
@@ -18369,7 +18351,7 @@
         "statusCode": "",
         "headers": {},
         "x": 770,
-        "y": 1900,
+        "y": 1940,
         "wires": []
     },
     {
@@ -18386,7 +18368,7 @@
         "finalize": "",
         "libs": [],
         "x": 690,
-        "y": 1760,
+        "y": 1800,
         "wires": [
             [
                 "aa92af3dde97dea8"
@@ -18407,7 +18389,7 @@
         "finalize": "",
         "libs": [],
         "x": 670,
-        "y": 1820,
+        "y": 1860,
         "wires": [
             [
                 "c2fcad8c947bb579"
@@ -18428,7 +18410,7 @@
         "finalize": "",
         "libs": [],
         "x": 650,
-        "y": 1860,
+        "y": 1900,
         "wires": [
             [
                 "d793516227976462"
@@ -18449,7 +18431,7 @@
         "finalize": "",
         "libs": [],
         "x": 630,
-        "y": 1900,
+        "y": 1940,
         "wires": [
             [
                 "4ba567f91bc95870"
@@ -18592,6 +18574,72 @@
         "headers": {},
         "x": 840,
         "y": 2100,
+        "wires": []
+    },
+    {
+        "id": "b471b497c140f6df",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "url": "/biosentry/edificios",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 940,
+        "wires": [
+            [
+                "d952e942d6d57f6b"
+            ]
+        ]
+    },
+    {
+        "id": "d952e942d6d57f6b",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "function 36",
+        "func": "msg.topic = `SELECT id_edificio, nome_edificio FROM edificio ;`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 940,
+        "wires": [
+            [
+                "2347fc0074a4507d"
+            ]
+        ]
+    },
+    {
+        "id": "2347fc0074a4507d",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "",
+        "x": 560,
+        "y": 940,
+        "wires": [
+            [
+                "4fd62affc6d437d2"
+            ]
+        ]
+    },
+    {
+        "id": "4fd62affc6d437d2",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 940,
         "wires": []
     },
     {

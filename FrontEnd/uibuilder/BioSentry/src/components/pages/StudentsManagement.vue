@@ -98,7 +98,7 @@
                   <td>{{ item.email }}</td>
                   <td>{{ item.curso }}</td>
                   <td>{{ item.status_ }}</td>
-                  <td>{{ item.edificio }}</td>
+                  <td>{{ item.nome_edificio }}</td>
                
                   <td
                     class="text-center"
@@ -200,7 +200,7 @@
               >
                 <option value="" disabled >Selecione o Edificio</option>
                 <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
-                  {{ edi.edificio }}
+                  {{ edi.nome_edificio }}
                 </option>
               </select>
             </div>
@@ -306,13 +306,13 @@
             <label for="device_id">Edificio:</label>
             <select
               id="device_id"
-              v-model.number="currentUser.device_id"
+              v-model="currentUser.nome_edificio"
               class="form-control"
               required
             >
               <option value="" disabled >Selecione o Edificio</option>
               <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
-                {{ edi.edificio }}
+                {{ edi.nome_edificio }}
               </option>
             </select>
           </div>

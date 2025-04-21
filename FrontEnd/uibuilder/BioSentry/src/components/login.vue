@@ -179,6 +179,31 @@ module.exports = {
       }
 
       var Utilizador_Senha = this.postBody.Utilizador_Senha
+      
+        // let data = JSON.stringify({
+        //   "username": "131040",//this.postBody.codigo,
+        //   "password": "eng1UNICV"
+        // });
+
+        // let config = {
+        //   method: 'post',
+        //   maxBodyLength: Infinity,
+        //   url: 'https://betaapi.unicv.cv/api-basic-v1/auth/login',
+        //   headers: { 
+        //     'Content-Type': 'application/json', 
+            
+        //   },
+        //   data : data
+        // };
+
+        // axios.request(config)
+        // .then((response) => {
+        //   console.log(JSON.stringify(response.data));
+        // })
+        // .catch((error) => {
+        //   console.log(error);
+        // });
+
       axios
         .post("/rs2lab/login", {
           Utilizador_Email: this.postBody.Utilizador_Email,
