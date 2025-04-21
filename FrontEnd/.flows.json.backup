@@ -1106,7 +1106,7 @@
             "1b43fe1b9d2c3f74"
         ],
         "x": 34,
-        "y": 59,
+        "y": 39,
         "w": 872,
         "h": 282
     },
@@ -1625,6 +1625,16 @@
         "port": "3306",
         "db": "bdteste",
         "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "mysql-config",
+        "type": "MySQLdatabase",
+        "name": "Conexão BD Biometria",
+        "host": "localhost",
+        "port": "3306",
+        "db": "nome_do_banco",
+        "tz": "Z",
         "charset": "UTF8"
     },
     {
@@ -15433,7 +15443,7 @@
         "z": "b945a241e156bcfb",
         "g": "5e97604028904057",
         "name": "Query ",
-        "func": "msg.topic = `SELECT \n    id,\n    edificio,\n    UID_disposit,\n    data_registo\n    FROM rs2lab.dispositivos;`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT * FROM dispositivo;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -15500,14 +15510,14 @@
         "z": "b945a241e156bcfb",
         "g": "5e97604028904057",
         "name": "Query",
-        "func": "msg.topic = `SELECT \n    id,\n    edificio,\n    UID_disposit,\n    data_registo\n    FROM rs2lab.dispositivos;`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT * FROM dispositivo;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 330,
         "y": 560,
         "wires": [
             [
@@ -15657,7 +15667,7 @@
         "z": "b945a241e156bcfb",
         "g": "e2dc358dfe1caf1d",
         "name": "Query",
-        "func": "msg.topic = `INSERT INTO rs2lab.dispositivos (edificio, UID_disposit, data_registo) ` +\n    `VALUES ('${msg.payload.edificio}', '${msg.payload.UID_disposit}', NOW());`;\nreturn msg;\n\n",
+        "func": "msg.topic = `INSERT INTO dispositivo (id_dispositivo, tipo, status, data_registo, id_edificio) ` +\n    `VALUES ('${msg.payload.id_dispositivo}', '${msg.payload.tipo}', '${msg.payload.status}', NOW(), ${msg.payload.id_edificio});`;\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -15747,7 +15757,7 @@
         "z": "b945a241e156bcfb",
         "g": "92690e765c8e1970",
         "name": "Query",
-        "func": "msg.topic = `UPDATE dispositivos ` +\n    `SET edificio = '${msg.payload.edificio}', UID_disposit = '${msg.payload.UID_disposit}' ` +\n    `WHERE id = ${msg.payload.id};`;\nreturn msg;\n\n",
+        "func": "msg.topic = `UPDATE dispositivo ` +\n    `SET tipo = '${msg.payload.tipo}', status = '${msg.payload.status}', id_edificio = ${msg.payload.id_edificio} ` +\n    `WHERE id_dispositivo = '${msg.payload.id_dispositivo}';`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -15863,7 +15873,7 @@
         "z": "b945a241e156bcfb",
         "g": "0082a16d52412f29",
         "name": "Delete Devices",
-        "url": "/biosentry/deletedevices/:id",
+        "url": "/biosentry/deletedevices/:id_dispositivo",
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
@@ -15882,7 +15892,7 @@
         "z": "b945a241e156bcfb",
         "g": "0082a16d52412f29",
         "name": "Query",
-        "func": "msg.topic = `DELETE FROM dispositivos WHERE id = ${msg.req.params.id};`;  \n\nreturn msg;\n\n",
+        "func": "msg.topic = `DELETE FROM dispositivo WHERE id_dispositivo = '${msg.req.params.id_dispositivo}';`;  \n\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -17067,7 +17077,7 @@
         "z": "b945a241e156bcfb",
         "g": "d7f3baf127f02fab",
         "name": "function 13",
-        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome,\n    e.codigo,\n    e.email,\n    e.data_registo,\n    e.status_,\n    d.id AS id_Dispositivo\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id;`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT \n    p.nome,\n    p.codigo,\n    p.email,\n    p.data_registo,\n    p.status,\n    d.id_dispositivo\nFROM pessoa p\nJOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\nWHERE d.id_dispositivo = 'BSE17T';`;\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -17089,7 +17099,7 @@
         "g": "d7f3baf127f02fab",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 460,
+        "x": 490,
         "y": 1400,
         "wires": [
             [
@@ -17149,7 +17159,7 @@
         "z": "b945a241e156bcfb",
         "g": "d7f3baf127f02fab",
         "name": "function 14",
-        "func": "msg.topic = `SELECT \n    e.nome,\n    e.codigo,\n    e.email,\n    e.data_registo,\n    e.status_,\n    d.id AS id_Dispositivo\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id\n    WHERE\n    d.id = ${msg.req.params.id};`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT \n    p.nome,\n    p.codigo,\n    p.email,\n    p.data_registo,\n    p.status,\n    d.id_dispositivo\nFROM pessoa p\nJOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\nWHERE d.id_dispositivo = '${msg.req.params.id_dispositivo}';`;\nreturn msg;\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -17378,7 +17388,7 @@
         "reload": false,
         "sourceFolder": "src",
         "x": 220,
-        "y": 160,
+        "y": 140,
         "wires": [
             [
                 "b4a48dbaaf2cd054"
@@ -17396,7 +17406,7 @@
             "93b218d551ad041b"
         ],
         "x": 75,
-        "y": 160,
+        "y": 140,
         "wires": [
             [
                 "a0cd5592381514f4"
@@ -17437,7 +17447,7 @@
         "repair": false,
         "outputs": 4,
         "x": 400,
-        "y": 160,
+        "y": 140,
         "wires": [
             [
                 "09b34f5abec9ba5d"
@@ -17467,7 +17477,7 @@
         "finalize": "",
         "libs": [],
         "x": 570,
-        "y": 100,
+        "y": 80,
         "wires": [
             [
                 "93b218d551ad041b",
@@ -17489,7 +17499,7 @@
         "finalize": "",
         "libs": [],
         "x": 570,
-        "y": 140,
+        "y": 120,
         "wires": [
             [
                 "93b218d551ad041b",
@@ -17511,7 +17521,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 180,
+        "y": 160,
         "wires": [
             [
                 "93b218d551ad041b",
@@ -17530,7 +17540,7 @@
             "41af33d6cda29f0b"
         ],
         "x": 735,
-        "y": 140,
+        "y": 120,
         "wires": []
     },
     {
@@ -17548,7 +17558,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 790,
-        "y": 100,
+        "y": 80,
         "wires": []
     },
     {
@@ -17566,7 +17576,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 220,
+        "y": 200,
         "wires": []
     },
     {
@@ -17583,7 +17593,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 180,
+        "y": 160,
         "wires": []
     },
     {
@@ -17600,7 +17610,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 220,
+        "y": 200,
         "wires": [
             [
                 "93b218d551ad041b",
@@ -17623,7 +17633,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 260,
+        "y": 240,
         "wires": []
     },
     {
@@ -18457,7 +18467,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 300,
+        "y": 280,
         "wires": [
             [
                 "603607c2c2c5dbb9"
@@ -18478,7 +18488,7 @@
         "finalize": "",
         "libs": [],
         "x": 270,
-        "y": 300,
+        "y": 280,
         "wires": [
             [
                 "1b43fe1b9d2c3f74"
@@ -18494,7 +18504,7 @@
         "statusCode": "",
         "headers": {},
         "x": 510,
-        "y": 300,
+        "y": 280,
         "wires": []
     },
     {
@@ -18505,12 +18515,84 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 390,
-        "y": 300,
+        "y": 280,
         "wires": [
             [
                 "6c103389a472c46a"
             ]
         ]
+    },
+    {
+        "id": "49238f228ca0723a",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "name": "Relatorio",
+        "info": "",
+        "x": 100,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "filtro-api-report",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "name": "GET /biosentry/report",
+        "url": "/biosentry/report",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 2100,
+        "wires": [
+            [
+                "montar-sql-report"
+            ]
+        ]
+    },
+    {
+        "id": "montar-sql-report",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "Montar SQL com filtros",
+        "func": "// Receber os parâmetros do frontend\nlet params = msg.req.query;\nlet where = [];\nlet values = [];\n\nif (params.startDate) {\n    where.push(\"data_hora_entrada >= ?\");\n    values.push(params.startDate);\n}\nif (params.endDate) {\n    where.push(\"data_hora_entrada <= ?\");\n    values.push(params.endDate);\n}\nif (params.residence) {\n    where.push(\"residencia = ?\");\n    values.push(params.residence);\n}\nif (params.device) {\n    where.push(\"device_id = ?\");\n    values.push(params.device);\n}\nif (params.userType) {\n    where.push(\"tipo_utilizador = ?\");\n    values.push(params.userType);\n}\nif (params.studentName) {\n    where.push(\"nome LIKE ?\");\n    values.push('%' + params.studentName + '%');\n}\nif (params.accessStatus) {\n    where.push(\"status_ = ?\");\n    values.push(params.accessStatus);\n}\nif (params.accessType) {\n    where.push(\"log_info = ?\");\n    values.push(params.accessType);\n}\n\nlet sql = `\n    SELECT \n      codigo_estudante, nome, data_hora_entrada, data_hora_saida, \n      log_info AS accessType, status_ AS accessStatus, \n      tipo_utilizador AS userType, residencia, device_id AS device,\n      COALESCE(data_hora_entrada, data_hora_saida) AS timestamp\n    FROM logs_estudantes\n`;\n\nif (where.length > 0) {\n    sql += \" WHERE \" + where.join(\" AND \");\n}\n\nmsg.topic = sql;\nmsg.payload = values;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 2100,
+        "wires": [
+            [
+                "consulta-sql-report"
+            ]
+        ]
+    },
+    {
+        "id": "consulta-sql-report",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "Consulta Report (MySQL)",
+        "x": 610,
+        "y": 2100,
+        "wires": [
+            [
+                "resposta-api-report"
+            ]
+        ]
+    },
+    {
+        "id": "resposta-api-report",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "name": "Resposta Report",
+        "statusCode": "",
+        "headers": {},
+        "x": 840,
+        "y": 2100,
+        "wires": []
     },
     {
         "id": "1a2b3c4d",

@@ -59,10 +59,10 @@
                   <!-- <th scope="col" class="col-1">
                     <input type="checkbox" @change="toggleSelectAll($event)" />
                   </th> -->
-                  <th scope="col" class="col-1">ID</th>
+                  <th scope="col" class="col-1">Identificador</th>
                   <th scope="col" class="col-2">Edificio</th>
-                  <th scope="col" class="col-2">UID do Dispositivo</th>
-                  <th scope="col" class="col-1">Data de Registro</th>
+                  <th scope="col" class="col-2">tipo</th>
+                  <th scope="col" class="col-1">Data de Registo</th>
                   <th
                     scope="col"
                     class="col-1 text-center"
@@ -83,9 +83,9 @@
                       v-model="selectedItems"
                     />
                   </td> -->
-                  <td>{{ item.id }}</td>
+                  <td>{{ item.id_dispositivo }}</td>
                   <td>{{ item.edificio }}</td>
-                  <td>{{ item.UID_disposit }}</td>
+                  <td>{{ item.tipo }}</td>
                   <td>{{ item.data_registo }}</td>
                   <td
                     class="text-center"
@@ -102,7 +102,7 @@
                     </button>
                     <button
                       type="button"
-                      @click="ShowConfirmDelete(item.id)"
+                      @click="ShowConfirmDelete(item.id_dispositivo)"
                       class="btn btn-danger button"
                     >
                       <i class="fa fa-trash" aria-hidden="true"></i> 
@@ -147,10 +147,10 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group label="UID do Dispositivo" label-for="UID_disposit">
+          <b-form-group label="UID do Dispositivo" label-for="id_dispositivo">
             <b-form-input
-              id="UID_disposit"
-              v-model="currentDevice.UID_disposit"
+              id="id_dispositivo"
+              v-model="currentDevice.id_dispositivo"
               required
             ></b-form-input>
           </b-form-group>
@@ -182,10 +182,10 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group label="UID do Dispositivo" label-for="UID_disposit">
+          <b-form-group label="UID do Dispositivo" label-for="id_dispositivo">
             <b-form-input
-              id="UID_disposit"
-              v-model="model.item.UID_disposit"
+              id="id_dispositivo"
+              v-model="model.item.id_dispositivo"
               required
             ></b-form-input>
           </b-form-group>
@@ -218,7 +218,7 @@ module.exports = {
       model: {
         item: {
           edificio: "",
-          UID_disposit: "",
+          id_dispositivo: "",
         },
       },
       items: [],
@@ -232,7 +232,7 @@ module.exports = {
       currentDevice: {
         id: null,
         edificio: "",
-        UID_disposit: "",
+        id_dispositivo: "",
         // data_registo: ''
       },
     };
@@ -260,11 +260,10 @@ module.exports = {
         })
         .filter((item) => {
           return (
-            item.edificio
-              .toLowerCase()
-              .includes(this.searchQuery.toLowerCase()) ||
-            item.id.toString().includes(this.searchQuery) ||
-            item.UID_disposit.toLowerCase().includes(
+            // item.edificio
+            //   .toLowerCase()
+            //   .includes(this.searchQuery.toLowerCase()) ||
+            item.id_dispositivo.toLowerCase().includes(
               this.searchQuery.toLowerCase()
             )
           );
@@ -289,7 +288,7 @@ module.exports = {
     },
     toggleSelectAll(event) {
       if (event.target.checked) {
-        this.selectedItems = this.paginatedItems.map((item) => item.id);
+        this.selectedItems = this.paginatedItems.map((item) => item.id_dispositivo);
       } else {
         this.selectedItems = [];
       }
@@ -311,7 +310,7 @@ module.exports = {
       if (this.currentDevice.id) {
         const uidExists = this.items.some(
           (item) =>
-            item.UID_disposit === this.currentDevice.UID_disposit &&
+            item.id_dispositivo === this.currentDevice.id_dispositivo &&
             item.id !== this.currentDevice.id
         );
         if (uidExists) {
@@ -325,7 +324,7 @@ module.exports = {
         // Atualiza um dispositivo existente
         axios
           .put(
-            `/biosentry/devices/${this.currentDevice.id}`,
+            `/biosentry/devices/${this.currentDevice.id_dispositivo}`,
             this.currentDevice
           )
           .then(() => {
@@ -347,7 +346,7 @@ module.exports = {
       } else {
           // Verifica se o UID já existe antes de adicionar
           const uidExists = this.items.some(
-            (item) => item.UID_disposit === this.model.item.UID_disposit
+            (item) => item.id_dispositivo === this.model.item.id_dispositivo
           );
 
           if (uidExists) {
@@ -385,13 +384,13 @@ module.exports = {
       (this.model.item = {
         id: null,
         edificio: "",
-        UID_disposit: "",
+        id_dispositivo: "",
         data_registo: "",
       }),
         (this.currentDevice = {
           id: null,
           edificio: "",
-          UID_disposit: "",
+          id_dispositivo: "",
           data_registo: "",
         });
     },
@@ -532,7 +531,7 @@ module.exports = {
     },
     // checkUIDExists(uid) {
     //     // Verifica se o UID já existe na lista de dispositivos
-    //     return this.items.some(item => item.UID_disposit === uid);
+    //     return this.items.some(item => item.id_dispositivo === uid);
     //   },
   },
 };

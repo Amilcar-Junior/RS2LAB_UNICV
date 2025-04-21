@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam backgroundColor #fefefe
+skinparam usecase {
+  BackgroundColor #ffffff
+  BorderColor black
+  ArrowColor #555555
+}
+
+actor "Administrador do Sistema" as Admin
+actor "Residente (Estudante)" as Residente
+actor "Não Residente Autorizado" as NaoResidente
+actor "Dispositivo de Leitura" as Dispositivo
+
+rectangle "Sistema Web de Controlo de Acesso Biométrico" {
+    
+    usecase "UC01 - Registar Residente" as UC01
+    usecase "UC02 - Registar Não Residente Autorizado" as UC02
+    usecase "UC03 - Autenticar Acesso\n(Entrada/Saída)" as UC03
+    usecase "UC04 - Gerir Utilizadores\n(Residentes e Não Residentes)" as UC04
+    usecase "UC05 - Gerir Dispositivos" as UC05
+    usecase "UC06 - Definir Permissões de Acesso" as UC06
+    usecase "UC07 - Visualizar Relatórios\n e Estatísticas de Acesso" as UC07
+}
+
+' Ligações dos atores aos casos de uso
+Admin --> UC01
+Admin --> UC02
+Admin --> UC04
+Admin --> UC05
+Admin --> UC06
+Admin --> UC07
+
+Residente --> UC03
+NaoResidente --> UC03
+Dispositivo --> UC03
+
+@enduml
