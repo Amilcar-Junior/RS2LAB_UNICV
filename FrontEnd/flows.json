@@ -1041,9 +1041,9 @@
             "2347fc0074a4507d",
             "4fd62affc6d437d2"
         ],
-        "x": 8,
+        "x": -26,
         "y": 339,
-        "w": 824,
+        "w": 858,
         "h": 1328
     },
     {
@@ -1472,7 +1472,7 @@
         "x": 34,
         "y": 699,
         "w": 712,
-        "h": 182
+        "h": 162
     },
     {
         "id": "5e97604028904057",
@@ -15620,7 +15620,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 310,
+        "x": 400,
         "y": 620,
         "wires": [
             [
@@ -15641,7 +15641,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 480,
+        "x": 580,
         "y": 620,
         "wires": []
     },
@@ -15656,7 +15656,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 800,
+        "y": 820,
         "wires": [
             [
                 "e7fdd60da7d9ad5d",
@@ -15699,7 +15699,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 640,
-        "y": 780,
+        "y": 760,
         "wires": []
     },
     {
@@ -15732,7 +15732,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 300,
-        "y": 780,
+        "y": 760,
         "wires": []
     },
     {
@@ -15981,7 +15981,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 840,
+        "y": 820,
         "wires": []
     },
     {
@@ -16280,7 +16280,7 @@
         "z": "b945a241e156bcfb",
         "g": "76d13409270878fb",
         "name": "Query",
-        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.payload.finger_id = global.get(\"finger_id\") || null;\n\n// Se o email não for fornecido, define como NULL\nlet email = msg.payload.email ? `'${msg.payload.email}'` : 'NULL'; \n\n// Garantir que nivel seja uma string envolvida por aspas simples\nlet nivel = msg.payload.nivel ? `'${msg.payload.nivel}'` : `'estudante'`;\n\nmsg.topic = `INSERT INTO estudantes (nome, codigo, email, curso, status_, device_id, finger_id, nivel) ` +\n    `VALUES ('${msg.payload.name}', '${msg.payload.codigo}', '${msg.payload.email}', ` +\n    `'${msg.payload.curso}','${msg.payload.status_}', ${msg.payload.device_id}, ${msg.payload.finger_id}, ${nivel});`;\nreturn msg;\n\n\n\n\n",
+        "func": "msg.payload.impressao_digital = global.get(\"finger_id\") || null;\n\n// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n  msg.payload.status_ = '0'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (nome, codigo, email, curso, status, id_dispositivo, impressao_digital, id_perfil) \n  VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n  msg.payload.name || '',\n  msg.payload.codigo || '',\n  msg.payload.email || '',\n  msg.payload.curso || 'Não disponivel',\n  msg.payload.status_ || '0', // Já validado\n  msg.payload.id_dispositivo || '',\n  msg.payload.finger_id !== undefined ? msg.payload.finger_id : null,\n  msg.payload.id_perfil !== undefined ? msg.payload.id_perfil : 1\n];\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16368,7 +16368,7 @@
         "z": "b945a241e156bcfb",
         "g": "2d0336cd76812691",
         "name": "Update Students",
-        "url": "/biosentry/updatestudents/:id",
+        "url": "/biosentry/updatestudents/:codigo",
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
@@ -16386,7 +16386,7 @@
         "z": "b945a241e156bcfb",
         "g": "2d0336cd76812691",
         "name": "function 15",
-        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.topic = `UPDATE estudantes ` +\n    `SET nome = '${msg.payload.name}', codigo = '${msg.payload.codigo}', curso = '${msg.payload.curso}', status_ = '${msg.payload.status_}', device_id = '${msg.payload.device_id}', nivel = '${msg.payload.nivel}' ` +\n    `WHERE id = ${msg.payload.id};`;\nreturn msg;\n",
+        "func": "// msg.payload.status_ = msg.payload.status_ ? 1 : 0;\n// Substitua a query por:\nconst query = `\n  UPDATE pessoa \n  SET status = ?, id_dispositivo = ?\n  WHERE codigo = ?\n`;\nconst values = [\n  msg.payload.status_,\n  msg.payload.id_dispositivo,\n  msg.payload.codigo\n];\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16463,7 +16463,7 @@
         "z": "b945a241e156bcfb",
         "g": "8ddbe2bebacc9245",
         "name": "function 16",
-        "func": "msg.topic = `DELETE FROM estudantes WHERE id = ${msg.req.params.id};`;\nreturn msg; ",
+        "func": "msg.topic = `DELETE FROM pessoa WHERE codigo = ${msg.req.params.codigo};`;\nreturn msg; ",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16537,6 +16537,7 @@
         "id": "870faf16bf488d4b",
         "type": "mqtt out",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "030cd0a9f03e0251",
         "name": "",
         "topic": "fingerprint_CMD",
@@ -16737,6 +16738,7 @@
         "id": "07d4ed1fc797ef90",
         "type": "mqtt in",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "76d13409270878fb",
         "name": "",
         "topic": "fingerprint_REGISTED",
@@ -16923,7 +16925,7 @@
         "z": "b945a241e156bcfb",
         "g": "2d0336cd76812691",
         "name": "Buscar finder_id por id",
-        "url": "/biosentry/fingerid/:id",
+        "url": "/biosentry/fingerid/:codigo",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
@@ -16942,7 +16944,7 @@
         "z": "b945a241e156bcfb",
         "g": "2d0336cd76812691",
         "name": "function 24",
-        "func": "msg.topic = `SELECT finger_id \n            FROM estudantes\n            WHERE id = ${msg.req.params.id};`;\nreturn msg;\n\n\n",
+        "func": "msg.topic = `SELECT impressao_digital AS finger_id\n            FROM pessoa\n            WHERE codigo = ${msg.req.params.codigo};`;\nreturn msg;\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18126,7 +18128,7 @@
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 28",
-        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM estudantes WHERE status_ = '1' \";\nreturn msg;",
+        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM pessoas WHERE status = 'ativo' \";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18582,11 +18584,11 @@
         "z": "b945a241e156bcfb",
         "g": "6cfa3712cf99a987",
         "name": "",
-        "url": "/biosentry/edificios",
+        "url": "/biosentry/devicesforbuilding",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 140,
+        "x": 130,
         "y": 940,
         "wires": [
             [
@@ -18600,7 +18602,7 @@
         "z": "b945a241e156bcfb",
         "g": "6cfa3712cf99a987",
         "name": "function 36",
-        "func": "msg.topic = `SELECT DISTINCT  id_edificio, nome_edificio FROM edificio ;`;\nreturn msg;",
+        "func": "msg.topic = `SELECT d.id_dispositivo, d.tipo, e.nome_edificio \n    FROM dispositivo d\n    JOIN edificio e ON d.id_edificio = e.id_edificio ;`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18749,5 +18751,18 @@
         "x": 1100,
         "y": 100,
         "wires": []
+    },
+    {
+        "id": "645294b2271d619a",
+        "type": "function",
+        "z": "a1b2c3d4e5",
+        "name": "Validar e Atualizar",
+        "func": "// Validação do id_dispositivo\nconst checkQuery = \"SELECT id_dispositivo FROM dispositivo WHERE id_dispositivo = '\" + msg.payload.id_dispositivo + \"';\";\n\n// Executar verificação\nglobal.get(\"mysql\").query(checkQuery, (err, result) => {\n    if (err) {\n        node.error(err);\n        return;\n    }\n\n    if (result.length === 0) {\n        msg.payload = { error: \"Dispositivo inválido\" };\n        node.send(msg);\n        return;\n    }\n\n    // Atualização segura\n    const updateQuery = \"UPDATE pessoa SET status = '\" + msg.payload.status_ + \"', id_dispositivo = '\" + msg.payload.id_dispositivo + \"' WHERE codigo = '\" + msg.payload.codigo + \"';\";\n\n    global.get(\"mysql\").query(updateQuery, (err, result) => {\n        msg.payload = err ? { error: err.message } : result;\n        node.send(msg);\n    });\n});",
+        "outputs": 1,
+        "x": 650,
+        "y": 340,
+        "wires": [
+            []
+        ]
     }
 ]

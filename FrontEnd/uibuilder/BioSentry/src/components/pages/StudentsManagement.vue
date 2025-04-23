@@ -10,12 +10,12 @@
         style="
           font-family: 'Roboto', sans-serif;
           font-weight: 700;
-          margin-bottom: 20px;
+          margin-bottom: 50px;
         "
       >
         Estudantes
       </h3>
-      <img src="./components/images/impressao-digital2.png" alt="digital" class="custom-img" style="display: block; margin: 0 auto; margin-bottom: 50px;" />
+      <!-- <img src="./components/images/impressao-digital2.png" alt="digital" class="custom-img" style="display: block; margin: 0 auto; margin-bottom: 50px;" /> -->
 
       <div class="card">
         <div
@@ -88,16 +88,16 @@
                   <td>
                     <input
                       type="checkbox"
-                      :value="item.id"
+                      :value="item.codigo"
                       v-model="selectedItems"
                     />
                   </td>
-                 <!-- <td>{{ item.id }}</td>--> 
+                 <!-- <td>{{ item.codigo }}</td>--> 
                   <td>{{ item.name }}</td>
                   <td>{{ item.codigo }}</td>
                   <td>{{ item.email }}</td>
                   <td>{{ item.curso }}</td>
-                  <td>{{ item.status_ }}</td>
+                  <td>{{ getStatusText(item.status_) }}</td>
                   <td>{{ item.nome_edificio }}</td>
                
                   <td
@@ -115,7 +115,7 @@
                     </button>
                     <button
                       type="button"
-                      @click="ShowConfirmDelete(item.id)"
+                      @click="ShowConfirmDelete(item.codigo)"
                       class="btn btn-danger button"
                     >
                       <i class="fa fa-trash" aria-hidden="true"></i> <!-- Icone de eliminar-->
@@ -183,24 +183,25 @@
               <b-form-input
                 id="curso"
                 v-model="model.item.curso"
-  
                 readonly
                 required
               ></b-form-input>
             </b-form-group>
   
             <div class="mb-3">
-              <label for="device_id">Edificio:</label>
+              <label for="id_dispositivo">Edificio:</label>
               <select
-                id="device_id"
-                v-model="model.item.device_id"
-                @change="atualizarUID" 
+                id="id_dispositivo"
+                v-model="model.item.id_dispositivo"
+               
                 class="form-control"
                 required
               >
                 <option value="" disabled >Selecione o Edificio</option>
-                <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
-                  {{ edi.nome_edificio }}
+                <option v-for="dispositivo in dispositivos" 
+                        :key="dispositivo.id_dispositivo"
+                        :value="dispositivo.id_dispositivo">
+                  {{ dispositivo.nome_edificio }}
                 </option>
               </select>
             </div>
@@ -217,16 +218,13 @@
   
             <b-row>
               <b-col>
-                <b-form-group label="Status" label-for="status">
-                  <b-form-checkbox
-                    id="status"
-                    v-model="model.item.status_"
-                    :true-value="1"
-                    :false-value="0"
-                  >
-                    Ativo
-                  </b-form-checkbox>
-                </b-form-group>
+                <b-form-group label="Status">
+                    <b-form-radio-group
+                      v-model="model.item.status_"
+                      :options="statusOptions"
+                      buttons
+                    ></b-form-radio-group>
+                  </b-form-group>
               </b-col>
 
               <b-col class="text-right">
@@ -303,16 +301,18 @@
           </b-form-group>
 
           <div class="mb-3">
-            <label for="device_id">Edificio:</label>
+            <label for="id_dispositivo">Edificio:</label>
             <select
-              id="device_id"
-              v-model="currentUser.nome_edificio"
+              id="id_dispositivo"
+              v-model="currentUser.id_dispositivo"
               class="form-control"
               required
             >
               <option value="" disabled >Selecione o Edificio</option>
-              <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
-                {{ edi.nome_edificio }}
+              <option v-for="dispositivo in dispositivos" 
+                      :key="dispositivo.id_dispositivo" 
+                      :value="dispositivo.id_dispositivo">
+                {{ dispositivo.nome_edificio }}
               </option>
             </select>
           </div>
@@ -327,17 +327,13 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group label="Status" label-for="status">
-              <b-form-checkbox
-                id="status"
-                v-model="currentUser.status_"
-                :true-value="1"
-                :false-value="0"
-              >
-              Ativo
-            </b-form-checkbox>
-            <!-- <div>State: <strong>{{ Boolean(currentUser.status_) }}</strong></div> -->
-          </b-form-group>
+          <b-form-group label="Status">
+                    <b-form-radio-group
+                      v-model="currentUser.status_"
+                      :options="statusOptions"
+                      buttons
+                    ></b-form-radio-group>
+                  </b-form-group>
 
           <b-button type="submit" variant="success">Salvar</b-button>
           <b-button variant="secondary" @click="showModalEdit = false"
@@ -359,17 +355,21 @@ module.exports = {
   props: ["keys"],
   data() {
     return {
-      edificios: [],
+      statusOptions: [
+      { text: 'Ativo', value: '1' },
+      { text: 'Inativo', value: '0' }
+    ],
+      dispositivos: [],
       model: {
         item: {
           name: "",
           codigo: "",
-          device_id: "",
           email: "",
           curso: "",
-          status_: "",
-          UID_disposit: "", 
+          status_:'1',
+          id_dispositivo: "", 
           finger_id: null,
+          nome_edificio:""
         },
       },
       items: [],
@@ -386,15 +386,14 @@ module.exports = {
       searchQuery: "",
       userTypes: window.appConfig.userTypes,
       currentUser: {
-        id: null,
         codigo: "",
         name: "",
         email: "",
-        device_id: "",
+        id_dispositivo: "", 
         curso: "",
         status_: "",
-        UID_disposit : "",
-        finger_id:""
+        finger_id:"",
+        nome_edificio:""
       },
       isSaving: false,
       biometriaRegistrada: false,
@@ -433,6 +432,12 @@ module.exports = {
     },
   },
   methods: {
+      getStatusText(status_) {
+        return {
+          0: 'Inativo',
+          1: 'Ativo'
+        }[status_] || 'Desconhecido';
+    },
     preventLetters(event) {
       const char = String.fromCharCode(event.which);
       if (!/^\d$/.test(char)) {
@@ -440,13 +445,13 @@ module.exports = {
         this.showNotification("O código de estudante não pode ter letras.", "danger", "Erro");
       }
     },
-    atualizarUID() {
-      const deviceAddSelected = this.edificios.find(edi => edi.id === this.model.item.device_id);
-      this.model.item.uid_disposit = deviceAddSelected ? deviceAddSelected.UID_disposit : "";
+    // atualizarUID() {
+    //   const deviceAddSelected = this.dispositivos.find(edi => edi.id === this.model.item.id_dispositivo);
+    //   this.model.item.uid_disposit = deviceAddSelected ? deviceAddSelected.UID_disposit : "";
       
-      const deviceEditSelected = this.edificios.find(edi => edi.id === this.currentUser.device_id);
-      this.currentUser.uid_disposit = deviceEditSelected ? deviceEditSelected.UID_disposit : "";
-    },
+    //   const deviceEditSelected = this.dispositivos.find(edi => edi.id === this.currentUser.id_dispositivo);
+    //   this.currentUser.uid_disposit = deviceEditSelected ? deviceEditSelected.UID_disposit : "";
+    // },
     retrieveItems() {
       axios
         .get("/biosentry/students")
@@ -459,7 +464,7 @@ module.exports = {
     },
     toggleSelectAll(event) {
       if (event.target.checked) {
-        this.selectedItems = this.paginatedItems.map((item) => item.id);
+        this.selectedItems = this.paginatedItems.map((item) => item.codigo);
       } else {
         this.selectedItems = [];
       }
@@ -474,7 +479,7 @@ module.exports = {
     editItem(item) {
       this.currentUser = {
         ...item,
-        device_id: Number(item.device_id)
+        id_dispositivo:item.id_dispositivo
       };
       this.showModalEdit = true;
       this.atualizarUID();
@@ -483,14 +488,14 @@ module.exports = {
 
     async startBiometriaProcess() {
    
-      if (!this.model.item.uid_disposit) {
+      if (!this.model.item.id_dispositivo) {
         this.showNotification("Selecione um edifício válido!", "warning", "Aviso");
         return;
       }
       const payload = { 
-        Cmd: "Register_finger_" + this.model.item.uid_disposit,
+        Cmd: "Register_finger_" + this.model.item.id_dispositivo,
         codigo: this.codigo,
-        status_: this.model.item.status_ ? "1":"0",
+        status_: this.model.item.status_,
       };
       axios
         .post("/biosentry/biometria", payload)
@@ -540,13 +545,13 @@ module.exports = {
 },
    
     async saveUser() {  
-      if (this.currentUser.id) {
+      if (this.currentUser.codigo) {
         
-        const fingerIdResponse = await axios.get(`/biosentry/fingerid/${this.currentUser.id}`, this.currentUser);
+        const fingerIdResponse = await axios.get(`/biosentry/fingerid/${this.currentUser.codigo}`, this.currentUser);
         this.currentUser.finger_id = fingerIdResponse.data[0].finger_id;
 
         axios
-          .put(`/biosentry/updatestudents/${this.currentUser.id}`, this.currentUser)
+          .put(`/biosentry/updatestudents/${this.currentUser.codigo}`, this.currentUser)
           .then(() => {
             this.showNotification("Estudante atualizado com sucesso!", "success", "Atualização");
             this.retrieveItems();
@@ -559,9 +564,9 @@ module.exports = {
 
           //inicio comando para enviar para node-red
           const payload = {
-            Cmd: "Edit_finger_status_" + this.currentUser.uid_disposit,
+            Cmd: "Edit_finger_status_" + this.currentUser.id_dispositivo,
             finger_id: Number(this.currentUser.finger_id),
-            status_: this.currentUser.status_ ? "1":"0",
+            status_: this.currentUser.status_,
           };
 
         axios
@@ -602,31 +607,33 @@ module.exports = {
     },
     resetCurrentUser() {
       this.model.item = {
-        id: null,
+       
         name: "",
         codigo: "",
         email: "",
-        device_id: "",
+        id_dispositivo: "",
         curso: "",
         status_: "",
+        nome_edificio:""
       };
       this.currentUser = {
-        id: null,
+      
         name: "",
         codigo: "",
         email: "",
-        device_id: "",
+        id_dispositivo: "",
         curso: "",
         status_: 1,
+        nome_edificio:""
       };
     },
     getEdificio() {
       axios
-        .get("/biosentry/devices")
+        .get("/biosentry/devicesforbuilding")
         .then((resp) => {
           console.log(resp);
-          this.edificios = resp.data;
-          console.log(this.edificios);
+          this.dispositivos = resp.data;
+          console.log(this.dispositivos);
         })
         .catch((errors) => {
           console.error(errors);
@@ -649,8 +656,8 @@ module.exports = {
         .then((value) => {
           if (value) {
             Promise.all(
-              this.selectedItems.map((id) =>
-                axios.delete(`/biosentry/deleteStudents/${id}`)
+              this.selectedItems.map((codigo) =>
+                axios.delete(`/biosentry/deleteStudents/${codigo}`)
               )
             )
               .then(() => {
@@ -702,7 +709,7 @@ module.exports = {
       });
     },
     ShowConfirmDelete(ItemID) {
-      const itemToDelete = this.items.find(item => item.id === ItemID);
+      const itemToDelete = this.items.find(item => item.codigo === ItemID);
       if (itemToDelete) {
         this.model.item = {
           uid_disposit: itemToDelete.UID_disposit,
