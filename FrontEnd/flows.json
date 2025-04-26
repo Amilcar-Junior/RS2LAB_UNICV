@@ -1039,11 +1039,15 @@
             "b471b497c140f6df",
             "d952e942d6d57f6b",
             "2347fc0074a4507d",
-            "4fd62affc6d437d2"
+            "4fd62affc6d437d2",
+            "96b942a583a5d26c",
+            "84cb8168ca5037e1",
+            "25567570c356f2f8",
+            "8aa53b4b26e7bf85"
         ],
-        "x": -26,
+        "x": 8,
         "y": 339,
-        "w": 858,
+        "w": 824,
         "h": 1328
     },
     {
@@ -1442,7 +1446,7 @@
             "76771964a1d8bf48"
         ],
         "x": 34,
-        "y": 999,
+        "y": 1019,
         "w": 712,
         "h": 162
     },
@@ -15513,7 +15517,7 @@
         "z": "b945a241e156bcfb",
         "g": "5e97604028904057",
         "name": "Query",
-        "func": "\nmsg.topic = `SELECT d.*, e.id_edificio ,e.nome_edificio FROM dispositivo d JOIN edificio e ON d.id_edificio = e.id_edificio;`;\nreturn msg;\n",
+        "func": "\nmsg.topic = `SELECT DISTINCT d.*, e.id_edificio ,e.nome_edificio FROM dispositivo d JOIN edificio e ON d.id_edificio = e.id_edificio;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -15746,7 +15750,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 1120,
+        "y": 1140,
         "wires": [
             [
                 "9c45b0dd95f283a1",
@@ -15768,7 +15772,7 @@
         "finalize": "",
         "libs": [],
         "x": 310,
-        "y": 1120,
+        "y": 1140,
         "wires": [
             [
                 "cfe675c9e79d855e"
@@ -15789,7 +15793,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 640,
-        "y": 1080,
+        "y": 1100,
         "wires": []
     },
     {
@@ -15800,7 +15804,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 470,
-        "y": 1120,
+        "y": 1140,
         "wires": [
             [
                 "53abed1cfaeb8c87",
@@ -15822,7 +15826,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 320,
-        "y": 1080,
+        "y": 1100,
         "wires": []
     },
     {
@@ -15844,7 +15848,7 @@
         "name": "UPDATE DEVICES",
         "info": "",
         "x": 150,
-        "y": 1040,
+        "y": 1060,
         "wires": []
     },
     {
@@ -15856,7 +15860,7 @@
         "statusCode": "",
         "headers": {},
         "x": 630,
-        "y": 1120,
+        "y": 1140,
         "wires": []
     },
     {
@@ -16124,7 +16128,7 @@
         "z": "b945a241e156bcfb",
         "g": "6232b0d6144ee826",
         "name": "function 2",
-        "func": "msg.topic = `SELECT \n    p.nome AS name,\n    p.codigo,\n    p.email,\n    p.status AS status_,\n    p.curso,\n    e.nome_edificio\n    FROM pessoa p \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE p.id_perfil = 1;`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT DISTINCT\n    p.nome AS name,\n    p.codigo,\n    p.email,\n    p.status AS status_,\n    p.curso,\n    e.nome_edificio,\n    d.id_dispositivo\n    FROM pessoa p \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE p.id_perfil = 1;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16386,7 +16390,7 @@
         "z": "b945a241e156bcfb",
         "g": "2d0336cd76812691",
         "name": "function 15",
-        "func": "// msg.payload.status_ = msg.payload.status_ ? 1 : 0;\n// Substitua a query por:\nconst query = `\n  UPDATE pessoa \n  SET status = ?, id_dispositivo = ?\n  WHERE codigo = ?\n`;\nconst values = [\n  msg.payload.status_,\n  msg.payload.id_dispositivo,\n  msg.payload.codigo\n];\n\nreturn msg;",
+        "func": "// msg.payload.status_ = msg.payload.status_ ? 1 : 0;\n// Substitua a query por:\nconst query = `\n  UPDATE pessoa \n  SET status = ?, id_dispositivo = ?\n  WHERE codigo = ?\n`;\nconst values = [\n  msg.payload.status_,\n  msg.payload.id_dispositivo,\n  msg.payload.codigo\n];\n\nmsg.topic = query;\nmsg.payload = values;\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16445,7 +16449,7 @@
         "z": "b945a241e156bcfb",
         "g": "8ddbe2bebacc9245",
         "name": "DELETE STUDENTS",
-        "url": "/biosentry/deleteStudents/:id",
+        "url": "/biosentry/deleteStudents/:codigo",
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
@@ -18583,13 +18587,13 @@
         "type": "http in",
         "z": "b945a241e156bcfb",
         "g": "6cfa3712cf99a987",
-        "name": "",
+        "name": "edficio",
         "url": "/biosentry/devicesforbuilding",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 130,
-        "y": 940,
+        "x": 90,
+        "y": 900,
         "wires": [
             [
                 "d952e942d6d57f6b"
@@ -18602,15 +18606,15 @@
         "z": "b945a241e156bcfb",
         "g": "6cfa3712cf99a987",
         "name": "function 36",
-        "func": "msg.topic = `SELECT d.id_dispositivo, d.tipo, e.nome_edificio \n    FROM dispositivo d\n    JOIN edificio e ON d.id_edificio = e.id_edificio ;`;\nreturn msg;",
+        "func": "msg.topic = `SELECT DISTINCT d.id_dispositivo, d.tipo, e.nome_edificio \n    FROM dispositivo d\n    JOIN edificio e ON d.id_edificio = e.id_edificio \n    WHERE tipo = 'biometrico';`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 940,
+        "x": 270,
+        "y": 900,
         "wires": [
             [
                 "2347fc0074a4507d"
@@ -18623,9 +18627,9 @@
         "z": "b945a241e156bcfb",
         "g": "6cfa3712cf99a987",
         "mydb": "f3e8c660cf5205b5",
-        "name": "",
-        "x": 560,
-        "y": 940,
+        "name": "DB",
+        "x": 470,
+        "y": 900,
         "wires": [
             [
                 "4fd62affc6d437d2"
@@ -18640,8 +18644,78 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 750,
-        "y": 940,
+        "x": 650,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "96b942a583a5d26c",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "name": "edificioPessoa",
+        "url": "/biosentry/devicesforperson/:codigo",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 960,
+        "wires": [
+            [
+                "84cb8168ca5037e1"
+            ]
+        ]
+    },
+    {
+        "id": "84cb8168ca5037e1",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "name": "function 37",
+        "func": "msg.topic = `SELECT p.id_dispositivo, e.nome_edificio\nFROM pessoa p\nJOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\nJOIN edificio e ON d.id_edificio = e.id_edificio\nWHERE p.codigo = '${msg.payload.codigo}';`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 960,
+        "wires": [
+            [
+                "25567570c356f2f8"
+            ]
+        ]
+    },
+    {
+        "id": "25567570c356f2f8",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 490,
+        "y": 960,
+        "wires": [
+            [
+                "8aa53b4b26e7bf85"
+            ]
+        ]
+    },
+    {
+        "id": "8aa53b4b26e7bf85",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "d": true,
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 960,
         "wires": []
     },
     {

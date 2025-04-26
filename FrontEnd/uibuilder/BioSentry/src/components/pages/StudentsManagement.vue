@@ -129,7 +129,7 @@
                     {{
                       searchQuery
                         ? "Não foi encontrado nenhum resultado para a pesquisa."
-                        : "Nenhum dispositivo registrado."
+                        : "Nenhum estudante registado."
                     }}
                   </td>
                 </tr>
@@ -308,7 +308,7 @@
               class="form-control"
               required
             >
-              <option value="" disabled >Selecione o Edificio</option>
+              <!-- <option value="" disabled >Selecione o Edificio</option> -->
               <option v-for="dispositivo in dispositivos" 
                       :key="dispositivo.id_dispositivo" 
                       :value="dispositivo.id_dispositivo">
@@ -398,9 +398,19 @@ module.exports = {
       isSaving: false,
       biometriaRegistrada: false,
       notifications: [],
-    
 
     };
+  },
+  //responsavel por mostrar o edificio da pessoa selecionda para edição
+  watch: {
+    'currentUser.id_dispositivo': function(newVal) {
+      const dispositivoSelecionado = this.dispositivos.find(d => d.id_dispositivo === newVal);
+      if (dispositivoSelecionado) {
+        this.currentUser.nome_edificio = dispositivoSelecionado.nome_edificio;
+      } else {
+        this.currentUser.nome_edificio = "";
+      }
+    }
   },
 
   mounted() {
@@ -688,7 +698,7 @@ module.exports = {
           this.ShowDeleteNotification("Erro ao Deletar Estudante.", "danger", "Erro");
         });
       const payload2 = {
-        Cmd: "Delete_finger_" + this.model.item.uid_disposit,
+        Cmd: "Delete_finger_" + this.model.item.id_dispositivo,
         codigo: this.model.item.codigo, 
       };
       console.log("Payload being sent to Node-RED:", payload2);

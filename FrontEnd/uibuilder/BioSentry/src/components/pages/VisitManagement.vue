@@ -126,7 +126,7 @@
                       {{
                         searchQuery
                           ? "Não foi encontrado nenhum resultado para a pesquisa."
-                          : "Nenhum dispositivo registrado."
+                          : "Nenhuma pessoa registado."
                       }}
                     </td>
                   </tr>
