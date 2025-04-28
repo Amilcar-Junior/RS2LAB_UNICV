@@ -18,10 +18,10 @@
               novalidate
             >
               <input
-                v-model="postBody.Utilizador_Email"
+                v-model="postBody.username"
                 type="text"
                 class="form-control"
-                placeholder="Email"
+                placeholder="Codigo"
                 required
               />
               <input
@@ -145,7 +145,7 @@ module.exports = {
   props: ["keys"],
   data() {
     return {
-      postBody: { Utilizador_Email: "", Utilizador_Senha: "" },
+      postBody: { username: "", Utilizador_Senha: "" },
       recoveryEmail: "",
       recoveryCode: "",
       recoverySentCode: "",
@@ -163,10 +163,16 @@ module.exports = {
   },
 
   methods: {
-    login() {
+    async login() {
       this.errormessage = "";
 
-      if (!this.postBody.Utilizador_Email) {
+      // Log das entradas
+      console.log("Iniciando login com:", {
+          username: this.postBody.username,
+          password: this.postBody.Utilizador_Senha,
+        });
+
+      if (!this.postBody.username) {
         this.errormessage = "Por favor, insira seu email.";
         this.errorVariant = "danger";
         return;
@@ -179,59 +185,93 @@ module.exports = {
       }
 
       var Utilizador_Senha = this.postBody.Utilizador_Senha
-      
-        // let data = JSON.stringify({
-        //   "username": "131040",//this.postBody.codigo,
-        //   "password": "eng1UNICV"
-        // });
 
-        // let config = {
-        //   method: 'post',
-        //   maxBodyLength: Infinity,
-        //   url: 'https://betaapi.unicv.cv/api-basic-v1/auth/login',
-        //   headers: { 
-        //     'Content-Type': 'application/json', 
-            
-        //   },
-        //   data : data
-        // };
+      try{
+          console.log("Chamando API rs2lab/login...");
+          const rs2labResponse = await axios.post("/biosentry/login", {
+            username: this.postBody.username,
+            Utilizador_Senha:this.postBody.Utilizador_Senha,
+          });
+          console.log("Resposta da API rs2lab/login:", rs2labResponse.data);
+          if (rs2labResponse.data.length === 0) {
+        this.errormessage = "Código ou senha inválidos.";
+        return;
+      }
 
-        // axios.request(config)
-        // .then((response) => {
-        //   console.log(JSON.stringify(response.data));
-        // })
-        // .catch((error) => {
-        //   console.log(error);
-        // });
+      const user = rs2labResponse.data[0];
+      console.log("Usuário encontrado:", user);
+      if (user.Utilizador_isActive !== 1) {
+        this.errormessage =
+          "Sua conta está inativa. Entre em contato com o administrador.";
+        return;
+      }
 
-      axios
-        .post("/rs2lab/login", {
-          Utilizador_Email: this.postBody.Utilizador_Email,
-          Utilizador_Senha: Utilizador_Senha,
-        })
-        .then((res) => {
-          if (res.data.length > 0) {
-            const user = res.data[0];
-            if (user.Utilizador_isActive === 1) {
-              this.postBody.Utilizador_Email = "";
-              this.postBody.Utilizador_Senha = "";
-              this.keys.setToken(user);
-              this.keys.loginSuccess();
-              this.keys.setUser(user);
-            } else {
-              this.errormessage =
-                "Sua conta está inativa. Entre em contato com o administrador.";
-            }
-          } else {
-            this.errormessage = "Email ou Palavra-passe Invalidos.";
-            this.errorVariant = "danger";
-          }
-        })
-        .catch((e) => {
-          console.error(e);
-          this.errormessage = "Erro ao tentar fazer login.";
-          this.errorVariant = "danger";
-        });
+      console.log("Chamando API betaapi.unicv.cv via proxy...");
+      // Segunda API: betaapi.unicv.cv
+      const unicvResponse = await axios.post(
+        "/proxy/login",
+        {
+          username: this.postBody.username,
+          password: this.postBody.Utilizador_Senha, // Assumindo que a API espera senha em texto puro
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Resposta da API betaapi.unicv.cv:", unicvResponse.data);
+
+      // Verifica se a resposta é válida
+      if (!unicvResponse.data.status || !unicvResponse.data.data.access_token) {
+        this.errormessage = "Falha ao obter o token de autenticação.";
+        return;
+      }
+
+      // Extrai o token e a data de expiração
+      const token = unicvResponse.data.data.access_token;
+      const tokenExpiration = unicvResponse.data.data.access_token_expiration_date;
+      console.log("Token extraido", token);
+      console.log("Data de expiração do token:", tokenExpiration);
+
+      // Armazena os dados do usuário
+      console.log("Armazenando dados do usuário...");
+      this.keys.setUser(user);
+      // Passar o access_token e token_expiration explicitamente
+      this.keys.setToken({
+        ...user,
+        access_token: token,
+        token_expiration: tokenExpiration,
+      });
+      // localStorage.setItem("unicv_token", token); // Armazena o token
+      // localStorage.setItem("unicv_token_expiration", tokenExpiration);
+
+      console.log("Dados armazenados no localStorage:", {
+        unicv_token: localStorage.getItem("unicv_token"),
+        unicv_token_expiration: localStorage.getItem("unicv_token_expiration")
+      });
+
+
+      // Limpa os campos
+      this.postBody.username = "";
+      this.postBody.Utilizador_Senha = "";
+
+      // Redireciona para a página principal
+      console.log("Login bem-sucedido, chamando loginSuccess...");
+      // Redireciona para a página principal
+      this.keys.loginSuccess();
+
+      }
+      catch (error) {
+        console.error("Erro durante o login:", error);
+      if (error.response) {
+        console.error("Detalhes do erro:", error.response.data);
+        console.error("Status do erro:", error.response.status);
+      }
+      this.errormessage = "Erro ao tentar fazer login. Tente novamente.";
+     } 
+       
     },
     showRecoveryForm() {
       this.step = 2;

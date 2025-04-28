@@ -76,9 +76,12 @@
     <script>
       window.onload = function () {
         var id = localStorage.getItem("token"); // verificar token válido
-        // console.log(id);
+        var unicvToken = localStorage.getItem("unicv_token");
+        console.log("Token recuperado do localStorage:",id);
+        console.log("Token recuperado do localStorage (unicv_token):", unicvToken);
         var session = { topic: "Startup", token: id }; // Enviar valor ao iniciar
-        // console.log("sessão: ",session);
+        console.log("Sessão enviada ao uibuilder: ",session);
+        
 
         // Iniciar uibuilder e enviar mensagem
         uibuilder.start();
@@ -100,12 +103,18 @@
               Utilizador_isActive: user.Utilizador_isActive,
               Utilizador_Nome: user.Utilizador_Nome,
               Utilizador_Email: user.Utilizador_Email,
+              username: user.username,
               TipoUtilizador_ID: user.TipoUtilizador_ID,
               TipoUtilizador_Nome: user.TipoUtilizador_Nome,
               Grupos: user.Grupos,
               Utilizador_image: user.Utilizador_image,
             },
           });
+          console.log("Mensagem Startup enviada com payload:", {
+            Utilizador_ID: user.Utilizador_ID,
+            Utilizador_Nome: user.Utilizador_Nome,
+            access_token: user.access_token,
+      });
         }
       };
     </script>

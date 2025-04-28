@@ -19,6 +19,7 @@ const app = new Vue({
         TipoUtilizador_ID: undefined,
         TipoUtilizador_Nome: undefined,
         Utilizador_Email: undefined,
+        username:undefined,
         Utilizador_image: "",
         Grupos: undefined,
 
@@ -46,6 +47,7 @@ const app = new Vue({
       this.user.Utilizador_ID = param.Utilizador_ID;
       this.user.Utilizador_Nome = param.Utilizador_Nome;
       this.user.Utilizador_Email = param.Utilizador_Email;
+      this.user.username = param.username;
       this.user.TipoUtilizador_ID = param.TipoUtilizador_ID;
       this.user.TipoUtilizador_Nome = param.TipoUtilizador_Nome;
       this.user.Grupos = param.Grupos;
@@ -56,12 +58,20 @@ const app = new Vue({
       localStorage.setItem("user", JSON.stringify(this.user));
     },
     setToken(user) {
+       // Verificar se access_token existe
+       if (!user.access_token) {
+        console.error("Erro: access_token não encontrado no objeto user:", user);
+        return;
+      }
       // Gets the unique session identifier
-      var sessionID = user.Utilizador_Senha;
+      var sessionID = user.access_token;
+      console.log("setToken chamado com sessionID:", sessionID);
       // Store session identifier to local browser
       localStorage.setItem("token", sessionID);
       localStorage.setItem("user", JSON.stringify(user));
-      // console.log(localStorage);
+      console.log(localStorage);
+      console.log("Token armazenado:", sessionID);
+      console.log("Dados do usuário armazenados:", user);
 
       // Notify index.js that a session is created
       uibuilder.send({
@@ -72,31 +82,36 @@ const app = new Vue({
             Utilizador_ID: user.Utilizador_ID,
             Utilizador_isActive: user.Utilizador_isActive,
             Utilizador_Email: user.Utilizador_Email,
+            username: user.username,
             Utilizador_Nome: user.Utilizador_Nome,
             TipoUtilizador_ID: user.TipoUtilizador_ID,
             TipoUtilizador_Nome: user.TipoUtilizador_Nome,
             Grupos: user.Grupos,
             Utilizador_image: user.Utilizador_image,
+            access_token: user.access_token, // Inclui o access_token
+            token_expiration: user.token_expiration, // Inclui a expiração
           },
           session: {
             uniqueid: sessionID,
             Utilizador_ID: user.Utilizador_ID,
             Utilizador_isActive: user.Utilizador_isActive,
             Utilizador_Email: user.Utilizador_Email,
+            username: user.username,
             Utilizador_Nome: user.Utilizador_Nome,
             TipoUtilizador_ID: user.TipoUtilizador_ID,
             TipoUtilizador_Nome: user.TipoUtilizador_Nome,
             Grupos: user.Grupos,
             Utilizador_image: user.Utilizador_image,
+            access_token: user.access_token, // Inclui o access_token
+            token_expiration: user.token_expiration, // Inclui a expiração
             startTime: undefined,
           },
         },
       });
+      console.log("Mensagem Login enviada ao uibuilder com token:", sessionID);
     },
   },
   mounted: function () {
-    // navigates to home page at mount
-    // this.$router.push("/");
 
     uibuilder.start();
     var vueApp = this;
@@ -112,6 +127,7 @@ const app = new Vue({
             vueApp.user.TipoUtilizador_Nome = msg.payload.TipoUtilizador_Nome;
             vueApp.user.Utilizador_Nome = msg.payload.Utilizador_Nome;
             vueApp.user.Utilizador_Email = msg.payload.Utilizador_Email;
+            vueApp.user.username = msg.payload.username;
             vueApp.user.Utilizador_image = msg.payload.Utilizador_image;
             vueApp.user.Grupos = msg.payload.Grupos;
             vueApp.user.islogged = true;
@@ -128,6 +144,7 @@ const app = new Vue({
             msg.payload.user.TipoUtilizador_Nome;
           vueApp.user.Utilizador_Nome = msg.payload.user.Utilizador_Nome;
           vueApp.user.Utilizador_Email = msg.payload.user.Utilizador_Email;
+          vueApp.user.username = msg.payload.username;
           vueApp.user.Utilizador_image = msg.payload.user.Utilizador_image;
           vueApp.user.Grupos = msg.payload.Grupos;
           vueApp.user.islogged = true;

@@ -1045,8 +1045,8 @@
             "25567570c356f2f8",
             "8aa53b4b26e7bf85"
         ],
-        "x": 8,
-        "y": 339,
+        "x": 48,
+        "y": 379,
         "w": 824,
         "h": 1328
     },
@@ -1111,12 +1111,17 @@
             "19984216f5e7312a",
             "603607c2c2c5dbb9",
             "6c103389a472c46a",
-            "1b43fe1b9d2c3f74"
+            "1b43fe1b9d2c3f74",
+            "proxy_login",
+            "proxy_function",
+            "http_request",
+            "proxy_response",
+            "proxy_debug"
         ],
         "x": 34,
         "y": 39,
         "w": 872,
-        "h": 282
+        "h": 322
     },
     {
         "id": "e0914e4a4497fb15",
@@ -1389,8 +1394,8 @@
             "85b3a80720622ced",
             "e8c8b4955ed257bf"
         ],
-        "x": 34,
-        "y": 1379,
+        "x": 74,
+        "y": 1419,
         "w": 752,
         "h": 262
     },
@@ -1417,8 +1422,8 @@
             "dd21b302437bd660",
             "6b8711c00ecb42ab"
         ],
-        "x": 34,
-        "y": 1199,
+        "x": 74,
+        "y": 1239,
         "w": 712,
         "h": 142
     },
@@ -1445,8 +1450,8 @@
             "35073258ad86f2c0",
             "76771964a1d8bf48"
         ],
-        "x": 34,
-        "y": 1019,
+        "x": 74,
+        "y": 1059,
         "w": 712,
         "h": 162
     },
@@ -1473,8 +1478,8 @@
             "86bfe3f14febd10d",
             "02f849f525961e51"
         ],
-        "x": 34,
-        "y": 699,
+        "x": 74,
+        "y": 739,
         "w": 712,
         "h": 162
     },
@@ -1507,8 +1512,8 @@
             "566661a86397ab79",
             "ebbf2a7adf2c684f"
         ],
-        "x": 34,
-        "y": 419,
+        "x": 74,
+        "y": 459,
         "w": 772,
         "h": 242
     },
@@ -15421,8 +15426,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 500,
+        "x": 180,
+        "y": 540,
         "wires": [
             [
                 "554d20b900ad5cbb"
@@ -15436,8 +15441,8 @@
         "g": "5e97604028904057",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 430,
-        "y": 500,
+        "x": 470,
+        "y": 540,
         "wires": [
             [
                 "0a524ad079f34203"
@@ -15457,8 +15462,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 290,
-        "y": 500,
+        "x": 330,
+        "y": 540,
         "wires": [
             [
                 "fce8c93ac6e48920"
@@ -15478,8 +15483,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
-        "y": 500,
+        "x": 620,
+        "y": 540,
         "wires": []
     },
     {
@@ -15489,8 +15494,8 @@
         "g": "5e97604028904057",
         "name": "GET DEVICES",
         "info": "\n",
-        "x": 140,
-        "y": 460,
+        "x": 180,
+        "y": 500,
         "wires": []
     },
     {
@@ -15503,8 +15508,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 110,
-        "y": 560,
+        "x": 150,
+        "y": 600,
         "wires": [
             [
                 "37bd74ac69065a70"
@@ -15524,8 +15529,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 560,
+        "x": 350,
+        "y": 600,
         "wires": [
             [
                 "ba0994c95d7552f1"
@@ -15539,8 +15544,8 @@
         "g": "5e97604028904057",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 470,
-        "y": 560,
+        "x": 510,
+        "y": 600,
         "wires": [
             [
                 "f3943e5bc772c866",
@@ -15556,8 +15561,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 610,
-        "y": 580,
+        "x": 650,
+        "y": 620,
         "wires": []
     },
     {
@@ -15573,8 +15578,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 700,
-        "y": 540,
+        "x": 740,
+        "y": 580,
         "wires": []
     },
     {
@@ -15599,8 +15604,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 620,
+        "x": 180,
+        "y": 660,
         "wires": [
             [
                 "566661a86397ab79"
@@ -15624,8 +15629,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 400,
-        "y": 620,
+        "x": 440,
+        "y": 660,
         "wires": [
             [
                 "ebbf2a7adf2c684f"
@@ -15645,8 +15650,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
-        "y": 620,
+        "x": 620,
+        "y": 660,
         "wires": []
     },
     {
@@ -15659,8 +15664,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 130,
-        "y": 820,
+        "x": 170,
+        "y": 860,
         "wires": [
             [
                 "e7fdd60da7d9ad5d",
@@ -15681,8 +15686,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 290,
-        "y": 820,
+        "x": 330,
+        "y": 860,
         "wires": [
             [
                 "66a910ee4212dae7"
@@ -15702,8 +15707,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 760,
+        "x": 680,
+        "y": 800,
         "wires": []
     },
     {
@@ -15713,8 +15718,8 @@
         "g": "e2dc358dfe1caf1d",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 470,
-        "y": 820,
+        "x": 510,
+        "y": 860,
         "wires": [
             [
                 "f45ba199e838387e",
@@ -15735,8 +15740,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 300,
-        "y": 760,
+        "x": 340,
+        "y": 800,
         "wires": []
     },
     {
@@ -15749,8 +15754,8 @@
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
-        "x": 140,
-        "y": 1140,
+        "x": 180,
+        "y": 1180,
         "wires": [
             [
                 "9c45b0dd95f283a1",
@@ -15771,8 +15776,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 1140,
+        "x": 350,
+        "y": 1180,
         "wires": [
             [
                 "cfe675c9e79d855e"
@@ -15792,8 +15797,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 1100,
+        "x": 680,
+        "y": 1140,
         "wires": []
     },
     {
@@ -15803,8 +15808,8 @@
         "g": "92690e765c8e1970",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 470,
-        "y": 1140,
+        "x": 510,
+        "y": 1180,
         "wires": [
             [
                 "53abed1cfaeb8c87",
@@ -15825,8 +15830,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 320,
-        "y": 1100,
+        "x": 360,
+        "y": 1140,
         "wires": []
     },
     {
@@ -15836,8 +15841,8 @@
         "g": "e2dc358dfe1caf1d",
         "name": "ADD DEVICES",
         "info": "",
-        "x": 140,
-        "y": 740,
+        "x": 180,
+        "y": 780,
         "wires": []
     },
     {
@@ -15847,8 +15852,8 @@
         "g": "92690e765c8e1970",
         "name": "UPDATE DEVICES",
         "info": "",
-        "x": 150,
-        "y": 1060,
+        "x": 190,
+        "y": 1100,
         "wires": []
     },
     {
@@ -15859,8 +15864,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 630,
-        "y": 1140,
+        "x": 670,
+        "y": 1180,
         "wires": []
     },
     {
@@ -15870,8 +15875,8 @@
         "g": "0082a16d52412f29",
         "name": "DELETE DEVICES",
         "info": "",
-        "x": 150,
-        "y": 1240,
+        "x": 190,
+        "y": 1280,
         "wires": []
     },
     {
@@ -15884,8 +15889,8 @@
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
-        "x": 140,
-        "y": 1300,
+        "x": 180,
+        "y": 1340,
         "wires": [
             [
                 "094a0b76dae7672a",
@@ -15906,8 +15911,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 1300,
+        "x": 350,
+        "y": 1340,
         "wires": [
             [
                 "dd21b302437bd660"
@@ -15927,8 +15932,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 1260,
+        "x": 680,
+        "y": 1300,
         "wires": []
     },
     {
@@ -15938,8 +15943,8 @@
         "g": "0082a16d52412f29",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 470,
-        "y": 1300,
+        "x": 510,
+        "y": 1340,
         "wires": [
             [
                 "b403d937b4308483",
@@ -15960,8 +15965,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 320,
-        "y": 1260,
+        "x": 360,
+        "y": 1300,
         "wires": []
     },
     {
@@ -15972,8 +15977,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 650,
-        "y": 1300,
+        "x": 690,
+        "y": 1340,
         "wires": []
     },
     {
@@ -15984,8 +15989,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 650,
-        "y": 820,
+        "x": 690,
+        "y": 860,
         "wires": []
     },
     {
@@ -15995,8 +16000,8 @@
         "g": "6cfa3712cf99a987",
         "name": "START DISPOSITIVOS",
         "info": "",
-        "x": 400,
-        "y": 380,
+        "x": 440,
+        "y": 420,
         "wires": []
     },
     {
@@ -17051,8 +17056,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 1480,
+        "x": 180,
+        "y": 1520,
         "wires": [
             [
                 "88629126eec09698"
@@ -17072,8 +17077,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 1480,
+        "x": 350,
+        "y": 1520,
         "wires": [
             [
                 "f6c879b8e4daaaa2"
@@ -17087,8 +17092,8 @@
         "g": "d7f3baf127f02fab",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 470,
-        "y": 1480,
+        "x": 510,
+        "y": 1520,
         "wires": [
             [
                 "6ba66a9e150a512e"
@@ -17108,8 +17113,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
-        "y": 1480,
+        "x": 660,
+        "y": 1520,
         "wires": []
     },
     {
@@ -17119,8 +17124,8 @@
         "g": "d7f3baf127f02fab",
         "name": "endpoint pra verificar dispositivos que tem estudantes registado",
         "info": "",
-        "x": 370,
-        "y": 1420,
+        "x": 410,
+        "y": 1460,
         "wires": []
     },
     {
@@ -17133,8 +17138,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 170,
-        "y": 1540,
+        "x": 210,
+        "y": 1580,
         "wires": [
             [
                 "d9cbf202e2ca7d78"
@@ -17154,8 +17159,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 1540,
+        "x": 410,
+        "y": 1580,
         "wires": [
             [
                 "c9823ca8246d0e50"
@@ -17169,8 +17174,8 @@
         "g": "d7f3baf127f02fab",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 530,
-        "y": 1540,
+        "x": 570,
+        "y": 1580,
         "wires": [
             [
                 "7095c2997cf22b93",
@@ -17186,8 +17191,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 670,
-        "y": 1580,
+        "x": 710,
+        "y": 1620,
         "wires": []
     },
     {
@@ -17203,8 +17208,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 680,
-        "y": 1520,
+        "x": 720,
+        "y": 1560,
         "wires": []
     },
     {
@@ -17229,8 +17234,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 1600,
+        "x": 180,
+        "y": 1640,
         "wires": [
             [
                 "85b3a80720622ced"
@@ -17254,8 +17259,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 290,
-        "y": 1600,
+        "x": 330,
+        "y": 1640,
         "wires": [
             [
                 "e8c8b4955ed257bf"
@@ -17275,8 +17280,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 1600,
+        "x": 500,
+        "y": 1640,
         "wires": []
     },
     {
@@ -17501,7 +17506,7 @@
         "z": "b945a241e156bcfb",
         "g": "a6adededcdd25826",
         "name": "Startup",
-        "func": "\n\n// Se não houver token, retorna session undefined\nif (!msg.token) {\n    msg.session = undefined;\n    return msg;\n}\n\n// Verifica se o servidor tem os detalhes do token\nvar details = flow.get(msg.token);\nif (!details) {\n    msg.session = undefined;\n} else {\n    // Detalhes da sessão\n    msg.session = {\n        'uniqueid': details.session.uniqueid,\n        'start_Time': undefined,\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n\n    // Detalhes do usuário\n    msg.payload = {\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n}\n\nreturn msg;",
+        "func": "\n\n// Se não houver token, retorna session undefined\nif (!msg.token) {\n    msg.session = undefined;\n    return msg;\n}\n\n// Verifica se o servidor tem os detalhes do token\nvar details = flow.get(msg.token);\nif (!details) {\n    msg.session = undefined;\n} else {\n    // Detalhes da sessão\n    msg.session = {\n        'uniqueid': details.session.uniqueid,\n        'start_Time': undefined,\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'username': details.user.username,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n\n    // Detalhes do usuário\n    msg.payload = {\n        'Utilizador_ID': details.user.Utilizador_ID,\n        'Utilizador_isActive': details.user.Utilizador_isActive,\n        'Utilizador_Nome': details.user.Utilizador_Nome,\n        'Utilizador_Email': details.user.Utilizador_Email,\n        'username': details.user.username,\n        'TipoUtilizador_ID': details.user.TipoUtilizador_ID,\n        'TipoUtilizador_Nome': details.user.TipoUtilizador_Nome,\n        'Grupos': details.user.Grupos,\n        'Utilizador_image': details.user.Utilizador_image\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -18132,7 +18137,7 @@
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 28",
-        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM pessoas WHERE status = 'ativo' \";\nreturn msg;",
+        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM pessoa WHERE status = '1' \";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18450,12 +18455,12 @@
         "z": "b945a241e156bcfb",
         "g": "a6adededcdd25826",
         "name": "login",
-        "url": "/rs2lab/login",
+        "url": "/biosentry/login",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 150,
-        "y": 280,
+        "x": 130,
+        "y": 240,
         "wires": [
             [
                 "603607c2c2c5dbb9"
@@ -18468,15 +18473,15 @@
         "z": "b945a241e156bcfb",
         "g": "a6adededcdd25826",
         "name": "Query",
-        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.Email = '${Utilizador_Email}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
+        "func": "var username = msg.payload.username;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.codigo AS username,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.codigo = '${username}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 270,
-        "y": 280,
+        "x": 250,
+        "y": 240,
         "wires": [
             [
                 "1b43fe1b9d2c3f74"
@@ -18491,8 +18496,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 510,
-        "y": 280,
+        "x": 490,
+        "y": 240,
         "wires": []
     },
     {
@@ -18502,8 +18507,8 @@
         "g": "a6adededcdd25826",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 390,
-        "y": 280,
+        "x": 370,
+        "y": 240,
         "wires": [
             [
                 "6c103389a472c46a"
@@ -18592,8 +18597,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 90,
-        "y": 900,
+        "x": 130,
+        "y": 940,
         "wires": [
             [
                 "d952e942d6d57f6b"
@@ -18613,8 +18618,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 270,
-        "y": 900,
+        "x": 310,
+        "y": 940,
         "wires": [
             [
                 "2347fc0074a4507d"
@@ -18628,8 +18633,8 @@
         "g": "6cfa3712cf99a987",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 470,
-        "y": 900,
+        "x": 510,
+        "y": 940,
         "wires": [
             [
                 "4fd62affc6d437d2"
@@ -18644,8 +18649,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 650,
-        "y": 900,
+        "x": 690,
+        "y": 940,
         "wires": []
     },
     {
@@ -18659,8 +18664,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 110,
-        "y": 960,
+        "x": 150,
+        "y": 1000,
         "wires": [
             [
                 "84cb8168ca5037e1"
@@ -18681,8 +18686,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 960,
+        "x": 350,
+        "y": 1000,
         "wires": [
             [
                 "25567570c356f2f8"
@@ -18697,8 +18702,8 @@
         "g": "6cfa3712cf99a987",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 490,
-        "y": 960,
+        "x": 530,
+        "y": 1000,
         "wires": [
             [
                 "8aa53b4b26e7bf85"
@@ -18714,8 +18719,105 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 690,
-        "y": 960,
+        "x": 730,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "proxy_login",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "a6adededcdd25826",
+        "name": "Proxy Login",
+        "url": "/proxy/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "proxy_function"
+            ]
+        ]
+    },
+    {
+        "id": "proxy_function",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "a6adededcdd25826",
+        "name": "",
+        "func": "node.log(`Recebida requisição para /proxy/login: ${JSON.stringify(msg.payload)}`);\nmsg.url = 'https://betaapi.unicv.cv/api-basic-v1/auth/login';\nmsg.method = 'POST';\nmsg.headers = {\n    'Content-Type': 'application/json'\n};\nmsg.payload = msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "http_request"
+            ]
+        ]
+    },
+    {
+        "id": "http_request",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "g": "a6adededcdd25826",
+        "name": "Request to betaapi.unicv.cv",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 540,
+        "y": 300,
+        "wires": [
+            [
+                "proxy_response",
+                "proxy_debug"
+            ]
+        ]
+    },
+    {
+        "id": "proxy_response",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "a6adededcdd25826",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "Access-Control-Allow-Origin": "*"
+        },
+        "x": 770,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "proxy_debug",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "a6adededcdd25826",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 320,
         "wires": []
     },
     {
