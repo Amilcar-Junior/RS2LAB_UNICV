@@ -1040,14 +1040,14 @@
             "d952e942d6d57f6b",
             "2347fc0074a4507d",
             "4fd62affc6d437d2",
-            "96b942a583a5d26c",
-            "84cb8168ca5037e1",
-            "25567570c356f2f8",
-            "8aa53b4b26e7bf85"
+            "a4d51d3155dcaf09",
+            "4840e5d49ba82584",
+            "887d4a4edcc04377",
+            "89a14a14a20f2729"
         ],
-        "x": 48,
+        "x": 34,
         "y": 379,
-        "w": 824,
+        "w": 838,
         "h": 1328
     },
     {
@@ -1075,12 +1075,18 @@
             "db2b0f074c5a2595",
             "673756bf618276ae",
             "c2cd3326d58e5487",
-            "ba7d4145bf366ec8"
+            "ba7d4145bf366ec8",
+            "216aa771f4fa059f",
+            "9ad80e32bc56dd40",
+            "c6cc16e771e9abc8",
+            "a84a186454ada01e",
+            "7d24db3c7d0b1fab",
+            "c3e6956cb911e670"
         ],
         "x": 968,
         "y": 339,
-        "w": 1704,
-        "h": 1328
+        "w": 1684,
+        "h": 1648
     },
     {
         "id": "a6adededcdd25826",
@@ -1148,7 +1154,8 @@
             "fab3a2ca659c7014",
             "146f45c3bfa8a3f8",
             "5c4ca93d9c9623ba",
-            "b67099c45258cfd3"
+            "b67099c45258cfd3",
+            "3cef35710a170464"
         ],
         "x": 954,
         "y": 39,
@@ -1192,7 +1199,7 @@
             "bcaf84441a1a7d51"
         ],
         "x": 34,
-        "y": 1679,
+        "y": 1919,
         "w": 872,
         "h": 302
     },
@@ -1232,8 +1239,8 @@
             "c6b8d07176e89f9c",
             "7b2bd4fed1f3ba8c"
         ],
-        "x": 1934,
-        "y": 859,
+        "x": 1954,
+        "y": 1179,
         "w": 652,
         "h": 782
     },
@@ -1545,7 +1552,7 @@
         ],
         "x": 1914,
         "y": 439,
-        "w": 732,
+        "w": 712,
         "h": 242
     },
     {
@@ -16133,7 +16140,7 @@
         "z": "b945a241e156bcfb",
         "g": "6232b0d6144ee826",
         "name": "function 2",
-        "func": "msg.topic = `SELECT DISTINCT\n    p.nome AS name,\n    p.codigo,\n    p.email,\n    p.status AS status_,\n    p.curso,\n    e.nome_edificio,\n    d.id_dispositivo\n    FROM pessoa p \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE p.id_perfil = 1;`;\nreturn msg;\n",
+        "func": "msg.topic = `SELECT \n    p.nome AS name,\n    p.codigo,\n    p.email,\n    p.status AS status_,\n    p.curso,\n    e.nome_edificio,\n    d.id_dispositivo\n    FROM pessoa p \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE p.id_perfil = 1;`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16527,8 +16534,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2260,
-        "y": 960,
+        "x": 2280,
+        "y": 1280,
         "wires": []
     },
     {
@@ -16538,8 +16545,8 @@
         "g": "030cd0a9f03e0251",
         "name": "Endpoint HTTP para Recebimento de Dados Biométricos no Node-RED",
         "info": "",
-        "x": 2250,
-        "y": 900,
+        "x": 2270,
+        "y": 1220,
         "wires": []
     },
     {
@@ -16558,8 +16565,8 @@
         "correl": "",
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
-        "x": 2480,
-        "y": 1080,
+        "x": 2500,
+        "y": 1400,
         "wires": []
     },
     {
@@ -16572,8 +16579,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2040,
-        "y": 1120,
+        "x": 2060,
+        "y": 1440,
         "wires": [
             [
                 "25fa820ac801af66",
@@ -16590,8 +16597,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2230,
-        "y": 1140,
+        "x": 2250,
+        "y": 1460,
         "wires": []
     },
     {
@@ -16607,8 +16614,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2220,
-        "y": 1080,
+        "x": 2240,
+        "y": 1400,
         "wires": []
     },
     {
@@ -16621,8 +16628,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2060,
-        "y": 1000,
+        "x": 2080,
+        "y": 1320,
         "wires": [
             [
                 "97829b7ee7afa223",
@@ -16639,8 +16646,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2450,
-        "y": 980,
+        "x": 2470,
+        "y": 1300,
         "wires": []
     },
     {
@@ -16653,8 +16660,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2050,
-        "y": 1220,
+        "x": 2070,
+        "y": 1540,
         "wires": [
             [
                 "bd7550ec9d56ba18",
@@ -16671,8 +16678,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2270,
-        "y": 1280,
+        "x": 2290,
+        "y": 1600,
         "wires": []
     },
     {
@@ -16688,8 +16695,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2280,
-        "y": 1240,
+        "x": 2300,
+        "y": 1560,
         "wires": []
     },
     {
@@ -16706,8 +16713,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 2060,
-        "y": 1460,
+        "x": 2080,
+        "y": 1780,
         "wires": [
             [
                 "25832e5902cd5ef3",
@@ -16728,8 +16735,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2260,
-        "y": 1420,
+        "x": 2280,
+        "y": 1740,
         "wires": []
     },
     {
@@ -16739,15 +16746,14 @@
         "g": "030cd0a9f03e0251",
         "name": "Mensagens de notificação",
         "info": "",
-        "x": 2070,
-        "y": 1380,
+        "x": 2090,
+        "y": 1700,
         "wires": []
     },
     {
         "id": "07d4ed1fc797ef90",
         "type": "mqtt in",
         "z": "b945a241e156bcfb",
-        "d": true,
         "g": "76d13409270878fb",
         "name": "",
         "topic": "fingerprint_REGISTED",
@@ -16814,8 +16820,8 @@
         "name": "mensagens",
         "server": "",
         "client": "5581410adca722cb",
-        "x": 2050,
-        "y": 1600,
+        "x": 2070,
+        "y": 1920,
         "wires": []
     },
     {
@@ -16848,8 +16854,8 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 2260,
-        "y": 1460,
+        "x": 2280,
+        "y": 1780,
         "wires": [
             [
                 "048916557373ef1e"
@@ -16870,8 +16876,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2440,
-        "y": 1460,
+        "x": 2460,
+        "y": 1780,
         "wires": []
     },
     {
@@ -16885,8 +16891,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2030,
-        "y": 1520,
+        "x": 2050,
+        "y": 1840,
         "wires": [
             [
                 "c6b8d07176e89f9c"
@@ -16907,8 +16913,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 2200,
-        "y": 1520,
+        "x": 2220,
+        "y": 1840,
         "wires": [
             [
                 "7b2bd4fed1f3ba8c"
@@ -16924,8 +16930,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2370,
-        "y": 1520,
+        "x": 2390,
+        "y": 1840,
         "wires": []
     },
     {
@@ -17636,7 +17642,7 @@
         "g": "b11e1f71e8119fb5",
         "name": "GET Dados Cartão",
         "info": "",
-        "x": 2050,
+        "x": 2030,
         "y": 480,
         "wires": []
     },
@@ -17662,7 +17668,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 2040,
+        "x": 2020,
         "y": 540,
         "wires": [
             [
@@ -17676,14 +17682,14 @@
         "z": "b945a241e156bcfb",
         "g": "b11e1f71e8119fb5",
         "name": "function 26",
-        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.data_registo,\n    e.nivel,\n    d.edificio,\n    d.UID_disposit,\n    e.device_id\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id\n    WHERE e.nivel IN ('Funcionário', 'Administrador');`;\nreturn msg;",
+        "func": "msg.topic = `SELECT \n    p.nome AS name,\n    p.codigo,\n    p.status AS status_,\n    e.nome_edificio,\n    d.id_dispositivo,\n    pa.id_perfil,\n    pa.nome_perfil\n    FROM pessoa p\n    JOIN perfis_acesso pa ON p.id_perfil = pa.id_perfil \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE NOT p.id_perfil = 1;`;\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2200,
+        "x": 2180,
         "y": 540,
         "wires": [
             [
@@ -17698,7 +17704,7 @@
         "g": "b11e1f71e8119fb5",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 2370,
+        "x": 2350,
         "y": 540,
         "wires": [
             [
@@ -17719,7 +17725,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2520,
+        "x": 2500,
         "y": 540,
         "wires": []
     },
@@ -17728,12 +17734,12 @@
         "type": "http in",
         "z": "b945a241e156bcfb",
         "g": "b11e1f71e8119fb5",
-        "name": "students",
+        "name": "cartão",
         "url": "/biosentry/visitants",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2000,
+        "x": 1990,
         "y": 600,
         "wires": [
             [
@@ -17747,14 +17753,14 @@
         "z": "b945a241e156bcfb",
         "g": "b11e1f71e8119fb5",
         "name": "function 27",
-        "func": "msg.topic = `SELECT \n    e.id,\n    e.nome AS name,\n    e.codigo,\n    e.data_registo,\n    e.nivel,\n    e.status_,\n    d.edificio,\n    d.UID_disposit,\n    e.device_id\n    FROM estudantes e \n    JOIN dispositivos d ON e.device_id = d.id\n    WHERE e.nivel IN ('Funcionário', 'Administrador');`;\nreturn msg;",
+        "func": "msg.topic = `SELECT \n    p.nome AS name,\n    p.codigo,\n    p.status AS status_,\n    e.nome_edificio,\n    d.id_dispositivo,\n    pa.id_perfil,\n    pa.nome_perfil\n    FROM pessoa p\n    JOIN perfis_acesso pa ON p.id_perfil = pa.id_perfil \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE NOT p.id_perfil = 1;`;\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2180,
+        "x": 2160,
         "y": 600,
         "wires": [
             [
@@ -17769,7 +17775,7 @@
         "g": "b11e1f71e8119fb5",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 2330,
+        "x": 2310,
         "y": 600,
         "wires": [
             [
@@ -17791,7 +17797,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2540,
+        "x": 2520,
         "y": 600,
         "wires": []
     },
@@ -17803,7 +17809,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2550,
+        "x": 2530,
         "y": 640,
         "wires": []
     },
@@ -17831,7 +17837,7 @@
         "z": "b945a241e156bcfb",
         "g": "e23f91c6c90719a6",
         "name": "Query",
-        "func": "msg.payload.status_ = msg.payload.status_ ? 1 : 0;\nmsg.payload.finger_id = global.get(\"finger_id\") || null;\n\n// Se o email não for fornecido, define como NULL\nlet email = msg.payload.email ? `'${msg.payload.email}'` : 'NULL'; \n\n// Garantir que nivel seja uma string envolvida por aspas simples\nlet nivel = msg.payload.nivel ? `'${msg.payload.nivel}'` : `'estudante'`;\n\nmsg.topic = `INSERT INTO estudantes (nome, codigo,curso, status_, device_id,nivel) ` +\n    `VALUES ('${msg.payload.name}', '${msg.payload.codigo}', ` +\n    `'${msg.payload.curso}','${msg.payload.status_}', ${msg.payload.device_id}, ${nivel});`;\nreturn msg;\n\n\n\n\n",
+        "func": "// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n    msg.payload.status_ = '0'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (nome, status, id_dispositivo, tagId, id_perfil) \n  VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n    msg.payload.name || '',\n    msg.payload.status_ || '0', // Já validado\n    msg.payload.id_dispositivo || '',\n    msg.payload.tagId !== undefined ? msg.payload.finger_id : null,\n    msg.payload.id_perfil || '',\n]\n\nreturn msg;\n\n\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -17860,7 +17866,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2540,
-        "y": 760,
+        "y": 800,
         "wires": []
     },
     {
@@ -17991,7 +17997,7 @@
         "z": "b945a241e156bcfb",
         "g": "e0914e4a4497fb15",
         "name": "function 12",
-        "func": "\nmsg.topic = `INSERT INTO logs_estudantes (\n    codigo,\n    data_hora,\n    log_info,\n    UID_disposit) ` +\n    `VALUES ('${msg.payload.codigo}',NOW(),'${msg.payload.logg_info}' ,'${msg.payload.device_id}');`;\nreturn msg;\n\n//colocar o device id e no get selecionar o UID do dispositivo\n// colocar UID como chave primaria?\n\n",
+        "func": "\nmsg.topic = `INSERT INTO logs_estudantes (\n    codigo,\n    data_hora,\n    tipo,\n    id_dispositivo) ` +\n    `VALUES ('${msg.payload.codigo}',NOW(),'${msg.payload.logg_info}' ,'${msg.payload.device_id}');`;\nreturn msg;\n\n//colocar o device id e no get selecionar o UID do dispositivo\n// colocar UID como chave primaria?\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18047,14 +18053,14 @@
         "z": "b945a241e156bcfb",
         "g": "e0914e4a4497fb15",
         "name": "function 17",
-        "func": "msg.topic = `SELECT \n    e.codigo,\n    l.data_hora,\n    l.UID_disposit,\n    e.nome AS name,\n    l.log_info AS logg_info,\n    e.status_\nFROM logs_estudantes l \nJOIN estudantes e ON l.codigo = e.codigo\nORDER BY l.data_hora DESC;`;\n\nreturn msg;\n",
+        "func": "msg.topic = `SELECT \n  p.nome AS name,\n  a.data_hora,\n  e.nome_edificio,\n  a.tipo AS logg_info\n  FROM acessos a\n  JOIN pessoa p ON a.codigo = p.codigo\n  JOIN dispositivo d ON a.id_dispositivo = d.id_dispositivo\n  JOIN edificio e ON d.id_edificio = e.id_edificio\n  ORDER BY a.data_hora DESC;\n`;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1290,
+        "x": 1270,
         "y": 160,
         "wires": [
             [
@@ -18098,7 +18104,7 @@
         "name": "Dasboard",
         "info": "",
         "x": 120,
-        "y": 1720,
+        "y": 1960,
         "wires": []
     },
     {
@@ -18112,7 +18118,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 1800,
+        "y": 2040,
         "wires": [
             [
                 "0310a9fa962dcf70"
@@ -18128,7 +18134,7 @@
         "statusCode": "",
         "headers": {},
         "x": 830,
-        "y": 1800,
+        "y": 2040,
         "wires": []
     },
     {
@@ -18137,7 +18143,7 @@
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 28",
-        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM pessoa WHERE status = '1' \";\nreturn msg;",
+        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM pessoa\";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18145,7 +18151,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 1800,
+        "y": 2040,
         "wires": [
             [
                 "6e69100c6ef896cd"
@@ -18160,7 +18166,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 1800,
+        "y": 2040,
         "wires": [
             [
                 "8a91e23ce64e2898"
@@ -18173,7 +18179,7 @@
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 29",
-        "func": "msg.label = \"entryCount\";\nmsg.topic = \"SELECT COUNT(*) AS entryCount FROM logs_estudantes WHERE log_info = 'in' AND DATE(data_hora) = CURDATE()\";\nreturn msg;\n",
+        "func": "msg.label = \"entryCount\";\nmsg.topic = \"SELECT COUNT(*) AS entryCount FROM acessos WHERE tipo = 'in' AND DATE(data_hora) = CURDATE()\";\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18181,7 +18187,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1860,
+        "y": 2100,
         "wires": [
             [
                 "b00bac600827eb6b"
@@ -18194,7 +18200,7 @@
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 30",
-        "func": "msg.label = \"exitCount\";\nmsg.topic = \"SELECT COUNT(*) AS exitCount FROM logs_estudantes WHERE log_info = 'out' AND DATE(data_hora) = CURDATE()\";\nreturn msg;\n",
+        "func": "msg.label = \"exitCount\";\nmsg.topic = \"SELECT COUNT(*) AS exitCount FROM acessos WHERE tipo = 'out' AND DATE(data_hora) = CURDATE()\";\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18202,7 +18208,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1900,
+        "y": 2140,
         "wires": [
             [
                 "2e970f49a76366a7"
@@ -18215,7 +18221,7 @@
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 31",
-        "func": "msg.label = \"deviceCount\";\nmsg.topic = \"SELECT COUNT(*) AS deviceCount FROM dispositivos\";\nreturn msg;\n",
+        "func": "msg.label = \"deviceCount\";\nmsg.topic = \"SELECT COUNT(*) AS deviceCount FROM dispositivo\";\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18223,7 +18229,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1940,
+        "y": 2180,
         "wires": [
             [
                 "bf8763186b6ea79b"
@@ -18238,7 +18244,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 510,
-        "y": 1860,
+        "y": 2100,
         "wires": [
             [
                 "ae4d50583f8f3df8"
@@ -18253,7 +18259,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 1940,
+        "y": 2180,
         "wires": [
             [
                 "bcaf84441a1a7d51"
@@ -18268,7 +18274,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 1900,
+        "y": 2140,
         "wires": [
             [
                 "947fe1399c32e3c5"
@@ -18284,7 +18290,7 @@
         "statusCode": "",
         "headers": {},
         "x": 810,
-        "y": 1860,
+        "y": 2100,
         "wires": []
     },
     {
@@ -18298,7 +18304,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 1900,
+        "y": 2140,
         "wires": [
             [
                 "e2f9b7afa65f5ce8"
@@ -18314,7 +18320,7 @@
         "statusCode": "",
         "headers": {},
         "x": 810,
-        "y": 1900,
+        "y": 2140,
         "wires": []
     },
     {
@@ -18328,7 +18334,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1860,
+        "y": 2100,
         "wires": [
             [
                 "fda4c757cadaf7eb"
@@ -18346,7 +18352,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1940,
+        "y": 2180,
         "wires": [
             [
                 "6ed7edffb077d181"
@@ -18362,7 +18368,7 @@
         "statusCode": "",
         "headers": {},
         "x": 770,
-        "y": 1940,
+        "y": 2180,
         "wires": []
     },
     {
@@ -18379,7 +18385,7 @@
         "finalize": "",
         "libs": [],
         "x": 690,
-        "y": 1800,
+        "y": 2040,
         "wires": [
             [
                 "aa92af3dde97dea8"
@@ -18400,7 +18406,7 @@
         "finalize": "",
         "libs": [],
         "x": 670,
-        "y": 1860,
+        "y": 2100,
         "wires": [
             [
                 "c2fcad8c947bb579"
@@ -18421,7 +18427,7 @@
         "finalize": "",
         "libs": [],
         "x": 650,
-        "y": 1900,
+        "y": 2140,
         "wires": [
             [
                 "d793516227976462"
@@ -18442,7 +18448,7 @@
         "finalize": "",
         "libs": [],
         "x": 630,
-        "y": 1940,
+        "y": 2180,
         "wires": [
             [
                 "4ba567f91bc95870"
@@ -18522,7 +18528,7 @@
         "name": "Relatorio",
         "info": "",
         "x": 100,
-        "y": 2020,
+        "y": 1760,
         "wires": []
     },
     {
@@ -18535,7 +18541,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 2100,
+        "y": 1840,
         "wires": [
             [
                 "montar-sql-report"
@@ -18555,7 +18561,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 2100,
+        "y": 1840,
         "wires": [
             [
                 "consulta-sql-report"
@@ -18569,7 +18575,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "Consulta Report (MySQL)",
         "x": 610,
-        "y": 2100,
+        "y": 1840,
         "wires": [
             [
                 "resposta-api-report"
@@ -18584,7 +18590,7 @@
         "statusCode": "",
         "headers": {},
         "x": 840,
-        "y": 2100,
+        "y": 1840,
         "wires": []
     },
     {
@@ -18592,12 +18598,12 @@
         "type": "http in",
         "z": "b945a241e156bcfb",
         "g": "6cfa3712cf99a987",
-        "name": "edficio",
+        "name": "dispositivoBiometrico",
         "url": "/biosentry/devicesforbuilding",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 130,
+        "x": 180,
         "y": 940,
         "wires": [
             [
@@ -18611,14 +18617,14 @@
         "z": "b945a241e156bcfb",
         "g": "6cfa3712cf99a987",
         "name": "function 36",
-        "func": "msg.topic = `SELECT DISTINCT d.id_dispositivo, d.tipo, e.nome_edificio \n    FROM dispositivo d\n    JOIN edificio e ON d.id_edificio = e.id_edificio \n    WHERE tipo = 'biometrico';`;\nreturn msg;",
+        "func": "msg.topic = `SELECT  d.id_dispositivo, d.tipo, e.nome_edificio \n    FROM dispositivo d\n    JOIN edificio e ON d.id_edificio = e.id_edificio \n    WHERE tipo = 'biometrico';`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 390,
         "y": 940,
         "wires": [
             [
@@ -18633,7 +18639,7 @@
         "g": "6cfa3712cf99a987",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 510,
+        "x": 550,
         "y": 940,
         "wires": [
             [
@@ -18651,76 +18657,6 @@
         "headers": {},
         "x": 690,
         "y": 940,
-        "wires": []
-    },
-    {
-        "id": "96b942a583a5d26c",
-        "type": "http in",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "6cfa3712cf99a987",
-        "name": "edificioPessoa",
-        "url": "/biosentry/devicesforperson/:codigo",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 150,
-        "y": 1000,
-        "wires": [
-            [
-                "84cb8168ca5037e1"
-            ]
-        ]
-    },
-    {
-        "id": "84cb8168ca5037e1",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "6cfa3712cf99a987",
-        "name": "function 37",
-        "func": "msg.topic = `SELECT p.id_dispositivo, e.nome_edificio\nFROM pessoa p\nJOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\nJOIN edificio e ON d.id_edificio = e.id_edificio\nWHERE p.codigo = '${msg.payload.codigo}';`;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 350,
-        "y": 1000,
-        "wires": [
-            [
-                "25567570c356f2f8"
-            ]
-        ]
-    },
-    {
-        "id": "25567570c356f2f8",
-        "type": "mysql",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "6cfa3712cf99a987",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "DB",
-        "x": 530,
-        "y": 1000,
-        "wires": [
-            [
-                "8aa53b4b26e7bf85"
-            ]
-        ]
-    },
-    {
-        "id": "8aa53b4b26e7bf85",
-        "type": "http response",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "6cfa3712cf99a987",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 730,
-        "y": 1000,
         "wires": []
     },
     {
@@ -18819,6 +18755,216 @@
         "x": 750,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "a4d51d3155dcaf09",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "dispositivoRFID",
+        "url": "/biosentry/buildingfordevicesRfid",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 1000,
+        "wires": [
+            [
+                "4840e5d49ba82584"
+            ]
+        ]
+    },
+    {
+        "id": "4840e5d49ba82584",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "function 37",
+        "func": "msg.topic = `SELECT  d.id_dispositivo, d.tipo, e.nome_edificio \n    FROM dispositivo d\n    JOIN edificio e ON d.id_edificio = e.id_edificio \n    WHERE tipo = 'biometrico';`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1000,
+        "wires": [
+            [
+                "887d4a4edcc04377"
+            ]
+        ]
+    },
+    {
+        "id": "887d4a4edcc04377",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 530,
+        "y": 1000,
+        "wires": [
+            [
+                "89a14a14a20f2729"
+            ]
+        ]
+    },
+    {
+        "id": "89a14a14a20f2729",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "6cfa3712cf99a987",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "216aa771f4fa059f",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "perfis",
+        "url": "/biosentry/perfil",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1990,
+        "y": 860,
+        "wires": [
+            [
+                "9ad80e32bc56dd40"
+            ]
+        ]
+    },
+    {
+        "id": "9ad80e32bc56dd40",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "function 38",
+        "func": "msg.topic = `SELECT nome_perfil\n    FROM perfis_acesso;`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2150,
+        "y": 860,
+        "wires": [
+            [
+                "c6cc16e771e9abc8"
+            ]
+        ]
+    },
+    {
+        "id": "c6cc16e771e9abc8",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 2310,
+        "y": 860,
+        "wires": [
+            [
+                "a84a186454ada01e",
+                "7d24db3c7d0b1fab"
+            ]
+        ]
+    },
+    {
+        "id": "a84a186454ada01e",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2450,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "7d24db3c7d0b1fab",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 56",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2460,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "c3e6956cb911e670",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 2020,
+        "y": 920,
+        "wires": [
+            [
+                "9ad80e32bc56dd40"
+            ]
+        ]
+    },
+    {
+        "id": "3cef35710a170464",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "e0914e4a4497fb15",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1080,
+        "y": 200,
+        "wires": [
+            [
+                "146f45c3bfa8a3f8"
+            ]
+        ]
     },
     {
         "id": "1a2b3c4d",

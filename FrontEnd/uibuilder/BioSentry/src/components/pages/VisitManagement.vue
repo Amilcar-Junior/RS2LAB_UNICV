@@ -15,8 +15,7 @@
         >
          Visitantes 
         </h3>
-        <img src="./components/images/rfid1.png" alt="digital" class="custom-img" style="display: block; margin: 0 auto; width: 70px; margin-bottom: 50px;"   />
-
+        <!-- <img src="./components/images/rfid1.png" alt="digital" class="custom-img" style="display: block; margin: 0 auto; width: 70px; margin-bottom: 50px;"   /> -->
   
         <div class="card">
           <div
@@ -66,7 +65,7 @@
                     </th>
                   <!--  <th scope="col" class="col-1">ID</th>-->
                     <th scope="col" class="col-2">Nome</th>
-                    <th scope="col" class="col-2">Codigo</th>
+                    <th scope="col" class="col-1">Codigo</th>
                     <th scope="col" class="col-1">Status</th>
                     <th scope="col" class="col-1">Edificio</th>
                     <th scope="col" class="col-1">Função</th>
@@ -93,9 +92,9 @@
              
                     <td>{{ item.name }}</td>
                     <td>{{ item.codigo }}</td>
-                    <td>{{ item.status_ }}</td>
-                    <td>{{ item.edificio }}</td>
-                    <td>{{ item.nivel }}</td>
+                    <td>{{ getStatusText(item.status_ )}}</td>
+                    <td>{{ item.nome_edificio }}</td>
+                    <td>{{ item.nome_perfil }}</td>
               
                     <td
                       class="text-center"
@@ -126,7 +125,7 @@
                       {{
                         searchQuery
                           ? "Não foi encontrado nenhum resultado para a pesquisa."
-                          : "Nenhuma pessoa registado."
+                          : "Nenhuma pessoa registada."
                       }}
                     </td>
                   </tr>
@@ -150,17 +149,18 @@
         <b-modal v-model="showModalAdd" title="Adicionar" hide-footer>
           <b-form @submit.prevent="saveUser">
             <div class="mb-3">
-              <label for="device_id">Edificio:</label>
+              <label for="id_dispositivo">Edificio:</label>
               <select
-                id="device_id"
-                v-model="model.item.device_id"
-                @change="atualizarUID" 
+                id="id_dispositivo"
+                v-model="model.item.id_dispositivo"
                 class="form-control"
                 required
               >
                 <option value="" disabled >Selecione o Edificio</option>
-                <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
-                  {{ edi.edificio }}
+                <option v-for="dispositivo in dispositivos" 
+                        :key="dispositivo.id_dispositivo" 
+                        :value="dispositivo.id_dispositivo">
+                  {{ dispositivo.nome_edificio }}
                 </option>
               </select>
               </div>
@@ -176,11 +176,11 @@
   
             <b-form-group
               label="Codigo"
-              label-for="codigo_estudante"
+              label-for="codigo"
               description="Codigo deve ter apenas 6 digitos."
             >
               <b-form-input
-                id="codigo_estudante"
+                id="codigo"
                 v-model="model.item.codigo"
                 @keypress="preventLetters"
                 required
@@ -188,25 +188,26 @@
             </b-form-group>
               
               <div>
-                <label for="nivel">Função:</label>
-                <select id="nivel" v-model="model.item.nivel" class="form-control">
+                <label for="perfil">Função:</label>
+                <select id="perfil" v-model="model.item.nome_perfil" class="form-control">
                   <option value="" disabled >Selecione a função da pessoa a ser registada</option>
-                  <option value="Estudante">Estudante</option>
-                  <option value="Docente">Adminstrador</option>
-                  <option value="Funcionário">Funcionário</option>
+                  <option v-for="perfil in perfis" 
+                        :key="perfil.id_perfil"
+                        :value="perfil.id_perfil"> 
+                        {{ perfil.nome_perfil }}
+                  </option>
               </select>
               </div>
   
-            <b-form-group label="Status" label-for="status">
-              <b-form-checkbox
-                id="status"
-                v-model="model.item.status_"
-                :true-value="1"
-                :false-value="0"
-              >
-                Ativo
-              </b-form-checkbox>
-            </b-form-group>
+              <b-col>
+                <b-form-group label="Status">
+                    <b-form-radio-group
+                      v-model="model.item.status_"
+                      :options="statusOptions"
+                      buttons
+                    ></b-form-radio-group>
+                  </b-form-group>
+              </b-col>
   
               <b-button
                 type="submit"
@@ -229,16 +230,18 @@
       <b-modal v-model="showModalEdit" title="Editar " hide-footer>
           <b-form @submit.prevent="saveUser">
             <div class="mb-3">
-              <label for="device_id">Edificio:</label>
+              <label for="id_dispositivo">Edificio:</label>
               <select
-                id="device_id"
-                v-model.number="currentUser.device_id"
+                id="id_dispositivo"
+                v-model.number="currentUser.id_dispositivo"
                 class="form-control"
                 required
               >
                 <option value="" disabled >Selecione o Edificio</option>
-                <option v-for="edi in edificios" :key="edi.id" :value="edi.id">
-                  {{ edi.edificio }}
+                <option v-for="dispositivo in dispositivos" 
+                      :key="dispositivo.id_dispositivo" 
+                      :value="dispositivo.id_dispositivo">
+                {{ dispositivo.nome_edificio }}
                 </option>
               </select>
             </div>
@@ -253,10 +256,10 @@
   
             <b-form-group
               label="Codigo"
-              label-for="codigo_estudante"
+              label-for="codigo"
             >
               <b-form-input
-                id="codigo_estudante"
+                id="codigo"
                 v-model="currentUser.codigo"
                 @keypress="preventLetters"
                 required
@@ -264,27 +267,25 @@
             </b-form-group>
   
             <div>
-                <label for="nivel">Função:</label>
-                <select id="nivel" v-model="currentUser.nivel" class="form-control">
+                <label for="perfil">Função:</label>
+                <select id="perfil" v-model="currentUser.nome_perfil" class="form-control">
                   <option value="" disabled >Selecione a função da pessoa a ser registada</option>
-                  <option value="Estudante">Estudante</option>
-                  <option value="Administrador">Administrador</option>
-                  <option value="Funcionário">Funcionário</option>
+                  <option v-for="perfil in perfis" 
+                        :key="perfil.id_perfil"
+                        :value="perfil.id_perfil"> 
+                        {{ perfil.nome_perfil }}
+                  </option>
               </select>
               </div>
      
   
-            <b-form-group label="Status" label-for="status">
-              <b-form-checkbox
-                id="status"
-                v-model.number="currentUser.status_"
-                :true-value="1"
-                :false-value="0"
-              >
-                Ativo
-              </b-form-checkbox>
-              <div>State: <strong>{{ Boolean(currentUser.status_) }}</strong></div>
-            </b-form-group>
+            <b-form-group label="Status">
+                    <b-form-radio-group
+                      v-model="currentUser.status_"
+                      :options="statusOptions"
+                      buttons
+                    ></b-form-radio-group>
+                  </b-form-group>
   
             <b-button type="submit" variant="success">Salvar</b-button>
             <b-button variant="secondary" @click="showModalEdit = false"
@@ -302,15 +303,20 @@
     props: ["keys"],
     data() {
       return {
-        edificios: [],
+        statusOptions: [
+          { text: 'Ativo', value: '1' },
+          { text: 'Inativo', value: '0' }
+        ],
+        dispositivos: [],
+        perfis: [],
         model: {
           item: {
             name: "",
             codigo: "",
-            device_id: "",
+            id_dispositivo: "",
             status_: "",
             UID_disposit: "", 
-            nivel:"",
+            nome_perfil:"",
             finger_id: null,
           },
         },
@@ -327,9 +333,9 @@
           id: null,
           codigo: "",
           name: "",
-          device_id: "",
+          id_dispositivo: "",
           status_: "",
-          nivel:"",
+          nome_perfil:"",
           UID_disposit : "",
           finger_id:null,
         },
@@ -344,6 +350,7 @@
     mounted() {
       this.retrieveItems();
       this.getEdificio();
+      this.getPerfil();
     },
     computed: {
       totalRows() {
@@ -370,6 +377,12 @@
       },
     },
     methods: {
+      getStatusText(status_) {
+        return {
+          0: 'Inativo',
+          1: 'Ativo'
+        }[status_] || 'Desconhecido';
+    },
       preventLetters(event) {
         const char = String.fromCharCode(event.which);
         if (!/^\d$/.test(char)) {
@@ -377,13 +390,7 @@
           this.showNotification("O código de estudante não pode ter letras.", "danger", "Erro");
         }
       },
-      atualizarUID() {
-        const deviceAddSelected = this.edificios.find(edi => edi.id === this.model.item.device_id);
-        this.model.item.uid_disposit = deviceAddSelected ? deviceAddSelected.UID_disposit : "";
-        
-        const deviceEditSelected = this.edificios.find(edi => edi.id === this.currentUser.device_id);
-        this.currentUser.uid_disposit = deviceEditSelected ? deviceEditSelected.UID_disposit : "";
-      },
+     
       retrieveItems() {
         axios
           .get("/biosentry/visitants")
@@ -411,17 +418,17 @@
       editItem(item) {
         this.currentUser = {
           ...item,
-          device_id: Number(item.device_id)
+          id_dispositivo: item.id_dispositivo
         };
         this.showModalEdit = true;
-        this.atualizarUID();
+      
       },
      
       async saveUser() {
   
-        if (this.currentUser.id) {
+        if (this.currentUser.codigo) {
           axios
-            .put(`/biosentry/updatestudents/${this.currentUser.id}`, this.currentUser)
+            .put(`/biosentry/updatestudents/${this.currentUser.codigo}`, this.currentUser)
             .then(() => {
               this.showNotification("Estudante atualizado com sucesso!", "success", "Atualização");
               this.retrieveItems();
@@ -433,9 +440,9 @@
             });
             //  inicio comando para enviar para node-red
           const payload = {
-            Cmd: "Edit_finger_status_" + this.currentUser.uid_disposit,
-            finger_id: Number(this.currentUser.finger_id), 
-            status_: this.model.item.status_ ? "1":"0",
+            Cmd: "Edit_finger_status_" + this.currentUser.id_dispositivo,
+            finger_id: Number(this.currentUser.tagId), 
+            status_: this.model.item.status_ ,
           };
           axios
             .post("/biosentry/editbiometria", payload)
@@ -470,35 +477,51 @@
       },
       resetCurrentUser() {
         this.model.item = {
-          id: null,
+         
           name: "",
           codigo: "",
-          device_id: "",
-          nivel:"",
+          id_dispositivo: "",
+          nome_perfil:"",
           status_: "",
         };
         this.currentUser = {
-          id: null,
+        
           name: "",
           codigo: "",
-          device_id: "",
-          nivel:"",
+          id_dispositivo: "",
+          nome_perfil:"",
           status_: 1,
         };
       },
       getEdificio() {
         axios
-          .get("/biosentry/devices")
+          .get("/biosentry/buildingfordevicesRfid")
           .then((resp) => {
             console.log(resp);
-            this.edificios = resp.data;
-            console.log(this.edificios);
+            this.dispositivos = resp.data;
+            console.log(this.dispositivos);
           })
           .catch((errors) => {
             console.error(errors);
-            this.showNotification("Erro ao buscar dados dos edificios.", "danger", "Erro");
+            this.showNotification("Erro ao buscar dados dos dispositivos.", "danger", "Erro");
           });
       },
+
+      getPerfil() {
+        axios
+          .get("/biosentry/perfil")
+          .then((resp) => {
+            console.log(resp);
+            this.perfis = resp.data;
+            console.log(this.perfis);
+          })
+          .catch((errors) => {
+            console.error(errors);
+            this.showNotification("Erro ao buscar dados dos perfis.", "danger", "Erro");
+          });
+      },
+
+
       deleteSelectedItems() {
         this.$bvModal
           .msgBoxConfirm(`Deseja deletar os seguintes itens? ${this.selectedItems.join(", ")}`, {
@@ -516,7 +539,7 @@
             if (value) {
               Promise.all(
                 this.selectedItems.map((id) =>
-                  axios.delete(`/biosentry/deleteStudents/${id}`)
+                  axios.delete(`/biosentry/deleteStudents/${codigo}`)
                 )
               )
                 .then(() => {
@@ -547,9 +570,8 @@
             this.ShowDeleteNotification("Erro ao Deletar Estudante.", "danger", "Erro");
           });
         const payload2 = {
-          Cmd: "Delete_finger_" + this.model.item.uid_disposit,
+          Cmd: "Delete_finger_" + this.model.item.id_dispositivo,
           codigo: this.model.item.codigo, 
-          status_: Number(this.model.item.status_)
         };
         console.log("Payload being sent to Node-RED:", payload2);
         axios

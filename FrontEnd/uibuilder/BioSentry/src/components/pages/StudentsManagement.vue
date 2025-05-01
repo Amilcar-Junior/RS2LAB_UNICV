@@ -129,7 +129,7 @@
                     {{
                       searchQuery
                         ? "Não foi encontrado nenhum resultado para a pesquisa."
-                        : "Nenhum estudante registado."
+                        : "Nenhum estudante registada."
                     }}
                   </td>
                 </tr>
@@ -149,7 +149,8 @@
         </div>
       </div>
 
-      <b-modal v-model="showModalAdd" title="Adicionar Aluno" hide-footer>
+      <!-- Modal para Adição -->
+      <b-modal v-model="showModalAdd" title="Adicionar Estudante" hide-footer>
           <b-form @submit.prevent="saveUser">
             <b-form-group label="Código de Estudante" label-for="codigo_estudante"
             description="Insira o código de estudante para adicionar o aluno">
@@ -193,7 +194,6 @@
               <select
                 id="id_dispositivo"
                 v-model="model.item.id_dispositivo"
-               
                 class="form-control"
                 required
               >
@@ -263,7 +263,7 @@
     
 
       <!-- Modal para Editar -->
-    <b-modal v-model="showModalEdit" title="Editar Aluno" hide-footer>
+    <b-modal v-model="showModalEdit" title="Editar Estudante" hide-footer>
         <b-form @submit.prevent="saveUser">
           
 
@@ -348,7 +348,7 @@
 
 <script>
 
-const mqtt = require('mqtt');
+//const mqtt = require('mqtt');
 
 module.exports = {
 
@@ -492,7 +492,6 @@ module.exports = {
         id_dispositivo:item.id_dispositivo
       };
       this.showModalEdit = true;
-      this.atualizarUID();
     },
   
 
@@ -521,7 +520,7 @@ module.exports = {
         });
     },
 
-//para quando for dado a api do STI
+//para buscar aluno por codigo
     async pesquisarAluno() {
       try {
         const codigo = this.codigo;

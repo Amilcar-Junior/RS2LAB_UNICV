@@ -31,9 +31,9 @@
                     </th> -->
                     <!-- <th scope="col" class="col-1">ID</th> -->
                     <th scope="col" class="col-2">Nome</th>
-                    <th scope="col" class="col-1">Status</th>
                     <th scope="col" class="col-1">Data/Hora </th>
-                    <th scope="col" class="col-1">In/Out</th>
+                    <th scope="col" class="col-1">Edificio</th>
+                    <th scope="col" class="col-1">Entrada/Saída</th>
                   </tr>
                 </thead>
                 <tbody v-if="paginatedItems.length > 0">
@@ -47,8 +47,8 @@
                     </td> -->
                     <!-- <td>{{ item.id }}</td> -->
                     <td>{{ item.name }}</td>
-                    <td>{{ item.status_ }}</td>
                     <td>{{ formatDate(item.data_hora) }}</td>
+                    <td>{{ item.nome_edificio  }}</td>
                     <td>{{ item.logg_info}}</td>
                   </tr>
                 </tbody>
@@ -134,9 +134,8 @@ module.exports = {
       return this.items.filter((item) => {
         return (
           item.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.log_info.toLowerCase().includes(this.searchQuery.toLowerCase()) 
-      //  item.edificio.toLowerCase().includes(this.searchQuery.toLowerCase()) 
-        //  item.status_.toString().includes(this.searchQuery)
+          item.logg_info.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.nome_edificio.toLowerCase().includes(this.searchQuery.toLowerCase()) 
         );
       });
     },
@@ -148,6 +147,7 @@ module.exports = {
     },
   },
   methods: {
+   
     fetchLogs() {
       axios
           .get("/biosentry/logsStudents")
