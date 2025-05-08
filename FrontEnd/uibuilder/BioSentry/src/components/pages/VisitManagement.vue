@@ -24,7 +24,7 @@
             <input
               type="text"
               class="form-control d-inline-block w-auto"
-              placeholder="Buscar por Nome, Email..."
+              placeholder="Buscar por Nome, ..."
               v-model="searchQuery"
             />
   
@@ -111,7 +111,7 @@
                       </button>
                       <button
                         type="button"
-                        @click="ShowConfirmDelete(item.id)"
+                        @click="ShowConfirmDelete(item.codigo)"
                         class="btn btn-danger button"
                       >
                         <i class="fa fa-trash" aria-hidden="true"></i> <!-- Icone de eliminar-->
@@ -188,8 +188,11 @@
             </b-form-group>
               
               <div>
-                <label for="perfil">Função:</label>
-                <select id="perfil" v-model="model.item.nome_perfil" class="form-control">
+                <label for="id_perfil">Função:</label>
+                <select 
+                id="id_perfil" 
+                v-model.number="model.item.id_perfil" 
+                class="form-control">
                   <option value="" disabled >Selecione a função da pessoa a ser registada</option>
                   <option v-for="perfil in perfis" 
                         :key="perfil.id_perfil"
@@ -237,7 +240,7 @@
                 class="form-control"
                 required
               >
-                <option value="" disabled >Selecione o Edificio</option>
+                <!-- <option value="" disabled >Selecione o Edificio</option> -->
                 <option v-for="dispositivo in dispositivos" 
                       :key="dispositivo.id_dispositivo" 
                       :value="dispositivo.id_dispositivo">
@@ -263,13 +266,18 @@
                 v-model="currentUser.codigo"
                 @keypress="preventLetters"
                 required
+                readonly
               ></b-form-input>
             </b-form-group>
   
             <div>
-                <label for="perfil">Função:</label>
-                <select id="perfil" v-model="currentUser.nome_perfil" class="form-control">
-                  <option value="" disabled >Selecione a função da pessoa a ser registada</option>
+                <label for="id_perfil">Função:</label>
+                <select 
+                id="id_perfil" 
+                v-model.number="currentUser.id_perfil" 
+                class="form-control"
+                required>
+                  <!-- <option value="" disabled >Selecione a função da pessoa a ser registada</option> -->
                   <option v-for="perfil in perfis" 
                         :key="perfil.id_perfil"
                         :value="perfil.id_perfil"> 
@@ -314,10 +322,9 @@
             name: "",
             codigo: "",
             id_dispositivo: "",
+            id_perfil: "",
             status_: "",
-            UID_disposit: "", 
-            nome_perfil:"",
-            finger_id: null,
+            tagId: null,
           },
         },
         items: [],
@@ -330,14 +337,12 @@
         searchQuery: "",
         userTypes: window.appConfig.userTypes,
         currentUser: {
-          id: null,
           codigo: "",
           name: "",
           id_dispositivo: "",
+          id_perfil: "",
           status_: "",
-          nome_perfil:"",
-          UID_disposit : "",
-          finger_id:null,
+          tagId:null,
         },
         isSaving: false,
         biometriaRegistrada: false,
@@ -364,8 +369,6 @@
         return this.items.filter((item) => {
           return (
             item.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            item.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            item.curso.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
             item.status_.toString().includes(this.searchQuery)
           );
         });
@@ -403,7 +406,7 @@
       },
       toggleSelectAll(event) {
         if (event.target.checked) {
-          this.selectedItems = this.paginatedItems.map((item) => item.id);
+          this.selectedItems = this.paginatedItems.map((item) => item.codigo);
         } else {
           this.selectedItems = [];
         }
@@ -418,7 +421,8 @@
       editItem(item) {
         this.currentUser = {
           ...item,
-          id_dispositivo: item.id_dispositivo
+          id_dispositivo: item.id_dispositivo,
+          id_perfil: Number(item.id_perfil)
         };
         this.showModalEdit = true;
       
@@ -428,21 +432,21 @@
   
         if (this.currentUser.codigo) {
           axios
-            .put(`/biosentry/updatestudents/${this.currentUser.codigo}`, this.currentUser)
+            .put(`/biosentry/update/${this.currentUser.codigo}`, this.currentUser)
             .then(() => {
-              this.showNotification("Estudante atualizado com sucesso!", "success", "Atualização");
+              this.showNotification("Pessoa atualizado com sucesso!", "success", "Atualização");
               this.retrieveItems();
               this.showModalEdit = false;
               this.resetCurrentUser();
             })
             .catch(() => {
-              this.showNotification("Falha ao atualizar o estudante!", "danger", "Erro");
+              this.showNotification("Falha ao atualizar o pessoa!", "danger", "Erro");
             });
             //  inicio comando para enviar para node-red
           const payload = {
             Cmd: "Edit_finger_status_" + this.currentUser.id_dispositivo,
-            finger_id: Number(this.currentUser.tagId), 
-            status_: this.model.item.status_ ,
+            tag_id: Number(this.currentUser.tagId), 
+            status_: this.currentUser.status_ ,
           };
           axios
             .post("/biosentry/editbiometria", payload)
@@ -538,7 +542,7 @@
           .then((value) => {
             if (value) {
               Promise.all(
-                this.selectedItems.map((id) =>
+                this.selectedItems.map((codigo) =>
                   axios.delete(`/biosentry/deleteStudents/${codigo}`)
                 )
               )
@@ -594,9 +598,8 @@
         const itemToDelete = this.items.find(item => item.id === ItemID);
         if (itemToDelete) {
           this.model.item = {
-            uid_disposit: itemToDelete.UID_disposit,
+            uid_disposit: itemToDelete.id_dispositivo,
             codigo: itemToDelete.codigo,
-            status_: itemToDelete.status_
           };
         }
         this.$bvModal

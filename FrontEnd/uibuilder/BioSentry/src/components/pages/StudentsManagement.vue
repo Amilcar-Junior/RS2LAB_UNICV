@@ -304,7 +304,7 @@
             <label for="id_dispositivo">Edificio:</label>
             <select
               id="id_dispositivo"
-              v-model="currentUser.id_dispositivo"
+              v-model.number="currentUser.id_dispositivo"
               class="form-control"
               required
             >
@@ -402,16 +402,16 @@ module.exports = {
     };
   },
   //responsavel por mostrar o edificio da pessoa selecionda para edição
-  watch: {
-    'currentUser.id_dispositivo': function(newVal) {
-      const dispositivoSelecionado = this.dispositivos.find(d => d.id_dispositivo === newVal);
-      if (dispositivoSelecionado) {
-        this.currentUser.nome_edificio = dispositivoSelecionado.nome_edificio;
-      } else {
-        this.currentUser.nome_edificio = "";
-      }
-    }
-  },
+  // watch: {
+  //   'currentUser.id_dispositivo': function(newVal) {
+  //     const dispositivoSelecionado = this.dispositivos.find(d => d.id_dispositivo === newVal);
+  //     if (dispositivoSelecionado) {
+  //       this.currentUser.nome_edificio = dispositivoSelecionado.nome_edificio;
+  //     } else {
+  //       this.currentUser.nome_edificio = "";
+  //     }
+  //   }
+  // },
 
   mounted() {
     this.retrieveItems();
