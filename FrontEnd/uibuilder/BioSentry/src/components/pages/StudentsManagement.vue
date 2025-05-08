@@ -533,23 +533,52 @@ module.exports = {
           return;
         }
 
-        const response = await axios.get(`/getstudentbycode?codigo=${codigo}`); 
-        this.model.item.codigo = codigo; // Ensure codigo is set in model.item
+        // Recuperar o access_token e a expiração do localStorage
+          const access_token = localStorage.getItem("unicv_token") || localStorage.getItem("token");
+          const token_expiration = parseInt(localStorage.getItem("unicv_token_expiration"), 10);
+          console.log("Token recuperado do localStorage:", access_token);
+          console.log("Expiração do token:", token_expiration);
+        if(!access_token){
+          this.showNotification("Token de autenicação não encontrado.Por favor, faça login para continuar.", "warning", "Atenção");
+        }
+
+        // Verificar se o token está expirado
+    const currentTime = Math.floor(Date.now() / 1000);
+    if (token_expiration && token_expiration < currentTime) {
+      this.showNotification("Sessão expirada. Faça login novamente.", "danger", "Erro");
+      console.log("Erro: Token expirado. Expiração:", token_expiration, "Atual:", currentTime);
+      return;
+    }
+
+        // Fazer a requisição com o token no cabeçalho
+        const response = await axios.get(`/getstudentbycode?codigo=${codigo}`, {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }); 
+        this.model.item.codigo = codigo; // Garantir que o código esteja no model.item
 
         if (response.data && response.data.data) {
           const estudante = response.data.data;
 
           this.model.item.name = estudante.name || "Não disponível";
           this.model.item.email = estudante.email_academico || "Não disponível";
-          this.model.item.curso = "Não disponivel"; // Set to default or leave empty if not available
+          this.model.item.curso = "Não disponivel"; // Ajustar conforme os dados retornados
         } else {
           this.showNotification("Estudante não encontrado.", "danger", "Erro");
         }
       } catch (error) {
         console.error("Erro ao buscar estudante:", error);
-        this.showNotification("Erro ao buscar estudante. Verifique a conexão ou tente novamente.", "danger", "Erro");
+          if (error.response && error.response.status === 401) {
+            this.showNotification("Sessão expirada. Faça login novamente.", "danger", "Erro");
+          } else {
+            this.showNotification(
+              "Erro ao buscar estudante. Verifique a conexão ou tente novamente.",
+              "danger",
+              "Erro"
+            );
+          }
       }
-
    
 },
    

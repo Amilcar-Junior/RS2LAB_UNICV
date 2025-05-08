@@ -235,6 +235,23 @@ module.exports = {
       console.log("Token extraido", token);
       console.log("Data de expiração do token:", tokenExpiration);
 
+      // Verificar se o token está expirado
+    const currentTime = Math.floor(Date.now() / 1000); // Tempo atual em segundos
+    if (tokenExpiration < currentTime) {
+      this.errormessage = "Token de autenticação expirado. Tente novamente.";
+      this.errorVariant = "danger";
+      console.log("Erro: Token expirado. Expiração:", tokenExpiration, "Atual:", currentTime);
+      return;
+    }
+
+      // Armazenar o token no localStorage
+        localStorage.setItem("unicv_token", token);
+        localStorage.setItem("unicv_token_expiration", tokenExpiration);
+        console.log("Tokens armazenados no localStorage:", {
+          unicv_token: localStorage.getItem("unicv_token"),
+          unicv_token_expiration: localStorage.getItem("unicv_token_expiration"),
+        });
+
       // Armazena os dados do usuário
       console.log("Armazenando dados do usuário...");
       this.keys.setUser(user);
