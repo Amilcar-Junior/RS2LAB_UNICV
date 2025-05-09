@@ -17310,6 +17310,7 @@
         "id": "cf36baa239b15d69",
         "type": "http in",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "76d13409270878fb",
         "name": "Recebe Requisição do Vue.js",
         "url": "/getstudentbycode",
@@ -17328,6 +17329,7 @@
         "id": "e81c3c9247a0a3a8",
         "type": "http request",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "76d13409270878fb",
         "name": "Chama API da UNICV",
         "method": "GET",
@@ -17353,6 +17355,7 @@
         "id": "e33fe3b0a3c0af8b",
         "type": "http response",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "76d13409270878fb",
         "name": "Retorna dados",
         "statusCode": "200",
@@ -17365,6 +17368,7 @@
         "id": "32ba2818dca4e055",
         "type": "function",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "76d13409270878fb",
         "name": "function 25",
         "func": "var codigo = msg.req.query.codigo;\nmsg.url = \"http://betaapi.unicv.cv/api-basic-v1/person/view?id=\" + codigo;\nreturn msg;\n\n",
@@ -19231,6 +19235,83 @@
         "headers": {},
         "x": 2530,
         "y": 740,
+        "wires": []
+    },
+    {
+        "id": "903f5e795fc79aa4",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "name": "Recebe Requisição do Vue.js",
+        "url": "/getstudentbycode",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2900,
+        "y": 960,
+        "wires": [
+            [
+                "078f7ae1d190427f"
+            ]
+        ]
+    },
+    {
+        "id": "078f7ae1d190427f",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "Prepare API Request",
+        "func": "node.log(`Recebida requisição para /getstudentbycode: ${JSON.stringify(msg.req.query)}`);\n\n// Extrair o código da query string\nvar codigo = msg.req.query.codigo;\nif (!codigo) {\n    node.error('Código de estudante não fornecido.');\n    msg.statusCode = 400;\n    msg.payload = { error: 'Código de estudante é obrigatório.' };\n    return [null, msg];\n}\n\n// Construir a URL da API\nmsg.url = `https://betaapi.unicv.cv/api-basic-v1/person/view?id=${codigo}`;\n\n// Extrair o token do cabeçalho Authorization\nconst authHeader = msg.req.headers.authorization;\nif (!authHeader || !authHeader.startsWith('Bearer ')) {\n    node.error('Token de autenticação não fornecido ou inválido.');\n    msg.statusCode = 401;\n    msg.payload = { error: 'Token de autenticação é obrigatório.' };\n    return [null, msg];\n}\n\n// Configurar o cabeçalho Authorization para a requisição à API\nmsg.headers = {\n    'Authorization': authHeader\n};\n\nnode.log(`Enviando requisição para: ${msg.url}`);\nnode.log(`Cabeçalho Authorization: ${msg.headers.Authorization}`);\nreturn [msg, null];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3160,
+        "y": 960,
+        "wires": [
+            [
+                "deadf4b9c6947e16"
+            ],
+            [
+                "6107e7dbc5c0397b"
+            ]
+        ]
+    },
+    {
+        "id": "deadf4b9c6947e16",
+        "type": "http request",
+        "z": "b945a241e156bcfb",
+        "name": "Chama API da UNICV",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 3400,
+        "y": 880,
+        "wires": [
+            [
+                "6107e7dbc5c0397b"
+            ]
+        ]
+    },
+    {
+        "id": "6107e7dbc5c0397b",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "name": "Retorna dados",
+        "statusCode": "",
+        "headers": {
+            "Access-Control-Allow-Origin": "*"
+        },
+        "x": 3600,
+        "y": 940,
         "wires": []
     },
     {

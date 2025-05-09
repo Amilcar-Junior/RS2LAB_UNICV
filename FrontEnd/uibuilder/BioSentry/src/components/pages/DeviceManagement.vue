@@ -60,9 +60,9 @@
                     <input type="checkbox" @change="toggleSelectAll($event)" />
                   </th> -->
                   <th scope="col" class="col-1">Identificador</th>
-                  <th scope="col" class="col-2">Edificio</th>
-                  <th scope="col" class="col-2">Tipo</th>
-                  <th scope="col" class="col-2">Status</th>
+                  <th scope="col" class="col-1">Edificio</th>
+                  <th scope="col" class="col-1">Tipo</th>
+                  <th scope="col" class="col-1">Status</th>
                   <th scope="col" class="col-1">Data de Registo</th>
                   <th
                     scope="col"

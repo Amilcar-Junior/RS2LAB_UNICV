@@ -18164,7 +18164,7 @@
         "z": "b945a241e156bcfb",
         "g": "e9bc3d9e88c8e3b7",
         "name": "function 28",
-        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM pessoa\";\nreturn msg;",
+        "func": "\nmsg.topic = \"SELECT COUNT(*) AS studentCount FROM pessoa where id_perfil = 1\";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
