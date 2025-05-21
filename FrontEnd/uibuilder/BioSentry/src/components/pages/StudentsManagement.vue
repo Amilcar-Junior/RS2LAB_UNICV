@@ -401,17 +401,7 @@ module.exports = {
 
     };
   },
-  //responsavel por mostrar o edificio da pessoa selecionda para edição
-  // watch: {
-  //   'currentUser.id_dispositivo': function(newVal) {
-  //     const dispositivoSelecionado = this.dispositivos.find(d => d.id_dispositivo === newVal);
-  //     if (dispositivoSelecionado) {
-  //       this.currentUser.nome_edificio = dispositivoSelecionado.nome_edificio;
-  //     } else {
-  //       this.currentUser.nome_edificio = "";
-  //     }
-  //   }
-  // },
+
 
   mounted() {
     this.retrieveItems();
@@ -455,13 +445,7 @@ module.exports = {
         this.showNotification("O código de estudante não pode ter letras.", "danger", "Erro");
       }
     },
-    // atualizarUID() {
-    //   const deviceAddSelected = this.dispositivos.find(edi => edi.id === this.model.item.id_dispositivo);
-    //   this.model.item.uid_disposit = deviceAddSelected ? deviceAddSelected.UID_disposit : "";
-      
-    //   const deviceEditSelected = this.dispositivos.find(edi => edi.id === this.currentUser.id_dispositivo);
-    //   this.currentUser.uid_disposit = deviceEditSelected ? deviceEditSelected.UID_disposit : "";
-    // },
+   
     retrieveItems() {
       axios
         .get("/biosentry/students")

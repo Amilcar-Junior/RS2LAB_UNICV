@@ -13,13 +13,15 @@
           <div
             class="card-header d-flex justify-content-between align-items-center"
           >
-
           <input
             type="text"
             class="form-control d-inline-block w-auto"
             placeholder="Buscar por Edificio, Nome,Status..."
             v-model="searchQuery"
           />
+          <router-link to="/biosentry/gerar-relatorio" class="btn btn-primary">
+            Gerar Relatório
+          </router-link>
           </div>
           <div class="card-body">
             <div class="table-responsive">
