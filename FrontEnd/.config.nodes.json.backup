@@ -443,7 +443,7 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-node-mysql",
-                "file": "C:\\Developer\\Projects\\amilcar\\RS2LAB_UNICV\\frontend\\node_modules\\node-red-node-mysql\\68-mysql.js"
+                "file": "C:\\Developer\\Projects\\amilcar\\RS2LAB_UNICV\\FrontEnd\\node_modules\\node-red-node-mysql\\68-mysql.js"
             }
         }
     },
@@ -462,7 +462,7 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
-                "file": "C:\\Developer\\Projects\\amilcar\\RS2LAB_UNICV\\frontend\\node_modules\\node-red-contrib-uibuilder\\nodes\\uibuilder.js"
+                "file": "C:\\Developer\\Projects\\amilcar\\RS2LAB_UNICV\\FrontEnd\\node_modules\\node-red-contrib-uibuilder\\nodes\\uibuilder.js"
             }
         }
     },
@@ -483,7 +483,7 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-node-email",
-                "file": "C:\\Developer\\Projects\\amilcar\\RS2LAB_UNICV\\frontend\\node_modules\\node-red-node-email\\61-email.js"
+                "file": "C:\\Developer\\Projects\\amilcar\\RS2LAB_UNICV\\FrontEnd\\node_modules\\node-red-node-email\\61-email.js"
             }
         }
     }

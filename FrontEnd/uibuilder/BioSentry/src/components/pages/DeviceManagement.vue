@@ -502,71 +502,7 @@ module.exports = {
           );
         });
     },
-    // deleteSelectedItems() {
-    //   this.$bvModal
-    //     .msgBoxConfirm(
-    //       `Deseja deletar os seguintes itens? ${this.selectedItems.join(", ")}`,
-    //       {
-    //         title: "Deletar Selecionados",
-    //         size: "sm",
-    //         buttonSize: "sm",
-    //         okVariant: "danger",
-    //         okTitle: "Sim",
-    //         cancelTitle: "Não",
-    //         footerClass: "p-2",
-    //         hideHeaderClose: false,
-    //         centered: true,
-    //       }
-    //     )
-    //     .then((value) => {
-    //       if (value) {
-    //         // Faz a chamada para deletar cada item selecionado
-    //         Promise.all(
-    //           this.selectedItems.map((id) =>
-    //             axios.delete(`/biosentry/deletedevices/${id}`)
-    //           )
-    //         )
-    //           .then(() => {
-    //             this.ShowDeleteNotification(
-    //               "Dispositivos deletados com sucesso!",
-    //               "success",
-    //               "Sucesso"
-    //             );
-    //             this.selectedItems = [];
-    //             this.retrieveItems();
-    //           })
-    //           .catch((error) => {
-    //             console.error("Erro ao deletar Dispositivos:", error);
-    //             this.ShowDeleteNotification(
-    //               "Erro ao Deletar Dispositivos.",
-    //               "danger",
-    //               "Erro"
-    //             );
-    //           });
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.error("Erro ao exibir a caixa de diálogo:", err);
-    //     });
-    // },
-    // deleteItem(ItemID) {
-    //   axios
-    //     .delete(`/biosentry/deletedevices/${ItemID}`)
-    //     .then(() => {
-    //       this.ShowDeleteNotification(
-    //         "Dispositivo deletado com sucesso!",
-    //         "success", "Sucesso"
-    //       );
-    //       this.retrieveItems();
-    //     })
-    //     .catch((error) => {
-    //       console.error("Erro ao deletar Dispositivo:", error);
-    //       this.ShowDeleteNotification(
-    //         "Erro ao Deletar Dispositivo.",
-    //         "danger","Erro"
-    //       );
-    //     });
-    // },
+ 
     ShowDeleteNotification(message, variant, title) {
       this.$bvToast.toast(message, {
         title: title,
@@ -596,10 +532,7 @@ module.exports = {
           console.error("Erro ao exibir a caixa de diálogo:", err);
         });
     },
-    // checkUIDExists(uid) {
-    //     // Verifica se o UID já existe na lista de dispositivos
-    //     return this.items.some(item => item.id_dispositivo === uid);
-    //   },
+
   },
 };
 </script>
