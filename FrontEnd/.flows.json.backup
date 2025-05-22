@@ -1095,10 +1095,10 @@
             "c3e6956cb911e670",
             "7c55617bc8554466"
         ],
-        "x": 948,
+        "x": 968,
         "y": 339,
-        "w": 1718,
-        "h": 1708
+        "w": 1744,
+        "h": 1568
     },
     {
         "id": "a6adededcdd25826",
@@ -1136,10 +1136,10 @@
             "proxy_response",
             "proxy_debug"
         ],
-        "x": null,
-        "y": null,
-        "w": null,
-        "h": null
+        "x": 44,
+        "y": 39,
+        "w": 862,
+        "h": 322
     },
     {
         "id": "e0914e4a4497fb15",
@@ -1241,20 +1241,18 @@
             "a1de6f892b38c6b6",
             "3742abac55a33d27",
             "bd7550ec9d56ba18",
-            "1b568c19d1c72465",
-            "4f0ca8dd552ed87c",
             "c277d52c07917e3d",
-            "d8c658e890aeb439",
-            "25832e5902cd5ef3",
-            "048916557373ef1e",
-            "c95a7d46ac6a0c4e",
-            "c6b8d07176e89f9c",
-            "7b2bd4fed1f3ba8c"
+            "a979d7f5356b7a5a",
+            "69845838d1e36857",
+            "7d5f0c288939fb75",
+            "fba83df9b0aeb30e",
+            "75c2a0fca3ccd526",
+            "6c5bd5772f037429"
         ],
-        "x": 1954,
+        "x": 1934,
         "y": 1239,
-        "w": 652,
-        "h": 782
+        "w": 752,
+        "h": 642
     },
     {
         "id": "2d0336cd76812691",
@@ -1319,9 +1317,9 @@
             "deadf4b9c6947e16",
             "6107e7dbc5c0397b"
         ],
-        "x": 974,
+        "x": 994,
         "y": 759,
-        "w": 952,
+        "w": 932,
         "h": 362
     },
     {
@@ -1379,7 +1377,7 @@
             "cd5274331186766e",
             "01e8b8655c698a26"
         ],
-        "x": 994,
+        "x": 1034,
         "y": 439,
         "w": 732,
         "h": 282
@@ -1606,7 +1604,7 @@
         "id": "f3e8c660cf5205b5",
         "type": "MySQLdatabase",
         "name": "db_iot_rs2lab",
-        "host": "127.0.0.1",
+        "host": "158.220.96.173",
         "port": "3306",
         "db": "db_iot_rs2lab",
         "tz": "",
@@ -11828,8 +11826,7 @@
         "g": "9e6382268e9dd573",
         "name": "",
         "links": [
-            "89e1a4ceac90b0d3",
-            "d451db08d12ba9c1"
+            "89e1a4ceac90b0d3"
         ],
         "x": 55,
         "y": 120,
@@ -16045,7 +16042,7 @@
         "g": "6232b0d6144ee826",
         "name": "GET ESTUDANTES",
         "info": "",
-        "x": 1130,
+        "x": 1170,
         "y": 480,
         "wires": []
     },
@@ -16071,7 +16068,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1120,
+        "x": 1160,
         "y": 540,
         "wires": [
             [
@@ -16092,7 +16089,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1280,
+        "x": 1320,
         "y": 540,
         "wires": [
             [
@@ -16107,7 +16104,7 @@
         "g": "6232b0d6144ee826",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1450,
+        "x": 1490,
         "y": 540,
         "wires": [
             [
@@ -16128,7 +16125,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1600,
+        "x": 1640,
         "y": 540,
         "wires": []
     },
@@ -16142,7 +16139,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1080,
+        "x": 1120,
         "y": 600,
         "wires": [
             [
@@ -16163,7 +16160,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
+        "x": 1300,
         "y": 600,
         "wires": [
             [
@@ -16178,7 +16175,7 @@
         "g": "6232b0d6144ee826",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1410,
+        "x": 1450,
         "y": 600,
         "wires": [
             [
@@ -16200,7 +16197,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1620,
+        "x": 1660,
         "y": 600,
         "wires": []
     },
@@ -16212,7 +16209,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1630,
+        "x": 1670,
         "y": 640,
         "wires": []
     },
@@ -16238,7 +16235,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1120,
+        "x": 1160,
         "y": 660,
         "wires": [
             [
@@ -16263,7 +16260,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1290,
+        "x": 1330,
         "y": 660,
         "wires": [
             [
@@ -16284,7 +16281,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1460,
+        "x": 1500,
         "y": 680,
         "wires": []
     },
@@ -16716,46 +16713,6 @@
         "wires": []
     },
     {
-        "id": "1b568c19d1c72465",
-        "type": "mqtt in",
-        "z": "b945a241e156bcfb",
-        "g": "030cd0a9f03e0251",
-        "name": "",
-        "topic": "debug_BioSentry",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "c04d9c37659ca8d5",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 2080,
-        "y": 1840,
-        "wires": [
-            [
-                "25832e5902cd5ef3",
-                "4f0ca8dd552ed87c"
-            ]
-        ]
-    },
-    {
-        "id": "4f0ca8dd552ed87c",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "030cd0a9f03e0251",
-        "name": "debug 41",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2280,
-        "y": 1800,
-        "wires": []
-    },
-    {
         "id": "c277d52c07917e3d",
         "type": "comment",
         "z": "b945a241e156bcfb",
@@ -16763,7 +16720,7 @@
         "name": "Mensagens de notificação",
         "info": "",
         "x": 2090,
-        "y": 1760,
+        "y": 1700,
         "wires": []
     },
     {
@@ -16828,19 +16785,6 @@
         "wires": []
     },
     {
-        "id": "d8c658e890aeb439",
-        "type": "websocket out",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "030cd0a9f03e0251",
-        "name": "mensagens",
-        "server": "",
-        "client": "5581410adca722cb",
-        "x": 2070,
-        "y": 1980,
-        "wires": []
-    },
-    {
         "id": "583d6602eebeb86a",
         "type": "debug",
         "z": "b945a241e156bcfb",
@@ -16855,99 +16799,6 @@
         "statusType": "auto",
         "x": 1340,
         "y": 980,
-        "wires": []
-    },
-    {
-        "id": "25832e5902cd5ef3",
-        "type": "file",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "030cd0a9f03e0251",
-        "name": "",
-        "filename": "",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 2280,
-        "y": 1840,
-        "wires": [
-            [
-                "048916557373ef1e"
-            ]
-        ]
-    },
-    {
-        "id": "048916557373ef1e",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "030cd0a9f03e0251",
-        "name": "debug 45",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2460,
-        "y": 1840,
-        "wires": []
-    },
-    {
-        "id": "c95a7d46ac6a0c4e",
-        "type": "http in",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "030cd0a9f03e0251",
-        "name": "",
-        "url": "",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 2050,
-        "y": 1900,
-        "wires": [
-            [
-                "c6b8d07176e89f9c"
-            ]
-        ]
-    },
-    {
-        "id": "c6b8d07176e89f9c",
-        "type": "file in",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "030cd0a9f03e0251",
-        "name": "",
-        "filename": "",
-        "filenameType": "str",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 2220,
-        "y": 1900,
-        "wires": [
-            [
-                "7b2bd4fed1f3ba8c"
-            ]
-        ]
-    },
-    {
-        "id": "7b2bd4fed1f3ba8c",
-        "type": "http response",
-        "z": "b945a241e156bcfb",
-        "d": true,
-        "g": "030cd0a9f03e0251",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 2390,
-        "y": 1900,
         "wires": []
     },
     {
@@ -17344,6 +17195,8 @@
         "links": [
             "93b218d551ad041b"
         ],
+        "x": 85,
+        "y": 140,
         "wires": [
             [
                 "a0cd5592381514f4"
@@ -18418,7 +18271,7 @@
         "z": "b945a241e156bcfb",
         "g": "a6adededcdd25826",
         "name": "Query",
-        "func": "var username = msg.payload.username;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.codigo AS username,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.codigo = '${username}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
+        "func": "var username = msg.payload.username;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.codigo AS username,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    utilizador u\nLEFT JOIN\n    tipoutilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    utilizadorgrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    grupoutilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.codigo = '${username}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -19165,7 +19018,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1120,
+        "x": 1140,
         "y": 1080,
         "wires": [
             [
@@ -19234,6 +19087,116 @@
         },
         "x": 1820,
         "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "a979d7f5356b7a5a",
+        "type": "mqtt in",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "topic": "debug_BioSentry",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c04d9c37659ca8d5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 2080,
+        "y": 1780,
+        "wires": [
+            [
+                "69845838d1e36857"
+            ]
+        ]
+    },
+    {
+        "id": "69845838d1e36857",
+        "type": "file",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "filename": "C:\\Developer\\Projects",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2320,
+        "y": 1780,
+        "wires": [
+            [
+                "7d5f0c288939fb75"
+            ]
+        ]
+    },
+    {
+        "id": "7d5f0c288939fb75",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "debug 45",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2540,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "fba83df9b0aeb30e",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "url": "/biosentry/notificar",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 2070,
+        "y": 1840,
+        "wires": [
+            [
+                "75c2a0fca3ccd526"
+            ]
+        ]
+    },
+    {
+        "id": "75c2a0fca3ccd526",
+        "type": "file in",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "filename": "C:\\Developer\\Projects",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2340,
+        "y": 1840,
+        "wires": [
+            [
+                "6c5bd5772f037429"
+            ]
+        ]
+    },
+    {
+        "id": "6c5bd5772f037429",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2610,
+        "y": 1840,
         "wires": []
     },
     {
