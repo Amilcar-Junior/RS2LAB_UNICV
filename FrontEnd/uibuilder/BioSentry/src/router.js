@@ -1,27 +1,27 @@
 
 
 
-const Perfil = httpVueLoader('./components/Pages/Settings/perfil.vue');
-const ChangePassword = httpVueLoader('./components/Pages/Settings/ChangePassword.vue');
+const Perfil = httpVueLoader('./components/pages/Settings/perfil.vue');
+const ChangePassword = httpVueLoader('./components/pages/Settings/ChangePassword.vue');
 const PageNotFound = httpVueLoader('./components/PageNotFound.vue');
 
-const ListTipoUtilizador = httpVueLoader('./components/Pages/TipoUtilizador/View.vue');
-const CreateTipoUtilizador = httpVueLoader('./components/Pages/TipoUtilizador/Create.vue');
-const EditTipoUtilizador = httpVueLoader('./components/Pages/TipoUtilizador/Edit.vue');
+const ListTipoUtilizador = httpVueLoader('./components/pages/TipoUtilizador/View.vue');
+const CreateTipoUtilizador = httpVueLoader('./components/pages/TipoUtilizador/Create.vue');
+const EditTipoUtilizador = httpVueLoader('./components/pages/TipoUtilizador/Edit.vue');
 
 
-const ListUtilizador = httpVueLoader('./components/Pages/Utilizador/View.vue');
-const CreateUtilizador = httpVueLoader('./components/Pages/Utilizador/Create.vue');
-const EditUtilizador = httpVueLoader('./components/Pages/Utilizador/Edit.vue');
+const ListUtilizador = httpVueLoader('./components/pages/Utilizador/View.vue');
+const CreateUtilizador = httpVueLoader('./components/pages/Utilizador/Create.vue');
+const EditUtilizador = httpVueLoader('./components/pages/Utilizador/Edit.vue');
 
 
 // BioSentry
-const Dashboard = httpVueLoader('./components/Pages/Dashboard.vue');
-const DeviceManagement = httpVueLoader('./components/Pages/DeviceManagement.vue');
-const StudentsManagement = httpVueLoader('./components/Pages/StudentsManagement.vue');
-const LogsStudents = httpVueLoader('./components/Pages/LogsStudents.vue');
-const VisitManagement = httpVueLoader('./components/Pages/VisitManagement.vue');
-const Relatorio = httpVueLoader('./components/Pages/Relatorio.vue');
+const Dashboard = httpVueLoader('./components/pages/Dashboard.vue');
+const DeviceManagement = httpVueLoader('./components/pages/DeviceManagement.vue');
+const StudentsManagement = httpVueLoader('./components/pages/StudentsManagement.vue');
+const LogsStudents = httpVueLoader('./components/pages/LogsStudents.vue');
+const VisitManagement = httpVueLoader('./components/pages/VisitManagement.vue');
+const Relatorio = httpVueLoader('./components/pages/Relatorio.vue');
 
 const routes = [
         {
