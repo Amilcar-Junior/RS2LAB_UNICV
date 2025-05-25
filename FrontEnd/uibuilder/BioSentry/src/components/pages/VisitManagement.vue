@@ -85,7 +85,7 @@
                     <td>
                       <input
                         type="checkbox"
-                        :value="item.id"
+                        :value="item.codigo"
                         v-model="selectedItems"
                       />
                     </td>
@@ -220,6 +220,15 @@
               Registar
               </b-button>
   
+              <!-- New button to start RFID reading -->
+              <b-button
+                type="button"
+                variant="primary"
+                class="ml-2"
+                @click="startCardProcess"
+              >
+                Iniciar Leitura RFID
+              </b-button>
   
               <b-button variant="secondary" @click="showModalAdd = false"
               >Cancelar</b-button
@@ -345,7 +354,7 @@
           tagId:null,
         },
         isSaving: false,
-        biometriaRegistrada: false,
+        cardRegisted: false,
         notifications: [],
       
   
@@ -427,10 +436,35 @@
         this.showModalEdit = true;
       
       },
+
+       async startCardProcess() {
+   
+      if (!this.model.item.id_dispositivo) {
+        this.showNotification("Selecione um edifício válido!", "warning", "Aviso");
+        return;
+      }
+      const payload = { 
+        Cmd: "RegisterRFID_BSRSTI",
+      };
+      axios
+        .post("/biosentry/registerCard", payload)
+        .then((response) => {
+          console.log("Comando enviado com sucesso:", response.data);
+
+          this.cardRegisted = true;
+
+        })
+        .catch((error) => {
+          console.error("Erro ao enviar comando:", error);
+          this.showNotification("Erro ao enviar comando!", "danger", "Erro");
+        });
+      },
      
       async saveUser() {
   
         if (this.currentUser.codigo) {
+          const tagIdResponse = await axios.get(`/biosentry/tagid/${this.currentUser.codigo}`, this.currentUser);
+          this.currentUser.tagId = tagIdResponse.data[0].tagId;
           axios
             .put(`/biosentry/update/${this.currentUser.codigo}`, this.currentUser)
             .then(() => {
@@ -547,13 +581,13 @@
                 )
               )
                 .then(() => {
-                  this.ShowDeleteNotification("Estudantes deletados com sucesso!", "success", "Sucesso");
+                  this.ShowDeleteNotification("Pessoa deletada com sucesso!", "success", "Sucesso");
                   this.selectedItems = [];
                   this.retrieveItems();
                 })
                 .catch((error) => {
                   console.error("Erro ao deletar Estudantes:", error);
-                  this.ShowDeleteNotification("Erro ao Deletar Estudantes.", "danger", "Erro");
+                  this.ShowDeleteNotification("Erro ao Deletar Pessoa.", "danger", "Erro");
                 });
             }
           })
