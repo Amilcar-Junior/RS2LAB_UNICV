@@ -1093,12 +1093,16 @@
             "a84a186454ada01e",
             "7d24db3c7d0b1fab",
             "c3e6956cb911e670",
-            "7c55617bc8554466"
+            "7c55617bc8554466",
+            "ddab56045cc9646b",
+            "63f97be3bfad78d7",
+            "ebf1260cdbf8237b",
+            "5ec6ac3c1fa16dcc"
         ],
         "x": 968,
         "y": 339,
-        "w": 1744,
-        "h": 1568
+        "w": 1724,
+        "h": 1728
     },
     {
         "id": "a6adededcdd25826",
@@ -1249,8 +1253,8 @@
             "75c2a0fca3ccd526",
             "6c5bd5772f037429"
         ],
-        "x": 1934,
-        "y": 1239,
+        "x": 1914,
+        "y": 1399,
         "w": 752,
         "h": 642
     },
@@ -16547,8 +16551,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2280,
-        "y": 1340,
+        "x": 2260,
+        "y": 1500,
         "wires": []
     },
     {
@@ -16558,8 +16562,8 @@
         "g": "030cd0a9f03e0251",
         "name": "Endpoint HTTP para Recebimento de Dados Biométricos no Node-RED",
         "info": "",
-        "x": 2270,
-        "y": 1280,
+        "x": 2250,
+        "y": 1440,
         "wires": []
     },
     {
@@ -16578,8 +16582,8 @@
         "correl": "",
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
-        "x": 2500,
-        "y": 1460,
+        "x": 2480,
+        "y": 1620,
         "wires": []
     },
     {
@@ -16592,8 +16596,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2060,
-        "y": 1500,
+        "x": 2040,
+        "y": 1660,
         "wires": [
             [
                 "25fa820ac801af66",
@@ -16610,8 +16614,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2250,
-        "y": 1520,
+        "x": 2230,
+        "y": 1680,
         "wires": []
     },
     {
@@ -16627,8 +16631,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2240,
-        "y": 1460,
+        "x": 2220,
+        "y": 1620,
         "wires": []
     },
     {
@@ -16641,8 +16645,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2080,
-        "y": 1380,
+        "x": 2060,
+        "y": 1540,
         "wires": [
             [
                 "97829b7ee7afa223",
@@ -16659,8 +16663,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2470,
-        "y": 1360,
+        "x": 2450,
+        "y": 1520,
         "wires": []
     },
     {
@@ -16673,8 +16677,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2070,
-        "y": 1600,
+        "x": 2050,
+        "y": 1760,
         "wires": [
             [
                 "bd7550ec9d56ba18",
@@ -16691,8 +16695,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2290,
-        "y": 1660,
+        "x": 2270,
+        "y": 1820,
         "wires": []
     },
     {
@@ -16708,8 +16712,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2300,
-        "y": 1620,
+        "x": 2280,
+        "y": 1780,
         "wires": []
     },
     {
@@ -16719,8 +16723,8 @@
         "g": "030cd0a9f03e0251",
         "name": "Mensagens de notificação",
         "info": "",
-        "x": 2090,
-        "y": 1700,
+        "x": 2070,
+        "y": 1860,
         "wires": []
     },
     {
@@ -17007,7 +17011,7 @@
         "z": "b945a241e156bcfb",
         "g": "d7f3baf127f02fab",
         "name": "Get Devices with Students",
-        "url": "/biosentry/students/devices/:id",
+        "url": "/biosentry/students/devices/:id_dispositivo",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
@@ -17628,7 +17632,7 @@
         "z": "b945a241e156bcfb",
         "g": "e23f91c6c90719a6",
         "name": "Query",
-        "func": "// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n    msg.payload.status_ = '0'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (codigo, nome, status, id_dispositivo, tagId, id_perfil) \n  VALUES (?,?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n    msg.payload.codigo || '',\n    msg.payload.name || '',\n    msg.payload.status_ || '0', // Já validado\n    msg.payload.id_dispositivo || '',\n    msg.payload.tagId !== undefined ? msg.payload.tagId : null,\n    msg.payload.id_perfil || 2,\n]\n\nreturn msg;\n\n\n\n\n",
+        "func": "msg.payload.tagId = global.get(\"tagId\") || null;\n// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n    msg.payload.status_ = '0'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (codigo, nome, status, id_dispositivo, tagId, id_perfil) \n  VALUES (?,?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n    msg.payload.codigo || '',\n    msg.payload.name || '',\n    msg.payload.status_ || '0', // Já validado\n    msg.payload.id_dispositivo || '',\n    msg.payload.tagId !== undefined ? msg.payload.tagId : null,\n    msg.payload.id_perfil || 2,\n]\n\nreturn msg;\n\n\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18717,8 +18721,8 @@
         "g": "e23f91c6c90719a6",
         "name": "UPDATE outros",
         "info": "",
-        "x": 2040,
-        "y": 1000,
+        "x": 2020,
+        "y": 1160,
         "wires": []
     },
     {
@@ -18731,8 +18735,8 @@
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2030,
-        "y": 1060,
+        "x": 2010,
+        "y": 1220,
         "wires": [
             [
                 "6fe97ea4e117c58a"
@@ -18752,8 +18756,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2230,
-        "y": 1060,
+        "x": 2210,
+        "y": 1220,
         "wires": [
             [
                 "e31b0646f10fe036"
@@ -18767,8 +18771,8 @@
         "g": "e23f91c6c90719a6",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 2390,
-        "y": 1060,
+        "x": 2370,
+        "y": 1220,
         "wires": [
             [
                 "aa676581935c9af7"
@@ -18783,8 +18787,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2530,
-        "y": 1060,
+        "x": 2510,
+        "y": 1220,
         "wires": []
     },
     {
@@ -18797,8 +18801,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2060,
-        "y": 1160,
+        "x": 2040,
+        "y": 1320,
         "wires": [
             [
                 "6cab05719322139b",
@@ -18819,8 +18823,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2310,
-        "y": 1160,
+        "x": 2290,
+        "y": 1320,
         "wires": [
             [
                 "95bd45d4e0b2a996"
@@ -18834,8 +18838,8 @@
         "g": "e23f91c6c90719a6",
         "mydb": "f3e8c660cf5205b5",
         "name": "BD",
-        "x": 2470,
-        "y": 1160,
+        "x": 2450,
+        "y": 1320,
         "wires": [
             [
                 "b4217b432118f0a8"
@@ -18850,8 +18854,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2590,
-        "y": 1160,
+        "x": 2570,
+        "y": 1320,
         "wires": []
     },
     {
@@ -18861,8 +18865,8 @@
         "g": "e23f91c6c90719a6",
         "name": "Buscar tagId por id",
         "info": "Para poder pegar o valor do finger_id e envia-lo para o node-red para editar\n",
-        "x": 2050,
-        "y": 1120,
+        "x": 2030,
+        "y": 1280,
         "wires": []
     },
     {
@@ -18878,8 +18882,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2300,
-        "y": 1120,
+        "x": 2280,
+        "y": 1280,
         "wires": []
     },
     {
@@ -19103,8 +19107,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 2080,
-        "y": 1780,
+        "x": 2060,
+        "y": 1940,
         "wires": [
             [
                 "69845838d1e36857"
@@ -19123,8 +19127,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2320,
-        "y": 1780,
+        "x": 2300,
+        "y": 1940,
         "wires": [
             [
                 "7d5f0c288939fb75"
@@ -19144,8 +19148,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2540,
-        "y": 1780,
+        "x": 2520,
+        "y": 1940,
         "wires": []
     },
     {
@@ -19158,8 +19162,8 @@
         "method": "post",
         "upload": true,
         "swaggerDoc": "",
-        "x": 2070,
-        "y": 1840,
+        "x": 2050,
+        "y": 2000,
         "wires": [
             [
                 "75c2a0fca3ccd526"
@@ -19179,8 +19183,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 2340,
-        "y": 1840,
+        "x": 2320,
+        "y": 2000,
         "wires": [
             [
                 "6c5bd5772f037429"
@@ -19195,15 +19199,15 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2610,
-        "y": 1840,
+        "x": 2590,
+        "y": 2000,
         "wires": []
     },
     {
         "id": "acadab02dfe2d183",
         "type": "mqtt out",
         "z": "b945a241e156bcfb",
-        "name": "CMD cart\\ao",
+        "name": "CMD cartão",
         "topic": "AppSmith/data",
         "qos": "",
         "retain": "",
@@ -19213,8 +19217,8 @@
         "correl": "",
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
-        "x": 3110,
-        "y": 440,
+        "x": 3190,
+        "y": 460,
         "wires": []
     },
     {
@@ -19222,16 +19226,17 @@
         "type": "http in",
         "z": "b945a241e156bcfb",
         "name": "",
-        "url": "/biosentry/cartão",
-        "method": "get",
+        "url": "/biosentry/registerCard",
+        "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2880,
+        "x": 2900,
         "y": 440,
         "wires": [
             [
                 "acadab02dfe2d183",
-                "a0b00d556ae7928a"
+                "a0b00d556ae7928a",
+                "3e8c9be70239303c"
             ]
         ]
     },
@@ -19239,6 +19244,7 @@
         "id": "ddab56045cc9646b",
         "type": "mqtt in",
         "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
         "name": "get tag",
         "topic": "Esp32/data",
         "qos": "2",
@@ -19248,8 +19254,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 2910,
-        "y": 580,
+        "x": 2050,
+        "y": 1020,
         "wires": [
             [
                 "ebf1260cdbf8237b"
@@ -19260,10 +19266,11 @@
         "id": "63f97be3bfad78d7",
         "type": "comment",
         "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
         "name": "receber dados",
         "info": "",
-        "x": 2930,
-        "y": 540,
+        "x": 2070,
+        "y": 980,
         "wires": []
     },
     {
@@ -19273,27 +19280,73 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 3110,
-        "y": 480,
+        "x": 3230,
+        "y": 320,
         "wires": []
     },
     {
         "id": "ebf1260cdbf8237b",
         "type": "function",
         "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
         "name": "function 40",
-        "func": "\nreturn msg;",
+        "func": "// Guardar o tagId recebido\nglobal.set(\"tagId\", msg.payload.tagId);\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3110,
-        "y": 580,
+        "x": 2230,
+        "y": 1020,
         "wires": [
-            []
+            [
+                "5ec6ac3c1fa16dcc"
+            ]
         ]
+    },
+    {
+        "id": "a3376e560365544c",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "name": "Enviar comando sobre registar",
+        "info": "",
+        "x": 2910,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "5ec6ac3c1fa16dcc",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e23f91c6c90719a6",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2400,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "3e8c9be70239303c",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3280,
+        "y": 380,
+        "wires": []
     },
     {
         "id": "1a2b3c4d",

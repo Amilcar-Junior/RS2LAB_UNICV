@@ -74,7 +74,7 @@
                   <th scope="col" class="col-1">Edificio</th>
                   <th
                     scope="col"
-                    class="col-1 text-center"
+                    class="col-2 text-center"
                     v-show="
                       keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
                     "
@@ -153,7 +153,7 @@
       <b-modal v-model="showModalAdd" title="Adicionar Estudante" hide-footer>
           <b-form @submit.prevent="saveUser">
             <b-form-group label="Código de Estudante" label-for="codigo_estudante"
-            description="Insira o código de estudante para adicionar o aluno">
+            description="Insira o código de estudante para obter os dados do estudante">
               <div class="d-flex">
                 <b-form-input
                   id="codigo_estudante"

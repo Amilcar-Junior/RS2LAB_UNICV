@@ -226,15 +226,6 @@
             ></b-form-input>
           </b-form-group>
 
-          <!-- <b-form-group label="Data de Registro" label-for="data_registo">
-                      <b-form-input
-                        id="data_registo"
-                        v-model="currentDevice.data_registo"
-                        type="datetime-local"
-                        required
-                      ></b-form-input>
-                    </b-form-group> -->
-
           <b-button type="submit" variant="success">Salvar</b-button>
           <b-button variant="secondary" @click="showModalAdd = false"
             >Cancelar</b-button
@@ -274,7 +265,7 @@ module.exports = {
         id_dispositivo: "",
         tipo: "",
         status: "",
-        // data_registo: ''
+        
       },
     };
   },
@@ -302,9 +293,9 @@ module.exports = {
         })
         .filter((item) => {
           return (
-            // item.edificio
-            //   .toLowerCase()
-            //   .includes(this.searchQuery.toLowerCase()) ||
+             item.nome_edificio
+               .toLowerCase()
+               .includes(this.searchQuery.toLowerCase()) ||
             item.id_dispositivo.toLowerCase().includes(
               this.searchQuery.toLowerCase()
             )
@@ -406,6 +397,7 @@ module.exports = {
               "Erro"
             );
           });
+          this.showModalEdit = false;
       } else {
           // Verifica se o UID já existe antes de adicionar
           const uidExists = this.items.some(
@@ -468,7 +460,7 @@ module.exports = {
         .then((response) => {
           if (response.data.length > 0) {
             this.showNotification(
-              "Este dispositivo possui estudantes registrados. A exclusão não é permitida.",
+              "Este dispositivo possui estudantes registados. A eliminação não é permitida.",
               "warning",
               "Atenção"
             );
