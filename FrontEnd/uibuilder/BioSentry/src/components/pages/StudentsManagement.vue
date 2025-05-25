@@ -161,7 +161,7 @@
                   @keypress="preventLetters"
                   required
                 ></b-form-input>
-                <b-button variant="outline-info" @click="pesquisarAluno" class="ml-2">
+                <b-button variant="info" @click="pesquisarAluno" class="ml-2">
                   Pesquisar
                 </b-button>
               </div>
@@ -222,6 +222,7 @@
                     <b-form-radio-group
                       v-model="model.item.status_"
                       :options="statusOptions"
+                      button-variant="light"
                       buttons
                     ></b-form-radio-group>
                   </b-form-group>
@@ -229,14 +230,14 @@
 
               <b-col class="text-right">
                 <b-button
-                  variant="outline-secondary"
+                  variant="outline-info"
                   @click="startBiometriaProcess"
                   :disabled="isSaving"
-                  style="background-image: url('./components/images/bi2.png'); background-size: cover; background-position: center; width: 70px; height: 70px;  padding: 0;"
+                 
                 >
                 <!-- <b-icon icon="person-check" class="mr-2"> </b-icon>
                   Obter Biometria -->
-                  Clique aqui
+                  Iniciar Leitura Biométrica
                 
                 </b-button>
               </b-col>
@@ -260,6 +261,21 @@
           </b-form>
         </b-modal>
 
+
+        <!-- Modal para Leitura Biométrica -->
+        <b-modal v-model="showBiometriaModal" title="Leitura Biométrica" hide-footer centered>
+          <div class="text-center">
+            <p>{{ biometriaMessage }}</p>
+            <b-button
+              variant="dark"
+              size="sm"
+              @click="closeBiometriaModal"
+              :disabled="!biometriaRegistrada"
+            >
+              Fechar
+            </b-button>
+          </div>
+        </b-modal>
     
 
       <!-- Modal para Editar -->
@@ -377,7 +393,6 @@ module.exports = {
       codigo: "",
       email: "",
       curso: "",
-
       showModalEdit: false,
       showModalAdd: false,
       selectedItems: [],
@@ -398,6 +413,8 @@ module.exports = {
       isSaving: false,
       biometriaRegistrada: false,
       notifications: [],
+      showBiometriaModal: false,
+      biometriaMessage: "Coloque o dedo no sensor"
 
     };
   },
@@ -490,18 +507,33 @@ module.exports = {
         codigo: this.codigo,
         status_: this.model.item.status_,
       };
+
+      this.showModalAdd = false;
+      this.showBiometriaModal = true;
+      this.biometriaMessage = "Coloque o dedo no sensor";
       axios
         .post("/biosentry/biometria", payload)
         .then((response) => {
           console.log("Comando enviado com sucesso:", response.data);
 
-          this.biometriaRegistrada = true;
+          setTimeout(() => {
+            this.biometriaMessage = "Registo com sucesso";
+            this.biometriaRegistrada = true;
+          }, 5000);
 
         })
         .catch((error) => {
           console.error("Erro ao enviar comando:", error);
           this.showNotification("Erro ao enviar comando!", "danger", "Erro");
+          this.biometriaMessage = "Erro no registo biométrico";
+          this.showBiometriaModal = false;
+          this.showModalAdd = true;
         });
+    },
+
+    closeBiometriaModal() {
+      this.showBiometriaModal = false;
+      this.showModalAdd = true;
     },
 
 //para buscar aluno por codigo
@@ -638,6 +670,8 @@ module.exports = {
         status_: "",
         nome_edificio:""
       };
+      this.biometriaRegistrada = false;
+      this.biometriaMessage = "Coloque o dedo no sensor";
       this.currentUser = {
       
         name: "",
