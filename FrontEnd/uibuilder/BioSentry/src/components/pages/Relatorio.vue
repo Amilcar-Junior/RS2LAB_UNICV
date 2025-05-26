@@ -1,5 +1,9 @@
 <template>
   <div class="relatorio-container">
+       <router-link to="/biosentry/historico-acesso" class="btn btn-secondary mb-3 rounded-buttonback">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i> 
+        </router-link>
+         <!-- Título da Página -->
     <h2>Gerar Relatório de Eventos</h2>
     <div class="relatorio-content">
       <aside class="filters-sidebar">
@@ -122,6 +126,7 @@
 module.exports = {
   data() {
     return {
+      searchQuery: '',
       startDate: '',
       endDate: '',
       residence: '',
@@ -133,6 +138,19 @@ module.exports = {
       reportData: null,
       charts: {},
     };
+  },
+  mounted() {
+    const query = this.$route.query;
+    if (query) {
+      this.startDate = query.startDate || '';
+      this.endDate = query.endDate || '';
+      this.accessType = query.accessType || '';
+      this.studentName = query.searchQuery || '';
+      // Call generateReport if any filter is present
+      if (this.startDate || this.endDate || this.accessType || this.studentName) {
+        this.generateReport();
+      }
+    }
   },
   computed: {
     totalAccesses() {
@@ -158,6 +176,7 @@ module.exports = {
       axios
         .get('/biosentry/report', {
           params: {
+            searchQuery: this.searchQuery,
             startDate: this.startDate,
             endDate: this.endDate,
             residence: this.residence,

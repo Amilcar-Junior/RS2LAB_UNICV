@@ -1,6 +1,5 @@
 <template>
     <div>
-      
       <div class="container-fluid mt-5">
         <!-- <router-link to="/biosentry/dashboard" class="btn btn-secondary mb-3 rounded-buttonback">
           <i class="fa fa-arrow-left" aria-hidden="true"></i> 
@@ -16,7 +15,7 @@
           <input
             type="text"
             class="form-control d-inline-block w-auto"
-            placeholder="Buscar por Edificio, Nome,Status..."
+            placeholder="Buscar por Edificio, Nome,..."
             v-model="searchQuery"
           />
           <div class="d-inline-block mx-2" style="max-width: 150px;">
@@ -35,7 +34,18 @@
             <label for="endDateInput" class="form-label">Data de Fim</label>
             <input id="endDateInput" type="date" v-model="endDate" class="form-control w-100" />
           </div>
-          <router-link to="/biosentry/gerar-relatorio" class="btn btn-primary">
+          <router-link
+            :to="{
+              path: '/biosentry/gerar-relatorio',
+              query: {
+                searchQuery: searchQuery,
+                accessType: accessType,
+                startDate: startDate,
+                endDate: endDate
+              }
+            }"
+            class="btn btn-primary"
+          >
             Gerar Relatório
           </router-link>
           </div>

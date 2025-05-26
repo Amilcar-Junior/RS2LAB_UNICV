@@ -46,12 +46,12 @@
             <span>Histórico</span>
           </router-link>
         </div>
-        <div class="menu-item">
+        <!-- <div class="menu-item">
           <router-link to="/biosentry/gerar-relatorio" class="menu-link">
             <i class="fa fa-file-text"></i>
             <span>Relatório</span>
           </router-link>
-        </div>
+        </div> -->
       </div>
 
       <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
