@@ -41,9 +41,9 @@
               v-show="
                 keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
               "
-          
+              v-b-tooltip.hover.top="'Adicionar'"
             >
-              <i class="fa fa-plus " aria-hidden="true"></i> Adicionar
+              <i class="fa fa-plus " aria-hidden="true"></i>
             </b-button>
 
             <b-button
@@ -51,9 +51,10 @@
               class="btn btn-danger ml-2"
               @click="deleteSelectedItems"
               :disabled="selectedItems.length === 0"
+              v-b-tooltip.hover.top="'Deletar selecionados'"
             >
-              <i class="fa fa-trash" aria-hidden="true"></i> Deletar
-              Selecionados
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              <i class="fa fa-trash" aria-hidden="true"></i> 
             </b-button>
           </div>
         </div>
@@ -74,7 +75,7 @@
                   <th scope="col" class="col-1">Edificio</th>
                   <th
                     scope="col"
-                    class="col-2 text-center"
+                    class="col-1 text-center"
                     v-show="
                       keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
                     "
@@ -110,6 +111,7 @@
                       type="button"
                       @click="editItem(item)"
                       class="btn btn-info mr-2 button"
+                      title="Editar estudante"
                     >
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <!-- Icone de Editar-->
                     </button>
@@ -117,6 +119,7 @@
                       type="button"
                       @click="ShowConfirmDelete(item.codigo)"
                       class="btn btn-danger button"
+                      title="Deletar estudante"
                     >
                       <i class="fa fa-trash" aria-hidden="true"></i> <!-- Icone de eliminar-->
                     </button>
@@ -161,7 +164,7 @@
                   @keypress="preventLetters"
                   required
                 ></b-form-input>
-                <b-button variant="info" @click="pesquisarAluno" class="ml-2">
+                <b-button variant="info" @click="pesquisarAluno" class="ml-2" title="Pesquisar estudante pelo código">
                   Pesquisar
                 </b-button>
               </div>
@@ -233,7 +236,6 @@
                   variant="outline-info"
                   @click="startBiometriaProcess"
                   :disabled="isSaving"
-                 
                 >
                 <!-- <b-icon icon="person-check" class="mr-2"> </b-icon>
                   Obter Biometria -->
@@ -271,6 +273,7 @@
               size="sm"
               @click="closeBiometriaModal"
               :disabled="!biometriaRegistrada"
+              v-b-tooltip.hover.top="'Fechar modal de leitura biométrica'"
             >
               Fechar
             </b-button>
@@ -351,8 +354,8 @@
                     ></b-form-radio-group>
                   </b-form-group>
 
-          <b-button type="submit" variant="success">Salvar</b-button>
-          <b-button variant="secondary" @click="showModalEdit = false"
+          <b-button type="submit" variant="success" title="Salvar alterações">Salvar</b-button>
+          <b-button variant="secondary" @click="showModalEdit = false" title="Cancelar edição"
             >Cancelar</b-button
           >
         </b-form>
@@ -848,7 +851,7 @@ module.exports = {
 .button {
   min-width: 30px;
   padding: 5px 8px;
-  margin: 0 2px;
+  margin: 3px 2px;
   border-radius: 4px;
   transition: all 0.2s ease;
 }

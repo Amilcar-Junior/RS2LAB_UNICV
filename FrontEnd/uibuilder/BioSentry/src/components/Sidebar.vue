@@ -33,7 +33,7 @@
         <div class="menu-item">
           <router-link to="/biosentry/gestao-visitantes" class="menu-link">
             <i class="fa fa-user-plus"></i>
-            <span>Visitantes</span>
+            <span>Funcionários/Visitantes </span>
           </router-link>
         </div>
       </div>
