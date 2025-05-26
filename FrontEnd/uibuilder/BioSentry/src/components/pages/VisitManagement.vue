@@ -13,7 +13,7 @@
             margin-bottom: 20px;
           "
         >
-         Visitantes 
+         Funcionários/Visitantes 
         </h3>
         <!-- <img src="./components/images/rfid1.png" alt="digital" class="custom-img" style="display: block; margin: 0 auto; width: 70px; margin-bottom: 50px;"   /> -->
   
@@ -41,17 +41,18 @@
                 v-show="
                   keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
                 "
+                v-b-tooltip.hover.top="'Adicionar'"
               >
-                <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+                <i class="fa fa-plus" aria-hidden="true"></i> 
               </b-button>
   
               <button
-                class="btn btn-danger ml-2"
+                class="btn btn-danger ml-2 "
                 @click="deleteSelectedItems"
                 :disabled="selectedItems.length === 0"
-              >
-                <i class="fa fa-trash" aria-hidden="true"></i> Deletar
-                Selecionados
+                v-b-tooltip.hover.top="'Deletar linhas selecionados'"
+              ><i class="fa fa-check-square-o" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i> 
               </button>
             </div>
           </div>
@@ -106,13 +107,15 @@
                         type="button"
                         @click="editItem(item)"
                         class="btn btn-info mr-2 button"
+                        v-b-tooltip.hover.top="'Editar'"
                       >
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <!-- Icone de Editar-->
                       </button>
                       <button
                         type="button"
                         @click="ShowConfirmDelete(item.codigo)"
-                        class="btn btn-danger button"
+                        class="btn btn-danger button "
+                        v-b-tooltip.hover.top="'Deletar'"
                       >
                         <i class="fa fa-trash" aria-hidden="true"></i> <!-- Icone de eliminar-->
                       </button>
@@ -201,41 +204,66 @@
                   </option>
               </select>
               </div>
-  
-              <b-col>
-                <b-form-group label="Status">
+
+              <b-row> 
+               <b-col>
+                <b-form-group label="Status"  style="margin-top: 20px;">
                     <b-form-radio-group
                       v-model="model.item.status_"
                       :options="statusOptions"
+                      button-variant="light"
                       buttons
                     ></b-form-radio-group>
                   </b-form-group>
               </b-col>
   
+              <b-col class="text-right">
+                <b-button
+                  variant="outline-info"
+                  @click="startCardProcess"
+                  :disabled="isSaving"
+                  style="margin-top: 40px;"
+                  
+                >
+                <!-- <b-icon icon="person-check" class="mr-2"> </b-icon>
+                  Obter Biometria -->
+                  Iniciar Leitura RFID
+                
+                </b-button>
+              </b-col>
+              </b-row>
+  
               <b-button
                 type="submit"
                 variant="success"
-              
+                :disabled="isSaving || !cardRegisted"
               >
               Registar
               </b-button>
+
   
-              <!-- New button to start RFID reading -->
-              <b-button
-                type="button"
-                variant="primary"
-                class="ml-2"
-                @click="startCardProcess"
-              >
-                Iniciar Leitura RFID
-              </b-button>
-  
-              <b-button variant="secondary" @click="showModalAdd = false"
+              <b-button variant="secondary" @click="showModalAdd = false" title="Cancelar adição"
               >Cancelar</b-button
               >
   
           </b-form>
         </b-modal> 
+
+          <!-- Modal para Leitura Biométrica -->
+        <b-modal v-model="showBiometriaModal" title="Leitura de Cartão" hide-footer centered>
+          <div class="text-center">
+            <p>{{ biometriaMessage }}</p>
+            <b-button
+              variant="dark"
+              size="sm"
+              @click="closeBiometriaModal"
+              :disabled="!cardRegisted"
+              v-b-tooltip.hover.top="'Fechar modal'"
+            >
+              Fechar
+            </b-button>
+          </div>
+        </b-modal>
 
   
         <!-- Modal para Editar -->
@@ -278,7 +306,7 @@
                 readonly
               ></b-form-input>
             </b-form-group>
-  
+
             <div>
                 <label for="id_perfil">Função:</label>
                 <select 
@@ -304,10 +332,10 @@
                     ></b-form-radio-group>
                   </b-form-group>
   
-            <b-button type="submit" variant="success">Salvar</b-button>
-            <b-button variant="secondary" @click="showModalEdit = false"
-              >Cancelar</b-button
-            >
+          <b-button type="submit" variant="success" v-b-tooltip.hover.top="'Salvar alterações'">Salvar</b-button>
+          <b-button variant="secondary" @click="showModalEdit = false" title="Cancelar edição"
+            >Cancelar</b-button
+          >
           </b-form>
         </b-modal>
         <!-- Fim Modal Editar -->
@@ -356,7 +384,8 @@
         isSaving: false,
         cardRegisted: false,
         notifications: [],
-      
+        showBiometriaModal: false,
+        biometriaMessage: "Coloque o cartão no sensor"
   
       };
     },
@@ -399,7 +428,7 @@
         const char = String.fromCharCode(event.which);
         if (!/^\d$/.test(char)) {
           event.preventDefault();
-          this.showNotification("O código de estudante não pode ter letras.", "danger", "Erro");
+          this.showNotification("O código não pode ter letras.", "danger", "Erro");
         }
       },
      
@@ -446,20 +475,33 @@
       const payload = { 
         Cmd: "RegisterRFID_BSRSTI",
       };
+
+      this.showModalAdd = false;
+      this.showBiometriaModal = true;
+      this.biometriaMessage = "Coloque o cartão no sensor";
       axios
         .post("/biosentry/registerCard", payload)
         .then((response) => {
           console.log("Comando enviado com sucesso:", response.data);
 
-          this.cardRegisted = true;
-
+          setTimeout(() => {
+            this.biometriaMessage = "Registo com sucesso";
+            this.cardRegisted = true;
+          }, 5000);
         })
         .catch((error) => {
           console.error("Erro ao enviar comando:", error);
           this.showNotification("Erro ao enviar comando!", "danger", "Erro");
+          this.biometriaMessage = "Erro no registo do cartão";
+          this.showBiometriaModal = false;
+          this.showModalAdd = true;
         });
       },
      
+        closeBiometriaModal() {
+        this.showBiometriaModal = false;
+        this.showModalAdd = true;
+      },
       async saveUser() {
   
         if (this.currentUser.codigo) {
@@ -522,6 +564,8 @@
           nome_perfil:"",
           status_: "",
         };
+        this.biometriaRegistrada = false;
+        this.biometriaMessage = "Coloque o cartão no sensor";
         this.currentUser = {
         
           name: "",
@@ -743,7 +787,8 @@
   padding: 8px 16px;
 }
 
-.btn {
+
+/* .btn {
   transition: all 0.2s ease;
   margin-left: 5px;
   margin-right: 5px;
@@ -752,6 +797,30 @@
 .btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+} */
+
+/* Action buttons */
+.button {
+  min-width: 30px;
+  padding: 5px 8px;
+  margin: 3px 2px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
 }
 
 .modal-content {
@@ -777,12 +846,12 @@
     gap: 10px;
   }
   
-  .btn {
+  /* .btn {
     margin-bottom: 5px;
     margin-left: 0;
     margin-right: 0;
     width: 100%;
-  }
+  } */
   
   .table tbody td {
     padding: 8px;
