@@ -19,6 +19,22 @@
             placeholder="Buscar por Edificio, Nome,Status..."
             v-model="searchQuery"
           />
+          <div class="d-inline-block mx-2" style="max-width: 150px;">
+            <label for="accessTypeSelect" class="form-label">Tipo de Acesso</label>
+            <select id="accessTypeSelect" v-model="accessType" class="form-control w-100">
+              <option value="Todos">Todos</option>
+              <option value="in">Entrada</option>
+              <option value="out">Saída</option>
+            </select>
+          </div>
+          <div class="d-inline-block mx-2" style="max-width: 180px;">
+            <label for="startDateInput" class="form-label">Data de Início</label>
+            <input id="startDateInput" type="date" v-model="startDate" class="form-control w-100" />
+          </div>
+          <div class="d-inline-block mx-2" style="max-width: 180px;">
+            <label for="endDateInput" class="form-label">Data de Fim</label>
+            <input id="endDateInput" type="date" v-model="endDate" class="form-control w-100" />
+          </div>
           <router-link to="/biosentry/gerar-relatorio" class="btn btn-primary">
             Gerar Relatório
           </router-link>
@@ -109,6 +125,9 @@ module.exports = {
       perPage: 100,
       currentPage: 1,
       searchQuery: "",
+      accessType: "Todos",
+      startDate: null,
+      endDate: null,
       userTypes: window.appConfig.userTypes,
     };
   },
@@ -134,11 +153,22 @@ module.exports = {
 
     filteredItems() {
       return this.items.filter((item) => {
-        return (
+        const matchesSearch =
           item.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.logg_info.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.nome_edificio.toLowerCase().includes(this.searchQuery.toLowerCase()) 
-        );
+          item.nome_edificio.toLowerCase().includes(this.searchQuery.toLowerCase());
+
+        const matchesAccessType =
+          this.accessType === "Todos" || item.logg_info === this.accessType;
+
+        const itemDate = new Date(item.data_hora);
+        const startDate = this.startDate ? new Date(this.startDate) : null;
+        const endDate = this.endDate ? new Date(this.endDate) : null;
+
+        const matchesStartDate = !startDate || itemDate >= startDate;
+        const matchesEndDate = !endDate || itemDate <= endDate;
+
+        return matchesSearch && matchesAccessType && matchesStartDate && matchesEndDate;
       });
     },
 
@@ -151,8 +181,20 @@ module.exports = {
   methods: {
    
     fetchLogs() {
+      const params = {
+        searchQuery: this.searchQuery,
+      };
+      if (this.accessType && this.accessType !== "Todos") {
+        params.accessType = this.accessType;
+      }
+      if (this.startDate) {
+        params.startDate = this.startDate;
+      }
+      if (this.endDate) {
+        params.endDate = this.endDate;
+      }
       axios
-          .get("/biosentry/logsStudents")
+          .get("/biosentry/logsStudents", { params })
           .then((response) => {
           console.log("Dados recebidos da API:", response.data);
           this.items = response.data;
