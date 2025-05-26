@@ -105,7 +105,7 @@
           <h3>Gráficos</h3>
           <div class="charts-container">
             <canvas id="accessesPerDayChart"></canvas>
-            <canvas id="entryExitComparisonChart"></canvas>
+            <!-- <canvas id="entryExitComparisonChart"></canvas> -->
             <canvas id="userTypePieChart"></canvas>
             <canvas id="peakHoursChart"></canvas>
           </div>
@@ -142,12 +142,17 @@ module.exports = {
   mounted() {
     const query = this.$route.query;
     if (query) {
+     this.searchQuery = query.searchQuery || '';
       this.startDate = query.startDate || '';
       this.endDate = query.endDate || '';
+    this.residence = query.residence || '';
+    this.device = query.device || '';
+    this.userType = query.userType || '';
+    this.studentName = query.studentName || '';
+    this.accessStatus = query.accessStatus || '';
       this.accessType = query.accessType || '';
-      this.studentName = query.searchQuery || '';
-      // Call generateReport if any filter is present
-      if (this.startDate || this.endDate || this.accessType || this.studentName) {
+    // Chama generateReport apenas se pelo menos um filtro relevante estiver presente
+    if (this.startDate || this.endDate || this.residence || this.device || this.userType || this.studentName || this.accessStatus || this.accessType || this.searchQuery) {
         this.generateReport();
       }
     }
@@ -199,12 +204,15 @@ module.exports = {
       return new Date(dateString).toLocaleString();
     },
     renderCharts() {
-      this.destroyCharts();
+  this.destroyCharts();
 
-      if (!this.reportData || this.reportData.length === 0) return;
+  if (!this.reportData || this.reportData.length === 0) return;
 
-      // Accesses per day chart
-      const accessesPerDayCtx = document.getElementById('accessesPerDayChart').getContext('2d');
+  this.$nextTick(() => {
+    // Accesses per day chart
+    const accessesPerDayCanvas = document.getElementById('accessesPerDayChart');
+    if (accessesPerDayCanvas) {
+      const accessesPerDayCtx = accessesPerDayCanvas.getContext('2d');
       const accessesPerDayData = this.aggregateByDay();
       this.charts.accessesPerDayChart = new Chart(accessesPerDayCtx, {
         type: 'bar',
@@ -219,11 +227,23 @@ module.exports = {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1, // Força incrementos inteiros
+                precision: 0 // Remove decimais
+              }
+            }
+          }
         },
       });
+    }
 
-      // Entry vs Exit comparison chart
-      const entryExitCtx = document.getElementById('entryExitComparisonChart').getContext('2d');
+    // Entry vs Exit comparison chart
+    const entryExitCanvas = document.getElementById('entryExitComparisonChart');
+    if (entryExitCanvas) {
+      const entryExitCtx = entryExitCanvas.getContext('2d');
       const entryCount = this.reportData.filter(item => item.accessType === 'Entrada').length;
       const exitCount = this.reportData.filter(item => item.accessType === 'Saída').length;
       this.charts.entryExitComparisonChart = new Chart(entryExitCtx, {
@@ -239,11 +259,23 @@ module.exports = {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1, // Força incrementos inteiros
+                precision: 0 // Remove decimais
+              }
+            }
+          }
         },
       });
+    }
 
-      // User type pie chart
-      const userTypeCtx = document.getElementById('userTypePieChart').getContext('2d');
+    // User type pie chart
+    const userTypeCanvas = document.getElementById('userTypePieChart');
+    if (userTypeCanvas) {
+      const userTypeCtx = userTypeCanvas.getContext('2d');
       const userTypeData = this.accessesByUserType;
       this.charts.userTypePieChart = new Chart(userTypeCtx, {
         type: 'pie',
@@ -261,11 +293,23 @@ module.exports = {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return `${context.label}: ${Math.round(context.raw)}`; // Força inteiros nos tooltips
+                }
+              }
+            }
+          }
         },
       });
+    }
 
-      // Peak hours chart
-      const peakHoursCtx = document.getElementById('peakHoursChart').getContext('2d');
+    // Peak hours chart
+    const peakHoursCanvas = document.getElementById('peakHoursChart');
+    if (peakHoursCanvas) {
+      const peakHoursCtx = peakHoursCanvas.getContext('2d');
       const peakHoursData = this.aggregateByHour();
       this.charts.peakHoursChart = new Chart(peakHoursCtx, {
         type: 'line',
@@ -282,9 +326,20 @@ module.exports = {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1, // Força incrementos inteiros
+                precision: 0 // Remove decimais
+              }
+            }
+          }
         },
       });
-    },
+    }
+  });
+},
     destroyCharts() {
       Object.values(this.charts).forEach(chart => {
         if (chart) {
