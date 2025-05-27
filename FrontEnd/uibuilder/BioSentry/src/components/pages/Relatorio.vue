@@ -106,8 +106,8 @@
           <div class="charts-container">
             <canvas id="accessesPerDayChart"></canvas>
             <!-- <canvas id="entryExitComparisonChart"></canvas> -->
-            <canvas id="userTypePieChart"></canvas>
-            <canvas id="peakHoursChart"></canvas>
+            <!-- <canvas id="userTypePieChart"></canvas> -->
+            <!-- <canvas id="peakHoursChart"></canvas> -->
           </div>
         </section>
 
@@ -248,10 +248,10 @@ module.exports = {
           scales: {
             y: {
               beginAtZero: true,
-              ticks: {
-                stepSize: 1, // Força incrementos inteiros
-                precision: 0 // Remove decimais
-              }
+                  ticks: {
+                    stepSize: 1, // Força incrementos inteiros
+                    precision: 0 // Remove decimais
+                  }
             }
           }
         },

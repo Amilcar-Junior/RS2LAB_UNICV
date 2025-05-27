@@ -1215,7 +1215,7 @@
             "bcaf84441a1a7d51"
         ],
         "x": 34,
-        "y": 1819,
+        "y": 1919,
         "w": 872,
         "h": 302
     },
@@ -1574,35 +1574,6 @@
         "h": 242
     },
     {
-        "id": "ff72c6455dcdea1e",
-        "type": "group",
-        "z": "b945a241e156bcfb",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "79ec21733e160bc5",
-            "49238f228ca0723a",
-            "10e84cf4cc2dce01",
-            "5055ccf7a1e669fd",
-            "4cabf36a7b5ce9d4",
-            "967617c77082c9e7",
-            "196d389c3985f11a",
-            "02b24bbf40e77e1e",
-            "1011d02a394fc196"
-        ],
-        "x": 44,
-        "y": 2179,
-        "w": 1162,
-        "h": 222
-    },
-    {
         "id": "b0e7208048a256dc",
         "type": "mqtt-broker",
         "name": "",
@@ -1637,7 +1608,7 @@
         "id": "f3e8c660cf5205b5",
         "type": "MySQLdatabase",
         "name": "db_iot_rs2lab",
-        "host": "158.220.96.173",
+        "host": "172.16.80.151",
         "port": "3306",
         "db": "db_iot_rs2lab",
         "tz": "",
@@ -3746,7 +3717,7 @@
         "z": "43734a494ac50a59",
         "g": "2a89c69adb724fd2",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    utilizador u\nLEFT JOIN\n    tipoutilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    utilizadorgrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    grupoutilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
+        "func": "msg.topic = `\nSELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY\n    u.ID, t.ID;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5878,7 +5849,7 @@
         "z": "43734a494ac50a59",
         "g": "0c97019c13d4f365",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    u.ID AS Utilizador_ID, \n    u.Nome AS Utilizador_Nome, \n    GROUP_CONCAT(g.ID) AS ID_Grupos, \n    GROUP_CONCAT(g.Nome) AS Nomes_Grupos\nFROM \n    utilizadorgrupo ug\nLEFT JOIN \n    utilizador u ON ug.ID_Utilizador = u.ID\nLEFT JOIN \n    grupoutilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY \n    u.ID, u.Nome;\n`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    u.ID AS Utilizador_ID, \n    u.Nome AS Utilizador_Nome, \n    GROUP_CONCAT(g.ID) AS ID_Grupos, \n    GROUP_CONCAT(g.Nome) AS Nomes_Grupos\nFROM \n    UtilizadorGrupo ug\nLEFT JOIN \n    Utilizador u ON ug.ID_Utilizador = u.ID\nLEFT JOIN \n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nGROUP BY \n    u.ID, u.Nome;\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -6799,7 +6770,7 @@
         "z": "43734a494ac50a59",
         "g": "0c97019c13d4f365",
         "name": "QUERY",
-        "func": "msg.topic = `SELECT\n    ug.ID_Grupo ,\n    GROUP_CONCAT(ug.ID_Utilizador) AS ID_Utilizador\nFROM\n    utilizadorgrupo ug\nGROUP BY\n    ug.ID_Grupo;`;\nreturn msg;\n\n",
+        "func": "msg.topic = `SELECT\n    ug.ID_Grupo ,\n    GROUP_CONCAT(ug.ID_Utilizador) AS ID_Utilizador\nFROM\n    UtilizadorGrupo ug\nGROUP BY\n    ug.ID_Grupo;`;\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -7007,7 +6978,7 @@
         "z": "43734a494ac50a59",
         "g": "0c97019c13d4f365",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    ug.ID, \n    u.ID AS Utilizador_ID, \n    u.Nome AS Utilizador_Nome, \n    g.ID AS Grupo_ID, \n    g.Nome AS Grupo_Nome\nFROM \n    utilizadorgrupo ug\nLEFT JOIN \n    utilizador u ON ug.ID_Utilizador = u.ID\nLEFT JOIN \n    grupoutilizadores g ON ug.ID_Grupo = g.ID\nWHERE\nug.ID_Utilizador = ${msg.req.params.ID};`;\nreturn msg;\n\n",
+        "func": "msg.topic = `\nSELECT \n    ug.ID, \n    u.ID AS Utilizador_ID, \n    u.Nome AS Utilizador_Nome, \n    g.ID AS Grupo_ID, \n    g.Nome AS Grupo_Nome\nFROM \n    UtilizadorGrupo ug\nLEFT JOIN \n    Utilizador u ON ug.ID_Utilizador = u.ID\nLEFT JOIN \n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\nug.ID_Utilizador = ${msg.req.params.ID};`;\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -10917,7 +10888,7 @@
         "z": "43734a494ac50a59",
         "g": "19a25057ac01befd",
         "name": "QUERY",
-        "func": "msg.topic = `\nSELECT \n    ID, \n    Valor, \n    Data_Hora, \n    Topico,\n    is_activatable\n    FROM \n    valorsensor\n`;\nreturn msg;\n",
+        "func": "msg.topic = `\nSELECT \n    ID, \n    Valor, \n    Data_Hora, \n    Topico,\n    is_activatable\n    FROM \n    ValorSensor\n`;\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -12076,7 +12047,7 @@
         "z": "43734a494ac50a59",
         "g": "9e6382268e9dd573",
         "name": "Query",
-        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    utilizador u\nLEFT JOIN\n    tipoutilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    utilizadorgrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    grupoutilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.Email = '${Utilizador_Email}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
+        "func": "var Utilizador_Email = msg.payload.Utilizador_Email;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.Email = '${Utilizador_Email}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -12147,7 +12118,7 @@
         "z": "43734a494ac50a59",
         "g": "9e6382268e9dd573",
         "name": "Query",
-        "func": "var Utilizador_Email = 'amilcarjunior11@gmail.com';\nvar Utilizador_Senha = 'amilcarjunior11';\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    utilizador u\nLEFT JOIN\n    tipoutilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    utilizadorgrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    grupoutilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.Email = '${Utilizador_Email}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
+        "func": "var Utilizador_Email = 'amilcarjunior11@gmail.com';\nvar Utilizador_Senha = 'amilcarjunior11';\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.Email = '${Utilizador_Email}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -17878,7 +17849,7 @@
         "z": "b945a241e156bcfb",
         "g": "e0914e4a4497fb15",
         "name": "function 17",
-        "func": "msg.topic = `SELECT \n  p.nome AS name,\n  a.data_hora,\n  e.nome_edificio,\n  a.tipo AS logg_info\n  FROM acessos a\n  JOIN pessoa p ON a.codigo = p.codigo\n  JOIN dispositivo d ON a.id_dispositivo = d.id_dispositivo\n  JOIN edificio e ON d.id_edificio = e.id_edificio\n  ORDER BY a.data_hora DESC;\n`;\n\nreturn msg;\n",
+        "func": "msg.topic = `SELECT \n  p.codigo,\n  p.nome AS name,\n  a.data_hora,\n  e.nome_edificio,\n  a.tipo AS logg_info\n  FROM acessos a\n  JOIN pessoa p ON a.codigo = p.codigo\n  JOIN dispositivo d ON a.id_dispositivo = d.id_dispositivo\n  JOIN edificio e ON d.id_edificio = e.id_edificio\n  ORDER BY a.data_hora DESC;\n`;\n\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -17929,7 +17900,7 @@
         "name": "Dasboard",
         "info": "",
         "x": 120,
-        "y": 1860,
+        "y": 1960,
         "wires": []
     },
     {
@@ -17943,7 +17914,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 1940,
+        "y": 2040,
         "wires": [
             [
                 "0310a9fa962dcf70"
@@ -17959,7 +17930,7 @@
         "statusCode": "",
         "headers": {},
         "x": 830,
-        "y": 1940,
+        "y": 2040,
         "wires": []
     },
     {
@@ -17976,7 +17947,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 1940,
+        "y": 2040,
         "wires": [
             [
                 "6e69100c6ef896cd"
@@ -17991,7 +17962,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 530,
-        "y": 1940,
+        "y": 2040,
         "wires": [
             [
                 "8a91e23ce64e2898"
@@ -18012,7 +17983,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 2000,
+        "y": 2100,
         "wires": [
             [
                 "b00bac600827eb6b"
@@ -18033,7 +18004,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 2040,
+        "y": 2140,
         "wires": [
             [
                 "2e970f49a76366a7"
@@ -18054,7 +18025,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 2080,
+        "y": 2180,
         "wires": [
             [
                 "bf8763186b6ea79b"
@@ -18069,7 +18040,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 510,
-        "y": 2000,
+        "y": 2100,
         "wires": [
             [
                 "ae4d50583f8f3df8"
@@ -18084,7 +18055,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 2080,
+        "y": 2180,
         "wires": [
             [
                 "bcaf84441a1a7d51"
@@ -18099,7 +18070,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 2040,
+        "y": 2140,
         "wires": [
             [
                 "947fe1399c32e3c5"
@@ -18115,7 +18086,7 @@
         "statusCode": "",
         "headers": {},
         "x": 810,
-        "y": 2000,
+        "y": 2100,
         "wires": []
     },
     {
@@ -18129,7 +18100,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 2040,
+        "y": 2140,
         "wires": [
             [
                 "e2f9b7afa65f5ce8"
@@ -18145,7 +18116,7 @@
         "statusCode": "",
         "headers": {},
         "x": 810,
-        "y": 2040,
+        "y": 2140,
         "wires": []
     },
     {
@@ -18159,7 +18130,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 2000,
+        "y": 2100,
         "wires": [
             [
                 "fda4c757cadaf7eb"
@@ -18177,7 +18148,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 2080,
+        "y": 2180,
         "wires": [
             [
                 "6ed7edffb077d181"
@@ -18193,7 +18164,7 @@
         "statusCode": "",
         "headers": {},
         "x": 770,
-        "y": 2080,
+        "y": 2180,
         "wires": []
     },
     {
@@ -18210,7 +18181,7 @@
         "finalize": "",
         "libs": [],
         "x": 690,
-        "y": 1940,
+        "y": 2040,
         "wires": [
             [
                 "aa92af3dde97dea8"
@@ -18231,7 +18202,7 @@
         "finalize": "",
         "libs": [],
         "x": 670,
-        "y": 2000,
+        "y": 2100,
         "wires": [
             [
                 "c2fcad8c947bb579"
@@ -18252,7 +18223,7 @@
         "finalize": "",
         "libs": [],
         "x": 650,
-        "y": 2040,
+        "y": 2140,
         "wires": [
             [
                 "d793516227976462"
@@ -18273,7 +18244,7 @@
         "finalize": "",
         "libs": [],
         "x": 630,
-        "y": 2080,
+        "y": 2180,
         "wires": [
             [
                 "4ba567f91bc95870"
@@ -18304,7 +18275,7 @@
         "z": "b945a241e156bcfb",
         "g": "a6adededcdd25826",
         "name": "Query",
-        "func": "var username = msg.payload.username;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.codigo AS username,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    utilizador u\nLEFT JOIN\n    tipoutilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    utilizadorgrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    grupoutilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.codigo = '${username}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
+        "func": "var username = msg.payload.username;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.codigo AS username,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.codigo = '${username}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -18350,11 +18321,10 @@
         "id": "49238f228ca0723a",
         "type": "comment",
         "z": "b945a241e156bcfb",
-        "g": "ff72c6455dcdea1e",
         "name": "Relatorio",
         "info": "",
-        "x": 160,
-        "y": 2220,
+        "x": 80,
+        "y": 2280,
         "wires": []
     },
     {
@@ -19317,28 +19287,26 @@
         "wires": []
     },
     {
-        "id": "10e84cf4cc2dce01",
+        "id": "d2b957e1e9562c3b",
         "type": "http in",
         "z": "b945a241e156bcfb",
-        "g": "ff72c6455dcdea1e",
         "name": "GET /biosentry/report",
         "url": "/biosentry/report",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 170,
-        "y": 2280,
+        "x": 120,
+        "y": 2320,
         "wires": [
             [
-                "5055ccf7a1e669fd"
+                "a6d83a6d4b712052"
             ]
         ]
     },
     {
-        "id": "5055ccf7a1e669fd",
+        "id": "a6d83a6d4b712052",
         "type": "function",
         "z": "b945a241e156bcfb",
-        "g": "ff72c6455dcdea1e",
         "name": "Processar Parametros",
         "func": "// Receber os parâmetros do frontend\nlet params = msg.req.query;\nlet where = [];\nlet values = [];\n\n// Validação de parâmetros\nif (params.startDate && !params.startDate.match(/^\\d{4}-\\d{2}-\\d{2}$/)) {\n    params.startDate = '';\n}\nif (params.endDate && !params.endDate.match(/^\\d{4}-\\d{2}-\\d{2}$/)) {\n    params.endDate = '';\n}\nif (params.accessType && !['in', 'out'].includes(params.accessType)) {\n    params.accessType = '';\n}\nif (params.accessStatus && !['1', '0'].includes(params.accessStatus)) {\n    params.accessStatus = '';\n}\n\n// Filtro para searchQuery\nif (params.searchQuery) {\n    where.push(\"(p.nome LIKE ? OR e.nome_edificio LIKE ?)\");\n    values.push(`%${params.searchQuery}%`, `%${params.searchQuery}%`);\n}\n// Filtro para startDate\nif (params.startDate) {\n    where.push(\"a.data_hora >= ?\");\n    values.push(params.startDate);\n}\n// Filtro para endDate\nif (params.endDate) {\n    where.push(\"a.data_hora <= ?\");\n    values.push(params.endDate);\n}\n// Filtro para residence\nif (params.residence) {\n    where.push(\"e.nome_edificio = ?\");\n    values.push(params.residence);\n}\n// Filtro para device\nif (params.device) {\n    where.push(\"d.id_dispositivo = ?\");\n    values.push(params.device);\n}\n// Filtro para userType\nif (params.userType) {\n    where.push(\"pf.nome_perfil = ?\");\n    values.push(params.userType);\n}\n// Filtro para studentName\nif (params.studentName) {\n    where.push(\"p.nome LIKE ?\");\n    values.push(`%${params.studentName}%`);\n}\n// Filtro para accessStatus\nif (params.accessStatus) {\n    where.push(\"p.status = ?\");\n    values.push(params.accessStatus);\n}\n// Filtro para accessType\nif (params.accessType) {\n    where.push(\"a.tipo = ?\");\n    values.push(params.accessType);\n}\n\n// Montar a consulta SQL\nlet sql = `\n    SELECT \n        a.id,\n        p.nome AS name,\n        e.nome_edificio AS residence,\n        d.id_dispositivo AS device,\n        pf.nome_perfil AS userType,\n        p.status AS status,\n        a.tipo AS accessType,\n        a.data_hora AS timestamp\n    FROM acessos a\n    INNER JOIN pessoa p ON a.codigo = p.codigo\n    INNER JOIN dispositivo d ON a.id_dispositivo = d.id_dispositivo\n    INNER JOIN edificio e ON d.id_edificio = e.id_edificio\n    INNER JOIN perfis_acesso pf ON p.id_perfil = pf.id_perfil\n`;\n\nif (where.length > 0) {\n    sql += \" WHERE \" + where.join(\" AND \");\n}\n\nmsg.topic = sql;\nmsg.payload = values;\n\nreturn msg;",
         "outputs": 1,
@@ -19347,62 +19315,58 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
-        "y": 2280,
+        "x": 340,
+        "y": 2320,
         "wires": [
             [
-                "4cabf36a7b5ce9d4"
+                "0997fbf026dcfed1"
             ]
         ]
     },
     {
-        "id": "4cabf36a7b5ce9d4",
+        "id": "0997fbf026dcfed1",
         "type": "mysql",
         "z": "b945a241e156bcfb",
-        "g": "ff72c6455dcdea1e",
         "mydb": "f3e8c660cf5205b5",
         "name": "Consulta Report (MySQL)",
-        "x": 640,
-        "y": 2280,
+        "x": 590,
+        "y": 2320,
         "wires": [
             [
-                "1011d02a394fc196"
+                "04617f47d13db45a"
             ]
         ]
     },
     {
-        "id": "967617c77082c9e7",
+        "id": "f3ed19fc2596cefd",
         "type": "http response",
         "z": "b945a241e156bcfb",
-        "g": "ff72c6455dcdea1e",
         "name": "Resposta Report",
         "statusCode": "",
         "headers": {},
-        "x": 1090,
-        "y": 2280,
+        "x": 1040,
+        "y": 2320,
         "wires": []
     },
     {
-        "id": "196d389c3985f11a",
+        "id": "d149500c8841fd6d",
         "type": "catch",
         "z": "b945a241e156bcfb",
-        "g": "ff72c6455dcdea1e",
         "name": "Capturar Erro",
         "scope": null,
         "uncaught": false,
-        "x": 170,
-        "y": 2360,
+        "x": 120,
+        "y": 2400,
         "wires": [
             [
-                "02b24bbf40e77e1e"
+                "58d661d2920260e5"
             ]
         ]
     },
     {
-        "id": "02b24bbf40e77e1e",
+        "id": "58d661d2920260e5",
         "type": "function",
         "z": "b945a241e156bcfb",
-        "g": "ff72c6455dcdea1e",
         "name": "Tratar Erro",
         "func": "msg.statusCode = 500;\nmsg.headers = {\n    'Content-Type': 'application/json'\n};\nmsg.payload = {\n    error: msg.error.message || 'Erro ao gerar relatório'\n};\nreturn msg;",
         "outputs": 1,
@@ -19411,31 +19375,29 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
-        "y": 2360,
+        "x": 340,
+        "y": 2400,
         "wires": [
             [
-                "79ec21733e160bc5"
+                "7dbdb8aca95588c5"
             ]
         ]
     },
     {
-        "id": "79ec21733e160bc5",
+        "id": "7dbdb8aca95588c5",
         "type": "http response",
         "z": "b945a241e156bcfb",
-        "g": "ff72c6455dcdea1e",
         "name": "Resposta de Erro",
         "statusCode": "",
         "headers": {},
-        "x": 610,
-        "y": 2360,
+        "x": 560,
+        "y": 2400,
         "wires": []
     },
     {
-        "id": "1011d02a394fc196",
+        "id": "04617f47d13db45a",
         "type": "function",
         "z": "b945a241e156bcfb",
-        "g": "ff72c6455dcdea1e",
         "name": "Formatar Resposta JSON",
         "func": "msg.statusCode = 200;\nmsg.headers = {\n    'Content-Type': 'application/json'\n};\nreturn msg;",
         "outputs": 1,
@@ -19444,11 +19406,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 870,
-        "y": 2280,
+        "x": 820,
+        "y": 2320,
         "wires": [
             [
-                "967617c77082c9e7"
+                "f3ed19fc2596cefd"
             ]
         ]
     },
