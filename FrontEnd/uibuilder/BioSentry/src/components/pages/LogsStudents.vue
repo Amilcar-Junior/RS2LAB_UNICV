@@ -12,12 +12,19 @@
           <div
             class="card-header d-flex justify-content-between align-items-center"
           >
-          <input
+          
+          <div>
+            <input
             type="text"
             class="form-control d-inline-block w-auto"
-            placeholder="Buscar por Edificio, Nome,..."
+            placeholder="Buscar"
+            v-b-tooltip.hover.top ="'Buscar por Nome, Codigo, Edificio'"
             v-model="searchQuery"
           />
+          <i class="fa fa-search" aria-hidden="true" style="margin-left: 2px;"></i>
+          </div>
+          
+
           <div class="d-inline-block mx-2" style="max-width: 150px;">
             <label for="accessTypeSelect" class="form-label">Tipo de Acesso</label>
             <select id="accessTypeSelect" v-model="accessType" class="form-control w-100">
@@ -58,6 +65,7 @@
                       <input type="checkbox" @change="toggleSelectAll($event)" />
                     </th> -->
                     <!-- <th scope="col" class="col-1">ID</th> -->
+                     <th scope="col" class="col-1"> Codigo</th>
                     <th scope="col" class="col-2">Nome</th>
                     <th scope="col" class="col-1">Data/Hora </th>
                     <th scope="col" class="col-1">Edificio</th>
@@ -73,7 +81,7 @@
                         v-model="selectedItems"
                       />
                     </td> -->
-                    <!-- <td>{{ item.id }}</td> -->
+                    <td>{{ item.codigo }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ formatDate(item.data_hora) }}</td>
                     <td>{{ item.nome_edificio  }}</td>
@@ -164,6 +172,7 @@ module.exports = {
     filteredItems() {
       return this.items.filter((item) => {
         const matchesSearch =
+          item.codigo.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.logg_info.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.nome_edificio.toLowerCase().includes(this.searchQuery.toLowerCase());
