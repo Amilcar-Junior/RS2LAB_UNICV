@@ -1101,7 +1101,7 @@
         ],
         "x": 968,
         "y": 339,
-        "w": 1724,
+        "w": 1684,
         "h": 1728
     },
     {
@@ -1253,9 +1253,9 @@
             "75c2a0fca3ccd526",
             "6c5bd5772f037429"
         ],
-        "x": 1914,
+        "x": 1934,
         "y": 1399,
-        "w": 752,
+        "w": 652,
         "h": 642
     },
     {
@@ -1381,8 +1381,8 @@
             "cd5274331186766e",
             "01e8b8655c698a26"
         ],
-        "x": 1034,
-        "y": 439,
+        "x": 1014,
+        "y": 419,
         "w": 732,
         "h": 282
     },
@@ -16046,8 +16046,8 @@
         "g": "6232b0d6144ee826",
         "name": "GET ESTUDANTES",
         "info": "",
-        "x": 1170,
-        "y": 480,
+        "x": 1150,
+        "y": 460,
         "wires": []
     },
     {
@@ -16072,8 +16072,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1160,
-        "y": 540,
+        "x": 1140,
+        "y": 520,
         "wires": [
             [
                 "68210cc4b33a97d8"
@@ -16093,8 +16093,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1320,
-        "y": 540,
+        "x": 1300,
+        "y": 520,
         "wires": [
             [
                 "db02c2b708612b9b"
@@ -16108,8 +16108,8 @@
         "g": "6232b0d6144ee826",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1490,
-        "y": 540,
+        "x": 1470,
+        "y": 520,
         "wires": [
             [
                 "3b9e025148c19869"
@@ -16129,8 +16129,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1640,
-        "y": 540,
+        "x": 1620,
+        "y": 520,
         "wires": []
     },
     {
@@ -16143,8 +16143,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1120,
-        "y": 600,
+        "x": 1100,
+        "y": 580,
         "wires": [
             [
                 "27e4a3c9c223cc25"
@@ -16164,8 +16164,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1300,
-        "y": 600,
+        "x": 1280,
+        "y": 580,
         "wires": [
             [
                 "6f5b06e51d29a999"
@@ -16179,8 +16179,8 @@
         "g": "6232b0d6144ee826",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 1450,
-        "y": 600,
+        "x": 1430,
+        "y": 580,
         "wires": [
             [
                 "ecb6ab809742f491",
@@ -16201,8 +16201,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1660,
-        "y": 600,
+        "x": 1640,
+        "y": 580,
         "wires": []
     },
     {
@@ -16213,8 +16213,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1670,
-        "y": 640,
+        "x": 1650,
+        "y": 620,
         "wires": []
     },
     {
@@ -16239,8 +16239,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1160,
-        "y": 660,
+        "x": 1140,
+        "y": 640,
         "wires": [
             [
                 "cd5274331186766e"
@@ -16264,8 +16264,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1330,
-        "y": 660,
+        "x": 1310,
+        "y": 640,
         "wires": [
             [
                 "01e8b8655c698a26"
@@ -16285,8 +16285,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1500,
-        "y": 680,
+        "x": 1480,
+        "y": 660,
         "wires": []
     },
     {
@@ -19058,14 +19058,14 @@
         "type": "file",
         "z": "b945a241e156bcfb",
         "g": "030cd0a9f03e0251",
-        "name": "",
-        "filename": "C:\\Developer\\Projects",
+        "name": "debug",
+        "filename": "C:\\Developer\\Projects\\amilcar\\RS2LAB_UNICV\\BackEnd\\log_biosentry.txt",
         "filenameType": "str",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2300,
+        "x": 2250,
         "y": 1940,
         "wires": [
             [
@@ -19086,7 +19086,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2520,
+        "x": 2460,
         "y": 1940,
         "wires": []
     },
@@ -19100,7 +19100,7 @@
         "method": "post",
         "upload": true,
         "swaggerDoc": "",
-        "x": 2050,
+        "x": 2090,
         "y": 2000,
         "wires": [
             [
@@ -19113,8 +19113,8 @@
         "type": "file in",
         "z": "b945a241e156bcfb",
         "g": "030cd0a9f03e0251",
-        "name": "",
-        "filename": "C:\\Developer\\Projects",
+        "name": "debug out",
+        "filename": "C:\\Developer\\Projects\\amilcar\\RS2LAB_UNICV\\BackEnd\\log_biosentry.txt",
         "filenameType": "str",
         "format": "utf8",
         "chunk": false,
@@ -19137,7 +19137,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2590,
+        "x": 2490,
         "y": 2000,
         "wires": []
     },

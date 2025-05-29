@@ -106,8 +106,8 @@
           <div class="charts-container">
             <canvas id="accessesPerDayChart"></canvas>
             <!-- <canvas id="entryExitComparisonChart"></canvas> -->
-            <!-- <canvas id="userTypePieChart"></canvas> -->
-            <!-- <canvas id="peakHoursChart"></canvas> -->
+            <canvas id="userTypePieChart"></canvas> 
+           <canvas id="peakHoursChart"></canvas>
           </div>
         </section>
 
@@ -479,7 +479,7 @@ module.exports = {
 .generate-btn {
   width: 100%;
   padding: 14px 0;
-  background: linear-gradient(90deg, #2980b9, #3498db);
+  background: linear-gradient(90deg, #007bff, #007bff);
   border: none;
   color: white;
   font-weight: 700;
@@ -491,8 +491,8 @@ module.exports = {
 }
 
 .generate-btn:hover {
-  background: linear-gradient(90deg, #3498db, #2980b9);
-  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
+  background: linear-gradient(90deg, #348ddb, #297bb9);
+  box-shadow: 0 8px 20px rgba(52, 149, 219, 0.6);
 }
 
 .report-main {
@@ -516,19 +516,19 @@ module.exports = {
 }
 
 .summary-cards .card {
-  background-color: #3498db;
-  color: white;
+  background-color: white;
+  color: #ab162b;
   padding: 20px 25px;
   border-radius: 12px;
   flex: 1;
   min-width: 150px;
   text-align: center;
-  box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+  box-shadow: 0 6px 15px rgba(219, 52, 52, 0.2);
   transition: background-color 0.3s ease;
 }
 
 .summary-cards .card:hover {
-  background-color: #2980b9;
+  background-color: rgb(248, 239, 239);
 }
 
 .summary-cards .card h4 {
@@ -557,7 +557,7 @@ module.exports = {
 }
 
 .report-table thead tr {
-  background-color: #2980b9;
+  background-color: #ab162b;
   color: white;
   text-transform: uppercase;
   font-weight: 700;
@@ -579,7 +579,7 @@ module.exports = {
 }
 
 .report-table tbody tr:hover {
-  background-color: #d6eaf8;
+  background-color: #f8d6d6;
   cursor: pointer;
 }
 

@@ -267,7 +267,8 @@
         <!-- Modal para Leitura Biométrica -->
         <b-modal v-model="showBiometriaModal" title="Leitura Biométrica" hide-footer centered>
           <div class="text-center">
-            <p>{{ biometriaMessage }}</p>
+            <p :class="biometriaMessageClass">{{ biometriaMessage }}</p>
+            <b-spinner v-if="!biometriaRegistrada" variant="primary" small class="mb-3"></b-spinner>
             <b-button
               variant="dark"
               size="sm"
@@ -417,7 +418,9 @@ module.exports = {
       biometriaRegistrada: false,
       notifications: [],
       showBiometriaModal: false,
-      biometriaMessage: "Coloque o dedo no sensor"
+      biometriaMessage: "Coloque o dedo no sensor",
+      biometriaMessageClass: "",
+      pollingInterval: null,
 
     };
   },
@@ -513,28 +516,70 @@ module.exports = {
 
       this.showModalAdd = false;
       this.showBiometriaModal = true;
-      this.biometriaMessage = "Coloque o dedo no sensor";
-      axios
-        .post("/biosentry/biometria", payload)
-        .then((response) => {
-          console.log("Comando enviado com sucesso:", response.data);
+      this.biometriaMessage = "Coloque o dedo no sensor";      
+      this.biometriaMessageClass = "text-primary";
+      this.biometriaRegistrada = false;
 
-          setTimeout(() => {
-            this.biometriaMessage = "Registo com sucesso";
+    try {
+        // Iniciar o processo de biometria
+        const biometriaResponse = await axios.post("/biosentry/biometria", payload);
+        console.log("Comando enviado com sucesso:", biometriaResponse.data);
+
+        // Iniciar polling para verificar mensagens do arquivo
+        this.pollingInterval = setInterval(async () => {
+          try {
+            const notificationResponse = await axios.post("/biosentry/notificar");
+            let messageFromFile = notificationResponse.data;
+
+            if (messageFromFile && typeof messageFromFile === "string" && messageFromFile.trim()) {
+              this.biometriaMessage = messageFromFile.trim();
+              this.biometriaMessageClass = "text-primary";
+
+              // Verificar se a mensagem indica conclusão ou erro
+              const finalMessages = [
+                "Impressão digital já registrada",
+                "Registro concluído",
+                "Impressão digital registrada",
+                "Erro no registo biométrico",
+                "Falha no registro",
+              ];
+              if (finalMessages.some((msg) => messageFromFile.trim().toLowerCase().includes(msg.toLowerCase()))) {
+                clearInterval(this.pollingInterval);
+                this.pollingInterval = null;
+                this.biometriaRegistrada = true;
+                this.biometriaMessageClass = messageFromFile.trim().toLowerCase().includes("erro") ||
+                                            messageFromFile.trim().toLowerCase().includes("falha")
+                                          ? "text-danger"
+                                          : "text-success";
+              }
+            }
+          } catch (error) {
+            console.error("Erro ao buscar mensagem:", error);
+            clearInterval(this.pollingInterval);
+            this.pollingInterval = null;
+            this.biometriaMessage = "Erro ao obter mensagem do dispositivo";
+            this.biometriaMessageClass = "text-danger";
             this.biometriaRegistrada = true;
-          }, 5000);
-
-        })
-        .catch((error) => {
-          console.error("Erro ao enviar comando:", error);
-          this.showNotification("Erro ao enviar comando!", "danger", "Erro");
-          this.biometriaMessage = "Erro no registo biométrico";
-          this.showBiometriaModal = false;
-          this.showModalAdd = true;
-        });
+            this.showNotification("Erro ao obter mensagem do dispositivo!", "danger", "Erro");
+          }
+        }, 1000); // Verificar a cada 1 segundo
+      } catch (error) {
+        console.error("Erro ao enviar comando:", error);
+        clearInterval(this.pollingInterval);
+        this.pollingInterval = null;
+        this.biometriaMessage = "Erro no registo biométrico";
+        this.biometriaMessageClass = "text-danger";
+        this.showBiometriaModal = false;
+        this.showModalAdd = true;
+        this.showNotification("Erro no processo biométrico!", "danger", "Erro");
+      }
     },
 
-    closeBiometriaModal() {
+      closeBiometriaModal() {
+      if (this.pollingInterval) {
+        clearInterval(this.pollingInterval);
+        this.pollingInterval = null;
+      }
       this.showBiometriaModal = false;
       this.showModalAdd = true;
     },
@@ -675,6 +720,7 @@ module.exports = {
       };
       this.biometriaRegistrada = false;
       this.biometriaMessage = "Coloque o dedo no sensor";
+      this.biometriaMessageClass = "";
       this.currentUser = {
       
         name: "",
@@ -771,7 +817,7 @@ module.exports = {
       const itemToDelete = this.items.find(item => item.codigo === ItemID);
       if (itemToDelete) {
         this.model.item = {
-          uid_disposit: itemToDelete.UID_disposit,
+          id_dispositivo: itemToDelete.id_dispositivo,
           codigo: itemToDelete.codigo,
           status_: itemToDelete.status_
         };
@@ -904,6 +950,18 @@ module.exports = {
 
 .custom-pagination .page-link {
   color: #2c3e50;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
 }
 
 /* Responsive adjustments */
