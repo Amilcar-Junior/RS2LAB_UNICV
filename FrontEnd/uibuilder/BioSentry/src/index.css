@@ -1,127 +1,135 @@
-/* Google font import - poppins*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/*  Colours for Syntax Highlighted pre's */
-.syntax-highlight {color:white;background-color:black;padding:5px 10px;}
-.syntax-highlight > .key {color:#ffbf35}
-.syntax-highlight > .string {color:#5dff39;}
-.syntax-highlight > .number {color:#70aeff;}
-.syntax-highlight > .boolean {color:#b993ff;}
-.custom-navbar {background-color: #AB162B; width: 100%;  position: fixed; z-index: 1030;}
-.btn-custom {background-color: #AB162B;margin-top: 5px;color: white;}
+.syntax-highlight {
+  color: white;
+  background-color: black;
+  padding: 5px 10px;
+}
+.syntax-highlight > .key {
+  color: #ffbf35;
+}
+.syntax-highlight > .string {
+  color: #5dff39;
+}
+.syntax-highlight > .number {
+  color: #70aeff;
+}
+.syntax-highlight > .boolean {
+  color: #b993ff;
+}
+
+.custom-navbar {
+  background-color: #AB162B;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1030;
+}
+
+.btn-custom {
+  background-color: #AB162B;
+  margin-top: 5px;
+  color: white;
+}
+
 .custom-pagination .page-item .page-link {
   background-color: #AB162B;
   color: #ffffff;
   border-color: #AB162B;
 }
+
 .custom-pagination .page-item.active .page-link {
   background-color: #AB162B;
   border-color: #AB162B;
 }
+
 .badge-primary {
   background-color: #AB162B;
   color: #fff;
-  font-size: 14px;
-  padding: 5px 10px;
-  border-radius: 10px;
+  font-size: 0.875rem;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.625rem;
 }
 
 html, body {
   height: 100%;
   margin: 0;
+  font-size: 14px;
 }
 
 #app {
   display: flex;
-  flex-direction: column; /* Layout em coluna */
-  min-height: 100vh; /* Garante que ocupa 100% da altura da janela */
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .app-container {
   display: flex;
   flex: 1;
-  margin-top: 56px; /* Header height */
+  margin-top: 56px; /* Altura do header */
 }
 
-.sidebar {
+.b-sidebar-outer {
   position: fixed;
-  top: 66px;
+  top: 56px; /* Começa abaixo do header */
   left: 0;
-  bottom: -600px;
   width: 250px;
+  height: calc(100vh - 56px); /* Altura total menos o header */
   z-index: 1000;
-  overflow-y: auto;
   transition: transform 0.3s ease;
-  transform: translateX(0);
-  padding: 10px 14px;
-  
 }
 
-.sidebar.hidden {
+.b-sidebar-outer:not(.open) {
   transform: translateX(-100%);
+}
+
+.b-sidebar-outer.open {
+  transform: translateX(0);
 }
 
 .main-content {
   flex: 1;
+  margin-left: 250px; /* Largura do sidebar quando aberto */
   padding: 20px;
-  margin-left: 250px; /* Match sidebar width */
-  transition: margin-left 0.3s;
-  min-height: calc(100vh - 56px); /* Full height minus header */
-  display: flex;
-  flex-direction: column;
+  min-height: calc(100vh - 56px); /* Altura total menos o header */
+  padding-bottom: 60px; /* Espaço para o footer */
+  transition: margin-left 0.3s ease;
+  width: calc(100% - 250px); /* Garante que o conteúdo ocupe o espaço restante */
 }
 
-
-
-.sidebar.hidden + .main-content {
+.b-sidebar-outer:not(.open) + .main-content {
   margin-left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  width: 100%; /* Ocupa toda a largura quando o sidebar está fechado */
 }
 
 @media (max-width: 768px) {
-  .main-content {
-    margin-left: 0 !important;
-  }
-  
-  .sidebar:not(.hidden) + .main-content {
-    margin-left: 250px;
-  }
-
-  .sidebar {
+  .b-sidebar-outer {
     transform: translateX(-100%);
-    position: absolute;
-    z-index: 1050;
-    box-shadow: 4px 0 20px rgba(0,0,0,0.5);
   }
 
-  .sidebar.show {
+  .b-sidebar-outer.open {
     transform: translateX(0);
   }
 
-  
-}
+  .main-content {
+    margin-left: 0;
+    width: 100%; /* Em telas menores, o conteúdo começa ocupando toda a largura */
+  }
 
+  .b-sidebar-outer.open + .main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px); /* Empurra o conteúdo quando o sidebar está aberto */
+  }
+}
 
 .custom-footer {
   background-color: #AB162B;
   color: #ffffff;
-  font-size: 0.9rem;
+  font-size: 0.643rem;
   text-align: center;
   width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 100;
-}
-
-/* Ensure content doesn't hide behind footer */
-.main-content {
-  padding-bottom: 60px;
-}
-
-.login-page {
-  padding-bottom: 60px;
 }

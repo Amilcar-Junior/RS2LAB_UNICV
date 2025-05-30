@@ -80,7 +80,6 @@
               <tr>
                 <th>Nome</th>
                 <th>Residência</th>
-                <th>Dispositivo</th>
                 <th>Tipo de Utilizador</th>
                 <th>Status</th>
                 <th>Tipo de Acesso</th>
@@ -91,7 +90,6 @@
               <tr v-for="item in reportData" :key="item.id">
                 <td>{{ item.name }}</td>
                 <td>{{ item.residence }}</td>
-                <td>{{ item.device }}</td>
                 <td>{{ item.userType }}</td>
                 <td>{{ item.status }}</td>
                 <td>{{ item.accessType }}</td>

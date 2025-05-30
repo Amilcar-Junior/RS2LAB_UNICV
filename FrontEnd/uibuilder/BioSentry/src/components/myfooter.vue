@@ -8,8 +8,9 @@
         rel="noopener noreferrer" 
         class="footer-link"
       >
-        RS2LAB
+        RS2LAB 
       </a> 
+      e STI
       | Desenvolvido por 
       <a 
         href="https://www.linkedin.com/in/amilcar-junior/" 
@@ -17,7 +18,7 @@
         rel="noopener noreferrer" 
         class="footer-link"
       >
-        Amílcar Júnior
+        
       </a>
     </div>
   </footer>
