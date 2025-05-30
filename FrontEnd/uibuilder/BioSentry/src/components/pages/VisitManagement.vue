@@ -506,7 +506,7 @@
   
         if (this.currentUser.codigo) {
           const tagIdResponse = await axios.get(`/biosentry/tagid/${this.currentUser.codigo}`, this.currentUser);
-          this.currentUser.tagId = tagIdResponse.data[0].tagId;
+          this.currentUser.tag = tagIdResponse.data[0].tag;
           axios
             .put(`/biosentry/update/${this.currentUser.codigo}`, this.currentUser)
             .then(() => {
