@@ -3,15 +3,15 @@
     id="sidebar"
     shadow
     width="250px"
-    class="sidebar"
+    class="sidebar slide"
     v-if="keys.islogged && $route.name !== 'login'"
     no-close-on-route-change
     no-close-on-esc
     no-header
     no-enforce-focus
-    visible
-    
-  > 
+    :visible="isSidebarOpen"
+    :class="{'open': isSidebarOpen}"
+  >
     <div class="sidebar-menu">
       <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
         <div class="menu-item">
@@ -33,7 +33,7 @@
         <div class="menu-item">
           <router-link to="/biosentry/gestao-visitantes" class="menu-link">
             <i class="fa fa-user-plus"></i>
-            <span>Funcionários/Visitantes </span>
+            <span>Funcionários/Visitantes</span>
           </router-link>
         </div>
       </div>
@@ -72,8 +72,20 @@ module.exports = {
   props: ["keys"],
   data() {
     return {
-      userTypes: window.appConfig.userTypes
+      userTypes: window.appConfig.userTypes,
+      isSidebarOpen: window.innerWidth > 768, // Inicialmente aberto em telas grandes
     };
+  },
+  mounted() {
+    this.$root.$on('toggle-sidebar', this.toggleSidebar);
+  },
+  beforeDestroy() {
+    this.$root.$off('toggle-sidebar', this.toggleSidebar);
+  },
+  methods: {
+    toggleSidebar() {
+      this.isSidebarOpen = !this.isSidebarOpen;
+    },
   },
 };
 </script>
@@ -82,7 +94,6 @@ module.exports = {
 .sidebar {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: rgb(113, 50, 50);
-  
 }
 
 .sidebar-menu {
@@ -134,7 +145,4 @@ module.exports = {
   background-color: rgba(131, 30, 30, 0.2);
   border-left: 3px solid #831e1e;
 }
-
-
 </style>
-  

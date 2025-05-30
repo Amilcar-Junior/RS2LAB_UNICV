@@ -1,5 +1,5 @@
 :root {
-  --sidebar-color:#f7f7f7;
+  --sidebar-color: #f7f7f7;
   --primary-color: #AB162B;
   --primary-light: #e63946;
   --secondary-color: #2a9d8f;
@@ -8,7 +8,6 @@
   --gray-color: #6c757d;
 }
 
-/* Dashboard specific styles */
 .metric-card {
   background: white;
   border-left: 4px solid var(--primary-color);
@@ -22,68 +21,72 @@
   background: white;
 }
 
-/* Animation for metric cards */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .metric-card {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-.metric-card:nth-child(1) { animation-delay: 0.1s; }
-.metric-card:nth-child(2) { animation-delay: 0.2s; }
-.metric-card:nth-child(3) { animation-delay: 0.3s; }
-.metric-card:nth-child(4) { animation-delay: 0.4s; }
+.metric-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.metric-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.metric-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.metric-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
-/* Chart improvements */
 #entryExitChart {
   max-height: 100%;
   width: 100% !important;
 }
 
-/* Existing styles */
 .input {
-    border: none;
-    outline: none;
-    border-radius: 15px;
-    padding: 1em;
-    background-color: #ccc;
-    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-    transition: 300ms ease-in-out;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
 }
 
 .input:focus {
-    background-color: white;
-    transform: scale(1.05);
-    box-shadow: 13px 13px 100px #969696,
-               -13px -13px 100px #ffffff;
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 13px 13px 100px #969696, -13px -13px 100px #ffffff;
 }
 
 .custom-img {
-    width: 60px;
-    height: auto;
+  width: 60px;
+  height: auto;
 }
 
 .rounded-buttonback {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    color: rgb(146, 27, 27);
-    border: 2px solid #a73838;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #a73838;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: rgb(146, 27, 27);
 }
 
-.button {border-radius: 50%;}
-
-.sidebar{
-    height: 100%;
-    width: 250px;
-    padding: 10px 14px;
-    background: var(--sidebar-color);
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2); /* sombra lateral */
+.button {
+  border-radius: 50%;
 }
