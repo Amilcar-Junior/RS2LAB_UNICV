@@ -1251,7 +1251,8 @@
             "7d5f0c288939fb75",
             "fba83df9b0aeb30e",
             "75c2a0fca3ccd526",
-            "6c5bd5772f037429"
+            "6c5bd5772f037429",
+            "ad3d8206ec3dbc10"
         ],
         "x": 1934,
         "y": 1399,
@@ -1608,7 +1609,7 @@
         "id": "f3e8c660cf5205b5",
         "type": "MySQLdatabase",
         "name": "db_iot_rs2lab",
-        "host": "158.220.96.173",
+        "host": "172.16.80.151",
         "port": "3306",
         "db": "db_iot_rs2lab",
         "tz": "",
@@ -16313,7 +16314,7 @@
         "z": "b945a241e156bcfb",
         "g": "76d13409270878fb",
         "name": "Query",
-        "func": "msg.payload.impressao_digital = global.get(\"finger_id\") || null;\n\n// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n  msg.payload.status_ = '1'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (nome, codigo, email, curso, status, id_dispositivo, impressao_digital, id_perfil) \n  VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n  msg.payload.name || '',\n  msg.payload.codigo || '',\n  msg.payload.email || '',\n  msg.payload.curso || 'Não disponivel',\n  msg.payload.status_ || '1', // Já validado\n  msg.payload.id_dispositivo || '',\n  msg.payload.impressao_digital !== undefined ? msg.payload.impressao_digital : null,\n  msg.payload.id_perfil !== undefined ? msg.payload.id_perfil : 1\n];\n\nreturn msg;\n",
+        "func": "msg.payload.finger_id = global.get(\"finger_id\") || null;\n\n// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n  msg.payload.status_ = '1'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (nome, codigo, email, curso, status, id_dispositivo, finger_id, id_perfil) \n  VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n  msg.payload.name || '',\n  msg.payload.codigo || '',\n  msg.payload.email || '',\n  msg.payload.curso || 'Não disponivel',\n  msg.payload.status_ || '1', // Já validado\n  msg.payload.id_dispositivo || '',\n  msg.payload.finger_id !== undefined ? msg.payload.finger_id : null,\n  msg.payload.id_perfil !== undefined ? msg.payload.id_perfil : 1\n];\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -16755,7 +16756,7 @@
         "z": "b945a241e156bcfb",
         "g": "76d13409270878fb",
         "name": "function 21",
-        "func": "// Guardar o finger_id recebido\nglobal.set(\"finger_id\", msg.payload.impressao);\nreturn msg;\n",
+        "func": "// Guardar o finger_id recebido\nglobal.set(\"finger_id\", msg.payload.finger_id);\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -17631,7 +17632,7 @@
         "z": "b945a241e156bcfb",
         "g": "e23f91c6c90719a6",
         "name": "Query",
-        "func": "msg.payload.tag = global.get(\"tag\") || null;\n// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n    msg.payload.status_ = '0'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (codigo, nome, status, id_dispositivo, tagId, id_perfil) \n  VALUES (?,?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n    msg.payload.codigo || '',\n    msg.payload.name || '',\n    msg.payload.status_ || '0', // Já validado\n    msg.payload.id_dispositivo || '',\n    msg.payload.tag !== undefined ? msg.payload.tag : null,\n    msg.payload.id_perfil || 2,\n]\n\nreturn msg;\n\n\n\n\n",
+        "func": "msg.payload.tag = global.get(\"tag\") || null;\n// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n    msg.payload.status_ = '0'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (codigo, nome, status, id_dispositivo, tag, id_perfil) \n  VALUES (?,?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n    msg.payload.codigo || '',\n    msg.payload.name || '',\n    msg.payload.status_ || '0', // Já validado\n    msg.payload.id_dispositivo || '',\n    msg.payload.tag !== undefined ? msg.payload.tag : null,\n    msg.payload.id_perfil || 2,\n]\n\nreturn msg;\n\n\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -18274,7 +18275,7 @@
         "z": "b945a241e156bcfb",
         "g": "a6adededcdd25826",
         "name": "Query",
-        "func": "var username = msg.payload.username;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.codigo AS username,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    utilizador u\nLEFT JOIN\n    tipoutilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    utilizadorgrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    grupoutilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.codigo = '${username}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
+        "func": "var username = msg.payload.username;\nvar Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.codigo AS username,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.codigo = '${username}' \n    AND u.Senha = SHA2('${Utilizador_Senha}', 256)\nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -19410,6 +19411,36 @@
         "wires": [
             [
                 "f3ed19fc2596cefd"
+            ]
+        ]
+    },
+    {
+        "id": "ad3d8206ec3dbc10",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 2360,
+        "y": 1720,
+        "wires": [
+            [
+                "870faf16bf488d4b"
             ]
         ]
     },

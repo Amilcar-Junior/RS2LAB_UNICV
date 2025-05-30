@@ -85,7 +85,7 @@
                     <td>{{ item.name }}</td>
                     <td>{{ formatDate(item.data_hora) }}</td>
                     <td>{{ item.nome_edificio  }}</td>
-                    <td>{{ item.logg_info}}</td>
+                    <td>{{ formatAccessType(item.logg_info) }}</td>
                   </tr>
                 </tbody>
                 <tbody v-else>
@@ -198,6 +198,9 @@ module.exports = {
     },
   },
   methods: {
+  formatAccessType(logg_info) {
+    return logg_info === 'in' ? 'Entrada' : 'Saída';
+  },
    
     fetchLogs() {
       const params = {
