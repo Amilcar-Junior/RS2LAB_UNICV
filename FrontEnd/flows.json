@@ -19445,6 +19445,57 @@
         ]
     },
     {
+        "id": "8a1221ebdb0aad37",
+        "type": "mqtt in",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "topic": "",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1930,
+        "y": 240,
+        "wires": [
+            [
+                "2cbdd7db6d6435c1"
+            ]
+        ]
+    },
+    {
+        "id": "2cbdd7db6d6435c1",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "validar tag",
+        "func": "//verificar se tag ja foi registado na bd\n//se sim enviar um comando para o node-red para permitir acesso\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2090,
+        "y": 240,
+        "wires": [
+            [
+                "1c0b9719c3743358"
+            ]
+        ]
+    },
+    {
+        "id": "1c0b9719c3743358",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "x": 2250,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "1a2b3c4d",
         "type": "http in",
         "z": "a1b2c3d4e5",
