@@ -38,8 +38,9 @@
               v-show="
                 keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY 
               "
+              v-b-tooltip.hover.top="'Adicionar'"
             >
-              <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+              <i class="fa fa-plus" aria-hidden="true"></i> 
             </b-button>
 
             <!-- <button
@@ -98,14 +99,14 @@
                     <button
                       type="button"
                       @click="editItem(item)"
-                      class="btn btn-info mr-2 button"
+                      class="btn btn-info mr-2 "
                     >
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
                     </button>
                     <button
                       type="button"
                       @click="ShowConfirmDelete(item.id_dispositivo)"
-                      class="btn btn-danger button"
+                      class="btn btn-danger "
                     >
                       <i class="fa fa-trash" aria-hidden="true"></i> 
                     </button>

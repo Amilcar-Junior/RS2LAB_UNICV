@@ -42,7 +42,7 @@
               <option value="Saída">Saída</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary generate-btn">Gerar Relatório</button>
+          <button type="submit" class="btn btn-danger generate-btn">Gerar Relatório</button>
         </form>
       </aside>
 
@@ -481,14 +481,14 @@ module.exports = {
 
 .filters-form input:focus,
 .filters-form select:focus {
-  border-color: #3b82f6;
+  border-color: #912828;
   outline: none;
 }
 
 .generate-btn {
   width: 100%;
   padding: 10px;
-  background-color: #3b82f6;
+  background-color: #AB162B;
   border: none;
   color: white;
   font-weight: 500;
@@ -498,7 +498,7 @@ module.exports = {
 }
 
 .generate-btn:hover {
-  background-color: #2563eb;
+  background-color: #b72034;
 }
 
 .report-main {

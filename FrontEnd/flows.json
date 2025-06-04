@@ -1212,12 +1212,19 @@
             "8a91e23ce64e2898",
             "ae4d50583f8f3df8",
             "947fe1399c32e3c5",
-            "bcaf84441a1a7d51"
+            "bcaf84441a1a7d51",
+            "828bd9e883b13042",
+            "24c4ed8194e3f8a6",
+            "deb64bc31e99fc54",
+            "62dd5411de7fcb2f",
+            "f7039336fdd439db",
+            "b4c8524c9c552b24",
+            "cd628996784810e2"
         ],
         "x": 34,
-        "y": 1919,
-        "w": 872,
-        "h": 302
+        "y": 1819,
+        "w": 892,
+        "h": 382
     },
     {
         "id": "030cd0a9f03e0251",
@@ -1570,7 +1577,7 @@
             "dc9b6ddbd5ad64f6"
         ],
         "x": 1914,
-        "y": 439,
+        "y": 419,
         "w": 712,
         "h": 242
     },
@@ -1674,6 +1681,52 @@
         "db": "nome_do_banco",
         "tz": "Z",
         "charset": "UTF8"
+    },
+    {
+        "id": "de79fa136ad2a543",
+        "type": "mqtt-broker",
+        "name": "STI_Broker",
+        "broker": "172.16.80.150",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ba0280b8446682aa",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "BioSentry",
+        "name": "get_dataInflux",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.8-flux",
+        "url": "http://localhost:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
     },
     {
         "id": "1",
@@ -17438,7 +17491,7 @@
         "name": "GET Dados Cartão",
         "info": "",
         "x": 2030,
-        "y": 480,
+        "y": 460,
         "wires": []
     },
     {
@@ -17464,7 +17517,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 2020,
-        "y": 540,
+        "y": 520,
         "wires": [
             [
                 "efd1e766bbdd4f98"
@@ -17485,7 +17538,7 @@
         "finalize": "",
         "libs": [],
         "x": 2180,
-        "y": 540,
+        "y": 520,
         "wires": [
             [
                 "b05e3805654449cb"
@@ -17500,7 +17553,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 2350,
-        "y": 540,
+        "y": 520,
         "wires": [
             [
                 "a477b1cb1d4ba384"
@@ -17521,7 +17574,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2500,
-        "y": 540,
+        "y": 520,
         "wires": []
     },
     {
@@ -17535,7 +17588,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 1990,
-        "y": 600,
+        "y": 580,
         "wires": [
             [
                 "ac9b9763727ca63a"
@@ -17556,7 +17609,7 @@
         "finalize": "",
         "libs": [],
         "x": 2160,
-        "y": 600,
+        "y": 580,
         "wires": [
             [
                 "7a99372b6d1da40d"
@@ -17571,7 +17624,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 2310,
-        "y": 600,
+        "y": 580,
         "wires": [
             [
                 "087ffe4bb508bef4",
@@ -17593,7 +17646,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2520,
-        "y": 600,
+        "y": 580,
         "wires": []
     },
     {
@@ -17605,7 +17658,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2530,
-        "y": 640,
+        "y": 620,
         "wires": []
     },
     {
@@ -17800,7 +17853,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1350,
+        "x": 1330,
         "y": 280,
         "wires": [
             [
@@ -17900,7 +17953,7 @@
         "name": "Dasboard",
         "info": "",
         "x": 120,
-        "y": 1960,
+        "y": 1860,
         "wires": []
     },
     {
@@ -17914,7 +17967,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 2040,
+        "y": 1920,
         "wires": [
             [
                 "0310a9fa962dcf70"
@@ -17929,8 +17982,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 830,
-        "y": 2040,
+        "x": 850,
+        "y": 1920,
         "wires": []
     },
     {
@@ -17947,7 +18000,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 2040,
+        "y": 1920,
         "wires": [
             [
                 "6e69100c6ef896cd"
@@ -17961,8 +18014,8 @@
         "g": "e9bc3d9e88c8e3b7",
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
-        "x": 530,
-        "y": 2040,
+        "x": 550,
+        "y": 1920,
         "wires": [
             [
                 "8a91e23ce64e2898"
@@ -17983,7 +18036,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 2100,
+        "y": 1960,
         "wires": [
             [
                 "b00bac600827eb6b"
@@ -18004,7 +18057,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 2140,
+        "y": 2000,
         "wires": [
             [
                 "2e970f49a76366a7"
@@ -18025,7 +18078,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 2180,
+        "y": 2040,
         "wires": [
             [
                 "bf8763186b6ea79b"
@@ -18040,7 +18093,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 510,
-        "y": 2100,
+        "y": 1960,
         "wires": [
             [
                 "ae4d50583f8f3df8"
@@ -18055,7 +18108,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 2180,
+        "y": 2040,
         "wires": [
             [
                 "bcaf84441a1a7d51"
@@ -18070,7 +18123,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 490,
-        "y": 2140,
+        "y": 2000,
         "wires": [
             [
                 "947fe1399c32e3c5"
@@ -18086,7 +18139,7 @@
         "statusCode": "",
         "headers": {},
         "x": 810,
-        "y": 2100,
+        "y": 1960,
         "wires": []
     },
     {
@@ -18100,7 +18153,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 2140,
+        "y": 2000,
         "wires": [
             [
                 "e2f9b7afa65f5ce8"
@@ -18116,7 +18169,7 @@
         "statusCode": "",
         "headers": {},
         "x": 810,
-        "y": 2140,
+        "y": 2000,
         "wires": []
     },
     {
@@ -18130,7 +18183,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 2100,
+        "y": 1960,
         "wires": [
             [
                 "fda4c757cadaf7eb"
@@ -18148,7 +18201,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 2180,
+        "y": 2040,
         "wires": [
             [
                 "6ed7edffb077d181"
@@ -18164,7 +18217,7 @@
         "statusCode": "",
         "headers": {},
         "x": 770,
-        "y": 2180,
+        "y": 2040,
         "wires": []
     },
     {
@@ -18181,7 +18234,7 @@
         "finalize": "",
         "libs": [],
         "x": 690,
-        "y": 2040,
+        "y": 1920,
         "wires": [
             [
                 "aa92af3dde97dea8"
@@ -18202,7 +18255,7 @@
         "finalize": "",
         "libs": [],
         "x": 670,
-        "y": 2100,
+        "y": 1960,
         "wires": [
             [
                 "c2fcad8c947bb579"
@@ -18223,7 +18276,7 @@
         "finalize": "",
         "libs": [],
         "x": 650,
-        "y": 2140,
+        "y": 2000,
         "wires": [
             [
                 "d793516227976462"
@@ -18244,7 +18297,7 @@
         "finalize": "",
         "libs": [],
         "x": 630,
-        "y": 2180,
+        "y": 2040,
         "wires": [
             [
                 "4ba567f91bc95870"
@@ -18321,9 +18374,9 @@
         "id": "49238f228ca0723a",
         "type": "comment",
         "z": "b945a241e156bcfb",
-        "name": "Relatorio",
+        "name": "Filtros Relatorio",
         "info": "",
-        "x": 80,
+        "x": 100,
         "y": 2280,
         "wires": []
     },
@@ -19155,8 +19208,8 @@
         "correl": "",
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
-        "x": 3190,
-        "y": 460,
+        "x": 3090,
+        "y": 680,
         "wires": []
     },
     {
@@ -19168,8 +19221,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2900,
-        "y": 440,
+        "x": 2800,
+        "y": 660,
         "wires": [
             [
                 "acadab02dfe2d183",
@@ -19218,8 +19271,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 3230,
-        "y": 320,
+        "x": 3130,
+        "y": 580,
         "wires": []
     },
     {
@@ -19249,8 +19302,8 @@
         "z": "b945a241e156bcfb",
         "name": "Enviar comando sobre registar",
         "info": "",
-        "x": 2910,
-        "y": 380,
+        "x": 2810,
+        "y": 600,
         "wires": []
     },
     {
@@ -19282,8 +19335,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3280,
-        "y": 380,
+        "x": 3140,
+        "y": 640,
         "wires": []
     },
     {
@@ -19355,8 +19408,8 @@
         "name": "Capturar Erro",
         "scope": null,
         "uncaught": false,
-        "x": 120,
-        "y": 2400,
+        "x": 90,
+        "y": 2380,
         "wires": [
             [
                 "58d661d2920260e5"
@@ -19375,8 +19428,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 2400,
+        "x": 290,
+        "y": 2380,
         "wires": [
             [
                 "7dbdb8aca95588c5"
@@ -19390,8 +19443,8 @@
         "name": "Resposta de Erro",
         "statusCode": "",
         "headers": {},
-        "x": 560,
-        "y": 2400,
+        "x": 510,
+        "y": 2380,
         "wires": []
     },
     {
@@ -19445,55 +19498,452 @@
         ]
     },
     {
-        "id": "8a1221ebdb0aad37",
+        "id": "mqtt_in_node",
         "type": "mqtt in",
         "z": "b945a241e156bcfb",
-        "name": "",
-        "topic": "",
+        "name": "Receber tag via MQTT",
+        "topic": "topico/do/tag",
         "qos": "2",
-        "datatype": "auto-detect",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
+        "datatype": "auto",
+        "broker": "mqtt_broker_id",
         "inputs": 0,
-        "x": 1930,
-        "y": 240,
+        "x": 1940,
+        "y": 200,
         "wires": [
             [
-                "2cbdd7db6d6435c1"
+                "verificar_tag_function"
             ]
         ]
     },
     {
-        "id": "2cbdd7db6d6435c1",
+        "id": "verificar_tag_function",
         "type": "function",
         "z": "b945a241e156bcfb",
-        "name": "validar tag",
-        "func": "//verificar se tag ja foi registado na bd\n//se sim enviar um comando para o node-red para permitir acesso\nreturn msg;",
+        "name": "Verificar tag no BD",
+        "func": "// Extrair tag e device_id do payload\nconst tag = msg.payload.tag;\nconst deviceId = msg.payload.device_id;\n\n// Montar a query SQL\nmsg.topic = `\n    SELECT * FROM pessoa \n    WHERE tag = '${tag}' \n    AND id_dispositivo = ${deviceId} \n    AND status_ = 1\n`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2140,
+        "y": 140,
+        "wires": [
+            [
+                "mysql_node"
+            ]
+        ]
+    },
+    {
+        "id": "mysql_node",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "Consultar BD",
+        "x": 2340,
+        "y": 140,
+        "wires": [
+            [
+                "processar_resultado_function"
+            ]
+        ]
+    },
+    {
+        "id": "processar_resultado_function",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "Processar Resultado",
+        "func": "if (msg.payload.length > 0) {\n    msg.payload = { acesso: 'permitido' };\n    msg.topic = 'comando/permitir_acesso';\n} else {\n    msg.payload = { acesso: 'negado' };\n    msg.topic = 'comando/negar_acesso';\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2540,
+        "y": 140,
+        "wires": [
+            [
+                "mqtt_out_node"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_out_node",
+        "type": "mqtt out",
+        "z": "b945a241e156bcfb",
+        "name": "Enviar comando de acesso",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "mqtt_broker_id",
+        "x": 2740,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "recentAcessosHttpIn",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "name": "Get Recent Acessos",
+        "url": "/rs2lab/recentacessos",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1350,
+        "y": 2140,
+        "wires": [
+            [
+                "recentAcessosQuery"
+            ]
+        ]
+    },
+    {
+        "id": "recentAcessosQuery",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "Build SQL Query",
+        "func": "const filters = msg.req.query;\n\nlet baseQuery = `SELECT a.id, a.data_hora, a.tipo, p.nome AS pessoa_nome, d.tipo AS dispositivo_tipo, e.nome_edificio, pa.nome_perfil\nFROM acessos a\nJOIN pessoa p ON a.codigo = p.codigo\nJOIN dispositivo d ON a.id_dispositivo = d.id_dispositivo\nJOIN edificio e ON d.id_edificio = e.id_edificio\nLEFT JOIN perfis_acesso pa ON p.id_perfil = pa.id_perfil\nWHERE 1=1`;\n\nconst params = [];\n\nif (filters.data_inicio) {\n  baseQuery += ' AND a.data_hora >= ?';\n  params.push(filters.data_inicio);\n}\nif (filters.data_fim) {\n  baseQuery += ' AND a.data_hora <= ?';\n  params.push(filters.data_fim);\n}\nif (filters.nome) {\n  baseQuery += ' AND p.nome LIKE ?';\n  params.push(`%${filters.nome}%`);\n}\nif (filters.residencia) {\n  baseQuery += ' AND e.nome_edificio LIKE ?';\n  params.push(`%${filters.residencia}%`);\n}\nif (filters.tipo_utilizador) {\n  baseQuery += ' AND pa.nome_perfil = ?';\n  params.push(filters.tipo_utilizador);\n}\n\nbaseQuery += ' ORDER BY a.data_hora DESC LIMIT 100';\n\nmsg.topic = baseQuery;\nmsg.params = params;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 2140,
+        "wires": [
+            [
+                "recentAcessosDb"
+            ]
+        ]
+    },
+    {
+        "id": "recentAcessosDb",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 1750,
+        "y": 2140,
+        "wires": [
+            [
+                "recentAcessosHttpResponse"
+            ]
+        ]
+    },
+    {
+        "id": "recentAcessosHttpResponse",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1950,
+        "y": 2140,
+        "wires": []
+    },
+    {
+        "id": "828bd9e883b13042",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "function 3",
+        "func": "msg.label = \"accessByDay\";\nmsg.topic = \"SELECT \" +\n    \"DATE(data_hora) AS date, \" +\n    \"SUM(CASE WHEN tipo = 'in' THEN 1 ELSE 0 END) AS entries, \" +\n    \"SUM(CASE WHEN tipo = 'out' THEN 1 ELSE 0 END) AS exits \" +\n    \"FROM acessos \" +\n    \"WHERE data_hora >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) \" +\n    \"GROUP BY DATE(data_hora)\" +\n    \"ORDER BY date;\";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2090,
-        "y": 240,
+        "x": 330,
+        "y": 2100,
         "wires": [
             [
-                "1c0b9719c3743358"
+                "24c4ed8194e3f8a6"
             ]
         ]
     },
     {
-        "id": "1c0b9719c3743358",
+        "id": "24c4ed8194e3f8a6",
         "type": "mysql",
         "z": "b945a241e156bcfb",
-        "name": "",
-        "x": 2250,
-        "y": 240,
+        "g": "e9bc3d9e88c8e3b7",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 490,
+        "y": 2100,
         "wires": [
+            [
+                "f7039336fdd439db",
+                "cd628996784810e2"
+            ]
+        ]
+    },
+    {
+        "id": "deb64bc31e99fc54",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "accessByDay",
+        "url": "/biosentry/accessByDay",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 2100,
+        "wires": [
+            [
+                "828bd9e883b13042"
+            ]
+        ]
+    },
+    {
+        "id": "62dd5411de7fcb2f",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 2100,
+        "wires": []
+    },
+    {
+        "id": "f7039336fdd439db",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 2140,
+        "wires": []
+    },
+    {
+        "id": "b4c8524c9c552b24",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 2160,
+        "wires": [
+            [
+                "828bd9e883b13042"
+            ]
+        ]
+    },
+    {
+        "id": "cd628996784810e2",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "e9bc3d9e88c8e3b7",
+        "name": "function 4",
+        "func": "msg.payload = msg.payload; // Mantém o array retornado pelo MySQL\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 2100,
+        "wires": [
+            [
+                "62dd5411de7fcb2f"
+            ]
+        ]
+    },
+    {
+        "id": "5052541edf4e1a75",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "function 2",
+        "func": "// Verifica se msg.payload e msg.payload.tagId existem\nif (!msg.payload || !msg.payload.tagId) {\n    node.error(\"tagId não definido em msg.payload\");\n    return null;\n}\n\n// Converte tagId para string e remove espaços\nvar tagIdStr = String(msg.payload.tagId).replace(/\\s+/g, '');\n\n// Cria o objeto data com as informações desejadas\nvar data = {\n    tagId: tagIdStr,\n    deviceId: msg.payload.deviceId,\n    logg_info: msg.payload.logg_info\n};\n\n// Armazena os dados extras em msg.meta\nmsg.meta = data;\n\n// Define a query para o InfluxDB utilizando os dados limpos\nmsg.query = `\n  from(bucket: \"BioSentry\")\n    |> range(start: 0)\n    |> filter(fn: (r) => r._measurement == \"RFID_Card\")\n    |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n    |> filter(fn: (r) => \n        (r.device_id == \"${data.deviceId}\" or r.nivel == \"admin\") \n        and \n        r.tag == \"${data.tagId}\"\n      )\n`;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2920,
+        "y": 900,
+        "wires": [
+            [
+                "801abe102dd461b6",
+                "75cce99ad2f6b755"
+            ]
+        ]
+    },
+    {
+        "id": "2788eafea8c473bd",
+        "type": "mqtt in",
+        "z": "b945a241e156bcfb",
+        "name": "Biosentry_RFID",
+        "topic": "nfc/tag_Leitor_BioSentry",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "de79fa136ad2a543",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 2760,
+        "y": 900,
+        "wires": [
+            [
+                "5052541edf4e1a75"
+            ]
+        ]
+    },
+    {
+        "id": "0f2346c82fcbe1db",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "function 5",
+        "func": "// Verifica se há informações extras armazenadas em msg.meta\nlet meta = msg.meta || {};\n\n// Exibe o payload recebido (array de registros do InfluxDB)\n//node.warn(\"Data recebida: \" + JSON.stringify(msg.payload));\n\n// Verifica se o payload é um array com pelo menos um registro\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0) {\n    // Procura por um registro com status \"1\"\n    let statusEntry = msg.payload.find(item => item.status === 1);\n\n    if (statusEntry) {\n        // Cria o comando utilizando o device_id do registro retornado pelo InfluxDB\n        let cmd = \"Open_Door_\" + String(msg.meta.deviceId);\n\n        // Usa os dados extras se estiverem disponíveis; caso contrário, utiliza os dados do registro\n        let tagId    = meta.tagId    || statusEntry.tag;\n        // Se necessário, você também pode usar meta.deviceId para outras finalidades\n        let logg_info = meta.logg_info || \"in\";\n        // Mapeamento de deviceId para código de edifício\n        const buildingDeviceMap = {\n            \"BSE17T\": \"E17\",\n            \"BSE16T\": \"E16\",\n            \"BSE15T\": \"E15\"  \n        };\n\n        //Função para obter o código do edifício com base no deviceId\n        const getDeviceId = (deviceId) => {\n            return buildingDeviceMap[deviceId] || \"Unknown Device\";\n        };\n\n        let building = getDeviceId(meta.deviceId );\n  \n\n         // Exemplo: RFID_Card_logs,tagId=B55FFE5B,edificio=E17 codigo=\"122623\",logg_info=\"IN\" 1615298995\n         let logPayload = [\n            {\n                measurement: \"RFID_Card_logs\",\n                fields: {\n                    nome: statusEntry.nome,\n                    apelido: statusEntry.apelido,\n                    // Caso o campo seja chamado codigoCartao na mensagem original, ajuste aqui:\n                    codigo: statusEntry.codigo || statusEntry.codigoCartao,\n                    edificio: building,\n                    status: statusEntry.status,\n                    // Acrescenta o logg_info para indicar a direção (ex.: \"in\" ou \"IN\")\n                    logg_info: logg_info,\n                    nivel: statusEntry.nivel\n                },\n                tags: {\n                    // Para device_id, usamos o código do edifício ou outro identificador conforme sua necessidade\n                    device_id: statusEntry.device_id, // ou msg.deviceId, se preferir\n                    tag: statusEntry.tag\n                },\n                // O timestamp pode ser definido com a data atual (o Influx Out geralmente converte para o formato adequado)\n                timestamp: new Date()\n            }\n        ];\n\n        // Cria as duas mensagens de saída\n        let msg1 = { payload: { \"Cmd\": cmd } };\n        // msg2: para enviar o log estruturado para o Influx Out\n        let msg2 = { payload: logPayload };\n\n        return [msg1, msg2];\n    }\n}\n\n// Se nenhum registro com status \"1\" for encontrado, retorna \"Acesso Negado\"\n// Mantemos os dois outputs (o segundo fica vazio)\nmsg.payload = \"Acesso Negado\";\nreturn [msg, null];\n",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3340,
+        "y": 900,
+        "wires": [
+            [
+                "fc54e681e13c307e"
+            ],
             []
         ]
+    },
+    {
+        "id": "75cce99ad2f6b755",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3060,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "96989e9ed79fe553",
+        "type": "influxdb batch",
+        "z": "b945a241e156bcfb",
+        "influxdb": "ba0280b8446682aa",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "",
+        "database": "BioSentry",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "ELEVAR TEAM",
+        "bucket": "UniVerde",
+        "x": 3470,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "801abe102dd461b6",
+        "type": "influxdb in",
+        "z": "b945a241e156bcfb",
+        "influxdb": "ba0280b8446682aa",
+        "name": "",
+        "query": "msg.query",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 3130,
+        "y": 900,
+        "wires": [
+            [
+                "0f2346c82fcbe1db"
+            ]
+        ]
+    },
+    {
+        "id": "c109ebe0cc312aef",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "",
+        "x": 3680,
+        "y": 900,
+        "wires": [
+            [
+                "ee354d188273acd3"
+            ]
+        ]
+    },
+    {
+        "id": "fc54e681e13c307e",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "name": "function 7",
+        "func": "\nmsg.topic = `INSERT INTO acessos (\n    codigo,\n    data_hora,\n    tipo,\n    id_dispositivo) ` +\n    `VALUES ('${msg.payload.codigo}',NOW(),'${msg.payload.logg_info}' ,'${msg.payload.device_id}');`;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3500,
+        "y": 900,
+        "wires": [
+            [
+                "c109ebe0cc312aef"
+            ]
+        ]
+    },
+    {
+        "id": "ee354d188273acd3",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3760,
+        "y": 960,
+        "wires": []
     },
     {
         "id": "1a2b3c4d",

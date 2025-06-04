@@ -93,10 +93,10 @@ module.exports = {
           scales: {
             y: {
               beginAtZero: true,
-              // ticks: {
-              //   stepSize: 1, // Força incrementos inteiros
-              //   precision: 0 // Remove decimais
-              // }
+              ticks: {
+                stepSize: 1, // Força incrementos inteiros
+                precision: 0 // Remove decimais
+              }
             },
           },
         },

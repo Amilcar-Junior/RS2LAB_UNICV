@@ -1,0 +1,48 @@
+[
+  {
+    "id": "recentAcessosHttpIn",
+    "type": "http in",
+    "z": "recentAcessosFlow",
+    "name": "Get Recent Acessos",
+    "url": "/rs2lab/recentacessos",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 100,
+    "y": 100,
+    "wires": [["recentAcessosQuery"]]
+  },
+  {
+    "id": "recentAcessosQuery",
+    "type": "function",
+    "z": "recentAcessosFlow",
+    "name": "Build SQL Query",
+    "func": "const filters = msg.req.query;\n\nlet baseQuery = `SELECT a.id, a.data_hora, a.tipo, p.nome AS pessoa_nome, d.tipo AS dispositivo_tipo, e.nome_edificio, pa.nome_perfil\nFROM acessos a\nJOIN pessoa p ON a.codigo = p.codigo\nJOIN dispositivo d ON a.id_dispositivo = d.id_dispositivo\nJOIN edificio e ON d.id_edificio = e.id_edificio\nLEFT JOIN perfis_acesso pa ON p.id_perfil = pa.id_perfil\nWHERE 1=1`;\n\nconst params = [];\n\nif (filters.data_inicio) {\n  baseQuery += ' AND a.data_hora >= ?';\n  params.push(filters.data_inicio);\n}\nif (filters.data_fim) {\n  baseQuery += ' AND a.data_hora <= ?';\n  params.push(filters.data_fim);\n}\nif (filters.nome) {\n  baseQuery += ' AND p.nome LIKE ?';\n  params.push(`%${filters.nome}%`);\n}\nif (filters.residencia) {\n  baseQuery += ' AND e.nome_edificio LIKE ?';\n  params.push(`%${filters.residencia}%`);\n}\nif (filters.tipo_utilizador) {\n  baseQuery += ' AND pa.nome_perfil = ?';\n  params.push(filters.tipo_utilizador);\n}\n\nbaseQuery += ' ORDER BY a.data_hora DESC LIMIT 100';\n\nmsg.topic = baseQuery;\nmsg.params = params;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 300,
+    "y": 100,
+    "wires": [["recentAcessosDb"]]
+  },
+  {
+    "id": "recentAcessosDb",
+    "type": "mysql",
+    "z": "recentAcessosFlow",
+    "mydb": "f3e8c660cf5205b5",
+    "name": "DB",
+    "x": 500,
+    "y": 100,
+    "wires": [["recentAcessosHttpResponse"]]
+  },
+  {
+    "id": "recentAcessosHttpResponse",
+    "type": "http response",
+    "z": "recentAcessosFlow",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 700,
+    "y": 100,
+    "wires": []
+  }
+]
