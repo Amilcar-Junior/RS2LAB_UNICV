@@ -443,7 +443,11 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-node-mysql",
+<<<<<<< HEAD
                 "file": "/home/scunha/RS2LAB_UNICV/FrontEnd/node_modules/node-red-node-mysql/68-mysql.js"
+=======
+                "file": "/home/rabelados/RS2LAB_UNICV/FrontEnd/node_modules/node-red-node-mysql/68-mysql.js"
+>>>>>>> 4d70b92470b64ec4fa706ae508b9da87496b7365
             }
         }
     },
@@ -462,7 +466,11 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
+<<<<<<< HEAD
                 "file": "/home/scunha/RS2LAB_UNICV/FrontEnd/node_modules/node-red-contrib-uibuilder/nodes/uibuilder.js"
+=======
+                "file": "/home/rabelados/RS2LAB_UNICV/FrontEnd/node_modules/node-red-contrib-uibuilder/nodes/uibuilder.js"
+>>>>>>> 4d70b92470b64ec4fa706ae508b9da87496b7365
             }
         }
     },
@@ -483,7 +491,33 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-node-email",
+<<<<<<< HEAD
                 "file": "/home/scunha/RS2LAB_UNICV/FrontEnd/node_modules/node-red-node-email/61-email.js"
+=======
+                "file": "/home/rabelados/RS2LAB_UNICV/FrontEnd/node_modules/node-red-node-email/61-email.js"
+            }
+        }
+    },
+    "node-red-contrib-influxdb": {
+        "name": "node-red-contrib-influxdb",
+        "version": "0.7.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "influxdb": {
+                "name": "influxdb",
+                "types": [
+                    "influxdb",
+                    "influxdb out",
+                    "influxdb batch",
+                    "influxdb in"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-influxdb",
+                "file": "/home/rabelados/RS2LAB_UNICV/FrontEnd/node_modules/node-red-contrib-influxdb/influxdb.js"
+>>>>>>> 4d70b92470b64ec4fa706ae508b9da87496b7365
             }
         }
     }

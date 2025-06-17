@@ -51,7 +51,8 @@
                 endDate: endDate
               }
             }"
-            class="btn btn-primary"
+            class="btn btn-danger"
+            style="background-color: brown;"
           >
             Gerar Relatório
           </router-link>
