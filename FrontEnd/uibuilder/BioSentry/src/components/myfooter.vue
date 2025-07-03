@@ -11,7 +11,7 @@
         RS2LAB 
       </a> 
       e STI
-      | Desenvolvido por 
+      <!-- | Desenvolvido por  -->
       <a 
         href="https://www.linkedin.com/in/amilcar-junior/" 
         target="_blank" 

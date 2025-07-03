@@ -94,7 +94,7 @@
       </b-navbar-nav>
 
        <!-- Menus para BioSentry -->
-       <b-navbar-nav v-show="keys.islogged " v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+       <b-navbar-nav v-show="keys.islogged " v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
           <b-nav-item  href="#" to="/biosentry/dashboard"> Dashboard</b-nav-item>
          
           <b-nav-item-dropdown text="Cadastro"

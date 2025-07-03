@@ -427,30 +427,6 @@
             }
         }
     },
-    "node-red-node-mysql": {
-        "name": "node-red-node-mysql",
-        "version": "2.0.0",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "mysql": {
-                "name": "mysql",
-                "types": [
-                    "MySQLdatabase",
-                    "mysql"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-node-mysql",
-<<<<<<< HEAD
-                "file": "/home/scunha/RS2LAB_UNICV/FrontEnd/node_modules/node-red-node-mysql/68-mysql.js"
-=======
-                "file": "/home/rabelados/RS2LAB_UNICV/FrontEnd/node_modules/node-red-node-mysql/68-mysql.js"
->>>>>>> 4d70b92470b64ec4fa706ae508b9da87496b7365
-            }
-        }
-    },
     "node-red-contrib-uibuilder": {
         "name": "node-red-contrib-uibuilder",
         "version": "4.1.4",
@@ -466,11 +442,7 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
-<<<<<<< HEAD
                 "file": "/home/scunha/RS2LAB_UNICV/FrontEnd/node_modules/node-red-contrib-uibuilder/nodes/uibuilder.js"
-=======
-                "file": "/home/rabelados/RS2LAB_UNICV/FrontEnd/node_modules/node-red-contrib-uibuilder/nodes/uibuilder.js"
->>>>>>> 4d70b92470b64ec4fa706ae508b9da87496b7365
             }
         }
     },
@@ -491,10 +463,27 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-node-email",
-<<<<<<< HEAD
                 "file": "/home/scunha/RS2LAB_UNICV/FrontEnd/node_modules/node-red-node-email/61-email.js"
-=======
-                "file": "/home/rabelados/RS2LAB_UNICV/FrontEnd/node_modules/node-red-node-email/61-email.js"
+            }
+        }
+    },
+    "node-red-node-mysql": {
+        "name": "node-red-node-mysql",
+        "version": "2.0.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "mysql": {
+                "name": "mysql",
+                "types": [
+                    "MySQLdatabase",
+                    "mysql"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-node-mysql",
+                "file": "/home/scunha/RS2LAB_UNICV/FrontEnd/node_modules/node-red-node-mysql/68-mysql.js"
             }
         }
     },
@@ -516,8 +505,7 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-contrib-influxdb",
-                "file": "/home/rabelados/RS2LAB_UNICV/FrontEnd/node_modules/node-red-contrib-influxdb/influxdb.js"
->>>>>>> 4d70b92470b64ec4fa706ae508b9da87496b7365
+                "file": "/home/scunha/RS2LAB_UNICV/FrontEnd/node_modules/node-red-contrib-influxdb/influxdb.js"
             }
         }
     }

@@ -32,7 +32,7 @@
                 "view-store-position": false,
                 "view-show-grid": true,
                 "view-snap-grid": true,
-                "view-grid-size": 20,
+                "view-grid-size": "20",
                 "view-node-status": true,
                 "view-node-show-label": true,
                 "view-show-tips": true,
@@ -44,9 +44,10 @@
             "dialog": {
                 "export": {
                     "pretty": true,
-                    "json-view": false
+                    "json-view": true
                 }
             }
-        }
+        },
+        "menu-menu-item-sidebar": false
     }
 }

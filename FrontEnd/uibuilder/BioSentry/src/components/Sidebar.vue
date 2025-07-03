@@ -13,7 +13,7 @@
     :class="{'open': isSidebarOpen}"
   >
     <div class="sidebar-menu">
-      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
         <div class="menu-item">
           <router-link to="/" class="menu-link">
             <i class="fa fa-tachometer"></i>
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
         <div class="menu-title">Registos</div>
         <div class="menu-item">
           <router-link to="/biosentry/gestao-alunos" class="menu-link">
@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
         <div class="menu-title">Acessos</div>
         <div class="menu-item">
           <router-link to="/biosentry/historico-acesso" class="menu-link">
@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY">
+      <div class="menu-section" v-if="keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR">
         <div class="menu-title">Gestão</div>
         <div class="menu-item">
           <router-link to="/biosentry/dispositivos" class="menu-link">

@@ -1616,7 +1616,7 @@
         "id": "f3e8c660cf5205b5",
         "type": "MySQLdatabase",
         "name": "db_iot_rs2lab",
-        "host": "172.16.80.151",
+        "host": "172.16.80.152",
         "port": "3306",
         "db": "db_iot_rs2lab",
         "tz": "",

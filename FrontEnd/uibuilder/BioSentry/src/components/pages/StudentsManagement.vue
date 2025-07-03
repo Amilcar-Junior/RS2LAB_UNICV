@@ -39,7 +39,7 @@
               "
               @click="showModalAdd = true"
               v-show="
-                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
+                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR
               "
               v-b-tooltip.hover.top="'Adicionar'"
             >
@@ -77,7 +77,7 @@
                     scope="col"
                     class="col-1 text-center"
                     v-show="
-                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
+                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR
                     "
                   >
                     Ações
@@ -104,7 +104,7 @@
                   <td
                     class="text-center"
                     v-show="
-                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
+                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR
                     "
                   >
                     <button
