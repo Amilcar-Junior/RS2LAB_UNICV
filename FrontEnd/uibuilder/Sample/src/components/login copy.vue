@@ -72,7 +72,7 @@
        }
  
        if (!this.postBody.Utilizador_Senha) {
-         this.errormessage = "Por favor, insira sua senha.";
+         this.errormessage = "Por favor, insira sua palavra-passe.";
          return;
        }
  

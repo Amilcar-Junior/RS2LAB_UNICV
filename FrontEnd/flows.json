@@ -1143,7 +1143,7 @@
         "x": 44,
         "y": 39,
         "w": 862,
-        "h": 322
+        "h": 342
     },
     {
         "id": "e0914e4a4497fb15",
@@ -1384,15 +1384,12 @@
             "27e4a3c9c223cc25",
             "6f5b06e51d29a999",
             "ecb6ab809742f491",
-            "dbd0d3bdab775f7b",
-            "2334ed5fe60640de",
-            "cd5274331186766e",
-            "01e8b8655c698a26"
+            "dbd0d3bdab775f7b"
         ],
         "x": 1014,
         "y": 419,
         "w": 732,
-        "h": 282
+        "h": 242
     },
     {
         "id": "d7f3baf127f02fab",
@@ -16272,78 +16269,6 @@
         "wires": []
     },
     {
-        "id": "2334ed5fe60640de",
-        "type": "inject",
-        "z": "b945a241e156bcfb",
-        "g": "6232b0d6144ee826",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 1140,
-        "y": 640,
-        "wires": [
-            [
-                "cd5274331186766e"
-            ]
-        ]
-    },
-    {
-        "id": "cd5274331186766e",
-        "type": "http request",
-        "z": "b945a241e156bcfb",
-        "g": "6232b0d6144ee826",
-        "name": "",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://127.0.0.1:1882/biosentry/students",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 1310,
-        "y": 640,
-        "wires": [
-            [
-                "01e8b8655c698a26"
-            ]
-        ]
-    },
-    {
-        "id": "01e8b8655c698a26",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "6232b0d6144ee826",
-        "name": "debug 25",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1480,
-        "y": 660,
-        "wires": []
-    },
-    {
         "id": "3ed4d89775460558",
         "type": "http in",
         "z": "b945a241e156bcfb",
@@ -16961,7 +16886,7 @@
         "name": "Buscar estudante por codigo",
         "info": "",
         "x": 1140,
-        "y": 1040,
+        "y": 1020,
         "wires": []
     },
     {
@@ -18457,7 +18382,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "proxy_function"
@@ -18478,7 +18403,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "http_request"
@@ -18503,7 +18428,7 @@
         "senderr": false,
         "headers": [],
         "x": 540,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "proxy_response",
@@ -18522,7 +18447,7 @@
             "Access-Control-Allow-Origin": "*"
         },
         "x": 770,
-        "y": 280,
+        "y": 300,
         "wires": []
     },
     {
@@ -18540,7 +18465,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 750,
-        "y": 320,
+        "y": 340,
         "wires": []
     },
     {
@@ -19027,7 +18952,7 @@
         "z": "b945a241e156bcfb",
         "g": "76d13409270878fb",
         "name": "Prepare API Request",
-        "func": "node.log(`Recebida requisição para /getstudentbycode: ${JSON.stringify(msg.req.query)}`);\n\n// Extrair o código da query string\nvar codigo = msg.req.query.codigo;\nif (!codigo) {\n    node.error('Código de estudante não fornecido.');\n    msg.statusCode = 400;\n    msg.payload = { error: 'Código de estudante é obrigatório.' };\n    return [null, msg];\n}\n\n// Construir a URL da API\nmsg.url = `https://betaapi.unicv.cv/api-basic-v1/person/view?id=${codigo}`;\n\n// Extrair o token do cabeçalho Authorization\nconst authHeader = msg.req.headers.authorization;\nif (!authHeader || !authHeader.startsWith('Bearer ')) {\n    node.error('Token de autenticação não fornecido ou inválido.');\n    msg.statusCode = 401;\n    msg.payload = { error: 'Token de autenticação é obrigatório.' };\n    return [null, msg];\n}\n\n// Configurar o cabeçalho Authorization para a requisição à API\nmsg.headers = {\n    'Authorization': authHeader\n};\n\nnode.log(`Enviando requisição para: ${msg.url}`);\nnode.log(`Cabeçalho Authorization: ${msg.headers.Authorization}`);\nreturn [msg, null];",
+        "func": "//node.log(`Recebida requisição para /getstudentbycode: ${JSON.stringify(msg.req.query)}`);\n\n// Extrair o código da query string\nvar codigo = msg.req.query.codigo;\nif (!/^[0-9]+$/.test(codigo)) {\n    node.error('Código de estudante inválido.');\n    msg.statusCode = 400;\n    msg.payload = { error: 'Formato de código inválido.' };\n    return [null, msg];\n}\n\n\n// Construir a URL da API\nmsg.url = `https://betaapi.unicv.cv/api-basic-v1/person/view?id=${codigo}`;\n\n// Extrair o token do cabeçalho Authorization\nconst authHeader = msg.req.headers.authorization;\nif (!authHeader || !authHeader.startsWith('Bearer ')) {\n    node.error('Token de autenticação não fornecido ou inválido.');\n    msg.statusCode = 401;\n    msg.payload = { error: 'Token de autenticação é obrigatório.' };\n    return [null, msg];\n}\n\n// Configurar o cabeçalho Authorization para a requisição à API\nmsg.headers = {\n    'Authorization': authHeader\n};\n\n//node.log(`Enviando requisição para: ${msg.url}`); \n//node.log(`Cabeçalho Authorization: ${msg.headers.Authorization}`);\nreturn [msg, null];",
         "outputs": 2,
         "timeout": 0,
         "noerr": 0,
@@ -19078,7 +19003,7 @@
         "name": "Retorna dados",
         "statusCode": "",
         "headers": {
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "http://172.16.80.152:1880"
         },
         "x": 1820,
         "y": 1080,

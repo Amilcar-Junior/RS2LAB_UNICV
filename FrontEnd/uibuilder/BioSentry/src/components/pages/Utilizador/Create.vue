@@ -44,7 +44,7 @@
                   id="senha"
                   v-model="model.item.Senha"
                   class="form-control"
-                  placeholder="Insira a senha do utilizador"
+                  placeholder="Insira a palavra-passe do utilizador"
                 />
               </div> -->
               <div class="mb-3">

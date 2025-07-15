@@ -52,7 +52,7 @@
                 class="mt-4 text-muted"
                 style="font-size: 15px; margin-top: 20px; text-align: center"
               >
-                Rs2lab
+                BioSentry
               </p>
             </form>
 
@@ -194,7 +194,7 @@ module.exports = {
           });
           console.log("Resposta da API rs2lab/login:", rs2labResponse.data);
           if (rs2labResponse.data.length === 0) {
-        this.errormessage = "Código ou senha inválidos.";
+        this.errormessage = "Código ou palavra-passe inválidos.";
         return;
       }
 

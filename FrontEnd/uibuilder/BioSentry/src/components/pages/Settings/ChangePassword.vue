@@ -78,9 +78,9 @@ module.exports = {
       const hashedCurrentPassword = CryptoJS.SHA256(this.currentPassword).toString();
 
       console.log(hashedCurrentPassword)
-      // Verifica se a senha atual está correta
+      // Verifica se a palavra-passe atual está correta
       if (hashedCurrentPassword === this.model.item.Senha) {
-        // Senha correta, executa a API para alterar a senha
+        // Senha correta, executa a API para alterar a palavra-passe
         const payload = {
           newPassword: this.newPassword,
         };
