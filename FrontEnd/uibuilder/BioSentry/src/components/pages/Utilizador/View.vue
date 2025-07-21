@@ -1,38 +1,61 @@
 <template>
   <div>
     <div class="container-fluid mt-5">
-      <router-link to="/" class="btn btn-secondary mb-3">
+      <!-- <router-link to="/" class="btn btn-secondary mb-3">
         <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
-      </router-link>
+      </router-link> -->
+<h3
+        class="text-left"
+        style="
+          font-family: 'Roboto', sans-serif;
+          font-weight: 700;
+          margin-bottom: 50px;
+        "
+      >
+        Utilizadores
+      </h3>
+
       <div class="card">
         <div
           class="card-header d-flex justify-content-between align-items-center"
         >
-          <h4>Utilizador</h4>
-          <div>
+           <div>
             <input
-              type="text"
-              class="form-control d-inline-block w-auto"
-              placeholder="Buscar por Nome, Email..."
-              v-model="searchQuery"
-            />
+            type="text"
+            class="form-control d-inline-block w-auto"
+            placeholder="Buscar"
+            v-b-tooltip.hover.top ="'Buscar por Nome, Email, ID'"
+            v-model="searchQuery"
+          />
+          <i class="fa fa-search" aria-hidden="true" style="margin-left: 2px;"></i>
+          </div>
+          <div>
+           
             <router-link
-              to="/utilizador/create"
+              to="/biosentry/utilizador/create"
               class="btn btn-primary ml-2"
+        
+              style="
+                background-color: #007bff;
+                border-color: #007bff;
+                color: white;
+              "
               v-show="
                 keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
-                keys.TipoUtilizador_Nome === userTypes.GESTOR
+                keys.TipoUtilizador_Nome === userTypes.GESTOR ||
+                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
               "
+              v-b-tooltip.hover.top="'Adicionar'"
             >
-              <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+              <i class="fa fa-plus" aria-hidden="true"></i> 
             </router-link>
             <button
               class="btn btn-danger ml-2"
               @click="deleteSelectedItems"
               :disabled="selectedItems.length === 0"
             >
-              <i class="fa fa-trash" aria-hidden="true"></i> Deletar
-              Selecionados
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              <i class="fa fa-trash" aria-hidden="true"></i> 
             </button>
           </div>
         </div>
@@ -53,10 +76,11 @@
                   <th scope="col" class="col-1">Avatar</th>
                   <th
                     scope="col"
-                    class="col-2 text-right"
+                    class="col-1 text-center"
                     v-show="
                       keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
-                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR ||
+                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
                     "
                   >
                     Ações
@@ -108,32 +132,43 @@
                     ></i>
                   </td>
                   <td
-                    class="text-right"
+                    class="text-center"
                     v-show="
                       keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||
-                      keys.TipoUtilizador_Nome === userTypes.GESTOR
+                      keys.TipoUtilizador_Nome === userTypes.GESTOR ||
+                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY
                     "
                   >
                     <router-link
                       :to="{
-                        path: '/utilizador/' + item.Utilizador_ID + '/edit',
+                        path: '/biosentry/utilizador/' + item.Utilizador_ID + '/edit',
                       }"
-                      class="btn btn-success"
+                      class="btn btn-info mr-2 button"
+                      v-b-tooltip.hover.top="'Editar estudante'"
                     >
-                      <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
                     </router-link>
                     <button
                       type="button"
                       @click="ShowConfirmDelete(item.Utilizador_ID)"
-                      class="btn btn-danger"
+                      class="btn btn-danger button"
+                      v-b-tooltip.hover.top="'Deletar utilizador'"
                     >
-                      <i class="fa fa-trash" aria-hidden="true"></i> Deletar
+                      <i class="fa fa-trash" aria-hidden="true"></i> 
                     </button>
                   </td>
                 </tr>
               </tbody>
               <tbody v-else>
-                <td colspan="9">Carregando...</td>
+                <tr>
+                  <td colspan="6" class="text-center">
+                    {{
+                      searchQuery
+                        ? "Não foi encontrado nenhum resultado para a pesquisa."
+                        : "Nenhum estudante registada."
+                    }}
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -241,7 +276,7 @@ module.exports = {
   methods: {
     retrieveItems() {
       axios
-        .get("/rs2lab/utilizador")
+        .get("/biosentry/utilizador")
         .then((response) => {
           this.items = response.data;
           // console.log(response);
@@ -290,8 +325,8 @@ module.exports = {
             // Criar uma lista de promessas para lidar com a exclusão
             const deletePromises = this.selectedItems.map((id) =>
               axios
-                .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${id}`)
-                .then(() => axios.delete(`/rs2lab/deleteutilizador/${id}`))
+                .delete(`/biosentry/deleteutilizadorgrupo/utilizador/${id}`)
+                .then(() => axios.delete(`/biosentry/deleteutilizador/${id}`))
             );
 
             // Executar todas as promessas em paralelo
@@ -321,7 +356,7 @@ module.exports = {
     },
     deleteItem(ItemID) {
       axios
-        .delete(`/rs2lab/deleteutilizadorgrupo/utilizador/${ItemID}`)
+        .delete(`/biosentry/deleteutilizadorgrupo/utilizador/${ItemID}`)
         .then(() => {})
         .catch((errors) => {
           console.error(errors);
@@ -332,7 +367,7 @@ module.exports = {
           );
         });
       axios
-        .delete(`/rs2lab/deleteutilizador/${ItemID}`)
+        .delete(`/biosentry/deleteutilizador/${ItemID}`)
         .then(() => {
           this.ShowDeleteNotification(
             "Utilizador deletado com sucesso!",
@@ -384,6 +419,12 @@ module.exports = {
 </script>
 
 <style scoped>
+.logo-img {
+  width: 25px;
+  height: auto;
+}
+
+/* Table styling */
 .table-responsive {
   border-radius: 8px;
   overflow: hidden;
@@ -392,11 +433,10 @@ module.exports = {
 
 .table {
   margin-bottom: 0;
-  width: 100%;
 }
 
 .table thead th {
-  background-color: #2c3e50;
+  background-color: #ab162b;
   color: white;
   font-weight: 600;
   text-transform: uppercase;
@@ -404,7 +444,6 @@ module.exports = {
   letter-spacing: 0.5px;
   border-bottom: none;
   padding: 12px 15px;
-  vertical-align: middle;
 }
 
 .table tbody tr {
@@ -413,8 +452,6 @@ module.exports = {
 
 .table tbody tr:hover {
   background-color: #f8f9fa;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .table tbody tr:nth-child(even) {
@@ -427,27 +464,48 @@ module.exports = {
   border-top: 1px solid #e9ecef;
 }
 
+/* Action buttons */
+.button {
+  min-width: 30px;
+  padding: 5px 8px;
+  margin: 3px 2px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+/* Card styling */
 .card {
   border: none;
   border-radius: 8px;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
 }
 
 .card-header {
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
+/* Search input */
 .form-control {
   border-radius: 4px;
   border: 1px solid #ddd;
   transition: all 0.3s ease;
-  padding: 8px 12px;
 }
 
 .form-control:focus {
@@ -455,62 +513,55 @@ module.exports = {
   box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
 }
 
-.custom-pagination .page-item.active .page-link {
-  background-color: #2c3e50;
-  border-color: #2c3e50;
+
+
+.text-primary {
+  color: #007bff !important;
 }
 
-.custom-pagination .page-link {
-  color: #2c3e50;
-  padding: 8px 16px;
+.text-success {
+  color: #28a745 !important;
 }
 
-.btn {
-  transition: all 0.2s ease;
-  margin-left: 5px;
-  margin-right: 5px;
+.text-danger {
+  color: #dc3545 !important;
 }
 
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.badge {
-  transition: all 0.2s ease;
-}
-
-.badge:hover {
-  transform: scale(1.05);
-}
-
-.modal-content {
-  border-radius: 8px;
-}
-
-.modal-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .table-responsive {
-    overflow-x: auto;
+    border: 0;
   }
   
-  .card-header {
-    flex-direction: column;
-    gap: 10px;
+  .table thead {
+    display: none;
   }
   
-  .btn {
-    margin-bottom: 5px;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
+  .table tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
   }
   
   .table tbody td {
-    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    border-top: 1px solid #e9ecef;
+  }
+  
+  .table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    width: 45%;
+    padding-right: 15px;
+    font-weight: bold;
+    text-align: left;
   }
 }
 </style>

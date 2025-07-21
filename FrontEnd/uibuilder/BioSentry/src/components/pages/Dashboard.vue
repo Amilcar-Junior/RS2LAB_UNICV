@@ -1,8 +1,8 @@
 <template>
   <b-container class="dashboard-container">
-    <h2 class="dashboard-title">
+    <h3 class="dashboard-title">
       Dashboard
-    </h2>
+    </h3>
     <b-row class="metrics-row">
       <b-col md="3" class="mb-4">
         <b-card class="metric-card">
@@ -112,11 +112,11 @@ module.exports = {
 }
 
 .dashboard-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  margin-bottom: 2rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  margin-bottom: 50px;
   color: #333;
-  text-align: center;
+  text-align: left;
 }
 
 .metrics-row {

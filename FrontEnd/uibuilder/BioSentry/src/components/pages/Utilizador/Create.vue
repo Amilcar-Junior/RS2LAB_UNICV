@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid mt-5">
-    <router-link to="/utilizador" class="btn btn-secondary mb-3">
+    <router-link to="/biosentry/utilizador" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
@@ -169,12 +169,14 @@ module.exports = {
   },
   computed: {
     filteredTipoUtilizador() {
-      return this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR
+      return this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR ||
+        this.keys.TipoUtilizador_Nome === this.userTypes.ADMINBIOSENTRY
         ? this.TipoUtilizador
         : this.TipoUtilizador.filter((tipo) => tipo.Nome !== "Administrador");
     },
     filteredGruposDisponiveis() {
-      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR || this.keys.TipoUtilizador_Nome === this.userTypes.ADMINBIOSENTRY) {
         return this.gruposDisponiveis;
       } else {
         const userGroupIds = this.keys.Grupos
@@ -194,11 +196,11 @@ module.exports = {
       this.model.item.Senha = this.gerarSenhaSegura();
 
       axios
-        .post("/rs2lab/checkutilizador", self.model.item)
+        .post("/biosentry/checkutilizador", self.model.item)
         .then((resp) => {
           if (resp.data[0].count === 0) {
             axios
-              .post("/rs2lab/addutilizador", this.model.item)
+              .post("/biosentry/addutilizador", this.model.item)
               .then((resp) => {
                 // console.log(resp);
                 // Adiciona o utilizador a cada grupo selecionado, apenas se houver grupos selecionados
@@ -233,7 +235,7 @@ module.exports = {
     },
     sendConvite() {
       axios
-        .post("/rs2lab/send-account", {
+        .post("/biosentry/send-account", {
           Utilizador_Email: this.model.item.Email,
           Utilizador_Senha: this.model.item.Senha,
           Utilizador_Nome: this.model.item.Nome,
@@ -257,7 +259,7 @@ module.exports = {
     },
     addUtilizadorGrupo(utilizadorGrupo) {
       axios
-        .post("/rs2lab/addutilizadorgrupo", utilizadorGrupo)
+        .post("/biosentry/addutilizadorgrupo", utilizadorGrupo)
         .then((resp) => {})
         .catch((e) => {
           console.error("Erro ao adicionar a Utilizador:", error);
@@ -271,11 +273,11 @@ module.exports = {
 
     getGruposDisponiveis() {
       axios
-        .get("/rs2lab/grupoutilizadores")
+        .get("/biosentry/grupoutilizadores")
         .then((resp) => {
-          // console.log(resp);
+          console.log("Resposta do endpoint:", resp.data);
           this.gruposDisponiveis = resp.data;
-          // console.log(this.gruposDisponiveis);
+          console.log("gruposDisponiveis:", this.gruposDisponiveis);
         })
         .catch((errors) => {
           console.error(errors);
@@ -288,7 +290,7 @@ module.exports = {
     },
     getTipoUtilizador() {
       axios
-        .get("/rs2lab/tipoutilizador")
+        .get("/biosentry/tipoutilizador")
         .then((resp) => {
           // console.log(resp);
           this.TipoUtilizador = resp.data;

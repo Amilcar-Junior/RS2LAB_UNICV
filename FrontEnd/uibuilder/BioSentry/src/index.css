@@ -32,7 +32,7 @@
   color: white;
 }
 
-.custom-pagination .page-item .page-link {
+/* .custom-pagination .page-item .page-link {
   background-color: #AB162B;
   color: #ffffff;
   border-color: #AB162B;
@@ -41,6 +41,16 @@
 .custom-pagination .page-item.active .page-link {
   background-color: #AB162B;
   border-color: #AB162B;
+} */
+
+/* Pagination */
+.custom-pagination .page-item.active .page-link {
+  background-color: #ffffff;
+  border-color: #ab162b;
+}
+
+.custom-pagination .page-item .page-link {
+  color: #2c3e50;
 }
 
 .badge-primary {

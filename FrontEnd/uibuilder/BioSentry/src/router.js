@@ -85,7 +85,7 @@ const routes = [
               },
         },
         {
-            path:'/utilizador',
+            path:'/biosentry/utilizador',
             name:'ViewUtilizador',
             component: ListUtilizador,
             meta: {
@@ -96,7 +96,7 @@ const routes = [
               },
         },
         {
-            path:'/utilizador/create',
+            path:'/biosentry/utilizador/create',
             name:'CreateUtilizador',
             component: CreateUtilizador,
             meta: {
@@ -107,7 +107,7 @@ const routes = [
               },
         },
         {
-            path:'/utilizador/:ID/edit',
+            path:'/biosentry/utilizador/:ID/edit',
             name:'EditUtilizador',
             component: EditUtilizador,
             meta: {

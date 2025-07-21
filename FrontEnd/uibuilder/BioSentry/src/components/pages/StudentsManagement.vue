@@ -6,7 +6,7 @@
       </router-link> -->
       <!-- Título da Página -->
       <h3
-        class="text-center"
+        class="text-left"
         style="
           font-family: 'Roboto', sans-serif;
           font-weight: 700;
@@ -21,12 +21,17 @@
         <div
           class="card-header d-flex justify-content-between align-items-center"
         >
-          <input
+           <div>
+            <input
             type="text"
             class="form-control d-inline-block w-auto"
-            placeholder="Buscar por Nome, Email..."
+            placeholder="Buscar"
+            v-b-tooltip.hover.top ="'Buscar por Nome, Codigo, Edificio'"
             v-model="searchQuery"
           />
+          <i class="fa fa-search" aria-hidden="true" style="margin-left: 2px;"></i>
+          </div>
+          
 
 
           <div>
@@ -111,7 +116,7 @@
                       type="button"
                       @click="editItem(item)"
                       class="btn btn-info mr-2 button"
-                      title="Editar estudante"
+                      v-b-tooltip.hover.top="'Editar estudante'"
                     >
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <!-- Icone de Editar-->
                     </button>
@@ -119,7 +124,7 @@
                       type="button"
                       @click="ShowConfirmDelete(item.codigo)"
                       class="btn btn-danger button"
-                      title="Deletar estudante"
+                      v-b-tooltip.hover.top="'Deletar estudante'"
                     >
                       <i class="fa fa-trash" aria-hidden="true"></i> <!-- Icone de eliminar-->
                     </button>
@@ -943,14 +948,14 @@ module.exports = {
 }
 
 /* Pagination */
-.custom-pagination .page-item.active .page-link {
+/* .custom-pagination .page-item.active .page-link {
   background-color: #2c3e50;
   border-color: #2c3e50;
 }
 
 .custom-pagination .page-link {
   color: #2c3e50;
-}
+} */
 
 .text-primary {
   color: #007bff !important;

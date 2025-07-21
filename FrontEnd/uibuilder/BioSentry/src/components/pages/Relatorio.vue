@@ -4,7 +4,17 @@
       <i class="fa fa-arrow-left" aria-hidden="true"></i> 
     </router-link>
 
-    <h2 style="text-align:center ;">Relatório</h2>
+    <h3
+        class="text-center"
+        style="
+          font-family: 'Roboto', sans-serif;
+          font-weight: 700;
+          margin-bottom: 50px;
+        "
+      >
+        Relatório 
+      </h3>
+
     <div class="relatorio-content">
       <aside class="filters-sidebar">
         <h3>Filtros</h3>

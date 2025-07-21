@@ -5,9 +5,16 @@
           <i class="fa fa-arrow-left" aria-hidden="true"></i> 
         </router-link> -->
          <!-- Título da Página -->
-         <h2 class="text-center" style="font-family: 'Roboto', sans-serif; font-weight: 700; margin-bottom: 20px;">
-            Histórico de acesso
-          </h2>
+        <h3
+        class="text-left"
+        style="
+          font-family: 'Roboto', sans-serif;
+          font-weight: 700;
+          margin-bottom: 50px;
+        "
+      >
+        Histórico de Acessos
+      </h3>
         <div class="card">
           <div
             class="card-header d-flex justify-content-between align-items-center"

@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid mt-5">
-    <router-link to="/utilizador" class="btn btn-secondary mb-3">
+    <router-link to="/biosentry/utilizador" class="btn btn-secondary mb-3">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
     </router-link>
     <div class="card">
@@ -161,7 +161,8 @@ module.exports = {
       if (!this.keys || !this.userTypes) {
         return [];
       }
-      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR ||
+          this.keys.TipoUtilizador_Nome === this.userTypes.ADMINBIOSENTRY) {
         return this.TipoUtilizador;
       }
       return this.TipoUtilizador.filter(
@@ -172,7 +173,8 @@ module.exports = {
       if (!this.keys || !this.keys.Grupos) {
         return [];
       }
-      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR) {
+      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR ||
+          this.keys.TipoUtilizador_Nome === this.userTypes.ADMINBIOSENTRY) {
         return this.gruposDisponiveis;
       }
       const userGroupIds = this.keys.Grupos
@@ -193,7 +195,7 @@ module.exports = {
   methods: {
     getUtilizador(ItemID) {
       axios
-        .get(`/rs2lab/utilizador/${ItemID}`)
+        .get(`/biosentry/utilizador/${ItemID}`)
         .then((resp) => {
           this.model.item.Nome = resp.data[0].Nome;
           this.model.item.Email = resp.data[0].Email;
@@ -245,7 +247,7 @@ module.exports = {
 
       // Atualizar o usuário
       axios
-        .put(`/rs2lab/editutilizador/${this.model.ID}`, this.model.item)
+        .put(`/biosentry/editutilizador/${this.model.ID}`, this.model.item)
         .then((response) => {
           // console.log("Utilizador atualizado com sucesso!", response);
 
@@ -296,7 +298,7 @@ module.exports = {
     deleteUtilizadorGrupo(utilizador, grupo) {
       axios
         .delete(
-          `/rs2lab/deleteutilizadorgrupo/utilizador/grupoutilizadores/${utilizador}/${grupo}`
+          `/biosentry/deleteutilizadorgrupo/utilizador/grupoutilizadores/${utilizador}/${grupo}`
         )
         .then((res) => {
           // console.log("utilizadorgrupo Delete: ", res);
@@ -312,7 +314,7 @@ module.exports = {
     },
     addUtilizadorGrupo(utilizadorgrupo) {
       axios
-        .post("/rs2lab/addutilizadorgrupo", utilizadorgrupo)
+        .post("/biosentry/addutilizadorgrupo", utilizadorgrupo)
         .then((resp) => {
           // console.log("ADD utilizadorgrupo: ", resp);
         })
@@ -322,7 +324,7 @@ module.exports = {
     },
     getGruposDisponiveis() {
       axios
-        .get("/rs2lab/grupoutilizadores")
+        .get("/biosentry/grupoutilizadores")
         .then((resp) => {
           // console.log("grupoutilizadores: ", resp);
           this.gruposDisponiveis = resp.data;
@@ -340,7 +342,7 @@ module.exports = {
     },
     getUtilizadorGrupo(ItemID) {
       axios
-        .get(`/rs2lab/utilizadorgrupo/utilizador/${ItemID}`)
+        .get(`/biosentry/utilizadorgrupo/utilizador/${ItemID}`)
         .then((resp) => {
           // console.log("UtilizadorGrupo: ", resp);
           this.UtilizadorGrupo = resp.data;
@@ -358,7 +360,7 @@ module.exports = {
     },
     getTipoUtilizador() {
       axios
-        .get("/rs2lab/tipoutilizador")
+        .get("/biosentry/tipoutilizador")
         .then((resp) => {
           // console.log("tipoutilizador: ", resp);
           this.TipoUtilizador = resp.data;

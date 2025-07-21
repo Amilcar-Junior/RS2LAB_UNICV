@@ -6,7 +6,7 @@
         </router-link> -->
         <!-- Título da Página -->
         <h3
-          class="text-center"
+          class="text-left"
           style="
             font-family: 'Roboto', sans-serif;
             font-weight: 700;
@@ -21,12 +21,17 @@
           <div
             class="card-header d-flex justify-content-between align-items-center"
           >
+            <div>
             <input
-              type="text"
-              class="form-control d-inline-block w-auto"
-              placeholder="Buscar por Nome, ..."
-              v-model="searchQuery"
-            />
+            type="text"
+            class="form-control d-inline-block w-auto"
+            placeholder="Buscar"
+            v-b-tooltip.hover.top ="'Buscar por Nome, Codigo, Edificio'"
+            v-model="searchQuery"
+          />
+          <i class="fa fa-search" aria-hidden="true" style="margin-left: 2px;"></i>
+          </div>
+          
   
   
             <div>

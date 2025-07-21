@@ -62,6 +62,13 @@
             <span>Dispositivos</span>
           </router-link>
         </div>
+
+         <div class="menu-item">
+          <router-link to="/biosentry/utilizador" class="menu-link">
+            <i class="fa fa-user-circle-o"></i>
+            <span>Utilizadores</span>
+          </router-link>
+        </div>
       </div>
     </div>
   </b-sidebar>
