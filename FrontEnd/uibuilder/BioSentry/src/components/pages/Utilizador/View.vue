@@ -71,7 +71,7 @@
                   <th scope="col" class="col-2">Nome</th>
                   <th scope="col" class="col-2">Email</th>
                   <th scope="col" class="col-1">Tipo</th>
-                  <th scope="col" class="col-1">Grupos</th>
+                  <!-- <th scope="col" class="col-1">Grupos</th> -->
                   <th scope="col" class="col-1">Ativo</th>
                   <th scope="col" class="col-1">Avatar</th>
                   <th
@@ -100,7 +100,7 @@
                   <td>{{ item.Utilizador_Nome }}</td>
                   <td>{{ item.Utilizador_Email }}</td>
                   <td>{{ item.TipoUtilizador_Nome }}</td>
-                  <td>
+                  <!-- <td>
                     <span
                       v-for="grupo in item.Grupos"
                       :key="grupo.ID"
@@ -108,7 +108,7 @@
                     >
                       {{ grupo.Nome }}
                     </span>
-                  </td>
+                  </td> -->
                   <td class="text-center">
                     <b-icon-check
                       v-if="item.Utilizador_isActive === 1"
@@ -153,7 +153,9 @@
                       @click="ShowConfirmDelete(item.Utilizador_ID)"
                       class="btn btn-danger button"
                       v-b-tooltip.hover.top="'Deletar utilizador'"
-                    >
+                       v-show="
+                      keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR ||                  
+                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY" >
                       <i class="fa fa-trash" aria-hidden="true"></i> 
                     </button>
                   </td>

@@ -44,7 +44,7 @@
               "
               @click="showModalAdd = true"
               v-show="
-                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR
+                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR
               "
               v-b-tooltip.hover.top="'Adicionar'"
             >
@@ -52,11 +52,13 @@
             </b-button>
 
             <b-button
-            
+
               class="btn btn-danger ml-2"
               @click="deleteSelectedItems"
               :disabled="selectedItems.length === 0"
               v-b-tooltip.hover.top="'Deletar selecionados'"
+              v-show="
+                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR"
             >
               <i class="fa fa-check-square-o" aria-hidden="true"></i>
               <i class="fa fa-trash" aria-hidden="true"></i> 
@@ -68,7 +70,10 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th scope="col" class="col-1">
+                  <th scope="col" class="col-1"
+                   v-show="
+                        keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR
+                      ">
                     <input type="checkbox" @change="toggleSelectAll($event)" />
                   </th>
                 <!--  <th scope="col" class="col-1">ID</th>--> 
@@ -82,16 +87,19 @@
                     scope="col"
                     class="col-1 text-center"
                     v-show="
-                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR
-                    "
-                  >
+                        keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR
+                      "
+                    >
                     Ações
                   </th>
                 </tr>
               </thead>
               <tbody v-if="paginatedItems.length > 0">
                 <tr v-for="(item, index) in paginatedItems" :key="index">
-                  <td>
+                  <td
+                   v-show="
+                        keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR
+                      ">
                     <input
                       type="checkbox"
                       :value="item.codigo"
@@ -109,9 +117,9 @@
                   <td
                     class="text-center"
                     v-show="
-                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR
-                    "
-                  >
+                        keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR
+                      "
+                    >
                     <button
                       type="button"
                       @click="editItem(item)"

@@ -161,19 +161,26 @@ module.exports = {
       if (!this.keys || !this.userTypes) {
         return [];
       }
-      if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR ||
-          this.keys.TipoUtilizador_Nome === this.userTypes.ADMINBIOSENTRY) {
-        return this.TipoUtilizador;
-      }
-      return this.TipoUtilizador.filter(
-        (tipo) => tipo.Nome !== "Administrador"
-      );
+       if (
+    this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR ||
+    this.keys.TipoUtilizador_Nome === this.userTypes.GESTOR ||
+    this.keys.TipoUtilizador_Nome === this.userTypes.ADMINBIOSENTRY
+  ) {
+    // Retorna apenas os tipos permitidos: Administrador, Gestor e Guarda
+    return this.TipoUtilizador.filter((tipo) =>
+      ["Administrador", "Gestor", "Guarda", "AdminBiosEntry"].includes(tipo.Nome)
+    );
+  } else {
+    // Para outros utilizadores, pode retornar uma lista vazia ou uma filtrada diferente, se quiser
+    return [];
+  }
     },
     filteredGruposDisponiveis() {
       if (!this.keys || !this.keys.Grupos) {
         return [];
       }
       if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR ||
+      this.keys.TipoUtilizador_Nome === this.userTypes.GESTOR ||
           this.keys.TipoUtilizador_Nome === this.userTypes.ADMINBIOSENTRY) {
         return this.gruposDisponiveis;
       }

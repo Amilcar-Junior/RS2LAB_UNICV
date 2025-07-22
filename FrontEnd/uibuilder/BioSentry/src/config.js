@@ -3,6 +3,8 @@ export const config = {
     userTypes: {
         ADMINISTRATOR: 'Administrador',
         ADMINBIOSENTRY: 'AdminBiosEntry',
+        GESTOR: 'Gestor',
+        GUARDA: 'Guarda',
     },
     mqtt: {
         clientId: 'iot-amilcar' + Math.floor(Math.random() * 8999 + 1000),

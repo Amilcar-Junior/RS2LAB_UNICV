@@ -36,7 +36,7 @@
               "
               @click="showModalAdd = true"
               v-show="
-                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR
+                keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR
               "
               v-b-tooltip.hover.top="'Adicionar'"
             >
@@ -69,7 +69,7 @@
                     scope="col"
                     class="col-1 text-center"
                     v-show="
-                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR
+                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR
                     "
                   >
                     Ações
@@ -93,7 +93,7 @@
                   <td
                     class="text-center"
                     v-show="
-                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR
+                      keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR
                     "
                   >
                     <button
@@ -284,7 +284,7 @@ module.exports = {
     filteredItems() {
       return this.items
         .filter((item) => {
-          if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINBIOSENTRY) {
+          if (this.keys.TipoUtilizador_Nome === this.userTypes.ADMINBIOSENTRY || this.keys.TipoUtilizador_Nome === this.userTypes.ADMINISTRATOR || this.keys.TipoUtilizador_Nome === this.userTypes.GESTOR) {
             return true;
           }
           const userGroupIds = this.keys.Grupos
