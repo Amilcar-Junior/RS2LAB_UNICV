@@ -1,6 +1,9 @@
 <template>
   <b-container class="dashboard-container">
-    <h3 class="dashboard-title">
+    <h4 class="welcome-message" style="margin-bottom: 1rem;">
+      Bem-vindo, {{ keys.Utilizador_Nome }}
+    </h4>
+    <h3 class="dashboard-title" style="margin-top:50px ;">
       Dashboard
     </h3>
     <b-row class="metrics-row">
@@ -45,6 +48,7 @@
 <script>
 
 module.exports = {
+  props: ['keys'],
   data() {
     return {
       studentCount: 0,

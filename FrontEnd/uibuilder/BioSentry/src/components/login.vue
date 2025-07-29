@@ -173,7 +173,7 @@ module.exports = {
         });
 
       if (!this.postBody.username) {
-        this.errormessage = "Por favor, insira seu email.";
+        this.errormessage = "Por favor, insira seu Codigo.";
         this.errorVariant = "danger";
         return;
       }
@@ -225,7 +225,7 @@ module.exports = {
 
       // Verifica se a resposta é válida
       if (!unicvResponse.data.status || !unicvResponse.data.data.access_token) {
-        this.errormessage = "Falha ao obter o token de autenticação.";
+        this.errormessage = "Código ou palavra-passe inválidos.";
         return;
       }
 
@@ -238,7 +238,7 @@ module.exports = {
       // Verificar se o token está expirado
     const currentTime = Math.floor(Date.now() / 1000); // Tempo atual em segundos
     if (tokenExpiration < currentTime) {
-      this.errormessage = "Token de autenticação expirado. Tente novamente.";
+      this.errormessage = "Sessão expirada. Tente novamente.";
       this.errorVariant = "danger";
       console.log("Erro: Token expirado. Expiração:", tokenExpiration, "Atual:", currentTime);
       return;
@@ -298,7 +298,7 @@ module.exports = {
       this.errormessage = "";
 
       if (!this.recoveryEmail) {
-        this.errormessage = "Por favor, insira seu email.";
+        this.errormessage = "Por favor, insira seu Codigo.";
         this.errorVariant = "danger";
         return;
       }

@@ -167,7 +167,7 @@ module.exports = {
       this.errormessage = "";
 
       if (!this.postBody.Utilizador_Email) {
-        this.errormessage = "Por favor, insira seu email.";
+        this.errormessage = "Por favor, insira seu Codigo.";
         this.errorVariant = "danger";
         return;
       }
@@ -216,7 +216,7 @@ module.exports = {
       this.errormessage = "";
 
       if (!this.recoveryEmail) {
-        this.errormessage = "Por favor, insira seu email.";
+        this.errormessage = "Por favor, insira seu Codigo.";
         this.errorVariant = "danger";
         return;
       }

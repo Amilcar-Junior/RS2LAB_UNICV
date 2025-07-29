@@ -1,10 +1,6 @@
 <template>
   <div>
     <div class="container-fluid mt-5">
-      <!-- <router-link to="/biosentry/dashboard" class="btn btn-secondary mb-3 rounded-buttonback">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i> 
-      </router-link> -->
-      <!-- Título da Página -->
       <h3
         class="text-left"
         style="
@@ -15,7 +11,6 @@
       >
         Estudantes
       </h3>
-      <!-- <img src="./components/images/impressao-digital2.png" alt="digital" class="custom-img" style="display: block; margin: 0 auto; margin-bottom: 50px;" /> -->
 
       <div class="card">
         <div
@@ -26,17 +21,15 @@
             type="text"
             class="form-control d-inline-block w-auto"
             placeholder="Buscar"
-            v-b-tooltip.hover.top ="'Buscar por Nome, Codigo, Edificio'"
+            v-b-tooltip.hover.top="'Buscar por Nome, Codigo, Edificio'"
             v-model="searchQuery"
           />
           <i class="fa fa-search" aria-hidden="true" style="margin-left: 2px;"></i>
           </div>
-          
-
 
           <div>
             <b-button
-              class="ml-2 "
+              class="ml-2"
               style="
                 background-color: #007bff;
                 border-color: #007bff;
@@ -48,11 +41,10 @@
               "
               v-b-tooltip.hover.top="'Adicionar'"
             >
-              <i class="fa fa-plus " aria-hidden="true"></i>
+              <i class="fa fa-plus" aria-hidden="true"></i>
             </b-button>
 
             <b-button
-
               class="btn btn-danger ml-2"
               @click="deleteSelectedItems"
               :disabled="selectedItems.length === 0"
@@ -61,7 +53,7 @@
                 keys.TipoUtilizador_Nome === userTypes.ADMINBIOSENTRY || keys.TipoUtilizador_Nome === userTypes.ADMINISTRATOR || keys.TipoUtilizador_Nome === userTypes.GESTOR"
             >
               <i class="fa fa-check-square-o" aria-hidden="true"></i>
-              <i class="fa fa-trash" aria-hidden="true"></i> 
+              <i class="fa fa-trash" aria-hidden="true"></i>
             </b-button>
           </div>
         </div>
@@ -76,7 +68,6 @@
                       ">
                     <input type="checkbox" @change="toggleSelectAll($event)" />
                   </th>
-                <!--  <th scope="col" class="col-1">ID</th>--> 
                   <th scope="col" class="col-2">Nome</th>
                   <th scope="col" class="col-1">Codigo de Estudante</th>
                   <th scope="col" class="col-1">Email</th>
@@ -106,14 +97,12 @@
                       v-model="selectedItems"
                     />
                   </td>
-                 <!-- <td>{{ item.codigo }}</td>--> 
                   <td>{{ item.name }}</td>
                   <td>{{ item.codigo }}</td>
                   <td>{{ item.email }}</td>
                   <td>{{ item.curso }}</td>
                   <td>{{ getStatusText(item.status_) }}</td>
                   <td>{{ item.nome_edificio }}</td>
-               
                   <td
                     class="text-center"
                     v-show="
@@ -126,7 +115,7 @@
                       class="btn btn-info mr-2 button"
                       v-b-tooltip.hover.top="'Editar estudante'"
                     >
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <!-- Icone de Editar-->
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </button>
                     <button
                       type="button"
@@ -134,7 +123,7 @@
                       class="btn btn-danger button"
                       v-b-tooltip.hover.top="'Deletar estudante'"
                     >
-                      <i class="fa fa-trash" aria-hidden="true"></i> <!-- Icone de eliminar-->
+                      <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                   </td>
                 </tr>
@@ -160,7 +149,7 @@
               :per-page="perPage"
               aria-controls="utilizadores-table"
               class="custom-pagination"
-        ></b-pagination>
+            ></b-pagination>
           </div>
         </div>
       </div>
@@ -194,7 +183,6 @@
                 required 
               ></b-form-input>
             </b-form-group>
-  
   
             <b-form-group label="Curso" label-for="curso">
               <b-form-input
@@ -250,32 +238,20 @@
                   @click="startBiometriaProcess"
                   :disabled="isSaving"
                 >
-                <!-- <b-icon icon="person-check" class="mr-2"> </b-icon>
-                  Obter Biometria -->
                   Iniciar Leitura Biométrica
-                
                 </b-button>
               </b-col>
             </b-row>
   
-  
-              <b-button
-                type="submit"
-          
-                variant="success"
-                :disabled="isSaving || !biometriaRegistrada"
-              >
+            <b-button
+              type="submit"
+              variant="success"
+              :disabled="isSaving || !biometriaRegistrada"
+            >
               Registar
-              </b-button>
-  
-<!--   
-              <b-button variant="secondary" @click="showModalAdd = false"
-              >Cancelar</b-button> -->
-              
-  
+            </b-button>
           </b-form>
         </b-modal>
-
 
         <!-- Modal para Leitura Biométrica -->
         <b-modal v-model="showBiometriaModal" title="Leitura Biométrica" hide-footer centered>
@@ -286,20 +262,16 @@
               variant="dark"
               size="sm"
               @click="closeBiometriaModal"
-              :disabled="!biometriaRegistrada"
               v-b-tooltip.hover.top="'Fechar modal de leitura biométrica'"
             >
               Fechar
             </b-button>
           </div>
         </b-modal>
-    
 
       <!-- Modal para Editar -->
-    <b-modal v-model="showModalEdit" title="Editar Estudante" hide-footer>
+      <b-modal v-model="showModalEdit" title="Editar Estudante" hide-footer>
         <b-form @submit.prevent="saveUser">
-          
-
           <b-form-group
             label="Codigo de Estudante"
             label-for="codigo_estudante"
@@ -313,7 +285,7 @@
             ></b-form-input>
           </b-form-group>
 
-        <hr/>
+          <hr/>
 
           <b-form-group label="Nome" label-for="name">
             <b-form-input
@@ -341,7 +313,6 @@
               class="form-control"
               required
             >
-              <!-- <option value="" disabled >Selecione o Edificio</option> -->
               <option v-for="dispositivo in dispositivos" 
                       :key="dispositivo.id_dispositivo" 
                       :value="dispositivo.id_dispositivo">
@@ -361,37 +332,30 @@
           </b-form-group>
 
           <b-form-group label="Status">
-                    <b-form-radio-group
-                      v-model="currentUser.status_"
-                      :options="statusOptions"
-                      buttons
-                    ></b-form-radio-group>
-                  </b-form-group>
+            <b-form-radio-group
+              v-model="currentUser.status_"
+              :options="statusOptions"
+              buttons
+            ></b-form-radio-group>
+          </b-form-group>
 
           <b-button type="submit" variant="success" title="Salvar alterações">Salvar</b-button>
-          <b-button variant="secondary" @click="showModalEdit = false" title="Cancelar edição"
-            >Cancelar</b-button
-          >
+          <b-button variant="secondary" @click="showModalEdit = false" title="Cancelar edição">Cancelar</b-button>
         </b-form>
       </b-modal>
-      <!-- Fim Modal Editar -->
     </div>
   </div>
 </template>
 
 <script>
-
-//const mqtt = require('mqtt');
-
 module.exports = {
-
   props: ["keys"],
   data() {
     return {
       statusOptions: [
-      { text: 'Ativo', value: '1' },
-      { text: 'Inativo', value: '0' }
-    ],
+        { text: 'Ativo', value: '1' },
+        { text: 'Inativo', value: '0' }
+      ],
       dispositivos: [],
       model: {
         item: {
@@ -399,14 +363,14 @@ module.exports = {
           codigo: "",
           email: "",
           curso: "",
-          status_:'1',
-          id_dispositivo: "", 
+          status_: '1',
+          id_dispositivo: "",
           finger_id: null,
-          nome_edificio:""
+          nome_edificio: ""
         },
       },
       items: [],
-      name:"",
+      name: "",
       codigo: "",
       email: "",
       curso: "",
@@ -421,11 +385,11 @@ module.exports = {
         codigo: "",
         name: "",
         email: "",
-        id_dispositivo: "", 
+        id_dispositivo: "",
         curso: "",
         status_: "",
-        finger_id:"",
-        nome_edificio:""
+        finger_id: "",
+        nome_edificio: ""
       },
       isSaving: false,
       biometriaRegistrada: false,
@@ -434,20 +398,18 @@ module.exports = {
       biometriaMessage: "Coloque o dedo no sensor",
       biometriaMessageClass: "",
       pollingInterval: null,
-
     };
   },
-
 
   mounted() {
     this.retrieveItems();
     this.getEdificio();
   },
+
   computed: {
     totalRows() {
       return this.filteredItems.length;
     },
-
     totalPages() {
       return Math.ceil(this.totalRows / this.perPage);
     },
@@ -467,12 +429,13 @@ module.exports = {
       return this.filteredItems.slice(start, end);
     },
   },
+
   methods: {
-      getStatusText(status_) {
-        return {
-          0: 'Inativo',
-          1: 'Ativo'
-        }[status_] || 'Desconhecido';
+    getStatusText(status_) {
+      return {
+        0: 'Inativo',
+        1: 'Ativo'
+      }[status_] || 'Desconhecido';
     },
     preventLetters(event) {
       const char = String.fromCharCode(event.which);
@@ -481,7 +444,6 @@ module.exports = {
         this.showNotification("O código de estudante não pode ter letras.", "danger", "Erro");
       }
     },
-   
     retrieveItems() {
       axios
         .get("/biosentry/students")
@@ -509,19 +471,16 @@ module.exports = {
     editItem(item) {
       this.currentUser = {
         ...item,
-        id_dispositivo:item.id_dispositivo
+        id_dispositivo: item.id_dispositivo
       };
       this.showModalEdit = true;
     },
-  
-
     async startBiometriaProcess() {
-   
       if (!this.model.item.id_dispositivo) {
         this.showNotification("Selecione um edifício válido!", "warning", "Aviso");
         return;
       }
-      const payload = { 
+      const payload = {
         Cmd: "Register_finger_" + this.model.item.id_dispositivo,
         codigo: this.codigo,
         status_: this.model.item.status_,
@@ -529,11 +488,11 @@ module.exports = {
 
       this.showModalAdd = false;
       this.showBiometriaModal = true;
-      this.biometriaMessage = "Coloque o dedo no sensor";      
+      this.biometriaMessage = "Coloque o dedo no sensor";
       this.biometriaMessageClass = "text-primary";
       this.biometriaRegistrada = false;
 
-    try {
+      try {
         // Iniciar o processo de biometria
         const biometriaResponse = await axios.post("/biosentry/biometria", payload);
         console.log("Comando enviado com sucesso:", biometriaResponse.data);
@@ -544,17 +503,29 @@ module.exports = {
             const notificationResponse = await axios.post("/biosentry/notificar");
             let messageFromFile = notificationResponse.data;
 
+            // Verificar se a resposta contém finger_id
+            if (notificationResponse.data && notificationResponse.data.finger_id) {
+              this.biometriaMessage = "Impressão digital capturada";
+              this.biometriaMessageClass = "text-success";
+              this.biometriaRegistrada = true;
+              this.showNotification("A impressão digital já foi capturada!", "success", "Sucesso");
+              clearInterval(this.pollingInterval);
+              this.pollingInterval = null;
+              return;
+            }
+
+            // Verificar mensagens de texto
             if (messageFromFile && typeof messageFromFile === "string" && messageFromFile.trim()) {
               this.biometriaMessage = messageFromFile.trim();
               this.biometriaMessageClass = "text-primary";
 
               // Verificar se a mensagem indica conclusão ou erro
               const finalMessages = [
-                "Impressão digital já registrada",
-                "Registro concluído",
-                "Impressão digital registrada",
+                "Impressão digital já registada",
+                "Registo concluído",
+                "Impressão digital registada",
                 "Erro no registo biométrico",
-                "Falha no registro",
+                "Falha no registo",
               ];
               if (finalMessages.some((msg) => messageFromFile.trim().toLowerCase().includes(msg.toLowerCase()))) {
                 clearInterval(this.pollingInterval);
@@ -582,13 +553,11 @@ module.exports = {
         this.pollingInterval = null;
         this.biometriaMessage = "Erro no registo biométrico";
         this.biometriaMessageClass = "text-danger";
-        this.showBiometriaModal = false;
-        this.showModalAdd = true;
+        this.biometriaRegistrada = true;
         this.showNotification("Erro no processo biométrico!", "danger", "Erro");
       }
     },
-
-      closeBiometriaModal() {
+    closeBiometriaModal() {
       if (this.pollingInterval) {
         clearInterval(this.pollingInterval);
         this.pollingInterval = null;
@@ -596,8 +565,6 @@ module.exports = {
       this.showBiometriaModal = false;
       this.showModalAdd = true;
     },
-
-//para buscar aluno por codigo
     async pesquisarAluno() {
       try {
         const codigo = this.codigo;
@@ -610,58 +577,66 @@ module.exports = {
           return;
         }
 
-        // Recuperar o access_token e a expiração do localStorage
-          const access_token = localStorage.getItem("unicv_token") || localStorage.getItem("token");
-          const token_expiration = parseInt(localStorage.getItem("unicv_token_expiration"), 10);
-          console.log("Token recuperado do localStorage:", access_token);
-          console.log("Expiração do token:", token_expiration);
-        if(!access_token){
-          this.showNotification("Token de autenicação não encontrado.Por favor, faça login para continuar.", "warning", "Atenção");
+        const access_token = localStorage.getItem("unicv_token") || localStorage.getItem("token");
+        const token_expiration = parseInt(localStorage.getItem("unicv_token_expiration"), 10);
+        console.log("Token recuperado do localStorage:", access_token);
+        console.log("Expiração do token:", token_expiration);
+
+        if (!access_token) {
+          this.showNotification("Token de autenticação não encontrado. Por favor, faça login para continuar.", "warning", "Atenção");
+          return;
         }
 
-        // Verificar se o token está expirado
-    const currentTime = Math.floor(Date.now() / 1000);
-    if (token_expiration && token_expiration < currentTime) {
-      this.showNotification("Sessão expirada. Faça login novamente.", "danger", "Erro");
-      console.log("Erro: Token expirado. Expiração:", token_expiration, "Atual:", currentTime);
-      return;
-    }
+        const currentTime = Math.floor(Date.now() / 1000);
+        if (token_expiration && token_expiration < currentTime) {
+          this.showNotification("Sessão expirada. Faça login novamente.", "danger", "Erro");
+          console.log("Erro: Token expirado. Expiração:", token_expiration, "Atual:", currentTime);
+          return;
+        }
 
-        // Fazer a requisição com o token no cabeçalho
         const response = await axios.get(`/getstudentbycode?codigo=${codigo}`, {
           headers: {
             Authorization: `Bearer ${access_token}`,
           },
-        }); 
-        this.model.item.codigo = codigo; // Garantir que o código esteja no model.item
+        });
+
+        this.model.item.codigo = codigo;
 
         if (response.data && response.data.data) {
           const estudante = response.data.data;
-
           this.model.item.name = estudante.name || "Não disponível";
           this.model.item.email = estudante.email_academico || "Não disponível";
-          this.model.item.curso = "Não disponivel"; // Ajustar conforme os dados retornados
+          this.model.item.curso = estudante.curso || "Não disponível";
         } else {
           this.showNotification("Estudante não encontrado.", "danger", "Erro");
         }
       } catch (error) {
-        console.error("Erro ao buscar estudante:", error);
-          if (error.response && error.response.status === 401) {
+        console.error("Erro ao buscar estudante:", {
+          message: error.message,
+          response: error.response ? {
+            status: error.response.status,
+            data: error.response.data,
+          } : null,
+          request: error.request ? "Nenhuma resposta recebida do servidor" : null,
+        });
+
+        if (error.response) {
+          if (error.response.status === 401) {
             this.showNotification("Sessão expirada. Faça login novamente.", "danger", "Erro");
+          } else if (error.response.status === 500) {
+            this.showNotification("Este código não existe. Verifique se está correto.", "danger", "Erro");
           } else {
-            this.showNotification(
-              "Erro ao buscar estudante. Verifique a conexão ou tente novamente.",
-              "danger",
-              "Erro"
-            );
+            this.showNotification("Erro ao buscar estudante. Verifique a conexão ou tente novamente.", "danger", "Erro");
           }
+        } else if (error.request) {
+          this.showNotification("Falha na conexão com o servidor. Verifique sua internet e tente novamente.", "danger", "Erro");
+        } else {
+          this.showNotification("Ocorreu um erro inesperado. Tente novamente mais tarde.", "danger", "Erro");
+        }
       }
-   
-},
-   
-    async saveUser() {  
+    },
+    async saveUser() {
       if (this.currentUser.codigo) {
-        
         const fingerIdResponse = await axios.get(`/biosentry/fingerid/${this.currentUser.codigo}`, this.currentUser);
         this.currentUser.finger_id = fingerIdResponse.data[0].finger_id;
 
@@ -677,27 +652,23 @@ module.exports = {
             this.showNotification("Falha ao atualizar o estudante!", "danger", "Erro");
           });
 
-          //inicio comando para enviar para node-red
           const payload = {
             Cmd: "Edit_finger_status_" + this.currentUser.id_dispositivo,
             finger_id: Number(this.currentUser.finger_id),
             status_: this.currentUser.status_,
           };
 
-        axios
-          .post("/biosentry/editbiometria", payload)
-          .then((response) => {
-            console.log("Comando de editar enviado com sucesso:", response.data);
-          })
-          .catch((error) => {
-            console.error("Erro ao enviar comando de editar:", error);
-          });
-          //fim comando para enviar para node-red
-
+          axios
+            .post("/biosentry/editbiometria", payload)
+            .then((response) => {
+              console.log("Comando de editar enviado com sucesso:", response.data);
+            })
+            .catch((error) => {
+              console.error("Erro ao enviar comando de editar:", error);
+            });
       } else {
-        
         const existsCE = this.items.some((item) => item.codigo === this.model.item.codigo);
-        if (existsCE) {          
+        if (existsCE) {
           this.showNotification('O codigo de estudante deve ser único para cada estudante!', 'danger', 'O codigo inserido já existe!');
           return;
         }
@@ -705,11 +676,11 @@ module.exports = {
         if (existsEmail) {
           this.showNotification('Este email já está registado. Tente usar um email diferente.', 'danger', 'O email inserido já existe!');
           return;
-        } 
+        }
 
         axios
           .post("/biosentry/addStudents", this.model.item)
-          .then(() => { 
+          .then(() => {
             this.showNotification("Estudante adicionado com sucesso!", "success", "Sucesso");
             this.retrieveItems();
             this.resetCurrentUser();
@@ -722,27 +693,25 @@ module.exports = {
     },
     resetCurrentUser() {
       this.model.item = {
-       
         name: "",
         codigo: "",
         email: "",
         id_dispositivo: "",
         curso: "",
         status_: "",
-        nome_edificio:""
+        nome_edificio: ""
       };
       this.biometriaRegistrada = false;
       this.biometriaMessage = "Coloque o dedo no sensor";
       this.biometriaMessageClass = "";
       this.currentUser = {
-      
         name: "",
         codigo: "",
         email: "",
         id_dispositivo: "",
         curso: "",
         status_: 1,
-        nome_edificio:""
+        nome_edificio: ""
       };
     },
     getEdificio() {
@@ -807,11 +776,11 @@ module.exports = {
         });
       const payload2 = {
         Cmd: "Delete_finger_" + this.model.item.id_dispositivo,
-        codigo: this.model.item.codigo, 
+        codigo: this.model.item.codigo,
       };
       console.log("Payload being sent to Node-RED:", payload2);
       axios
-        .post("/biosentry/deletebiometria ", payload2)
+        .post("/biosentry/deletebiometria", payload2)
         .then((response) => {
           console.log("Comando de deletar enviado com sucesso:", response.data);
         })
@@ -836,7 +805,7 @@ module.exports = {
         };
       }
       this.$bvModal
-        .msgBoxConfirm("Deseja deletar esse Dispositivo?", {
+        .msgBoxConfirm("Deseja deletar esse Estudante?", {
           title: "Deletar",
           size: "sm",
           buttonSize: "sm",

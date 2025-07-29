@@ -1063,15 +1063,12 @@
             "2d0336cd76812691",
             "76d13409270878fb",
             "8ddbe2bebacc9245",
-            "6232b0d6144ee826",
-            "b11e1f71e8119fb5",
-            "17d974d2a9cfe306",
-            "714421832a60e811"
+            "6232b0d6144ee826"
         ],
         "x": 968,
         "y": 339,
-        "w": 1684,
-        "h": 1668
+        "w": 1524,
+        "h": 1148
     },
     {
         "id": "a6adededcdd25826",
@@ -1633,6 +1630,74 @@
         "h": 1242
     },
     {
+        "id": "103be11be8eec673",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "49238f228ca0723a",
+            "d2b957e1e9562c3b",
+            "a6d83a6d4b712052",
+            "0997fbf026dcfed1",
+            "f3ed19fc2596cefd",
+            "d149500c8841fd6d",
+            "58d661d2920260e5",
+            "7dbdb8aca95588c5",
+            "04617f47d13db45a"
+        ],
+        "x": 2734,
+        "y": 599,
+        "w": 1162,
+        "h": 182
+    },
+    {
+        "id": "ac5f601eb0b0ab61",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "acadab02dfe2d183",
+            "42c732f10b0cbfa3",
+            "a0b00d556ae7928a",
+            "a3376e560365544c",
+            "3e8c9be70239303c",
+            "5052541edf4e1a75",
+            "2788eafea8c473bd",
+            "0f2346c82fcbe1db",
+            "75cce99ad2f6b755",
+            "801abe102dd461b6",
+            "c109ebe0cc312aef",
+            "fc54e681e13c307e",
+            "ee354d188273acd3",
+            "mqtt_in_node",
+            "verificar_tag_function",
+            "mysql_node",
+            "processar_resultado_function",
+            "mqtt_out_node",
+            "16ae6833d0d6bb6d"
+        ],
+        "x": 2682,
+        "y": 99,
+        "w": 1384,
+        "h": 1714
+    },
+    {
         "id": "030cd0a9f03e0251",
         "type": "group",
         "z": "b945a241e156bcfb",
@@ -1665,11 +1730,13 @@
             "fba83df9b0aeb30e",
             "75c2a0fca3ccd526",
             "6c5bd5772f037429",
-            "ad3d8206ec3dbc10"
+            "ad3d8206ec3dbc10",
+            "sim_success_123456",
+            "d7132a1fcde89c51"
         ],
-        "x": 1914,
-        "y": 1339,
-        "w": 652,
+        "x": 1794,
+        "y": 419,
+        "w": 672,
         "h": 642
     },
     {
@@ -1728,16 +1795,16 @@
             "07d4ed1fc797ef90",
             "8c18284f520caea1",
             "28a21fd75e0a609c",
-            "583d6602eebeb86a",
             "92516c4af715c483",
             "903f5e795fc79aa4",
             "078f7ae1d190427f",
             "deadf4b9c6947e16",
-            "6107e7dbc5c0397b"
+            "6107e7dbc5c0397b",
+            "sim1234567890"
         ],
         "x": 994,
         "y": 679,
-        "w": 872,
+        "w": 752,
         "h": 362
     },
     {
@@ -1954,37 +2021,6 @@
         "h": 242
     },
     {
-        "id": "b11e1f71e8119fb5",
-        "type": "group",
-        "z": "b945a241e156bcfb",
-        "g": "e23f91c6c90719a6",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "84565aa7c66ff3af",
-            "a2057fb2ca4ccb40",
-            "efd1e766bbdd4f98",
-            "b05e3805654449cb",
-            "a477b1cb1d4ba384",
-            "03181043652a695a",
-            "ac9b9763727ca63a",
-            "7a99372b6d1da40d",
-            "087ffe4bb508bef4",
-            "dc9b6ddbd5ad64f6"
-        ],
-        "x": 1894,
-        "y": 419,
-        "w": 712,
-        "h": 242
-    },
-    {
         "id": "ca558814f2e55511",
         "type": "group",
         "z": "b945a241e156bcfb",
@@ -2054,75 +2090,6 @@
         "h": 242
     },
     {
-        "id": "17d974d2a9cfe306",
-        "type": "group",
-        "z": "b945a241e156bcfb",
-        "g": "e23f91c6c90719a6",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "636ac6044284a3d1",
-            "db2b0f074c5a2595",
-            "673756bf618276ae",
-            "c2cd3326d58e5487",
-            "ba7d4145bf366ec8",
-            "216aa771f4fa059f",
-            "9ad80e32bc56dd40",
-            "c6cc16e771e9abc8",
-            "a84a186454ada01e",
-            "7d24db3c7d0b1fab",
-            "c3e6956cb911e670",
-            "7c55617bc8554466",
-            "ddab56045cc9646b",
-            "63f97be3bfad78d7",
-            "ebf1260cdbf8237b",
-            "5ec6ac3c1fa16dcc"
-        ],
-        "x": 1894,
-        "y": 699,
-        "w": 732,
-        "h": 362
-    },
-    {
-        "id": "714421832a60e811",
-        "type": "group",
-        "z": "b945a241e156bcfb",
-        "g": "e23f91c6c90719a6",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "09c7c68adaa230cb",
-            "226e6698a724a496",
-            "6fe97ea4e117c58a",
-            "e31b0646f10fe036",
-            "aa676581935c9af7",
-            "aa25daf9557082d8",
-            "6cab05719322139b",
-            "95bd45d4e0b2a996",
-            "b4217b432118f0a8",
-            "93684165090f7fd0",
-            "1bf578d75d8439ef"
-        ],
-        "x": 1894,
-        "y": 1079,
-        "w": 732,
-        "h": 242
-    },
-    {
         "id": "7bfb532a1d383c91",
         "type": "group",
         "z": "b945a241e156bcfb",
@@ -2152,9 +2119,10 @@
         "h": 122
     },
     {
-        "id": "103be11be8eec673",
+        "id": "59f126c20c61f9d3",
         "type": "group",
         "z": "b945a241e156bcfb",
+        "g": "16ae6833d0d6bb6d",
         "style": {
             "stroke": "#999999",
             "stroke-opacity": "1",
@@ -2165,25 +2133,27 @@
             "color": "#a4a4a4"
         },
         "nodes": [
-            "49238f228ca0723a",
-            "d2b957e1e9562c3b",
-            "a6d83a6d4b712052",
-            "0997fbf026dcfed1",
-            "f3ed19fc2596cefd",
-            "d149500c8841fd6d",
-            "58d661d2920260e5",
-            "7dbdb8aca95588c5",
-            "04617f47d13db45a"
+            "ffb2f8a4e0d6a6b7",
+            "6989cbcefc626a99",
+            "fb323350170d62a7",
+            "7393cd2eb5088875",
+            "11591faadaad9b46",
+            "fa0e87e3f4d72081",
+            "5131ddb1386e4711",
+            "c0c3a2939a159bfe",
+            "0ecad52d2c6747b4",
+            "ab28e8703f5ffeec"
         ],
         "x": 2734,
-        "y": 599,
-        "w": 1162,
-        "h": 182
+        "y": 859,
+        "w": 722,
+        "h": 242
     },
     {
-        "id": "ac5f601eb0b0ab61",
+        "id": "0c5a92df4a92261d",
         "type": "group",
         "z": "b945a241e156bcfb",
+        "g": "16ae6833d0d6bb6d",
         "style": {
             "stroke": "#999999",
             "stroke-opacity": "1",
@@ -2194,29 +2164,83 @@
             "color": "#a4a4a4"
         },
         "nodes": [
-            "acadab02dfe2d183",
-            "42c732f10b0cbfa3",
-            "a0b00d556ae7928a",
-            "a3376e560365544c",
-            "3e8c9be70239303c",
-            "5052541edf4e1a75",
-            "2788eafea8c473bd",
-            "0f2346c82fcbe1db",
-            "75cce99ad2f6b755",
-            "801abe102dd461b6",
-            "c109ebe0cc312aef",
-            "fc54e681e13c307e",
-            "ee354d188273acd3",
-            "mqtt_in_node",
-            "verificar_tag_function",
-            "mysql_node",
-            "processar_resultado_function",
-            "mqtt_out_node"
+            "80c8cb3c41d7e7a6",
+            "d15b9cf73d2407c2",
+            "ab4351c37584c6e1",
+            "eb876f454d233c32",
+            "284ea27af526e6d2",
+            "ee7218ded57b650f",
+            "b800f19715bbc716",
+            "7685152c02475552",
+            "e15575b600cbc76c",
+            "599def4f7b5d5069",
+            "fa23494ffada69cf",
+            "be97e5b1763f8998",
+            "99f8b981487b3cc8",
+            "4e530e97b831444a",
+            "6e7d73366a459034",
+            "deaa7c0eea7db50b"
         ],
-        "x": 2714,
-        "y": 99,
-        "w": 1352,
-        "h": 382
+        "x": 2744,
+        "y": 1139,
+        "w": 732,
+        "h": 362
+    },
+    {
+        "id": "6f3b147639788071",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "g": "16ae6833d0d6bb6d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "cf4ce715dfd21091",
+            "6d1cebfda3720e7a",
+            "f68501fb1fb06016",
+            "ef3cc0996931209d",
+            "fa679f2dcc318313",
+            "1631b7e1b1ed6ac6",
+            "05c1b3567dfca20d",
+            "30ea043ac4ad156c",
+            "951187c47ff0239a",
+            "eaef6e72feef4d13",
+            "53a1fe7fbb3d76d1"
+        ],
+        "x": 2754,
+        "y": 1519,
+        "w": 712,
+        "h": 242
+    },
+    {
+        "id": "16ae6833d0d6bb6d",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "g": "ac5f601eb0b0ab61",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "59f126c20c61f9d3",
+            "0c5a92df4a92261d",
+            "6f3b147639788071"
+        ],
+        "x": 2708,
+        "y": 833,
+        "w": 794,
+        "h": 954
     },
     {
         "id": "b0e7208048a256dc",
@@ -16336,7 +16360,7 @@
         "method": "GET",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://127.0.0.1:1882/biosentry/devices",
+        "url": "http://172.16.80.152:1880/biosentry/devices",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -16829,12 +16853,12 @@
         "type": "http in",
         "z": "b945a241e156bcfb",
         "g": "6232b0d6144ee826",
-        "name": "students",
+        "name": "get students",
         "url": "/biosentry/students",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1080,
+        "x": 1090,
         "y": 580,
         "wires": [
             [
@@ -17000,7 +17024,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1630,
-        "y": 820,
+        "y": 780,
         "wires": []
     },
     {
@@ -17170,8 +17194,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2240,
-        "y": 1440,
+        "x": 2140,
+        "y": 520,
         "wires": []
     },
     {
@@ -17181,8 +17205,8 @@
         "g": "030cd0a9f03e0251",
         "name": "Endpoint HTTP para Recebimento de Dados Biométricos no Node-RED",
         "info": "",
-        "x": 2230,
-        "y": 1380,
+        "x": 2130,
+        "y": 460,
         "wires": []
     },
     {
@@ -17200,8 +17224,8 @@
         "correl": "",
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
-        "x": 2460,
-        "y": 1560,
+        "x": 2360,
+        "y": 640,
         "wires": []
     },
     {
@@ -17214,8 +17238,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2020,
-        "y": 1600,
+        "x": 1920,
+        "y": 680,
         "wires": [
             [
                 "25fa820ac801af66",
@@ -17232,8 +17256,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2210,
-        "y": 1620,
+        "x": 2110,
+        "y": 700,
         "wires": []
     },
     {
@@ -17249,8 +17273,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2200,
-        "y": 1560,
+        "x": 2100,
+        "y": 640,
         "wires": []
     },
     {
@@ -17263,8 +17287,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2040,
-        "y": 1480,
+        "x": 1940,
+        "y": 560,
         "wires": [
             [
                 "97829b7ee7afa223",
@@ -17281,8 +17305,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2430,
-        "y": 1460,
+        "x": 2330,
+        "y": 540,
         "wires": []
     },
     {
@@ -17295,8 +17319,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2030,
-        "y": 1700,
+        "x": 1930,
+        "y": 780,
         "wires": [
             [
                 "bd7550ec9d56ba18",
@@ -17313,8 +17337,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2250,
-        "y": 1760,
+        "x": 2150,
+        "y": 840,
         "wires": []
     },
     {
@@ -17330,8 +17354,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2260,
-        "y": 1720,
+        "x": 2160,
+        "y": 800,
         "wires": []
     },
     {
@@ -17341,8 +17365,8 @@
         "g": "030cd0a9f03e0251",
         "name": "Mensagens de notificação",
         "info": "",
-        "x": 2050,
-        "y": 1800,
+        "x": 1950,
+        "y": 880,
         "wires": []
     },
     {
@@ -17360,10 +17384,9 @@
         "rh": 0,
         "inputs": 0,
         "x": 1120,
-        "y": 860,
+        "y": 880,
         "wires": [
             [
-                "583d6602eebeb86a",
                 "8c18284f520caea1"
             ]
         ]
@@ -17382,7 +17405,7 @@
         "finalize": "",
         "libs": [],
         "x": 1350,
-        "y": 860,
+        "y": 880,
         "wires": [
             [
                 "28a21fd75e0a609c"
@@ -17402,25 +17425,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1500,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "583d6602eebeb86a",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "76d13409270878fb",
-        "name": "debug 44",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1340,
-        "y": 900,
+        "x": 1540,
+        "y": 880,
         "wires": []
     },
     {
@@ -18046,267 +18052,6 @@
         "statusType": "auto",
         "x": 780,
         "y": 240,
-        "wires": []
-    },
-    {
-        "id": "84565aa7c66ff3af",
-        "type": "comment",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "GET Dados Cartão",
-        "info": "",
-        "x": 2010,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "a2057fb2ca4ccb40",
-        "type": "inject",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 2000,
-        "y": 520,
-        "wires": [
-            [
-                "efd1e766bbdd4f98"
-            ]
-        ]
-    },
-    {
-        "id": "efd1e766bbdd4f98",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "function 26",
-        "func": "msg.topic = `SELECT \n    p.nome AS name,\n    p.codigo,\n    p.status AS status_,\n    e.nome_edificio,\n    d.id_dispositivo,\n    pa.id_perfil,\n    pa.nome_perfil\n    FROM pessoa p\n    JOIN perfis_acesso pa ON p.id_perfil = pa.id_perfil \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE NOT p.id_perfil = 1;`;\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2160,
-        "y": 520,
-        "wires": [
-            [
-                "b05e3805654449cb"
-            ]
-        ]
-    },
-    {
-        "id": "b05e3805654449cb",
-        "type": "mysql",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "DB",
-        "x": 2330,
-        "y": 520,
-        "wires": [
-            [
-                "a477b1cb1d4ba384"
-            ]
-        ]
-    },
-    {
-        "id": "a477b1cb1d4ba384",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "debug 52",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2480,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "03181043652a695a",
-        "type": "http in",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "cartão",
-        "url": "/biosentry/visitants",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 1970,
-        "y": 580,
-        "wires": [
-            [
-                "ac9b9763727ca63a"
-            ]
-        ]
-    },
-    {
-        "id": "ac9b9763727ca63a",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "function 27",
-        "func": "msg.topic = `SELECT \n    p.nome AS name,\n    p.codigo,\n    p.status AS status_,\n    e.nome_edificio,\n    d.id_dispositivo,\n    pa.id_perfil,\n    pa.nome_perfil\n    FROM pessoa p\n    JOIN perfis_acesso pa ON p.id_perfil = pa.id_perfil \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE NOT p.id_perfil = 1;`;\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2140,
-        "y": 580,
-        "wires": [
-            [
-                "7a99372b6d1da40d"
-            ]
-        ]
-    },
-    {
-        "id": "7a99372b6d1da40d",
-        "type": "mysql",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "DB",
-        "x": 2290,
-        "y": 580,
-        "wires": [
-            [
-                "087ffe4bb508bef4",
-                "dc9b6ddbd5ad64f6"
-            ]
-        ]
-    },
-    {
-        "id": "087ffe4bb508bef4",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "debug 53",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2500,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "dc9b6ddbd5ad64f6",
-        "type": "http response",
-        "z": "b945a241e156bcfb",
-        "g": "b11e1f71e8119fb5",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 2510,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "636ac6044284a3d1",
-        "type": "http in",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "Add Students",
-        "url": "/biosentry/addVisits",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 1990,
-        "y": 800,
-        "wires": [
-            [
-                "db2b0f074c5a2595"
-            ]
-        ]
-    },
-    {
-        "id": "db2b0f074c5a2595",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "Query",
-        "func": "msg.payload.tag = global.get(\"tag\") || null;\n// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n    msg.payload.status_ = '0'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (codigo, nome, status, id_dispositivo, tag, id_perfil) \n  VALUES (?,?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n    msg.payload.codigo || '',\n    msg.payload.name || '',\n    msg.payload.status_ || '0', // Já validado\n    msg.payload.id_dispositivo || '',\n    msg.payload.tag !== undefined ? msg.payload.tag : null,\n    msg.payload.id_perfil || 2,\n]\n\nreturn msg;\n\n\n\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2170,
-        "y": 800,
-        "wires": [
-            [
-                "c2cd3326d58e5487"
-            ]
-        ]
-    },
-    {
-        "id": "673756bf618276ae",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "debug 55",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2520,
-        "y": 800,
-        "wires": []
-    },
-    {
-        "id": "c2cd3326d58e5487",
-        "type": "mysql",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "DB",
-        "x": 2330,
-        "y": 800,
-        "wires": [
-            [
-                "673756bf618276ae",
-                "7c55617bc8554466"
-            ]
-        ]
-    },
-    {
-        "id": "ba7d4145bf366ec8",
-        "type": "comment",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "ADD FUNCIONARIOS",
-        "info": "",
-        "x": 2020,
-        "y": 740,
         "wires": []
     },
     {
@@ -19118,304 +18863,6 @@
         "wires": []
     },
     {
-        "id": "09c7c68adaa230cb",
-        "type": "comment",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "name": "UPDATE FUNCIONARIOS",
-        "info": "",
-        "x": 2030,
-        "y": 1120,
-        "wires": []
-    },
-    {
-        "id": "226e6698a724a496",
-        "type": "http in",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "name": "Update outros",
-        "url": "/biosentry/update/:codigo",
-        "method": "put",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 1990,
-        "y": 1180,
-        "wires": [
-            [
-                "6fe97ea4e117c58a"
-            ]
-        ]
-    },
-    {
-        "id": "6fe97ea4e117c58a",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "name": "function 15",
-        "func": "// msg.payload.status_ = msg.payload.status_ ? 1 : 0;\n// Substitua a query por:\nconst query = `\n  UPDATE pessoa \n  SET nome = ?, status = ?, id_dispositivo = ?, id_perfil = ?\n  WHERE codigo = ?\n`;\nconst values = [\n  msg.payload.name,\n  msg.payload.status_,\n  msg.payload.id_dispositivo,\n  msg.payload.id_perfil,\n  msg.payload.codigo\n];\n\nmsg.topic = query;\nmsg.payload = values;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2190,
-        "y": 1180,
-        "wires": [
-            [
-                "e31b0646f10fe036"
-            ]
-        ]
-    },
-    {
-        "id": "e31b0646f10fe036",
-        "type": "mysql",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "DB",
-        "x": 2350,
-        "y": 1180,
-        "wires": [
-            [
-                "aa676581935c9af7"
-            ]
-        ]
-    },
-    {
-        "id": "aa676581935c9af7",
-        "type": "http response",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 2490,
-        "y": 1180,
-        "wires": []
-    },
-    {
-        "id": "aa25daf9557082d8",
-        "type": "http in",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "name": "Buscar tagig por codigo",
-        "url": "/biosentry/tagid/:codigo",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 2020,
-        "y": 1280,
-        "wires": [
-            [
-                "6cab05719322139b",
-                "1bf578d75d8439ef"
-            ]
-        ]
-    },
-    {
-        "id": "6cab05719322139b",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "name": "function 24",
-        "func": "msg.topic = `SELECT tagId \n            FROM pessoa\n            WHERE codigo = ${msg.req.params.codigo};`;\nreturn msg;\n\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2270,
-        "y": 1280,
-        "wires": [
-            [
-                "95bd45d4e0b2a996"
-            ]
-        ]
-    },
-    {
-        "id": "95bd45d4e0b2a996",
-        "type": "mysql",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "BD",
-        "x": 2430,
-        "y": 1280,
-        "wires": [
-            [
-                "b4217b432118f0a8"
-            ]
-        ]
-    },
-    {
-        "id": "b4217b432118f0a8",
-        "type": "http response",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 2550,
-        "y": 1280,
-        "wires": []
-    },
-    {
-        "id": "93684165090f7fd0",
-        "type": "comment",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "name": "Buscar tagId por id",
-        "info": "Para poder pegar o valor do finger_id e envia-lo para o node-red para editar\n",
-        "x": 2010,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "1bf578d75d8439ef",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "714421832a60e811",
-        "name": "debug 48",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2260,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "216aa771f4fa059f",
-        "type": "http in",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "perfis",
-        "url": "/biosentry/perfil",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 2010,
-        "y": 860,
-        "wires": [
-            [
-                "9ad80e32bc56dd40"
-            ]
-        ]
-    },
-    {
-        "id": "9ad80e32bc56dd40",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "function 38",
-        "func": "msg.topic = `SELECT id_perfil, nome_perfil\n    FROM perfis_acesso;`;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2170,
-        "y": 860,
-        "wires": [
-            [
-                "c6cc16e771e9abc8"
-            ]
-        ]
-    },
-    {
-        "id": "c6cc16e771e9abc8",
-        "type": "mysql",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "mydb": "f3e8c660cf5205b5",
-        "name": "DB",
-        "x": 2330,
-        "y": 860,
-        "wires": [
-            [
-                "a84a186454ada01e",
-                "7d24db3c7d0b1fab"
-            ]
-        ]
-    },
-    {
-        "id": "a84a186454ada01e",
-        "type": "http response",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 2470,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "7d24db3c7d0b1fab",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "debug 56",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2480,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "c3e6956cb911e670",
-        "type": "inject",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 2040,
-        "y": 920,
-        "wires": [
-            [
-                "9ad80e32bc56dd40"
-            ]
-        ]
-    },
-    {
-        "id": "7c55617bc8554466",
-        "type": "http response",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 2510,
-        "y": 740,
-        "wires": []
-    },
-    {
         "id": "903f5e795fc79aa4",
         "type": "http in",
         "z": "b945a241e156bcfb",
@@ -19475,7 +18922,7 @@
         "senderr": false,
         "headers": [],
         "x": 1560,
-        "y": 960,
+        "y": 940,
         "wires": [
             [
                 "6107e7dbc5c0397b"
@@ -19492,7 +18939,7 @@
         "headers": {
             "Access-Control-Allow-Origin": "http://172.16.80.152:1880"
         },
-        "x": 1760,
+        "x": 1640,
         "y": 1000,
         "wires": []
     },
@@ -19510,8 +18957,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 2040,
-        "y": 1880,
+        "x": 1940,
+        "y": 960,
         "wires": [
             [
                 "69845838d1e36857"
@@ -19530,8 +18977,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2230,
-        "y": 1880,
+        "x": 2130,
+        "y": 960,
         "wires": [
             [
                 "7d5f0c288939fb75"
@@ -19551,8 +18998,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2440,
-        "y": 1880,
+        "x": 2340,
+        "y": 960,
         "wires": []
     },
     {
@@ -19565,8 +19012,8 @@
         "method": "post",
         "upload": true,
         "swaggerDoc": "",
-        "x": 2070,
-        "y": 1940,
+        "x": 1970,
+        "y": 1020,
         "wires": [
             [
                 "75c2a0fca3ccd526"
@@ -19586,8 +19033,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 2300,
-        "y": 1940,
+        "x": 2200,
+        "y": 1020,
         "wires": [
             [
                 "6c5bd5772f037429"
@@ -19602,8 +19049,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2470,
-        "y": 1940,
+        "x": 2370,
+        "y": 1020,
         "wires": []
     },
     {
@@ -19646,39 +19093,6 @@
         ]
     },
     {
-        "id": "ddab56045cc9646b",
-        "type": "mqtt in",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "get tag",
-        "topic": "Esp32/data",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "c04d9c37659ca8d5",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 2030,
-        "y": 1020,
-        "wires": [
-            [
-                "ebf1260cdbf8237b"
-            ]
-        ]
-    },
-    {
-        "id": "63f97be3bfad78d7",
-        "type": "comment",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "receber dados",
-        "info": "",
-        "x": 2050,
-        "y": 980,
-        "wires": []
-    },
-    {
         "id": "a0b00d556ae7928a",
         "type": "http response",
         "z": "b945a241e156bcfb",
@@ -19691,27 +19105,6 @@
         "wires": []
     },
     {
-        "id": "ebf1260cdbf8237b",
-        "type": "function",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "function 40",
-        "func": "// Guardar o tagId recebido\nglobal.set(\"tag\", msg.payload.tag);\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2210,
-        "y": 1020,
-        "wires": [
-            [
-                "5ec6ac3c1fa16dcc"
-            ]
-        ]
-    },
-    {
         "id": "a3376e560365544c",
         "type": "comment",
         "z": "b945a241e156bcfb",
@@ -19720,23 +19113,6 @@
         "info": "",
         "x": 2870,
         "y": 160,
-        "wires": []
-    },
-    {
-        "id": "5ec6ac3c1fa16dcc",
-        "type": "debug",
-        "z": "b945a241e156bcfb",
-        "g": "17d974d2a9cfe306",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2380,
-        "y": 1020,
         "wires": []
     },
     {
@@ -19914,8 +19290,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 2340,
-        "y": 1660,
+        "x": 2240,
+        "y": 740,
         "wires": [
             [
                 "870faf16bf488d4b"
@@ -27395,6 +26771,726 @@
         "info": "",
         "x": 2790,
         "y": 100,
+        "wires": []
+    },
+    {
+        "id": "sim1234567890",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "76d13409270878fb",
+        "name": "Simulate Fingerprint",
+        "props": [
+            {
+                "p": "payload.finger_id",
+                "v": "123",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "fingerprint_REGISTED",
+        "x": 1250,
+        "y": 840,
+        "wires": [
+            [
+                "8c18284f520caea1"
+            ]
+        ]
+    },
+    {
+        "id": "sim_success_123456",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "Simulate Success Message",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "debug_BioSentry",
+        "payload": "Impressão digital registada",
+        "payloadType": "str",
+        "x": 1960,
+        "y": 920,
+        "wires": [
+            [
+                "69845838d1e36857"
+            ]
+        ]
+    },
+    {
+        "id": "d7132a1fcde89c51",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "030cd0a9f03e0251",
+        "name": "Simulate Error Message",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "debug_BioSentry",
+        "payload": "Erro no registo biométrico",
+        "payloadType": "str",
+        "x": 2300,
+        "y": 880,
+        "wires": [
+            [
+                "69845838d1e36857"
+            ]
+        ]
+    },
+    {
+        "id": "ffb2f8a4e0d6a6b7",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "name": "GET Dados Cartão",
+        "info": "",
+        "x": 2890,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "6989cbcefc626a99",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 2850,
+        "y": 960,
+        "wires": [
+            [
+                "fb323350170d62a7"
+            ]
+        ]
+    },
+    {
+        "id": "fb323350170d62a7",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "name": "function 8",
+        "func": "msg.topic = `SELECT \n    p.nome AS name,\n    p.codigo,\n    p.status AS status_,\n    e.nome_edificio,\n    d.id_dispositivo,\n    pa.id_perfil,\n    pa.nome_perfil\n    FROM pessoa p\n    JOIN perfis_acesso pa ON p.id_perfil = pa.id_perfil \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE NOT p.id_perfil = 1;`;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3010,
+        "y": 960,
+        "wires": [
+            [
+                "7393cd2eb5088875"
+            ]
+        ]
+    },
+    {
+        "id": "7393cd2eb5088875",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 3170,
+        "y": 960,
+        "wires": [
+            [
+                "11591faadaad9b46"
+            ]
+        ]
+    },
+    {
+        "id": "11591faadaad9b46",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3330,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "fa0e87e3f4d72081",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "name": "funcionários",
+        "url": "/biosentry/visitants",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2830,
+        "y": 1020,
+        "wires": [
+            [
+                "5131ddb1386e4711"
+            ]
+        ]
+    },
+    {
+        "id": "5131ddb1386e4711",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "name": "function 9",
+        "func": "msg.topic = `SELECT \n    p.nome AS name,\n    p.codigo,\n    p.status AS status_,\n    e.nome_edificio,\n    d.id_dispositivo,\n    pa.id_perfil,\n    pa.nome_perfil\n    FROM pessoa p\n    JOIN perfis_acesso pa ON p.id_perfil = pa.id_perfil \n    JOIN dispositivo d ON p.id_dispositivo = d.id_dispositivo\n    JOIN edificio e ON d.id_edificio = e.id_edificio\n    WHERE NOT p.id_perfil = 1;`;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2990,
+        "y": 1020,
+        "wires": [
+            [
+                "c0c3a2939a159bfe"
+            ]
+        ]
+    },
+    {
+        "id": "c0c3a2939a159bfe",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 3130,
+        "y": 1020,
+        "wires": [
+            [
+                "0ecad52d2c6747b4",
+                "ab28e8703f5ffeec"
+            ]
+        ]
+    },
+    {
+        "id": "0ecad52d2c6747b4",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3350,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "ab28e8703f5ffeec",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "59f126c20c61f9d3",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 3350,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "80c8cb3c41d7e7a6",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "Add Func",
+        "url": "/biosentry/addVisits",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2830,
+        "y": 1240,
+        "wires": [
+            [
+                "d15b9cf73d2407c2"
+            ]
+        ]
+    },
+    {
+        "id": "d15b9cf73d2407c2",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "Query",
+        "func": "msg.payload.tag = global.get(\"tag\") || null;\n// Validação do status_ (garante que seja '0' ou '1')\nif (msg.payload.status_ !== '0' && msg.payload.status_ !== '1') {\n    msg.payload.status_ = '0'; // Valor padrão: '0' (Inativo)\n}\n\n// Query segura com prepared statement\nmsg.topic = `\n  INSERT INTO pessoa \n    (codigo, nome, status, id_dispositivo, tag, id_perfil) \n  VALUES (?,?, ?, ?, ?, ?)`;\n\nmsg.payload = [\n    msg.payload.codigo || '',\n    msg.payload.name || '',\n    msg.payload.status_ || '0', // Já validado\n    msg.payload.id_dispositivo || '',\n    msg.payload.tag !== undefined ? msg.payload.tag : null,\n    msg.payload.id_perfil || 2,\n]\n\nreturn msg;\n\n\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3010,
+        "y": 1240,
+        "wires": [
+            [
+                "eb876f454d233c32"
+            ]
+        ]
+    },
+    {
+        "id": "ab4351c37584c6e1",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3370,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "eb876f454d233c32",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 3170,
+        "y": 1240,
+        "wires": [
+            [
+                "ab4351c37584c6e1",
+                "be97e5b1763f8998"
+            ]
+        ]
+    },
+    {
+        "id": "284ea27af526e6d2",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "ADD FUNCIONARIOS",
+        "info": "",
+        "x": 2910,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "ee7218ded57b650f",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "perfis",
+        "url": "/biosentry/perfil",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2850,
+        "y": 1300,
+        "wires": [
+            [
+                "b800f19715bbc716"
+            ]
+        ]
+    },
+    {
+        "id": "b800f19715bbc716",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "function 10",
+        "func": "msg.topic = `SELECT id_perfil, nome_perfil\n    FROM perfis_acesso;`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3030,
+        "y": 1300,
+        "wires": [
+            [
+                "7685152c02475552"
+            ]
+        ]
+    },
+    {
+        "id": "7685152c02475552",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 3170,
+        "y": 1300,
+        "wires": [
+            [
+                "e15575b600cbc76c",
+                "599def4f7b5d5069"
+            ]
+        ]
+    },
+    {
+        "id": "e15575b600cbc76c",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 3310,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "599def4f7b5d5069",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3330,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "fa23494ffada69cf",
+        "type": "inject",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 2890,
+        "y": 1360,
+        "wires": [
+            [
+                "b800f19715bbc716"
+            ]
+        ]
+    },
+    {
+        "id": "be97e5b1763f8998",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 3350,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "99f8b981487b3cc8",
+        "type": "mqtt in",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "get tag",
+        "topic": "Esp32/data",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c04d9c37659ca8d5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 2870,
+        "y": 1460,
+        "wires": [
+            [
+                "6e7d73366a459034"
+            ]
+        ]
+    },
+    {
+        "id": "4e530e97b831444a",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "receber dados",
+        "info": "",
+        "x": 2910,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "6e7d73366a459034",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "function 11",
+        "func": "// Guardar o tagId recebido\nglobal.set(\"tag\", msg.payload.tag);\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3070,
+        "y": 1460,
+        "wires": [
+            [
+                "deaa7c0eea7db50b"
+            ]
+        ]
+    },
+    {
+        "id": "deaa7c0eea7db50b",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "0c5a92df4a92261d",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3230,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "cf4ce715dfd21091",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "name": "UPDATE FUNCIONARIOS",
+        "info": "",
+        "x": 2930,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "6d1cebfda3720e7a",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "name": "Update outros",
+        "url": "/biosentry/update/:codigo",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2850,
+        "y": 1620,
+        "wires": [
+            [
+                "f68501fb1fb06016"
+            ]
+        ]
+    },
+    {
+        "id": "f68501fb1fb06016",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "name": "function 12",
+        "func": "// msg.payload.status_ = msg.payload.status_ ? 1 : 0;\n// Substitua a query por:\nconst query = `\n  UPDATE pessoa \n  SET nome = ?, status = ?, id_dispositivo = ?, id_perfil = ?\n  WHERE codigo = ?\n`;\nconst values = [\n  msg.payload.name,\n  msg.payload.status_,\n  msg.payload.id_dispositivo,\n  msg.payload.id_perfil,\n  msg.payload.codigo\n];\n\nmsg.topic = query;\nmsg.payload = values;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3050,
+        "y": 1620,
+        "wires": [
+            [
+                "ef3cc0996931209d"
+            ]
+        ]
+    },
+    {
+        "id": "ef3cc0996931209d",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "DB",
+        "x": 3190,
+        "y": 1620,
+        "wires": [
+            [
+                "fa679f2dcc318313"
+            ]
+        ]
+    },
+    {
+        "id": "fa679f2dcc318313",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 3330,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "1631b7e1b1ed6ac6",
+        "type": "http in",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "name": "Buscar tagig por codigo",
+        "url": "/biosentry/tagid/:codigo",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 2910,
+        "y": 1720,
+        "wires": [
+            [
+                "05c1b3567dfca20d",
+                "53a1fe7fbb3d76d1"
+            ]
+        ]
+    },
+    {
+        "id": "05c1b3567dfca20d",
+        "type": "function",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "name": "function 13",
+        "func": "msg.topic = `SELECT tagId \n            FROM pessoa\n            WHERE codigo = ${msg.req.params.codigo};`;\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3130,
+        "y": 1720,
+        "wires": [
+            [
+                "30ea043ac4ad156c"
+            ]
+        ]
+    },
+    {
+        "id": "30ea043ac4ad156c",
+        "type": "mysql",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "mydb": "f3e8c660cf5205b5",
+        "name": "BD",
+        "x": 3270,
+        "y": 1720,
+        "wires": [
+            [
+                "951187c47ff0239a"
+            ]
+        ]
+    },
+    {
+        "id": "951187c47ff0239a",
+        "type": "http response",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 3390,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "eaef6e72feef4d13",
+        "type": "comment",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "name": "Buscar tagId por id",
+        "info": "Para poder pegar o valor do finger_id e envia-lo para o node-red para editar\n",
+        "x": 2890,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "53a1fe7fbb3d76d1",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "6f3b147639788071",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3110,
+        "y": 1680,
         "wires": []
     },
     {
