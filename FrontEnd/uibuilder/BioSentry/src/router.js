@@ -4,7 +4,7 @@
 const Perfil = httpVueLoader('./components/pages/Settings/perfil.vue');
 const ChangePassword = httpVueLoader('./components/pages/Settings/ChangePassword.vue');
 const PageNotFound = httpVueLoader('./components/PageNotFound.vue');
-
+const PageNotPermited = httpVueLoader("./components/PageNotPermitted.vue");
 const ListTipoUtilizador = httpVueLoader('./components/pages/TipoUtilizador/View.vue');
 const CreateTipoUtilizador = httpVueLoader('./components/pages/TipoUtilizador/Create.vue');
 const EditTipoUtilizador = httpVueLoader('./components/pages/TipoUtilizador/Edit.vue');
@@ -28,12 +28,12 @@ const routes = [
             path: '/',
             name: 'Dashboard', 
             component: Dashboard,
-            meta: {
-                requiresAuth: false,
-                roles: [
-                  'AdminBiosEntry'
-                ],
-              },
+            // meta: {
+            //     requiresAuth: fa,
+            //     roles: [
+            //       'AdminBiosEntry'
+            //     ],
+            //   },
             
         },
         {
@@ -41,6 +41,11 @@ const routes = [
             name: 'PageNotFound',
             component: PageNotFound,
           },
+            {
+              path: "/page-not-permitted",
+              name: "PageNotPermited",
+              component: PageNotPermited,
+            },
         {
             path: '/perfil/:ID',
             name: 'Perfil',
@@ -56,9 +61,9 @@ const routes = [
             name:'ViewTipoUtilizador',
             component: ListTipoUtilizador,
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
                 roles: [
-                  'AdminBiosEntry'
+                   'AdminBiosEntry','Administrador', 'Gestor'
                 ],
               },
         },
@@ -67,9 +72,9 @@ const routes = [
             name:'CreateTipoUtilizador',
             component: CreateTipoUtilizador,
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
                 roles: [
-                  'AdminBiosEntry'
+                   'AdminBiosEntry','Administrador', 'Gestor'
                 ],
               },
         },
@@ -78,9 +83,9 @@ const routes = [
             name:'EditTipoUtilizador',
             component: EditTipoUtilizador,
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
                 roles: [
-                  'AdminBiosEntry'
+                   'AdminBiosEntry','Administrador', 'Gestor'
                 ],
               },
         },
@@ -89,9 +94,9 @@ const routes = [
             name:'ViewUtilizador',
             component: ListUtilizador,
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
                 roles: [
-                  'AdminBiosEntry'
+                   'AdminBiosEntry','Administrador', 'Gestor'
                 ],
               },
         },
@@ -100,9 +105,9 @@ const routes = [
             name:'CreateUtilizador',
             component: CreateUtilizador,
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
                 roles: [
-                  'AdminBiosEntry'
+                   'AdminBiosEntry','Administrador', 'Gestor'
                 ],
               },
         },
@@ -111,9 +116,9 @@ const routes = [
             name:'EditUtilizador',
             component: EditUtilizador,
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
                 roles: [
-                  'AdminBiosEntry'
+                   'AdminBiosEntry','Administrador', 'Gestor'
                 ],
               },
         },
@@ -127,9 +132,9 @@ const routes = [
             name:'DeviceManagement',
             component: DeviceManagement,
             meta: {
-              requiresAuth: false,
+              requiresAuth: true,
               roles: [
-                'AdminBiosEntry'
+                'AdminBiosEntry','Administrador', 'Gestor'
               ],
             },
         },
@@ -138,9 +143,9 @@ const routes = [
             name:'StudentsManagement',
             component: StudentsManagement,
             meta: {
-              requiresAuth: false,
+              requiresAuth: true,
               roles: [
-                'AdminBiosEntry'
+                'AdminBiosEntry','Administrador', 'Gestor', 'Guarda'
               ],
             },
         },
@@ -149,9 +154,9 @@ const routes = [
             name:'LogsStudents',
             component: LogsStudents,
             meta: {
-              requiresAuth: false,
+              requiresAuth: true,
               roles: [
-                'AdminBiosEntry'
+                 'AdminBiosEntry','Administrador', 'Gestor', 'Guarda'
                 
               ],
             },
@@ -161,9 +166,9 @@ const routes = [
             name:'VisitManagement',
             component: VisitManagement,
             meta: {
-              requiresAuth: false,
+              requiresAuth: true,
               roles: [
-                'AdminBiosEntry'
+                 'AdminBiosEntry','Administrador', 'Gestor', 'Guarda'
                 
               ],
             },
@@ -173,9 +178,9 @@ const routes = [
             name: 'Relatorio',
             component: Relatorio,
             meta: {
-              requiresAuth: false,
+              requiresAuth: true,
               roles: [
-                'AdminBiosEntry'
+                 'AdminBiosEntry','Administrador', 'Gestor', 'Guarda'
                 
               ],
             },
@@ -183,51 +188,45 @@ const routes = [
         
     ];
 
-    // Configuração do router
+// Configuração do router
 const router = new VueRouter({
-    mode: "hash",
-    routes,
-  });
-  
-  export default router; // Add this line to export the router instance
-  
-  // Verificação de permissões no `beforeEach`
-  
-  router.beforeEach((to, from, next) => {
-    
-      // Obter os dados do utilizador logado do localStorage ou do sistema global
-      const loggedUser = JSON.parse(localStorage.getItem("user"));
-    
-      // Verificar se a rota requer autenticação
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-    
-        if (!loggedUser || !loggedUser.islogged) {
-          console.warn("Acesso negado: utilizador não autenticado.");
-          next({ path: "/page-not-permitted" });
-        } else {
-          // Check for AdminBiosEntry user type
-          if (loggedUser.TipoUtilizador_Nome === 'AdminBiosEntry') {
-            next({ path: '/biosentry/dashboard' }); // Redirect AdminBiosEntry to DashboardB
-          } else {
-            // Verificar se o utilizador tem permissão para a rota
-            const allowedRoles = to.meta.roles || []; 
-    
-            if (allowedRoles.includes(loggedUser.TipoUtilizador_Nome)) {
-              next(); // Tem permissão, continua
-            } else {
-              console.warn(
-                "Acesso negado: função não permitida.",
-                "Utilizador:",
-                loggedUser.TipoUtilizador_Nome,
-                "Rota:",
-                to.fullPath
-              );
-              next({ path: "/page-not-permitted" });
-            }
-          }
-        }
-      } else {
-        next(); // Para rotas públicas
-      }
-    });
-  
+  mode: "hash",
+  routes,
+});
+
+// Verificação de permissões no `beforeEach`
+router.beforeEach((to, from, next) => {
+  // Obter os dados do utilizador logado do localStorage
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+
+  // Verificar se a rota requer autenticação
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    // Se não há utilizador logado ou não está autenticado
+    if (!loggedUser || !loggedUser.islogged) {
+      console.warn("Acesso negado: utilizador não autenticado.");
+      return next({ path: "/page-not-permitted" });
+    }
+
+    // Verificar se a rota tem restrições de papéis
+    const allowedRoles = to.meta.roles || [];
+
+    // Se o utilizador tem uma função permitida, prosseguir
+    if (allowedRoles.includes(loggedUser.TipoUtilizador_Nome)) {
+      return next();
+    } else {
+      console.warn(
+        "Acesso negado: função não permitida.",
+        "Utilizador:",
+        loggedUser.TipoUtilizador_Nome,
+        "Rota:",
+        to.fullPath
+      );
+      return next({ path: "/page-not-permitted" });
+    }
+  }
+
+  // Para rotas públicas
+  return next();
+});
+
+export default router;

@@ -1067,7 +1067,7 @@
         ],
         "x": 968,
         "y": 339,
-        "w": 1524,
+        "w": 1564,
         "h": 1148
     },
     {
@@ -1655,7 +1655,7 @@
         ],
         "x": 2734,
         "y": 599,
-        "w": 1162,
+        "w": 1132,
         "h": 182
     },
     {
@@ -1690,7 +1690,9 @@
             "mysql_node",
             "processar_resultado_function",
             "mqtt_out_node",
-            "16ae6833d0d6bb6d"
+            "16ae6833d0d6bb6d",
+            "8cdbfbbe8d782eb5",
+            "afad3bc9f5a84ff4"
         ],
         "x": 2682,
         "y": 99,
@@ -1730,13 +1732,12 @@
             "fba83df9b0aeb30e",
             "75c2a0fca3ccd526",
             "6c5bd5772f037429",
-            "ad3d8206ec3dbc10",
             "sim_success_123456",
             "d7132a1fcde89c51"
         ],
         "x": 1794,
         "y": 419,
-        "w": 672,
+        "w": 712,
         "h": 642
     },
     {
@@ -2119,6 +2120,30 @@
         "h": 122
     },
     {
+        "id": "16ae6833d0d6bb6d",
+        "type": "group",
+        "z": "b945a241e156bcfb",
+        "g": "ac5f601eb0b0ab61",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "59f126c20c61f9d3",
+            "0c5a92df4a92261d",
+            "6f3b147639788071"
+        ],
+        "x": 2708,
+        "y": 833,
+        "w": 794,
+        "h": 954
+    },
+    {
         "id": "59f126c20c61f9d3",
         "type": "group",
         "z": "b945a241e156bcfb",
@@ -2219,30 +2244,6 @@
         "h": 242
     },
     {
-        "id": "16ae6833d0d6bb6d",
-        "type": "group",
-        "z": "b945a241e156bcfb",
-        "g": "ac5f601eb0b0ab61",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "59f126c20c61f9d3",
-            "0c5a92df4a92261d",
-            "6f3b147639788071"
-        ],
-        "x": 2708,
-        "y": 833,
-        "w": 794,
-        "h": 954
-    },
-    {
         "id": "b0e7208048a256dc",
         "type": "mqtt-broker",
         "name": "",
@@ -2277,7 +2278,7 @@
         "id": "f3e8c660cf5205b5",
         "type": "MySQLdatabase",
         "name": "db_iot_rs2lab",
-        "host": "172.16.80.152",
+        "host": "158.220.96.173",
         "port": "3306",
         "db": "db_iot_rs2lab",
         "tz": "",
@@ -2327,7 +2328,7 @@
         "id": "89deb89aacc99f16",
         "type": "MySQLdatabase",
         "name": "BDTeste",
-        "host": "127.0.0.1",
+        "host": "158.220.96.173",
         "port": "3306",
         "db": "bdteste",
         "tz": "",
@@ -17203,9 +17204,9 @@
         "type": "comment",
         "z": "b945a241e156bcfb",
         "g": "030cd0a9f03e0251",
-        "name": "Endpoint HTTP para Recebimento de Dados Biométricos no Node-RED",
+        "name": "Endpoint HTTP para envio comandos",
         "info": "",
-        "x": 2130,
+        "x": 2030,
         "y": 460,
         "wires": []
     },
@@ -17214,7 +17215,7 @@
         "type": "mqtt out",
         "z": "b945a241e156bcfb",
         "g": "030cd0a9f03e0251",
-        "name": "",
+        "name": "fluxo_cmd_dispositivo",
         "topic": "fingerprint_CMD",
         "qos": "",
         "retain": "",
@@ -17224,7 +17225,7 @@
         "correl": "",
         "expiry": "",
         "broker": "c04d9c37659ca8d5",
-        "x": 2360,
+        "x": 2380,
         "y": 640,
         "wires": []
     },
@@ -17238,8 +17239,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1920,
-        "y": 680,
+        "x": 1940,
+        "y": 640,
         "wires": [
             [
                 "25fa820ac801af66",
@@ -17257,7 +17258,7 @@
         "statusCode": "",
         "headers": {},
         "x": 2110,
-        "y": 700,
+        "y": 660,
         "wires": []
     },
     {
@@ -17273,8 +17274,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2100,
-        "y": 640,
+        "x": 2120,
+        "y": 620,
         "wires": []
     },
     {
@@ -17319,8 +17320,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 1930,
-        "y": 780,
+        "x": 1950,
+        "y": 720,
         "wires": [
             [
                 "bd7550ec9d56ba18",
@@ -17337,8 +17338,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2150,
-        "y": 840,
+        "x": 2230,
+        "y": 760,
         "wires": []
     },
     {
@@ -17354,8 +17355,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2160,
-        "y": 800,
+        "x": 2220,
+        "y": 720,
         "wires": []
     },
     {
@@ -17374,7 +17375,7 @@
         "type": "mqtt in",
         "z": "b945a241e156bcfb",
         "g": "76d13409270878fb",
-        "name": "",
+        "name": "mqtt obter_finger_id",
         "topic": "fingerprint_REGISTED",
         "qos": "2",
         "datatype": "auto-detect",
@@ -17383,8 +17384,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 1120,
-        "y": 880,
+        "x": 1110,
+        "y": 860,
         "wires": [
             [
                 "8c18284f520caea1"
@@ -17405,7 +17406,7 @@
         "finalize": "",
         "libs": [],
         "x": 1350,
-        "y": 880,
+        "y": 860,
         "wires": [
             [
                 "28a21fd75e0a609c"
@@ -17426,7 +17427,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1540,
-        "y": 880,
+        "y": 860,
         "wires": []
     },
     {
@@ -18603,7 +18604,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
                 "603607c2c2c5dbb9"
@@ -18616,7 +18617,7 @@
         "z": "b945a241e156bcfb",
         "g": "a6adededcdd25826",
         "name": "Query",
-        "func": "var username = msg.payload.username;\n// var Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.codigo AS username,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    Utilizador u\nLEFT JOIN\n    TipoUtilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    UtilizadorGrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    GrupoUtilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.codigo = '${username}' \n    \nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
+        "func": "var username = msg.payload.username;\n// var Utilizador_Senha = msg.payload.Utilizador_Senha;\n\nmsg.topic = `SELECT\n    u.ID AS Utilizador_ID,\n    u.Nome AS Utilizador_Nome,\n    u.codigo AS username,\n    u.Senha AS Utilizador_Senha,\n    u.Email AS Utilizador_Email,\n    u.isActive AS Utilizador_isActive,\n    u.image AS Utilizador_image,\n    t.ID AS TipoUtilizador_ID,\n    t.Nome AS TipoUtilizador_Nome,\n    JSON_ARRAYAGG(\n        JSON_OBJECT(\n            'ID', g.ID,\n            'Nome', g.Nome\n        )\n    ) AS Grupos\nFROM\n    utilizador u\nLEFT JOIN\n    tipoutilizador t ON u.ID_TipoUtilizador = t.ID\nLEFT JOIN\n    utilizadorgrupo ug ON u.ID = ug.ID_Utilizador\nLEFT JOIN\n    grupoutilizadores g ON ug.ID_Grupo = g.ID\nWHERE\n    u.codigo = '${username}' \n    \nGROUP BY\n    u.ID, t.ID;\n`;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -18624,7 +18625,7 @@
         "finalize": "",
         "libs": [],
         "x": 250,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
                 "1b43fe1b9d2c3f74"
@@ -18640,7 +18641,7 @@
         "statusCode": "",
         "headers": {},
         "x": 490,
-        "y": 240,
+        "y": 280,
         "wires": []
     },
     {
@@ -18651,7 +18652,7 @@
         "mydb": "f3e8c660cf5205b5",
         "name": "DB",
         "x": 370,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
                 "6c103389a472c46a"
@@ -19137,12 +19138,12 @@
         "type": "http in",
         "z": "b945a241e156bcfb",
         "g": "103be11be8eec673",
-        "name": "GET /biosentry/report",
+        "name": "GET filtros",
         "url": "/biosentry/report",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 2860,
+        "x": 2820,
         "y": 680,
         "wires": [
             [
@@ -19156,18 +19157,19 @@
         "z": "b945a241e156bcfb",
         "g": "103be11be8eec673",
         "name": "Processar Parametros",
-        "func": "// Receber os parâmetros do frontend\nlet params = msg.req.query;\nlet where = [];\nlet values = [];\n\n// Validação de parâmetros\nif (params.startDate && !params.startDate.match(/^\\d{4}-\\d{2}-\\d{2}$/)) {\n    params.startDate = '';\n}\nif (params.endDate && !params.endDate.match(/^\\d{4}-\\d{2}-\\d{2}$/)) {\n    params.endDate = '';\n}\nif (params.accessType && !['in', 'out'].includes(params.accessType)) {\n    params.accessType = '';\n}\nif (params.accessStatus && !['1', '0'].includes(params.accessStatus)) {\n    params.accessStatus = '';\n}\n\n// Filtro para searchQuery\nif (params.searchQuery) {\n    where.push(\"(p.nome LIKE ? OR e.nome_edificio LIKE ?)\");\n    values.push(`%${params.searchQuery}%`, `%${params.searchQuery}%`);\n}\n// Filtro para startDate\nif (params.startDate) {\n    where.push(\"a.data_hora >= ?\");\n    values.push(params.startDate);\n}\n// Filtro para endDate\nif (params.endDate) {\n    where.push(\"a.data_hora <= ?\");\n    values.push(params.endDate);\n}\n// Filtro para residence\nif (params.residence) {\n    where.push(\"e.nome_edificio = ?\");\n    values.push(params.residence);\n}\n// Filtro para device\nif (params.device) {\n    where.push(\"d.id_dispositivo = ?\");\n    values.push(params.device);\n}\n// Filtro para userType\nif (params.userType) {\n    where.push(\"pf.nome_perfil = ?\");\n    values.push(params.userType);\n}\n// Filtro para studentName\nif (params.studentName) {\n    where.push(\"p.nome LIKE ?\");\n    values.push(`%${params.studentName}%`);\n}\n// Filtro para accessStatus\nif (params.accessStatus) {\n    where.push(\"p.status = ?\");\n    values.push(params.accessStatus);\n}\n// Filtro para accessType\nif (params.accessType) {\n    where.push(\"a.tipo = ?\");\n    values.push(params.accessType);\n}\n\n// Montar a consulta SQL\nlet sql = `\n    SELECT \n        a.id,\n        p.nome AS name,\n        e.nome_edificio AS residence,\n        d.id_dispositivo AS device,\n        pf.nome_perfil AS userType,\n        p.status AS status,\n        a.tipo AS accessType,\n        a.data_hora AS timestamp\n    FROM acessos a\n    INNER JOIN pessoa p ON a.codigo = p.codigo\n    INNER JOIN dispositivo d ON a.id_dispositivo = d.id_dispositivo\n    INNER JOIN edificio e ON d.id_edificio = e.id_edificio\n    INNER JOIN perfis_acesso pf ON p.id_perfil = pf.id_perfil\n`;\n\nif (where.length > 0) {\n    sql += \" WHERE \" + where.join(\" AND \");\n}\n\nmsg.topic = sql;\nmsg.payload = values;\n\nreturn msg;",
+        "func": "// Receber os parâmetros do frontend\nnode.warn('Parâmetros recebidos: ' + JSON.stringify(msg.req.query));\nlet params = msg.req.query;\nlet where = [];\nlet values = [];\n\n// Validação de parâmetros\nif (params.startDate && !params.startDate.match(/^\\d{4}-\\d{2}-\\d{2}$/)) {\n    params.startDate = '';\n}\nif (params.endDate && !params.endDate.match(/^\\d{4}-\\d{2}-\\d{2}$/)) {\n    params.endDate = '';\n}\nif (params.accessType && !['in', 'out'].includes(params.accessType)) {\n    params.accessType = '';\n}\nif (params.accessStatus && !['1', '0'].includes(params.accessStatus)) {\n    params.accessStatus = '';\n}\n\n// Filtro para searchQuery\nif (params.searchQuery) {\n    where.push(\"(p.nome LIKE ? OR e.nome_edificio LIKE ? OR p.codigo LIKE ?)\");\n    values.push(`%${params.searchQuery}%`, `%${params.searchQuery}%`, `%${params.searchQuery}%`);\n}\n// Filtro para startDate\nif (params.startDate) {\n    where.push(\"a.data_hora >= ?\");\n    values.push(params.startDate);\n}\n// Filtro para endDate\nif (params.endDate) {\n    where.push(\"a.data_hora <= ?\");\n    values.push(params.endDate);\n}\n// Filtro para residence\nif (params.residence) {\n    where.push(\"e.nome_edificio = ?\");\n    values.push(params.residence);\n}\n// Filtro para device\nif (params.device) {\n    where.push(\"d.id_dispositivo = ?\");\n    values.push(params.device);\n}\n// Filtro para userType\nif (params.userType) {\n    where.push(\"pf.nome_perfil = ?\");\n    values.push(params.userType);\n}\n// Filtro para studentName\nif (params.studentName) {\n    where.push(\"p.nome LIKE ?\");\n    values.push(`%${params.studentName}%`);\n}\n// Filtro para studentCode\nif (params.studentCode) {\n    where.push(\"p.codigo LIKE ?\");\n    values.push(`%${params.studentCode}%`);\n}\n// Filtro para accessStatus\nif (params.accessStatus) {\n    where.push(\"p.status = ?\");\n    values.push(params.accessStatus);\n}\n// Filtro para accessType\nif (params.accessType) {\n    where.push(\"a.tipo = ?\");\n    values.push(params.accessType);\n}\n\n// Montar a consulta SQL\nlet sql = `\n    SELECT \n        a.id,\n        p.nome AS name,\n        p.codigo AS codigo,\n        e.nome_edificio AS residence,\n        d.id_dispositivo AS device,\n        pf.nome_perfil AS userType,\n        p.status AS status,\n        a.tipo AS accessType,\n        a.data_hora AS timestamp\n    FROM acessos a\n    INNER JOIN pessoa p ON a.codigo = p.codigo\n    INNER JOIN dispositivo d ON a.id_dispositivo = d.id_dispositivo\n    INNER JOIN edificio e ON d.id_edificio = e.id_edificio\n    INNER JOIN perfis_acesso pf ON p.id_perfil = pf.id_perfil\n`;\n\nif (where.length > 0) {\n    sql += \" WHERE \" + where.join(\" AND \");\n}\n\nnode.warn('SQL gerado: ' + sql);\nnode.warn('Valores da consulta: ' + JSON.stringify(values));\n\nmsg.topic = sql;\nmsg.payload = values;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3080,
+        "x": 3000,
         "y": 680,
         "wires": [
             [
-                "0997fbf026dcfed1"
+                "0997fbf026dcfed1",
+                "afad3bc9f5a84ff4"
             ]
         ]
     },
@@ -19178,11 +19180,12 @@
         "g": "103be11be8eec673",
         "mydb": "f3e8c660cf5205b5",
         "name": "Consulta Report (MySQL)",
-        "x": 3330,
+        "x": 3270,
         "y": 680,
         "wires": [
             [
-                "04617f47d13db45a"
+                "04617f47d13db45a",
+                "8cdbfbbe8d782eb5"
             ]
         ]
     },
@@ -19194,7 +19197,7 @@
         "name": "Resposta Report",
         "statusCode": "",
         "headers": {},
-        "x": 3780,
+        "x": 3750,
         "y": 680,
         "wires": []
     },
@@ -19260,41 +19263,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3560,
+        "x": 3530,
         "y": 680,
         "wires": [
             [
                 "f3ed19fc2596cefd"
-            ]
-        ]
-    },
-    {
-        "id": "ad3d8206ec3dbc10",
-        "type": "inject",
-        "z": "b945a241e156bcfb",
-        "g": "030cd0a9f03e0251",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 2240,
-        "y": 740,
-        "wires": [
-            [
-                "870faf16bf488d4b"
             ]
         ]
     },
@@ -26795,8 +26768,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "fingerprint_REGISTED",
-        "x": 1250,
-        "y": 840,
+        "x": 1270,
+        "y": 920,
         "wires": [
             [
                 "8c18284f520caea1"
@@ -27491,6 +27464,40 @@
         "statusType": "auto",
         "x": 3110,
         "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "8cdbfbbe8d782eb5",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "ac5f601eb0b0ab61",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3480,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "afad3bc9f5a84ff4",
+        "type": "debug",
+        "z": "b945a241e156bcfb",
+        "g": "ac5f601eb0b0ab61",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3240,
+        "y": 580,
         "wires": []
     },
     {

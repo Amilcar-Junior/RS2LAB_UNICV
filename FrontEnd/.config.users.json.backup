@@ -48,7 +48,7 @@
                 }
             }
         },
-        "menu-menu-item-sidebar": true,
+        "menu-menu-item-sidebar": false,
         "menu-menu-item-palette": true
     }
 }
