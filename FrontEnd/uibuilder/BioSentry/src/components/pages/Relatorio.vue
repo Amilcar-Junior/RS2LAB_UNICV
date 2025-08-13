@@ -48,8 +48,8 @@
             <label for="accessType">Tipo de Acesso:</label>
             <select v-model="accessType" id="accessType">
               <option value="">Todos</option>
-              <option value="Entrada">Entrada</option>
-              <option value="Saída">Saída</option>
+              <option value="in">Entrada</option>
+              <option value="out">Saída</option>
             </select>
           </div>
           <button type="submit" class="btn btn-danger generate-btn">Gerar Relatório</button>
@@ -163,17 +163,17 @@ module.exports = {
   mounted() {
     const query = this.$route.query;
     if (query) {
-     this.searchQuery = query.searchQuery || '';
+      this.searchQuery = query.searchQuery || '';
       this.startDate = query.startDate || '';
       this.endDate = query.endDate || '';
-    this.residence = query.residence || '';
-    this.device = query.device || '';
-    this.userType = query.userType || '';
+      this.residence = query.residence || '';
+      this.device = query.device || '';
+      this.userType = query.userType || '';
     this.studentName = query.studentName || '';
-    this.accessStatus = query.accessStatus || '';
+      this.accessStatus = query.accessStatus || '';
       this.accessType = query.accessType || '';
-    // Chama generateReport apenas se pelo menos um filtro relevante estiver presente
-    if (this.startDate || this.endDate || this.residence || this.device || this.userType || this.studentName || this.accessStatus || this.accessType || this.searchQuery) {
+      // Chama generateReport apenas se pelo menos um filtro relevante estiver presente
+      if (this.startDate || this.endDate || this.residence || this.device || this.userType || this.studentName || this.accessStatus || this.accessType || this.searchQuery) {
         this.generateReport();
       }
     }
