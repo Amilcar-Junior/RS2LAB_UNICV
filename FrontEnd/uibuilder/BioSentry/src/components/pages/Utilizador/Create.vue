@@ -37,6 +37,17 @@
                   required
                 />
               </div>
+              <div class="mb-3">
+                <label for="codigo">Código:</label>
+                <input
+                  type="text"
+                  id="codigo"
+                  v-model="model.item.Codigo"
+                  class="form-control"
+                  placeholder="Insira o código do utilizador"
+                  required
+                />
+              </div>
               <!-- <div class="mb-3">
                 <label for="senha">Senha:</label>
                 <input
@@ -147,6 +158,7 @@ module.exports = {
     return {
       model: {
         item: {
+          Codigo: "",
           Nome: "",
           Email: "",
           Senha: "", // A senha será gerada automaticamente
@@ -347,6 +359,7 @@ module.exports = {
 
     cleanForm() {
       this.model.item.Nome = "";
+      this.model.item.Codigo = "";
       this.model.item.Email = "";
       this.model.item.Senha = ""; // Limpa a senha gerada
       this.model.item.ID_TipoUtilizador = "";
