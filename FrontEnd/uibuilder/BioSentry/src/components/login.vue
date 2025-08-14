@@ -32,7 +32,22 @@
                 maxlength="20"
                 required
               />
-              <input type="submit" class="btn btn-info eon-btn" />
+             <div class="text-center mt-3" style="margin-bottom: 10px ;">
+                <button
+                  type="submit"
+                   class="btn btn-info eon-btn w-100"
+                  :disabled="isLoading"
+                  
+                >
+                  <span v-if="isLoading">
+                    <i class="fa fa-spinner fa-spin"></i> A verificar...
+                  </span>
+                  <span v-else>
+                    Entrar
+                  </span>
+                </button>
+              </div>
+
               <b-alert
                 v-show="displayError"
                 :variant="errorVariant"
@@ -154,6 +169,8 @@ module.exports = {
       errors: [],
       errormessage: "",
       errorVariant: "danger",
+      isLoading: false,
+
     };
   },
   computed: {
@@ -165,7 +182,7 @@ module.exports = {
   methods: {
     async login() {
       this.errormessage = "";
-
+      this.isLoading = true;
       // Log das entradas
       console.log("Iniciando login com:", {
           username: this.postBody.username,
@@ -175,27 +192,30 @@ module.exports = {
       if (!this.postBody.username) {
         this.errormessage = "Por favor, insira seu Codigo.";
         this.errorVariant = "danger";
+        this.isLoading = false; 
         return;
       }
 
       if (!this.postBody.Utilizador_Senha) {
         this.errormessage = "Por favor, insira sua Palavra-passe.";
         this.errorVariant = "danger";
+        this.isLoading = false; 
         return;
       }
 
       var Utilizador_Senha = this.postBody.Utilizador_Senha
 
       try{
-          console.log("Chamando API rs2lab/login...");
-          const rs2labResponse = await axios.post("/biosentry/login", {
-            username: this.postBody.username,
-            Utilizador_Senha:this.postBody.Utilizador_Senha,
-          });
-          console.log("Resposta da API rs2lab/login:", rs2labResponse.data);
-          if (rs2labResponse.data.length === 0) {
-        this.errormessage = "Código ou palavra-passe inválidos.";
-        return;
+              console.log("Chamando API rs2lab/login...");
+              const rs2labResponse = await axios.post("/biosentry/login", {
+                username: this.postBody.username,
+                Utilizador_Senha:this.postBody.Utilizador_Senha,
+              });
+              console.log("Resposta da API rs2lab/login:", rs2labResponse.data);
+              if (rs2labResponse.data.length === 0) {
+            this.errormessage = "Código ou palavra-passe inválidos.";
+        this.isLoading = false; 
+              return;
       }
 
       const user = rs2labResponse.data[0];
@@ -203,6 +223,8 @@ module.exports = {
       if (user.Utilizador_isActive !== 1) {
         this.errormessage =
           "Sua conta está inativa. Entre em contato com o administrador.";
+
+          this.isLoading = false; 
         return;
       }
 
@@ -236,13 +258,14 @@ module.exports = {
       console.log("Data de expiração do token:", tokenExpiration);
 
       // Verificar se o token está expirado
-    const currentTime = Math.floor(Date.now() / 1000); // Tempo atual em segundos
-    if (tokenExpiration < currentTime) {
-      this.errormessage = "Sessão expirada. Tente novamente.";
-      this.errorVariant = "danger";
-      console.log("Erro: Token expirado. Expiração:", tokenExpiration, "Atual:", currentTime);
-      return;
-    }
+      const currentTime = Math.floor(Date.now() / 1000); // Tempo atual em segundos
+      if (tokenExpiration < currentTime) {
+        this.errormessage = "Sessão expirada. Tente novamente.";
+        this.errorVariant = "danger";
+        console.log("Erro: Token expirado. Expiração:", tokenExpiration, "Atual:", currentTime);
+        this.isLoading = false; 
+        return;
+      }
 
       // Armazenar o token no localStorage
         localStorage.setItem("unicv_token", token);
@@ -287,7 +310,9 @@ module.exports = {
         console.error("Status do erro:", error.response.status);
       }
       this.errormessage = "Erro ao tentar fazer login. Tente novamente.";
-     } 
+     } finally {
+    this.isLoading = false;
+  }
        
     },
     showRecoveryForm() {
