@@ -419,7 +419,9 @@
         return this.items.filter((item) => {
           return (
             item.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            item.status_.toString().includes(this.searchQuery)
+            item.status_.toString().includes(this.searchQuery) || 
+            item.nome_edificio.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+            item.codigo.toLowerCase().includes(this.searchQuery.toLowerCase())
           );
         });
       },

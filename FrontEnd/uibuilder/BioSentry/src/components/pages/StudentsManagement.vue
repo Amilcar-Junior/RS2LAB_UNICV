@@ -419,8 +419,12 @@ module.exports = {
           item.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.curso.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.status_.toString().includes(this.searchQuery)
+          item.status_.toString().includes(this.searchQuery) ||
+          item.nome_edificio.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.codigo.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
+
+
       });
     },
     paginatedItems() {
