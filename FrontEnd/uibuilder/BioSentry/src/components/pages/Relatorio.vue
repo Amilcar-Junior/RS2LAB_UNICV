@@ -411,14 +411,165 @@ module.exports = {
         return acc;
       }, {});
     },
-    exportPDF() {
-      // Placeholder for PDF export functionality
-      alert('Funcionalidade de exportar PDF ainda não implementada.');
+  exportPDF() {
+      if (!this.reportData) {
+        alert('Gere o relatório antes de exportar.');
+        return;
+      }
+
+      this.isExporting = true; // Ativa o indicador de carregamento
+      const { jsPDF } = window.jspdf; // Access jsPDF from global window.jspdf
+      const doc = new jsPDF('p', 'mm', 'a4'); // PDF em orientação portrait, tamanho A4
+      const reportElement = document.querySelector('.report-main');
+      const exportButtons = document.querySelector('.export-buttons'); // Selecionar a seção dos botões
+      const pdfWidth = doc.internal.pageSize.getWidth();
+      const pdfHeight = doc.internal.pageSize.getHeight();
+      const margin = 10; // Margem em mm
+
+      // Esconder temporariamente os botões de exportação
+      if (exportButtons) {
+        exportButtons.style.display = 'none';
+      }
+
+      // Captura o elemento como imagem usando html2canvas
+      window.html2canvas(reportElement, {
+        scale: 2, // Aumenta a resolução para melhor qualidade
+        useCORS: true, // Se houver imagens externas
+        logging: false,
+        backgroundColor: '#ffffff', // Fundo branco
+      }).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = pdfWidth - 2 * margin;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        let heightLeft = imgHeight;
+        let positionY = margin + 10; // Espaço para o cabeçalho
+
+        // Adiciona cabeçalho na primeira página
+        doc.setFontSize(16);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Relatório BioSentry', margin, margin + 5);
+        doc.setLineWidth(0.5);
+        doc.line(margin, margin + 7, pdfWidth - margin, margin + 7); // Linha abaixo do cabeçalho
+
+        // Adiciona a primeira página
+        doc.addImage(imgData, 'PNG', margin, positionY, imgWidth, imgHeight);
+        heightLeft -= (pdfHeight - 2 * margin - 10);
+
+        // Adiciona páginas adicionais se o conteúdo for longo
+        while (heightLeft > 0) {
+          doc.addPage();
+          positionY = -(pdfHeight - 2 * margin - 10 - (heightLeft % (pdfHeight - 2 * margin - 10))); // Ajusta a posição
+          // Adiciona cabeçalho nas páginas subsequentes
+          doc.setFontSize(16);
+          doc.setFont('helvetica', 'bold');
+          doc.text('Relatório BioSentry', margin, margin + 5);
+          doc.setLineWidth(0.5);
+          doc.line(margin, margin + 7, pdfWidth - margin, margin + 7);
+          doc.addImage(imgData, 'PNG', margin, positionY, imgWidth, imgHeight);
+          heightLeft -= (pdfHeight - 2 * margin - 10);
+        }
+
+        // Salva o PDF com um nome baseado nos filtros
+        const fileName = `Relatorio_${this.startDate || 'inicio'}_a_${this.endDate || 'fim'}.pdf`;
+        doc.save(fileName);
+
+        // Restaurar a visibilidade dos botões e desativar o indicador
+        if (exportButtons) {
+          exportButtons.style.display = 'flex';
+        }
+        this.isExporting = false;
+      }).catch((error) => {
+        console.error('Erro ao exportar PDF:', error);
+        alert('Ocorreu um erro ao exportar o PDF. Tente novamente.');
+        // Garante que os botões sejam restaurados e o indicador desativado
+        if (exportButtons) {
+          exportButtons.style.display = 'flex';
+        }
+        this.isExporting = false;
+      });
     },
-    exportExcel() {
-      // Placeholder for Excel export functionality
-      alert('Funcionalidade de exportar Excel ainda não implementada.');
-    },
+
+ exportExcel() {
+  if (!this.reportData) {
+    alert('Gere o relatório antes de exportar.');
+    return;
+  }
+
+  this.isExporting = true; // Mostrar spinner
+  const XLSX = window.XLSX;
+  const workbook = XLSX.utils.book_new();
+  const exportButtons = document.querySelector('.export-buttons');
+
+  // Desativar botões de exportação
+      if (exportButtons) {
+        exportButtons.style.pointerEvents = 'none';
+      }
+
+  // 1. Planilha de Estatísticas Gerais
+  const statsData = [
+    ['Estatísticas Gerais'],
+    ['Total de Acessos', this.totalAccesses],
+    [],
+    ['Acessos por Residência'],
+    ...Object.entries(this.accessesByResidence).map(([residence, count]) => [residence, count]),
+    [],
+    ['Acessos por Tipo de Utilizador'],
+    ...Object.entries(this.accessesByUserType).map(([type, count]) => [type, count]),
+  ];
+  const statsSheet = XLSX.utils.aoa_to_sheet(statsData);
+  // Aplicar estilos: negrito para títulos
+      statsSheet['A1'].s = { font: { bold: true } };
+      statsSheet['A4'].s = { font: { bold: true } };
+      statsSheet['A7'].s = { font: { bold: true } };
+      // Definir largura das colunas
+      statsSheet['!cols'] = [{ wch: 30 }, { wch: 20 }];
+  XLSX.utils.book_append_sheet(workbook, statsSheet, 'Estatísticas Gerais');
+
+  // 2. Planilha de Detalhes do Relatório
+  const tableData = [
+    ['Nome', 'Residência', 'Tipo de Utilizador', 'Status', 'Tipo de Acesso', 'Data/Hora'],
+    ...this.reportData.map(item => [
+      item.name,
+      item.residence,
+      item.userType,
+      this.getStatusText(item.status),
+      this.formatAccessType(item.accessType),
+      this.formatDate(item.timestamp),
+    ]),
+  ];
+  const tableSheet = XLSX.utils.aoa_to_sheet(tableData);
+   // Aplicar estilos: negrito para cabeçalhos
+      ['A1', 'B1', 'C1', 'D1', 'E1', 'F1'].forEach(cell => {
+        tableSheet[cell].s = { font: { bold: true } };
+      });
+      // Definir largura das colunas
+      tableSheet['!cols'] = [
+        { wch: 20 }, // Nome
+        { wch: 20 }, // Residência
+        { wch: 20 }, // Tipo de Utilizador
+        { wch: 15 }, // Status
+        { wch: 15 }, // Tipo de Acesso
+        { wch: 25 }, // Data/Hora
+      ];
+  XLSX.utils.book_append_sheet(workbook, tableSheet, 'Detalhes do Relatório');
+
+
+   // Salvar o arquivo Excel
+      try {
+        const fileName = `Relatorio_${this.startDate || 'inicio'}_a_${this.endDate || 'fim'}.xlsx`;
+        XLSX.writeFile(workbook, fileName);
+      } catch (error) {
+        console.error('Erro ao exportar Excel:', error);
+        alert('Ocorreu um erro ao exportar o Excel. Tente novamente.');
+      } finally {
+        this.isExporting = false; // Esconder spinner
+        if (exportButtons) {
+          exportButtons.style.pointerEvents = 'auto'; // Reativar botões
+        }
+      }
+
+},
     printReport() {
       window.print();
     },

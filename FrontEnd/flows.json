@@ -17214,6 +17214,7 @@
         "id": "870faf16bf488d4b",
         "type": "mqtt out",
         "z": "b945a241e156bcfb",
+        "d": true,
         "g": "030cd0a9f03e0251",
         "name": "fluxo_cmd_dispositivo",
         "topic": "fingerprint_CMD",
@@ -26755,7 +26756,7 @@
         "props": [
             {
                 "p": "payload.finger_id",
-                "v": "123",
+                "v": "25",
                 "vt": "num"
             },
             {

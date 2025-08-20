@@ -17455,7 +17455,7 @@
         "z": "b945a241e156bcfb",
         "g": "2d0336cd76812691",
         "name": "function 24",
-        "func": "msg.topic = `SELECT impressao_digital AS finger_id\n            FROM pessoa\n            WHERE codigo = ${msg.req.params.codigo};`;\nreturn msg;\n\n\n",
+        "func": "msg.topic = `SELECT finger_id\n            FROM pessoa\n            WHERE codigo = ${msg.req.params.codigo};`;\nreturn msg;\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
