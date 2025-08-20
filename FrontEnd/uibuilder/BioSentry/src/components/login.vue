@@ -299,8 +299,9 @@ module.exports = {
 
       // Redireciona para a página principal
       console.log("Login bem-sucedido, chamando loginSuccess...");
-      // Redireciona para a página principal
+      // Always redirect to dashboard after login
       this.keys.loginSuccess();
+      this.$router.push('/');
 
       }
       catch (error) {

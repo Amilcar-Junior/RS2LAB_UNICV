@@ -9,7 +9,7 @@
           margin-bottom: 50px;
         "
       >
-        Estudantes
+        Residentes
       </h3>
 
       <div class="card">

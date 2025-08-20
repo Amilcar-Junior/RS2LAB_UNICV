@@ -21867,7 +21867,7 @@
         "z": "b945a241e156bcfb",
         "g": "6d4026a70d648e52",
         "name": "QUERY",
-        "func": "msg.topic = `INSERT INTO Utilizador \n(Nome, Email, Senha, image, isActive, ID_TipoUtilizador, codigo) \nVALUES ('${msg.payload.Nome}', '${msg.payload.Email}', \nSHA2('${msg.payload.Senha}',256), '${msg.payload.image}', '${msg.payload.isActive}', \n${msg.payload.ID_TipoUtilizador}),'${msg.payload.Codigo}';`;\nreturn msg;",
+        "func": "msg.topic = `INSERT INTO Utilizador \n(Nome, Email, Senha, image, isActive, ID_TipoUtilizador, codigo) \nVALUES ('${msg.payload.Nome}', '${msg.payload.Email}', \nSHA2('${msg.payload.Senha}',256), '${msg.payload.image}', '${msg.payload.isActive}', \n${msg.payload.ID_TipoUtilizador},'${msg.payload.Codigo}');`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,

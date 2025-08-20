@@ -41,6 +41,8 @@ const app = new Vue({
       if (id != null) {
         uibuilder.send({ topic: "Logout", token: id, payload: {} });
       }
+      // Always redirect to dashboard after logout
+      this.$router.push('/');
     },
     setUser(param) {
       this.user.islogged = true;
